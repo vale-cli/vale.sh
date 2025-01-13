@@ -89,7 +89,7 @@ Archive:  Hugo.zip
 ```
 
 After running the `sync` command, the configuration file will be
-added to `StylesPath/.config` according to the order in which it was loaded.
+added to `StylesPath/.vale-config` according to the order in which it was loaded.
 
 ## Complete
 
