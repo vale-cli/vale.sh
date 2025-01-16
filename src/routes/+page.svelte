@@ -4,6 +4,7 @@
 	import Integrations from '$lib/components/landing/Integrations.svelte';
 	import FAQ from '$lib/components/landing/FAQ.svelte';
 	import CTA from '$lib/components/landing/CTA.svelte';
+	import Sponsors from '$lib/components/docs/Sponsors.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
 </script>
 
@@ -31,4 +32,4 @@
 <Integrations />
 <FAQ />
 <Testimonials />
-<CTA />
+<Sponsors />
