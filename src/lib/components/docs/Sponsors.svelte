@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { mode } from 'mode-watcher';
 
@@ -13,7 +13,7 @@
 		script.async = true;
 
 		const el = document.getElementById('opencollective');
-		if (el) {
+		if (el && !isDarkMode) {
 			el.appendChild(script);
 		}
 	});
@@ -29,7 +29,22 @@
 			<p class="mt-6 text-lg/8 text-neutral-500">
 				A big thank you to all of our sponsors and backers! 🙏
 			</p>
-			<div id="opencollective"></div>
+			<div id="opencollective">
+				{#if isDarkMode}
+					<div class="mx-auto my-10">
+						<div>
+							<a href="https://opencollective.com/vale"
+								><img src="https://opencollective.com/vale/organizations.svg?width=890" /></a
+							>
+						</div>
+						<div class="mt-10">
+							<a href="https://opencollective.com/vale"
+								><img src="https://opencollective.com/vale/individuals.svg?width=890" /></a
+							>
+						</div>
+					</div>
+				{/if}
+			</div>
 		</div>
 	</div>
 </div>
