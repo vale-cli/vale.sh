@@ -10,10 +10,12 @@ Algolia
 Asciidoctor
 Grammarly
 Grazie
+Hunspell
 Levenshtein
 Linode
 Netlify
 precompiled
 Snapcraft
+spylls
 Stylebook
 Tengo

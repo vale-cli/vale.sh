@@ -304,6 +304,11 @@ export const docsConfig: DocsConfig = {
                     href: "/docs/guides/glob",
                     items: [],
                 },
+                {
+                    title: "Hunspell",
+                    href: "/docs/guides/hunspell",
+                    items: [],
+                }
             ],
         },
         {
