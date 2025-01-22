@@ -32,7 +32,7 @@
 
 <div class="col-span-3 lg:col-span-4 lg:border-l">
 	<div class="h-full px-4 py-6 lg:px-8">
-		<Tabs.Root value="music" class="h-full space-y-6">
+		<Tabs.Root value="music" class="mx-auto h-full max-w-7xl">
 			<div class="space-between flex items-center">
 				<Tabs.List>
 					<Tabs.Trigger value="music" class="relative">Packages</Tabs.Trigger>
