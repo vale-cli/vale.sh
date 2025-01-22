@@ -49,7 +49,7 @@
 				Check out the <a
 					href="https://github.com/topics/vale-linter-style"
 					class="underline"
-					target="_blank">vale-style</a
+					target="_blank">vale-linter-style</a
 				> tag on GitHub for more packages and configurations.
 			</Alert>
 			<Tabs.Content value="music" class="border-none p-0 outline-none">
