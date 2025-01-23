@@ -1,9 +1,9 @@
 [bB]oolean
 [cC]onfig
 [gG]lob(?:bing)?
-[lL]ookahead
+[lL]ookaheads?
 [lL]ookarounds?
-[lL]ookbehind
+[lL]ookbehinds?
 [pP]assthroughs?
 [sS]uperset
 Algolia
