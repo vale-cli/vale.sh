@@ -7,14 +7,14 @@ description: Learn about the spelling extension point.
     import Alert from '$lib/components/Alert.svelte';
 </script>
 
-| Name           | Type     | Description                                                                                |
-| :------------- | :------- | :----------------------------------------------------------------------------------------- |
-| `custom`       | `bool`   | Turn off the default filters for acronyms, abbreviations, and numbers.                     |
-| `filters`      | `array`  | An array of patterns to ignore during spell checking.                                      |
-| `ignore`       | `string` | A relative path \(from `StylesPath`\) to a file consisting of one word per line to ignore. |
-| `dicpath`      | `string` | The location to look for `.dic` and `.aff` files.                                          |
-| `dictionaries` | `array`  | An array of dictionaries to load.                                                          |
-| `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it. |
+| Name           | Type     | Description                                                                                        |
+| :------------- | :------- | :------------------------------------------------------------------------------------------------- |
+| `custom`       | `bool`   | Turn off the default filters for acronyms, abbreviations, and numbers.                             |
+| `filters`      | `array`  | An array of patterns to ignore during spell checking.                                              |
+| `ignore`       | `string` | A relative path \(from `StylesPath`\) to a file consisting of one word per line to ignore.         |
+| `dicpath`      | `string` | The location to look for `.dic` and `.aff` files. Can be absolute or relative to the `StylesPath`. |
+| `dictionaries` | `array`  | An array of dictionaries to load.                                                                  |
+| `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.         |
 
 `spelling` implements spell checking based on Hunspell-compatible dictionaries.
 
@@ -50,11 +50,11 @@ You can also use the `DICPATH` environment variable or the `dicpath` key.
 
 Vale comes with a set of built-in filters, as described in the table below:
 
-| Filter                    | Description                            |
-| ------------------------- | -------------------------------------- |
-| `[A-Z]{1}[a-z]+[A-Z]+\w+` | Mixed-cased words (such as "MongoDB"). |
-| `[^a-zA-Z_']`             | Words containing non-word tokens (such as numbers).     |
-| `[A-Z]+$`                 | Upper-cased words.                     |
+| Filter                    | Description                                         |
+| ------------------------- | --------------------------------------------------- |
+| `[A-Z]{1}[a-z]+[A-Z]+\w+` | Mixed-cased words (such as "MongoDB").              |
+| `[^a-zA-Z_']`             | Words containing non-word tokens (such as numbers). |
+| `[A-Z]+$`                 | Upper-cased words.                                  |
 
 You can also choose define you own filters either with or without the built-in
 ones enabled:
