@@ -3,13 +3,68 @@ title: Hunspell
 description: Learn how to create and use Hunspell-compatible dictionaries in Vale.
 ---
 
-[Hunspell][1] is a spell-checking engine known for its flexibility and support for complex morphological rules. It powers spell-checking in popular applications like LibreOffice, Mozilla Firefox, and Google Chrome.
+[Hunspell][1] is a spell-checking engine known for its flexibility and support
+for complex morphological rules. It powers spell-checking in popular
+applications like LibreOffice, Mozilla Firefox, and Google Chrome.
 
-Vale uses Hunspell-compatible dictionaries to power its [own spell-checking][2] features. This guide will discuss the basics of creating and using these dictionaries.
+Vale uses Hunspell-compatible dictionaries to power its [own spell-checking][2]
+features. This guide will discuss the basics of creating and using these
+dictionaries.
 
-## How does Hunspell work?
+You can find more thorough documentation at the [official repository][3].
+There's also a well-documented Python port of the library called [spylls][4].
 
-The best resource for learning about Hunspell are the official [man pages][3]. There's also a well-documented Python port of the library called [spylls][4].
+## How does spell-checking in Vale work?
+
+Vale doesn't use Hunspell directly and doesn't require it to be installed on
+your system.
+
+Instead, Vale uses a pure-Go package to parse Hunspell-compatible dictionaries
+and check the spelling of words. This package supports a (growing) subset of Hunspell's features.
+
+A Hunspell-compatible dictionary consists of two files:
+
+1. Affix (`.aff`) file: This file defines the morphological rules, including prefixes, suffixes, and other language-specific grammar rules that govern how words are formed.
+
+2. Dictionary (`.dic`) file: This file contains the list of root words and their associated affix codes to specify valid transformations.
+
+You can name these files whatever you like, so long as the `.aff` and `.dic`
+files are named consistently -- for example, `en_US.aff` and `en_US.dic`.
+
+Here's a minimal example of a dictionary:
+
+```plaintext
+1
+software/M
+```
+
+"1" is the number of words in the dictionary and `software/M` is the root word "software" with the affix code `M`. This means that we accept the word
+"software" and the variations derived from the affix code `M`.
+
+Our affix file would look like this:
+
+```plaintext
+SET UTF-8
+
+SFX M Y 1
+SFX M   0     's         .
+```
+
+- `SFX M Y 1`: This line defines a suffix rule (`SFX`) for the affix code
+  `M`. The `Y` indicates that the rule is [cross-productible][9] and the `1`
+  indicates that there is one rule.
+- `SFX M 0 's .`: This line defines the rule itself. It says that if a word has
+  the affix code `M`, we can add `'s` to the end of the word. The `0` indicates
+  that no part of the base word is removed when applying this suffix. The `.`
+  indicates that there are no conditions for applying this rule.
+
+<!-- vale off -->
+
+The end result is that the dictionary will accept both "software" and
+"software's". Other variations like "softwares" or "softwaring" will be
+rejected.
+
+<!-- vale on -->
 
 ## Where can I find Hunspell dictionaries?
 
@@ -27,3 +82,4 @@ Hunspell dictionaries.
 [6]: https://github.com/LibreOffice/dictionaries
 [7]: https://addons.mozilla.org/en-US/firefox/language-tools
 [8]: https://extensions.openoffice.org/en/search?f%5B0%5D=field_project_tags%3A157
+[9]: https://github.com/hunspell/hunspell/blob/874abbbe65e228df525023afe176b42df34a7a4f/man/hunspell.5#L527
