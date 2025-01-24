@@ -61,9 +61,9 @@ without having to re-implement them.
 
 <Alert>
 In versions of Vale prior to 3.0, vocabularies were stored in
-<code><StylesPath>/Vocab</code>. When upgrading from an older version of Vale,
+<code>&lt;StylesPath&gt;/Vocab</code>. When upgrading from an older version of Vale,
 you'll need  to move your vocabularies to the new
-<code><StylesPath>/config/vocabularies</code> location.
+<code>&lt;StylesPath&gt;/config/vocabularies</code> location.
 </Alert>
 
 Vocabulary entries are stored in `<StylesPath>/config/vocabularies/<name>/` and
