@@ -8,11 +8,13 @@
 [sS]uperset
 Algolia
 Asciidoctor
+Dasel
 Grammarly
 Grazie
 Hunspell
 Levenshtein
 Linode
+metascopes?
 Netlify
 precompiled
 Snapcraft

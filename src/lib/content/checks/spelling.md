@@ -42,7 +42,7 @@ dictionaries:
 ```
 
 The `spelling` extension point will look for `en_US.{dic,aff}` and
-`en_medical.{dic,aff}` files in `$StylesPath/config/dictionaries`.
+`en_medical.{dic,aff}` files in `<StylesPath>/config/dictionaries`.
 
 You can also use the `DICPATH` environment variable or the `dicpath` key.
 
@@ -87,7 +87,7 @@ transpiler
 ```
 
 You can name these files anything you'd like and reference them relative to
-the active `$StylesPath/config/ignore` directory.
+the active `<StylesPath>/config/ignore` directory.
 
 ```yaml
 extends: spelling

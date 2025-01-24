@@ -20,7 +20,7 @@ the rule definition: `.Name`, `.Level`, `.Scope`, `.Message`, `.Description`,
 
 ## Saving filters
 
-You can save a filter for reuse by storing it in `$StylesPath/config/filters`.
+You can save a filter for reuse by storing it in `<StylesPath>/config/filters`.
 Then, you can reference it by name when using the `--filter` option:
 
 ```bash

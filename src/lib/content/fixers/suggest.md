@@ -23,7 +23,7 @@ be executed for each match. The script should return an array of strings called
 `suggestions`.
 
 Scripts are written in [Tengo][3] and are stored in the
-`$StylesPath/config/actions` directory.
+`<StylesPath>/config/actions` directory.
 
 Here's an example script:
 

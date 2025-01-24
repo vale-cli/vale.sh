@@ -28,7 +28,7 @@ $ vale --output='template.tmpl' somefile.md
 ```
 
 Where `template.tmpl` is a file that contains a valid Go template stored in the
-`$StylesPath/config/templates` directory.
+`<StylesPath>/config/templates` directory.
 
 ## Templating
 

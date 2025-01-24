@@ -6,7 +6,7 @@
 		{
 			name: 'Vale.Spelling',
 			description:
-				'Checks for spelling errors in your content. Consumes any Hunspell-compatible dictionaries stored in <code>$StylesPath/config/dictionaries</code>.'
+				'Checks for spelling errors in your content. Consumes any Hunspell-compatible dictionaries stored in <code><StylesPath>/config/dictionaries</code>.'
 		},
 		{
 			name: 'Vale.Terms',
