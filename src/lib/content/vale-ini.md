@@ -115,7 +115,7 @@ on your operating system:
 
 | OS      | Search Locations                                   |
 | :------ | :------------------------------------------------- |
-| Windows | `%LOCALAPPDATA%\vale\\.vale.ini`                  |
+| Windows | `%LOCALAPPDATA%\vale\.vale.ini`                    |
 | macOS   | `$HOME/Library/Application Support/vale/.vale.ini` |
 | Unix    | `$XDG_CONFIG_HOME/vale/.vale.ini`                  |
 
