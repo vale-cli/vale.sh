@@ -9,7 +9,7 @@
 			More than just a command-line interface.
 		</p>
 		<p class="mt-6 text-lg/8 text-neutral-500">
-			Vale intergrates with many popular apps, browsers, and platforms&mdash;including VS Code,
+			Vale integrates with many popular apps, browsers, and platforms&mdash;including VS Code,
 			Google Chrome, GitHub Actions, and more.
 		</p>
 	</div>
