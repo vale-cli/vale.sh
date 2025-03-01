@@ -48,7 +48,7 @@ Blueprint = MyBlueprint
 ## Engines
 
 Each step in a Blueprint contains a query that is processed by
-[Dasel][2] (JSON, YAML, XML, and TOML), [tree-sitter][3] (source code), or TextFSM (text).
+[Dasel][2] (JSON, YAML, XML, or TOML), [tree-sitter][3] (source code), or TextFSM (text).
 
 ### Dasel
 
