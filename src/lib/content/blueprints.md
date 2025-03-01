@@ -12,7 +12,7 @@ Each Blueprint is defined in a YAML file and consists of a series of steps
 that are executed in order. Each step includes the following fields:
 
 - `name`: The name of the step. If no `type` is provided, the name is used as
-  the only scope for the value. Otherwise, the `name` is used as the metascope and will be appended to the active scope -- such as `heading.<name>.md`.
+  the only scope for the value. Otherwise, the `name` is used as a metascope and will be appended to the active scope -- such as `heading.<name>.md`.
 - `expr`: An expression that selects the data to be linted. The expression is
   evaluated by the active [engine](#engines).
 - `type`: The type of the data. Supported types are `md`, `adoc`, `html`,
@@ -47,13 +47,13 @@ Blueprint = MyBlueprint
 
 ## Engines
 
-Each step in a Blueprint contains a query that is processed by either
-[Dasel][2] (JSON, YAML, and TOML) or [tree-sitter][3] (source code).
+Each step in a Blueprint contains a query that is processed by
+[Dasel][2] (JSON, YAML, XML, and TOML), [tree-sitter][3] (source code), or TextFSM (text).
 
 ### Dasel
 
 [Dasel][2] is a command-line tool that allows you to query and modify data
-structures using selectors. It works with JSON, YAML, TOML, XML, and CSV.
+structures using selectors. It works with JSON, YAML, TOML, XML, and more.
 
 Vale uses Dasel to query structured data in files and extract the relevant
 content. For example, given the following JSON:
@@ -126,6 +126,8 @@ scopes:
 ```
 
 See [Pattern Matching with Queries][5] for more information.
+
+### TextFSM
 
 [1]: /docs/scopes
 [2]: https://github.com/TomWright/dasel
