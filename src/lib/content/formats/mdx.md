@@ -13,6 +13,8 @@ $ npm install -g mdx2vast
 You'll need to ensure that the `mdx2vast` executable is available in your
 `$PATH` (this should happen automatically).
 
+The supported extension is `.mdx`.
+
 By default, Vale ignores:
 
 - Front matter: Blocks surrounded by `---` or `+++` delimiters.
