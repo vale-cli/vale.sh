@@ -255,6 +255,11 @@ export const docsConfig: DocsConfig = {
                     items: [],
                 },
                 {
+                    title: "MDX",
+                    href: "/docs/formats/mdx",
+                    items: [],
+                },
+                {
                     title: "HTML",
                     href: "/docs/formats/html",
                     items: [],

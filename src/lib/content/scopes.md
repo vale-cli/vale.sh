@@ -51,6 +51,7 @@ The supported formats for markup files are:
 - [XML](/docs/formats/xml)
 - [Org](/docs/formats/org) <Badge>Built-in</Badge>
 - [DITA](/docs/formats/dita)
+- [MDX](/docs/formats/mdx)
 
 The formats marked as `Built-in` are included with Vale by default. The other
 formats require a third-party dependency to be installed. See each format's
