@@ -127,8 +127,6 @@ scopes:
 
 See [Pattern Matching with Queries][5] for more information.
 
-### TextFSM
-
 [1]: /docs/scopes
 [2]: https://github.com/TomWright/dasel
 [3]: https://tree-sitter.github.io/tree-sitter/
