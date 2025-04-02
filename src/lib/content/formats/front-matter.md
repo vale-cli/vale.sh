@@ -8,7 +8,7 @@ reStructuredText, MDX, and Org files.
 
 There are 3 supported front matter types -- YAML, TOML, and JSON:
 
-![formats](https://github.com/user-attachments/assets/0222c1bf-8706-4428-a0e5-d878511a42be)
+![Front Matter Formats](/media/formats.png)
 
 Each field is dynamically assigned its own scope, allowing you to write rules
 that target specific ones:
