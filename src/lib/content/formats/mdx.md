@@ -17,7 +17,6 @@ The supported extension is `.mdx`.
 
 By default, Vale ignores:
 
-- Front matter: Blocks surrounded by `---` or `+++` delimiters.
 - Fenced blocks: Blocks surrounded by three or more backticks.
 - Code spans: Text surrounded by backticks.
 - URLs: See [URL handling][2] for more information.

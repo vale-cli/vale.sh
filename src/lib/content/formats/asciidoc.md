@@ -15,7 +15,6 @@ The supported extensions are `.adoc`, `.asciidoc`, and `.asc`.
 
 By default, Vale ignores:
 
-- Front matter: Blocks surrounded by `---` or `+++` delimiters.
 - [Literals and source code][4].
 - URLs: See [URL handling][3] for more information.
 

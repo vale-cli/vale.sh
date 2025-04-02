@@ -8,7 +8,6 @@ description: Learn how Vale handles Markdown content.
 
 By default, Vale ignores:
 
-- Front matter: Blocks surrounded by `---` or `+++` delimiters.
 - Indented blocks: Blocks starting with four or more spaces.
 - Fenced blocks: Blocks surrounded by three or more backticks.
 - Code spans: Text surrounded by backticks.

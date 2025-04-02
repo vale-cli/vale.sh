@@ -18,7 +18,6 @@ The supported extensions are `.rst` and `.rest`.
 
 By default, Vale ignores:
 
-- Front matter: Blocks surrounded by `---` or `+++` delimiters.
 - [Literal blocks][3].
 - [Inline literals][4].
 - URLs: See [URL handling][5] for more information.
