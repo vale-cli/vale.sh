@@ -245,6 +245,11 @@ export const docsConfig: DocsConfig = {
             title: "Formats",
             items: [
                 {
+                    title: "Front Matter",
+                    href: "/docs/formats/front-matter",
+                    items: [],
+                },
+                {
                     title: "Markdown",
                     href: "/docs/formats/markdown",
                     items: [],
