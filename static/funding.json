@@ -9,7 +9,7 @@
         "description": "Joseph Kato is the original creator and sole maintainer of Vale, a suite of open-source tools for automated prose linting and documentation quality. Used by Microsoft, GitLab, Docker, and more, Vale has over 1 million downloads and helps documentation teams enforce consistent, inclusive, and high-quality writing at scale.",
         "webpageUrl": {
             "url": "https://vale.sh",
-            "wellKnown": ""
+            "wellKnown": "https://vale.sh/.well-known/funding-manifest-urls"
         }
     },
     "projects": [
@@ -23,7 +23,7 @@
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale",
-                "wellKnown": ""
+                "wellKnown": "https://github.com/errata-ai/vale/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -47,7 +47,7 @@
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale-ls",
-                "wellKnown": ""
+                "wellKnown": "https://github.com/errata-ai/vale-ls/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -71,7 +71,7 @@
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale-action",
-                "wellKnown": ""
+                "wellKnown": "https://github.com/errata-ai/vale-action/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -95,7 +95,7 @@
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale.sh",
-                "wellKnown": ""
+                "wellKnown": "https://github.com/errata-ai/vale.sh/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -107,32 +107,6 @@
                 "static-site",
                 "open-source",
                 "website"
-            ]
-        },
-        {
-            "guid": "vale-packages",
-            "name": "Vale Packages",
-            "description": "A collection of curated and community-contributed style packages for Vale. These packages provide reusable rulesets for organizations and open-source communities to enforce grammar, inclusive language, tone, and branding consistency.",
-            "webpageUrl": {
-                "url": "https://vale.sh",
-                "wellKnown": ""
-            },
-            "repositoryUrl": {
-                "url": "https://github.com/errata-ai/packages",
-                "wellKnown": ""
-            },
-            "licenses": [
-                "spdx:MIT"
-            ],
-            "tags": [
-                "linting",
-                "style-guides",
-                "developer-tools",
-                "documentation",
-                "rulesets",
-                "inclusive-language",
-                "grammar",
-                "open-source"
             ]
         }
     ],
