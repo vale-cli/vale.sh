@@ -18,12 +18,11 @@
             "name": "Vale CLI",
             "description": "The core command-line interface of the Vale ecosystem, enabling customizable style-based linting for technical documentation, blog posts, and other text formats. Extensively used in CI/CD workflows.",
             "webpageUrl": {
-                "url": "https://vale.sh",
-                "wellKnown": ""
+                "url": "https://vale.sh"
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale",
-                "wellKnown": "https://github.com/errata-ai/vale/.well-known/funding-manifest-urls"
+                "wellKnown": "https://github.com/errata-ai/vale/blob/b0a597a6f17e8fd9cefd3d4c1d81a24ed3496a91/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -42,12 +41,11 @@
             "name": "Vale Language Server",
             "description": "A language server implementation for Vale, allowing seamless editor integration (e.g., VS Code, Neovim). Brings real-time linting to developers and writers in IDEs.",
             "webpageUrl": {
-                "url": "https://vale.sh",
-                "wellKnown": ""
+                "url": "https://vale.sh"
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale-ls",
-                "wellKnown": "https://github.com/errata-ai/vale-ls/.well-known/funding-manifest-urls"
+                "wellKnown": "https://github.com/errata-ai/vale-ls/blob/766f299bcb14d9798795e178aeba99605194cd2a/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -66,12 +64,11 @@
             "name": "Vale GitHub Action",
             "description": "GitHub Action for integrating Vale into CI pipelines. Makes it easy to add documentation linting to pull requests, ensuring consistency in collaborative writing workflows.",
             "webpageUrl": {
-                "url": "https://vale.sh",
-                "wellKnown": ""
+                "url": "https://vale.sh"
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale-action",
-                "wellKnown": "https://github.com/errata-ai/vale-action/.well-known/funding-manifest-urls"
+                "wellKnown": "https://github.com/errata-ai/vale-action/blob/dcded780f1ff68e2558e802a165a484a4a3e2fb8/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -90,12 +87,11 @@
             "name": "Vale Website",
             "description": "The public documentation and marketing website for the Vale ecosystem. Hosts installation guides, style configuration examples, integration docs, and more for both new and advanced users.",
             "webpageUrl": {
-                "url": "https://vale.sh",
-                "wellKnown": ""
+                "url": "https://vale.sh"
             },
             "repositoryUrl": {
                 "url": "https://github.com/errata-ai/vale.sh",
-                "wellKnown": "https://github.com/errata-ai/vale.sh/.well-known/funding-manifest-urls"
+                "wellKnown": "https://github.com/errata-ai/vale.sh/blob/e1ef580e27013749f9443e44323be9fa22d26e36/static/.well-known/funding-manifest-urls"
             },
             "licenses": [
                 "spdx:MIT"
@@ -140,6 +136,15 @@
                 ]
             }
         ],
-        "history": []
+        "history": [
+            {
+                "year": 2024,
+                "income": 7477,
+                "expenses": 7397,
+                "taxes": 0,
+                "currency": "USD",
+                "description": "Funds raised and disbursed via Open Collective, supporting development and maintenance of the Vale ecosystem."
+            }
+        ]
     }
 }
