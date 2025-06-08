@@ -1,14 +1,14 @@
 ---
-title: Blueprints
-description: Customize the file-processing pipeline with Blueprints.
+title: Views
+description: Customize the file-processing pipeline with Views.
 ---
 
-Blueprints are a series of instructions that transform a structured
+Views are a series of instructions that transform a structured
 file into a list of named [scopes][1]. This allows you to choose exactly
 what sections of the file are linted, and even write rules that specifically
 target certain parts.
 
-Each Blueprint is defined in a YAML file and consists of a series of steps
+Each View is defined in a YAML file and consists of a series of steps
 that are executed in order. Each step includes the following fields:
 
 - `name`: The name of the step. If no `type` is provided, the name is used as
@@ -18,7 +18,7 @@ that are executed in order. Each step includes the following fields:
 - `type`: The type of the data. Supported types are `md`, `adoc`, `html`,
   `rst`, or `org`.
 
-Here's an example of a Blueprint that extracts the `title` and `description`
+Here's an example of a View that extracts the `title` and `description`
 fields from an OpenAPI document:
 
 ```yaml
@@ -35,19 +35,19 @@ scopes:
     type: md
 ```
 
-Blueprints are stored in `<StylesPath>/config/blueprints` and can be
+Views are stored in `<StylesPath>/config/Views` and can be
 referenced in the `.vale.ini` file under any syntax-specific section:
 
 ```ini
 [*.json]
 BasedOnStyles = Vale
 
-Blueprint = MyBlueprint
+View = MyView
 ```
 
 ## Engines
 
-Each step in a Blueprint contains a query that is processed by
+Each step in a View contains a query that is processed by
 [Dasel][2] (JSON, YAML, XML, or TOML), [tree-sitter][3] (source code), or TextFSM (text).
 
 ### Dasel
@@ -64,8 +64,8 @@ content. For example, given the following JSON:
 	"version": "3.0.0",
 	"features": [
 		{
-			"title": "Blueprints",
-			"description": "Customize the file-processing pipeline with Blueprints."
+			"title": "Views",
+			"description": "Customize the file-processing pipeline with Views."
 		},
 		{
 			"title": "Styles",
@@ -75,7 +75,7 @@ content. For example, given the following JSON:
 }
 ```
 
-You could use the following Blueprint to extract the `name` and `description`
+You could use the following View to extract the `name` and `description`
 fields from each feature:
 
 ```yaml
@@ -111,7 +111,7 @@ def hello(name: str) -> str:
     return f"Hello, {name}!"
 ```
 
-You could use the following Blueprint to extract all comments and function docstrings:
+You could use the following View to extract all comments and function docstrings:
 
 ```yaml
 engine: tree-sitter
