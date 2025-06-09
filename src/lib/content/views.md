@@ -51,7 +51,7 @@ View = MyView
 ## Engines
 
 Each step in a View contains a query that is processed by
-[Dasel][2] (JSON, YAML, XML, or TOML), [tree-sitter][3] (source code), or
+[Dasel][2] (JSON, YAML, or TOML), [tree-sitter][3] (source code), or
 TextFSM (text).
 
 ### Dasel
