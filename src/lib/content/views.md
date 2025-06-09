@@ -3,16 +3,19 @@ title: Views
 description: Customize the file-processing pipeline with Views.
 ---
 
-Views are a series of instructions that transform a structured
-file into a list of named [scopes][1]. This allows you to choose exactly
-what sections of the file are linted, and even write rules that specifically
-target certain parts.
+Views represent a virtual, filtered perspective of a structured file. They
+define a series of transformation steps that extract specific, named
+[scopes][1], effectively changing how the file is represented for linting
+purposes. By focusing only on relevant sections, Views let you control exactly
+what content is analyzed—and enable rules that apply only to specific parts of
+a file.
 
 Each View is defined in a YAML file and consists of a series of steps
 that are executed in order. Each step includes the following fields:
 
 - `name`: The name of the step. If no `type` is provided, the name is used as
-  the only scope for the value. Otherwise, the `name` is used as a metascope and will be appended to the active scope -- such as `heading.<name>.md`.
+  the only scope for the value. Otherwise, the `name` is used as a metascope
+  and will be appended to the active scope -- such as `heading.<name>.md`.
 - `expr`: An expression that selects the data to be linted. The expression is
   evaluated by the active [engine](#engines).
 - `type`: The type of the data. Supported types are `md`, `adoc`, `html`,
@@ -35,7 +38,7 @@ scopes:
     type: md
 ```
 
-Views are stored in `<StylesPath>/config/Views` and can be
+Views are stored in `<StylesPath>/config/views` and can be
 referenced in the `.vale.ini` file under any syntax-specific section:
 
 ```ini
@@ -48,7 +51,8 @@ View = MyView
 ## Engines
 
 Each step in a View contains a query that is processed by
-[Dasel][2] (JSON, YAML, XML, or TOML), [tree-sitter][3] (source code), or TextFSM (text).
+[Dasel][2] (JSON, YAML, XML, or TOML), [tree-sitter][3] (source code), or
+TextFSM (text).
 
 ### Dasel
 
@@ -126,6 +130,10 @@ scopes:
 ```
 
 See [Pattern Matching with Queries][5] for more information.
+
+### TextFSM
+
+Coming soon!
 
 [1]: /docs/scopes
 [2]: https://github.com/TomWright/dasel
