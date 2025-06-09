@@ -78,6 +78,11 @@ export const docsConfig: DocsConfig = {
                     href: "/docs/templates",
                     items: [],
                 },
+                {
+                    title: "Views",
+                    href: "/docs/views",
+                    items: [],
+                },
             ],
         },
         {
