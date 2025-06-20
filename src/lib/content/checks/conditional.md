@@ -55,8 +55,8 @@ extends: conditional
 message: "'%s' has been imported but not used."
 level: error
 scope: raw
-first: "(?<=import )(\w+)(?= from)"
-second: '(?<=<)(\w+)'
+first: '(?<=import )(\\w+)(?= from)'
+second: '(?<=<)(\\w+)'
 ```
 
 See the [regex guide][1] for more information.

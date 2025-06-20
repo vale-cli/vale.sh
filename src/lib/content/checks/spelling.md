@@ -73,7 +73,7 @@ filters:
   # Ignore all words starting with 'py'.
   #
   # e.g., 'PyYAML'.
-  - '[pP]y.*\b'
+  - '[pP]y.*\\b'
 ```
 
 ## Ignore files

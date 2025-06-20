@@ -104,7 +104,7 @@ entry per line:
 
 ```regex
 first
-[pP]y.*\b
+[pP]y.*\\b
 third
 ```
 

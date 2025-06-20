@@ -31,7 +31,7 @@ Here's an example script:
 text := import("text")
 
 // `match` is provided by Vale and represents the rule's matched text.
-made := text.re_replace(`([A-Z]\w+)([A-Z]\w+)`, match, `$1-$2`)
+made := text.re_replace(`([A-Z]\\w+)([A-Z]\\w+)`, match, `$1-$2`)
 
 made = text.replace(made, "-", "_", 1)
 made = text.to_lower(made)
@@ -53,7 +53,7 @@ action:
   params:
     - CamelToSnake.tengo
 tokens:
-  - '[A-Z]\w+[A-Z]\w+'
+  - '[A-Z]\\w+[A-Z]\\w+'
 ```
 
 ## spellings

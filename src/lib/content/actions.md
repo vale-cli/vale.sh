@@ -62,10 +62,10 @@ action:
   name: edit
   params:
     - regex
-    - '(\w+)_(\w+)'
+    - '(\\w+)_(\\w+)'
     - '$1-$2'
 tokens:
-  - '\w+_\w+'
+  - '\\w+_\\w+'
 ```
 
 This rule is designed to catch instances of `snake_case` and suggest that the

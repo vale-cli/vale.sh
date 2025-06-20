@@ -48,7 +48,7 @@ action:
     - trim_right
     - '!'
 tokens:
-  - '\\w+!(?:\s|$)'
+  - '\\w+!(?:\\s|$)'
 ```
 
 ## `trim_left`

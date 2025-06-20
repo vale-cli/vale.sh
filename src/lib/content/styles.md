@@ -29,7 +29,7 @@ action:
     - remove
     - '.?!'
 tokens:
-  - '[a-z0-9][.?!](?:\s|$)'
+  - '[a-z0-9][.?!](?:\\s|$)'
 ```
 
 These collections are referred to as _styles_ and are organized in a
