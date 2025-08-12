@@ -56,7 +56,7 @@ Templates can also access the following functions:
 | `blue`        | `string`    | Returns the given `string` with an ANSI-formatted blue foreground color.                                           |
 | `yellow`      | `string`    | Returns the given `string` with an ANSI-formatted yellow foreground color.                                         |
 | `underline`   | `string`    | Returns the given `string` with an ANSI-formatted underline.                                                       |
-| `newTable`    | `bool`      | Creates a new [`tablewriter`][2] struct. `newTable` accepts one boolean value representing [`SetAutoWrapText`][2]. |
+| `newTable`    | `bool`      | Creates a new [`tablewriter`][2] struct. `newTable` accepts one boolean value representing [`SetAutoWrapText`][3]. |
 | `addRow`      | `[]string`  | Appends the given row to a table.                                                                                  |
 | `renderTable` | `Table`     | Prints the table-formatted output to `stdout`.                                                                     |
 | `jsonEscape`  | `string`    | Ensure the given `STRING` is valid JSON.                                                                           |
@@ -64,6 +64,8 @@ Templates can also access the following functions:
 See the [Sprig Function Documentation][4] for the full list.
 
 ## Examples
+
+### Customizing the default output
 
 The following example re-implements Vale's default output style using a
 template.
@@ -111,7 +113,50 @@ template.
 {{- $e}} {{"errors" | red}}, {{$w}} {{"warnings" | yellow}} and {{$s}} {{"suggestions" | blue}} in {{$f}} {{$f | int | plural "file" "files"}}.
 ```
 
+### Creating a RDJSONL template
+
+The following example converts Vale's output to [RDJSONL][5],
+which you can then pass to [Reviewdog][6] to display on pull request.
+This can be useful when the [Vale action][7] is not suitable for your workflow.
+
+```go
+{{- /* Range over the linted files */ -}}
+
+{{- range .Files}}
+
+{{- $path := .Path -}}
+
+{{- /* Range over the file's alerts */ -}}
+
+{{- range .Alerts -}}
+
+{{- $error := "" -}}
+{{- if eq .Severity "error" -}}
+    {{- $error = "ERROR" -}}
+{{- else if eq .Severity "warning" -}}
+    {{- $error = "WARNING" -}}
+{{- else -}}
+    {{- $error = "INFO" -}}
+{{- end}}
+
+{{- /* Variables setup */ -}}
+
+{{- $line := printf "%d" .Line -}}
+{{- $col := printf "%d" (index .Span 0) -}}
+{{- $check := printf "%s" .Check -}}
+{{- $message := printf "%s" .Message -}}
+
+{{- /* Output */ -}}
+
+{"message": "[{{ $check }}] {{ $message | jsonEscape }}", "location": {"path": "{{ $path }}", "range": {"start": {"line": {{ $line }}, "column": {{ $col }}}}}, "severity": "{{ $error }}"}
+{{end -}}
+{{end -}}
+```
+
 [1]: https://golang.org/pkg/text/template/
 [2]: https://github.com/olekukonko/tablewriter#ascii-table-writer
 [3]: https://godoc.org/github.com/olekukonko/tablewriter#Table.SetAutoWrapText
 [4]: http://masterminds.github.io/sprig/
+[5]: https://github.com/reviewdog/reviewdog?tab=readme-ov-file#reviewdog-diagnostic-format-rdformat
+[6]: https://github.com/reviewdog/reviewdog
+[7]: https://github.com/errata-ai/vale-action
