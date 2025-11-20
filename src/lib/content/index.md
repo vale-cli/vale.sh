@@ -48,7 +48,7 @@ To get a better idea of how this works, let's look at an example from the
 
 ```yaml
 # `extends` specifies the extension point you're using. Here, we're
-# using `substitution` to ensure correct usage of some techincal and
+# using `substitution` to ensure correct usage of some technical and
 # brand-specifc terminology.
 extends: substitution
 # `message` allows you to customize the output shown to your users.
