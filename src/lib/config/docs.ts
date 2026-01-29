@@ -367,7 +367,7 @@ export const docsConfig: DocsConfig = {
                 },
                 {
                     title: "Obsidian",
-                    href: "https://github.com/marcusolsson/obsidian-vale",
+                    href: "https://github.com/ChrisChinchilla/obsidian-vale",
                     external: true,
                     items: [],
                 },
