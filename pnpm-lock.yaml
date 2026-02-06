@@ -187,7 +187,7 @@ importers:
         specifier: 1.0.0-next.3
         version: 1.0.0-next.3(svelte@5.16.6)
       vite:
-        specifier: ^5.4.12
+        specifier: ^5.4.21
         version: 5.4.21
       zod:
         specifier: ^3.23.8
