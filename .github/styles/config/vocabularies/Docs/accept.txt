@@ -18,6 +18,7 @@ Linode
 metascopes?
 Netlify
 precompiled
+Reviewdog
 Snapcraft
 spylls
 Stylebook
