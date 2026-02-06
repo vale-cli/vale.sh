@@ -187,7 +187,7 @@ importers:
         specifier: 1.0.0-next.3
         version: 1.0.0-next.3(svelte@5.16.6)
       vite:
-        specifier: ^5.4.21
+        specifier: ^5.4.12
         version: 5.4.21
       zod:
         specifier: ^3.23.8
@@ -4493,7 +4493,7 @@ snapshots:
 
   is-reference@3.0.3:
     dependencies:
-      '@types/estree': 1.0.6
+      '@types/estree': 1.0.8
 
   isexe@2.0.0: {}
 
