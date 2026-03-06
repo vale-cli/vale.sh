@@ -9,7 +9,8 @@ export const docsConfig: DocsConfig = {
     mainNav: [
         {
             title: "Docs",
-            href: "/docs",
+            href: "https://docs.vale.sh",
+            external: true,
         },
         {
             title: "Studio",
