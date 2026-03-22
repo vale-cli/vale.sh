@@ -110,6 +110,11 @@ export const docsConfig: DocsConfig = {
                     items: [],
                 },
                 {
+                    title: "WordTemplate",
+                    href: "/docs/keys/wordtemplate",
+                    items: [],
+                },
+                {
                     title: "IgnoredScopes",
                     href: "/docs/keys/ignoredscopes",
                     items: [],

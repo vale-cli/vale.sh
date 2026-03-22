@@ -27,6 +27,12 @@
 			description: 'Minimum alert level to display.'
 		},
 		{
+			name: 'WordTemplate',
+			link: 'keys/wordtemplate',
+			type: 'string',
+			description: 'Regex template used to define individual words.'
+		},
+		{
 			name: 'IgnoredScopes',
 			link: 'keys/ignoredscopes',
 			type: 'enum',
