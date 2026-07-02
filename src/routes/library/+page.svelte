@@ -1,11 +1,48 @@
 <script lang="ts">
-	import Rocket from 'svelte-radix/Rocket.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
-	import { Badge } from '$lib/components/ui/badge';
 	import * as Popover from '$lib/components/ui/popover';
 	import { onMount } from 'svelte';
 	import data from '$lib/data/media.json';
 	import { search as searchLambda } from '$lib/api';
+	import FileText from 'lucide-svelte/icons/file-text';
+	import Play from 'lucide-svelte/icons/play';
+
+	type Media = {
+		title: string;
+		url: string;
+		author: string;
+		year: number;
+		type: string;
+		description: string;
+		image: string;
+		site: string;
+	};
+
+	const media = data as Media[];
+
+	let activeType = $state('all');
+	const typeLabel = (t: string) =>
+		({ all: 'All', post: 'Articles', video: 'Videos' })[t] ?? t;
+
+	const filters = $derived([
+		'all',
+		...Array.from(new Set(media.map((m) => m.type)))
+	]);
+
+	const items = $derived(
+		media
+			.filter((m) => activeType === 'all' || m.type === activeType)
+			.slice()
+			.sort((a, b) => b.year - a.year)
+	);
+
+	// Track images that fail to load (dead/hotlink-blocked URLs) so we can swap in
+	// a branded placeholder instead of a broken-image icon.
+	let failedImages = $state<Set<string>>(new Set());
+	function onImgError(url: string) {
+		failedImages = new Set(failedImages).add(url);
+	}
+	const showImage = (url: string) => url !== '' && !failedImages.has(url);
 
 	function getParts(id: string) {
 		let tag = id.match(/title=(.+)&url=(.+)&author=(.+)&year=(.+)&type=(.+)/);
@@ -65,22 +102,15 @@
 										const sample = createElement('p', {
 											dangerouslySetInnerHTML: { __html: item.Fragment }
 										});
+										const chip =
+											'mr-2 inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border';
 										return html`<div class="prose w-full rounded-lg p-6 dark:prose-invert">
 											<a class="no-underline" href="${parsed.url}" target="_blank">
 												<h5 class="font-bold tracking-tight underline">${parsed.title}</h5>
 												<p class="un text-sm text-muted-foreground">${sample}</p>
-												<span
-													class="mr-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-													><i class="fa-solid fa-tag mr-1"></i> Type: ${parsed.type}</span
-												>
-												<span
-													class="mr-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-													><i class="fa-solid fa-calendar-days mr-1"></i> Year: ${parsed.year}</span
-												>
-												<span
-													class="mr-2 inline-flex items-center rounded-md bg-gray-50 px-2 py-1 text-xs font-medium text-gray-600 ring-1 ring-inset ring-gray-500/10"
-													><i class="fa-solid fa-person mr-1"></i> Author: ${parsed.author}</span
-												>
+												<span class="${chip}">${parsed.type}</span>
+												<span class="${chip}">${parsed.year}</span>
+												<span class="${chip}">${parsed.author}</span>
 											</a>
 										</div>`;
 									}
@@ -113,96 +143,114 @@
 	}}
 />
 
-<svelte:head>
-	<link
-		rel="stylesheet"
-		href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.0/css/all.min.css"
-		integrity="sha512-9xKTRVabjVeZmc+GUW8GgSmcREDunMM+Dt/GrzchfN8tkwHizc5RP4Ok/MXFFy5rIjJjzhndFScTceq5e6GvVQ=="
-		crossorigin="anonymous"
-		referrerpolicy="no-referrer"
-	/>
-</svelte:head>
+<!-- Header + search -->
+<section class="relative overflow-hidden border-b border-border/60">
+	<div
+		class="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(hsl(var(--foreground)/0.05)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_60%,transparent_100%)]"
+	></div>
+	<div class="mx-auto max-w-3xl px-6 py-16 text-center lg:px-8">
+		<p class="text-base font-semibold text-lime-500">Media Library</p>
+		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
+			Vale in the wild
+		</h1>
+		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
+			Articles, talks, and videos about Vale from across the community.
+		</p>
 
-<div class="bg-secondary py-6">
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-				Go to <span class="underline">anything</span>
-				<Rocket class="inline-block h-8 w-8" />
-			</h2>
-			<form>
-				<div class="mt-4">
-					<div class="w-full" id="autocomplete"></div>
-				</div>
-				<p class="mt-2 text-center text-sm">
-					The <i>Go to Anything</i> feature allows you to search the Media Library using a variety
-					of
-					<Popover.Root>
-						<Popover.Trigger><span class="underline">search operators</span>.</Popover.Trigger>
-						<Popover.Content class="prose prose-sm dark:prose-invert">
-							<p>
-								The Media Library is indexed daily and supports a variety of advaned search
-								operators:
-							</p>
-							<ul class="list-disc">
-								<li>Faceted search: <code>date:>2021</code> or <code>author:jdkato</code></li>
-								<li>Fuzzy search: <code>term~1</code> or <code>term~2</code></li>
-								<li>Boosted search: <code>text:neovim title:neovim^5</code></li>
-								<li>Regex search: <code>author:/(jdkato|another)/</code></li>
-							</ul>
-						</Popover.Content>
-					</Popover.Root>
-				</p>
-			</form>
+		<div class="mx-auto mt-8 max-w-xl">
+			<div id="autocomplete" class="w-full"></div>
+			<p class="mt-3 text-sm text-muted-foreground">
+				Search the full library, including
+				<Popover.Root>
+					<Popover.Trigger class="font-medium text-lime-500 hover:underline"
+						>advanced operators</Popover.Trigger
+					>
+					<Popover.Content class="prose prose-sm dark:prose-invert">
+						<p>The Media Library is indexed daily and supports a variety of search operators:</p>
+						<ul class="list-disc">
+							<li>Faceted search: <code>date:>2021</code> or <code>author:jdkato</code></li>
+							<li>Fuzzy search: <code>term~1</code> or <code>term~2</code></li>
+							<li>Boosted search: <code>text:neovim title:neovim^5</code></li>
+							<li>Regex search: <code>author:/(jdkato|another)/</code></li>
+						</ul>
+					</Popover.Content>
+				</Popover.Root>.
+			</p>
 		</div>
 	</div>
-</div>
+</section>
 
-<div class="py-12">
-	<div class="mx-auto max-w-7xl px-6 lg:px-8">
-		<div
-			class="mx-auto mt-4 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-20 lg:mx-0 lg:max-w-none lg:grid-cols-3"
-		>
-			{#each data as media}
-				{@const image = media.image === '' ? '/media/fallback.png' : media.image}
-				<article class="flex flex-col items-start justify-start">
-					<div class="relative w-full">
+<!-- Grid -->
+<div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+	<!-- Filters -->
+	<div class="flex flex-wrap items-center gap-2">
+		{#each filters as f}
+			<button
+				type="button"
+				onclick={() => (activeType = f)}
+				class="rounded-full border px-3 py-1 text-sm font-medium transition-colors {activeType === f
+					? 'border-lime-500/50 bg-lime-500/10 text-lime-600'
+					: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
+			>
+				{typeLabel(f)}
+			</button>
+		{/each}
+		<span class="ml-auto text-sm text-muted-foreground">
+			{items.length}
+			{items.length === 1 ? 'resource' : 'resources'}
+		</span>
+	</div>
+
+	<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+		{#each items as m}
+			<article
+				class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-lime-500/40"
+			>
+				<div class="relative aspect-[16/9] w-full overflow-hidden bg-muted">
+					{#if showImage(m.image)}
 						<img
-							src={image}
+							src={m.image}
 							alt=""
-							class="aspect-video w-full rounded-2xl bg-gray-100 object-cover sm:aspect-[2/1] lg:aspect-[3/2]"
+							onerror={() => onImgError(m.image)}
+							class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
+							loading="lazy"
 						/>
-						<div class="absolute inset-0 rounded-2xl ring-1 ring-inset ring-gray-900/10"></div>
+					{:else}
+						<div
+							class="flex h-full w-full items-center justify-center bg-gradient-to-br from-lime-500/10 via-muted to-muted"
+						>
+							{#if m.type === 'video'}
+								<Play class="h-9 w-9 text-muted-foreground/40" />
+							{:else}
+								<FileText class="h-9 w-9 text-muted-foreground/40" />
+							{/if}
+						</div>
+					{/if}
+				</div>
+				<div class="flex flex-1 flex-col p-5">
+					<div class="flex items-center gap-2 text-xs">
+						<span
+							class="rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20"
+							>{typeLabel(m.type).replace(/s$/, '')}</span
+						>
+						<span class="text-muted-foreground">{m.year}</span>
 					</div>
-					<div class="max-w-xl">
-						<div class="mt-8 flex items-center gap-x-4 text-xs">
-							<Badge variant="secondary">{media.year}</Badge>
-							<Badge variant="secondary">{media.type}</Badge>
-						</div>
-						<div class="group relative">
-							<h3 class="mt-3 text-lg/6 font-semibold">
-								<a class="underline" href={media.url}>
-									<span class="absolute inset-0"></span>
-									{media.title}
-								</a>
-							</h3>
-							<p class="mt-5 line-clamp-3 text-sm/6 text-muted-foreground">
-								{media.description}
-							</p>
-						</div>
-						<div class="relative mt-4 flex items-center gap-x-4">
-							<div class="text-sm/6">
-								<p class="font-semibold text-muted-foreground">
-									<span class="absolute inset-0"></span>
-									{media.author}
-								</p>
-							</div>
-						</div>
-					</div>
-				</article>
-			{/each}
-		</div>
+					<h3 class="mt-3 font-semibold leading-snug text-foreground">
+						<a
+							href={m.url}
+							target="_blank"
+							rel="noreferrer"
+							class="transition-colors after:absolute after:inset-0 group-hover:text-lime-500 focus:outline-none focus-visible:underline"
+						>
+							{m.title}
+						</a>
+					</h3>
+					<p class="mt-2 line-clamp-3 flex-1 text-sm leading-relaxed text-muted-foreground">
+						{m.description}
+					</p>
+					<p class="mt-4 text-sm font-medium text-muted-foreground">{m.author}</p>
+				</div>
+			</article>
+		{/each}
 	</div>
 </div>
-
-<sytle> </sytle>

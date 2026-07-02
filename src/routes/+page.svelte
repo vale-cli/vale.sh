@@ -1,8 +1,9 @@
 <script lang="ts">
-	import Banner from '$lib/components/landing/Banner.svelte';
-	import Testimonials from '$lib/components/landing/Testimonials.svelte';
+	import Hero from '$lib/components/landing/Hero.svelte';
+	import LogoCloud from '$lib/components/landing/LogoCloud.svelte';
+	import Stats from '$lib/components/landing/Stats.svelte';
+	import Features from '$lib/components/landing/Features.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
-	import FAQ from '$lib/components/landing/FAQ.svelte';
 	import CTA from '$lib/components/landing/CTA.svelte';
 	import Sponsors from '$lib/components/docs/Sponsors.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
@@ -28,8 +29,10 @@
 	}}
 />
 
-<Banner />
+<Hero />
+<LogoCloud />
+<Stats />
+<Features />
 <Integrations />
-<FAQ />
-<Testimonials />
 <Sponsors />
+<CTA />
