@@ -181,6 +181,6 @@ extends: existence
 message: Did you mean '%s'?
 vocab: false
 tokens:
-  # "MonoDB" can be in a vocab
+  # "MongoDB" can be in a vocab
   - MongoDB
 ```
