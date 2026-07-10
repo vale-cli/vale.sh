@@ -21,3 +21,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .netlify
+
+/lambda/search/INDEX
+INDEX.zip
