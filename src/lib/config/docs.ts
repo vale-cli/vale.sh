@@ -18,10 +18,6 @@ export const docsConfig: DocsConfig = {
             external: true,
         },
         {
-            title: "CMS",
-            href: "/cms",
-        },
-        {
             title: "Generator",
             href: "/generator",
         },
