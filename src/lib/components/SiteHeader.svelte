@@ -1,5 +1,6 @@
 <script lang="ts">
 	import Banner from '$lib/components/Banner.svelte';
+	import CmsBanner from '$lib/components/CmsBanner.svelte';
 	import DocSearch from '$lib/components/DocSearch.svelte';
 	import ModeToggle from '$lib/components/ModeToggle.svelte';
 	import { MainNav, MobileNav } from '$lib/components/nav';
@@ -13,6 +14,7 @@
 	class="sticky top-0 z-50 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
 >
 	<!--<Banner />-->
+	<CmsBanner />
 	<div class="container flex h-14 max-w-screen-2xl items-center">
 		<MainNav />
 		<MobileNav />
