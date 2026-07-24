@@ -13,7 +13,7 @@ export const siteConfig = {
         contributors: "https://github.com/errata-ai/vale/graphs/contributors",
         sponsors: "https://github.com/sponsors/jdkato",
         openCollective: "https://opencollective.com/vale",
-        slack: "https://writethedocs.slack.com/archives/CBWQQ5E57",
+        discord: "https://discord.gg/DM86VURrNY",
 
     },
     keywords: `linting,nlp,cli`,

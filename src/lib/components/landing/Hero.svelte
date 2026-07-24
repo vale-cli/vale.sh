@@ -1,8 +1,17 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config/site.js';
+	import type { Stats } from '$lib/types/stats';
 	import Terminal from './Terminal.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Star from 'lucide-svelte/icons/star';
+
+	let { stats }: { stats: Stats } = $props();
+
+	const starLabel = $derived(
+		new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
+			stats.stars
+		)
+	);
 </script>
 
 <section class="relative overflow-hidden border-b border-border/60">
@@ -24,14 +33,13 @@
 				Open source · MIT licensed
 				<span class="text-border">·</span>
 				<span class="inline-flex items-center gap-1 font-medium text-foreground">
-					<Star class="h-3.5 w-3.5 fill-lime-500 text-lime-500" /> 5.5K
+					<Star class="h-3.5 w-3.5 fill-lime-500 text-lime-500" />
+					{starLabel}
 				</span>
 			</a>
 
 			<!-- Headline -->
-			<h1
-				class="mt-6 text-balance text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl"
-			>
+			<h1 class="mt-6 text-balance text-5xl font-semibold tracking-tight sm:text-6xl lg:text-7xl">
 				Vale is a linter for
 				<span class="text-lime-500">prose</span>
 			</h1>

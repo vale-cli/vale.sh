@@ -37,7 +37,7 @@
 						<span class="sr-only">GitHub</span>
 					</div>
 				</a>
-				<a href={siteConfig.links.slack} target="_blank" rel="noreferrer">
+				<a href={siteConfig.links.discord} target="_blank" rel="noreferrer">
 					<div
 						class={cn(
 							buttonVariants({
@@ -47,8 +47,8 @@
 							'h-8 w-8 px-0'
 						)}
 					>
-						<Icons.Slack class="h-3 w-3 fill-current" />
-						<span class="sr-only">Slack</span>
+						<Icons.Discord class="h-3.5 w-3.5 fill-current" />
+						<span class="sr-only">Discord</span>
 					</div>
 				</a>
 				<a href={siteConfig.links.twitter} target="_blank" rel="noreferrer">

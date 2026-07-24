@@ -1,23 +1,32 @@
 <script lang="ts">
 	import Hero from '$lib/components/landing/Hero.svelte';
-	import LogoCloud from '$lib/components/landing/LogoCloud.svelte';
-	import Stats from '$lib/components/landing/Stats.svelte';
+	import LogoWall from '$lib/components/landing/LogoWall.svelte';
+	import SectionNav from '$lib/components/landing/SectionNav.svelte';
+	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
 	import Features from '$lib/components/landing/Features.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
+	import AdopterExplorer from '$lib/components/landing/AdopterExplorer.svelte';
+	import Press from '$lib/components/landing/Press.svelte';
+	import Recognition from '$lib/components/landing/Recognition.svelte';
+	import Thanks from '$lib/components/landing/Thanks.svelte';
 	import CTA from '$lib/components/landing/CTA.svelte';
-	import Sponsors from '$lib/components/docs/Sponsors.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
+	import type { PageData } from './$types';
+
+	let { data }: { data: PageData } = $props();
+
+	const description =
+		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
 </script>
 
 <MetaTags
 	title="Vale: Your style, our editor"
-	description="Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub."
+	{description}
 	canonical="https://vale.sh"
 	openGraph={{
 		url: 'https://vale.sh',
 		title: 'Vale: Your style, our editor',
-		description:
-			'Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub.',
+		description,
 		images: [
 			{
 				url: '/media/mac.png',
@@ -29,10 +38,14 @@
 	}}
 />
 
-<Hero />
-<LogoCloud />
-<Stats />
+<Hero stats={data.stats} />
+<LogoWall />
+<SectionNav />
+<Ecosystem stats={data.stats} />
 <Features />
 <Integrations />
-<Sponsors />
+<AdopterExplorer />
+<Press />
+<Recognition stats={data.stats} />
+<Thanks />
 <CTA />

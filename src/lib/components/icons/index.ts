@@ -5,6 +5,7 @@ import twitter from "./twitter.svelte";
 import github from "./github.svelte";
 import hamburger from "./hamburger.svelte";
 import slack from "./slack.svelte";
+import discord from "./discord.svelte";
 
 export type Icon = SvelteComponent;
 
@@ -16,5 +17,6 @@ export const Icons = {
     Twitter: twitter,
     GitHub: github,
     Slack: slack,
+    Discord: discord,
     Hamburger: hamburger,
 };

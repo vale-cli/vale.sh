@@ -52,7 +52,7 @@
 	];
 </script>
 
-<section class="border-b border-border/60 py-20 sm:py-28">
+<section id="features" class="border-b border-border/60 py-14 sm:py-16">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl text-center">
 			<h2 class="text-base font-semibold text-lime-500">Why Vale</h2>
@@ -60,15 +60,19 @@
 				Linting built for the way you write
 			</p>
 			<p class="mt-6 text-pretty text-lg leading-8 text-muted-foreground">
-				The precision of a code linter, applied to prose—so quality and consistency stop being
-				a manual review step.
+				The precision of a code linter, applied to prose—so quality and consistency stop being a
+				manual review step.
 			</p>
 		</div>
 
-		<div class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+		<div
+			class="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3"
+		>
 			{#each features as feature}
 				<div class="flex flex-col gap-4 bg-background p-8">
-					<div class="flex h-10 w-10 items-center justify-center rounded-lg border border-lime-500/20 bg-lime-500/10 text-lime-500">
+					<div
+						class="flex h-10 w-10 items-center justify-center rounded-lg border border-lime-500/20 bg-lime-500/10 text-lime-500"
+					>
 						<feature.icon class="h-5 w-5" />
 					</div>
 					<h3 class="text-lg font-semibold text-foreground">{feature.title}</h3>

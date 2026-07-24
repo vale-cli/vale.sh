@@ -1,0 +1,84 @@
+<script lang="ts">
+	import type { Stats } from '$lib/types/stats';
+	import Counter from './Counter.svelte';
+	import BrandIcon from './BrandIcon.svelte';
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+
+	let { stats }: { stats: Stats } = $props();
+
+	const n = (v: number) => v.toLocaleString('en-US');
+</script>
+
+<section id="stats" class="border-b border-border/60 py-14 sm:py-16">
+	<div class="mx-auto max-w-6xl px-6 lg:px-8">
+		<div class="mx-auto max-w-2xl text-center">
+			<h2 class="text-base/7 font-semibold text-lime-500">Distribution</h2>
+			<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
+				Where Vale is downloaded
+			</p>
+		</div>
+
+		<!-- Channels that publish download counts -->
+		<ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+			{#each stats.channels as channel}
+				<li>
+					<a
+						href={channel.source}
+						target="_blank"
+						rel="noreferrer"
+						title="{n(channel.value)} — {channel.name}, {channel.window}"
+						class="group flex h-full flex-col rounded-xl border border-border bg-card p-6 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+					>
+						<div class="flex items-start justify-between gap-3">
+							<span class="flex items-center gap-2.5">
+								<BrandIcon
+									name={channel.name}
+									slug={channel.icon}
+									class="text-foreground/70 transition-colors group-hover:text-lime-500"
+								/>
+								<span class="text-sm font-medium text-muted-foreground">{channel.name}</span>
+							</span>
+							<ArrowUpRight
+								class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+							/>
+						</div>
+						<span
+							class="mt-3 text-4xl font-semibold tabular-nums tracking-tight text-foreground sm:text-5xl"
+						>
+							<Counter value={channel.value} />
+						</span>
+						<span class="mt-2 text-xs text-muted-foreground">
+							downloads · {channel.window}{channel.note ? ` · ${channel.note}` : ''}
+						</span>
+					</a>
+				</li>
+			{/each}
+		</ul>
+
+		<!-- Channels that publish no download numbers, so they're listed by version -->
+		<div class="mt-6 flex flex-wrap items-center justify-center gap-3">
+			<span class="text-sm text-muted-foreground">Also ships on</span>
+			{#each stats.availability as channel}
+				<a
+					href={channel.source}
+					target="_blank"
+					rel="noreferrer"
+					class="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-4 py-1.5 text-sm transition-colors hover:border-lime-500/40 hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+				>
+					<BrandIcon
+						name={channel.name}
+						slug={channel.icon}
+						class="h-4 w-4 text-foreground/70 transition-colors group-hover:text-lime-500"
+					/>
+					<span class="font-medium text-foreground">{channel.name}</span>
+					<span class="text-xs text-muted-foreground">{channel.detail}</span>
+				</a>
+			{/each}
+		</div>
+
+		<p class="mt-8 text-center text-xs text-muted-foreground">
+			Sources: GitHub, Docker Hub, PyPI, conda-forge, Homebrew, Chocolatey, winstall, Snapcraft, and
+			Repology · {stats.contributors} contributors · updated {stats.updated}
+		</p>
+	</div>
+</section>

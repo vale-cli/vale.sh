@@ -1,0 +1,97 @@
+[
+	{
+		"type": "book",
+		"title": "Write Better with Vale",
+		"subtitle": "Automate Your Style Guides and Lint Prose Like You Lint Code",
+		"outlet": "The Pragmatic Bookshelf",
+		"author": "Brian P. Hogan",
+		"year": 2026,
+		"url": "https://pragprog.com/titles/bhvale/write-better-with-vale/"
+	},
+	{
+		"type": "talk",
+		"title": "Upgrade your Docs-As-Code Foo with the Vale Text Linter",
+		"outlet": "Everything Open",
+		"year": 2025,
+		"url": "https://2025.everythingopen.au/schedule/presentation/63/"
+	},
+	{
+		"type": "article",
+		"title": "Reducing negative and biased language in documentation",
+		"outlet": "CNCF",
+		"author": "Chris Ward",
+		"year": 2022,
+		"url": "https://www.cncf.io/blog/2022/03/09/reducing-negative-and-biased-language-in-documentation/"
+	},
+	{
+		"type": "article",
+		"title": "How To Automate Documentation Workflow For Developers",
+		"outlet": "Smashing Magazine",
+		"author": "Portia Burton",
+		"year": 2021,
+		"url": "https://www.smashingmagazine.com/2021/08/automate-documentation-workflow-for-developers/"
+	},
+	{
+		"type": "article",
+		"title": "Linting the Buildkite Docs",
+		"outlet": "Buildkite",
+		"author": "Sam Wright",
+		"year": 2020,
+		"url": "https://buildkite.com/blog/linting-the-buildkite-docs"
+	},
+	{
+		"type": "article",
+		"title": "Automating Style Guides with Vale",
+		"outlet": "Linode",
+		"url": "https://www.linode.com/blog/linode/automating-style-guides-with-vale/"
+	},
+	{
+		"type": "article",
+		"title": "Testing your Documentation",
+		"outlet": "Write the Docs",
+		"year": 2019,
+		"url": "https://www.writethedocs.org/guide/tools/testing/#vale"
+	},
+	{
+		"type": "article",
+		"title": "Vale for Spelling, Grammar, Style and Readability Linting",
+		"outlet": "DZone",
+		"author": "Chris Ward",
+		"year": 2018,
+		"url": "https://dzone.com/articles/vale-for-spelling-grammar-style-and-readability-li"
+	},
+	{
+		"type": "video",
+		"title": "Reducing Negative and Biased Language in Documentation",
+		"outlet": "All Things Open",
+		"year": 2021,
+		"url": "https://www.youtube.com/watch?v=1aw6oRaFWYs"
+	},
+	{
+		"type": "video",
+		"title": "Docs-as-Code Workflow for your (API) Developer Portal",
+		"outlet": "Pronovix",
+		"year": 2020,
+		"url": "https://www.youtube.com/watch?v=ISwEsOx8d7k"
+	},
+	{
+		"type": "video",
+		"title": "Documentation as code (Part 3): A Linting How To",
+		"outlet": "Tag1",
+		"year": 2020,
+		"url": "https://www.youtube.com/watch?v=p1pfwpMv2wU"
+	},
+	{
+		"type": "video",
+		"title": "Day 1 Lightning Talk #3",
+		"outlet": "Write the Docs Prague",
+		"year": 2019,
+		"url": "https://youtu.be/sWaHa_wQv3M"
+	},
+	{
+		"type": "newsletter",
+		"title": "Featured in four issues of Golang Weekly",
+		"outlet": "Golang Weekly",
+		"url": "https://golangweekly.com/issues/394"
+	}
+]

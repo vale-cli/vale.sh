@@ -10,9 +10,9 @@
 				<span class="sr-only">GitHub</span>
 				<Icons.GitHub class="size-5" />
 			</a>
-			<a href={siteConfig.links.slack} class="text-gray-400 hover:text-gray-300">
+			<a href={siteConfig.links.discord} class="text-gray-400 hover:text-gray-300">
 				<span class="sr-only">X</span>
-				<Icons.Slack class="size-5" />
+				<Icons.Discord class="size-5" />
 			</a>
 			<a href={siteConfig.links.twitter} class="text-gray-400 hover:text-gray-300">
 				<span class="sr-only">X/Twitter</span>

@@ -1,0 +1,334 @@
+[
+	{
+		"name": "Microsoft",
+		"category": "Cloud & infrastructure",
+		"context": "Active .vale.ini in the Spring Cloud Azure documentation.",
+		"url": "https://github.com/microsoft/spring-cloud-azure/blob/main/docs/.vale.ini",
+		"logo": "/users/Microsoft.svg",
+		"avatar": "/users/avatars/microsoft.png"
+	},
+	{
+		"name": "Amazon Web Services",
+		"category": "Cloud & infrastructure",
+		"context": "The EKS User Guide walks contributors through installing Vale for live style feedback.",
+		"url": "https://docs.aws.amazon.com/eks/latest/userguide/vale-local.html",
+		"logo": "/users/Amazon Web Services.svg",
+		"avatar": "/users/avatars/aws.png"
+	},
+	{
+		"name": "NVIDIA",
+		"category": "Developer tools",
+		"context": "All NeMo Agent Toolkit documentation is checked with Vale before it merges.",
+		"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html",
+		"logo": "/users/NVIDIA.svg",
+		"icon": "nvidia"
+	},
+	{
+		"name": "Texas Instruments",
+		"category": "Enterprise",
+		"context": "Processor SDK docs build on the Red Hat style package with a custom PSDK vocabulary.",
+		"url": "https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini",
+		"logo": "/users/Texas Instruments.svg",
+		"avatar": "/users/avatars/TexasInstruments.png"
+	},
+	{
+		"name": "GitLab",
+		"category": "Developer tools",
+		"context": "A required check in GitLab's documentation testing pipeline.",
+		"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
+		"logo": "/users/GitLab.svg",
+		"icon": "gitlab"
+	},
+	{
+		"name": "Red Hat",
+		"category": "Open source",
+		"context": "Maintains \"Vale at Red Hat\", a public style package and onboarding guide.",
+		"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
+		"logo": "/users/Red Hat.svg",
+		"icon": "redhat"
+	},
+	{
+		"name": "Grafana Labs",
+		"category": "Data & observability",
+		"context": "Powers the prose linting rules in the Grafana Writers' Toolkit.",
+		"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
+		"logo": "/users/Grafana Labs.svg",
+		"icon": "grafana"
+	},
+	{
+		"name": "Datadog",
+		"category": "Data & observability",
+		"context": "Publishes datadog-vale and shifted docs quality left with it.",
+		"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/",
+		"logo": "/users/Datadog.svg",
+		"icon": "datadog"
+	},
+	{
+		"name": "Docker",
+		"category": "Developer tools",
+		"context": "Enforces style standards across the Docker product docs.",
+		"url": "https://github.com/docker/docs/blob/main/.vale.ini",
+		"logo": "/users/Docker.svg",
+		"icon": "docker"
+	},
+	{
+		"name": "Spectro Cloud",
+		"category": "Cloud & infrastructure",
+		"context": "Maintains spectro-vale-pkg and uses Vale in docs and beyond.",
+		"url": "https://www.spectrocloud.com/blog/how-we-use-vale-to-enforce-better-writing-in-docs-and-beyond",
+		"logo": "/users/Spectro Cloud.svg",
+		"avatar": "/users/avatars/spectrocloud.png"
+	},
+	{
+		"name": "GitHub",
+		"category": "Developer tools",
+		"context": "Used to lint the CodeQL documentation.",
+		"url": "https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini",
+		"icon": "github"
+	},
+	{
+		"name": "Spotify",
+		"category": "Developer tools",
+		"context": "Lints Backstage, the open platform for developer portals.",
+		"url": "https://github.com/spotify/backstage/blob/master/.vale.ini",
+		"icon": "spotify"
+	},
+	{
+		"name": "SAP",
+		"category": "Enterprise",
+		"context": "Style checks for the SAP Cloud SDK documentation.",
+		"url": "https://github.com/SAP/cloud-sdk/blob/main/.vale.ini",
+		"icon": "sap"
+	},
+	{
+		"name": "Canonical",
+		"category": "Open source",
+		"context": "Documentation for the cloudflared Kubernetes operator and beyond.",
+		"url": "https://github.com/canonical/cloudflared-operator/blob/main/.vale.ini",
+		"icon": "canonical"
+	},
+	{
+		"name": "Fedora Linux",
+		"category": "Open source",
+		"context": "Part of the Fedora docs contributor toolchain.",
+		"url": "https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/",
+		"icon": "fedora"
+	},
+	{
+		"name": "Qt",
+		"category": "Open source",
+		"context": "Documented setup guide for Qt contributors.",
+		"url": "https://wiki.qt.io/Setting_Up_Vale",
+		"icon": "qt"
+	},
+	{
+		"name": "Elastic",
+		"category": "Data & observability",
+		"context": "Ships an Elastic style guide implemented as Vale rules.",
+		"url": "https://www.elastic.co/docs/contribute-docs/vale-linter",
+		"icon": "elastic"
+	},
+	{
+		"name": "Homebrew",
+		"category": "Open source",
+		"context": "The missing package manager for macOS (and Linux).",
+		"url": "https://github.com/Homebrew/brew/blob/master/.vale.ini",
+		"icon": "homebrew"
+	},
+	{
+		"name": "webpack",
+		"category": "Open source",
+		"context": "Lints the official webpack documentation site.",
+		"url": "https://github.com/webpack/webpack.js.org/blob/master/.vale.ini",
+		"icon": "webpack"
+	},
+	{
+		"name": "CockroachDB",
+		"category": "Data & observability",
+		"context": "Style enforcement for CockroachDB user documentation.",
+		"url": "https://github.com/cockroachdb/docs/blob/master/.vale.ini",
+		"icon": "cockroachlabs"
+	},
+	{
+		"name": "Timescale",
+		"category": "Data & observability",
+		"context": "Style enforcement for Timescale product documentation.",
+		"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
+		"icon": "timescale"
+	},
+	{
+		"name": "PingCAP",
+		"category": "Data & observability",
+		"context": "Documentation for TiDB, TiKV, and PD.",
+		"url": "https://github.com/pingcap/docs/blob/master/.vale.ini",
+		"icon": "tidb"
+	},
+	{
+		"name": "Meilisearch",
+		"category": "Data & observability",
+		"context": "Prose linting for the open-source search engine's docs.",
+		"url": "https://blog.meilisearch.com/prose-linting-with-vale/",
+		"icon": "meilisearch"
+	},
+	{
+		"name": "Aiven",
+		"category": "Data & observability",
+		"context": "Resources and docs for projects on the Aiven platform.",
+		"url": "https://github.com/aiven/devportal/blob/main/.vale.ini",
+		"avatar": "/users/avatars/aiven.png"
+	},
+	{
+		"name": "CloudQuery",
+		"category": "Data & observability",
+		"context": "Linting the official CloudQuery documentation.",
+		"url": "https://github.com/cloudquery/cloudquery/blob/main/.vale.ini",
+		"avatar": "/users/avatars/cloudquery.png"
+	},
+	{
+		"name": "Kong",
+		"category": "Developer tools",
+		"context": "Source for docs.konghq.com.",
+		"url": "https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini",
+		"icon": "kong"
+	},
+	{
+		"name": "Stoplight",
+		"category": "Developer tools",
+		"context": "Documentation for the Stoplight API platform.",
+		"url": "https://blog.stoplight.io/linting-the-stoplight-docs-with-vale",
+		"avatar": "/users/avatars/stoplightio.png"
+	},
+	{
+		"name": "Fern",
+		"category": "Developer tools",
+		"context": "Recommends Vale for linting docs and improving writing quality.",
+		"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
+		"avatar": "/users/avatars/fern-api.png"
+	},
+	{
+		"name": "Stream",
+		"category": "Developer tools",
+		"context": "Linting docs in CI to increase quality and consistency.",
+		"url": "https://getstream.io/blog/linting-documentation-with-vale/#setting-vale-up-in-ci",
+		"avatar": "/users/avatars/GetStream.png"
+	},
+	{
+		"name": "Progress Chef",
+		"category": "Developer tools",
+		"context": "The source for docs published on docs.chef.io.",
+		"url": "https://github.com/chef/chef-web-docs/tree/master/tools/vale",
+		"icon": "chef"
+	},
+	{
+		"name": "InSpec",
+		"category": "Developer tools",
+		"context": "Auditing and testing framework documentation.",
+		"url": "https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale",
+		"avatar": "/users/avatars/inspec.png"
+	},
+	{
+		"name": "OpenShift",
+		"category": "Cloud & infrastructure",
+		"context": "Pipelines as Code, the Tekton-based CI project.",
+		"url": "https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini",
+		"avatar": "/users/avatars/openshift.png"
+	},
+	{
+		"name": "Platform.sh",
+		"category": "Cloud & infrastructure",
+		"context": "Official Platform.sh documentation linting.",
+		"url": "https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini",
+		"icon": "platformsh"
+	},
+	{
+		"name": "Linode",
+		"category": "Cloud & infrastructure",
+		"context": "Style enforcement for Linode product documentation.",
+		"url": "https://github.com/linode/docs/blob/develop/.vale.ini",
+		"avatar": "/users/avatars/linode.png"
+	},
+	{
+		"name": "Rackspace",
+		"category": "Cloud & infrastructure",
+		"context": "Custom style for the Rackspace Expert Insights technical blog.",
+		"url": "https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini",
+		"avatar": "/users/avatars/rackerlabs.png"
+	},
+	{
+		"name": "D2iQ",
+		"category": "Cloud & infrastructure",
+		"context": "D2iQ product documentation and docs website code.",
+		"url": "https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini",
+		"avatar": "/users/avatars/d2iq.png"
+	},
+	{
+		"name": "VSHN",
+		"category": "Cloud & infrastructure",
+		"context": "The VSHN Application Catalog documentation.",
+		"url": "https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini",
+		"avatar": "/users/avatars/vshn.png"
+	},
+	{
+		"name": "ING",
+		"category": "Enterprise",
+		"context": "Automating technical documentation at a global banking platform.",
+		"url": "https://medium.com/ing-blog/automating-technical-documentation-at-ing-using-vale-699b9ce528eb",
+		"avatar": "/users/avatars/ing-bank.png"
+	},
+	{
+		"name": "Contentsquare",
+		"category": "Enterprise",
+		"context": "Helping engineers become better writers.",
+		"url": "https://engineering.contentsquare.com/2023/using-vale-to-help-engineers-become-better-writers/",
+		"avatar": "/users/avatars/contentsquare.png"
+	},
+	{
+		"name": "commercetools",
+		"category": "Enterprise",
+		"context": "Tools for developing documentation websites.",
+		"url": "https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini",
+		"avatar": "/users/avatars/commercetools.png"
+	},
+	{
+		"name": "Umbraco",
+		"category": "Open source",
+		"context": "The official Umbraco documentation.",
+		"url": "https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini",
+		"icon": "umbraco"
+	},
+	{
+		"name": "Mautic",
+		"category": "Open source",
+		"context": "User documentation for the Mautic project.",
+		"url": "https://github.com/mautic/mautic-documentation/blob/main/.vale.ini",
+		"icon": "mautic"
+	},
+	{
+		"name": "SixLabors",
+		"category": "Open source",
+		"context": "API docs and tutorials for ImageSharp and related projects.",
+		"url": "https://github.com/SixLabors/docs/blob/main/vale.ini",
+		"avatar": "/users/avatars/SixLabors.png"
+	},
+	{
+		"name": "Write the Docs",
+		"category": "Community & services",
+		"context": "Main website for the Write the Docs community.",
+		"url": "https://github.com/writethedocs/www/blob/main/vale/vale.ini",
+		"avatar": "/users/avatars/writethedocs.png"
+	},
+	{
+		"name": "TrussWorks",
+		"category": "Community & services",
+		"context": "TrussWorks' public software engineering playbook.",
+		"url": "https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini",
+		"avatar": "/users/avatars/trussworks.png"
+	},
+	{
+		"name": "Axelerant",
+		"category": "Community & services",
+		"context": "Vale as a cornerstone of an agile documentation workflow.",
+		"url": "https://www.axelerant.com/blog/docs-as-code-with-vale",
+		"avatar": "/users/avatars/axelerant.png"
+	}
+]
