@@ -27,24 +27,15 @@
 	);
 
 	let active = $state('');
-	let links: Record<string, HTMLAnchorElement> = $state({});
 	let nav: HTMLElement | undefined = $state();
-	let list: HTMLUListElement | undefined = $state();
 	/** Height of the site header, which varies with the banner. */
 	let headerHeight = $state(56);
 
-	// On narrow screens the bar scrolls, so keep the active chip in view.
-	//
-	// This sets scrollLeft on the list directly rather than calling
-	// scrollIntoView, which walks every scrollable ancestor — including the
-	// document — and visibly jerks the page each time a new section activates.
-	$effect(() => {
-		const el = active && links[active];
-		if (!el || !list || list.scrollWidth <= list.clientWidth) return;
-		const centered = el.offsetLeft - list.clientWidth / 2 + el.offsetWidth / 2;
-		const left = Math.max(0, Math.min(centered, list.scrollWidth - list.clientWidth));
-		list.scrollTo({ left, behavior: 'smooth' });
-	});
+	// The bar deliberately does not re-scroll itself to follow the active chip.
+	// The rail only overflows on narrow screens, so that would have animated the
+	// bar sideways under the reader's thumb while they scrolled vertically — it
+	// made the whole page feel unanchored. The chips stay put; the highlight
+	// moves.
 
 	onMount(() => {
 		const header = document.querySelector('header');
@@ -89,16 +80,18 @@
 	style="top: {headerHeight}px;"
 	class="sticky z-40 border-b border-border/60 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/70"
 >
-	<!-- Scrolls horizontally on narrow screens rather than wrapping. -->
+	<!--
+		Scrolls horizontally on narrow screens rather than wrapping. `overscroll-x-contain`
+		keeps a swipe that runs off the end of the rail from chaining into the page or the
+		browser's back gesture.
+	-->
 	<ul
-		bind:this={list}
-		class="mx-auto flex max-w-6xl items-center gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:none] lg:px-8 [&::-webkit-scrollbar]:hidden"
+		class="mx-auto flex max-w-6xl items-center gap-1 overflow-x-auto overscroll-x-contain px-6 py-2 [scrollbar-width:none] lg:px-8 [&::-webkit-scrollbar]:hidden"
 	>
 		{#each sections as section}
 			{@const Icon = section.icon}
 			<li>
 				<a
-					bind:this={links[section.id]}
 					href="#{section.id}"
 					aria-current={active === section.id ? 'true' : undefined}
 					class="inline-flex items-center gap-1.5 whitespace-nowrap rounded-full px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {active ===
