@@ -40,7 +40,7 @@
 					? 'bg-gray-400/5'
 					: 'bg-gray-50'} px-4 py-1.5 text-sm/6 ring-1 ring-inset ring-gray-900/5"
 			>
-				<a href="/docs/guides/lsp" class="font-semibold text-lime-500"
+				<a href="https://docs.vale.sh/guides/lsp" class="font-semibold text-lime-500"
 					><span class="absolute inset-0" aria-hidden="true"></span> Learn more about our
 					integrations
 					<span aria-hidden="true">&rarr;</span></a

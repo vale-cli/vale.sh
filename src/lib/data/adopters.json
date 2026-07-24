@@ -114,9 +114,73 @@
 	{
 		"name": "Canonical",
 		"category": "Open source",
-		"context": "Documentation for the cloudflared Kubernetes operator and beyond.",
-		"url": "https://github.com/canonical/cloudflared-operator/blob/main/.vale.ini",
+		"context": "Ships Vale rules with its public documentation style guide, plus a GitHub Action.",
+		"url": "https://github.com/canonical/documentation-style-guide",
 		"icon": "canonical"
+	},
+	{
+		"name": "openSUSE",
+		"category": "Open source",
+		"context": "A Vale-compatible package implementing the SUSE Documentation Style Guide.",
+		"url": "https://github.com/openSUSE/suse-vale-styleguide",
+		"github": "openSUSE",
+		"avatar": "/users/avatars/opensuse.png"
+	},
+	{
+		"name": "Auth0",
+		"category": "Developer tools",
+		"context": "Lints the Auth0 documentation content repository with Vale.",
+		"url": "https://github.com/auth0/docs-v2",
+		"github": "auth0",
+		"avatar": "/users/avatars/auth0.png"
+	},
+	{
+		"name": "Graphile",
+		"category": "Developer tools",
+		"context": "Lints the Grafast and PostGraphile docs in the Crystal monorepo.",
+		"url": "https://github.com/graphile/crystal/blob/main/.vale.ini",
+		"github": "graphile",
+		"avatar": "/users/avatars/graphile.png"
+	},
+	{
+		"name": "CircleCI",
+		"category": "Developer tools",
+		"context": "Checks the CircleCI documentation with Vale.",
+		"url": "https://github.com/circleci/circleci-docs/blob/main/.vale.ini",
+		"github": "circleci",
+		"avatar": "/users/avatars/circleci.png"
+	},
+	{
+		"name": "Consensys",
+		"category": "Developer tools",
+		"context": "Runs Vale on every PR across its doc sites via a shared documentation template.",
+		"url": "https://docs-template.consensys.io/contribute/run-vale",
+		"github": "Consensys",
+		"avatar": "/users/avatars/consensys.png"
+	},
+	{
+		"name": "Eclipse Che",
+		"category": "Open source",
+		"context": "Publishes a Vale style for the Eclipse Che documentation and related projects.",
+		"url": "https://github.com/eclipse-che/che-docs-vale-style",
+		"github": "eclipse-che",
+		"avatar": "/users/avatars/eclipse-che.png"
+	},
+	{
+		"name": "Airbyte",
+		"category": "Data & observability",
+		"context": "Lints its docs with a custom Vale style built on Google and write-good.",
+		"url": "https://github.com/airbytehq/airbyte/tree/master/docs/vale-styles",
+		"github": "airbytehq",
+		"avatar": "/users/avatars/airbyte.png"
+	},
+	{
+		"name": "AWS Deadline Cloud",
+		"category": "Cloud & infrastructure",
+		"context": "Lints its sample job documentation with Vale.",
+		"url": "https://github.com/aws-deadline/deadline-cloud-samples/blob/mainline/.vale.ini",
+		"github": "aws-deadline",
+		"avatar": "/users/avatars/aws-deadline.png"
 	},
 	{
 		"name": "Fedora Linux",
@@ -367,12 +431,12 @@
 		"avatar": "/users/avatars/trussworks.png"
 	},
 	{
-		"name": "Axelerant",
-		"category": "Community & services",
-		"context": "Vale as a cornerstone of an agile documentation workflow.",
-		"url": "https://www.axelerant.com/blog/docs-as-code-with-vale",
-		"github": "axelerant",
-		"avatar": "/users/avatars/axelerant.png"
+		"name": "GOV.UK",
+		"category": "Open source",
+		"context": "Publishes the GOV.UK Technical Style guide as a public Vale style package.",
+		"url": "https://github.com/alphagov/tech-docs-linter",
+		"github": "alphagov",
+		"avatar": "/users/avatars/alphagov.png"
 	},
 	{
 		"name": "NMSU HPC",

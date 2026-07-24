@@ -52,7 +52,7 @@
 			<!-- CTAs -->
 			<div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
 				<a
-					href="/docs/install"
+					href="https://docs.vale.sh/topics/installation"
 					class="group inline-flex h-11 items-center justify-center gap-1.5 rounded-lg bg-primary px-6 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
 				>
 					Get started
