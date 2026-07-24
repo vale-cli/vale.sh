@@ -19,9 +19,12 @@
 	// A preview, not an index — /library is the searchable archive.
 	const PREVIEW = 6;
 
-	// The book gets its own card; the rest are a uniform list.
+	// The book gets its own card; the rest are a uniform list, newest first.
+	// Undated entries sort to the end so they don't crowd out recent coverage.
 	const book = all.find((i) => i.type === 'book');
-	const rest = all.filter((i) => i.type !== 'book');
+	const rest = all
+		.filter((i) => i.type !== 'book')
+		.sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 	const preview = rest.slice(0, PREVIEW);
 	const remaining = rest.length - preview.length;
 
