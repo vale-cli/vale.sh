@@ -7,27 +7,43 @@
 	import Newspaper from 'lucide-svelte/icons/newspaper';
 	import Heart from 'lucide-svelte/icons/heart';
 	import Server from 'lucide-svelte/icons/server';
+	import Calendar from 'lucide-svelte/icons/calendar';
 
-	const sections = [
-		{ id: 'stats', label: 'Downloads', icon: Download },
-		{ id: 'features', label: 'Features', icon: Sparkles },
-		{ id: 'integrations', label: 'Integrations', icon: Blocks },
-		{ id: 'adopters', label: 'Adopters', icon: Building2 },
-		{ id: 'press', label: 'Press', icon: Newspaper },
-		{ id: 'support', label: 'Supporters', icon: Heart },
-		{ id: 'thanks', label: 'Infrastructure', icon: Server }
-	];
+	// `events` is dropped when there's nothing upcoming — the section renders
+	// nothing in that case, so a chip would point at a missing anchor.
+	let { hasEvents = false }: { hasEvents?: boolean } = $props();
+
+	const sections = $derived(
+		[
+			{ id: 'stats', label: 'Downloads', icon: Download },
+			{ id: 'features', label: 'Features', icon: Sparkles },
+			{ id: 'integrations', label: 'Integrations', icon: Blocks },
+			{ id: 'adopters', label: 'Adopters', icon: Building2 },
+			{ id: 'events', label: 'Events', icon: Calendar },
+			{ id: 'press', label: 'Press', icon: Newspaper },
+			{ id: 'support', label: 'Supporters', icon: Heart },
+			{ id: 'thanks', label: 'Infrastructure', icon: Server }
+		].filter((s) => s.id !== 'events' || hasEvents)
+	);
 
 	let active = $state('');
 	let links: Record<string, HTMLAnchorElement> = $state({});
 	let nav: HTMLElement | undefined = $state();
+	let list: HTMLUListElement | undefined = $state();
 	/** Height of the site header, which varies with the banner. */
 	let headerHeight = $state(56);
 
 	// On narrow screens the bar scrolls, so keep the active chip in view.
+	//
+	// This sets scrollLeft on the list directly rather than calling
+	// scrollIntoView, which walks every scrollable ancestor — including the
+	// document — and visibly jerks the page each time a new section activates.
 	$effect(() => {
 		const el = active && links[active];
-		if (el) el.scrollIntoView({ inline: 'center', block: 'nearest', behavior: 'smooth' });
+		if (!el || !list || list.scrollWidth <= list.clientWidth) return;
+		const centered = el.offsetLeft - list.clientWidth / 2 + el.offsetWidth / 2;
+		const left = Math.max(0, Math.min(centered, list.scrollWidth - list.clientWidth));
+		list.scrollTo({ left, behavior: 'smooth' });
 	});
 
 	onMount(() => {
@@ -75,6 +91,7 @@
 >
 	<!-- Scrolls horizontally on narrow screens rather than wrapping. -->
 	<ul
+		bind:this={list}
 		class="mx-auto flex max-w-6xl items-center gap-1 overflow-x-auto px-4 py-2 [scrollbar-width:none] lg:px-8 [&::-webkit-scrollbar]:hidden"
 	>
 		{#each sections as section}

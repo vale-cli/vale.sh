@@ -17,6 +17,14 @@
 	},
 	{
 		"type": "article",
+		"title": "Signs of AI writing: a Vale ruleset",
+		"outlet": "ammil industries",
+		"author": "Christian Miles",
+		"year": 2025,
+		"url": "https://ammil.industries/signs-of-ai-writing-a-vale-ruleset/"
+	},
+	{
+		"type": "article",
 		"title": "Reducing negative and biased language in documentation",
 		"outlet": "CNCF",
 		"author": "Chris Ward",

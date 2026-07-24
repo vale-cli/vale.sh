@@ -16,9 +16,14 @@
 
 	const all = press as Item[];
 
-	// The book gets its own card; everything else is a uniform list.
+	// A preview, not an index — /library is the searchable archive.
+	const PREVIEW = 6;
+
+	// The book gets its own card; the rest are a uniform list.
 	const book = all.find((i) => i.type === 'book');
 	const rest = all.filter((i) => i.type !== 'book');
+	const preview = rest.slice(0, PREVIEW);
+	const remaining = rest.length - preview.length;
 
 	const typeLabel: Record<string, string> = {
 		talk: 'Talk',
@@ -68,7 +73,7 @@
 		{/if}
 
 		<ul class="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-			{#each rest as item}
+			{#each preview as item}
 				<li>
 					<a
 						href={item.url}
@@ -102,7 +107,7 @@
 				href="/library"
 				class="inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium text-lime-500 hover:text-lime-600"
 			>
-				Search the full archive
+				{remaining > 0 ? `Browse all ${rest.length} in the library` : 'Browse the library'}
 				<ArrowRight class="h-4 w-4" />
 			</a>
 		</div>

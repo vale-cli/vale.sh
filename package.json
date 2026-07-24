@@ -9,7 +9,8 @@
         "check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
         "check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
         "format": "prettier --write .",
-        "lint": "prettier --check . && eslint ."
+        "lint": "prettier --check . && eslint .",
+        "validate": "node script/adopters.mjs"
     },
     "devDependencies": {
         "@codemirror/lang-yaml": "^6.1.1",

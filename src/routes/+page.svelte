@@ -6,14 +6,18 @@
 	import Features from '$lib/components/landing/Features.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
 	import AdopterExplorer from '$lib/components/landing/AdopterExplorer.svelte';
+	import Events from '$lib/components/landing/Events.svelte';
 	import Press from '$lib/components/landing/Press.svelte';
 	import Recognition from '$lib/components/landing/Recognition.svelte';
 	import Thanks from '$lib/components/landing/Thanks.svelte';
 	import CTA from '$lib/components/landing/CTA.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
+	import { upcomingEvents } from '$lib/events';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
+
+	const hasEvents = upcomingEvents().length > 0;
 
 	const description =
 		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
@@ -40,11 +44,12 @@
 
 <Hero stats={data.stats} />
 <LogoWall />
-<SectionNav />
+<SectionNav {hasEvents} />
 <Ecosystem stats={data.stats} />
 <Features />
 <Integrations />
 <AdopterExplorer />
+<Events />
 <Press />
 <Recognition stats={data.stats} />
 <Thanks />

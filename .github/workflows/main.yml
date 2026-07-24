@@ -15,3 +15,14 @@ jobs:
           reporter: github-check
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+  data:
+    name: runner / data
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: node script/adopters.mjs
