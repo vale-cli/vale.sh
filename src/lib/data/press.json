@@ -16,6 +16,14 @@
 		"url": "https://2025.everythingopen.au/schedule/presentation/63/"
 	},
 	{
+		"type": "paper",
+		"title": "Linting Style and Substance in READMEs",
+		"outlet": "arXiv",
+		"author": "Hima Mynampaty et al.",
+		"year": 2026,
+		"url": "https://arxiv.org/abs/2603.00331"
+	},
+	{
 		"type": "article",
 		"title": "Signs of AI writing: a Vale ruleset",
 		"outlet": "ammil industries",

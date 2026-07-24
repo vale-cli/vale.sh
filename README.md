@@ -58,15 +58,15 @@ Add an entry to [`src/lib/data/press.json`][press]:
 }
 ```
 
-| Field      | Required | Notes                                                |
-| ---------- | -------- | ---------------------------------------------------- |
-| `type`     | yes      | `book`, `talk`, `article`, `video`, or `newsletter`. |
-| `title`    | yes      | The title as published.                              |
-| `outlet`   | yes      | Publication, company, or conference.                 |
-| `url`      | yes      | `https://` link.                                     |
-| `author`   | no       | Byline, if there is one.                             |
-| `year`     | no       | Integer.                                             |
-| `subtitle` | no       | Books only.                                          |
+| Field      | Required | Notes                                                         |
+| ---------- | -------- | ------------------------------------------------------------- |
+| `type`     | yes      | `book`, `paper`, `talk`, `article`, `video`, or `newsletter`. |
+| `title`    | yes      | The title as published.                                       |
+| `outlet`   | yes      | Publication, company, or conference.                          |
+| `url`      | yes      | `https://` link.                                              |
+| `author`   | no       | Byline, if there is one.                                      |
+| `year`     | no       | Integer.                                                      |
+| `subtitle` | no       | Books only.                                                   |
 
 A link can appear **once** on the page. If your company blog post is already an
 adopter's `url`, don't add it here too — the validator rejects it.

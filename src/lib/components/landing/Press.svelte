@@ -26,6 +26,7 @@
 	const remaining = rest.length - preview.length;
 
 	const typeLabel: Record<string, string> = {
+		paper: 'Paper',
 		talk: 'Talk',
 		article: 'Article',
 		video: 'Video',

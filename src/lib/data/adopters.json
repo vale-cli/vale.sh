@@ -126,6 +126,13 @@
 		"icon": "fedora"
 	},
 	{
+		"name": "Rocky Linux",
+		"category": "Open source",
+		"context": "Publishes a guide for setting up Vale in Neovim via NvChad.",
+		"url": "https://docs.rockylinux.org/10/books/nvchad/vale_nvchad/",
+		"icon": "rockylinux"
+	},
+	{
 		"name": "Qt",
 		"category": "Open source",
 		"context": "Documented setup guide for Qt contributors.",
@@ -366,5 +373,13 @@
 		"url": "https://www.axelerant.com/blog/docs-as-code-with-vale",
 		"github": "axelerant",
 		"avatar": "/users/avatars/axelerant.png"
+	},
+	{
+		"name": "NMSU HPC",
+		"category": "Community & services",
+		"context": "Runs Vale in GitLab CI on every merge request, with a custom HPC style and vocabulary.",
+		"url": "https://hpc.nmsu.edu/contribution/vale/",
+		"github": "nmsu-hpc",
+		"avatar": "/users/avatars/nmsu-hpc.png"
 	}
 ]

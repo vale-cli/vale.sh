@@ -32,7 +32,7 @@ const CATEGORIES = [
 	'Open source'
 ];
 
-const PRESS_TYPES = ['book', 'talk', 'article', 'video', 'newsletter'];
+const PRESS_TYPES = ['book', 'paper', 'talk', 'article', 'video', 'newsletter'];
 
 const ADOPTER_FIELDS = ['name', 'category', 'context', 'url', 'icon', 'github', 'avatar', 'logo'];
 const PRESS_FIELDS = ['type', 'title', 'subtitle', 'outlet', 'author', 'year', 'url'];
