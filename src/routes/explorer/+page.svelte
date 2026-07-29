@@ -18,9 +18,8 @@
 	};
 
 	const library =
-		'https://raw.githubusercontent.com/errata-ai/packages/refs/heads/master/library.json';
-	const addURL =
-		'https://github.com/errata-ai/vale.sh/tree/svelte?tab=readme-ov-file#packages--configurations';
+		'https://raw.githubusercontent.com/vale-cli/packages/refs/heads/master/library.json';
+	const addURL = 'https://github.com/vale-cli/vale.sh#share-a-package-or-configuration';
 
 	let packages = $state<Pkg[]>([]);
 	let loading = $state(true);
@@ -55,10 +54,7 @@
 		}
 	});
 
-	const tags = $derived([
-		'all',
-		...Array.from(new Set(packages.flatMap((p) => p.tags))).sort()
-	]);
+	const tags = $derived(['all', ...Array.from(new Set(packages.flatMap((p) => p.tags))).sort()]);
 
 	const filtered = $derived(
 		packages.filter((p) => {
@@ -86,12 +82,12 @@
 <MetaTags
 	title="Package Explorer"
 	description="The Package Explorer allows you to browse and install Vale packages and configurations."
-	canonical="https://vale.sh"
+	canonical="https://vale.sh/explorer"
 	openGraph={{
-		url: 'https://vale.sh',
-		title: 'Vale: Your style, our editor',
+		url: 'https://vale.sh/explorer',
+		title: 'Vale Package Explorer',
 		description:
-			'Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub.',
+			'Browse ready-made Vale styles and configurations, and install them with `vale sync`.',
 		images: [
 			{
 				url: '/media/mac.png',
@@ -178,7 +174,7 @@
 				<p class="text-muted-foreground">
 					Couldn't load the package library. You can browse it directly on
 					<a
-						href="https://github.com/errata-ai/packages"
+						href="https://github.com/vale-cli/packages"
 						target="_blank"
 						rel="noreferrer"
 						class="font-medium text-lime-500 hover:underline">GitHub</a
@@ -193,7 +189,7 @@
 			<ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
 				{#each filtered as pkg}
 					<li
-						class="group relative flex flex-col rounded-xl border border-border bg-card p-5 transition-colors hover:border-lime-500/40 focus-within:border-lime-500/40"
+						class="group relative flex flex-col rounded-xl border border-border bg-card p-5 transition-colors focus-within:border-lime-500/40 hover:border-lime-500/40"
 					>
 						<div class="flex items-start gap-3">
 							<img
@@ -209,7 +205,7 @@
 										href={pkg.homepage}
 										target="_blank"
 										rel="noreferrer"
-										class="transition-colors after:absolute after:inset-0 after:rounded-xl group-hover:text-lime-500 focus:outline-none focus-visible:underline"
+										class="transition-colors after:absolute after:inset-0 after:rounded-xl focus:outline-none focus-visible:underline group-hover:text-lime-500"
 									>
 										{pkg.name}
 									</a>

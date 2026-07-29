@@ -65,7 +65,8 @@
 					<div>
 						<h3 class="text-lg font-semibold text-foreground">Markup-aware</h3>
 						<p class="text-sm text-muted-foreground">
-							Lints prose in Markdown, AsciiDoc, reStructuredText, HTML, and code—ignoring the syntax.
+							Lints prose in Markdown, AsciiDoc, reStructuredText, HTML, and code—ignoring the
+							syntax.
 						</p>
 					</div>
 				</div>
@@ -81,10 +82,11 @@
 					</div>
 					<div class="mt-2 text-foreground/90">
 						You can <span class="text-muted-foreground/50">**</span><span
-							class="decoration-amber-500 [text-decoration:underline_wavy] underline-offset-4">utilize</span
+							class="decoration-amber-500 underline-offset-4 [text-decoration:underline_wavy]"
+							>utilize</span
 						><span class="text-muted-foreground/50">**</span> Vale to lint
-						<span class="text-muted-foreground/50">[</span>prose<span class="text-muted-foreground/50"
-							>](/docs)</span
+						<span class="text-muted-foreground/50">[</span>prose<span
+							class="text-muted-foreground/50">](/docs)</span
 						>—it ignores syntax like <span class="text-muted-foreground/50">`code`</span> and URLs.
 					</div>
 					<div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 border-t border-border/60 pt-3">
@@ -134,8 +136,8 @@
 					<div>
 						<h3 class="text-lg font-semibold text-foreground">Fully customizable</h3>
 						<p class="text-sm text-muted-foreground">
-							Write your own rules in YAML—no plugins to compile. Match your brand voice, share across
-							a team.
+							Write your own rules in YAML—no plugins to compile. Match your brand voice, share
+							across a team.
 						</p>
 					</div>
 				</div>
@@ -146,9 +148,8 @@
 				>
 					<div class="whitespace-pre text-muted-foreground/60"># styles/Brand/Terms.yml</div>
 					<div class="mt-2 whitespace-pre">
-						<span class="text-muted-foreground">extends:</span> <span class="text-foreground/90"
-							>existence</span
-						>
+						<span class="text-muted-foreground">extends:</span>
+						<span class="text-foreground/90">existence</span>
 					</div>
 					<div class="whitespace-pre">
 						<span class="text-muted-foreground">message:</span>
@@ -160,10 +161,14 @@
 					</div>
 					<div class="whitespace-pre text-muted-foreground">tokens:</div>
 					<div class="whitespace-pre">
-						<span class="text-muted-foreground/60">- </span><span class="text-amber-500">utilize</span>
+						<span class="text-muted-foreground/60">{'  - '}</span><span class="text-amber-500"
+							>utilize</span
+						>
 					</div>
 					<div class="whitespace-pre">
-						<span class="text-muted-foreground/60">- </span><span class="text-amber-500">leverage</span>
+						<span class="text-muted-foreground/60">{'  - '}</span><span class="text-amber-500"
+							>leverage</span
+						>
 					</div>
 				</div>
 			</div>
