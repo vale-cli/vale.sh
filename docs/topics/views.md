@@ -110,5 +110,3 @@ scopes:
 ```
 
 See [Pattern Matching with Queries](https://tree-sitter.github.io/tree-sitter/using-parsers/queries/index.html) for more information.
-
-[Templates](templates.md) [StylesPath](../keys/stylespath.md)

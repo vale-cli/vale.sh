@@ -30,5 +30,3 @@ scope: text.frontmatter.title
 ```
 
 This rule would then only be applied to the `title` field in the front matter.
-
-[Markdown](markdown.md)

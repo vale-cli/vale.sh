@@ -47,5 +47,3 @@ Other editors integrate with the Vale CLI directly rather than through the serve
 ## [Running it yourself](lsp.md#running-it-yourself)
 
 Download a build from [releases](https://github.com/vale-cli/vale-ls/releases) and point your client at the binary. [LSP-vale-ls](https://github.com/vale-cli/LSP-vale-ls) is a small, readable example of a client configuration.
-
-[Code](../formats/code.md) [Regex](regex.md)

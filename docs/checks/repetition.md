@@ -28,5 +28,3 @@ Vale includes a [built-in implementation](../topics/styles.md#vale) of `repetiti
 ```markdown
 See the Mermaid [Mermaid user guide][1].
 ```
-
-[occurrence](occurrence.md) [consistency](consistency.md)

@@ -88,5 +88,3 @@ ignore:
 ```
 
 See [Vocabularies](../keys/vocabularies.md) for information on rule-agnostic terminology lists.
-
-[readability](readability.md) [sequence](sequence.md)

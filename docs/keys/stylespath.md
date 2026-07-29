@@ -53,5 +53,3 @@ The `config` directory is used internally by Vale and contains the following:
 | [`actions`](../topics/actions.md)       | Solutions to your custom rules.            |
 | [`filters`](../topics/filters.md)       | Configuration filters.                     |
 | [`scripts`](../checks/script.md)        | Tengo scripts.                             |
-
-[Views](../topics/views.md) [Packages](packages.md)

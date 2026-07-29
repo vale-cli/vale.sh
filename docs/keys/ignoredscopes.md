@@ -22,5 +22,3 @@ This is a sentence that contains inline `code`.
 Vale will not raise any alerts for the content within the backticks, such as `code` in the example above.
 
 See [Markup](../topics/scopes.md) for more information.
-
-[MinAlertLevel](minalertlevel.md) [IgnoredClasses](ignoredclasses.md)

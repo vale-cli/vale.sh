@@ -43,5 +43,3 @@ Where `headings.expr` is a file containing the filter expression, such as:
 ```
 
 See the [documentation](https://expr-lang.org/docs/language-definition#operators) for a list of all supported operators.
-
-[Actions](actions.md) [Templates](templates.md)

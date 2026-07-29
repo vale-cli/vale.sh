@@ -17,5 +17,3 @@ action:
 tokens:
   - '...'
 ```
-
-[replace](replace.md) [edit](edit.md)

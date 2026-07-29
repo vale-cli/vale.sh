@@ -21,5 +21,3 @@ either:
   advisor: adviser
   centre: center
 ```
-
-[repetition](repetition.md) [conditional](conditional.md)

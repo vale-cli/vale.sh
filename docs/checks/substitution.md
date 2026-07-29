@@ -81,5 +81,3 @@ message: "Consider using '%s' instead of '%s'."
 # or
 message: "Consider using '%s'."
 ```
-
-[existence](existence.md) [occurrence](occurrence.md)

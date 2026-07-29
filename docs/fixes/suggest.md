@@ -63,5 +63,3 @@ action:
 `spellings` returns the top 5 spelling suggestions for the matched text from all active dictionaries.
 
 Suggestions are ordered by calculating the [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein) between the matched text and the dictionary words.
-
-[script](../checks/script.md) [replace](replace.md)

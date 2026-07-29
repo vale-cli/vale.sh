@@ -65,5 +65,3 @@ This is some text ACT test
 .. vale style = StyleName1
 .. vale styles = StyleName1, StyleName2
 ```
-
-[HTML](html.md) [XML](xml.md)

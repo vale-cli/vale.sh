@@ -29,5 +29,3 @@ Another normal sentence.
 Vale will not raise any alerts for the content within the code block.
 
 See [Markup](../topics/scopes.md) for more information.
-
-[IgnoredClasses](ignoredclasses.md) [BasedOnStyles](basedonstyles.md)

@@ -104,5 +104,3 @@ See [MinAlertLevel](../keys/minalertlevel.md) for changing what gets reported, a
 * Browse the [Package Explorer](https://vale.sh/explorer) for styles beyond Microsoft.
 * Write your own rules with [Styles](styles.md) and the [checks](../checks/existence.md) reference.
 * Narrow what Vale reads using [Scopes](scopes.md).
-
-[Introduction](../README.md) [Installation](installation.md)

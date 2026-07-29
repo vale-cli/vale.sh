@@ -11,5 +11,3 @@ DITA is supported through the [DITA Open Toolkit](https://www.dita-ot.org/). You
 The supported extension is `.dita`.
 
 Vale ignores `<codeblock>`, `<tt>`, and `<codeph>` elements by default.
-
-[Org](org.md) [Code](code.md)

@@ -158,5 +158,3 @@ While this can be as simple as ignoring your entire `StylesPath`, it’s likely 
 ```
 
 The above example ignores the entire `.github/styles/` folder _except_ for `.github/styles/config/vocabularies/Base` (which we want to track changes for).
-
-[StylesPath](stylespath.md) [Vocab](vocabularies.md)

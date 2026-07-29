@@ -66,5 +66,3 @@ Populate the `matches` array with rule matches. Each match must be a map with th
 * `end`: where the match ends in the content provided by the `scope` variable.
 {% endstep %}
 {% endstepper %}
-
-[sequence](sequence.md) [suggest](../fixes/suggest.md)

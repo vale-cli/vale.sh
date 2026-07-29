@@ -77,5 +77,3 @@ As you can see, the CLI output is dynamically computing the suggestion based on 
 ## [LSP](actions.md#lsp)
 
 In both static and dynamic cases, any application that uses the [Vale Language Server](../guides/lsp.md) will be able to provide the user with a list of “Quick Fixes” that can be applied to the document.
-
-[Scopes](scopes.md) [Filters](filters.md)

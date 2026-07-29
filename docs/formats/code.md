@@ -71,5 +71,3 @@ BasedOnStyles = Vale
 ```
 
 Once a markup format has been assigned, you can make use of all the supported features of that format (such as ignore patterns and comment-based configuration) in your source code comments.
-
-[DITA](dita.md) [LSP](../guides/lsp.md)

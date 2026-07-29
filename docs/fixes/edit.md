@@ -66,5 +66,3 @@ action:
 tokens:
   - '(?<=[a-z][.!?] ) [A-Z]'
 ```
-
-[remove](remove.md) [Front Matter](../formats/front-matter.md)

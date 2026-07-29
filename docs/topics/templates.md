@@ -137,5 +137,3 @@ The following example converts Vale’s output to [RDJSONL](https://github.com/r
 {{end -}}
 {{end -}}
 ```
-
-[Filters](filters.md) [Views](views.md)

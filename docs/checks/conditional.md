@@ -52,5 +52,3 @@ second: '(?<=<)(\w+)'
 ```
 
 See the [regex guide](../guides/regex.md) for more information.
-
-[consistency](consistency.md) [capitalization](capitalization.md)

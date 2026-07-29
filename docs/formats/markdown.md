@@ -58,5 +58,3 @@ This is some text ACT test
 <!-- vale style = StyleName1 -->
 <!-- vale styles = StyleName1, StyleName2 -->
 ```
-
-[Front Matter](front-matter.md) [AsciiDoc](asciidoc.md)

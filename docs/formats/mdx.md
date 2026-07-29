@@ -68,5 +68,3 @@ This is some text ACT test
 {/* vale style = StyleName1 */}
 {/* vale styles = StyleName1, StyleName2 */}
 ```
-
-[AsciiDoc](asciidoc.md) [HTML](html.md)

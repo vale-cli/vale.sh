@@ -23,5 +23,3 @@ Rules that extend `substitution` or `capitalization` will automatically populate
 action:
   name: replace
 ```
-
-[suggest](suggest.md) [remove](remove.md)

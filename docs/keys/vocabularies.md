@@ -133,5 +133,3 @@ tokens:
   # "MonoDB" can be in a vocab
   - MongoDB
 ```
-
-[Packages](packages.md) [MinAlertLevel](minalertlevel.md)

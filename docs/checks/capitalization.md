@@ -72,5 +72,3 @@ message: "Found: '%s'; expected: '%s'."
 # or
 message: "'%s' should use title-style capitalization."
 ```
-
-[conditional](conditional.md) [metric](metric.md)

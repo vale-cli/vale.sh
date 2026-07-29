@@ -32,5 +32,3 @@ The `message` key can contain an optional format specifier `%s` which will be po
 ```yaml
 message: 'Titles should use fewer than 70 characters (found: %s).'
 ```
-
-[substitution](substitution.md) [repetition](repetition.md)

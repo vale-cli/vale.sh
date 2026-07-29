@@ -59,5 +59,3 @@ message: "Grade level (%s) too high!"
 `readability` is the one extension point that doesn't accept a [scope](../topics/scopes.md).
 
 A grade level is calculated from whole sentences, so scoring anything smaller than a paragraph—a heading, a list item, a table cell—wouldn't mean anything. Vale always applies the rule to the document's prose as a whole, and reports the result at line 1.
-
-[metric](metric.md) [spelling](spelling.md)

@@ -60,5 +60,3 @@ $ vale --glob='!**/b/*' .
 ```
 
 You’ll notice that the `b.md` file is not included in the output because the `--glob` flag takes precedence over the `.vale.ini` file.
-
-[Regex](regex.md) [Hunspell](hunspell.md)
