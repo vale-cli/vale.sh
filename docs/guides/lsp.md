@@ -2,35 +2,50 @@
 
 Get started with Vale's Language Server.
 
-The Vale Language Server (`vale-ls`) is an implementation of the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) that acts as a wrapper around a local installation of Vale, providing autocomplete, diagnostics, hover popups, and more, in many popular text editors and IDEs.
+The Vale Language Server (`vale-ls`) implements the [Language Server Protocol](https://microsoft.github.io/language-server-protocol/) around a local installation of Vale, giving any editor that speaks LSP autocomplete, diagnostics, and hover popups.
 
-Some available integrations include:
+Most people don't run it directly—an editor plugin does. See [Editors](lsp.md#editors) below.
 
-* [CircleCI](https://circleci.com/developer/orbs/orb/circleci/vale)
+## [Configuration](lsp.md#configuration)
+
+The server reads its settings from the `initializationOptions` your client sends when it connects:
+
+```json
+{
+  "initializationOptions": {
+    "installVale": true,
+    "syncOnStartup": true,
+    "filter": "",
+    "configPath": ""
+  }
+}
+```
+
+| Option          | Type      | Description                                                                                                                |
+| --------------- | --------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `installVale`   | `boolean` | Install and update Vale into a `vale_bin` folder beside `vale-ls`. When false, `vale` must be on your `$PATH`.              |
+| `syncOnStartup` | `boolean` | Run [`vale sync`](../topics/cli.md) when the server starts.                                                                |
+| `filter`        | `string`  | An [output filter](../topics/cli.md) to apply, e.g. `.Level in ['warning', 'error']`.                                       |
+| `configPath`    | `string`  | An absolute path to a `.vale.ini`. Usually best left empty so Vale's own [search process](../topics/.vale.ini.md) applies. |
+
+{% hint style="info" %}
+The server treats an option it wasn't sent as off, so `installVale` and `syncOnStartup` only apply if your client asks for them. Editor plugins generally do—[LSP-vale-ls](https://github.com/vale-cli/LSP-vale-ls) turns both on by default—but if you're wiring the server up yourself, set them explicitly.
+{% endhint %}
+
+## [Editors](lsp.md#editors)
+
+These connect to `vale-ls`:
+
+* [Sublime Text](https://packagecontrol.io/packages/LSP-vale-ls)
+* [VS Code](https://github.com/chrischinchilla/vale-vscode)
+* [Neovim](https://github.com/dense-analysis/ale)
+* [Zed](https://github.com/koozz/zed-vale)
 * [Emacs](https://github.com/tpeacock19/flymake-vale)
-* [GitHub Actions](https://github.com/errata-ai/vale-action)
-* [Git Hooks](../integrations/pre-commit.md)
-* [JetBrains](https://plugins.jetbrains.com/plugin/19613-vale-cli/docs)
-* [Laravel](https://github.com/beyondcode/laravel-prose-linter)
-* [Obsidian](https://github.com/ChrisChinchilla/obsidian-vale)
-* [Oxygen XML](https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-addon.html)
-* [Sublime Text](https://packagecontrol.io/packages/LSP-vale-ls) LSP
-* [Neovim](https://github.com/dense-analysis/ale) LSP
-* [VS Code](https://github.com/chrischinchilla/vale-vscode) LSP
-* [Qt Creator](https://wiki.qt.io/Setting_Up_Vale)
-* [Zed](https://github.com/koozz/zed-vale) LSP
 
-### [Configuration](lsp.md#configuration)
+Other editors integrate with the Vale CLI directly rather than through the server: [JetBrains](https://plugins.jetbrains.com/plugin/19613-vale-cli/docs), [Obsidian](https://github.com/ChrisChinchilla/obsidian-vale), [Oxygen XML](https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-addon.html), and [Qt Creator](https://wiki.qt.io/Setting_Up_Vale).
 
-The server supports the following `initializationParams`:
+## [Running it yourself](lsp.md#running-it-yourself)
 
-| Parameter       | Default | Description                                                                                                                                                                    |
-| --------------- | ------: | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `installVale`   |  `true` | Automatically install and update Vale to a `vale_bin` folder in the same location as `vale-ls`. If `false`, the `vale` executable needs to be available on the user’s `$PATH`. |
-| `filter`        |  `None` | An [output filter](https://vale.sh/manual/filter/) to apply when calling Vale.                                                                                                 |
-| `configPath`    |  `None` | An absolute path to a `.vale.ini` file to be used as the default configuration.                                                                                                |
-| `syncOnStartup` |  `true` | Runs `vale sync` upon starting the server.                                                                                                                                     |
-
-To use the server, you’ll need to download the latest release from [GitHub](https://github.com/errata-ai/vale-ls/releases). See the Sublime Text [package](https://packagecontrol.io/packages/LSP-vale-ls) for an example of how to use the server.
+Download a build from [releases](https://github.com/vale-cli/vale-ls/releases) and point your client at the binary. [LSP-vale-ls](https://github.com/vale-cli/LSP-vale-ls) is a small, readable example of a client configuration.
 
 [Code](../formats/code.md) [Regex](regex.md)
