@@ -3,6 +3,7 @@
 ## Topics
 
 * [Introduction](README.md)
+* [Quickstart](topics/quickstart.md)
 * [Installation](topics/installation.md)
 * [.vale.ini](topics/.vale.ini.md)
 * [CLI](topics/cli.md)

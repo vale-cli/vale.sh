@@ -79,4 +79,4 @@ Vale is a 100% open-source, MIT-licensed project that consists of multiple parts
 | [`packages`](https://github.com/errata-ai/packages)       | YAML       | A collection of pre-packaged, Vale-compatible style guides and configurations.                               |
 | [`vale-native`](https://github.com/errata-ai/vale-native) | Go         | A native messaging host for the Vale CLI: Use your local configurations in Chrome, Firefox, Opera, and Edge. |
 
-[Install](topics/installation.md)
+[Quickstart](topics/quickstart.md)
