@@ -24,3 +24,4 @@ vite.config.ts.timestamp-*
 
 /lambda/search/INDEX
 INDEX.zip
+static/wasm/

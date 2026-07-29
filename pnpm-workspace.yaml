@@ -1,3 +1,12 @@
 allowBuilds:
   '@sveltejs/kit': false
   esbuild: false
+
+# CodeMirror breaks if more than one copy is loaded: its facets and state
+# fields are matched by object identity, so extensions registered through one
+# copy are invisible to a view created by another. Transitive dependencies pull
+# in a spread of versions, so each is pinned to one.
+overrides:
+  '@codemirror/state': ^6.7.1
+  '@codemirror/view': ^6.43.7
+  '@codemirror/language': ^6.11.3

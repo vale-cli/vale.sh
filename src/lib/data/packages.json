@@ -1,0 +1,2286 @@
+[
+  {
+    "name": "Google",
+    "description": "A Vale-compatible implementation of the Google Developer Documentation Style Guide.",
+    "homepage": "https://github.com/errata-ai/Google",
+    "url": "https://github.com/errata-ai/Google/releases/latest/download/Google.zip",
+    "logo": "https://github.com/google.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Acronyms",
+        "extends": "conditional",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Spell out '%s', if it's unfamiliar to the audience.",
+        "link": "https://developers.google.com/style/abbreviations"
+      },
+      {
+        "name": "AMPM",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'AM' or 'PM' (preceded by a space).",
+        "link": "https://developers.google.com/style/word-list"
+      },
+      {
+        "name": "Colons",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "'%s' should be in lowercase.",
+        "link": "https://developers.google.com/style/colons"
+      },
+      {
+        "name": "Contractions",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://developers.google.com/style/contractions"
+      },
+      {
+        "name": "DateFormat",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'July 31, 2016' format, not '%s'.",
+        "link": "https://developers.google.com/style/dates-times"
+      },
+      {
+        "name": "Ellipses",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "In general, don't use an ellipsis.",
+        "link": "https://developers.google.com/style/ellipses"
+      },
+      {
+        "name": "EmDash",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't put a space before or after a dash.",
+        "link": "https://developers.google.com/style/dashes"
+      },
+      {
+        "name": "Exclamation",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use exclamation points in text.",
+        "link": "https://developers.google.com/style/exclamation-points"
+      },
+      {
+        "name": "FirstPerson",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid first-person pronouns such as '%s'.",
+        "link": "https://developers.google.com/style/pronouns#personal-pronouns"
+      },
+      {
+        "name": "Gender",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use '%s' as a gender-neutral pronoun.",
+        "link": "https://developers.google.com/style/pronouns#gender-neutral-pronouns"
+      },
+      {
+        "name": "GenderBias",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": "https://developers.google.com/style/inclusive-documentation"
+      },
+      {
+        "name": "HeadingPunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Don't put a period at the end of a heading.",
+        "link": "https://developers.google.com/style/capitalization#capitalization-in-titles-and-headings"
+      },
+      {
+        "name": "Headings",
+        "extends": "capitalization",
+        "level": "warning",
+        "scope": "heading",
+        "message": "'%s' should use sentence-style capitalization.",
+        "link": "https://developers.google.com/style/capitalization#capitalization-in-titles-and-headings"
+      },
+      {
+        "name": "Latin",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://developers.google.com/style/abbreviations"
+      },
+      {
+        "name": "LyHyphens",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' doesn't need a hyphen.",
+        "link": "https://developers.google.com/style/hyphens"
+      },
+      {
+        "name": "OptionalPlurals",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use plurals in parentheses such as in '%s'.",
+        "link": "https://developers.google.com/style/plurals-parentheses"
+      },
+      {
+        "name": "Ordinal",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Spell out all ordinal numbers ('%s') in text.",
+        "link": "https://developers.google.com/style/numbers"
+      },
+      {
+        "name": "OxfordComma",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "Use the Oxford comma in '%s'.",
+        "link": "https://developers.google.com/style/commas"
+      },
+      {
+        "name": "Parens",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use parentheses judiciously.",
+        "link": "https://developers.google.com/style/parentheses"
+      },
+      {
+        "name": "Passive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "In general, use active voice instead of passive voice ('%s').",
+        "link": "https://developers.google.com/style/voice"
+      },
+      {
+        "name": "Periods",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use periods with acronyms or initialisms such as '%s'.",
+        "link": "https://developers.google.com/style/abbreviations"
+      },
+      {
+        "name": "Quotes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Commas and periods go inside quotation marks.",
+        "link": "https://developers.google.com/style/quotation-marks"
+      },
+      {
+        "name": "Ranges",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't add words such as 'from' or 'between' to describe a range of numbers.",
+        "link": "https://developers.google.com/style/hyphens"
+      },
+      {
+        "name": "Semicolons",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Use semicolons judiciously.",
+        "link": "https://developers.google.com/style/semicolons"
+      },
+      {
+        "name": "Slang",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use internet slang abbreviations such as '%s'.",
+        "link": "https://developers.google.com/style/abbreviations"
+      },
+      {
+        "name": "Spacing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' should have one space.",
+        "link": "https://developers.google.com/style/sentence-spacing"
+      },
+      {
+        "name": "Spelling",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "In general, use American spelling instead of '%s'.",
+        "link": "https://developers.google.com/style/spelling"
+      },
+      {
+        "name": "Units",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Put a nonbreaking space between the number and the unit in '%s'.",
+        "link": "https://developers.google.com/style/units-of-measure"
+      },
+      {
+        "name": "We",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Try to avoid using first-person plural like '%s'.",
+        "link": "https://developers.google.com/style/pronouns#personal-pronouns"
+      },
+      {
+        "name": "Will",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid using '%s'.",
+        "link": "https://developers.google.com/style/tense"
+      },
+      {
+        "name": "WordList",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://developers.google.com/style/word-list"
+      }
+    ]
+  },
+  {
+    "name": "Joblint",
+    "description": "Test tech job posts for issues with sexism, culture, expectations, and recruiter fails.",
+    "homepage": "https://github.com/errata-ai/Joblint",
+    "url": "https://github.com/errata-ai/Joblint/releases/latest/download/Joblint.zip",
+    "logo": "https://github.com/npm.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Acronyms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'",
+        "link": ""
+      },
+      {
+        "name": "Benefits",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Bro",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Competitive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Derogatory",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "DevEnv",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't specify a development environment unless absolutely necessary.",
+        "link": ""
+      },
+      {
+        "name": "DumbTitles",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Gendered",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Hair",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "LegacyTech",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Meritocracy",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Reevaluate the use of '%s'",
+        "link": ""
+      },
+      {
+        "name": "Profanity",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Remove '%s'",
+        "link": ""
+      },
+      {
+        "name": "Reassure",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Sexualised",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "Starter",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      },
+      {
+        "name": "TechTerms",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'",
+        "link": ""
+      },
+      {
+        "name": "Visionary",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid using '%s'",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "name": "Microsoft",
+    "description": "A Vale-compatible implementation of the Microsoft Writing Style Guide.",
+    "homepage": "https://github.com/errata-ai/Microsoft",
+    "url": "https://github.com/errata-ai/Microsoft/releases/latest/download/Microsoft.zip",
+    "logo": "https://github.com/microsoft.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Accessibility",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use language (such as '%s') that defines people by their disability.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/accessibility-terms"
+      },
+      {
+        "name": "Acronyms",
+        "extends": "conditional",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' has no definition.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/acronyms"
+      },
+      {
+        "name": "Adverbs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Remove '%s' if it's not important to the meaning of the statement.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
+      },
+      {
+        "name": "AMPM",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'AM' or 'PM' (preceded by a space).",
+        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
+      },
+      {
+        "name": "Auto",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "In general, don't hyphenate '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/a/auto"
+      },
+      {
+        "name": "Avoid",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use '%s'. See the A-Z word list for details.",
+        "link": "https://docs.microsoft.com/en-us/style-guide"
+      },
+      {
+        "name": "Contractions",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-contractions"
+      },
+      {
+        "name": "Dashes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Remove the spaces around '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/emes"
+      },
+      {
+        "name": "DateFormat",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'July 31, 2016' format, not '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
+      },
+      {
+        "name": "DateNumbers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use ordinal numbers for dates.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
+      },
+      {
+        "name": "DateOrder",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Always spell out the name of the month.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
+      },
+      {
+        "name": "Ellipses",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "In general, don't use an ellipsis.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/ellipses"
+      },
+      {
+        "name": "FirstPerson",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use first person (such as '%s') sparingly.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/grammar/person"
+      },
+      {
+        "name": "Foreign",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-us-spelling-avoid-non-english-words"
+      },
+      {
+        "name": "Gender",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't use '%s'.",
+        "link": "https://github.com/MicrosoftDocs/microsoft-style-guide/blob/master/styleguide/grammar/nouns-pronouns.md#pronouns-and-gender"
+      },
+      {
+        "name": "GenderBias",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "GeneralURL",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "For a general audience, use 'address' rather than 'URL'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/urls-web-addresses"
+      },
+      {
+        "name": "HeadingAcronyms",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Avoid using acronyms in a title or heading.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/acronyms#be-careful-with-acronyms-in-titles-and-headings"
+      },
+      {
+        "name": "HeadingColons",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "Capitalize '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/colons"
+      },
+      {
+        "name": "HeadingPunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Don't use end punctuation in headings.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/periods"
+      },
+      {
+        "name": "Headings",
+        "extends": "capitalization",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "'%s' should use sentence-style capitalization.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/capitalization"
+      },
+      {
+        "name": "Hyphens",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' doesn't need a hyphen.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
+      },
+      {
+        "name": "Negative",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Form a negative number with an en dash, not a hyphen.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+      },
+      {
+        "name": "Ordinal",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't add -ly to an ordinal number.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+      },
+      {
+        "name": "OxfordComma",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Use the Oxford comma in '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/commas"
+      },
+      {
+        "name": "Passive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' looks like passive voice.",
+        "link": ""
+      },
+      {
+        "name": "Percentages",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use a numeral plus the units.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+      },
+      {
+        "name": "Plurals",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't add '%s' to a singular noun. Use plural instead.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/s/s-es"
+      },
+      {
+        "name": "Quotes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Punctuation should be inside the quotes.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/quotation-marks"
+      },
+      {
+        "name": "RangeTime",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'to' instead of a dash in '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+      },
+      {
+        "name": "Semicolon",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Try to simplify this sentence.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/semicolons"
+      },
+      {
+        "name": "SentenceLength",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Try to keep sentences short (< 30 words).",
+        "link": ""
+      },
+      {
+        "name": "Spacing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' should have one space.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/periods"
+      },
+      {
+        "name": "Suspended",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use '%s' unless space is limited.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
+      },
+      {
+        "name": "Terms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer '%s' over '%s'.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/a/adapter"
+      },
+      {
+        "name": "Units",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't spell out the number in '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/units-of-measure-terms"
+      },
+      {
+        "name": "URLFormat",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'of' (not 'for') to describe the relationship of the word URL to a resource.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/u/url"
+      },
+      {
+        "name": "Vocab",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Verify your use of '%s' with the A-Z word list.",
+        "link": "https://docs.microsoft.com/en-us/style-guide"
+      },
+      {
+        "name": "We",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Try to avoid using first-person plural like '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/grammar/person#avoid-first-person-plural"
+      },
+      {
+        "name": "Wordiness",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
+      }
+    ]
+  },
+  {
+    "name": "proselint",
+    "description": "proselint places the world’s greatest writers and editors by your side.",
+    "homepage": "https://github.com/errata-ai/proselint",
+    "url": "https://github.com/errata-ai/proselint/releases/latest/download/proselint.zip",
+    "logo": "https://github.com/amperser.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Airlinese",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is airlinese.",
+        "link": ""
+      },
+      {
+        "name": "AnimalLabels",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Annotations",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' left in text.",
+        "link": ""
+      },
+      {
+        "name": "Apologizing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Excessive apologizing: '%s'",
+        "link": ""
+      },
+      {
+        "name": "Archaisms",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is archaic.",
+        "link": ""
+      },
+      {
+        "name": "But",
+        "extends": "existence",
+        "level": "error",
+        "scope": "paragraph",
+        "message": "Do not start a paragraph with a 'but'.",
+        "link": ""
+      },
+      {
+        "name": "Cliches",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is a cliche.",
+        "link": ""
+      },
+      {
+        "name": "CorporateSpeak",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is corporate speak.",
+        "link": ""
+      },
+      {
+        "name": "Currency",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Incorrect use of symbols in '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Cursing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider replacing '%s'.",
+        "link": ""
+      },
+      {
+        "name": "DateCase",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "With lowercase letters, the periods are standard.",
+        "link": ""
+      },
+      {
+        "name": "DateMidnight",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'midnight' or 'noon'.",
+        "link": ""
+      },
+      {
+        "name": "DateRedundancy",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'a.m.' is always morning; 'p.m.' is always night.",
+        "link": ""
+      },
+      {
+        "name": "DateSpacing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "It's standard to put a space before '%s'",
+        "link": ""
+      },
+      {
+        "name": "DenizenLabels",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean '%s'?",
+        "link": ""
+      },
+      {
+        "name": "Diacritical",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "GenderBias",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "GroupTerms",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Hedging",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is hedging.",
+        "link": ""
+      },
+      {
+        "name": "Hyperbole",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is hyperbolic.",
+        "link": ""
+      },
+      {
+        "name": "Jargon",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is jargon.",
+        "link": ""
+      },
+      {
+        "name": "LGBTOffensive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is offensive. Remove it or consider the context.",
+        "link": ""
+      },
+      {
+        "name": "LGBTTerms",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Malapropisms",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is a malapropism.",
+        "link": ""
+      },
+      {
+        "name": "Needless",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prefer '%s' over '%s'",
+        "link": ""
+      },
+      {
+        "name": "Nonwords",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Oxymorons",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is an oxymoron.",
+        "link": ""
+      },
+      {
+        "name": "P-Value",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "You should use more decimal places, unless '%s' is really true.",
+        "link": ""
+      },
+      {
+        "name": "RASSyndrome",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is redundant.",
+        "link": ""
+      },
+      {
+        "name": "Skunked",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is a bit of a skunked term — impossible to use without issue.",
+        "link": ""
+      },
+      {
+        "name": "Spelling",
+        "extends": "consistency",
+        "level": "error",
+        "scope": "text",
+        "message": "Inconsistent spelling of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Typography",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Consider using the '%s' symbol instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Uncomparables",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' is not comparable",
+        "link": ""
+      },
+      {
+        "name": "Very",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Remove '%s'.",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "name": "write-good",
+    "description": "Naive linter for English prose for developers who can't write good.",
+    "homepage": "https://github.com/errata-ai/write-good",
+    "url": "https://github.com/errata-ai/write-good/releases/latest/download/write-good.zip",
+    "logo": "https://github.com/npm.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Cliches",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Try to avoid using clichés like '%s'.",
+        "link": ""
+      },
+      {
+        "name": "E-Prime",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to avoid using '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Illusions",
+        "extends": "repetition",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is repeated!",
+        "link": ""
+      },
+      {
+        "name": "Passive",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' may be passive voice. Use active voice if you can.",
+        "link": ""
+      },
+      {
+        "name": "So",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't start a sentence with '%s'.",
+        "link": ""
+      },
+      {
+        "name": "ThereIs",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Don't start a sentence with '%s'.",
+        "link": ""
+      },
+      {
+        "name": "TooWordy",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is too wordy.",
+        "link": ""
+      },
+      {
+        "name": "Weasel",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is a weasel word!",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "name": "alex",
+    "description": "Catch insensitive, inconsiderate writing.",
+    "homepage": "https://github.com/errata-ai/alex",
+    "url": "https://github.com/errata-ai/alex/releases/latest/download/alex.zip",
+    "logo": "https://github.com/get-alex.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Ablist",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "When referring to a person, consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Condescending",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Using '%s' may come across as condescending.",
+        "link": "https://css-tricks.com/words-avoid-educational-writing/"
+      },
+      {
+        "name": "Gendered",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "LGBTQ",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "OCD",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "When referring to a person, consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Press",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "ProfanityLikely",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use '%s', it's profane.",
+        "link": ""
+      },
+      {
+        "name": "ProfanityMaybe",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Reconsider using '%s', it may be profane.",
+        "link": ""
+      },
+      {
+        "name": "ProfanityUnlikely",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Be careful with '%s', it's profane in some cases.",
+        "link": ""
+      },
+      {
+        "name": "Race",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Suicide",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s' (which may be insensitive).",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "name": "Readability",
+    "description": "Vale-compatible implementations of many popular readability metrics.",
+    "homepage": "https://github.com/errata-ai/Readability",
+    "url": "https://github.com/errata-ai/Readability/releases/latest/download/Readability.zip",
+    "logo": "https://github.com/errata-ai.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AutomatedReadability",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the Automated Readability Index (%s) below 8.",
+        "link": "https://en.wikipedia.org/wiki/Automated_readability_index"
+      },
+      {
+        "name": "ColemanLiau",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the Coleman–Liau Index grade (%s) below 9.",
+        "link": "https://en.wikipedia.org/wiki/Coleman%E2%80%93Liau_index"
+      },
+      {
+        "name": "FleschKincaid",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the Flesch–Kincaid grade level (%s) below 8.",
+        "link": "https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests"
+      },
+      {
+        "name": "FleschReadingEase",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the Flesch reading ease score (%s) above 70.",
+        "link": "https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests"
+      },
+      {
+        "name": "GunningFog",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the Gunning-Fog index (%s) below 10.",
+        "link": "https://en.wikipedia.org/wiki/Gunning_fog_index"
+      },
+      {
+        "name": "LIX",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the LIX score (%s) below 35.",
+        "link": "https://en.wikipedia.org/wiki/Lix_(readability_test)"
+      },
+      {
+        "name": "SMOG",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to keep the SMOG grade (%s) below 10.",
+        "link": "https://en.wikipedia.org/wiki/SMOG"
+      }
+    ]
+  },
+  {
+    "name": "Hugo",
+    "description": "Adds support for Hugo shortcodes and other non-standard markup.",
+    "homepage": "https://github.com/errata-ai/Hugo",
+    "url": "https://github.com/errata-ai/Hugo/releases/latest/download/Hugo.zip",
+    "logo": "https://github.com/gohugoio.png",
+    "tags": [
+      "config"
+    ],
+    "rules": []
+  },
+  {
+    "name": "MDX",
+    "description": "Adds support for MDX comments and other non-standard markup.",
+    "homepage": "https://github.com/errata-ai/MDX",
+    "url": "https://github.com/errata-ai/MDX/releases/latest/download/MDX.zip",
+    "logo": "https://github.com/mdx-js.png",
+    "tags": [
+      "config"
+    ],
+    "rules": []
+  },
+  {
+    "name": "RedHat",
+    "description": "A Vale-compatible implementation of the Red Hat Supplementary Style Guide.",
+    "homepage": "https://redhat-documentation.github.io/vale-at-red-hat/docs/main/user-guide/redhat-style-for-vale/",
+    "url": "https://github.com/redhat-documentation/vale-at-red-hat/releases/latest/download/RedHat.zip",
+    "logo": "https://github.com/redhat-documentation.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Abbreviations",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Do not use periods in all-uppercase abbreviations such as '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#abbreviations"
+      },
+      {
+        "name": "CaseSensitiveTerms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#case-sensitive-terms"
+      },
+      {
+        "name": "Conjunctions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "paragraph",
+        "message": "Do not overuse beginning sentences with '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#conjunctions"
+      },
+      {
+        "name": "ConsciousLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use %s rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#conscious-language"
+      },
+      {
+        "name": "Contractions",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid contractions. Use '%s' rather than '%s.'",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#contractions"
+      },
+      {
+        "name": "Definitions",
+        "extends": "conditional",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Define acronyms and abbreviations (such as '%s') on first occurrence if they're likely to be unfamiliar.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#definitions"
+      },
+      {
+        "name": "DoNotUseTerms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "%s",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#do-not-use-terms"
+      },
+      {
+        "name": "Ellipses",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid the ellipsis (...) except to indicate omitted words.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#ellipses"
+      },
+      {
+        "name": "EmDash",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Do not use em dashes. Use punctuation marks such as commas, parentheses, or colons instead.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#em-dash"
+      },
+      {
+        "name": "GitLinks",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Do not include a link to %s unless it is explicitly approved.",
+        "link": ""
+      },
+      {
+        "name": "HeadingPunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Do not use end punctuation in headings.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#heading-punctuation"
+      },
+      {
+        "name": "Headings",
+        "extends": "capitalization",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Use sentence-style capitalization in '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#headings"
+      },
+      {
+        "name": "Hyphens",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use %s rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#hyphens"
+      },
+      {
+        "name": "MergeConflictMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not commit Git merge conflict markers in source code.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#merge-conflict-markers"
+      },
+      {
+        "name": "NoGerundsInTitles",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Where possible, avoid using gerunds in topic titles. Use the imperative form instead.",
+        "link": ""
+      },
+      {
+        "name": "ObviousTerms",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Consider not documenting %s because it is self-explanatory.",
+        "link": ""
+      },
+      {
+        "name": "OxfordComma",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Use the Oxford comma in '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#oxford-comma"
+      },
+      {
+        "name": "PascalCamelCase",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "list, sentence",
+        "message": "Consider wrapping this Pascal or Camel case term ('%s') in backticks.",
+        "link": "https://redhat-documentation.github.io/asciidoc-markup-conventions"
+      },
+      {
+        "name": "PassiveVoice",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is passive voice. In general, use active voice. Consult the style guide for acceptable use of passive voice.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#passive-voice"
+      },
+      {
+        "name": "ProductCentricWriting",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Do not use transitive verb constructions like '%s' to grant abilities to inanimate objects. Whenever possible, use direct, user-focused sentences where the subject of the sentence performs the action.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#product-centric-writing"
+      },
+      {
+        "name": "ReadabilityGrade",
+        "extends": "readability",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Simplify your language. The calculated Flesch–Kincaid grade level of %s is above the recommended reading grade level of 9.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#readability-grade"
+      },
+      {
+        "name": "ReleaseNotes",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "For release notes, consider using '%s' rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#release-notes"
+      },
+      {
+        "name": "RepeatedWords",
+        "extends": "repetition",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is repeated.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#repeated-words"
+      },
+      {
+        "name": "SelfReferentialText",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using self-referential text such as '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#self-referential-text"
+      },
+      {
+        "name": "SentenceLength",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Try to keep sentences to an average of 32 words or fewer.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#sentence-length"
+      },
+      {
+        "name": "SessionId",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not publish URLs that contain session identifiers. Exposed session IDs enable session hijacking and unauthorized account access.",
+        "link": ""
+      },
+      {
+        "name": "SimpleWords",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use simple language. Consider using '%s' rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#simple-words"
+      },
+      {
+        "name": "Slash",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence, heading",
+        "message": "Use either 'or' or 'and' in '%s'",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#slash"
+      },
+      {
+        "name": "SmartQuotes",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Do not use smart quotation marks. Use %s rather than %s.",
+        "link": ""
+      },
+      {
+        "name": "Spacing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Keep one space between words in '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#spacing"
+      },
+      {
+        "name": "Spelling",
+        "extends": "spelling",
+        "level": "warning",
+        "scope": "heading, sentence, list, alt, table.header, table.cell, table.caption, figure.caption",
+        "message": "Verify the word '%s'. It is not in the American English or Red Hat terminology spelling dictionaries used by Vale.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#spelling"
+      },
+      {
+        "name": "Symbols",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Do not use the '%s' symbol.",
+        "link": "https://redhat-documentation.github.io/supplementary-style-guide/#_symbols"
+      },
+      {
+        "name": "TermsErrors",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use '%s' rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#terms-errors"
+      },
+      {
+        "name": "TermsSuggestions",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Depending on the context, consider using '%s' rather than '%s'.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#terms-suggestions"
+      },
+      {
+        "name": "TermsWarnings",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' rather than '%s' unless updating existing content that uses the term.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#terms-warnings"
+      },
+      {
+        "name": "UserReplacedValues",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Separate words by underscores in user-replaced values.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#user-replaced-values"
+      },
+      {
+        "name": "Using",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "~heading",
+        "message": "Use 'by using' instead of 'using' when it follows a noun for clarity and grammatical correctness.",
+        "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#using"
+      }
+    ]
+  },
+  {
+    "name": "AsciiDoc",
+    "description": "A Vale-compatible implementation of select AsciiDoc syntax rules.",
+    "homepage": "https://redhat-documentation.github.io/vale-at-red-hat/docs/main/user-guide/asciidoc-style-for-vale/",
+    "url": "https://github.com/redhat-documentation/vale-at-red-hat/releases/latest/download/AsciiDoc.zip",
+    "logo": "https://github.com/redhat-documentation.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "ClosedAttributeBlocks",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Attribute block is not closed.",
+        "link": ""
+      },
+      {
+        "name": "ClosedIdQuotes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Quoted ID value is not closed.",
+        "link": ""
+      },
+      {
+        "name": "CodeBlockSubsVerbatim",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Code block contains shell redirection '%s' but is missing 'subs=verbatim'. Add 'subs=verbatim' or 'subs=\"+quotes,verbatim\"' to prevent parsing issues.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/subs/apply-subs-to-blocks/"
+      },
+      {
+        "name": "ImageContainsAltText",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Image is missing accessibility alt tags.",
+        "link": "https://redhat-documentation.github.io/supplementary-style-guide/#cloud-services-images"
+      },
+      {
+        "name": "LinkContainsLinkText",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Link is missing descriptive link text for accessibility.",
+        "link": "https://redhat-documentation.github.io/supplementary-style-guide/#cloud-services-links-hypertext"
+      },
+      {
+        "name": "MatchingDotCallouts",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Corresponding callout not found.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/"
+      },
+      {
+        "name": "MatchingNumberedCallouts",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Corresponding callout not found.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/"
+      },
+      {
+        "name": "SequentialNumberedCallouts",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Numbered callout does not follow sequentially.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/verbatim/callouts/"
+      },
+      {
+        "name": "UnsetAttributes",
+        "extends": "script",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Set attribute directive does not have a corresponding unset attribute directive.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/attributes/unset-attributes/#unset-a-document-attribute-in-the-body"
+      },
+      {
+        "name": "ValidAdmonitionBlocks",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Unterminated admonition block found in file.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/blocks/admonitions/"
+      },
+      {
+        "name": "ValidCodeBlocks",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Unterminated listing block found in file.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/verbatim/listing-blocks/"
+      },
+      {
+        "name": "ValidConditions",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "File contains unbalanced if statements. Review the file to ensure it contains matching opening and closing if statements.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/directives/ifdef-ifndef/"
+      },
+      {
+        "name": "ValidOpenBlocks",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Unterminated open block found in file.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/blocks/open-blocks/"
+      },
+      {
+        "name": "ValidTableBlocks",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Unterminated table block found in file.",
+        "link": "https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/"
+      }
+    ]
+  },
+  {
+    "name": "OpenShiftAsciiDoc",
+    "description": "A Vale-compatible implementation of select AsciiDoc guidance from the OpenShift docs contributor guidelines.",
+    "homepage": "https://redhat-documentation.github.io/vale-at-red-hat/docs/main/user-guide/openshift-asciidoc-style-for-vale/",
+    "url": "https://github.com/redhat-documentation/vale-at-red-hat/releases/latest/download/OpenShiftAsciiDoc.zip",
+    "logo": "https://github.com/redhat-documentation.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AdditionalResourcesHeadingHasRoleID",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Additional resources heading is missing the '_additional-resources' role attribute declaration",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#additional-resources-sections"
+      },
+      {
+        "name": "CheckDollarSymbolInTerminalBlock",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Terminal code block missing a command prompt at the beginning of the line. For example output, prepend the code block with '.Example output'.",
+        "link": "https://redhat-documentation.github.io/supplementary-style-guide/#commands-with-root-privileges"
+      },
+      {
+        "name": "HardWrappedLines",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Avoid hard-wrapped lines.",
+        "link": ""
+      },
+      {
+        "name": "IdHasContextVariable",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "ID is missing the '_{context}' variable at the end of the ID.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#anchoring-in-module-files"
+      },
+      {
+        "name": "ModuleContainsContentType",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Module is missing the '_mod-docs-content-type' variable.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#module-file-metadata"
+      },
+      {
+        "name": "ModuleContainsParentAssemblyComment",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "The comment at the beginning of the module that lists the parent assembly is missing.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#module-file-metadata"
+      },
+      {
+        "name": "NoLineRanges",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not use line ranges for included files.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#assembly-file-metadata"
+      },
+      {
+        "name": "NoNestingInModules",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "You can only nest snippets or GitHub raw user content in modules.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#links-hyperlinks-and-cross-references"
+      },
+      {
+        "name": "NoOptionalTitles",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not begin a module or assembly title with 'Optional:'.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#assembly-file-metadata"
+      },
+      {
+        "name": "NoTocInModules",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not include TOCs in modules, only assemblies.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#module-file-metadata"
+      },
+      {
+        "name": "NoXrefInModules",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not include xrefs in modules, only assemblies (exception: release notes modules).",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#links-hyperlinks-and-cross-references"
+      },
+      {
+        "name": "SuggestAttribute",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the AsciiDoc attribute '%s' rather than the plain text product term '%s', unless your use case is an exception.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/_attributes/common-attributes.adoc"
+      },
+      {
+        "name": "TrailingBackslash",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Code example ends with an unescaped trailing backslash.",
+        "link": ""
+      },
+      {
+        "name": "XrefContainsAnchorID",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "The xref is missing an anchor ID.",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#links-hyperlinks-and-cross-references"
+      },
+      {
+        "name": "XrefContainsHTML",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Use .adoc instead of .html in xrefs",
+        "link": "https://github.com/openshift/openshift-docs/blob/main/contributing_to_docs/doc_guidelines.adoc#links-hyperlinks-and-cross-references"
+      },
+      {
+        "name": "XrefMustNotHaveNakedLabel",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "The xref is missing link text.",
+        "link": "https://redhat-documentation.github.io/supplementary-style-guide/#link-text"
+      }
+    ]
+  },
+  {
+    "name": "Elastic",
+    "description": "Elastic Docs' style guide rules for the Vale linter.",
+    "homepage": "https://github.com/elastic/vale-rules",
+    "url": "https://github.com/elastic/vale-rules/releases/latest/download/elastic-vale.zip",
+    "logo": "https://github.com/elastic.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Accessibility",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use language (such as '%s') that defines people by their disability.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#avoid-violent-offensive-ableist-terminology"
+      },
+      {
+        "name": "Articles",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'. The article depends on pronunciation, not spelling.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#using-the-right-article"
+      },
+      {
+        "name": "BritishSpellings",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use American English spelling '%s' instead of British English '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#american-english"
+      },
+      {
+        "name": "Clone",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `%s` only when referring to cloning a GitHub repository or creating a copy that is linked to the original. Often confused with 'copy' and 'duplicate'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/word-choice"
+      },
+      {
+        "name": "ConflictMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Do not commit Git merge conflict markers in source code.",
+        "link": ""
+      },
+      {
+        "name": "DeviceAgnosticism",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use device-agnostic language when possible. Use '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#accessibility-guidelines"
+      },
+      {
+        "name": "Dimensions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid using dimensions in the format 'M X N'. Use 'MxN' instead.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/formatting#dimensions"
+      },
+      {
+        "name": "DirectionalLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use directional language. Use '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility"
+      },
+      {
+        "name": "DontUse",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/word-choice"
+      },
+      {
+        "name": "Ellipses",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "In general, don't use an ellipsis.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
+      },
+      {
+        "name": "EndPuntuaction",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Don't end headings with punctuation.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#capitalization"
+      },
+      {
+        "name": "Exclamation",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use exclamation points sparingly. Consider removing the exclamation point.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#tone"
+      },
+      {
+        "name": "FirstPerson",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use caution when using first-person pronouns such as '%s.'",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#use-singular-first-person-pronouns-sparingly-i-me-my-mine"
+      },
+      {
+        "name": "Gender",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#use-gender-neutral-language"
+      },
+      {
+        "name": "GenderBias",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#use-gender-neutral-language"
+      },
+      {
+        "name": "HeadingColons",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Capitalize '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#colons"
+      },
+      {
+        "name": "KibanaChromeTerms",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s' when referring to parts of the Kibana chrome.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/ui-writing#naming-kibana-ui-elements"
+      },
+      {
+        "name": "Latinisms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Latin terms and abbreviations are a common source of confusion. Use '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#latin-abbreviations"
+      },
+      {
+        "name": "MappedPages",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "mapped_pages should only be added or updated in rare scenarios. Talk with your local technical writer before pushing changes to this key.",
+        "link": ""
+      },
+      {
+        "name": "MeaningfulCTAs",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use meaningful link text. Use '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#accessibility-guidelines"
+      },
+      {
+        "name": "MenuArrows",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '→' to separate menu items, not '>' or '=>'. Example: Select Manage index → Add lifecycle policy.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/ui-writing"
+      },
+      {
+        "name": "MenuArrowsBold",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Use '→' to separate menu items, not '>' or '=>'. Example: Select Manage index → Add lifecycle policy.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/ui-writing"
+      },
+      {
+        "name": "Negations",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider rephrasing to avoid negative constructions like '%s'. Try stating what something IS rather than what it is NOT.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/accessibility#write-for-an-international-audience"
+      },
+      {
+        "name": "OxfordComma",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Use the Oxford comma in '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#commas"
+      },
+      {
+        "name": "PluralAbbreviations",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Don't use apostrophes when making abbreviations plural. Use '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#making-abbreviations-plural"
+      },
+      {
+        "name": "QuotesPunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Place punctuation inside closing quotation marks.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#punctuation-with-quotation-marks"
+      },
+      {
+        "name": "Repetition",
+        "extends": "repetition",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "\"%s\" is repeated.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
+      },
+      {
+        "name": "Semicolons",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Use semicolons judiciously.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#semicolons"
+      },
+      {
+        "name": "Spelling",
+        "extends": "spelling",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is a possible misspelling.",
+        "link": ""
+      },
+      {
+        "name": "Versions",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s' when referring to versions.",
+        "link": ""
+      },
+      {
+        "name": "WordChoice",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s', unless the term is in the UI.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/word-choice"
+      },
+      {
+        "name": "Wordiness",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "~text.frontmatter.navigation_title",
+        "message": "Consider using '%s' instead of '%s'.",
+        "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
+      }
+    ]
+  },
+  {
+    "name": "NoAnimalViolence",
+    "description": "Vale style rules for flagging language patterns that have established plain-language alternatives. Covers 60+ documented patterns across comments, docs, and prose.",
+    "homepage": "https://github.com/Open-Paws/vale-no-animal-violence",
+    "url": "https://github.com/Open-Paws/vale-no-animal-violence/releases/latest/download/NoAnimalViolence.zip",
+    "logo": "https://github.com/Open-Paws.png",
+    "tags": [
+      "style",
+      "inclusive-language"
+    ],
+    "rules": [
+      {
+        "name": "AnimalIdioms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'. This phrase normalizes violence toward animals.",
+        "link": "https://doi.org/10.1007/s43681-023-00380-w"
+      },
+      {
+        "name": "AnimalMetaphors",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'. This term references animals as objects or tools.",
+        "link": "https://doi.org/10.1007/s43681-023-00380-w"
+      },
+      {
+        "name": "TechTerminology",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of '%s'. This technical term has a more precise alternative.",
+        "link": "https://doi.org/10.1007/s43681-023-00380-w"
+      }
+    ]
+  },
+  {
+    "name": "neighbor",
+    "description": "Accessibility and inclusive language rules for Vale. Flags exclusionary language, ableist terms, metaphors, and complex idioms.",
+    "homepage": "https://github.com/a11yfred/neighbor",
+    "url": "https://github.com/a11yfred/neighbor/releases/latest/download/neighbor.zip",
+    "logo": "https://github.com/a11yfred.png",
+    "tags": [
+      "style",
+      "inclusive-language"
+    ],
+    "rules": [
+      {
+        "name": "AbleistLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' may be ableist language. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "AllCapsProse",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is written in ALL CAPS. Some screen readers spell it out letter by letter. Use sentence case and rely on formatting for emphasis.",
+        "link": "https://github.com/a11yfred/neighbor-vale"
+      },
+      {
+        "name": "AmpersandInProse",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'&' may be announced as 'ampersand' or skipped by screen readers. Use 'and' in prose.",
+        "link": "https://github.com/a11yfred/neighbor-vale"
+      },
+      {
+        "name": "AntiLgbtqLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is outdated or offensive regarding LGBTQ+ identity. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "ColonialAndViolentLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' has violent or colonial origins. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "CrossDialectConfusion",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' may cause cross-dialect confusion or inappropriate double entendre. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "DeficitLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is deficit-based language. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "DeviceSpecificAction",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' assumes a specific input device. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "DirectionalLanguage",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' uses layout position to give instructions. Position-based references break when users zoom, reflow, or use a screen reader. Reference content by name or heading instead.",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "DisabilityMetaphor",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' uses disability as a metaphor. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "EnglishIdiom",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is an idiom that may be unclear to ESL and international readers. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "ExclusiveLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is non-inclusive or culturally appropriated. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      },
+      {
+        "name": "GenderedLanguage",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is a generic gendered pattern. Consider: %s",
+        "link": "https://github.com/a11yfred/neighbor"
+      }
+    ]
+  }
+]

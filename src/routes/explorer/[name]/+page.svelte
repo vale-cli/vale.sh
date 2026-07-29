@@ -1,0 +1,176 @@
+<script lang="ts">
+	import { MetaTags } from 'svelte-meta-tags';
+	import { copyStringToClipboard } from '$lib/utils.js';
+	import ArrowLeft from 'lucide-svelte/icons/arrow-left';
+	import Copy from 'lucide-svelte/icons/copy';
+	import Check from 'lucide-svelte/icons/check';
+	import ExternalLink from 'lucide-svelte/icons/external-link';
+
+	let { data } = $props();
+	const pkg = $derived(data.pkg);
+
+	// A rule's severity is the first thing people scan for, so the counts sit
+	// above the table and the colours match the CLI's output.
+	const counts = $derived(
+		['error', 'warning', 'suggestion'].map((level) => ({
+			level,
+			n: pkg.rules.filter((r) => r.level === level).length
+		}))
+	);
+
+	const levelClass: Record<string, string> = {
+		error: 'text-red-500',
+		warning: 'text-amber-500',
+		suggestion: 'text-blue-500'
+	};
+
+	let query = $state('');
+	const shown = $derived(
+		pkg.rules.filter((r) => {
+			const q = query.trim().toLowerCase();
+			return !q || r.name.toLowerCase().includes(q) || r.message.toLowerCase().includes(q);
+		})
+	);
+
+	const snippet = $derived(`Packages = ${pkg.name}\n\n[*.md]\nBasedOnStyles = Vale, ${pkg.name}`);
+
+	let copied = $state(false);
+	let timer: ReturnType<typeof setTimeout>;
+	function copy() {
+		copyStringToClipboard(snippet);
+		copied = true;
+		clearTimeout(timer);
+		timer = setTimeout(() => (copied = false), 1500);
+	}
+</script>
+
+<MetaTags
+	title="{pkg.name} — Vale Package Explorer"
+	description={pkg.description}
+	canonical="https://vale.sh/explorer/{pkg.name}"
+	openGraph={{
+		url: `https://vale.sh/explorer/${pkg.name}`,
+		title: `${pkg.name} — a Vale package`,
+		description: pkg.description
+	}}
+/>
+
+<div class="mx-auto max-w-5xl px-6 py-14 lg:px-8">
+	<a
+		href="/explorer"
+		class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+	>
+		<ArrowLeft class="h-4 w-4" />
+		Package Explorer
+	</a>
+
+	<!-- Header -->
+	<div class="mt-6 flex items-start gap-4">
+		{#if pkg.logo}
+			<img src={pkg.logo} alt="" class="h-12 w-12 rounded-lg object-contain" />
+		{/if}
+		<div class="min-w-0">
+			<h1 class="text-3xl font-semibold tracking-tight">{pkg.name}</h1>
+			<p class="mt-1 text-muted-foreground">{pkg.description}</p>
+		</div>
+	</div>
+
+	<div class="mt-4 flex flex-wrap items-center gap-4 text-sm">
+		<a
+			href={pkg.homepage}
+			target="_blank"
+			rel="noreferrer"
+			class="inline-flex items-center gap-1 font-medium text-lime-500 hover:underline"
+		>
+			Source <ExternalLink class="h-3.5 w-3.5" />
+		</a>
+		{#each pkg.tags as tag}
+			<span class="rounded-full border border-border px-2.5 py-0.5 text-xs text-muted-foreground"
+				>{tag}</span
+			>
+		{/each}
+	</div>
+
+	<!-- Install -->
+	<section class="mt-10">
+		<h2 class="text-lg font-semibold">Getting started</h2>
+		<p class="mt-1 text-sm text-muted-foreground">
+			Add it to your <code class="font-mono text-xs text-foreground">.vale.ini</code>, then run
+			<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code>.
+		</p>
+		<div class="relative mt-3">
+			<pre
+				class="overflow-x-auto rounded-lg border border-border bg-muted/40 p-4 font-mono text-[13px] leading-relaxed">{snippet}</pre>
+			<button
+				type="button"
+				onclick={copy}
+				aria-label="Copy configuration"
+				class="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
+			>
+				{#if copied}<Check class="h-4 w-4 text-lime-500" />{:else}<Copy class="h-4 w-4" />{/if}
+			</button>
+		</div>
+	</section>
+
+	<!-- Rules -->
+	<section class="mt-12">
+		<div class="flex flex-wrap items-baseline justify-between gap-3">
+			<h2 class="text-lg font-semibold">
+				Rules <span class="ml-1 text-sm font-normal text-muted-foreground">{pkg.rules.length}</span>
+			</h2>
+			<div class="flex items-center gap-4 text-sm">
+				{#each counts as c}
+					{#if c.n}
+						<span class={levelClass[c.level]}>{c.n} {c.level}</span>
+					{/if}
+				{/each}
+			</div>
+		</div>
+
+		{#if pkg.rules.length === 0}
+			<p class="mt-4 rounded-lg border border-border bg-muted/30 p-6 text-sm text-muted-foreground">
+				This package ships configuration rather than rules — it sets up Vale for a particular format
+				or workflow.
+			</p>
+		{:else}
+			<input
+				type="text"
+				bind:value={query}
+				placeholder="Filter rules…"
+				class="mt-4 h-10 w-full rounded-lg border border-border bg-background px-3 text-sm transition-colors placeholder:text-muted-foreground focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
+			/>
+
+			<ul class="mt-4 divide-y divide-border rounded-lg border border-border">
+				{#each shown as rule}
+					<li class="flex flex-col gap-1 p-4">
+						<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+							<span class="font-mono text-sm font-medium">{pkg.name}.{rule.name}</span>
+							<span class="text-xs {levelClass[rule.level]}">{rule.level}</span>
+							<span class="font-mono text-xs text-muted-foreground">{rule.extends}</span>
+							{#if rule.scope !== 'text'}
+								<span class="font-mono text-xs text-muted-foreground">scope: {rule.scope}</span>
+							{/if}
+							{#if rule.link}
+								<a
+									href={rule.link}
+									target="_blank"
+									rel="noreferrer"
+									class="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-lime-500"
+								>
+									Style guide <ExternalLink class="h-3 w-3" />
+								</a>
+							{/if}
+						</div>
+						{#if rule.message}
+							<p class="text-sm text-muted-foreground">{rule.message}</p>
+						{/if}
+					</li>
+				{/each}
+			</ul>
+
+			{#if shown.length === 0}
+				<p class="mt-4 text-sm text-muted-foreground">No rules match that filter.</p>
+			{/if}
+		{/if}
+	</section>
+</div>

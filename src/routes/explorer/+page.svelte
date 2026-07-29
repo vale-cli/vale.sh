@@ -1,6 +1,6 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import { MetaTags } from 'svelte-meta-tags';
+	import generated from '$lib/data/packages.json';
 	import { copyStringToClipboard } from '$lib/utils.js';
 	import Search from 'lucide-svelte/icons/search';
 	import Plus from 'lucide-svelte/icons/plus';
@@ -15,44 +15,21 @@
 		url: string;
 		logo: string;
 		tags: string[];
+		rules: {
+			name: string;
+			extends: string;
+			level: string;
+			scope: string;
+			message: string;
+			link: string;
+		}[];
 	};
 
-	const library =
-		'https://raw.githubusercontent.com/vale-cli/packages/refs/heads/master/library.json';
 	const addURL = 'https://github.com/vale-cli/vale.sh#share-a-package-or-configuration';
 
-	let packages = $state<Pkg[]>([]);
-	let loading = $state(true);
-	let failed = $state(false);
+	const packages: Pkg[] = generated;
 	let query = $state('');
 	let activeTag = $state('all');
-
-	// Repair common UTF-8 mojibake (e.g. â€™ → ’) that exists in some upstream
-	// library.json entries, so the copy always renders cleanly.
-	const fixEncoding = (s: string) =>
-		s
-			.replace(/â€™/g, '’')
-			.replace(/â€˜/g, '‘')
-			.replace(/â€œ/g, '“')
-			.replace(/â€”/g, '—')
-			.replace(/â€“/g, '–')
-			.replace(/â€/g, '”');
-
-	onMount(async () => {
-		try {
-			const res = await fetch(library);
-			const raw: Pkg[] = await res.json();
-			packages = raw.map((p) => ({
-				...p,
-				name: fixEncoding(p.name),
-				description: fixEncoding(p.description)
-			}));
-		} catch (e) {
-			failed = true;
-		} finally {
-			loading = false;
-		}
-	});
 
 	const tags = $derived(['all', ...Array.from(new Set(packages.flatMap((p) => p.tags))).sort()]);
 
@@ -140,48 +117,28 @@
 	</div>
 
 	<!-- Tag filters -->
-	{#if !loading && !failed}
-		<div class="mt-4 flex flex-wrap items-center gap-2">
-			{#each tags as tag}
-				<button
-					type="button"
-					onclick={() => (activeTag = tag)}
-					class="rounded-full border px-3 py-1 text-sm font-medium transition-colors {activeTag ===
-					tag
-						? 'border-lime-500/50 bg-lime-500/10 text-lime-600'
-						: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
-				>
-					{fmt(tag)}
-				</button>
-			{/each}
-			<span class="ml-auto text-sm text-muted-foreground">
-				{filtered.length}
-				{filtered.length === 1 ? 'package' : 'packages'}
-			</span>
-		</div>
-	{/if}
+	<div class="mt-4 flex flex-wrap items-center gap-2">
+		{#each tags as tag}
+			<button
+				type="button"
+				onclick={() => (activeTag = tag)}
+				class="rounded-full border px-3 py-1 text-sm font-medium transition-colors {activeTag ===
+				tag
+					? 'border-lime-500/50 bg-lime-500/10 text-lime-600'
+					: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
+			>
+				{fmt(tag)}
+			</button>
+		{/each}
+		<span class="ml-auto text-sm text-muted-foreground">
+			{filtered.length}
+			{filtered.length === 1 ? 'package' : 'packages'}
+		</span>
+	</div>
 
 	<!-- Content -->
 	<div class="mt-8">
-		{#if loading}
-			<ul class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
-				{#each Array(6) as _}
-					<li class="h-52 animate-pulse rounded-xl border border-border bg-muted/40"></li>
-				{/each}
-			</ul>
-		{:else if failed}
-			<div class="rounded-xl border border-border bg-muted/30 p-10 text-center">
-				<p class="text-muted-foreground">
-					Couldn't load the package library. You can browse it directly on
-					<a
-						href="https://github.com/vale-cli/packages"
-						target="_blank"
-						rel="noreferrer"
-						class="font-medium text-lime-500 hover:underline">GitHub</a
-					>.
-				</p>
-			</div>
-		{:else if filtered.length === 0}
+		{#if filtered.length === 0}
 			<div class="rounded-xl border border-border bg-muted/30 p-10 text-center">
 				<p class="text-muted-foreground">No packages match your search.</p>
 			</div>
@@ -202,9 +159,7 @@
 								<h3 class="truncate font-semibold text-foreground">
 									<!-- Stretched link: makes the whole card open the package's page -->
 									<a
-										href={pkg.homepage}
-										target="_blank"
-										rel="noreferrer"
+										href="/explorer/{pkg.name}"
 										class="transition-colors after:absolute after:inset-0 after:rounded-xl focus:outline-none focus-visible:underline group-hover:text-lime-500"
 									>
 										{pkg.name}
@@ -227,6 +182,12 @@
 						<p class="mt-4 flex-1 text-sm leading-relaxed text-muted-foreground">
 							{pkg.description}
 						</p>
+
+						{#if pkg.rules?.length}
+							<p class="mt-3 text-xs text-muted-foreground">
+								{pkg.rules.length} rules
+							</p>
+						{/if}
 
 						<div class="mt-5 border-t border-border pt-4">
 							<button
