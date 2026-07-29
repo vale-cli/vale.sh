@@ -44,6 +44,34 @@ SFX M   0     's         .
 
 The end result is that the dictionary will accept both “software” and “software’s”. Other variations like “softwares” or “softwaring” will be rejected.
 
+## Using your dictionary
+
+Put the two files in your `StylesPath`, under `config/dictionaries`:
+
+```
+styles/
+└── config/
+    └── dictionaries/
+        ├── mini.aff
+        └── mini.dic
+```
+
+Then name it from a [`spelling`](../checks/spelling.md) rule, without the extension:
+
+{% code title="styles/MyStyle/Spelling.yml" %}
+```yaml
+extends: spelling
+message: "Did you mean %s?"
+level: error
+# Use this dictionary instead of Vale's built-in one.
+custom: true
+dictionaries:
+  - mini
+```
+{% endcode %}
+
+Set `append: true` to check against your dictionary *and* Vale's built-in one; without it, yours replaces the default entirely. See [spelling](../checks/spelling.md) for the rest of the keys, including `dicpath` for keeping dictionaries somewhere else.
+
 ## Where can I find Hunspell dictionaries?
 
 * [`wooorm/dictionaries`](https://github.com/wooorm/dictionaries?tab=readme-ov-file)
