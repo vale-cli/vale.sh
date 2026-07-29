@@ -76,6 +76,10 @@ tokens:
   - some token
 ```
 
+`raw` is the other way out: it takes your pattern verbatim, boundaries and all.
+
+Word boundaries need watching in non-Latin scripts. `\b` sits between a word character (`[0-9A-Za-z_]`) and anything else, so in a script with no word characters it never matches—and the rule finds nothing at all, with no error to say why. See [WordTemplate](../keys/wordtemplate.md) if that's your content.
+
 </details>
 
 <details>
