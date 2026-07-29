@@ -1,13 +1,15 @@
 # Git Sync between docs.vale.sh and this repository.
 #
-# The sync runs GitBook -> Git: GitBook owns the documentation, and this
-# directory is the version-controlled copy of it. GitBook writes SUMMARY.md
-# itself on export, so it is not authored here.
+# GitBook owns the documentation; this directory is the version-controlled
+# copy. GitBook writes SUMMARY.md and README.md itself on export, so neither is
+# authored here -- and since both already default to the root folder, `root` is
+# the only key that needs setting.
 #
 # `docs/` is deliberately outside src/: the SvelteKit site used to render the
 # documentation from src/lib/content/, and keeping the exported copy apart
 # means the first sync cannot overwrite anything.
+#
+# This file has to be on the synced branch before the first sync runs.
+# Without it GitBook treats the repository root as the content root and writes
+# 51 pages into the top of a SvelteKit project.
 root: ./docs/
-
-structure:
-  summary: SUMMARY.md
