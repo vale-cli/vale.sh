@@ -28,6 +28,7 @@
 * [CommentDelimiters](keys/commentdelimiters.md)
 * [Transform](keys/transform.md)
 * [WordTemplate](keys/wordtemplate.md)
+* [View](keys/view.md)
 
 ## Checks
 
