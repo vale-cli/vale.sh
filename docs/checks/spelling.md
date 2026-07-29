@@ -89,4 +89,4 @@ ignore:
 
 See [Vocabularies](../keys/vocabularies.md) for information on rule-agnostic terminology lists.
 
-[metric](metric.md) [sequence](sequence.md)
+[readability](readability.md) [sequence](sequence.md)

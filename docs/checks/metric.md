@@ -67,4 +67,4 @@ A `condition` may use one of `>`, `<`, `==`, `>=`, and `<=`.
 
 The result of a `formula` will be compared to its `condition` and inserted into its `message` format specifier (`%s`).
 
-[capitalization](capitalization.md) [spelling](spelling.md)
+[capitalization](capitalization.md) [readability](readability.md)

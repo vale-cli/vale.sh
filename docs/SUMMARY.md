@@ -38,6 +38,7 @@
 * [conditional](checks/conditional.md)
 * [capitalization](checks/capitalization.md)
 * [metric](checks/metric.md)
+* [readability](checks/readability.md)
 * [spelling](checks/spelling.md)
 * [sequence](checks/sequence.md)
 * [script](checks/script.md)
