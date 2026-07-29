@@ -37,7 +37,7 @@ View = MyView
 
 ## [Engines](views.md#engines)
 
-Each step in a View contains a query that is processed by [Dasel](https://github.com/TomWright/dasel) (JSON, YAML, or TOML), [tree-sitter](https://tree-sitter.github.io/tree-sitter/) (source code), or TextFSM (text).
+Each step in a View contains a query that is processed by [Dasel](https://github.com/TomWright/dasel) (JSON, YAML, or TOML) or [tree-sitter](https://tree-sitter.github.io/tree-sitter/) (source code).
 
 ### [Dasel](views.md#dasel)
 
@@ -110,9 +110,5 @@ scopes:
 ```
 
 See [Pattern Matching with Queries](https://tree-sitter.github.io/tree-sitter/using-parsers/queries/index.html) for more information.
-
-### [TextFSM](views.md#textfsm)
-
-Coming soon!
 
 [Templates](templates.md) [StylesPath](../keys/stylespath.md)
