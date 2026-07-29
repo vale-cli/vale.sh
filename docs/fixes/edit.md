@@ -8,7 +8,7 @@ func edit(match string) string
 
 `edit` will perform an in-place edit on the match string according to the provided parameters.
 
-## [https://vale.sh/docs/fixers/edit#regex](edit.md#regex)
+## [regex](edit.md#regex)
 
 Replace the provided regex pattern with the given string.
 
@@ -32,7 +32,7 @@ This is equivalent to the following Go code:
 match = pattern.ReplaceAllString(match, repl)
 ```
 
-## [https://vale.sh/docs/fixers/edit#trim\_right](edit.md#trim_right)
+## [`trim_right`](edit.md#trim_right)
 
 Trim the first parameter from the end of the matched text.
 
@@ -49,7 +49,7 @@ tokens:
   - '\w+!(?:\s|$)'
 ```
 
-## [https://vale.sh/docs/fixers/edit#trim\_left](edit.md#trim_left)
+## [`trim_left`](edit.md#trim_left)
 
 Trim the first parameter from the start of the matched text.
 

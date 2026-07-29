@@ -9,7 +9,7 @@ By default, Vale ignores:
 * Indented blocks: Blocks starting with four or more spaces.
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
-* URLs: See [URL handling](https://github.com/errata-ai/vale/issues/320) for more information.
+* URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
 
 ## [Comments](markdown.md#comments)
 

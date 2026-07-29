@@ -16,7 +16,7 @@ By default, Vale ignores:
 
 * [Literal blocks](https://docutils.sourceforge.io/docs/user/rst/quickref.html#literal-blocks).
 * [Inline literals](https://docutils.sourceforge.io/docs/user/rst/quickref.html#inline-markup).
-* URLs: See [URL handling](https://github.com/errata-ai/vale/issues/320) for more information.
+* URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
 
 ## [Comments](restructuredtext.md#comments)
 

@@ -49,4 +49,4 @@ The end result is that the dictionary will accept both “software” and “sof
 * [`wooorm/dictionaries`](https://github.com/wooorm/dictionaries?tab=readme-ov-file)
 * [`LibreOffice/dictionaries`](https://github.com/LibreOffice/dictionaries)
 
-[Firefox](https://addons.mozilla.org/en-US/firefox/language-tools) and [OpenOffice](https://extensions.openoffice.org/en/search?f%5B0%5D=field_project_tags%3A157) also provide Language Packs that include Hunspell dictionaries.
+[Firefox](https://addons.mozilla.org/en-US/firefox/language-tools) and [LibreOffice](https://extensions.libreoffice.org/en/extensions/?Tags%5B%5D=50) also provide Language Packs that include Hunspell dictionaries.

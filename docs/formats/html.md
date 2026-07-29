@@ -4,7 +4,7 @@ Learn how Vale handles HTML content.
 
 HTML5 support is built in. The supported extensions are `.html`, `.htm`, `.shtml`, and `.xhtml`.
 
-By default, Vale ignores `script`, `style`, `pre`, `code`, and `tt` tags, as well as URLs (see [URL handling](https://github.com/errata-ai/vale/issues/320) for more information).
+By default, Vale ignores `script`, `style`, `pre`, `code`, and `tt` tags, as well as URLs (see [URL handling](https://github.com/vale-cli/vale/issues/320) for more information).
 
 ## [Comments](html.md#comments)
 

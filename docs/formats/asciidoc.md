@@ -9,7 +9,7 @@ The supported extensions are `.adoc`, `.asciidoc`, and `.asc`.
 By default, Vale ignores:
 
 * [Literals and source code](https://docs.asciidoctor.org/asciidoc/latest/syntax-quick-reference/#literals-and-source-code).
-* URLs: See [URL handling](https://github.com/errata-ai/vale/issues/320) for more information.
+* URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
 
 ## [Attributes](asciidoc.md#attributes)
 

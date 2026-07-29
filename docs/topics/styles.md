@@ -53,13 +53,13 @@ The structure of a rule consists header followed by check-specific arguments. Ev
 
 | Name      | Required | Default      | Description                                                                                                                                                                              |
 | --------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `extends` | Yes      | `N/A`        | <p>The name of the check to extend in the particular rule. See <a href="../checks/existence.md">Rules</a> for more information.<br><code>&#x3C;br>extends: existence&#x3C;br></code></p> |
-| `message` | Yes      | `N/A`        | <p>The message to display when the rule is triggered. Each extension point has different formatting options.<br><code>&#x3C;br>message: "Don't use '%s' headings."&#x3C;br></code></p>   |
-| `level`   | No       | `suggestion` | <p>The severity of the rule. The available options are <code>suggestion</code>, <code>warning</code>, and <code>error</code>.<br><code>&#x3C;br>level: warning&#x3C;br></code></p>       |
-| `scope`   | No       | `text`       | <p>The scope of the rule. See <a href="scopes.md">Scopes</a> for more information.<br><code>&#x3C;br>scope: heading&#x3C;br></code></p>                                                  |
-| `link`    | No       | `N/A`        | <p>A URL to associate with the rule. This is useful for providing more information about the rule.<br><code>&#x3C;br>link: https://example.com&#x3C;br></code></p>                       |
-| `limit`   | No       | `N/A`        | <p>The maximum number of times the rule can be triggered in a single file.<br><code>&#x3C;br>limit: 3&#x3C;br></code></p>                                                                |
-| `vocab`   | No       | `true`       | <p>If set to false, any active vocabularies will be disabled for the rule.<br><code>&#x3C;br>vocab: false&#x3C;br></code></p>                                                            |
+| `extends` | Yes      | `N/A`        | <p>The name of the check to extend in the particular rule. See <a href="../checks/existence.md">Rules</a> for more information.<br><code>extends: existence</code></p> |
+| `message` | Yes      | `N/A`        | <p>The message to display when the rule is triggered. Each extension point has different formatting options.<br><code>message: "Don't use '%s' headings."</code></p>   |
+| `level`   | No       | `suggestion` | <p>The severity of the rule. The available options are <code>suggestion</code>, <code>warning</code>, and <code>error</code>.<br><code>level: warning</code></p>       |
+| `scope`   | No       | `text`       | <p>The scope of the rule. See <a href="scopes.md">Scopes</a> for more information.<br><code>scope: heading</code></p>                                                  |
+| `link`    | No       | `N/A`        | <p>A URL to associate with the rule. This is useful for providing more information about the rule.<br><code>link: https://example.com</code></p>                       |
+| `limit`   | No       | `N/A`        | <p>The maximum number of times the rule can be triggered in a single file.<br><code>limit: 3</code></p>                                                                |
+| `vocab`   | No       | `true`       | <p>If set to false, any active vocabularies will be disabled for the rule.<br><code>vocab: false</code></p>                                                            |
 
 ## [Checks](styles.md#checks)
 
