@@ -27,6 +27,7 @@
 * [TokenIgnores](keys/tokenignores.md)
 * [CommentDelimiters](keys/commentdelimiters.md)
 * [Transform](keys/transform.md)
+* [WordTemplate](keys/wordtemplate.md)
 
 ## Checks
 

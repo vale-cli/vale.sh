@@ -15,4 +15,4 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 
 See https://vale.sh/docs/formats/xml for more information.
 
-https://vale.sh/docs/keys/commentdelimiters https://vale.sh/docs/checks/existence
+[CommentDelimiters](commentdelimiters.md) [WordTemplate](wordtemplate.md)
