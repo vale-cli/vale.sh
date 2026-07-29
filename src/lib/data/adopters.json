@@ -124,7 +124,7 @@
 		"context": "A Vale-compatible package implementing the SUSE Documentation Style Guide.",
 		"url": "https://github.com/openSUSE/suse-vale-styleguide",
 		"github": "openSUSE",
-		"avatar": "/users/avatars/opensuse.png"
+		"avatar": "/users/avatars/openSUSE.png"
 	},
 	{
 		"name": "Auth0",
@@ -156,7 +156,7 @@
 		"context": "Runs Vale on every PR across its doc sites via a shared documentation template.",
 		"url": "https://docs-template.consensys.io/contribute/run-vale",
 		"github": "Consensys",
-		"avatar": "/users/avatars/consensys.png"
+		"avatar": "/users/avatars/Consensys.png"
 	},
 	{
 		"name": "Eclipse Che",

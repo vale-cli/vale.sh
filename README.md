@@ -1,12 +1,12 @@
 <div align="center">
   <img src="static/favicon.png" alt="" width="96" height="96">
   <h1>vale.sh</h1>
-  <p><strong>The website for <a href="https://github.com/errata-ai/vale">Vale</a> — the command-line tool that brings code-like linting to prose.</strong></p>
+  <p><strong>The website for <a href="https://github.com/vale-cli/vale">Vale</a> — the command-line tool that brings code-like linting to prose.</strong></p>
   <p>
     <a href="https://vale.sh"><img alt="Site" src="https://img.shields.io/badge/site-vale.sh-2563eb"></a>
     <a href="https://docs.vale.sh"><img alt="Docs" src="https://img.shields.io/badge/docs-docs.vale.sh-7c3aed"></a>
     <a href="https://app.netlify.com/sites/eclectic-semifreddo-be083c/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/6b41c018-35db-4ab5-ba7f-ba23bec59fc3/deploy-status"></a>
-    <img alt="SvelteKit" src="https://img.shields.io/badge/SvelteKit-ff3e00?logo=svelte&logoColor=white">
+    <a href="https://github.com/vale-cli/vale"><img alt="Vale" src="https://img.shields.io/github/stars/vale-cli/vale?label=Vale&color=82CB15&labelColor=333"></a>
   </p>
 </div>
 
