@@ -1,0 +1,13 @@
+# Git Sync between docs.vale.sh and this repository.
+#
+# The sync runs GitBook -> Git: GitBook owns the documentation, and this
+# directory is the version-controlled copy of it. GitBook writes SUMMARY.md
+# itself on export, so it is not authored here.
+#
+# `docs/` is deliberately outside src/: the SvelteKit site used to render the
+# documentation from src/lib/content/, and keeping the exported copy apart
+# means the first sync cannot overwrite anything.
+root: ./docs/
+
+structure:
+  summary: SUMMARY.md
