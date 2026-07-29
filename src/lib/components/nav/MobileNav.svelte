@@ -37,29 +37,6 @@
 					{/if}
 				{/each}
 			</div>
-			<div class="flex flex-col space-y-2">
-				{#each docsConfig.sidebarNav as navItem, index (index)}
-					<div class="flex flex-col space-y-3 pt-6">
-						<h4 class="font-medium">{navItem.title}</h4>
-						{#if navItem?.items?.length}
-							{#each navItem.items as item}
-								{#if !item.disabled && item.href}
-									<MobileLink href={item.href} bind:open>
-										{item.title}
-										{#if item.label}
-											<span
-												class="ml-2 rounded-md bg-[#adfa1d] px-1.5 py-0.5 text-xs leading-none text-[#000000] no-underline group-hover:no-underline"
-											>
-												{item.label}
-											</span>
-										{/if}
-									</MobileLink>
-								{/if}
-							{/each}
-						{/if}
-					</div>
-				{/each}
-			</div>
 		</ScrollArea>
 	</Drawer.Content>
 </Drawer.Root>
