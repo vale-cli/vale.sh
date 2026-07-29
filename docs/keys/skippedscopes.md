@@ -13,7 +13,7 @@ BasedOnStyles = Vale
 
 `SkippedScopes` specifies block-level HTML tags to ignore. Any content in these scopes will be ignored.
 
-By default, Vale ignores `script`, `style`, and `pre` tags. For example, considering the following Markdown file:
+By default, Vale ignores `script`, `style`, `pre`, `figure`, `noscript`, and `iframe` tags. Setting this key **replaces** that list rather than adding to it, so include the defaults you still want. For example, considering the following Markdown file:
 
 ````markdown
 This is a sentence that contains normal text.

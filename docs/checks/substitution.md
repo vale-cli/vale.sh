@@ -14,10 +14,7 @@ Learn about the substitution extension point.
 
 `substitution` associates a string with a preferred form.
 
-```
-yaml
-Copy
-
+```yaml
 extends: substitution
 message: Consider using '%s' instead of '%s'
 level: warning
@@ -30,10 +27,7 @@ swap:
 
 If we want to suggest the use of “plenty” instead of “abundance,” for example, we’d write:
 
-```
-yaml
-Copy
-
+```yaml
 swap:
   abundance: plenty
 ```
@@ -42,20 +36,14 @@ swap:
 
 The keys may also be regular expressions:
 
-```
-yaml
-Copy
-
+```yaml
 swap:
   '(?:give|gave) rise to': lead to
 ```
 
 You can also reference capture groups for more dynamic substitutions:
 
-```
-yaml
-Copy
-
+```yaml
 swap:
   'within the (.*)?directory': in the $1 directory
 ```
@@ -64,10 +52,7 @@ swap:
 
 In some cases, you may want to suggest multiple alternatives for a single token. You can do this by separating them with a pipe ("|"):
 
-```
-yaml
-Copy
-
+```yaml
 extends: substitution
 # NOTE: We don't quote the first '%s':
 message: Consider using %s instead of '%s.'
@@ -91,10 +76,7 @@ In LSP-based editors, the suggestions will be presented as a list of ‘Quick Fi
 
 `substitution` can have one or two `%s` format specifiers in its message. This allows us to do either of the following:
 
-```
-yaml
-Copy
-
+```yaml
 message: "Consider using '%s' instead of '%s'."
 # or
 message: "Consider using '%s'."
