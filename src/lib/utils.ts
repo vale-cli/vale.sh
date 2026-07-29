@@ -1,8 +1,6 @@
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 import { get, writable } from "svelte/store";
-import { error } from "@sveltejs/kit";
-import type { DocResolver } from "$lib/types/docs.js";
 
 export const isBrowser = typeof document !== "undefined";
 
@@ -55,65 +53,3 @@ export function createCopyCodeButton() {
     };
 }
 
-export function slugFromPath(path: string) {
-    return path.replace("/src/lib/content/", "").replace(".md", "");
-}
-
-function getIndexDocIfExists(slug: string, modules: Modules) {
-    let match: { path?: string; resolver?: DocResolver } = {};
-
-    for (const [path, resolver] of Object.entries(modules)) {
-        if (path.includes(`/${slug}/index.md`)) {
-            match = { path, resolver: resolver as unknown as DocResolver };
-            break;
-        }
-    }
-
-    return match;
-}
-
-type Modules = Record<string, () => Promise<unknown>>;
-
-function findMatch(slug: string, modules: Modules) {
-    let match: { path?: string; resolver?: DocResolver } = {};
-
-    for (const [path, resolver] of Object.entries(modules)) {
-        if (slugFromPath(path) === slug) {
-            match = { path, resolver: resolver as unknown as DocResolver };
-            break;
-        }
-    }
-    if (!match.path) {
-        match = getIndexDocIfExists(slug, modules);
-    }
-
-    return match;
-}
-
-function capitalize(val) {
-    return String(val).charAt(0).toUpperCase() + String(val).slice(1);
-}
-
-export async function getDoc(slug: string) {
-    const modules = import.meta.glob(`$lib/content/**/*.md`);
-    const match = findMatch(slug, modules);
-    const doc = await match?.resolver?.();
-
-    if (!doc || !doc.metadata) {
-        error(404);
-    }
-    const isRootPath = !slug.replace("/docs/", "").includes("/");
-
-    let folder = "Topics";
-    if (!isRootPath) {
-        let name = capitalize(slug.replace("/docs/", ""));
-        folder = name.split("/")[0]
-    }
-
-    return {
-        section: folder,
-        component: doc.default,
-        metadata: doc.metadata,
-        title: doc.metadata.title,
-    };
-}

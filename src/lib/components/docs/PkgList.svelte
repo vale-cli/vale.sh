@@ -1,8 +1,0 @@
-<figure class="my-0">
-	<a href="https://repology.org/project/vale/versions">
-		<img src="https://repology.org/badge/vertical-allrepos/vale.svg" alt="Packaging status" />
-	</a>
-	<figcaption class="figure-caption">
-		<small>Click on the widget to learn more.</small>
-	</figcaption>
-</figure>

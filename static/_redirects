@@ -1,0 +1,39 @@
+# The documentation moved to docs.vale.sh, which GitBook publishes.
+#
+# These live here rather than in netlify.toml because adapter-netlify rejects
+# a netlify.toml containing redirects -- it generates its own and will not
+# merge with one.
+#
+# The slugs were reorganised in the move, so the specific rules come first and
+# the catch-all last: Netlify takes the first rule that matches, and a bare
+# /docs/* -> :splat would send a third of these to a 404. Every rule was checked
+# against docs.vale.sh's sitemap.
+#
+# 301!, because these URLs have been the documentation for years and are widely
+# linked: the redirect should be cached and should carry search ranking over,
+# and the `!` applies it even once a file exists at the same path.
+
+# Nine pages that were at the top level are now under topics/.
+/docs/install         https://docs.vale.sh/topics/installation   301!
+/docs/vale-ini        https://docs.vale.sh/topics/.vale.ini      301!
+/docs/actions         https://docs.vale.sh/topics/actions        301!
+/docs/cli             https://docs.vale.sh/topics/cli            301!
+/docs/filters         https://docs.vale.sh/topics/filters        301!
+/docs/scopes          https://docs.vale.sh/topics/scopes         301!
+/docs/styles          https://docs.vale.sh/topics/styles         301!
+/docs/templates       https://docs.vale.sh/topics/templates      301!
+/docs/views           https://docs.vale.sh/topics/views          301!
+
+# Sections and pages that were renamed.
+/docs/fixers/*        https://docs.vale.sh/fixes/:splat          301!
+/docs/formats/rst     https://docs.vale.sh/formats/restructuredtext  301!
+/docs/guides/glob     https://docs.vale.sh/guides/globbing       301!
+/docs/keys/vocab      https://docs.vale.sh/keys/vocabularies     301!
+
+# `support` was an empty page and has no counterpart to point at.
+/docs/support         https://docs.vale.sh/                      301!
+
+# Everything else kept its path: checks/, keys/, formats/, guides/,
+# integrations/, and the index.
+/docs/*               https://docs.vale.sh/:splat                301!
+/docs                 https://docs.vale.sh/                      301!
