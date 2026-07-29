@@ -74,7 +74,7 @@ Each rule _extends_ a specific check, which is a built-in function that performs
 | [consistency](../checks/consistency.md)       | Ensure that a regex pattern is used consistently.                                         |
 | [conditional](../checks/conditional.md)       | Check for the presence of a regex pattern based on a condition.                           |
 | [capitalization](../checks/capitalization.md) | Ensure that a regex pattern is capitalized in a specific way.                             |
-| [metric](../checks/metric.md)                 | Check the readability (or other metrics) of your content using custom forumulas.          |
+| [metric](../checks/metric.md)                 | Check the readability (or other metrics) of your content using custom formulas.          |
 | [spelling](../checks/spelling.md)             | Spell check using Hunspell-compatible dictionaries.                                       |
 | [sequence](../checks/sequence.md)             | Ensure that a regex pattern is used in a specific order. Supports part-of-speech tagging. |
 | [script](../checks/script.md)                 | Run a custom Tengo script to check your content.                                          |
