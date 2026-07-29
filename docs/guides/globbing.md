@@ -11,12 +11,16 @@ This guide will cover the basics of using glob patterns in Vale.
 Vale supports the following glob syntax:
 
 * `/` to separate path segments.
-* `*` to match zero or more characters in a path segment.
-* `?` to match on one character in a path segment.
+* `*` to match zero or more characters, including `/`.
+* `?` to match one character other than `/`.
 * `**` to match zero or more directories.
 * `[]` to declare a range of characters to match.
 * `{}` to declare a set of patterns to match.
 * `[!...]` to negate a range of characters to match.
+
+{% hint style="info" %}
+`*` isn't limited to a single path segment: `docs/*.md` matches `docs/sub/nested.md` as well as `docs/page.md`. Use `?` where you need to stay within one segment.
+{% endhint %}
 
 Additionally, when using the `--glob` flag, you can use the `!` prefix to negate the _entire_ pattern:
 
@@ -35,7 +39,7 @@ For example, given the following `.vale.ini`:
 StylesPath = styles
 
 [*.md]
-BasedOnStyles = Vale
+BasedOnStyles = Test
 ```
 
 And this directory structure:
