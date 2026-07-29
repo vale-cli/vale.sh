@@ -1,7 +1,5 @@
 # remove
 
-## remove
-
 Learn how to remove matches from your content.
 
 ```go

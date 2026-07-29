@@ -1,11 +1,5 @@
 # existence
 
-Checks
-
-existence
-
-## existence
-
 Learn about the existence extension point.
 
 | Name         | Type    | Description                                                                                          |

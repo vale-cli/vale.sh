@@ -1,13 +1,5 @@
 # LSP
 
-Docs
-
-Guides
-
-LSP
-
-## LSP
-
 Get started with Vale's Language Server.
 
 The Vale Language Server (`vale-ls`) is an implementation of the [Language Server Protocol (LSP)](https://microsoft.github.io/language-server-protocol/) that acts as a wrapper around a local installation of Vale, providing autocomplete, diagnostics, hover popups, and more, in many popular text editors and IDEs.
