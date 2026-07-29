@@ -1,5 +1,4 @@
 <div align="center">
-  <img src="static/favicon.png" alt="" width="96" height="96">
   <h1>vale.sh</h1>
   <p><strong>The website for <a href="https://github.com/vale-cli/vale">Vale</a> — the command-line tool that brings code-like linting to prose.</strong></p>
   <p>
@@ -8,6 +7,7 @@
     <a href="https://app.netlify.com/sites/eclectic-semifreddo-be083c/deploys"><img alt="Netlify Status" src="https://api.netlify.com/api/v1/badges/6b41c018-35db-4ab5-ba7f-ba23bec59fc3/deploy-status"></a>
     <a href="https://github.com/vale-cli/vale"><img alt="Vale" src="https://img.shields.io/github/stars/vale-cli/vale?label=Vale&color=82CB15&labelColor=333"></a>
   </p>
+  <a href="https://docs.vale.sh"><img src="static/media/docs.png" alt="docs.vale.sh" width="820"></a>
 </div>
 
 ---

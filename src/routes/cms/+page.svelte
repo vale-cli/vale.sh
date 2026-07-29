@@ -78,7 +78,7 @@
 		description: 'Build, test, edit, and ship your entire Vale project from the browser.',
 		images: [
 			{
-				url: '/favicon.png',
+				url: '/android-chrome-512x512.png',
 				width: 512,
 				height: 512,
 				alt: 'Vale'
