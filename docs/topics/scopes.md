@@ -115,7 +115,28 @@ See the [Code](../formats/code.md) documentation for more information.
 
 ## [Selectors](scopes.md#selectors)
 
-Rules may define multiple scopes by using a YAML array:
+### [How a selector matches](scopes.md#how-a-selector-matches)
+
+Every section of text Vale finds carries a scope built from dot-separated parts. A list item in a Markdown file, for example, is `text.list.md`.
+
+A selector matches when **all of its parts appear in that scope**. It isn't a prefix match or an exact match, and the order you write the parts in doesn't matter:
+
+| Selector       | Matches `text.list.md`? |
+| -------------- | ----------------------- |
+| `list`         | Yes                     |
+| `list.md`      | Yes                     |
+| `md.list`      | Yes—order is irrelevant |
+| `text.list`    | Yes                     |
+| `list.text.md` | Yes                     |
+| `heading`      | No—not one of its parts |
+
+This is why you can qualify any selector with a file extension to make it format-specific. `paragraph` matches paragraphs everywhere; `paragraph.rst` matches them only in reStructuredText.
+
+It's also why a selector with fewer parts is broader: `text` matches nearly everything, because nearly every scope contains it.
+
+### [Combining selectors](scopes.md#combining-selectors)
+
+Rules may define multiple scopes by using a YAML array. An entry matches if **any** of them does:
 
 ```yaml
 scope:
@@ -132,10 +153,23 @@ scope:
   - ~heading.h2
 ```
 
-You can chain multiple scopes together using `&`:
+You can chain multiple scopes together using `&`, which requires **all** of them:
 
 ```yaml
 scope:
   # any scope that is NOT a blockquote or a heading
   - ~blockquote & ~heading
 ```
+
+The two combine: `&` is an AND within a single entry, and the array is an OR across entries.
+
+```yaml
+scope:
+  # (a heading that isn't an h1) OR (a list item in Markdown)
+  - heading & ~heading.h1
+  - list.md
+```
+
+{% hint style="info" %}
+Because matching is by parts rather than by prefix, a narrower-looking scope isn't always narrower. `text.list` and `list` select the same blocks—the extra `text` adds nothing, since every list item's scope already contains it.
+{% endhint %}
