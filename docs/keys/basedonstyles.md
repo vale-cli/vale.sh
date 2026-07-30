@@ -91,6 +91,29 @@ BasedOnStyles = Vale
 Vale.Spelling = warning
 ```
 
+{% hint style="info" %}
+Setting a level for a whole style requires Vale v3.17.0 or later.
+{% endhint %}
+
+A bare style name sets the default for every rule in that style, and a rule naming itself still wins:
+
+```ini
+[*.md]
+BasedOnStyles = proselint
+
+# Everything in proselint is a suggestion ...
+proselint = suggestion
+# ... except this one.
+proselint.Typography = warning
+```
+
+This is the concise way to keep one part of a style while turning the rest down—or off:
+
+```ini
+proselint = NO
+proselint.Typography = YES
+```
+
 See [MinAlertLevel](minalertlevel.md) for how levels affect Vale's exit code.
 
 Related: [MinAlertLevel](minalertlevel.md) [SkippedScopes](skippedscopes.md)

@@ -71,3 +71,44 @@ BasedOnStyles = Vale
 ```
 
 Once a markup format has been assigned, you can make use of all the supported features of that format (such as ignore patterns and comment-based configuration) in your source code comments.
+
+This includes [`TokenIgnores`](../keys/tokenignores.md) and [`BlockIgnores`](../keys/blockignores.md), which are otherwise unavailable in source code: they work by wrapping a match in the format's inline or block code delimiter, so they need a markup format to wrap it with. Associating one makes them available.
+
+### [Block comment decoration](code.md#block-comment-decoration)
+
+{% hint style="info" %}
+Requires Vale v3.17.0 or later. Earlier versions passed the leading asterisks through to the markup parser, which read a block comment as a single list.
+{% endhint %}
+
+Block comments in C-style languages conventionally decorate each line with a leading asterisk:
+
+```javascript
+/**
+ * Reads the record and returns it.
+ *
+ * Pass `refresh` to bypass the cache:
+ *
+ * * `refresh: true` re-reads from disk.
+ * * `refresh: false` uses the cache.
+ */
+```
+
+That decoration is removed before the comment is handed to the markup parser, so the body above is read as a paragraph followed by a list—not as one long list, which is what the leading asterisks would otherwise make it.
+
+Relative indentation is preserved, so indented code blocks inside a comment still work:
+
+````javascript
+/**
+ * Formats the value for display.
+ *
+ * ```
+ * const output = format(value);
+ * ```
+ */
+````
+
+The fenced block is treated as code and left alone, exactly as it would be in a standalone Markdown file.
+
+{% hint style="info" %}
+An asterisk is only treated as decoration when whitespace or the end of the line follows it. A line beginning `*emphasis*` or `**bold**` keeps its markup.
+{% endhint %}

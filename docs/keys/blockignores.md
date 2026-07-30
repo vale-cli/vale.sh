@@ -6,6 +6,8 @@ Learn define custom block-level ignores in your Vale configuration.
 Heads up!
 
 `BlockIgnores` are only supported in Markdown, reStructuredText, AsciiDoc, and Org Mode.
+
+They work by wrapping each match in the format's block code delimiter, so they need a markup format to wrap it with. In a source code file they have no effect—but associating a markup format with your comments makes them available. See [Code](../formats/code.md#associations).
 {% endhint %}
 
 ```ini

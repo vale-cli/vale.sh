@@ -50,3 +50,24 @@ skip: 3
 ```
 
 `sequence`-based are [sentence-scoped](../topics/scopes.md). See [prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging) for a full list of supported part-of-speech tags.
+
+{% hint style="info" %}
+Reaching every block, and honoring a declared `scope`, requires Vale v3.17.0 or later. Earlier versions read sentences from paragraphs only.
+{% endhint %}
+
+By default, a `sequence` rule reads sentences from **every** block—headings, list items, and table cells as well as paragraphs. Much of a document's prose lives outside its paragraphs, and `sequence` is the only extension point that reads part-of-speech data, so it needs to reach all of it.
+
+To narrow that, declare a `scope`:
+
+```yaml
+extends: sequence
+message: "matched '%s'"
+level: error
+# Only take sentences from headings.
+scope: heading
+tokens:
+  - pattern: quick
+  - pattern: brown
+```
+
+The scope selects which blocks the sentences are drawn from; the rule still matches sentence by sentence within them.
