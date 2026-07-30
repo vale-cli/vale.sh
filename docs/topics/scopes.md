@@ -13,6 +13,8 @@ Here are a few examples:
 * `heading.md` matches all Markdown headings; and
 * `text.html` matches all HTML scopes.
 
+![One Markdown file becomes several scoped sections: the heading is text.heading.md, the paragraph text.md, the link inside it link.md, and the list item text.list.md. A selector matches when every one of its parts appears in the scope, which is why list.md matches a list item but link.text.md matches nothing.](../.gitbook/assets/scopes.svg)
+
 Vale classifies files into one of three types—`markup`, `code`, or `text`—that determines what scopes are available.
 
 Within each type, there can be multiple supported _formats_—such as Markdown and AsciiDoc under `markup`. Since each format has access to the same scopes, rules are compatible across all formats within a particular type.

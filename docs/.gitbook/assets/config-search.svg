@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 434" width="800" height="434" role="img" aria-label="Vale looks for a configuration file in this order: the --config option, then VALE_CONFIG_PATH, then a .vale.ini searched for from the working directory upwards. The global configuration is always loaded as well, and is read last so it can override the others.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-node { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .mono { font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .mono-accent { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .step { font: 600 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--faint); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .flow-accent { stroke: var(--accent); stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; }
+    .cap { fill: var(--line); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="434" rx="10"/>
+  <text class="label" x="24" y="30">First match wins</text>
+
+  <text class="step" x="26" y="76">1</text>
+  <rect class="node" x="48" y="56" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="80">--config &lt;path&gt;</text>
+  <text class="note" x="396" y="80">An explicit path, if you gave one.</text>
+  <path class="flow" d="M100 94 v18"/>
+  <polygon class="cap" points="100,120 94,108 106,108"/>
+
+  <text class="step" x="26" y="146">2</text>
+  <rect class="node" x="48" y="126" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="150">VALE_CONFIG_PATH</text>
+  <text class="note" x="396" y="150">The environment variable.</text>
+  <path class="flow" d="M100 164 v18"/>
+  <polygon class="cap" points="100,190 94,178 106,178"/>
+
+  <text class="step" x="26" y="216">3</text>
+  <rect class="node" x="48" y="196" width="330" height="60" rx="7"/>
+  <text class="mono" x="66" y="220">.vale.ini</text>
+  <text class="note" x="66" y="242">searched from the working directory upwards</text>
+  <text class="note" x="396" y="220">Stops at the first ancestor</text>
+  <text class="note" x="396" y="240">that has one.</text>
+  <path class="flow" d="M100 256 v18"/>
+  <polygon class="cap" points="100,282 94,270 106,270"/>
+
+  <text class="step" x="26" y="308">4</text>
+  <rect class="node" x="48" y="288" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="312">global .vale.ini</text>
+  <text class="note" x="396" y="312">The fallback when nothing else matched.</text>
+
+  <!-- The global file is not only a fallback -->
+  <path class="flow-accent" d="M378 307 h32 v52 h-362 v-16"/>
+  <rect class="accent-node" x="48" y="359" width="330" height="52" rx="7"/>
+  <text class="mono-accent" x="66" y="383">global .vale.ini, again</text>
+  <text class="note" x="66" y="403">always loaded, and read last</text>
+  <text class="note" x="396" y="383">Whichever file was found above, the</text>
+  <text class="note" x="396" y="403">global one is applied on top of it.</text>
+</svg>

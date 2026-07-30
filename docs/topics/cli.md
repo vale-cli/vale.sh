@@ -4,7 +4,7 @@ Learn about the Vale command-line interface.
 
 The Vale CLI is a powerful tool for linting your content in a variety of formats. To get started, try running with no arguments:
 
-![Vale's help text](../.gitbook/assets/help2.png)
+![Running vale with no arguments prints a short usage summary and an example configuration file.](../.gitbook/assets/help2.svg)
 
 ## [Environment variables](cli.md#environment-variables)
 
@@ -55,4 +55,4 @@ The `vale` CLI returns the following exit codes:
 
 It will try to respect the value of `--output` when printing to `stderr`. For example:
 
-![Vale's exit codes](../.gitbook/assets/error.png)
+![Vale reporting an E201 configuration error, showing the offending line of the rule file and the accepted values.](../.gitbook/assets/error.svg)

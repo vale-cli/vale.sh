@@ -1,0 +1,105 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 486" width="800" height="486" role="img" aria-label="One Markdown file becomes several scoped sections: the heading is text.heading.md, the paragraph text.md, the link inside it link.md, and the list item text.list.md. A selector matches when every one of its parts appears in the scope, which is why list.md matches a list item but link.text.md matches nothing.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --surface: #f5f5f4;
+      --band: #fafaf9;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+      --no: #b91c1c;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --surface: #292524;
+        --band: #211e1c;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+        --no: #f87171;
+      }
+    }
+    .band { fill: var(--band); }
+    .label {
+      font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      fill: var(--faint);
+    }
+    .card { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .src { font: 400 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .dim { fill: var(--faint); }
+    .row { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .row-text { font: 400 13px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--ink); }
+    .pill { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1; }
+    .pill-text { font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .mono { font: 400 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .yes { fill: var(--accent); font: 500 12px Inter, ui-sans-serif, system-ui, sans-serif; }
+    .nope { fill: var(--no); font: 500 12px Inter, ui-sans-serif, system-ui, sans-serif; }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="486" rx="10"/>
+  <text class="label" x="24" y="30">One file, many scopes</text>
+
+  <!-- Source -->
+  <rect class="card" x="24" y="46" width="272" height="212" rx="8"/>
+  <text class="src" x="42" y="76"><tspan class="dim">#</tspan> Install the gateway</text>
+  <text class="src" x="42" y="122">Read the <tspan class="dim">[</tspan>notes<tspan class="dim">](url)</tspan> first.</text>
+  <text class="src" x="42" y="176"><tspan class="dim">-</tspan> Markdown</text>
+  <text class="src" x="42" y="206"><tspan class="dim">-</tspan> AsciiDoc</text>
+  <text class="note" x="42" y="240">example.md</text>
+
+  <!-- Connectors -->
+  <path class="flow" d="M296 152 h28 M324 152 v-82 M324 152 v34 M324 152 v92 M324 70 h24 M324 186 h24 M324 244 h24 M324 118 h24 M324 118 v34"/>
+
+  <!-- Scoped sections -->
+  <rect class="row" x="352" y="50" width="424" height="42" rx="7"/>
+  <text class="row-text" x="368" y="76">Install the gateway</text>
+  <rect class="pill" x="640" y="60" width="120" height="22" rx="11"/>
+  <text class="pill-text" x="651" y="75">text.heading.md</text>
+
+  <rect class="row" x="352" y="100" width="424" height="42" rx="7"/>
+  <text class="row-text" x="368" y="126">Read the notes first.</text>
+  <rect class="pill" x="690" y="110" width="70" height="22" rx="11"/>
+  <text class="pill-text" x="701" y="125">text.md</text>
+
+  <rect class="row" x="352" y="150" width="424" height="42" rx="7"/>
+  <text class="row-text" x="368" y="176">notes</text>
+  <text class="note" x="410" y="176">— the link text only</text>
+  <rect class="pill" x="690" y="160" width="70" height="22" rx="11"/>
+  <text class="pill-text" x="701" y="175">link.md</text>
+
+  <rect class="row" x="352" y="200" width="424" height="42" rx="7"/>
+  <text class="row-text" x="368" y="226">Markdown</text>
+  <rect class="pill" x="662" y="210" width="98" height="22" rx="11"/>
+  <text class="pill-text" x="673" y="225">text.list.md</text>
+
+  <!-- Matching -->
+  <line class="flow" x1="24" y1="292" x2="776" y2="292"/>
+  <text class="label" x="24" y="322">A selector matches when every part of it is present</text>
+
+  <text class="mono" x="24" y="360">list.md</text>
+  <text class="note" x="120" y="360">both parts appear in</text>
+  <text class="mono" x="268" y="360">text.list.md</text>
+  <text class="yes" x="400" y="360">matches</text>
+
+  <text class="mono" x="24" y="392">md.list</text>
+  <text class="note" x="120" y="392">same two parts, any order</text>
+  <text class="mono" x="298" y="392">text.list.md</text>
+  <text class="yes" x="430" y="392">matches</text>
+
+  <text class="mono" x="24" y="424">link.text.md</text>
+  <text class="note" x="120" y="424">a link carries no</text>
+  <text class="mono" x="248" y="424">text</text>
+  <text class="note" x="290" y="424">part</text>
+  <text class="nope" x="330" y="424">no match</text>
+
+  <text class="note" x="24" y="462">Inline scopes are siblings of text, not children — so ordinary text rules do not run a second time over every link.</text>
+</svg>

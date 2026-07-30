@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 396" width="800" height="396" role="img" aria-label="How embedded markup is linted: tree-sitter finds each comment in the source file, the per-line decoration is stripped, the remaining body is parsed as Markdown, and every alert is mapped back to its original line and column in the source.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .card { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-card { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.25; }
+    .mono { font: 400 11.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .dim { fill: var(--faint); }
+    .step { font: 600 11px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--accent); letter-spacing: .04em; }
+    .note { font: 400 11.5px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .flow { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+    .back { stroke: var(--accent); stroke-width: 1.5; fill: none; stroke-dasharray: 4 4; }
+    .cap { fill: var(--accent); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="396" rx="10"/>
+  <text class="label" x="24" y="30">Markup inside a comment</text>
+
+  <!-- 1. source -->
+  <text class="step" x="24" y="58">1 · Source</text>
+  <rect class="card" x="24" y="68" width="216" height="118" rx="7"/>
+  <text class="mono" x="38" y="90"><tspan class="dim">/**</tspan></text>
+  <text class="mono" x="38" y="108"><tspan class="dim"> *</tspan> Reads the record.</text>
+  <text class="mono" x="38" y="126"><tspan class="dim"> *</tspan></text>
+  <text class="mono" x="38" y="144"><tspan class="dim"> * ```</tspan></text>
+  <text class="mono" x="38" y="162"><tspan class="dim"> * </tspan>format(x);</text>
+  <text class="mono" x="38" y="180"><tspan class="dim"> * ```</tspan></text>
+  <text class="note" x="24" y="208">tree-sitter finds the comment</text>
+
+  <path class="flow" d="M248 124 h32"/>
+  <polygon class="cap" points="288,124 276,118 276,130"/>
+
+  <!-- 2. decoration removed -->
+  <text class="step" x="296" y="58">2 · Decoration off</text>
+  <rect class="card" x="296" y="68" width="200" height="118" rx="7"/>
+  <text class="mono" x="310" y="90">Reads the record.</text>
+  <text class="mono" x="310" y="126"><tspan class="dim">```</tspan></text>
+  <text class="mono" x="310" y="144">format(x);</text>
+  <text class="mono" x="310" y="162"><tspan class="dim">```</tspan></text>
+  <text class="note" x="296" y="208">now it is valid Markdown</text>
+
+  <path class="flow" d="M504 124 h32"/>
+  <polygon class="cap" points="544,124 532,118 532,130"/>
+
+  <!-- 3. linted as markup -->
+  <text class="step" x="552" y="58">3 · Linted as Markdown</text>
+  <rect class="accent-card" x="552" y="68" width="224" height="118" rx="7"/>
+  <text class="mono" x="566" y="90">Reads the record.</text>
+  <text class="note" x="566" y="112">↑ prose, checked</text>
+  <text class="mono" x="566" y="144"><tspan class="dim">format(x);</tspan></text>
+  <text class="note" x="566" y="166">↑ fenced code, skipped</text>
+  <text class="note" x="552" y="208">the format's own rules apply</text>
+
+  <!-- 4. mapped back -->
+  <path class="back" d="M664 220 v34 h-556 v22"/>
+  <polygon class="cap" points="108,284 102,272 114,272"/>
+  <text class="step" x="24" y="252">4 · Mapped back</text>
+  <rect class="card" x="24" y="290" width="752" height="52" rx="7"/>
+  <text class="mono" x="40" y="314">example.js:2:12  Vale.Spelling  Did you really mean 'recrod'?</text>
+  <text class="note" x="40" y="334">Every alert is reported at its line and column in the source file, not in the extracted comment.</text>
+</svg>

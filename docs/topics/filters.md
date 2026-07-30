@@ -4,7 +4,7 @@ Learn about Vale's rule filtering system.
 
 The `--filter` CLI option allows you to report an arbitrary subset of your `.vale.ini` configuration.
 
-![Filters](../.gitbook/assets/filter.png)
+![Using --filter to limit results to alerts whose scope is a heading.](../.gitbook/assets/filter.svg)
 
 A filter is an [expression](https://expr-lang.org/docs/language-definition) targeting one of the following keys defined in the rule definition: `.Name`, `.Level`, `.Scope`, `.Message`, `.Description`, `.Extends`, or `.Link`.
 

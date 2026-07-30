@@ -68,7 +68,7 @@ swap:
 
 In the CLI, this will render as a sentence with multiple suggestions:
 
-![Multiple suggestions](../.gitbook/assets/pipe.png)
+![Vale reporting one warning for a single Markdown file, with a summary line counting errors, warnings and suggestions.](../.gitbook/assets/pipe.svg)
 
 In LSP-based editors, the suggestions will be presented as a list of ‘Quick Fixes’. See the [LSP guide](../guides/lsp.md) for more information.
 

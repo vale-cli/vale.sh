@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 392" width="800" height="392" role="img" aria-label="One upstream package is inherited by several projects, so an upstream change reaches all of them. Within a project, configuration is layered: the first package is overridden by the second, and local configuration overrides both.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --surface: #f5f5f4;
+      --band: #fafaf9;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --surface: #292524;
+        --band: #211e1c;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label {
+      font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      fill: var(--faint);
+    }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .node-text {
+      font: 400 13px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--ink);
+      text-anchor: middle;
+    }
+    .pkg { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .pkg-text {
+      font: 600 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--accent);
+      text-anchor: middle;
+    }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .flow-accent { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+    .cap { fill: var(--line); }
+    .cap-accent { fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .wins {
+      font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--faint);
+      text-anchor: middle;
+    }
+    .divider { stroke: var(--line); stroke-width: 1.25; stroke-dasharray: 3 4; }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="392" rx="10"/>
+
+  <!-- Upstream fan-out -->
+  <text class="label" x="24" y="30">One package, many projects</text>
+  <rect class="pkg" x="120" y="50" width="160" height="40" rx="8"/>
+  <text class="pkg-text" x="200" y="76">Packages = Google</text>
+  <path class="flow-accent" d="M200 90 v20 M92 110 h216 M92 110 v20 M200 110 v20 M308 110 v20"/>
+  <polygon class="cap-accent" points="92,138 86,126 98,126"/>
+  <polygon class="cap-accent" points="200,138 194,126 206,126"/>
+  <polygon class="cap-accent" points="308,138 302,126 314,126"/>
+  <rect class="node" x="44" y="146" width="96" height="34" rx="6"/>
+  <text class="node-text" x="92" y="168">Project 1</text>
+  <rect class="node" x="152" y="146" width="96" height="34" rx="6"/>
+  <text class="node-text" x="200" y="168">Project 2</text>
+  <rect class="node" x="260" y="146" width="96" height="34" rx="6"/>
+  <text class="node-text" x="308" y="168">Project 3</text>
+  <text class="note" x="44" y="212">A change upstream reaches every</text>
+  <text class="note" x="44" y="230">project that includes it.</text>
+
+  <line class="divider" x1="420" y1="24" x2="420" y2="368"/>
+
+  <!-- Layering within one project -->
+  <text class="label" x="460" y="30">Within one project, later wins</text>
+
+  <rect class="node" x="484" y="50" width="240" height="38" rx="7"/>
+  <text class="node-text" x="604" y="74">pkg1</text>
+  <path class="flow" d="M604 88 v22"/>
+  <polygon class="cap" points="604,118 598,106 610,106"/>
+  <text class="wins" x="664" y="104">overridden by</text>
+
+  <rect class="node" x="484" y="126" width="240" height="38" rx="7"/>
+  <text class="node-text" x="604" y="150">pkg2</text>
+  <path class="flow" d="M604 164 v22"/>
+  <polygon class="cap" points="604,194 598,182 610,182"/>
+  <text class="wins" x="664" y="180">overridden by</text>
+
+  <rect class="pkg" x="484" y="202" width="240" height="38" rx="7"/>
+  <text class="pkg-text" x="604" y="226">local .vale.ini</text>
+
+  <text class="note" x="460" y="278">Packages load in the order they are</text>
+  <text class="note" x="460" y="296">listed, and local configuration is</text>
+  <text class="note" x="460" y="314">applied last.</text>
+</svg>

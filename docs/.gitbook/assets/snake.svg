@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 618 230" width="618" height="230" role="img" aria-label="Vale reporting two errors where snake_case identifiers should be written with hyphens.">
+<style>
+.bg{fill:#1c1917;stroke:#3a3532;stroke-width:1.25}
+.chrome{fill:#292524}
+.dot{opacity:.5}
+.t{font:400 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.title{font:400 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#a8a29e;text-anchor:middle}
+</style>
+<rect class="bg" x="1" y="1" width="616" height="228" rx="10"/>
+<path class="chrome" d="M1 11a10 10 0 0 1 10-10h596a10 10 0 0 1 10 10v27H1z"/>
+<circle class="dot" cx="26" cy="20" r="5.5" fill="#f87171"/>
+<circle class="dot" cx="46" cy="20" r="5.5" fill="#fbbf24"/>
+<circle class="dot" cx="66" cy="20" r="5.5" fill="#a3c585"/>
+<text class="title" x="309.0" y="24">~/Documents/docs</text>
+<text class="t" y="58"><tspan x="20.0" fill="#a3c585">❯ </tspan><tspan x="35.6" fill="#fafaf9">vale </tspan><tspan x="74.7" fill="#93c5fd">cases/test.md</tspan></text>
+<text class="t" y="102"><tspan x="20.0" fill="#93c5fd"> cases/test.md</tspan></text>
+<text class="t" y="124"><tspan x="20.0" fill="#c4b5fd"> 3:45  </tspan><tspan x="74.7" fill="#f87171">error  </tspan><tspan x="129.5" fill="#d6d3d1">'snake_case' should be 'snake-case'.    </tspan><tspan x="442.3" fill="#8a827c">Test.Test</tspan></text>
+<text class="t" y="146"><tspan x="20.0" fill="#c4b5fd"> 7:13  </tspan><tspan x="74.7" fill="#f87171">error  </tspan><tspan x="129.5" fill="#d6d3d1">'foo_bar' should be 'foo-bar'.          </tspan><tspan x="442.3" fill="#8a827c">Test.Test</tspan></text>
+<text class="t" y="190"><tspan x="20.0" fill="#f87171">✖ </tspan><tspan x="35.6" fill="#c4b5fd">2</tspan><tspan x="43.5" fill="#d6d3d1"> errors, </tspan><tspan x="113.8" fill="#c4b5fd">0</tspan><tspan x="121.7" fill="#d6d3d1"> warnings and </tspan><tspan x="231.1" fill="#c4b5fd">0</tspan><tspan x="239.0" fill="#d6d3d1"> suggestions in </tspan><tspan x="364.1" fill="#c4b5fd">1</tspan><tspan x="371.9" fill="#d6d3d1"> file.</tspan></text>
+</svg>

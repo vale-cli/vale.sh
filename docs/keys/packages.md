@@ -11,7 +11,7 @@ BasedOnStyles = Vale, Google, write-good
 
 Packages provide a means of sharing, extending, syncing, and updating Vale configurations.
 
-![Packages](../.gitbook/assets/package.png)
+![One upstream package is inherited by several projects, so an upstream change reaches all of them. Within a project, configuration is layered: the first package is overridden by the second, and local configuration overrides both.](../.gitbook/assets/package.svg)
 
 In the example above, projects 1 and 2 will have identical configurations (as inherited from the upstream package). Any changes to the upstream package will propagate to both projects.
 

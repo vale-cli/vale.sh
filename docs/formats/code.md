@@ -70,6 +70,8 @@ rs = md
 BasedOnStyles = Vale
 ```
 
+![How embedded markup is linted: tree-sitter finds each comment in the source file, the per-line decoration is stripped, the remaining body is parsed as Markdown, and every alert is mapped back to its original line and column in the source.](../.gitbook/assets/embedded.svg)
+
 Once a markup format has been assigned, you can make use of all the supported features of that format (such as ignore patterns and comment-based configuration) in your source code comments.
 
 This includes [`TokenIgnores`](../keys/tokenignores.md) and [`BlockIgnores`](../keys/blockignores.md), which are otherwise unavailable in source code: they work by wrapping a match in the format's inline or block code delimiter, so they need a markup format to wrap it with. Associating one makes them available.

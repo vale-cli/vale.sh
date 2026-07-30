@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 649 230" width="649" height="230" role="img" aria-label="Using --filter to limit results to alerts whose scope is a heading.">
+<style>
+.bg{fill:#1c1917;stroke:#3a3532;stroke-width:1.25}
+.chrome{fill:#292524}
+.dot{opacity:.5}
+.t{font:400 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.title{font:400 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#a8a29e;text-anchor:middle}
+</style>
+<rect class="bg" x="1" y="1" width="647" height="228" rx="10"/>
+<path class="chrome" d="M1 11a10 10 0 0 1 10-10h627a10 10 0 0 1 10 10v27H1z"/>
+<circle class="dot" cx="26" cy="20" r="5.5" fill="#f87171"/>
+<circle class="dot" cx="46" cy="20" r="5.5" fill="#fbbf24"/>
+<circle class="dot" cx="66" cy="20" r="5.5" fill="#a3c585"/>
+<text class="title" x="324.5" y="24">~/Documents/docs</text>
+<text class="t" y="58"><tspan x="20.0" fill="#a3c585">❯ </tspan><tspan x="35.6" fill="#fafaf9">vale </tspan><tspan x="74.7" fill="#d6d3d1">--filter=</tspan><tspan x="145.1" fill="#a3c585">'"heading" in .Scope'</tspan><tspan x="309.3" fill="#93c5fd"> cases/test.md</tspan></text>
+<text class="t" y="102"><tspan x="20.0" fill="#93c5fd"> cases/test.md</tspan></text>
+<text class="t" y="124"><tspan x="20.0" fill="#c4b5fd"> 9:4  </tspan><tspan x="66.9" fill="#fbbf24">warning  </tspan><tspan x="137.3" fill="#d6d3d1">'Filtered Results' should use sentence-style   </tspan><tspan x="504.8" fill="#8a827c">Google.Headings</tspan></text>
+<text class="t" y="146"><tspan x="20.0" fill="#d6d3d1">               capitalization.</tspan></text>
+<text class="t" y="190"><tspan x="20.0" fill="#f87171">✖ </tspan><tspan x="35.6" fill="#c4b5fd">0</tspan><tspan x="43.5" fill="#d6d3d1"> errors, </tspan><tspan x="113.8" fill="#c4b5fd">1</tspan><tspan x="121.7" fill="#d6d3d1"> warning and </tspan><tspan x="223.3" fill="#c4b5fd">0</tspan><tspan x="231.1" fill="#d6d3d1"> suggestions in </tspan><tspan x="356.3" fill="#c4b5fd">1</tspan><tspan x="364.1" fill="#d6d3d1"> file.</tspan></text>
+</svg>

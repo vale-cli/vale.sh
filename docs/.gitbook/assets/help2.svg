@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 556 560" width="556" height="560" role="img" aria-label="Running vale with no arguments prints a short usage summary and an example configuration file.">
+<style>
+.bg{fill:#1c1917;stroke:#3a3532;stroke-width:1.25}
+.chrome{fill:#292524}
+.dot{opacity:.5}
+.t{font:400 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.title{font:400 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#a8a29e;text-anchor:middle}
+</style>
+<rect class="bg" x="1" y="1" width="554" height="558" rx="10"/>
+<path class="chrome" d="M1 11a10 10 0 0 1 10-10h534a10 10 0 0 1 10 10v27H1z"/>
+<circle class="dot" cx="26" cy="20" r="5.5" fill="#f87171"/>
+<circle class="dot" cx="46" cy="20" r="5.5" fill="#fbbf24"/>
+<circle class="dot" cx="66" cy="20" r="5.5" fill="#a3c585"/>
+<text class="title" x="278.0" y="24">vale</text>
+<text class="t" y="58"><tspan x="20.0" fill="#a3c585">❯ </tspan><tspan x="35.6" fill="#fafaf9">vale</tspan></text>
+<text class="t" y="80"><tspan x="20.0" fill="#d6d3d1">vale - A command-line linter for prose.</tspan></text>
+<text class="t" y="124"><tspan x="20.0" fill="#fafaf9">Usage:</tspan><tspan x="66.9" fill="#d6d3d1">   vale [options] [input...]</tspan></text>
+<text class="t" y="146"><tspan x="20.0" fill="#d6d3d1">          vale myfile.md myfile1.md mydir1</tspan></text>
+<text class="t" y="168"><tspan x="20.0" fill="#d6d3d1">          vale --output=JSON [input...]</tspan></text>
+<text class="t" y="212"><tspan x="20.0" fill="#d6d3d1">Vale is a syntax-aware linter for prose built with speed and</tspan></text>
+<text class="t" y="234"><tspan x="20.0" fill="#d6d3d1">extensibility in mind. It supports Markdown, AsciiDoc,</tspan></text>
+<text class="t" y="256"><tspan x="20.0" fill="#d6d3d1">reStructuredText, HTML, and more.</tspan></text>
+<text class="t" y="300"><tspan x="20.0" fill="#d6d3d1">To get started, you'll need a configuration file (.vale.ini):</tspan></text>
+<text class="t" y="344"><tspan x="20.0" fill="#fafaf9">Example:</tspan></text>
+<text class="t" y="366"><tspan x="20.0" fill="#8a827c">      MinAlertLevel = suggestion</tspan></text>
+<text class="t" y="410"><tspan x="20.0" fill="#8a827c">      [*]</tspan></text>
+<text class="t" y="432"><tspan x="20.0" fill="#8a827c">      BasedOnStyles = Vale</tspan></text>
+<text class="t" y="476"><tspan x="20.0" fill="#d6d3d1">See </tspan><tspan x="51.3" fill="#93c5fd">https://vale.sh</tspan><tspan x="168.6" fill="#d6d3d1"> for more setup information.</tspan></text>
+<text class="t" y="520"><tspan x="20.0" fill="#8a827c">(Or use </tspan><tspan x="82.6" fill="#d6d3d1">vale --help</tspan><tspan x="168.6" fill="#8a827c"> for a listing of all CLI options.)</tspan></text>
+</svg>

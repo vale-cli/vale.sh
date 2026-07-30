@@ -70,7 +70,7 @@ This rule is designed to catch instances of `snake_case` and suggest that the us
 
 Using the `edit` action allows us to define a rule that can dynamically generate suggestions based on the matched text in CLI output:
 
-![CLI](../.gitbook/assets/snake.png)
+![Vale reporting two errors where snake_case identifiers should be written with hyphens.](../.gitbook/assets/snake.svg)
 
 As you can see, the CLI output is dynamically computing the suggestion based on the matched text.
 
