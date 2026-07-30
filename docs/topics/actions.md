@@ -3,8 +3,6 @@
 Create dynamic suggestions for your rules with Actions.
 
 {% hint style="info" %}
-Heads up!
-
 See [`vale-ls`](../guides/lsp.md) for an easy way to integrate Actions into your favorite text editor.
 {% endhint %}
 

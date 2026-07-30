@@ -30,8 +30,6 @@ These tokens can be anything from simple phrases (as in the above example) to re
 ### [tokens](existence.md#tokens)
 
 {% hint style="info" %}
-Heads up!
-
 See [Vale Studio](https://studio.vale.sh/) for a live editor that can help you write and test your rules, including generating the compiled regular expression.
 {% endhint %}
 

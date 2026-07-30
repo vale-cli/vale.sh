@@ -35,11 +35,11 @@ BasedOnStyles = Vale
 
 ## [Comments](asciidoc.md#comments)
 
-Heads up!
-
-Make sure the surround the inline passthrough statements with newlines, as shown below.
-
 Vale supports comment-based configuration in AsciiDoc files:
+
+{% hint style="warning" %}
+Make sure to surround the inline passthrough statements with newlines, as shown below.
+{% endhint %}
 
 * Turn Vale off entirely:
 

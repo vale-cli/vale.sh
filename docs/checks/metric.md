@@ -3,8 +3,6 @@
 Learn about the metric extension point.
 
 {% hint style="info" %}
-Heads up!
-
 When writing conditions, be sure to use floating-point numbers. For example, use `"== 8.0"` instead of `"== 8"`.
 {% endhint %}
 

@@ -3,8 +3,6 @@
 Learn about the script extension point.
 
 {% hint style="warning" %}
-Heads up!
-
 When using `script`-based rules, you're limited to the standard Go [regex syntax](https://pkg.go.dev/regexp/syntax).
 {% endhint %}
 

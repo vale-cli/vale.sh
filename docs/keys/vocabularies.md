@@ -32,8 +32,6 @@ The effects of using a custom `Vocab` are as follows:
 This means that your exceptions can be developed independent of a style, allowing you to use the same exceptions with multiple styles or switch styles without having to re-implement them.
 
 {% hint style="warning" %}
-Heads up!
-
 In versions of Vale prior to 3.0, vocabularies were stored in `<StylesPath>/Vocab`. When upgrading from an older version of Vale, you'll need to move your vocabularies to the new `<StylesPath>/config/vocabularies` location.
 {% endhint %}
 
