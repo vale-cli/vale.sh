@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 468" width="800" height="468" role="img" aria-label="A Markdown file with each region labelled by the scope Vale assigns it: heading, link text, list item, and a fenced code block that is skipped.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --chrome: #ebe9e7;
+      --paper: #ffffff;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+      --skip: #f5f5f4;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --chrome: #292524;
+        --paper: #1c1917;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+        --skip: #232020;
+      }
+    }
+    .frame { fill: var(--paper); stroke: var(--line); stroke-width: 1.25; }
+    .chrome { fill: var(--chrome); }
+    .dot { fill: var(--faint); opacity: .55; }
+    .filename {
+      font: 400 12px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--soft);
+      text-anchor: middle;
+    }
+    .prose {
+      font: 400 14px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--ink);
+    }
+    .h1 { font: 600 17px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--ink); }
+    .mono {
+      font: 400 12.5px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--faint);
+    }
+    .marker { fill: var(--faint); }
+    .pill { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1; }
+    .pill-text {
+      font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--accent);
+    }
+    .skip-box { fill: var(--skip); stroke: var(--line); stroke-width: 1; stroke-dasharray: 4 3; }
+    .skip-text {
+      font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--faint);
+    }
+    .underline { stroke: var(--accent); stroke-width: 1.25; opacity: .5; }
+  </style>
+
+  <rect class="frame" x="8" y="8" width="784" height="452" rx="10"/>
+  <path class="chrome" d="M8 18a10 10 0 0 1 10-10h764a10 10 0 0 1 10 10v22H8z"/>
+  <circle class="dot" cx="34" cy="26" r="5"/>
+  <circle class="dot" cx="52" cy="26" r="5"/>
+  <circle class="dot" cx="70" cy="26" r="5"/>
+  <text class="filename" x="400" y="30">example.md</text>
+
+  <!-- Heading -->
+  <text class="h1" x="36" y="86"><tspan class="marker">#</tspan> Installing the gateway</text>
+  <rect class="pill" x="290" y="70" width="118" height="21" rx="10.5"/>
+  <text class="pill-text" x="301" y="85">scope: heading</text>
+
+  <!-- Paragraph with a link -->
+  <text class="prose" x="36" y="132">Read the <tspan class="marker">[</tspan>release notes<tspan class="marker">](</tspan><tspan fill="var(--faint)">example.com</tspan><tspan class="marker">)</tspan> before you begin.</text>
+  <line class="underline" x1="96" y1="138" x2="184" y2="138"/>
+  <rect class="pill" x="404" y="117" width="98" height="21" rx="10.5"/>
+  <text class="pill-text" x="415" y="132">scope: link</text>
+
+  <!-- Fenced code block, skipped -->
+  <rect class="skip-box" x="36" y="160" width="500" height="112" rx="7"/>
+  <text class="mono" x="52" y="182">```python</text>
+  <text class="mono" x="52" y="204">def hello():</text>
+  <text class="mono" x="52" y="226">    print("Hello, world!")</text>
+  <text class="mono" x="52" y="248">```</text>
+  <rect class="pill" x="552" y="205" width="150" height="21" rx="10.5"/>
+  <text class="skip-text" x="563" y="220">skipped by default</text>
+
+  <!-- List -->
+  <text class="prose" x="36" y="312">Supported formats:</text>
+  <text class="prose" x="52" y="344"><tspan class="marker">-</tspan> Markdown</text>
+  <rect class="pill" x="200" y="329" width="98" height="21" rx="10.5"/>
+  <text class="pill-text" x="211" y="344">scope: list</text>
+  <text class="prose" x="52" y="374"><tspan class="marker">-</tspan> AsciiDoc</text>
+  <text class="prose" x="52" y="404"><tspan class="marker">-</tspan> reStructuredText</text>
+
+  <!-- Inline code -->
+  <text class="prose" x="36" y="436">Set <tspan class="mono" font-size="13">StylesPath</tspan> to point at your styles.</text>
+  <rect class="pill" x="330" y="421" width="106" height="21" rx="10.5"/>
+  <text class="pill-text" x="341" y="436">scope: code</text>
+</svg>

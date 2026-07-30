@@ -12,7 +12,7 @@ It doesn’t teach you _how_ to write; it’s a tool _for_ writers.
 
 More specifically, Vale focuses (primarily) on the style of writing rather than its grammatical correctness—making it fundamentally different from, for example, Grammarly.
 
-![A diagram demonstrating Vale's purpose.](.gitbook/assets/flow.png)
+![Two authors each use writing tools of their own choosing, producing drafts that Vale then checks against one shared standard.](.gitbook/assets/flow.svg)
 
 In other words, Vale focuses on ensuring consistency across multiple authors (according to customizable guidelines) rather than the general “correctness” of a single author’s work.
 
@@ -22,7 +22,7 @@ This distinction is particularly important to understand because Vale doesn’t 
 
 One of Vale’s most important features is its ability to support external styles through its extension system, which only requires some familiarity with the YAML file format (and, optionally, regular expressions).
 
-![A diagram comparing Vale to other tools.](.gitbook/assets/output.png)
+![Most writing software runs one fixed set of checks to produce one result. Vale runs extension points, so each style produces its own result.](.gitbook/assets/output.svg)
 
 To get a better idea of how this works, let’s look at an example from the [Linode documentation](https://github.com/linode/docs/blob/master/ci/vale/styles/Linode/Terms.yml):
 
@@ -60,7 +60,7 @@ While this example may appear quite simple, it’s possible to achieve fairly hi
 
 Another feature that separates Vale from other linters is its ability to understand its input at both a syntactic and contextual level.
 
-![A diagram showcases Vale's ability to understand markup.](.gitbook/assets/syntax.png)
+![A Markdown file with each region labelled by the scope Vale assigns it: heading, link text, list item, and a fenced code block that is skipped.](.gitbook/assets/syntax.svg)
 
 This level of understanding gives you fine-grained control over the linting process, including the ability to limit rules to certain sections (e.g., only headings) or ignore sections entirely (block and inline code are ignored by default).
 

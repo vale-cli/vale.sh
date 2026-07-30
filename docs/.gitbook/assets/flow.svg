@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 452" width="800" height="452" role="img" aria-label="Two authors each use writing tools of their own choosing, producing drafts that Vale then checks against one shared standard.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --surface: #f5f5f4;
+      --band: #fafaf9;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --surface: #292524;
+        --band: #211e1c;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label {
+      font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      fill: var(--faint);
+    }
+    .node {
+      fill: var(--surface);
+      stroke: var(--line);
+      stroke-width: 1.25;
+    }
+    .node-text {
+      font: 500 14px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--ink);
+      text-anchor: middle;
+    }
+    .tool {
+      font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace;
+      fill: var(--soft);
+      text-anchor: middle;
+    }
+    .draft {
+      font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--soft);
+      text-anchor: middle;
+    }
+    .vale {
+      fill: var(--accent-fill);
+      stroke: var(--accent);
+      stroke-width: 1.5;
+    }
+    .vale-text {
+      font: 600 16px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--accent);
+      text-anchor: middle;
+    }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .flow-accent { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+    .cap { fill: var(--line); }
+    .cap-accent { fill: var(--accent); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="252" rx="10"/>
+  <text class="label" x="24" y="30">Each author, their own tools</text>
+
+  <!-- Author A -->
+  <rect class="node" x="130" y="52" width="140" height="38" rx="7"/>
+  <text class="node-text" x="200" y="76">Author A</text>
+  <path class="flow" d="M200 90 v22 M138 112 h124 M138 112 v18 M262 112 v18"/>
+  <rect class="node" x="76" y="130" width="124" height="34" rx="17"/>
+  <text class="tool" x="138" y="152">Grammarly</text>
+  <rect class="node" x="200" y="130" width="124" height="34" rx="17"/>
+  <text class="tool" x="262" y="152">proselint</text>
+  <path class="flow" d="M138 164 v20 M138 184 h124 M262 184 v-20 M200 184 v18"/>
+  <rect class="node" x="152" y="202" width="96" height="30" rx="6"/>
+  <text class="draft" x="200" y="222">Draft</text>
+
+  <!-- Author B -->
+  <rect class="node" x="530" y="52" width="140" height="38" rx="7"/>
+  <text class="node-text" x="600" y="76">Author B</text>
+  <path class="flow" d="M600 90 v22 M538 112 h124 M538 112 v18 M662 112 v18"/>
+  <rect class="node" x="476" y="130" width="124" height="34" rx="17"/>
+  <text class="tool" x="538" y="152">write-good</text>
+  <rect class="node" x="600" y="130" width="124" height="34" rx="17"/>
+  <text class="tool" x="662" y="152">alex</text>
+  <path class="flow" d="M538 164 v20 M538 184 h124 M662 184 v-20 M600 184 v18"/>
+  <rect class="node" x="552" y="202" width="96" height="30" rx="6"/>
+  <text class="draft" x="600" y="222">Draft</text>
+
+  <!-- Both drafts converge on Vale -->
+  <path class="flow-accent" d="M200 232 v46 M600 232 v46 M200 278 h400 M400 278 v26"/>
+  <polygon class="cap-accent" points="400,314 394,302 406,302"/>
+
+  <text class="label" x="24" y="340">One shared standard</text>
+  <rect class="vale" x="280" y="352" width="240" height="56" rx="10"/>
+  <text class="vale-text" x="400" y="386">Vale</text>
+  <text class="draft" x="400" y="432">Organization style, tone, and terminology</text>
+</svg>

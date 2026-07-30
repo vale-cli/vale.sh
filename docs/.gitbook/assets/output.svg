@@ -1,0 +1,101 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 396" width="800" height="396" role="img" aria-label="Most writing software runs one fixed set of checks to produce one result. Vale runs extension points, so each style produces its own result.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --surface: #f5f5f4;
+      --band: #fafaf9;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --surface: #292524;
+        --band: #211e1c;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .divider { stroke: var(--line); stroke-width: 1.25; }
+    .title {
+      font: 600 13px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--ink);
+    }
+    .label {
+      font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      fill: var(--faint);
+    }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .node-text {
+      font: 400 13px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--ink);
+      text-anchor: middle;
+    }
+    .fixed {
+      font: 400 13px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--soft);
+      text-anchor: middle;
+    }
+    .ext { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .ext-text {
+      font: 600 13px Inter, ui-sans-serif, system-ui, sans-serif;
+      fill: var(--accent);
+      text-anchor: middle;
+    }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .flow-accent { stroke: var(--accent); stroke-width: 1.5; fill: none; }
+    .cap { fill: var(--line); }
+    .cap-accent { fill: var(--accent); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="396" rx="10"/>
+  <line class="divider" x1="272" y1="34" x2="272" y2="362"/>
+
+  <!-- Most writing software -->
+  <text class="label" x="32" y="42">Most writing software</text>
+  <rect class="node" x="76" y="70" width="120" height="34" rx="6"/>
+  <text class="node-text" x="136" y="92">Input</text>
+  <path class="flow" d="M136 104 v40"/>
+  <polygon class="cap" points="136,152 130,140 142,140"/>
+  <rect class="node" x="52" y="160" width="168" height="52" rx="6"/>
+  <text class="fixed" x="136" y="184">One fixed set</text>
+  <text class="fixed" x="136" y="202">of checks</text>
+  <path class="flow" d="M136 212 v40"/>
+  <polygon class="cap" points="136,260 130,248 142,248"/>
+  <rect class="node" x="76" y="268" width="120" height="34" rx="6"/>
+  <text class="node-text" x="136" y="290">Result</text>
+
+  <!-- Vale -->
+  <text class="label" x="312" y="42">Vale</text>
+  <rect class="node" x="476" y="70" width="120" height="34" rx="6"/>
+  <text class="node-text" x="536" y="92">Input</text>
+  <path class="flow" d="M536 104 v40"/>
+  <polygon class="cap" points="536,152 530,140 542,140"/>
+
+  <rect class="ext" x="436" y="160" width="200" height="52" rx="8"/>
+  <text class="ext-text" x="536" y="191">Extension points</text>
+
+  <!-- One input, one engine, many styles -->
+  <path class="flow-accent" d="M536 212 v22 M356 234 h360 M356 234 v18 M536 234 v18 M716 234 v18"/>
+  <polygon class="cap-accent" points="356,260 350,248 362,248"/>
+  <polygon class="cap-accent" points="536,260 530,248 542,248"/>
+  <polygon class="cap-accent" points="716,260 710,248 722,248"/>
+
+  <rect class="node" x="302" y="268" width="108" height="34" rx="6"/>
+  <text class="node-text" x="356" y="290">Style A</text>
+  <rect class="node" x="482" y="268" width="108" height="34" rx="6"/>
+  <text class="node-text" x="536" y="290">Style B</text>
+  <rect class="node" x="662" y="268" width="108" height="34" rx="6"/>
+  <text class="node-text" x="716" y="290">Style C</text>
+
+  <text class="fixed" x="536" y="344">Each style is a result of its own</text>
+</svg>
