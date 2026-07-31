@@ -15,7 +15,7 @@
 		rule set. The methodology note at the bottom pins the commit.
 	*/
 	const headline = [
-		{ stat: '14.4 ms', label: 'per page', sub: 'and it holds at any size' },
+		{ stat: '69', label: 'pages a second', sub: 'and it holds at any size' },
 		{ stat: '2,826', label: 'pages, 31.3 MB', sub: 'against 82 rules GitLab wrote' },
 		{ stat: '40.8 s', label: 'for the whole repository', sub: 'mean of three runs, from cold' }
 	];
@@ -24,16 +24,16 @@
 		{
 			label: 'This site’s docs — 56 pages',
 			href: 'https://github.com/errata-ai/vale.sh/tree/svelte/docs',
-			value: 15.0,
-			display: '15.0 ms / page',
-			note: '143 KB, linted whole in 0.84 s.'
+			value: 66.5,
+			display: '66.5 pages / s',
+			note: '56 pages, 143 KB, linted whole in 0.84 s.'
 		},
 		{
 			label: 'GitLab’s docs — 2,826 pages',
 			href: 'https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc',
-			value: 14.4,
-			display: '14.4 ms / page',
-			note: '31.3 MB, linted whole in 40.8 s.'
+			value: 69.3,
+			display: '69.3 pages / s',
+			note: '2,826 pages, 31.3 MB, linted whole in 40.8 s.'
 		}
 	];
 
@@ -104,7 +104,7 @@
 	];
 
 	const description =
-		"Vale checks a documentation page in about 14 ms—and holds that rate from a 56-page site to GitLab's 2,826-page repository, 31.3 MB against 82 rules, in 41 seconds.";
+		"Vale checks about 69 documentation pages a second—holding that rate from a 56-page site to GitLab's 2,826-page repository, 31.3 MB against 82 rules, in 41 seconds.";
 </script>
 
 <MetaTags
@@ -124,7 +124,7 @@
 	docs={{ href: 'https://docs.vale.sh/topics/installation', label: 'Install Vale' }}
 >
 	<Section
-		title="Fourteen milliseconds a page"
+		title="Sixty-nine pages a second"
 		lede="Measured on GitLab's documentation—their repository, their .vale.ini, their 82 rules, unmodified. Not a corpus we assembled to look good."
 	>
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -145,14 +145,15 @@
 			<BarChart
 				rows={scale}
 				unit="ms"
-				caption="Wall-clock time for the whole project, divided by its page count."
+				caption="Pages per second of wall clock, linting the whole project. Files run several at a time, so this is throughput, not the time a single page takes."
 			/>
 		</div>
 
 		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			That is the number worth having: this site's documentation is 56 pages and GitLab's is 2,826,
-			a difference of two hundred times, and a page costs the same at either end. Nothing degrades
-			as your docs grow.
+			This site's documentation is 56 pages and GitLab's is 2,826—two hundred times the size, at the
+			same rate. Nothing degrades as your docs grow. On its own, one 6 KB page takes about 200 ms
+			from cold, most of it loading the rules; in a run of any size that cost is paid once and the
+			pages themselves are what is left.
 		</p>
 		<p class="mt-8 text-sm leading-relaxed text-muted-foreground">
 			Every rule ran against every page—no sampling, no incremental cache. You can reproduce it from
