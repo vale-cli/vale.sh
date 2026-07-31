@@ -3,6 +3,7 @@
 	import FeatureShell from '$lib/components/features/FeatureShell.svelte';
 	import Section from '$lib/components/features/Section.svelte';
 	import BarChart from '$lib/components/features/BarChart.svelte';
+	import ProjectPicker from '$lib/components/features/ProjectPicker.svelte';
 	import ExternalLink from '$lib/components/features/ExternalLink.svelte';
 	import { features } from '$lib/features';
 
@@ -14,28 +15,96 @@
 		invented to look good: it is one company's real docs, real styles, and real
 		rule set. The methodology note at the bottom pins the commit.
 	*/
-	const headline = [
-		{ stat: '69', label: 'pages a second', sub: 'and it holds at any size' },
-		{ stat: '2,826', label: 'pages, 31.3 MB', sub: 'against 82 rules GitLab wrote' },
-		{ stat: '40.8 s', label: 'for the whole repository', sub: 'mean of three runs, from cold' }
-	];
-
-	const scale = [
+	/*
+		Four real documentation sets, each linted with the configuration its own
+		project ships. Rule counts differ more than corpus sizes do, which is why
+		the picker shows both — a faster project here is usually a lighter rule
+		set, not a better one.
+	*/
+	const projects = [
 		{
-			label: 'This site’s docs — 56 pages',
-			href: 'https://github.com/errata-ai/vale.sh/tree/svelte/docs',
-			value: 66.5,
-			display: '66.5 pages / s',
-			note: '56 pages, 143 KB, linted whole in 0.84 s.'
+			id: 'docker',
+			name: 'Docker',
+			avatar: '/users/avatars/docker.png',
+			format: 'Markdown',
+			formatIcon: 'markdown',
+			docs: 'https://github.com/docker/docs/tree/main/content',
+			config: 'https://github.com/docker/docs/blob/main/.vale.ini',
+			commit: '86dd043',
+			clone: 'https://github.com/docker/docs.git',
+			dir: 'docs',
+			target: 'content/',
+			pages: 1048,
+			mb: 7.66,
+			rules: 14,
+			seconds: 10.8,
+			note: 'Fourteen rules they wrote themselves, with per-directory overrides that relax them for generated reference content and release notes.',
+			levels: { suggestion: 86, warning: 322, error: 385 }
 		},
 		{
-			label: 'GitLab’s docs — 2,826 pages',
-			href: 'https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc',
-			value: 69.3,
-			display: '69.3 pages / s',
-			note: '2,826 pages, 31.3 MB, linted whole in 40.8 s.'
+			id: 'gitlab',
+			name: 'GitLab',
+			avatar: '/users/avatars/gitlab.png',
+			format: 'Markdown',
+			formatIcon: 'markdown',
+			docs: 'https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc',
+			config: 'https://gitlab.com/gitlab-org/gitlab/-/blob/master/.vale.ini',
+			commit: '57f859d1',
+			clone: 'https://gitlab.com/gitlab-org/gitlab.git',
+			dir: 'gitlab',
+			target: 'doc/',
+			glob: "!*graphql/reference*",
+			pages: 2826,
+			mb: 31.3,
+			rules: 82,
+			seconds: 19.5,
+			note: 'The largest corpus here and the most rules. Excludes one 4.5 MB generated GraphQL reference; including it the run takes 45 s.',
+			levels: { suggestion: 15109, warning: 9851, error: 1 }
+		},
+		{
+			id: 'ti',
+			name: 'Texas Instruments',
+			avatar: '/users/avatars/TexasInstruments.png',
+			format: 'reStructuredText',
+			formatIcon: 'sphinx',
+			docs: 'https://github.com/TexasInstruments/processor-sdk-doc',
+			config: 'https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini',
+			commit: 'ccab88e',
+			clone: 'https://github.com/TexasInstruments/processor-sdk-doc.git',
+			dir: 'processor-sdk-doc',
+			target: '.',
+			pages: 634,
+			mb: 5.61,
+			rules: 38,
+			seconds: 33.5,
+			note: 'Every embedded-systems manual in the SDK, checked against the Red Hat style and their own vocabulary. Docutils converts each page first, and Vale keeps those interpreters up across the run rather than restarting them per file.',
+			levels: { suggestion: 25455, warning: 11099, error: 864 }
+		},
+		{
+			id: 'circleci',
+			name: 'CircleCI',
+			avatar: '/users/avatars/circleci.png',
+			format: 'AsciiDoc',
+			formatIcon: 'asciidoctor',
+			docs: 'https://github.com/circleci/circleci-docs',
+			config: 'https://github.com/circleci/circleci-docs/blob/main/.vale.ini',
+			commit: '6ae1fec',
+			clone: 'https://github.com/circleci/circleci-docs.git',
+			dir: 'circleci-docs',
+			target: '.',
+			pages: 812,
+			mb: 6.15,
+			rules: 62,
+			seconds: 104.3,
+			note: 'Eight hundred AsciiDoc pages against 62 rules, inside two minutes. Asciidoctor converts each page before Vale reads it, and Vale keeps those converters running for the whole corpus rather than starting one per file.',
+			levels: { suggestion: 8783, warning: 7128, error: 3874 }
 		}
 	];
+
+	const fmt = new Intl.NumberFormat('en-US');
+
+	let active = $state('gitlab');
+	const current = $derived(projects.find((p) => p.id === active)!);
 
 	/*
 		The severity split from that same run. It is on a speed page because it is
@@ -43,26 +112,39 @@
 		the shape of the split is what lets a team run every rule without the
 		pipeline becoming noise.
 	*/
-	const levels = [
+	const levels = $derived([
 		{
 			label: 'suggestion',
-			value: 15109,
-			display: '15,109',
-			note: 'Advisory. Sentence length, reading level, phrasing—surfaced while you write.'
+			value: current.levels.suggestion,
+			display: fmt.format(current.levels.suggestion),
+			note: 'Advisory. Surfaced while you write; nothing depends on it.'
 		},
 		{
 			label: 'warning',
-			value: 9851,
-			display: '9,851',
-			note: 'Worth a look. Shown in review, but nothing is blocked.'
+			value: current.levels.warning,
+			display: fmt.format(current.levels.warning),
+			note: 'Worth a look in review.'
 		},
 		{
 			label: 'error',
-			value: 1,
-			display: '1',
-			note: 'The only thing in 2,826 pages that fails the build.'
+			value: current.levels.error,
+			display: fmt.format(current.levels.error),
+			note: 'What the project has decided should stop a build.'
 		}
-	];
+	]);
+
+	const totalAlerts = $derived(
+		current.levels.suggestion + current.levels.warning + current.levels.error
+	);
+
+	/*
+		Built as one string rather than as markup: inside `whitespace-pre` a line
+		break in the template is a line break on the page, so splitting the
+		command across source lines would split it on screen too.
+	*/
+	const command = $derived(
+		`time vale${current.glob ? ` --glob='${current.glob}'` : ''} ${current.target}`
+	);
 
 	const page = [
 		{ label: 'Vale', value: 156 },
@@ -104,7 +186,7 @@
 	];
 
 	const description =
-		"Vale checks about 69 documentation pages a second—holding that rate from a 56-page site to GitLab's 2,826-page repository, 31.3 MB against 82 rules, in 41 seconds.";
+		"Vale checks about 145 documentation pages a second—GitLab's 2,826-page repository, 31.3 MB against 82 rules, in under 20 seconds.";
 </script>
 
 <MetaTags
@@ -124,72 +206,50 @@
 	docs={{ href: 'https://docs.vale.sh/topics/installation', label: 'Install Vale' }}
 >
 	<Section
-		title="Sixty-nine pages a second"
-		lede="Measured on GitLab's documentation—their repository, their .vale.ini, their 82 rules, unmodified. Not a corpus we assembled to look good."
+		title="Four real documentation sets"
+		lede="Four projects, four markup formats, each linted with the configuration it ships—their rules, their overrides, unmodified. Pick one to see what a full run costs it."
 	>
-		<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
-			{#each headline as item}
-				<div class="flex flex-col gap-1 rounded-2xl border border-border/60 bg-card p-6">
-					<div
-						class="font-mono text-4xl font-semibold tracking-tight text-lime-600 dark:text-lime-400"
-					>
-						{item.stat}
-					</div>
-					<div class="mt-1 text-sm font-medium text-foreground">{item.label}</div>
-					<div class="text-xs text-muted-foreground">{item.sub}</div>
-				</div>
-			{/each}
+		<div>
+			<ProjectPicker {projects} bind:active />
 		</div>
-
-		<div class="mt-8 rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
-			<BarChart
-				rows={scale}
-				unit="ms"
-				caption="Pages per second of wall clock, linting the whole project. Files run several at a time, so this is throughput, not the time a single page takes."
-			/>
-		</div>
+		<p class="mt-3 text-xs leading-relaxed text-muted-foreground/70">
+			Pages per second of wall clock over the whole corpus. Files run several at a time, so this is
+			throughput, not the time a single page takes.
+		</p>
 
 		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			This site's documentation is 56 pages and GitLab's is 2,826—two hundred times the size, at the
-			same rate. Nothing degrades as your docs grow. On its own, one 6 KB page takes about 200 ms
-			from cold, most of it loading the rules; in a run of any size that cost is paid once and the
-			pages themselves are what is left.
+			Format moves this number more than corpus size does. Markdown Vale parses itself, at about 7 ms
+			a page. reStructuredText and AsciiDoc go first through the tools that define them—Docutils and
+			Asciidoctor—and Vale holds those open for the whole run instead of starting one per page,
+			which is most of the difference between 53 ms and 128 ms a page here and what those
+			conversions used to cost. Rule count matters second: Docker runs fourteen rules, GitLab
+			eighty-two.
 		</p>
 		<p class="mt-8 text-sm leading-relaxed text-muted-foreground">
-			Every rule ran against every page—no sampling, no incremental cache. You can reproduce it from
-			<ExternalLink href="https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc"
-				>their docs</ExternalLink
-			>
-			and
-			<ExternalLink href="https://gitlab.com/gitlab-org/gitlab/-/blob/master/.vale.ini"
-				>their .vale.ini</ExternalLink
-			>.
-		</p>
-
-		<p class="mt-4 text-xs leading-relaxed text-muted-foreground/70">
-			Excludes one 4.5 MB generated GraphQL API reference with
-			<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]"
-				>--glob='!*graphql/reference*'</code
-			>. Including it, the whole repository takes 64.4 s.
+			Every rule ran against every page—no sampling, no incremental cache. Each project links to its
+			own docs and config above, so any of these is reproducible with one command.
 		</p>
 	</Section>
 
 	<Section
 		title="Every rule, without the noise"
-		lede="Running 82 rules over 2,826 pages produces 24,961 alerts. Almost none of them block anything: Vale has three levels, and a team that uses all three can turn everything on without the pipeline turning into a wall of red."
+		lede="Vale has three levels, and each project decides which findings sit at which. That decision is what makes it practical to switch every rule on—the same selection above drives this chart."
 	>
 		<div class="rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
 			<BarChart
 				rows={levels}
 				unit=""
-				caption="Alerts by level from the same run. GitLab's own configuration, unmodified."
+				caption="Alerts by level from the same run, using the project's own configuration."
 			/>
 		</div>
 
 		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			A level is set per rule, not per run. That is what makes it practical to switch everything on:
-			the decision about which findings are worth stopping for gets made once, in the rule, instead
-			of being argued over in review.
+			The shapes differ because the policies do. GitLab reserves <code
+				class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">error</code
+			>
+			for a single thing across 2,826 pages and lets the rest inform; Docker puts most of its findings
+			there. Neither is wrong—the level is set per rule, so the decision about what stops a build gets
+			made once, in the rule, instead of being argued over in review.
 		</p>
 	</Section>
 
@@ -254,20 +314,20 @@
 
 	<Section
 		title="Check it yourself"
-		lede="Every figure on this page comes from a public repository and an unmodified configuration, so you can run it yourself—and then run it on your own docs, which is the number that actually matters."
+		lede="Every figure here comes from a public repository and an unmodified configuration. These are the exact commands for the project selected above—and then run it on your own docs, which is the number that actually matters."
 	>
 		<div
 			class="overflow-x-auto rounded-2xl border border-border/60 bg-card p-5 font-mono text-[13px] leading-relaxed sm:p-6"
 		>
 			<div class="whitespace-pre">
-				<span class="text-lime-600 dark:text-lime-400">$</span> git clone --depth 1 https://gitlab.com/gitlab-org/gitlab.git
+				<span class="text-lime-600 dark:text-lime-400">$</span> git clone --depth 1 {current.clone}
 			</div>
 			<div class="whitespace-pre">
-				<span class="text-lime-600 dark:text-lime-400">$</span> cd gitlab
+				<span class="text-lime-600 dark:text-lime-400">$</span> cd {current.dir}
 			</div>
 			<div class="whitespace-pre">
-				<span class="text-lime-600 dark:text-lime-400">$</span> time vale --glob='!*graphql/reference*'
-				doc/
+				<span class="text-lime-600 dark:text-lime-400">$</span>
+				{command}
 			</div>
 			<div class="mt-3 whitespace-pre text-muted-foreground/60">
 				# Then try it on your own docs, which is the number that matters.
@@ -278,7 +338,7 @@
 			<h3 class="text-sm font-semibold text-foreground">How these were measured</h3>
 			<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 				Vale v3.17.0, built from commit
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">769943cc</code>, on an
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">5f071ef5</code>, on an
 				Apple M1 with 8 cores, macOS 15.7. The GitLab figures use commit
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">57f859d1</code> and the
 				<ExternalLink href="https://gitlab.com/gitlab-org/gitlab/-/blob/master/.vale.ini"

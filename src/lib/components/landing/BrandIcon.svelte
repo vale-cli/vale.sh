@@ -35,7 +35,7 @@
 		loading="lazy"
 		width="20"
 		height="20"
-		class="h-5 w-5 shrink-0 rounded-sm object-contain"
+		class="h-5 w-5 shrink-0 rounded-sm object-contain {klass}"
 	/>
 {:else}
 	<span
