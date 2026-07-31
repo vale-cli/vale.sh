@@ -106,8 +106,8 @@
 				<div class={badge}><SpeedIcon class="h-5 w-5" /></div>
 				<h3 class="text-lg font-semibold text-foreground">Fast, single binary</h3>
 				<p class="text-sm leading-relaxed text-muted-foreground">
-					Built in Go with no runtime dependencies. Thousands of pages of documentation, linted in
-					about a minute.
+					Built in Go with no runtime dependencies. A 2,800-page Markdown corpus, 82 rules, in
+					under 20 seconds.
 				</p>
 
 				<div class="{mock} mt-4">
