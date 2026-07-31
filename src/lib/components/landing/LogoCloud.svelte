@@ -32,7 +32,7 @@
 			{#each logos as user}
 				<Popover.Root>
 					<Popover.Trigger
-						class="flex items-center justify-center rounded-xl bg-white p-5 ring-1 ring-black/[0.06] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+						class="flex items-center justify-center rounded-xl bg-white p-5 ring-1 ring-black/[0.06] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:outline-none dark:bg-zinc-400 dark:ring-white/10"
 						aria-label="How {user.name} uses Vale"
 					>
 						<img

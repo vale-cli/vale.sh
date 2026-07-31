@@ -5,6 +5,8 @@
 
 	// Only the adopters we have wordmarks for; the rest live in the explorer below.
 	const logos = (adopters as Adopter[]).filter((a) => a.logo);
+	// The plates stay light in dark mode -- the wordmarks are dark-on-transparent
+	// and would vanish otherwise -- but dimmed, so they don't glare.
 	// Duplicated so the track can loop seamlessly at -50%.
 	const track = [...logos, ...logos];
 </script>
@@ -31,7 +33,7 @@
 						target="_blank"
 						rel="noreferrer"
 						tabindex={i >= logos.length ? -1 : 0}
-						class="flex h-20 w-44 items-center justify-center rounded-xl bg-white p-5 ring-1 ring-black/[0.06] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+						class="flex h-20 w-44 items-center justify-center rounded-xl bg-white p-5 ring-1 ring-black/[0.06] transition-transform duration-200 hover:-translate-y-0.5 focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:outline-none dark:bg-zinc-400 dark:ring-white/10"
 					>
 						<img
 							src={user.logo}
