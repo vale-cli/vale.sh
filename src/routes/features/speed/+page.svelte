@@ -15,9 +15,9 @@
 		rule set. The methodology note at the bottom pins the commit.
 	*/
 	const headline = [
-		{ stat: '2,826', label: 'pages checked', sub: 'every hand-written page in the repository' },
-		{ stat: '31.3 MB', label: 'of prose', sub: 'against 82 rules GitLab wrote' },
-		{ stat: '40.8s', label: 'for all of it', sub: 'mean of three runs, from cold' }
+		{ stat: '14.4 ms', label: 'per page', sub: 'and it holds at any size' },
+		{ stat: '2,826', label: 'pages, 31.3 MB', sub: 'against 82 rules GitLab wrote' },
+		{ stat: '40.8 s', label: 'for the whole repository', sub: 'mean of three runs, from cold' }
 	];
 
 	const scale = [
@@ -73,20 +73,12 @@
 
 	const local = [
 		{
-			title: 'No network round-trip',
-			body: 'Nothing is uploaded, so nothing waits on a response. The floor is your disk, not a queue.'
-		},
-		{
-			title: 'No runtime to boot',
-			body: 'One statically linked executable. No interpreter starts, no module graph resolves, no virtual environment activates.'
-		},
-		{
-			title: 'No rate limit',
-			body: 'Nobody is counting requests, and nobody is billing you per document. Lint the whole repository on every commit if you want to.'
+			title: 'Nothing to install alongside it',
+			body: 'One statically linked executable. No interpreter starts, no module graph resolves, no virtual environment activates—and nothing is uploaded, so nothing waits on a response.'
 		},
 		{
 			title: 'Every core you have',
-			body: "The GitLab run spent close to four cores' worth of CPU throughout—files are linted several at a time, and results stream back as they land."
+			body: 'The GitLab run spent close to four cores’ worth of CPU throughout: files are linted several at a time, and results stream back as they land.'
 		}
 	];
 
@@ -112,7 +104,7 @@
 	];
 
 	const description =
-		"Vale checks all 2,826 pages of GitLab's documentation—31.3 MB of prose against 82 rules—in 38 seconds, from a single binary with no runtime dependencies.";
+		"Vale checks a documentation page in about 14 ms—and holds that rate from a 56-page site to GitLab's 2,826-page repository, 31.3 MB against 82 rules, in 41 seconds.";
 </script>
 
 <MetaTags
@@ -132,8 +124,8 @@
 	docs={{ href: 'https://docs.vale.sh/topics/installation', label: 'Install Vale' }}
 >
 	<Section
-		title="All of GitLab’s documentation, in 41 seconds"
-		lede="Not a corpus we assembled. This is the GitLab repository, checked with the .vale.ini GitLab keeps in it, against the 82 rules their writers maintain."
+		title="Fourteen milliseconds a page"
+		lede="Measured on GitLab's documentation—their repository, their .vale.ini, their 82 rules, unmodified. Not a corpus we assembled to look good."
 	>
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-3">
 			{#each headline as item}
@@ -149,6 +141,19 @@
 			{/each}
 		</div>
 
+		<div class="mt-8 rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
+			<BarChart
+				rows={scale}
+				unit="ms"
+				caption="Wall-clock time for the whole project, divided by its page count."
+			/>
+		</div>
+
+		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
+			That is the number worth having: this site's documentation is 56 pages and GitLab's is 2,826,
+			a difference of two hundred times, and a page costs the same at either end. Nothing degrades
+			as your docs grow.
+		</p>
 		<p class="mt-8 text-sm leading-relaxed text-muted-foreground">
 			Every rule ran against every page—no sampling, no incremental cache. You can reproduce it from
 			<ExternalLink href="https://gitlab.com/gitlab-org/gitlab/-/tree/master/doc"
@@ -188,24 +193,6 @@
 	</Section>
 
 	<Section
-		title="A page costs the same at any scale"
-		lede="Two projects two hundred times apart in size, each linted from cold. What a page costs barely moves between them."
-	>
-		<div class="rounded-2xl border border-border/60 bg-card p-6 sm:p-8">
-			<BarChart
-				rows={scale}
-				unit="ms"
-				caption="Wall-clock time for the whole project, divided by its page count."
-			/>
-		</div>
-
-		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			When the whole tree costs this little, it can be the unit of work: a rule you add today gets
-			checked against everything you have already published, not just the page you have open.
-		</p>
-	</Section>
-
-	<Section
 		title="What another style guide costs you"
 		lede="Speed in the abstract is not the useful question. The useful question is what it costs to turn on the rules you actually want."
 	>
@@ -217,9 +204,9 @@
 		</div>
 
 		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			Going from one style guide to five adds 90 ms to a cold run. Most of what remains is the
-			one-time cost of loading and compiling the rules—which is why the language server, which pays
-			it once and then keeps the styles in memory, can re-lint as you type.
+			Going from one style guide to five adds 90 ms. Most of even that is the one-time cost of
+			loading and compiling the rules, paid on every CLI invocation—which is why the language
+			server, which pays it once and then keeps the styles in memory, can re-lint as you type.
 		</p>
 	</Section>
 
