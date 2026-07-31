@@ -26,6 +26,14 @@
         "link": "https://developers.google.com/style/word-list"
       },
       {
+        "name": "Anthropomorphism",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't attribute human qualities to software or hardware ('%s').",
+        "link": "https://developers.google.com/style/anthropomorphism"
+      },
+      {
         "name": "Colons",
         "extends": "existence",
         "level": "warning",
@@ -64,6 +72,14 @@
         "scope": "text",
         "message": "Don't put a space before or after a dash.",
         "link": "https://developers.google.com/style/dashes"
+      },
+      {
+        "name": "ExcessiveClaims",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid the unverifiable claim '%s'.",
+        "link": "https://developers.google.com/style/excessive-claims"
       },
       {
         "name": "Exclamation",
@@ -112,6 +128,14 @@
         "scope": "heading",
         "message": "'%s' should use sentence-style capitalization.",
         "link": "https://developers.google.com/style/capitalization#capitalization-in-titles-and-headings"
+      },
+      {
+        "name": "Jargon",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid the jargon '%s'.",
+        "link": "https://developers.google.com/style/jargon"
       },
       {
         "name": "Latin",
@@ -226,6 +250,14 @@
         "link": "https://developers.google.com/style/spelling"
       },
       {
+        "name": "Timeless",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid time-based words like '%s' in product documentation.",
+        "link": "https://developers.google.com/style/timeless-documentation"
+      },
+      {
         "name": "Units",
         "extends": "existence",
         "level": "error",
@@ -251,6 +283,14 @@
       },
       {
         "name": "WordList",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://developers.google.com/style/word-list"
+      },
+      {
+        "name": "WordListCase",
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
@@ -423,7 +463,7 @@
         "level": "suggestion",
         "scope": "text",
         "message": "Don't use language (such as '%s') that defines people by their disability.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/accessibility-terms"
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/accessibility-terms"
       },
       {
         "name": "Acronyms",
@@ -431,7 +471,7 @@
         "level": "suggestion",
         "scope": "text",
         "message": "'%s' has no definition.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/acronyms"
+        "link": "https://learn.microsoft.com/en-us/style-guide/acronyms"
       },
       {
         "name": "Adverbs",
@@ -439,7 +479,7 @@
         "level": "warning",
         "scope": "text",
         "message": "Remove '%s' if it's not important to the meaning of the statement.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
+        "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
       },
       {
         "name": "AMPM",
@@ -447,7 +487,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use 'AM' or 'PM' (preceded by a space).",
-        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
       },
       {
         "name": "Auto",
@@ -455,7 +495,7 @@
         "level": "error",
         "scope": "text",
         "message": "In general, don't hyphenate '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/a/auto"
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/a/auto"
       },
       {
         "name": "Avoid",
@@ -463,7 +503,15 @@
         "level": "error",
         "scope": "text",
         "message": "Don't use '%s'. See the A-Z word list for details.",
-        "link": "https://docs.microsoft.com/en-us/style-guide"
+        "link": "https://learn.microsoft.com/en-us/style-guide"
+      },
+      {
+        "name": "BiasFree",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/bias-free-communication"
       },
       {
         "name": "Contractions",
@@ -471,7 +519,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use '%s' instead of '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-contractions"
+        "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-contractions"
       },
       {
         "name": "Dashes",
@@ -479,7 +527,7 @@
         "level": "error",
         "scope": "text",
         "message": "Remove the spaces around '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/emes"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/emes"
       },
       {
         "name": "DateFormat",
@@ -487,7 +535,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use 'July 31, 2016' format, not '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/date-time-terms"
       },
       {
         "name": "DateNumbers",
@@ -495,7 +543,7 @@
         "level": "error",
         "scope": "text",
         "message": "Don't use ordinal numbers for dates.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
       },
       {
         "name": "DateOrder",
@@ -503,7 +551,7 @@
         "level": "error",
         "scope": "text",
         "message": "Always spell out the name of the month.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers#numbers-in-dates"
       },
       {
         "name": "Ellipses",
@@ -511,7 +559,15 @@
         "level": "warning",
         "scope": "text",
         "message": "In general, don't use an ellipsis.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/ellipses"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/ellipses"
+      },
+      {
+        "name": "ExclamationPoints",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use exclamation points sparingly.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/exclamation-points"
       },
       {
         "name": "FirstPerson",
@@ -519,7 +575,7 @@
         "level": "warning",
         "scope": "text",
         "message": "Use first person (such as '%s') sparingly.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/grammar/person"
+        "link": "https://learn.microsoft.com/en-us/style-guide/grammar/person"
       },
       {
         "name": "Foreign",
@@ -527,7 +583,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use '%s' instead of '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-us-spelling-avoid-non-english-words"
+        "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-us-spelling-avoid-non-english-words"
       },
       {
         "name": "Gender",
@@ -535,7 +591,7 @@
         "level": "error",
         "scope": "text",
         "message": "Don't use '%s'.",
-        "link": "https://github.com/MicrosoftDocs/microsoft-style-guide/blob/master/styleguide/grammar/nouns-pronouns.md#pronouns-and-gender"
+        "link": "https://learn.microsoft.com/en-us/style-guide/grammar/nouns-pronouns#pronouns-and-gender"
       },
       {
         "name": "GenderBias",
@@ -543,7 +599,7 @@
         "level": "error",
         "scope": "text",
         "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "link": "https://learn.microsoft.com/en-us/style-guide/bias-free-communication"
       },
       {
         "name": "GeneralURL",
@@ -551,7 +607,7 @@
         "level": "warning",
         "scope": "text",
         "message": "For a general audience, use 'address' rather than 'URL'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/urls-web-addresses"
+        "link": "https://learn.microsoft.com/en-us/style-guide/urls-web-addresses"
       },
       {
         "name": "HeadingAcronyms",
@@ -559,7 +615,7 @@
         "level": "warning",
         "scope": "heading",
         "message": "Avoid using acronyms in a title or heading.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/acronyms#be-careful-with-acronyms-in-titles-and-headings"
+        "link": "https://learn.microsoft.com/en-us/style-guide/acronyms#be-careful-with-acronyms-in-titles-and-headings"
       },
       {
         "name": "HeadingColons",
@@ -567,7 +623,7 @@
         "level": "error",
         "scope": "heading",
         "message": "Capitalize '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/colons"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/colons"
       },
       {
         "name": "HeadingPunctuation",
@@ -575,7 +631,7 @@
         "level": "warning",
         "scope": "heading",
         "message": "Don't use end punctuation in headings.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/periods"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/periods"
       },
       {
         "name": "Headings",
@@ -583,7 +639,7 @@
         "level": "suggestion",
         "scope": "heading",
         "message": "'%s' should use sentence-style capitalization.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/capitalization"
+        "link": "https://learn.microsoft.com/en-us/style-guide/capitalization"
       },
       {
         "name": "Hyphens",
@@ -591,7 +647,23 @@
         "level": "warning",
         "scope": "text",
         "message": "'%s' doesn't need a hyphen.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
+      },
+      {
+        "name": "Jargon",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using '%s' instead of the jargon '%s'.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/avoid-jargon"
+      },
+      {
+        "name": "Militaristic",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/militaristic-language"
       },
       {
         "name": "Negative",
@@ -599,7 +671,7 @@
         "level": "error",
         "scope": "text",
         "message": "Form a negative number with an en dash, not a hyphen.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers"
       },
       {
         "name": "Ordinal",
@@ -607,7 +679,7 @@
         "level": "error",
         "scope": "text",
         "message": "Don't add -ly to an ordinal number.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers"
       },
       {
         "name": "OxfordComma",
@@ -615,7 +687,7 @@
         "level": "suggestion",
         "scope": "sentence",
         "message": "Use the Oxford comma in '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/commas"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/commas"
       },
       {
         "name": "Passive",
@@ -631,7 +703,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use a numeral plus the units.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers"
       },
       {
         "name": "Plurals",
@@ -642,12 +714,20 @@
         "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/s/s-es"
       },
       {
+        "name": "QuestionMarks",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use questions sparingly.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/question-marks"
+      },
+      {
         "name": "Quotes",
         "extends": "existence",
         "level": "error",
         "scope": "text",
         "message": "Punctuation should be inside the quotes.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/quotation-marks"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/quotation-marks"
       },
       {
         "name": "RangeTime",
@@ -655,7 +735,7 @@
         "level": "error",
         "scope": "text",
         "message": "Use 'to' instead of a dash in '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/numbers"
+        "link": "https://learn.microsoft.com/en-us/style-guide/numbers"
       },
       {
         "name": "Semicolon",
@@ -663,7 +743,7 @@
         "level": "suggestion",
         "scope": "sentence",
         "message": "Try to simplify this sentence.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/semicolons"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/semicolons"
       },
       {
         "name": "SentenceLength",
@@ -679,7 +759,7 @@
         "level": "error",
         "scope": "text",
         "message": "'%s' should have one space.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/periods"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/periods"
       },
       {
         "name": "Suspended",
@@ -687,7 +767,7 @@
         "level": "warning",
         "scope": "text",
         "message": "Don't use '%s' unless space is limited.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
+        "link": "https://learn.microsoft.com/en-us/style-guide/punctuation/dashes-hyphens/hyphens"
       },
       {
         "name": "Terms",
@@ -698,12 +778,28 @@
         "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/a/adapter"
       },
       {
+        "name": "UIVerbs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'select' instead of the input-specific verb '%s'.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/procedures-instructions/describing-interactions-with-ui"
+      },
+      {
         "name": "Units",
         "extends": "existence",
         "level": "error",
         "scope": "text",
         "message": "Don't spell out the number in '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/units-of-measure-terms"
+        "link": "https://learn.microsoft.com/en-us/style-guide/a-z-word-list-term-collections/term-collections/units-of-measure-terms"
+      },
+      {
+        "name": "Uppercase",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use all uppercase for emphasis.",
+        "link": "https://learn.microsoft.com/en-us/style-guide/capitalization"
       },
       {
         "name": "URLFormat",
@@ -719,7 +815,7 @@
         "level": "suggestion",
         "scope": "text",
         "message": "Verify your use of '%s' with the A-Z word list.",
-        "link": "https://docs.microsoft.com/en-us/style-guide"
+        "link": "https://learn.microsoft.com/en-us/style-guide"
       },
       {
         "name": "We",
@@ -727,7 +823,7 @@
         "level": "warning",
         "scope": "text",
         "message": "Try to avoid using first-person plural like '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/grammar/person#avoid-first-person-plural"
+        "link": "https://learn.microsoft.com/en-us/style-guide/grammar/person#avoid-first-person-plural"
       },
       {
         "name": "Wordiness",
@@ -735,7 +831,7 @@
         "level": "suggestion",
         "scope": "text",
         "message": "Consider using '%s' instead of '%s'.",
-        "link": "https://docs.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
+        "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
       }
     ]
   },
@@ -2280,6 +2376,242 @@
         "scope": "text",
         "message": "'%s' is a generic gendered pattern. Consider: %s",
         "link": "https://github.com/a11yfred/neighbor"
+      }
+    ]
+  },
+  {
+    "name": "Salesforce",
+    "description": "A Vale-compatible implementation of the Salesforce Writing Style Guide.",
+    "homepage": "https://github.com/sfadriaan/Salesforce",
+    "url": "https://github.com/sfadriaan/Salesforce/releases/latest/download/Salesforce.zip",
+    "logo": "https://github.com/vale-cli.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AppExchange",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'AppExchange' (one word, capital A and E) instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
+      },
+      {
+        "name": "Application",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Salesforce' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_application.htm"
+      },
+      {
+        "name": "BoldButtonText",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "Use bold text when referring to buttons, such as Click **Save**.",
+        "link": ""
+      },
+      {
+        "name": "Checkbox",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'Checkbox' is one word.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_checkboxes.htm"
+      },
+      {
+        "name": "CustomerSupport",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Capitalize 'Customer Support' and use it with the company name, for example 'Salesforce Customer Support'.",
+        "link": ""
+      },
+      {
+        "name": "Databasecom",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Database.com' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
+      },
+      {
+        "name": "Datasheet",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is one word. Don't split it into two words.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_datasheet.htm"
+      },
+      {
+        "name": "Deprecated",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use 'deprecated' for a feature that's available but no longer supported. Use 'not supported' instead.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_deprecated.htm"
+      },
+      {
+        "name": "Desupported",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use 'desupported' for a removed feature. Use 'no longer available' instead.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_desupported.htm"
+      },
+      {
+        "name": "Editions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Capitalize both words in an edition name, for example 'Enterprise Edition'. Found '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_editions.htm"
+      },
+      {
+        "name": "Hover",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' to describe moving the pointer over an element, not 'mouse over'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_hover.htm"
+      },
+      {
+        "name": "ListElementTypes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Write 'click **Save**', not 'click the **Save** button'. Similarly, do not write '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_buttons.htm"
+      },
+      {
+        "name": "ListViews",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is a Salesforce component. Capitalize it, for example 'List View' or 'List Views'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_list_views.htm"
+      },
+      {
+        "name": "MouseTerminology",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use '%s'. Use 'click' instead.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_mouse_terminology.htm"
+      },
+      {
+        "name": "Multitenant",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Spell 'multitenant' as one word instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_multitenant.htm"
+      },
+      {
+        "name": "ObjectManager",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Capitalize 'Object Manager' (and use the article 'the') instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_object_manager.htm"
+      },
+      {
+        "name": "Org",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Salesforce org' (or 'org') instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_org.htm"
+      },
+      {
+        "name": "Picklist",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'picklist' (one word) instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_picklists.htm"
+      },
+      {
+        "name": "RichTextArea",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is a Salesforce component. Capitalize it as 'Rich Text Area'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_rich_text_area.htm"
+      },
+      {
+        "name": "SalesforceAdmin",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Salesforce admin' instead of '%s'. Note: For UI text and login documentation, use 'Salesforce administrator'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_administrator.htm"
+      },
+      {
+        "name": "SalesforceHelp",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'the Salesforce Help' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_online_help.htm"
+      },
+      {
+        "name": "SelectCheckbox",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use 'select' or 'deselect' when referring to a checkbox. Avoid verbs like '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_checkboxes.htm"
+      },
+      {
+        "name": "Subtab",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Spell 'subtab' as one word instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_subtab.htm"
+      },
+      {
+        "name": "SupportAgent",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'support agent' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_support_agent.htm"
+      },
+      {
+        "name": "SystemAdministrator",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Salesforce admin' instead of '%s'. Note: Use 'Salesforce administrator' for UI text and login documentation.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_system_administrator.htm"
+      },
+      {
+        "name": "Trailhead",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Trailhead' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
+      },
+      {
+        "name": "Unavailable",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Don't use '%s' for a UI state. Use 'unavailable' or 'disabled' instead.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/style_unavailable.htm"
+      },
+      {
+        "name": "Visualforce",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'Visualforce' instead of '%s'.",
+        "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
       }
     ]
   }
