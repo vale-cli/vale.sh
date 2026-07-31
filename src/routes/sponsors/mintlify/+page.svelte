@@ -219,6 +219,11 @@
 				keep it that way.
 			</p>
 
+			<p class="mt-4 max-w-2xl leading-7 text-muted-foreground">
+				Sponsors at <span class="font-medium text-foreground">$1,000 and above</span> get a Sponsor
+				Spotlight—a page like this one.
+			</p>
+
 			<div class="mt-8 flex flex-wrap gap-3">
 				<a
 					href="https://opencollective.com/vale"
