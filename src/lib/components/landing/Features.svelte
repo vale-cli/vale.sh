@@ -106,7 +106,7 @@
 				<div class={badge}><SpeedIcon class="h-5 w-5" /></div>
 				<h3 class="text-lg font-semibold text-foreground">Fast, single binary</h3>
 				<p class="text-sm leading-relaxed text-muted-foreground">
-					Built in Go with no runtime dependencies. All 2,827 pages of GitLab's documentation, in
+					Built in Go with no runtime dependencies. Thousands of pages of documentation, linted in
 					about a minute.
 				</p>
 
