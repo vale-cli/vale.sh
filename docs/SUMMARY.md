@@ -72,6 +72,7 @@
 * [Regex](guides/regex.md)
 * [Hunspell](guides/hunspell.md)
 * [Globbing](guides/globbing.md)
+* [FAQ](guides/faq.md)
 
 ## Integrations
 
