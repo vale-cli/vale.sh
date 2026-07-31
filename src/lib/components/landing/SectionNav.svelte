@@ -15,8 +15,8 @@
 
 	const sections = $derived(
 		[
-			{ id: 'stats', label: 'Downloads', icon: Download },
 			{ id: 'features', label: 'Features', icon: Sparkles },
+			{ id: 'stats', label: 'Downloads', icon: Download },
 			{ id: 'integrations', label: 'Integrations', icon: Blocks },
 			{ id: 'adopters', label: 'Adopters', icon: Building2 },
 			{ id: 'events', label: 'Events', icon: Calendar },

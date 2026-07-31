@@ -45,8 +45,8 @@
 <Hero stats={data.stats} />
 <LogoWall />
 <SectionNav {hasEvents} />
-<Ecosystem stats={data.stats} />
 <Features />
+<Ecosystem stats={data.stats} />
 <Integrations />
 <AdopterExplorer />
 <Events />

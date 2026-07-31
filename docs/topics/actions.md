@@ -13,10 +13,12 @@ Actions provide a way for users to define dynamic fixes for their custom rules t
 In the Sublime Text example above, the “Quick Fix” menu is powered by the action defined in the rule definition:
 
 {% code title="rule.yml" %}
+
 ```yaml
 action:
   name: replace
 ```
+
 {% endcode %}
 
 See the documentation on each `action` type for more information:
@@ -33,6 +35,7 @@ See the documentation on each `action` type for more information:
 Most Vale rules are based on _static_ suggestions—for example,
 
 {% code title="rule.yml" %}
+
 ```yaml
 extends: substitution
 message: "Use '%s' instead of '%s'."
@@ -42,6 +45,7 @@ action:
 swap:
   Javascript: JavaScript
 ```
+
 {% endcode %}
 
 Here, the `action` is a to _replace_`Javascript` with `JavaScript`. In such cases, we know what we want to suggest to the user ahead of time and Vale can easily generate the appropriate output message.
@@ -49,6 +53,7 @@ Here, the `action` is a to _replace_`Javascript` with `JavaScript`. In such case
 However, there are cases in which we _don’t_ know the appropriate suggestion ahead of time. For example, consider the following rule:
 
 {% code title="rule.yml" %}
+
 ```yaml
 extends: existence
 message: "'%s' should be '%s'."
@@ -62,13 +67,14 @@ action:
 tokens:
   - '\w+_\w+'
 ```
+
 {% endcode %}
 
 This rule is designed to catch instances of `snake_case` and suggest that the user convert to `kebab-case`. In this case, the exact suggestion is dependent on a string transformation that needs to be computed at runtime.
 
 Using the `edit` action allows us to define a rule that can dynamically generate suggestions based on the matched text in CLI output:
 
-![Vale reporting two errors where snake_case identifiers should be written with hyphens.](../.gitbook/assets/snake.svg)
+![Vale reporting two errors where identifiers should be written with hyphens.](../.gitbook/assets/snake.svg)
 
 As you can see, the CLI output is dynamically computing the suggestion based on the matched text.
 
