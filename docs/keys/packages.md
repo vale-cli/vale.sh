@@ -123,6 +123,23 @@ The packaged `StylesPath` will be merged with the active local `StylesPath` and 
 {% endstep %}
 {% endstepper %}
 
+## [Pinning a version](packages.md#pinning-a-version)
+
+Naming a package installs its latest release, so the rules it brings can change as the package is updated. To hold a package at a known version, give the release URL in place of the name:
+
+```ini
+StylesPath = styles
+
+Packages = https://github.com/vale-cli/Google/releases/download/v0.7.0/Google.zip
+
+[*.md]
+BasedOnStyles = Google
+```
+
+A style takes its name from the folder inside the archive, so `BasedOnStyles` reads the same either way — only where the package comes from changes. Run `sync` again after editing the URL to move to a different version.
+
+This is worth doing wherever a new rule arriving on its own would be disruptive, such as a repository several people write in, or a CI job that fails on new alerts.
+
 ## [Ordering](packages.md#ordering)
 
 In the case of conflicting configuration, the order in which packages are loaded is important:
