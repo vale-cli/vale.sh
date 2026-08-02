@@ -102,7 +102,7 @@ The following example re-implements Vale’s default output style using a templa
 
 ### [Creating a RDJSONL template](templates.md#creating-a-rdjsonl-template)
 
-The following example converts Vale’s output to [RDJSONL](https://github.com/reviewdog/reviewdog?tab=readme-ov-file#reviewdog-diagnostic-format-rdformat), which you can then pass to [Reviewdog](https://github.com/reviewdog/reviewdog) to display on pull request. This can be useful when the [Vale action](https://github.com/errata-ai/vale-action) is not suitable for your workflow.
+The following example converts Vale’s output to [RDJSONL](https://github.com/reviewdog/reviewdog?tab=readme-ov-file#reviewdog-diagnostic-format-rdformat), which you can then pass to [Reviewdog](https://github.com/reviewdog/reviewdog) to display on pull request. This can be useful when the [Vale action](https://github.com/vale-cli/vale-action) is not suitable for your workflow.
 
 ```go
 {{- /* Range over the linted files */ -}}
@@ -127,16 +127,19 @@ The following example converts Vale’s output to [RDJSONL](https://github.com/r
 {{- /* Variables setup */ -}}
 
 {{- $line := printf "%d" .Line -}}
-{{- $col := printf "%d" (index .Span 0) -}}
+{{- $start := index .Span 0 -}}
+{{- $end := add (index .Span 1) 1 -}}
 {{- $check := printf "%s" .Check -}}
 {{- $message := printf "%s" .Message -}}
 
 {{- /* Output */ -}}
 
-{"message": "[{{ $check }}] {{ $message | jsonEscape }}", "location": {"path": "{{ $path }}", "range": {"start": {"line": {{ $line }}, "column": {{ $col }}}}}, "severity": "{{ $error }}"}
+{"message": "{{ $message | jsonEscape }}", "location": {"path": "{{ $path }}", "range": {"start": {"line": {{ $line }}, "column": {{ $start }}}, "end": {"line": {{ $line }}, "column": {{ $end }}}}}, "severity": "{{ $error }}", "code": {"value": "{{ $check | jsonEscape }}"{{ if .Link }}, "url": "{{ .Link | jsonEscape }}"{{ end }}}}
 {{end -}}
 {{end -}}
 ```
+
+Two things are worth knowing when adapting this. Reviewdog reads a range, so giving it the end of the span -- `Span` is inclusive, and reviewdog's end is not -- is what underlines the match rather than pointing at its first character. And reviewdog counts columns in UTF-8 bytes where Vale counts characters, so the two agree only until a line picks up its first multi-byte character; converting between them needs the source line, which a template can't read.
 
 ### [Creating a SARIF template](templates.md#creating-a-sarif-template)
 
