@@ -137,3 +137,86 @@ The following example converts Vale’s output to [RDJSONL](https://github.com/r
 {{end -}}
 {{end -}}
 ```
+
+### [Creating a SARIF template](templates.md#creating-a-sarif-template)
+
+The following example converts Vale's output to [SARIF](https://sarifweb.azurewebsites.net/), the format that [GitHub code scanning](https://docs.github.com/en/code-security/code-scanning/integrating-with-code-scanning/uploading-a-sarif-file-to-github), GitLab, and Azure DevOps read. Unlike a pull request comment, an alert reported this way persists: it has a history, and someone can dismiss it with a reason.
+
+```bash
+$ vale --output=sarif.tmpl . > vale.sarif
+```
+
+In a GitHub workflow, hand the file to `upload-sarif`:
+
+```yaml
+- name: Upload to code scanning
+  uses: github/codeql-action/upload-sarif@v3
+  with:
+    sarif_file: vale.sarif
+```
+
+Two details make the conversion straightforward. SARIF measures columns in characters, as Vale's `Span` does, so the positions carry over unchanged. And SARIF asks for each rule to be described once, which [`dict`](http://masterminds.github.io/sprig/dicts.html) and `set` collect in a pass over the alerts before any output.
+
+```go
+{{- /* Collect the rules that fired, so that each is described once. */ -}}
+{{- $rules := dict -}}
+{{- range .Files -}}
+{{- range .Alerts -}}
+{{- $_ := set $rules .Check (dict "link" .Link "text" .Description) -}}
+{{- end -}}
+{{- end -}}
+{
+  "$schema": "https://json.schemastore.org/sarif-2.1.0.json",
+  "version": "2.1.0",
+  "runs": [
+    {
+      "tool": {
+        "driver": {
+          "name": "Vale",
+          "informationUri": "https://vale.sh",
+          "rules": [
+{{- $first := true -}}
+{{- range $id, $rule := $rules }}
+{{ if not $first }},{{ end }}            {
+              "id": "{{ $id | jsonEscape }}",
+              "shortDescription": {"text": "{{ if $rule.text }}{{ $rule.text | jsonEscape }}{{ else }}{{ $id | jsonEscape }}{{ end }}"}
+              {{- if $rule.link }},
+              "helpUri": "{{ $rule.link | jsonEscape }}"
+              {{- end }}
+            }
+{{- $first = false -}}
+{{- end }}
+          ]
+        }
+      },
+      "results": [
+{{- $first = true -}}
+{{- range .Files -}}
+{{- $path := .Path -}}
+{{- range .Alerts }}
+{{ if not $first }},{{ end }}        {
+          "ruleId": "{{ .Check | jsonEscape }}",
+          "level": "{{ if eq .Severity "error" }}error{{ else if eq .Severity "warning" }}warning{{ else }}note{{ end }}",
+          "message": {"text": "{{ .Message | jsonEscape }}"},
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {"uri": "{{ $path | jsonEscape }}"},
+                "region": {
+                  "startLine": {{ .Line }},
+                  "startColumn": {{ index .Span 0 }},
+                  "endColumn": {{ add (index .Span 1) 1 }},
+                  "snippet": {"text": "{{ .Match | jsonEscape }}"}
+                }
+              }
+            }
+          ]
+        }
+{{- $first = false -}}
+{{- end -}}
+{{- end }}
+      ]
+    }
+  ]
+}
+```
