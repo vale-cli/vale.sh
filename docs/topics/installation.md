@@ -32,7 +32,7 @@ Vale can also be found at a number of [other package repositories](https://repol
 
 ## [GitHub Releases](installation.md#github-releases)
 
-[Archives of precompiled binaries](https://github.com/errata-ai/vale/releases) are available for Windows, macOS, and Linux. To use one of these, you’ll need to download the archive for your platform, extract it to a local directory, and (optionally) add the extracted directory to your `$PATH`.
+[Archives of precompiled binaries](https://github.com/vale-cli/vale/releases) are available for Windows, macOS, and Linux. To use one of these, you’ll need to download the archive for your platform, extract it to a local directory, and (optionally) add the extracted directory to your `$PATH`.
 
 ## [Docker](installation.md#docker)
 

@@ -23,8 +23,7 @@ A package is a `.zip` file that contains a `.vale.ini` file, a `StylesPath` fold
 StylesPath = .github/styles
 MinAlertLevel = suggestion
 
-Packages = Microsoft,
-https://github.com/errata-ai/errata.ai/releases/download/v1.0.0/Test.zip
+Packages = Microsoft, https://github.com/vale-cli/write-good/releases/download/v0.4.0/write-good.zip
 
 [README.md]
 BasedOnStyles = Vale
@@ -45,7 +44,7 @@ The `Packages` key accepts four types of values:
 {% step %}
 ### Style-only
 
-Style-only (such as [write-good](https://github.com/errata-ai/write-good)) packages are a `.zip` archive of a single style folder:
+Style-only (such as [write-good](https://github.com/vale-cli/write-good)) packages are a `.zip` archive of a single style folder:
 
 ```console
 $ unzip write-good.zip
@@ -69,7 +68,7 @@ After running the `sync` command, the style will be added to the active `StylesP
 {% step %}
 ### Config-only
 
-Config-only (such as [Hugo](https://github.com/errata-ai/Hugo)) packages are a `.zip` archive of a single `.vale.ini` file:
+Config-only (such as [Hugo](https://github.com/vale-cli/Hugo)) packages are a `.zip` archive of a single `.vale.ini` file:
 
 ```console
 $ unzip Hugo.zip

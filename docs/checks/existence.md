@@ -25,7 +25,7 @@ tokens:
   - arguably
 ```
 
-These tokens can be anything from simple phrases (as in the above example) to regular expressions—e.g., [the number of spaces between sentences](https://github.com/errata-ai/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/errata-ai/Google/blob/master/Google/Quotes.yml).
+These tokens can be anything from simple phrases (as in the above example) to regular expressions—e.g., [the number of spaces between sentences](https://github.com/vale-cli/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/vale-cli/Google/blob/master/Google/Quotes.yml).
 
 ### [tokens](existence.md#tokens)
 

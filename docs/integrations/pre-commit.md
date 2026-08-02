@@ -8,7 +8,7 @@ To get started, here’s an example configuration that incorporates running `val
 
 ```yaml
 repos:
-  - repo: https://github.com/errata-ai/vale
+  - repo: https://github.com/vale-cli/vale
     rev: 16d3a7f
     hooks:
       - id: vale
@@ -19,4 +19,4 @@ repos:
         args: [--output=line, --minAlertLevel=error]
 ```
 
-https://github.com/errata-ai/vale-action https://plugins.jetbrains.com/plugin/19613-vale-cli/docs
+https://github.com/vale-cli/vale-action https://plugins.jetbrains.com/plugin/19613-vale-cli/docs

@@ -20,7 +20,7 @@ message: "Did you really mean '%s'?"
 level: error
 ```
 
-By default, `spelling` includes a custom, open-source [dictionary for American English](https://github.com/errata-ai/en_US-web).
+By default, `spelling` includes a custom, open-source [dictionary for American English](https://github.com/vale-cli/en_US-web).
 
 ## [Dictionaries](spelling.md#dictionaries)
 

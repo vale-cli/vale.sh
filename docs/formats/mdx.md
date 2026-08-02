@@ -22,7 +22,7 @@ By default, Vale ignores:
 
 ## [The MDX package](mdx.md#the-mdx-package)
 
-Not every inline expression an MDX file contains is valid JavaScript, and one that isn't makes the parser throw -- which ends the run rather than the file. The [`MDX`](https://github.com/errata-ai/MDX) package carries the configuration for those cases:
+Not every inline expression an MDX file contains is valid JavaScript, and one that isn't makes the parser throw -- which ends the run rather than the file. The [`MDX`](https://github.com/vale-cli/MDX) package carries the configuration for those cases:
 
 ```ini
 Packages = MDX

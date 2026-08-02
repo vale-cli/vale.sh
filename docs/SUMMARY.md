@@ -78,7 +78,7 @@
 
 * [CircleCI](https://circleci.com/developer/orbs/orb/circleci/vale)
 * [Emacs](https://github.com/tpeacock19/flymake-vale)
-* [GitHub Actions](https://github.com/errata-ai/vale-action)
+* [GitHub Actions](https://github.com/vale-cli/vale-action)
 * [pre-commit](integrations/pre-commit.md)
 * [JetBrains](https://plugins.jetbrains.com/plugin/19613-vale-cli/docs)
 * [Laravel](https://github.com/beyondcode/laravel-prose-linter)
