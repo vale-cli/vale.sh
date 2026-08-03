@@ -72,4 +72,4 @@ ENTRYPOINT ["/bin/vale"]
 | Source | Documentation                                                                    | Status       |
 | ------ | -------------------------------------------------------------------------------- | ------------ |
 | `PyPI` | [`project/vale`](https://pypi.org/project/vale/)                                 | active       |
-| `NPM`  | [`package/@ocular-d/vale-bin`](https://www.npmjs.com/package/@ocular-d/vale-bin) | unmaintained |
+| `NPM`  | [`package/@vvago/vale`](https://www.npmjs.com/package/@vvago/vale)               | active       |
