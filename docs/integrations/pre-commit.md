@@ -9,7 +9,7 @@ To get started, here’s an example configuration that incorporates running `val
 ```yaml
 repos:
   - repo: https://github.com/vale-cli/vale
-    rev: 16d3a7f
+    rev: v3.17.0
     hooks:
       - id: vale
         name: vale sync
@@ -18,5 +18,12 @@ repos:
       - id: vale
         args: [--output=line, --minAlertLevel=error]
 ```
+
+Pin `rev` to a release tag rather than a commit. A commit pin is a version like
+any other and goes stale silently: the hook keeps installing whatever Vale was
+at that moment, so fixes released since then never reach it. A configuration
+pinned to an old revision can fail on features the docs describe — a `Vocab`
+that Vale reports as missing, for one — while the same setup works on a current
+release.
 
 https://github.com/vale-cli/vale-action https://plugins.jetbrains.com/plugin/19613-vale-cli/docs
