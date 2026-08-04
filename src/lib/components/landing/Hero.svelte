@@ -7,6 +7,7 @@
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import { assistants } from '$lib/assistants';
 	import BrandIcon from './BrandIcon.svelte';
+	import Sparkles from 'lucide-svelte/icons/sparkles';
 
 	let { stats }: { stats: Stats } = $props();
 
@@ -87,7 +88,12 @@
 						rel="noreferrer"
 						class="inline-flex items-center gap-1.5 font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
 					>
-						<BrandIcon name={assistant.label} slug={assistant.slug} class="h-4 w-4" />
+						<BrandIcon
+							name={assistant.label}
+							slug={assistant.slug}
+							size="h-3.5 w-3.5"
+							class="opacity-80"
+						/>
 						{assistant.label}
 						<ArrowUpRight class="h-3.5 w-3.5" />
 					</a>
@@ -97,6 +103,7 @@
 					href="/skills"
 					class="inline-flex items-center gap-1.5 font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
 				>
+					<Sparkles class="h-3.5 w-3.5 opacity-80" />
 					Agent skills
 					<ArrowRight class="h-3.5 w-3.5" />
 				</a>

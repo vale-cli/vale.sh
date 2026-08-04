@@ -46,7 +46,12 @@
 					rel="noreferrer"
 					class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:border-lime-500/40 hover:text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:hover:text-lime-400"
 				>
-					<BrandIcon name={assistant.label} slug={assistant.slug} class="h-4 w-4" />
+					<BrandIcon
+						name={assistant.label}
+						slug={assistant.slug}
+						size="h-3.5 w-3.5"
+						class="opacity-80"
+					/>
 					{assistant.label}
 					<ArrowUpRight class="h-3.5 w-3.5" />
 				</a>
