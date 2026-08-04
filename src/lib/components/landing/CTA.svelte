@@ -21,7 +21,8 @@
 	<p class="text-sm/6 text-muted-foreground">
 		Setting up with a coding agent? Drop
 		<a href="/AGENTS.md" class="font-semibold text-lime-500 hover:underline">AGENTS.md</a>
-		in your repository and it has what an assistant needs to install Vale, write a config, and run it
-		without guessing.
+		in your repository, or pick one of the
+		<a href="/skills" class="font-semibold text-lime-500 hover:underline">agent skills</a>
+		for setup, fixing alerts, or wiring up CI.
 	</p>
 </div>

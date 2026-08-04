@@ -53,7 +53,7 @@
 			clone: 'https://gitlab.com/gitlab-org/gitlab.git',
 			dir: 'gitlab',
 			target: 'doc/',
-			glob: "!*graphql/reference*",
+			glob: '!*graphql/reference*',
 			pages: 2826,
 			mb: 31.3,
 			rules: 82,
@@ -218,9 +218,9 @@
 		</p>
 
 		<p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-			Format moves this number more than corpus size does. Markdown Vale parses itself, at about 7 ms
-			a page. reStructuredText and AsciiDoc go first through the tools that define them—Docutils and
-			Asciidoctor—and Vale holds those open for the whole run instead of starting one per page,
+			Format moves this number more than corpus size does. Markdown Vale parses itself, at about 7
+			ms a page. reStructuredText and AsciiDoc go first through the tools that define them—Docutils
+			and Asciidoctor—and Vale holds those open for the whole run instead of starting one per page,
 			which is most of the difference between 53 ms and 128 ms a page here and what those
 			conversions used to cost. Rule count matters second: Docker runs fourteen rules, GitLab
 			eighty-two.
@@ -339,11 +339,11 @@
 			<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 				Vale v3.17.0, built from commit
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">5f071ef5</code>, on an
-				Apple M1 with 8 cores, macOS 15.7. The GitLab figures use commit
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">57f859d1</code> and the
-				<ExternalLink href="https://gitlab.com/gitlab-org/gitlab/-/blob/master/.vale.ini"
-					>.vale.ini</ExternalLink
-				> in that repository, unmodified. The per-page figures use this site's documentation with
+				Apple M1 with 8 cores, macOS 15.7. The {current.name} figures use commit
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">{current.commit}</code>
+				and the
+				<ExternalLink href={current.config}>.vale.ini</ExternalLink> in that repository, unmodified.
+				The per-page figures use this site's documentation with
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]"
 					>Vale, Microsoft, Google, write-good, proselint</code
 				>

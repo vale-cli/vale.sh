@@ -108,7 +108,9 @@ code, `--output=JSON` is the format to parse, and a term that trips spell check
 belongs in a vocabulary rather than in a disabled rule.
 
 Save it in the root of your repository, where most assistants read it
-automatically.
+automatically. For task-shaped work — fixing alerts, triaging a first run,
+adding a vocabulary — there are [agent skills](https://vale.sh/skills) to copy
+in alongside it.
 
 ## [Where to go next](quickstart.md#where-to-go-next)
 

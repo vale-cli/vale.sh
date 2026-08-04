@@ -4,6 +4,8 @@
 	import Terminal from './Terminal.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Star from 'lucide-svelte/icons/star';
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import { assistants } from '$lib/assistants';
 
 	let { stats }: { stats: Stats } = $props();
 
@@ -68,6 +70,45 @@
 					Star on GitHub
 				</a>
 			</div>
+
+			<!--
+				Setting up with an assistant, for people who would rather not read the
+				quickstart. The links carry the prompt, so the chat opens already
+				pointed at vale.sh/AGENTS.md.
+			-->
+			<p class="mt-8 text-sm text-muted-foreground">Setting up with an agent?</p>
+
+			<div class="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-sm">
+				{#each assistants as assistant}
+					<a
+						href={assistant.href}
+						target="_blank"
+						rel="noreferrer"
+						class="inline-flex items-center gap-1 font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
+					>
+						{assistant.label}
+						<ArrowUpRight class="h-3.5 w-3.5" />
+					</a>
+				{/each}
+				<span class="text-border" aria-hidden="true">·</span>
+				<a
+					href="/skills"
+					class="inline-flex items-center gap-1 font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
+				>
+					Agent skills
+					<ArrowRight class="h-3.5 w-3.5" />
+				</a>
+			</div>
+
+			<p class="mt-3 text-xs text-muted-foreground">
+				Thanks to <a
+					href="https://claude.com/contact-sales/claude-for-oss"
+					target="_blank"
+					rel="noreferrer"
+					class="font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
+					>Claude for Open Source</a
+				>.
+			</p>
 		</div>
 
 		<!-- Terminal demo -->
