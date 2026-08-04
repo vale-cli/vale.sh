@@ -3,6 +3,7 @@
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import { skills } from '$lib/data/skills';
 	import { assistants } from '$lib/assistants';
+	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 
 	const description =
 		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, and CI. Free, local, and driven by the CLI.';
@@ -45,6 +46,7 @@
 					rel="noreferrer"
 					class="inline-flex items-center gap-1.5 rounded-md border border-border px-3 py-1.5 text-sm font-medium transition-colors hover:border-lime-500/40 hover:text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:hover:text-lime-400"
 				>
+					<BrandIcon name={assistant.label} slug={assistant.slug} class="h-4 w-4" />
 					{assistant.label}
 					<ArrowUpRight class="h-3.5 w-3.5" />
 				</a>

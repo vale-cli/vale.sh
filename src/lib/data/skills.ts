@@ -8,6 +8,10 @@
  * `summary` is what the skill does; `guard` is the mistake it exists to stop,
  * because that is usually the reason to reach for one rather than let an agent
  * improvise.
+ *
+ * Each skill states its own trigger phrases, checks its prerequisites before
+ * touching anything, and ends with a report — an agent that cannot run Vale
+ * should say so, not improvise around it.
  */
 
 export type Skill = {
@@ -34,7 +38,7 @@ export const skills: Skill[] = [
 		summary:
 			'Fix alerts a file at a time, applying the replacement each rule defines, one pull request per file.',
 		guard:
-			'Error level by default, markup preserved, and never silencing a rule to make the run pass.',
+			'Error level by default, markup preserved, one branch per file, and never silencing a rule to make the run pass.',
 		path: `${base}/vale-fix/SKILL.md`
 	},
 	{

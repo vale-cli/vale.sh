@@ -1,47 +1,64 @@
 ---
 name: vale-triage
-description: Turn a first Vale run on an existing corpus into a short, ordered plan — which rules to fix, which to downgrade, which to switch off.
+description: Turn a large first Vale run into a decision per rule — fix, downgrade, or switch off. Use when the user says "too many alerts", "where do we start", "vale is too noisy", or has just added Vale to an existing corpus.
 ---
 
 # Triage a first Vale run
 
-Use when Vale has just been added to a repository that already has a lot of
-prose, and the alert count is too large to act on directly.
+## When to use this
 
-The goal is a decision per rule, not a fixed file.
+Vale runs, the count is in the thousands, and the question is where to start.
+The output of this skill is a short ordered plan, not a fixed file.
 
-## Steps
+## Prerequisites
 
-1. **Count by rule, not by file:**
+1. `vale ls-config` resolves.
+2. You know which path represents the real corpus, not a subset.
 
-   ```bash
-   vale --output=JSON <path> > /tmp/vale.json
-   ```
+## Workflow
 
-   Group the alerts by `Check` and by `Severity`. A handful of rules almost
-   always produce most of the output.
+**1. Count by rule, not by file.**
 
-2. **Report the shape before proposing anything**: total alerts, the split by
-   severity, and the ten rules responsible for the most. A team that sees
-   "18,000 alerts" reaches for `MinAlertLevel`; a team that sees "four rules
-   are 80% of this" makes a decision.
+```bash
+vale --output=JSON <path> > /tmp/vale.json
+jq -r 'to_entries | map(.value[]) | group_by(.Check) | map({check: .[0].Check, n: length, severity: .[0].Severity}) | sort_by(-.n) | .[] | "\(.n)\t\(.severity)\t\(.check)"' /tmp/vale.json | head -20
+```
 
-3. **Sort each of the top rules into one of three buckets**, and say which and
-   why:
+**2. Report the shape before proposing anything**: total, the split by
+severity, and the ten rules responsible for the most. A team that hears
+"18,000 alerts" reaches for `MinAlertLevel`; a team that hears "four rules are
+80% of this" makes a decision.
 
-   - **Fix** — few enough hits to clear now, and the rule is right.
-   - **Downgrade** — the rule is right but the backlog is real. Set it to
-     `suggestion` so it guides new writing without failing anything.
-   - **Disable** — the rule does not match how this project writes. Name it in
-     the config with a comment saying why.
+**3. Sort each of the top rules into one bucket, and say which and why:**
 
-4. **Check what actually blocks.** Only `error` sets a non-zero exit code, so a
-   pipeline can adopt Vale immediately with everything else advisory. That is
-   usually the right first move, and it is worth saying explicitly.
+| bucket | when | what to write |
+|---|---|---|
+| **Fix** | few hits, rule is right | do it now, or hand to `vale-fix` |
+| **Downgrade** | rule is right, backlog is real | set it to `suggestion` so it guides new writing |
+| **Disable** | rule does not match how this project writes | name it in the config *with a comment saying why* |
+
+**4. Say what currently blocks.** Only `error` exits non-zero, so a pipeline
+can adopt Vale immediately with everything else advisory. That is usually the
+right first move and worth stating outright.
+
+**5. Report.**
+
+```
+Vale triage
+===========
+Total: 18,412   errors 3 · warnings 1,204 · suggestions 17,205
+Blocking today: 3 alerts across 2 rules
+
+Top rules
+  9,881  suggestion  Microsoft.Wordiness      → downgrade (real backlog, right rule)
+  3,442  suggestion  Microsoft.Contractions   → disable (house style differs)
+  1,204  warning     Microsoft.Headings       → fix (mechanical, 40 files)
+```
 
 ## Do not
 
-- Do not propose raising `MinAlertLevel` as the fix. It hides the alerts
-  without deciding anything, and the decisions are the point.
-- Do not disable a rule because it is noisy on legacy content when new content
-  would pass it. Downgrade instead.
+- Do not propose raising `MinAlertLevel` as the fix. It hides alerts without
+  deciding anything, and the decisions are the point.
+- Do not disable a rule because it is noisy on legacy content that new content
+  would pass. Downgrade it.
+- Do not recommend a bucket without saying what it costs.

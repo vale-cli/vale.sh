@@ -1,44 +1,64 @@
 ---
 name: vale-vocab
-description: Add project terms to a Vale vocabulary so spell check accepts them, instead of disabling the rule.
+description: Add project terms to a Vale vocabulary so spell check accepts them. Use when the user says "vale doesn't know our product name", "stop flagging this word", or spelling alerts are firing on correct terms.
 ---
 
 # Teach Vale a project's own words
 
-Use when `Vale.Spelling` flags product names, APIs, or jargon that are spelled
-correctly for this project.
+## When to use this
 
-## Steps
+`Vale.Spelling` is flagging terms that are spelled correctly for this
+project — product names, APIs, jargon.
 
-1. **Create the vocabulary** if it does not exist. It lives *inside*
-   `StylesPath` but is the one part of it that is yours:
+The alternative someone will otherwise reach for is disabling spell check
+entirely, which stops checking every other word in the repository over one
+proper noun.
 
-   ```
-   styles/config/vocabularies/<Project>/accept.txt
-   styles/config/vocabularies/<Project>/reject.txt
-   ```
+## Prerequisites
 
-2. **Name it in `.vale.ini`:**
+1. `vale ls-config` resolves and shows a `StylesPath`.
+2. The flagged terms really are the project's spelling. Check the docs or the
+   product itself — the vocabulary becomes the reference everyone else follows.
 
-   ```ini
-   Vocab = <Project>
-   ```
+## Workflow
 
-3. **Add one term per line** to `accept.txt`. Entries are case-sensitive
-   regular expressions, so `Kubernetes` accepts that spelling and not
-   `kubernetes` — which is usually what a project wants, because the casing is
-   part of the name.
+**1. Collect the terms Vale is actually flagging**, rather than guessing:
 
-4. **Use `reject.txt` for terms the project has banned** — an old product name,
-   a deprecated spelling. Rejected terms are flagged wherever they appear.
+```bash
+vale --output=JSON <path> | jq -r '.[][] | select(.Check == "Vale.Spelling") | .Match' | sort | uniq -c | sort -rn
+```
 
-5. **Commit the vocabulary.** Unlike the rest of `StylesPath` it is source, and
-   `vale sync` leaves it alone.
+**2. Create the vocabulary.** It lives inside `StylesPath` but is the one part
+of it that is yours and survives `vale sync`:
+
+```
+styles/config/vocabularies/<Project>/accept.txt
+styles/config/vocabularies/<Project>/reject.txt
+```
+
+**3. Name it in `.vale.ini`:**
+
+```ini
+Vocab = <Project>
+```
+
+**4. Add one term per line** to `accept.txt`. Entries are case-sensitive
+regular expressions, so `Kubernetes` accepts that spelling and not
+`kubernetes` — usually what a project wants, because the casing is part of the
+name.
+
+**5. Use `reject.txt`** for terms the project has banned: an old product name,
+a deprecated spelling. Rejected terms are flagged wherever they appear.
+
+**6. Re-run** and report what is left.
+
+**7. Commit the vocabulary.** Unlike the rest of `StylesPath`, it is source.
 
 ## Do not
 
 - **Do not disable `Vale.Spelling`.** One unknown product name is not a reason
-  to stop checking every other word in the repository.
-- **Do not add a misspelling to `accept.txt` to clear an alert.** Check the
-  term is actually how the project writes it — the vocabulary becomes the
-  reference other tools and writers follow.
+  to stop checking the repository.
+- **Do not add a misspelling to `accept.txt`** to clear an alert. If the term is
+  wrong, fix the prose.
+- **Do not bulk-add every flagged token.** Read the list first; some of them
+  are genuine typos, and that is the point of the rule.

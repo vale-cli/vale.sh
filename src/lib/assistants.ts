@@ -11,6 +11,6 @@ const prompt = encodeURIComponent(
 );
 
 export const assistants = [
-	{ label: 'Open in Claude', href: `https://claude.ai/new?q=${prompt}` },
-	{ label: 'Open in ChatGPT', href: `https://chatgpt.com/?q=${prompt}` }
+	{ label: 'Open in Claude', slug: 'claude', href: `https://claude.ai/new?q=${prompt}` },
+	{ label: 'Open in ChatGPT', slug: 'chatgpt', href: `https://chatgpt.com/?q=${prompt}` }
 ];

@@ -1,25 +1,33 @@
 ---
 name: vale-ci
-description: Run Vale in CI or a pre-commit hook, failing the build on what the project decided should fail and nothing else.
+description: Run Vale in GitHub Actions, a pre-commit hook, or another runner. Use when the user says "add vale to CI", "run vale on PRs", "add a pre-commit hook", or "make the build fail on style errors".
 ---
 
 # Put Vale in the pipeline
 
-Use when Vale runs locally and should now run automatically.
+## When to use this
 
-## What decides pass or fail
+Vale runs locally and should now run automatically.
 
-**Only `error` sets a non-zero exit code.** Warnings and suggestions exit 0. So
-a job wired up naively passes no matter how much it reports — which is fine, and
-is usually the right way to start, as long as everyone knows that is what it is
-doing.
+## Prerequisites
 
-Say which of the two you are setting up:
+1. `vale ls-config` resolves, and a plain `vale <path>` run works locally. Do
+   not wire up CI for a config that does not resolve — the failure will look
+   like a CI problem.
+2. The user has said whether the job should block. Ask if not.
 
-- **Advisory** — Vale reports, the job stays green. Good for adopting Vale on a
-  corpus that has never had it.
+## Advisory or blocking
+
+**Only `error` sets a non-zero exit code.** Warnings and suggestions exit 0, so
+a job wired up naively passes no matter how much it reports.
+
+- **Advisory** — Vale reports, the job stays green. The right way to adopt Vale
+  on a corpus that has never had it.
 - **Blocking** — the rules the team cares about are set to `error` in the
-  config, and the job fails on them.
+  config, and the job fails on those.
+
+Say which one you are setting up, in those words. "It runs in CI" tells nobody
+whether it can stop a merge.
 
 ## GitHub Actions
 
@@ -29,10 +37,10 @@ Say which of the two you are setting up:
     files: docs
 ```
 
-It posts alerts as review comments on the pull request, which is where a
-writer will actually see them.
+Alerts arrive as review comments on the pull request, which is where a writer
+will see them.
 
-## Pre-commit
+## pre-commit
 
 ```yaml
 repos:
@@ -47,17 +55,21 @@ Pin `rev` to a release. Hooks that float break at the worst time.
 ## Any other runner
 
 ```bash
-vale --output=line docs/
+vale --no-global --output=line docs/
 ```
 
 `--output=line` gives `path:line:col:rule:message`, which most CI systems can
-annotate. Add `--no-global` so the run does not depend on a config on the
-machine.
+turn into annotations. `--no-global` keeps a config on the machine from
+changing the result.
+
+If the runner has no cached `StylesPath`, `vale sync` has to run first — and
+that means a style updating upstream can fail a build nobody changed. Pin
+`Packages` to a release URL rather than a moving reference.
 
 ## Do not
 
-- Do not add `--no-exit` to make a failing job pass. If the team does not want
-  those alerts to block, change the levels in the config, where the decision is
-  visible.
-- Do not run `vale sync` and lint in one step without pinning `Packages`. A
-  style that updates upstream will fail a build nobody changed.
+- **Do not add `--no-exit` to make a failing job pass.** If those alerts should
+  not block, change the levels in the config, where the decision is visible to
+  the team.
+- **Do not raise `MinAlertLevel` in CI only.** A config that reports different
+  things locally and in CI is how people stop trusting the tool.
