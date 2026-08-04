@@ -99,6 +99,17 @@ $ echo $?
 
 See [MinAlertLevel](../keys/minalertlevel.md) for changing what gets reported, and [BasedOnStyles](../keys/basedonstyles.md) for enabling and disabling rules.
 
+## [Setting up with a coding agent](quickstart.md#setting-up-with-a-coding-agent)
+
+If an AI assistant is doing the setup, give it [AGENTS.md](https://vale.sh/AGENTS.md)
+rather than this page. It covers the same four steps, plus the things that are
+easy to get wrong without reading further: only `error` sets a non-zero exit
+code, `--output=JSON` is the format to parse, and a term that trips spell check
+belongs in a vocabulary rather than in a disabled rule.
+
+Save it in the root of your repository, where most assistants read it
+automatically.
+
 ## [Where to go next](quickstart.md#where-to-go-next)
 
 * Browse the [Package Explorer](https://vale.sh/explorer) for styles beyond Microsoft.

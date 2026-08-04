@@ -10,9 +10,18 @@
 			class="inline-flex h-9 items-center justify-center whitespace-nowrap rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50"
 			>Get started</a
 		>
-		<a href="https://github.com/errata-ai" class="text-sm/6 font-semibold"
+		<a href="https://github.com/vale-cli" class="text-sm/6 font-semibold"
 			>Check out the source code
 			<span aria-hidden="true">→</span></a
 		>
 	</div>
+</div>
+
+<div class="mx-auto max-w-7xl px-6 pb-24 sm:pb-32 lg:px-8">
+	<p class="text-sm/6 text-muted-foreground">
+		Setting up with a coding agent? Drop
+		<a href="/AGENTS.md" class="font-semibold text-lime-500 hover:underline">AGENTS.md</a>
+		in your repository and it has what an assistant needs to install Vale, write a config, and run it
+		without guessing.
+	</p>
 </div>
