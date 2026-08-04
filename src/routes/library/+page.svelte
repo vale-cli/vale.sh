@@ -6,6 +6,7 @@
 	import { search as searchLambda } from '$lib/api';
 	import FileText from 'lucide-svelte/icons/file-text';
 	import Play from 'lucide-svelte/icons/play';
+	import Presentation from 'lucide-svelte/icons/presentation';
 
 	type Media = {
 		title: string;
@@ -22,12 +23,9 @@
 
 	let activeType = $state('all');
 	const typeLabel = (t: string) =>
-		({ all: 'All', post: 'Articles', video: 'Videos' })[t] ?? t;
+		({ all: 'All', post: 'Articles', video: 'Videos', talk: 'Talks' })[t] ?? t;
 
-	const filters = $derived([
-		'all',
-		...Array.from(new Set(media.map((m) => m.type)))
-	]);
+	const filters = $derived(['all', ...Array.from(new Set(media.map((m) => m.type)))]);
 
 	const items = $derived(
 		media
@@ -221,6 +219,8 @@
 						>
 							{#if m.type === 'video'}
 								<Play class="h-9 w-9 text-muted-foreground/40" />
+							{:else if m.type === 'talk'}
+								<Presentation class="h-9 w-9 text-muted-foreground/40" />
 							{:else}
 								<FileText class="h-9 w-9 text-muted-foreground/40" />
 							{/if}
@@ -240,7 +240,7 @@
 							href={m.url}
 							target="_blank"
 							rel="noreferrer"
-							class="transition-colors after:absolute after:inset-0 group-hover:text-lime-500 focus:outline-none focus-visible:underline"
+							class="transition-colors after:absolute after:inset-0 focus:outline-none focus-visible:underline group-hover:text-lime-500"
 						>
 							{m.title}
 						</a>
