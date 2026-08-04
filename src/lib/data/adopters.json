@@ -145,8 +145,8 @@
 	{
 		"name": "CircleCI",
 		"category": "Developer tools",
-		"context": "Checks the CircleCI documentation with Vale.",
-		"url": "https://github.com/circleci/circleci-docs/blob/main/.vale.ini",
+		"context": "Writes Vale into the docs style guide its AI assistants follow, with a vale-linter skill that fixes error-level alerts and opens a pull request per file.",
+		"url": "https://github.com/circleci/circleci-docs/blob/main/AGENTS.md",
 		"github": "circleci",
 		"avatar": "/users/avatars/circleci.png"
 	},
@@ -445,5 +445,13 @@
 		"url": "https://hpc.nmsu.edu/contribution/vale/",
 		"github": "nmsu-hpc",
 		"avatar": "/users/avatars/nmsu-hpc.png"
+	},
+	{
+		"name": "Rubin Observatory",
+		"category": "Community & services",
+		"context": "Lints the Rubin Science Platform docs against the Google style package plus house RSP rules, advisory on every pull request.",
+		"url": "https://rsp.lsst.io/contributing/vale.html",
+		"github": "lsst",
+		"avatar": "/users/avatars/lsst.png"
 	}
 ]

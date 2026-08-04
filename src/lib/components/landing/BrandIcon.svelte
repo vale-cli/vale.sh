@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { brandIcons } from '$lib/data/brand-icons';
+	import { brandIcons, brandIconViewBox } from '$lib/data/brand-icons';
 
 	/**
 	 * Resolves a mark in three steps: a Simple Icons glyph, then a GitHub org
@@ -15,11 +15,13 @@
 	}: { name: string; slug?: string; avatar?: string; class?: string } = $props();
 
 	const path = $derived(slug ? brandIcons[slug] : undefined);
+	// Marks Simple Icons does not carry are not all drawn 24x24.
+	const box = $derived((slug && brandIconViewBox[slug]) || '0 0 24 24');
 </script>
 
 {#if path}
 	<svg
-		viewBox="0 0 24 24"
+		viewBox={box}
 		role="img"
 		aria-hidden="true"
 		fill="currentColor"
