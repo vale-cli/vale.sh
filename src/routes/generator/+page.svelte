@@ -2,26 +2,13 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import { copyStringToClipboard } from '$lib/utils.js';
 	import TextEditor from '$lib/components/TextEditor.svelte';
-	import { ConfigIniParser } from 'config-ini-parser';
 	import { supplementaryStyles, baseStyles, configs } from './config.js';
-	import { clean } from './util.js';
 	import Check from 'lucide-svelte/icons/check';
 	import Copy from 'lucide-svelte/icons/copy';
 	import Download from 'lucide-svelte/icons/download';
 	import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
 
 	type Option = { value: string; label: string; description: string };
-
-	let commentedHeader = `[*.{md}]
-# ^ This section applies to only Markdown files.
-#
-# You can change (or add) file extensions here
-# to apply these settings to other file types.
-#
-# For example, to apply these settings to both
-# Markdown and reStructuredText:
-#
-# [*.{md,rst}]`;
 
 	let value = $state(`StylesPath = styles
 
@@ -86,12 +73,34 @@ BasedOnStyles = Vale`);
 		URL.revokeObjectURL(url);
 	}
 
-	// Generate the configuration file when any of the options change:
-	$effect(() => {
-		let pkgs = [];
-		let styles = ['Vale'];
+	/*
+		The section glob follows the formats selected. MDX files are `.mdx`, and a
+		`[*.{md}]` section does not match them -- the styles would install, `vale
+		sync` would succeed, and nothing would ever be linted (#95).
+	*/
+	const section = $derived(selectedConfigs.includes('MDX') ? '*.{md,mdx}' : '*.{md}');
 
-		const parser = new ConfigIniParser();
+	function header(glob: string) {
+		return `[${glob}]
+# ^ This section applies to only ${glob === '*.{md,mdx}' ? 'Markdown and MDX' : 'Markdown'} files.
+#
+# You can change (or add) file extensions here
+# to apply these settings to other file types.
+#
+# For example, to apply these settings to both
+# Markdown and reStructuredText:
+#
+# [*.{md,rst}]`;
+	}
+
+	/*
+		Composed rather than parsed and re-stringified. The editor is read-only, so
+		the file is a function of the selections alone -- and rewriting a section
+		name through the ini parser left the old section behind.
+	*/
+	$effect(() => {
+		const pkgs: string[] = [];
+		const styles = ['Vale'];
 
 		const base = baseStyles.find((f) => f.value === baseStyle);
 		if (base !== undefined) {
@@ -99,30 +108,40 @@ BasedOnStyles = Vale`);
 			styles.push(base.value);
 		}
 
-		const supplementary = selectedStyles.map((s) => supplementaryStyles.find((f) => f.value === s));
-		for (const s of supplementary) {
-			if (s !== undefined) {
-				pkgs.push(s.value);
-				styles.push(s.value);
+		for (const s of selectedStyles) {
+			const found = supplementaryStyles.find((f) => f.value === s);
+			if (found !== undefined) {
+				pkgs.push(found.value);
+				styles.push(found.value);
 			}
 		}
 
-		const cfgs = selectedConfigs.map((c) => configs.find((f) => f.value === c));
-		for (const c of cfgs) {
-			if (c !== undefined) {
-				pkgs.push(c.value);
+		for (const c of selectedConfigs) {
+			const found = configs.find((f) => f.value === c);
+			if (found !== undefined) {
+				pkgs.push(found.value);
 			}
 		}
 
-		parser.parse(value);
-		if (pkgs.length == 0) {
-			parser.removeOption(null, 'Packages');
-		} else {
-			parser.set(null, 'Packages', pkgs.join(','));
+		const lines = ['StylesPath = styles', '', 'MinAlertLevel = suggestion', ''];
+		if (pkgs.length > 0) {
+			lines.push(`Packages = ${pkgs.join(', ')}`, '');
 		}
+		if (selectedConfigs.includes('MDX')) {
+			// Vale parses MDX through an external program; without it the run fails
+			// at the first .mdx file rather than at sync. See docs/formats/mdx.
+			lines.push(
+				'# MDX is parsed by an external program. Install it before running Vale:',
+				'#',
+				'#   npm install -g mdx2vast',
+				'#',
+				'# https://docs.vale.sh/formats/mdx',
+				''
+			);
+		}
+		lines.push(header(section), `BasedOnStyles = ${styles.join(', ')}`);
 
-		parser.set('*.{md}', 'BasedOnStyles', styles.join(','));
-		value = clean(parser.stringify()).replace('[*.{md}]', commentedHeader);
+		value = lines.join('\n');
 	});
 </script>
 
@@ -164,7 +183,9 @@ BasedOnStyles = Vale`);
 		</span>
 		<span class="min-w-0">
 			<span class="block text-sm font-medium text-foreground">{item.label}</span>
-			<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground">{item.description}</span>
+			<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground"
+				>{item.description}</span
+			>
 		</span>
 	</button>
 {/snippet}
@@ -265,7 +286,9 @@ BasedOnStyles = Vale`);
 		<!-- Output -->
 		<div class="lg:sticky lg:top-24 lg:self-start">
 			<div class="overflow-hidden rounded-xl border border-border shadow-sm">
-				<div class="flex items-center justify-between gap-2 border-b border-border bg-muted/40 px-3 py-2">
+				<div
+					class="flex items-center justify-between gap-2 border-b border-border bg-muted/40 px-3 py-2"
+				>
 					<div class="flex items-center gap-2 pl-1">
 						<span class="h-2.5 w-2.5 rounded-full bg-border"></span>
 						<span class="h-2.5 w-2.5 rounded-full bg-border"></span>
@@ -298,11 +321,14 @@ BasedOnStyles = Vale`);
 				<TextEditor bind:value mode="ini" readonly={true} height="440px" />
 			</div>
 
-			<div class="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground">
+			<div
+				class="mt-4 rounded-lg border border-border bg-muted/30 p-4 text-sm text-muted-foreground"
+			>
 				<b class="text-foreground">Tip:</b> After saving your
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">.vale.ini</code>,
-				run
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code>
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">.vale.ini</code
+				>, run
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code
+				>
 				to install the packages. Browse everything available in the
 				<a class="font-medium text-lime-500 hover:underline" href="/explorer">Package Explorer</a>.
 			</div>
