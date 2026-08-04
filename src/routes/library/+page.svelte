@@ -8,6 +8,9 @@
 	import Play from 'lucide-svelte/icons/play';
 	import Presentation from 'lucide-svelte/icons/presentation';
 
+	/** One search result: fields packed into `ID`, plus the matched snippet. */
+	type SearchHit = { ID: string; Fragment: string };
+
 	type Media = {
 		title: string;
 		url: string;
@@ -42,8 +45,17 @@
 	}
 	const showImage = (url: string) => url !== '' && !failedImages.has(url);
 
+	/*
+		Search results carry their fields packed into the document ID. A result
+		that does not parse is a malformed record rather than a reason to throw
+		inside the autocomplete renderer, so it comes back empty and renders as a
+		blank row.
+	*/
 	function getParts(id: string) {
-		let tag = id.match(/title=(.+)&url=(.+)&author=(.+)&year=(.+)&type=(.+)/);
+		const tag = id.match(/title=(.+)&url=(.+)&author=(.+)&year=(.+)&type=(.+)/);
+		if (tag === null) {
+			return { title: id, url: '', author: '', year: '', type: '' };
+		}
 		return {
 			title: tag[1],
 			url: tag[2],
@@ -54,28 +66,29 @@
 	}
 
 	onMount(() => {
-		const { autocomplete } = window['@algolia/autocomplete-js'];
+		// Loaded from a CDN in app.html, so there is nothing to import types from.
+		const { autocomplete } = (window as unknown as Record<string, any>)['@algolia/autocomplete-js'];
 
 		autocomplete({
 			container: '#autocomplete',
 			placeholder: 'Search topics or keywords',
 			debug: false,
 			defaultActiveItemId: 0,
-			getSources({ query }) {
+			getSources({ query }: { query: string }) {
 				return searchLambda(query)
 					.then((response) => response.json())
 					.then((data) => {
 						return [
 							{
 								sourceId: 'predictions',
-								getItemUrl({ item }) {
+								getItemUrl({ item }: { item: SearchHit }) {
 									return getParts(item.ID).url;
 								},
 								getItems() {
 									return data || [];
 								},
 								templates: {
-									noResults({ html }) {
+									noResults({ html }: { html: any }) {
 										return html`<div class="prose dark:prose-invert">
 											<h3 class="mt-0">No results found.</h3>
 											<p>Try adjusting your search with a query string:</p>
@@ -95,7 +108,15 @@
 											</ul>
 										</div>`;
 									},
-									item({ item, html, createElement }) {
+									item({
+										item,
+										html,
+										createElement
+									}: {
+										item: SearchHit;
+										html: any;
+										createElement: any;
+									}) {
 										const parsed = getParts(item.ID);
 										const sample = createElement('p', {
 											dangerouslySetInnerHTML: { __html: item.Fragment }

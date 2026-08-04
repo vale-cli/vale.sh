@@ -1,6 +1,7 @@
 import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
-import path from 'path';
+
+const dep = (name: string) => new URL(`./node_modules/${name}`, import.meta.url).pathname;
 
 export default defineConfig({
     plugins: [sveltekit()],
@@ -14,9 +15,12 @@ export default defineConfig({
     resolve: {
         alias: {
             // Force all instances of CodeMirror core to use the same physical file
-            '@codemirror/state': path.resolve('./node_modules/@codemirror/state'),
-            '@codemirror/view': path.resolve('./node_modules/@codemirror/view'),
-            '@codemirror/language': path.resolve('./node_modules/@codemirror/language'),
+            // Resolved against this file rather than the working directory, so
+            // the dedupe holds however vite is started. `path.resolve` would do
+            // the same but needs @types/node, which nothing else here wants.
+            '@codemirror/state': dep('@codemirror/state'),
+            '@codemirror/view': dep('@codemirror/view'),
+            '@codemirror/language': dep('@codemirror/language'),
         }
     }
 });

@@ -139,7 +139,7 @@ The following example converts Vale’s output to [RDJSONL](https://github.com/r
 {{end -}}
 ```
 
-Two things are worth knowing when adapting this. Reviewdog reads a range, so giving it the end of the span -- `Span` is inclusive, and reviewdog's end is not -- is what underlines the match rather than pointing at its first character. And reviewdog counts columns in UTF-8 bytes where Vale counts characters, so the two agree only until a line picks up its first multi-byte character; converting between them needs the source line, which a template can't read.
+Two things are worth knowing when adapting this. Reviewdog reads a range, so giving it the end of the span -- `Span` is inclusive, and Reviewdog's end is not -- is what underlines the match rather than pointing at its first character. And Reviewdog counts columns in UTF-8 bytes where Vale counts characters, so the two agree only until a line picks up its first multi-byte character; converting between them needs the source line, which a template can't read.
 
 ### [Creating a SARIF template](templates.md#creating-a-sarif-template)
 
