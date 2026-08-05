@@ -69,6 +69,7 @@
 ## Guides
 
 * [LSP](guides/lsp.md)
+* [MCP](guides/mcp.md)
 * [Regex](guides/regex.md)
 * [Hunspell](guides/hunspell.md)
 * [Globbing](guides/globbing.md)
