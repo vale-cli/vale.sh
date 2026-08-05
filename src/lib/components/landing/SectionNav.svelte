@@ -2,6 +2,7 @@
 	import { onMount } from 'svelte';
 	import Download from 'lucide-svelte/icons/download';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
+	import Bot from 'lucide-svelte/icons/bot';
 	import Blocks from 'lucide-svelte/icons/blocks';
 	import Building2 from 'lucide-svelte/icons/building-2';
 	import Newspaper from 'lucide-svelte/icons/newspaper';
@@ -16,6 +17,7 @@
 	const sections = $derived(
 		[
 			{ id: 'features', label: 'Features', icon: Sparkles },
+			{ id: 'ai', label: 'For agents', icon: Bot },
 			{ id: 'stats', label: 'Downloads', icon: Download },
 			{ id: 'integrations', label: 'Integrations', icon: Blocks },
 			{ id: 'adopters', label: 'Adopters', icon: Building2 },

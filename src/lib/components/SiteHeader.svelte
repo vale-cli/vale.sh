@@ -23,7 +23,7 @@
 				<DocSearch />
 			</div>
 			<nav class="flex items-center">
-				<a href={siteConfig.links.github} target="_blank" rel="noopener noreferrer">
+				<a href={siteConfig.links.org} target="_blank" rel="noopener noreferrer">
 					<div
 						class={cn(
 							buttonVariants({

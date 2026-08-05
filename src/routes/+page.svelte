@@ -5,6 +5,7 @@
 	import SectionNav from '$lib/components/landing/SectionNav.svelte';
 	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
 	import Features from '$lib/components/landing/Features.svelte';
+	import Ai from '$lib/components/landing/Ai.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
 	import AdopterExplorer from '$lib/components/landing/AdopterExplorer.svelte';
 	import Events from '$lib/components/landing/Events.svelte';
@@ -53,6 +54,7 @@
 <LogoWall />
 <SectionNav {hasEvents} />
 <Features />
+<Ai />
 <Ecosystem stats={data.stats} />
 <Integrations />
 <AdopterExplorer />

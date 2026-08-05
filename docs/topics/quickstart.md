@@ -108,9 +108,24 @@ code, `--output=JSON` is the format to parse, and a term that trips spell check
 belongs in a vocabulary rather than in a disabled rule.
 
 Save it in the root of your repository, where most assistants read it
-automatically. For task-shaped work — fixing alerts, triaging a first run,
-adding a vocabulary — there are [agent skills](https://vale.sh/skills) to copy
-in alongside it.
+automatically.
+
+For task-shaped work — fixing alerts, triaging a first run, adding a vocabulary
+— there are [agent skills](https://vale.sh/skills) to copy in alongside it. In
+Claude Code, the skills, an edit-time linting hook, and the Vale CMS MCP server
+install together as one plugin:
+
+```
+/plugin marketplace add vale-cli/agent-tools
+/plugin install vale@agent-tools
+```
+
+The skills and the hook run the CLI you just installed and need no account. The
+hook lints each prose file as your assistant writes it and hands back only
+error-level alerts, so a mistake is fixed in the same turn it was made. The MCP
+server is the one paid piece — it belongs to [Vale CMS](https://vale.sh/cms) and
+gives an assistant the engine itself to check a rule against, rather than the
+docs about it.
 
 ## [Where to go next](quickstart.md#where-to-go-next)
 
