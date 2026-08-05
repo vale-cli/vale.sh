@@ -108,14 +108,6 @@ That is how a pattern containing `\s+` quietly matches across a blank line and j
 
 A negated character class under `ignorecase` is the classic example: the regex engine computes the case orbit of every member, at roughly 3.6× the compile cost of the `\s` it replaced.
 
-## Running it locally
-
-The MCP server also ships as a standalone binary, `valemcp`, speaking newline-delimited JSON-RPC 2.0 over stdio. The tools that make outbound requests — `fetch_guide` and `check_links` — are off unless the host opts in:
-
-```bash
-VALE_MCP_ALLOW_NETWORK=1 valemcp
-```
-
 ## See also
 
 * [Vale CMS](https://vale.sh/cms) — the hosted editor the MCP server is part of
