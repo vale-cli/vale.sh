@@ -31,7 +31,9 @@
 		<span class="ml-2.5 font-mono text-xs" style="color: var(--e-dim)">
 			<b class="font-semibold" style="color: var(--e-fg)">product-docs</b> · main
 		</span>
-		<span class="ml-auto rounded-md bg-lime-500 px-3 py-1 text-[11.5px] font-semibold text-lime-950">
+		<span
+			class="ml-auto rounded-md bg-lime-500 px-3 py-1 text-[11.5px] font-semibold text-lime-950"
+		>
 			Save
 		</span>
 	</div>
@@ -105,8 +107,9 @@
 			-->
 			<div class="flex-1 overflow-x-auto px-4 py-3.5 font-mono text-[13px] leading-[1.8]">
 				<div class="whitespace-pre">
-					<span style="color: var(--e-faint)">1</span><span class="ml-4 italic" style="color:#6c7059"
-						># "be" + optional adverb + past participle.</span
+					<span style="color: var(--e-faint)">1</span><span
+						class="ml-4 italic"
+						style="color:#6c7059"># "be" + optional adverb + past participle.</span
 					>
 				</div>
 				<div class="whitespace-pre">
@@ -122,7 +125,8 @@
 					<span style="color:#e3b168">warning</span>
 				</div>
 				<div class="whitespace-pre">
-					<span style="color: var(--e-faint)">5</span><span class="ml-4 text-lime-400">tokens</span>:
+					<span style="color: var(--e-faint)">5</span><span class="ml-4 text-lime-400">tokens</span
+					>:
 				</div>
 				<div class="whitespace-pre">
 					<span style="color: var(--e-faint)">6</span><span class="ml-4"

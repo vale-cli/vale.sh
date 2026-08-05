@@ -28,10 +28,16 @@
 		<div class="mt-12 grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
 			<div>
 				<!--
-					The failure in the middle of this transcript is the point of the whole
-					section. A demo where the model gets it right first time proves
-					nothing — the argument is that verification catches what generation
-					gets wrong. Don't "clean this up".
+					The two failures are the point of the whole section. A demo where the
+					model gets it right first time proves nothing — the argument is that
+					verification catches what generation gets wrong. Don't "clean this up".
+
+					Both errors are real output, not illustration: the regexp message is
+					what diagnose_rule returns for an unbalanced group, and the trace_rule
+					line is its actual summary when every slot matches but the sequence
+					still does not — an adverb sitting between the slots with no `skip`.
+					An earlier version invented an "unknown tag" error, which is exactly
+					the kind of detail a reader can check and find wrong.
 				-->
 				<div
 					class="overflow-hidden rounded-2xl border font-mono text-[13px] leading-[1.75]"
@@ -50,26 +56,33 @@
 							<span style="color:#7cc7f2">scaffold_rule</span>
 							<span style="color:#8a8d78">sequence · styles/House/Passive.yml</span>
 						</div>
+
+						<div class="mt-2"><span style="color:#7cc7f2">diagnose_rule</span></div>
+						<div class="text-[#f0745a]">&nbsp;&nbsp;✗ error parsing regexp: missing closing )</div>
+						<div style="color:#6c7059">&nbsp;&nbsp;&nbsp;&nbsp;in `(?m)\b(?:(?&lt;!\bthe )(…`</div>
+						<div style="color:#6c7059">&nbsp;&nbsp;↳ group balanced, retrying</div>
 						<div>
-							<span style="color:#7cc7f2">check_config</span>
-							<span class="text-[#f0745a]">✗ unknown tag "VBD_N" on line 7</span>
+							<span style="color:#7cc7f2">diagnose_rule</span>
+							<span class="text-lime-400">✓ compiles</span>
 						</div>
-						<div style="color:#6c7059">&nbsp;&nbsp;↳ corrected to VBN, retrying</div>
-						<div>
-							<span style="color:#7cc7f2">check_config</span>
-							<span class="text-lime-400">✓ 1 rule compiled</span>
-						</div>
+
+						<div class="mt-2"><span style="color:#7cc7f2">trace_rule</span></div>
+						<div class="text-[#f0745a]">&nbsp;&nbsp;✗ did not fire, though every slot</div>
+						<div class="text-[#f0745a]">&nbsp;&nbsp;&nbsp;&nbsp;accepts some word here</div>
+						<div style="color:#6c7059">&nbsp;&nbsp;↳ "carefully" sits between them; skip: 1</div>
 						<div>
 							<span style="color:#7cc7f2">lint_text</span>
-							<span class="text-lime-400">✓ 2 alerts on your sample</span>
+							<span class="text-lime-400">✓ 1 alert on your sample</span>
 						</div>
+
 						<div class="mt-2" style="color:#6c7059"># written to styles/House/Passive.yml</div>
 						<div style="color:#6c7059"># enabled in .vale.ini</div>
 					</div>
 				</div>
 				<p class="mt-4 text-sm leading-6 text-muted-foreground">
-					The model got the tag wrong on its first attempt. You never saw that, because the engine
-					rejected it before the file was written.
+					Two mistakes, neither of which reached you: one the rule would not compile, one it
+					compiled and silently matched nothing. The second is the kind CI does not catch either — a
+					rule that never fires looks exactly like a rule with nothing to report.
 				</p>
 			</div>
 
@@ -92,11 +105,11 @@
 				</div>
 
 				<div class="rounded-2xl border border-border/60 bg-card p-6">
-					<h3 class="font-semibold">It is the same engine, not a copy of it</h3>
+					<h3 class="font-semibold">It is a linter, not a lookup</h3>
 					<p class="mt-2 text-sm leading-6 text-muted-foreground">
-						The tools your assistant calls run against the binary that lints your repository in CI.
-						A rule it says compiles, compiles. A rule it says fires, fires — on the text you gave
-						it, with the severity you'll actually see.
+						The tools your assistant calls run Vale's engine in process — not a reimplementation of
+						it, and not a search over its documentation. A rule it says compiles, compiles. A rule
+						it says fires, fires — on the text you gave it, with the severity you'll actually see.
 					</p>
 					<p class="mt-3 text-sm leading-6 text-muted-foreground">
 						Included on <strong class="text-foreground">every paid plan</strong>, because one

@@ -23,10 +23,15 @@
 				<span class="text-lime-500">just a document.</span>
 			</h1>
 
+			<!--
+				This has to promise both products. An earlier version described only the
+				editor, which left a reader who came for the MCP server reading someone
+				else's pitch until section three. Surfaces.svelte then splits the two.
+			-->
 			<p class="mx-auto mt-6 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
-				Vale CMS is the hosted editor for your whole Vale project — config, rules, vocabularies,
-				dictionaries, filters, every asset. The real engine lints as you type and proves every rule
-				compiles, so a rule that silently never fires can't reach your repo.
+				Vale CMS is the hosted editor for your whole Vale project — and a hosted MCP server that
+				hands the same engine to your AI assistant. Rules get checked as they are written, by you or
+				by it, so one that silently never fires can't reach your repo.
 			</p>
 
 			<div class="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
@@ -38,7 +43,7 @@
 					<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
 				</a>
 				<a
-					href="#loop"
+					href="#surfaces"
 					class="inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"
 				>
 					See how it works
@@ -53,19 +58,6 @@
 			<p class="mt-5 text-sm text-muted-foreground">
 				Vale itself stays free, open source, and MIT licensed.
 				<span class="text-foreground">Vale CMS is the authoring layer on top.</span>
-			</p>
-
-			<!--
-				The adopter names belong to Vale, not to Vale CMS — they are on this
-				site's own home page. The claim is carefully about the engine, and it
-				must stay that way: none of these are CMS customers, and implying they
-				are would be the one lie on this page.
-			-->
-			<p class="mt-8 text-sm text-muted-foreground">
-				The engine running here is the one already linting docs at
-				<span class="font-medium text-foreground"
-					>AWS, NVIDIA, Microsoft, GitLab, and Red Hat</span
-				>.
 			</p>
 		</div>
 

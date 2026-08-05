@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TrustDiagram from './TrustDiagram.svelte';
 	import GitBranch from 'lucide-svelte/icons/git-branch';
 	import KeyRound from 'lucide-svelte/icons/key-round';
 	import ServerOff from 'lucide-svelte/icons/server-off';
@@ -36,13 +37,19 @@
 	<div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:px-8">
 		<div>
 			<h2 class="text-base font-semibold text-lime-500">Built for private repositories</h2>
+			<!--
+				State the design, not the disaster. An earlier headline opened with a
+				server breach, which makes the reader picture one — on a page whose job
+				is to make handing us a private repository feel ordinary. The guarantee
+				is the same; it just leads with what we don't hold.
+			-->
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
-				A server breach should have nothing worth taking.
+				We don't keep the things worth keeping safe.
 			</p>
 			<p class="mt-5 text-pretty text-lg leading-8 text-muted-foreground">
-				Vale CMS has to open your project and write changes back to it. It is built so the parts
-				worth stealing — your credentials, your writing — stay with you instead of piling up on our
-				servers.
+				Vale CMS has to open your project and write changes back to it. Your credentials stay in
+				your browser and your writing is forgotten as soon as it is linted, so the parts that matter
+				never pile up on our servers in the first place.
 			</p>
 			<a
 				href="https://cms.vale.sh/security"
@@ -53,16 +60,19 @@
 			</a>
 		</div>
 
-		<div class="grid gap-5 sm:grid-cols-2">
-			{#each points as point (point.title)}
-				<div class="rounded-2xl border border-border/60 bg-card p-6">
-					<div class="inline-flex rounded-lg bg-lime-500/10 p-2 text-lime-600 dark:text-lime-400">
-						<point.icon class="size-5" />
+		<div class="flex flex-col gap-5">
+			<TrustDiagram />
+			<div class="grid gap-5 sm:grid-cols-2">
+				{#each points as point (point.title)}
+					<div class="rounded-2xl border border-border/60 bg-card p-6">
+						<div class="inline-flex rounded-lg bg-lime-500/10 p-2 text-lime-600 dark:text-lime-400">
+							<point.icon class="size-5" />
+						</div>
+						<h3 class="mt-4 font-semibold">{point.title}</h3>
+						<p class="mt-2 text-sm leading-6 text-muted-foreground">{point.body}</p>
 					</div>
-					<h3 class="mt-4 font-semibold">{point.title}</h3>
-					<p class="mt-2 text-sm leading-6 text-muted-foreground">{point.body}</p>
-				</div>
-			{/each}
+				{/each}
+			</div>
 		</div>
 	</div>
 </section>

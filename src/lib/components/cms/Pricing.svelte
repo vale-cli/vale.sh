@@ -2,9 +2,13 @@
 	import Check from 'lucide-svelte/icons/check';
 
 	// Every figure here is confirmed against the live Polar catalogue (Vale Labs
-	// org), not against the docs: Pro $19/mo or $180/yr, Team $25/seat/mo or
-	// $240/seat/yr, and a one-month trial on both. Polar's trial is configured as
-	// `trial_interval: month`, so the copy says "1 month" rather than "30 days".
+	// org), not against the docs: Pro $19/mo or $180/yr, Site $1,000/yr, and a
+	// one-month trial on each. Polar's trial is `trial_interval: month`, so the
+	// copy says "1 month" rather than "30 days".
+	//
+	// There is no Team tier. Per-seat Team is withdrawn and valed's checkout
+	// refuses to sell it (checkoutProductID errors on team/month and team/year),
+	// so listing it would put a button here that returns a 400.
 	let annual = $state(false);
 
 	const tiers = [
@@ -29,6 +33,7 @@
 			],
 			cta: 'Open it, no signup',
 			featured: false,
+			annualOnly: false,
 			trial: ''
 		},
 		{
@@ -46,24 +51,31 @@
 			],
 			cta: 'Start free trial',
 			featured: true,
+			annualOnly: false,
 			trial: '1 month free · cancel anytime'
 		},
 		{
-			name: 'Team',
-			monthly: '$25',
-			annual: '$20',
-			unit: '/ seat / month',
-			note: '$240 per seat, billed yearly · 20% off',
-			// Honest by design: Pro and Team unlock exactly the same product. Team
-			// sells billing and support, not capability — do not imply otherwise.
-			who: 'Everything in Pro, per seat, on one invoice.',
+			name: 'Site',
+			monthly: '$1,000',
+			annual: '$1,000',
+			unit: '/ year',
+			note: 'billed yearly · no per-seat count',
+			// The domain grant is the product, so say what it actually covers.
+			// valed resolves entitlement by the email domain on the subscription
+			// (siteTier), which is why automation at that domain is covered too —
+			// that is a real capability, not a flourish.
+			who: 'Everyone at your domain, and everything they automate.',
 			features: [
-				'Everything in Pro, for each seat',
-				'One subscription, admin-assigned seats',
+				'Everything in Pro, for every address at your domain',
+				'No seats to assign, reassign, or run out of',
+				'MCP for the accounts your CI and agents run as',
 				'Priority support — private Discord channel'
 			],
 			cta: 'Start free trial',
 			featured: false,
+			// Annual only: a site licence billed monthly invites buying one month,
+			// pointing every pipeline at it, and cancelling.
+			annualOnly: true,
 			trial: '1 month free · cancel anytime'
 		}
 	];
@@ -145,7 +157,11 @@
 							? 'text-lime-600 dark:text-lime-400'
 							: 'text-muted-foreground'}"
 					>
-						{tier.name === 'Free' ? tier.note : annual ? tier.note : 'billed monthly'}
+						{tier.name === 'Free' || tier.annualOnly
+							? tier.note
+							: annual
+								? tier.note
+								: 'billed monthly'}
 					</div>
 
 					<p class="mt-3 min-h-[2.5rem] text-sm text-muted-foreground">{tier.who}</p>
@@ -175,8 +191,9 @@
 		</div>
 
 		<p class="mx-auto mt-8 max-w-2xl text-center text-sm text-muted-foreground">
-			Pro and Team unlock the same product. Team buys one invoice instead of many, seats an admin
-			can assign and revoke, and a priority support channel.
+			Pro and Site unlock the same product. Site buys coverage for a whole domain instead of one
+			person — every colleague and every automated account, on one invoice, with no seat to run out
+			of.
 		</p>
 	</div>
 </section>
