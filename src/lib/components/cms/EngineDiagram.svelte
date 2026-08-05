@@ -24,13 +24,22 @@
 			{/each}
 		</div>
 
-		<!-- Converging connectors -->
-		<div class="grid h-8 grid-cols-2" aria-hidden="true">
-			<div class="border-r-2 border-t-0 border-lime-500/50"></div>
-			<div class="border-l-2 border-lime-500/50"></div>
+		<!--
+			Connectors. The two surfaces sit side by side from `sm` up and stack
+			below it, so the converging pair is drawn only where there is something
+			to converge — under one stacked column it pointed at empty space.
+		-->
+		<div class="hidden sm:block" aria-hidden="true">
+			<div class="grid h-8 grid-cols-2">
+				<div class="border-r-2 border-lime-500/50"></div>
+				<div class="border-l-2 border-lime-500/50"></div>
+			</div>
+			<div class="-mt-8 flex h-8 items-end justify-center">
+				<div class="h-4 w-px bg-lime-500/50"></div>
+			</div>
 		</div>
-		<div class="-mt-8 flex h-8 items-end justify-center" aria-hidden="true">
-			<div class="h-4 w-px bg-lime-500/50"></div>
+		<div class="flex h-6 justify-center sm:hidden" aria-hidden="true">
+			<div class="w-px bg-lime-500/50"></div>
 		</div>
 
 		<!-- The engine -->

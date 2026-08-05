@@ -55,8 +55,13 @@
 			<ol class="grid gap-8 sm:grid-cols-1 sm:gap-10 lg:grid-cols-4 lg:gap-8">
 				{#each steps as step (step.n)}
 					<li class="relative sm:pl-8 lg:pl-0 lg:pt-8">
+						<!--
+							Hidden below `sm` alongside the rail it belongs to. The step's
+							left padding is also `sm:`-gated, so a dot rendered here sits on
+							top of the label instead of beside it.
+						-->
 						<span
-							class="absolute left-0 top-1.5 grid size-3.5 place-items-center rounded-full border-2 border-lime-500 bg-background sm:top-1.5 lg:top-0"
+							class="absolute left-0 top-1.5 hidden size-3.5 place-items-center rounded-full border-2 border-lime-500 bg-background sm:grid lg:top-0"
 							aria-hidden="true"
 						></span>
 						<div

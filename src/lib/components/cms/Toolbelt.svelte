@@ -375,7 +375,7 @@
 		</div>
 
 		<div class="mt-12 grid gap-6 lg:grid-cols-[0.9fr_1.1fr] lg:gap-8">
-			<div class="flex flex-col gap-5">
+			<div class="flex min-w-0 flex-col gap-5">
 				{#each groups as group (group.name)}
 					<div>
 						<div class="flex items-baseline justify-between gap-4">
@@ -404,7 +404,7 @@
 				{/each}
 			</div>
 
-			<div class="lg:sticky lg:top-24 lg:self-start">
+			<div class="min-w-0 lg:sticky lg:top-24 lg:self-start">
 				<div class="rounded-2xl border border-border/60 bg-card p-6">
 					<div class="flex flex-wrap items-center gap-2">
 						<code class="font-mono text-base font-semibold text-lime-600 dark:text-lime-400">

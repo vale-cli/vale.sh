@@ -26,7 +26,7 @@
 		</div>
 
 		<div class="mt-12 grid items-start gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-12">
-			<div>
+			<div class="min-w-0">
 				<!--
 					The two failures are the point of the whole section. A demo where the
 					model gets it right first time proves nothing — the argument is that
