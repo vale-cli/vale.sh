@@ -119,5 +119,5 @@ VALE_MCP_ALLOW_NETWORK=1 valemcp
 ## See also
 
 * [Vale CMS](https://vale.sh/cms) — the hosted editor the MCP server is part of
-* [Styles](styles.md) — what a rule is, and the twelve check types
-* [Scopes](scopes.md) — the scoping system `show_blocks` reports on
+* [Styles](../topics/styles.md) — what a rule is, and the twelve check types
+* [Scopes](../topics/scopes.md) — the scoping system `show_blocks` reports on
