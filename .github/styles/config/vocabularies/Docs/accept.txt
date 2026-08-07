@@ -23,6 +23,7 @@ Levenshtein
 Linode
 Lua
 metascopes?
+multiline
 Neovim
 Netlify
 Pandoc

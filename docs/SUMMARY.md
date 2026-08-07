@@ -57,6 +57,7 @@
 
 * [Front Matter](formats/front-matter.md)
 * [Markdown](formats/markdown.md)
+* [MyST](formats/myst.md)
 * [AsciiDoc](formats/asciidoc.md)
 * [MDX](formats/mdx.md)
 * [HTML](formats/html.md)

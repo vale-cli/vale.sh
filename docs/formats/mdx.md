@@ -2,27 +2,29 @@
 
 Learn how Vale handles MDX content.
 
-[MDX](https://mdxjs.com/) is supported through the external program [`mdx2vast`](https://github.com/jdkato/mdx2vast). To get started, you’ll need to install the CLI:
-
-```bash
-$ npm install -g mdx2vast
-```
-
-You’ll need to ensure that the `mdx2vast` executable is available in your `$PATH` (this should happen automatically).
+{% hint style="info" %}
+Vale v3.18.0 or later parses [MDX](https://mdxjs.com/) natively. Earlier versions require the external program [`mdx2vast`](https://github.com/jdkato/mdx2vast) (`npm install -g mdx2vast`) on your `$PATH`.
+{% endhint %}
 
 The supported extension is `.mdx`.
 
-By default, Vale ignores:
+MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions—none of which hold prose. Vale treats each as code and ignores it:
 
+* JSX elements, children included: nothing inside `<Component>...</Component>` is linted.
+* ESM `import` and `export` statements, including multiline bodies.
+* JavaScript expressions—inline (`{Math.PI * 2}`) and standing on their own.
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
-* URLs: See [URL handling](https://github.com/jdkato/mdx2vast) for more information.
-* JSX expressions and components.
-* ESM imports and exports.
+
+Because MDX removed indented code blocks from the grammar, four leading spaces are an ordinary paragraph and its prose is linted.
 
 ## [The MDX package](mdx.md#the-mdx-package)
 
-Not every inline expression an MDX file contains is valid JavaScript, and one that isn't makes the parser throw -- which ends the run rather than the file. The [`MDX`](https://github.com/vale-cli/MDX) package carries the configuration for those cases:
+{% hint style="info" %}
+This package exists for versions before v3.18.0, whose parser threw on inline expressions that aren't valid JavaScript—ending the run rather than the file. The native parser reads them without complaint.
+{% endhint %}
+
+The [`MDX`](https://github.com/vale-cli/MDX) package carries the configuration for those cases:
 
 ```ini
 Packages = MDX
