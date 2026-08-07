@@ -38,6 +38,19 @@ test.md:1:224:style.UnexpandedAcronyms:'DAFB' has no definition
 
 `conditional` also takes an optional `exceptions` list. Any token listed as an exception won’t be flagged.
 
+## [Presence checks](conditional.md#presence-checks)
+
+When `second` has a capture group, a `first` match is allowed only if its captured value was also captured by a `second` match—the acronym-definition pattern above. When `second` has *no* capture group, the rule is a plain presence check: any `first` match requires `second` to appear somewhere in the same scope.
+
+```yaml
+extends: conditional
+message: "A 'Section' requires a 'Summary:' line."
+level: error
+scope: raw
+first: '\bSection\b'
+second: 'Summary:'
+```
+
 ## [Lookarounds](conditional.md#lookarounds)
 
 Regular expression lookarounds can be used to restrict the capture of the rule, allowing for more complex conditional statements. For example, the following rule will flag any MDX-style import that is not used:

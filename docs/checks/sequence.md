@@ -47,6 +47,19 @@ tag: '...'
 # be up to `n` (3, in this case) tokens between
 # this token and the next one.
 skip: 3
+
+# [optional]: A universal part-of-speech tag --
+# NOUN, VERB, ADJ, and so on -- instead of a
+# Penn Treebank `tag`. Universal tags are
+# portable; Penn tags are more precise.
+upos: '...'
+
+# [optional]: If true, narrows the alert to this
+# token alone. Without it, a match spans every
+# token in the sequence -- marking one lets a rule
+# require surrounding context while pointing at
+# only the part the writer should change.
+target: true # or false
 ```
 
 `sequence`-based are [sentence-scoped](../topics/scopes.md). See [prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging) for a full list of supported part-of-speech tags.

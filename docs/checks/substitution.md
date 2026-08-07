@@ -4,8 +4,8 @@ Learn about the substitution extension point.
 
 | Name         | Type    | Description                                                               |
 | ------------ | ------- | ------------------------------------------------------------------------- |
-| `append`     | `bool`  | Adds `raw` to the end of `tokens`, assuming both are defined.             |
 | `ignorecase` | `bool`  | Makes all matches case-insensitive.                                       |
+| `matchcase`  | `bool`  | Adapts the replacement to the case of the matched text, so a rule written as `A-OK` still suggests `a-ok` for `a ok`. |
 | `nonword`    | `bool`  | Removes the default word boundaries (`\b`).                               |
 | `swap`       | `map`   | A sequence of `observed: expected` pairs.                                 |
 | `exceptions` | `array` | An array of strings to be ignored.                                        |

@@ -6,7 +6,7 @@ Learn about the consistency extension point.
 | ------------ | ------- | ----------------------------------------------------------------- |
 | `nonword`    | `bool`  | Removes the default word boundaries (`\b`).                       |
 | `ignorecase` | `bool`  | Makes all matches case-insensitive.                               |
-| `either`     | `array` | A map of `option 1: option 2` pairs of which only one may appear. |
+| `either`     | `map`   | A map of `option 1: option 2` pairs of which only one may appear. |
 
 `consistency` will ensure that a key and its value (e.g., “advisor” and “adviser”) don’t both occur in its scope.
 

@@ -6,7 +6,8 @@ Learn about the spelling extension point.
 | -------------- | -------- | -------------------------------------------------------------------------------------------------- |
 | `custom`       | `bool`   | Turn off the default filters for acronyms, abbreviations, and numbers.                             |
 | `filters`      | `array`  | An array of patterns to ignore during spell checking.                                              |
-| `ignore`       | `string` | A relative path (from `StylesPath`) to a file consisting of one word per line to ignore.           |
+| `ignore`       | `array`  | Relative paths (from `<StylesPath>/config/ignore`) to files consisting of one word per line to ignore. |
+| `exceptions`   | `array`  | An array of strings to be ignored.                                                                 |
 | `dicpath`      | `string` | The location to look for `.dic` and `.aff` files. Can be absolute or relative to the `StylesPath`. |
 | `dictionaries` | `array`  | An array of dictionaries to load.                                                                  |
 | `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.         |

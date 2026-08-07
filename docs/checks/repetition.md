@@ -6,6 +6,7 @@ Learn about the repetition extension point.
 | ------------ | ------- | ------------------------------------------------------------------------- |
 | `ignorecase` | `bool`  | Makes all matches case-insensitive.                                       |
 | `alpha`      | `bool`  | Limits all matches to alphanumeric tokens.                                |
+| `max`        | `int`   | The number of consecutive occurrences allowed before a match is flagged.  |
 | `tokens`     | `array` | A list of tokens to be transformed into a non-capturing group.            |
 | `exceptions` | `array` | An array of strings to be ignored.                                        |
 | `vocab`      | `bool`  | If false, disables all active vocabularies for this rule (default: true). |
