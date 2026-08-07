@@ -37,7 +37,7 @@ The table below summarizes all available variables:
 |    `heading.h{n}`    |    The number of headings at the specified level (for example, `heading.h1`).    |
 |        `list`        |                         The number of `ol` and `ul` tags.                        |
 |     `long_words`     |                 The number of words with more than 6 characters.                 |
-|     `paragraphs`     |                             The number of paragraphs.                            |
+|     `paragraphs`     |      The number of body paragraphs (what the `paragraph` scope matches).         |
 | `polysyllabic_words` |                  The number of words with more than 2 syllables.                 |
 |         `pre`        |                             The number of `pre` tags.                            |
 |      `sentences`     |                             The number of sentences.                             |
@@ -45,6 +45,10 @@ The table below summarizes all available variables:
 |        `words`       |                               The number of words.                               |
 
 Since the pre-defined variables are calculated using the entire document, all `metric`-based rules are [`summary`-scoped](../topics/scopes.md).
+
+{% hint style="info" %}
+As of Vale v3.18.0, `paragraphs` counts body paragraphs alone. `words`, `sentences`, and the other prose-derived variables still take in every kind of prose—including list items and blockquotes, which are counted by `list` and `blockquote`.
+{% endhint %}
 
 ## [Operators](metric.md#operators)
 

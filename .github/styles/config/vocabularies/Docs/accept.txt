@@ -1,3 +1,4 @@
+[bB]lockquotes?
 [bB]oolean
 [cC]onfig
 [gG]lob(?:bing)?
@@ -16,6 +17,7 @@ ESLint
 Grammarly
 Grazie
 Hunspell
+knitr
 Laravel
 Levenshtein
 Linode
@@ -23,6 +25,7 @@ Lua
 metascopes?
 Neovim
 Netlify
+Pandoc
 PNGs
 precompiled
 Protobuf

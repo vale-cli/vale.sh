@@ -11,6 +11,31 @@ By default, Vale ignores:
 * Code spans: Text surrounded by backticks.
 * URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
 
+## [R Markdown](markdown.md#r-markdown)
+
+{% hint style="info" %}
+Requires Vale v3.18.0 or later. Earlier versions can assign the format instead: `Rmd = md` under `[formats]`.
+{% endhint %}
+
+R Markdown (`.Rmd`, `.rmd`) is linted as Markdown. Its knitr syntax is code to Vale:
+
+* Chunks are fenced blocks—the chunk options in the `{r ...}` info string and everything inside the fence are ignored.
+* Inline expressions such as `` `r nrow(df)` `` are code spans, and are ignored by default.
+
+A configuration section still needs to match the extension:
+
+```ini
+[*.{md,Rmd}]
+BasedOnStyles = Vale
+```
+
+Pandoc syntax that isn't Markdown—inline math, citations—can be excluded with [`TokenIgnores`](../keys/tokenignores.md):
+
+```ini
+[*.{md,Rmd}]
+TokenIgnores = (\$[^\n$]+\$), (\[@[^\n\]]+\])
+```
+
 ## [Comments](markdown.md#comments)
 
 Vale supports comment-based configuration in Markdown files:

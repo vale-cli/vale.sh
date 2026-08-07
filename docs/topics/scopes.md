@@ -33,7 +33,7 @@ For rules that need to target specific sections of the file, you can use the fol
 | `table.caption`  | Matches all `caption` tags.                                                                                                                                                                                         |
 | `figure.caption` | Matches all `figcaption` tags.                                                                                                                                                                                      |
 | `list`           | Matches all `li` tags.                                                                                                                                                                                              |
-| `paragraph`      | Matches all paragraphs (segments of text separated by two newlines).                                                                                                                                                |
+| `paragraph`      | <p>Matches all body paragraphs (segments of text separated by two newlines).<br>Headings, list items, table cells, and blockquotes are not paragraphs.</p>                                                          |
 | `sentence`       | Matches all sentences.                                                                                                                                                                                              |
 | `blockquote`     | Matches all `blockquote` tags.                                                                                                                                                                                      |
 | `alt`            | Matches all alt attributes.                                                                                                                                                                                         |
@@ -162,6 +162,10 @@ scope:
   # any scope that is NOT a blockquote or a heading
   - ~blockquote & ~heading
 ```
+
+{% hint style="info" %}
+Chains that name `paragraph`, `sentence`, or an [inline scope](scopes.md#inline-scopes) require Vale v3.18.0 or later. Earlier versions silently matched nothing for those chains.
+{% endhint %}
 
 The two combine: `&` is an AND within a single entry, and the array is an OR across entries.
 
