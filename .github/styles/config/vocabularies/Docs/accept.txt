@@ -1,4 +1,7 @@
 [bB]lockquotes?
+[cC]allouts?
+[dD]ivs?
+[sS]hortcodes?
 [bB]oolean
 [cC]onfig
 [gG]lob(?:bing)?
