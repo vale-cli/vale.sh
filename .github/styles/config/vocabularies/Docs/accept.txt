@@ -33,6 +33,8 @@ Pandoc
 PNGs
 precompiled
 Protobuf
+QDoc
+Qt(?:'s)?
 regexes
 Reviewdog
 Snapcraft

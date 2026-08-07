@@ -67,6 +67,7 @@
 * [XML](formats/xml.md)
 * [Org](formats/org.md)
 * [DITA](formats/dita.md)
+* [QDoc](formats/qdoc.md)
 * [Code](formats/code.md)
 
 ## Guides

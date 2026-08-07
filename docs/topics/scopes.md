@@ -94,18 +94,24 @@ level: warning
 match: $title
 ```
 
-Classes nest, so a block inside two classed elements is reachable as `text.class.outer.class.inner`. To ignore classed content rather than target it, see [`IgnoredClasses`](../keys/ignoredclasses.md).
+A directive's name lands here too: a [MyST](../formats/myst.md) or [Quarto](../formats/quarto.md) `:::{note}` scopes its content as `class.note`, and a [QDoc](../formats/qdoc.md) `\note` does the same.
+
+Classes nest, so a block inside two classed elements is reachable as `text.class.outer.class.inner`—and every block inside a classed container carries its class, however many blocks that is. To ignore classed content rather than target it, see [`IgnoredClasses`](../keys/ignoredclasses.md).
 
 The supported formats for markup files are:
 
 * [AsciiDoc](../formats/asciidoc.md)
-* [Markdown](../formats/markdown.md) Built-in
-* [reStructuredText](../formats/restructuredtext.md)
-* [HTML](../formats/html.md) Built-in
-* [XML](../formats/xml.md)
-* [Org](../formats/org.md) Built-in
 * [DITA](../formats/dita.md)
-* [MDX](../formats/mdx.md)
+* [HTML](../formats/html.md) Built-in
+* [Markdown](../formats/markdown.md) Built-in, including [R Markdown](../formats/markdown.md#r-markdown)
+* [MDX](../formats/mdx.md) Built-in
+* [MyST](../formats/myst.md) Built-in
+* [Org](../formats/org.md) Built-in
+* [QDoc](../formats/qdoc.md) Built-in
+* [Quarto](../formats/quarto.md) Built-in
+* [reStructuredText](../formats/restructuredtext.md)
+* [Typst](../formats/typst.md)
+* [XML](../formats/xml.md)
 
 The formats marked as `Built-in` are included with Vale by default. The other formats require a third-party dependency to be installed. See each format’s documentation for more information and installation instructions.
 
