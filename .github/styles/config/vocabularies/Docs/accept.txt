@@ -42,5 +42,6 @@ spylls
 stdin
 Stylebook
 Tengo
+Typst
 triaging
 validator

@@ -63,6 +63,7 @@
 * [MDX](formats/mdx.md)
 * [HTML](formats/html.md)
 * [reStructuredText](formats/restructuredtext.md)
+* [Typst](formats/typst.md)
 * [XML](formats/xml.md)
 * [Org](formats/org.md)
 * [DITA](formats/dita.md)
