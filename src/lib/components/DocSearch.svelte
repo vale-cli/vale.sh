@@ -11,7 +11,14 @@
 				container: searchContainer,
 				appId: '2Y8OU39U1X',
 				indexName: 'docsearch_mock',
-				apiKey: '0e82d6007f06d9f280629a37bb8a0892'
+				apiKey: '0e82d6007f06d9f280629a37bb8a0892',
+				placeholder: 'Search the docs...',
+				translations: {
+					button: {
+						buttonText: 'Search docs...',
+						buttonAriaLabel: 'Search the documentation'
+					}
+				}
 			});
 		}
 	});

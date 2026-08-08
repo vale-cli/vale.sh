@@ -1,18 +1,22 @@
 {
-    "index_name": "docsearch_mock",
-    "start_urls": [
-        "https://vale.sh/docs"
-    ],
-    "stop_urls": [],
-    "strip_chars": "#›",
-    "selectors": {
-        "default": {
-            "lvl0": ".section-name",
-            "lvl1": ".docs-header h1",
-            "lvl2": ".docs-content h2",
-            "lvl3": ".docs-content h3",
-            "lvl4": ".docs-content h4",
-            "text": ".docs-content p"
-        }
-    }
+	"index_name": "docsearch_mock",
+	"start_urls": ["https://docs.vale.sh/"],
+	"sitemap_urls": ["https://docs.vale.sh/sitemap-pages.xml"],
+	"stop_urls": ["/~gitbook/", "\\.md$", "/llms\\.txt$"],
+	"strip_chars": "#›",
+	"selectors": {
+		"default": {
+			"lvl0": {
+				"selector": "nav[aria-label='Breadcrumb'] li:last-child",
+				"global": true,
+				"default_value": "Documentation"
+			},
+			"lvl1": "h1",
+			"lvl2": "[data-content-ref-root] h2",
+			"lvl3": "[data-content-ref-root] h3",
+			"lvl4": "[data-content-ref-root] h4",
+			"text": "[data-content-ref-root] p"
+		}
+	},
+	"selectors_exclude": [".hash", "[data-testid='table-of-contents']"]
 }
