@@ -1,69 +1,111 @@
 <script lang="ts">
-	// A faithful recreation of Vale's default CLI output.
-	type Sev = 'error' | 'warning' | 'suggestion';
-	interface Alert {
-		loc: string;
-		sev: Sev;
-		msg: string;
-		rule: string;
-	}
+	import ArrowRight from 'lucide-svelte/icons/arrow-right';
+	import BrandIcon from './BrandIcon.svelte';
+	import { demoRuns, type Severity } from '$lib/data/demo-runs';
 
-	const alerts: Alert[] = [
-		{
-			loc: '4:3',
-			sev: 'error',
-			msg: "Did you really mean 'existant'?",
-			rule: 'Vale.Spelling'
-		},
-		{
-			loc: '6:12',
-			sev: 'warning',
-			msg: "Use 'use' instead of 'utilize'.",
-			rule: 'Microsoft.Vocab'
-		},
-		{
-			loc: '9:1',
-			sev: 'suggestion',
-			msg: "In general, use active voice.",
-			rule: 'write-good.Passive'
-		}
-	];
+	// Real output, captured per project. See src/lib/data/demo-runs.ts for the
+	// commands that regenerate it.
+	let active = $state(demoRuns[0].id);
+	const run = $derived(demoRuns.find((r) => r.id === active) ?? demoRuns[0]);
 
-	const sevColor: Record<Sev, string> = {
+	const sevColor: Record<Severity, string> = {
 		error: 'text-red-400',
 		warning: 'text-amber-400',
 		suggestion: 'text-sky-400'
 	};
 </script>
 
-<div class="overflow-hidden rounded-xl border border-border bg-zinc-950 shadow-2xl shadow-black/20 ring-1 ring-black/5">
-	<!-- Title bar -->
-	<div class="flex items-center gap-2 border-b border-white/10 px-4 py-3">
-		<span class="h-3 w-3 rounded-full bg-red-500/80"></span>
-		<span class="h-3 w-3 rounded-full bg-amber-500/80"></span>
-		<span class="h-3 w-3 rounded-full bg-lime-500/80"></span>
-		<span class="ml-2 select-none font-mono text-xs text-zinc-500">bash — vale</span>
+<div class="overflow-hidden rounded-xl border border-border bg-zinc-950">
+	<!-- Title bar doubles as the project switcher. -->
+	<div class="flex items-center gap-3 border-b border-white/10 px-4 py-2.5">
+		<span class="hidden shrink-0 items-center gap-2 sm:flex">
+			<span class="h-3 w-3 rounded-full bg-red-500/80"></span>
+			<span class="h-3 w-3 rounded-full bg-amber-500/80"></span>
+			<span class="h-3 w-3 rounded-full bg-lime-500/80"></span>
+		</span>
+
+		<div class="hide-scrollbar -mx-1 flex gap-1 overflow-x-auto px-1" role="tablist">
+			{#each demoRuns as project (project.id)}
+				{@const selected = project.id === run.id}
+				<button
+					type="button"
+					role="tab"
+					aria-selected={selected}
+					title="{project.repo} — {project.format}"
+					onclick={() => (active = project.id)}
+					class="inline-flex shrink-0 items-center gap-1.5 rounded-md px-2 py-1 text-xs font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {selected
+						? 'bg-white/10 text-zinc-100'
+						: 'text-zinc-500 hover:bg-white/5 hover:text-zinc-300'}"
+				>
+					<!--
+						Light plate behind every mark. CircleCI's is black on transparent
+						and vanishes against the terminal otherwise -- the same reason
+						LogoWall keeps its plates light in dark mode.
+					-->
+					<span
+						class="inline-flex h-[18px] w-[18px] shrink-0 items-center justify-center overflow-hidden rounded-[3px] bg-white {selected
+							? ''
+							: 'opacity-70'}"
+					>
+						<img src={project.avatar} alt="" class="h-full w-full object-contain" loading="lazy" />
+					</span>
+					{project.name}
+				</button>
+			{/each}
+		</div>
 	</div>
 
-	<!-- Body -->
-	<div class="overflow-x-auto px-4 py-4 font-mono text-[13px] leading-relaxed">
-		<div class="whitespace-pre text-zinc-300">
-			<span class="text-lime-400">$</span> vale README.md
+	<!-- Output -->
+	<!--
+		Wrapping, not scrolling. Vale wraps its own output to the terminal width by
+		default; `--no-wrap` was only used to capture it. A horizontal scrollbar
+		here just hid the end of every message.
+	-->
+	<div
+		class="px-4 py-4 font-mono text-[13px] leading-relaxed"
+		role="tabpanel"
+		aria-label="{run.name} lint output"
+	>
+		<div class="break-all text-zinc-300">
+			<span class="text-lime-400">$</span> vale {run.file}
 		</div>
 
-		<div class="mt-3 whitespace-pre text-zinc-100">README.md</div>
+		<div class="mt-3 break-all text-zinc-100 underline underline-offset-4">{run.file}</div>
 
-		{#each alerts as a}
-			<div class="mt-1 flex gap-4 whitespace-pre">
-				<span class="w-14 shrink-0 text-zinc-500">{a.loc}</span>
-				<span class="w-[76px] shrink-0 {sevColor[a.sev]}">{a.sev}</span>
-				<span class="text-zinc-200">{a.msg}</span>
-				<span class="text-zinc-500">{a.rule}</span>
+		{#each run.alerts as alert (alert.loc + alert.rule)}
+			<div class="mt-1 flex gap-3 sm:gap-4">
+				<span class="w-14 shrink-0 text-zinc-500 sm:w-16">{alert.loc}</span>
+				<span class="w-[62px] shrink-0 sm:w-[74px] {sevColor[alert.sev]}">{alert.sev}</span>
+				<span class="min-w-0 flex-1">
+					<span class="text-zinc-200">{alert.msg}</span>
+					<span class="text-zinc-500">&nbsp;{alert.rule}</span>
+				</span>
 			</div>
 		{/each}
 
-		<div class="mt-3 whitespace-pre text-zinc-400">
-			<span class="text-red-400">✖</span> 1 error, 1 warning and 1 suggestion in 1 file.
+		<div class="mt-3 text-zinc-400">
+			<span class={run.summary.startsWith('0 errors') ? 'text-amber-400' : 'text-red-400'}>✖</span>
+			{run.summary}
 		</div>
 	</div>
+
+	<!-- The same run, over the whole corpus, is written up on the speed page. -->
+	<a
+		href="/features/speed"
+		class="group flex items-center justify-between gap-3 border-t border-white/10 px-4 py-3 text-xs text-zinc-400 transition-colors hover:bg-white/[0.03] hover:text-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-lime-500"
+	>
+		<span class="flex min-w-0 items-center gap-1.5 truncate">
+			<span class="truncate font-mono text-zinc-300">{run.repo}</span>
+			<span class="text-zinc-600">·</span>
+			<!-- The markup Vale parsed before it could read the prose. -->
+			<BrandIcon name={run.format} slug={run.formatIcon} size="h-3.5 w-3.5" />
+			<span class="hidden sm:inline">{run.format}</span>
+			<span class="text-zinc-600">·</span>
+			<span class="font-mono">{run.commit}</span>
+		</span>
+		<span class="inline-flex shrink-0 items-center gap-1 font-medium text-zinc-200">
+			See the full run
+			<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+		</span>
+	</a>
 </div>

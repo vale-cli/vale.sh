@@ -7,6 +7,7 @@
 	import Landmark from 'lucide-svelte/icons/landmark';
 	import Heart from 'lucide-svelte/icons/heart';
 	import Users from 'lucide-svelte/icons/users';
+	import Section from './Section.svelte';
 
 	let { stats }: { stats: Stats } = $props();
 
@@ -61,59 +62,50 @@
 	];
 </script>
 
-<section id="support" class="border-b border-border/60 py-14 sm:py-16">
-	<div class="mx-auto max-w-6xl px-6 lg:px-8">
-		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-base/7 font-semibold text-lime-500">Supporters</h2>
-			<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
-				Grants, awards, and sponsors
-			</p>
-		</div>
-
-		<div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-			{#each highlights as item}
-				{@const Icon = item.icon}
-				<a
-					href={item.url}
-					target="_blank"
-					rel="noreferrer"
-					class="group flex flex-col rounded-2xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+<Section id="support" eyebrow="Supporters" title="Grants, awards, and sponsors">
+	<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+		{#each highlights as item}
+			{@const Icon = item.icon}
+			<a
+				href={item.url}
+				target="_blank"
+				rel="noreferrer"
+				class="group flex flex-col rounded-2xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+			>
+				<span
+					class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-lime-500/10 text-lime-500"
 				>
-					<span
-						class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-lime-500/10 text-lime-500"
-					>
-						<Icon class="h-5 w-5" />
-					</span>
-					<p class="mt-5 text-sm font-medium text-muted-foreground">{item.eyebrow}</p>
-					<div class="mt-1 flex items-start justify-between gap-3">
-						<h3 class="text-lg font-semibold tracking-tight">{item.title}</h3>
-						<ArrowUpRight
-							class="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
-						/>
-					</div>
-					<p class="mt-3 text-sm leading-6 text-muted-foreground">{item.context}</p>
-				</a>
-			{/each}
-		</div>
-
-		<!-- Live backer walls from Open Collective -->
-		<div class="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-8">
-			{#each embeds as embed}
-				<a
-					href={siteConfig.links.openCollective}
-					target="_blank"
-					rel="noreferrer"
-					class="block w-full"
-					aria-label="Vale {embed.label} on Open Collective"
-				>
-					<img
-						src={embed.src}
-						alt="Vale {embed.label.toLowerCase()} on Open Collective"
-						class="mx-auto w-full"
-						loading="lazy"
+					<Icon class="h-5 w-5" />
+				</span>
+				<p class="mt-5 text-sm font-medium text-muted-foreground">{item.eyebrow}</p>
+				<div class="mt-1 flex items-start justify-between gap-3">
+					<h3 class="text-lg font-semibold tracking-tight">{item.title}</h3>
+					<ArrowUpRight
+						class="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
 					/>
-				</a>
-			{/each}
-		</div>
+				</div>
+				<p class="mt-3 text-sm leading-6 text-muted-foreground">{item.context}</p>
+			</a>
+		{/each}
 	</div>
-</section>
+
+	<!-- Live backer walls from Open Collective -->
+	<div class="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-8">
+		{#each embeds as embed}
+			<a
+				href={siteConfig.links.openCollective}
+				target="_blank"
+				rel="noreferrer"
+				class="block w-full"
+				aria-label="Vale {embed.label} on Open Collective"
+			>
+				<img
+					src={embed.src}
+					alt="Vale {embed.label.toLowerCase()} on Open Collective"
+					class="mx-auto w-full"
+					loading="lazy"
+				/>
+			</a>
+		{/each}
+	</div>
+</Section>

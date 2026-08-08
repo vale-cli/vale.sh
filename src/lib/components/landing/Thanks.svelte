@@ -1,6 +1,7 @@
 <script lang="ts">
 	import BrandIcon from './BrandIcon.svelte';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import Section from './Section.svelte';
 
 	// Hosting providers, kept separate from the grants and sponsors above.
 	//
@@ -31,61 +32,52 @@
 	];
 </script>
 
-<section id="thanks" class="border-b border-border/60 py-14 sm:py-16">
-	<div class="mx-auto max-w-6xl px-6 lg:px-8">
-		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-base/7 font-semibold text-lime-500">Infrastructure</h2>
-			<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">
-				Special thanks to
-			</p>
-		</div>
+<Section id="thanks" eyebrow="Infrastructure" title="Special thanks to">
+	<div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+		{#each providers as provider}
+			<!-- A div, not an anchor: the card holds two separate links. -->
+			<div
+				style="--brand: {provider.brand}; --brand-fg: {provider.fg};"
+				class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-[--brand]"
+			>
+				<span
+					aria-hidden="true"
+					class="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[--brand] to-transparent opacity-[0.07] transition-opacity duration-200 group-hover:opacity-[0.14]"
+				></span>
 
-		<div class="mx-auto mt-8 grid max-w-3xl gap-4 sm:grid-cols-2">
-			{#each providers as provider}
-				<!-- A div, not an anchor: the card holds two separate links. -->
-				<div
-					style="--brand: {provider.brand}; --brand-fg: {provider.fg};"
-					class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-[--brand]"
-				>
+				<div class="relative flex items-center gap-3">
 					<span
-						aria-hidden="true"
-						class="pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b from-[--brand] to-transparent opacity-[0.07] transition-opacity duration-200 group-hover:opacity-[0.14]"
-					></span>
-
-					<div class="relative flex items-center gap-3">
-						<span
-							class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
-							style="background-color: var(--brand); color: var(--brand-fg);"
-						>
-							<BrandIcon name={provider.name} slug={provider.icon} />
-						</span>
-						<div>
-							<a
-								href={provider.home}
-								target="_blank"
-								rel="noreferrer"
-								class="group/name -my-1.5 inline-flex items-center gap-1 py-1.5 text-lg font-semibold tracking-tight hover:text-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand]"
-							>
-								{provider.name}
-								<ArrowUpRight
-									class="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover/name:translate-x-0.5"
-								/>
-							</a>
-							<p class="text-sm text-muted-foreground">hosts {provider.powers}</p>
-						</div>
-					</div>
-
-					<a
-						href={provider.programUrl}
-						target="_blank"
-						rel="noreferrer"
-						class="relative mt-2 inline-flex w-fit items-center gap-1 py-2.5 text-sm font-medium text-muted-foreground hover:text-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand]"
+						class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+						style="background-color: var(--brand); color: var(--brand-fg);"
 					>
-						{provider.program}
-						<ArrowUpRight class="h-3.5 w-3.5" />
-					</a>
+						<BrandIcon name={provider.name} slug={provider.icon} />
+					</span>
+					<div>
+						<a
+							href={provider.home}
+							target="_blank"
+							rel="noreferrer"
+							class="group/name -my-1.5 inline-flex items-center gap-1 py-1.5 text-lg font-semibold tracking-tight hover:text-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand]"
+						>
+							{provider.name}
+							<ArrowUpRight
+								class="h-3.5 w-3.5 text-muted-foreground transition-transform group-hover/name:translate-x-0.5"
+							/>
+						</a>
+						<p class="text-sm text-muted-foreground">hosts {provider.powers}</p>
+					</div>
 				</div>
-			{/each}
-		</div>
+
+				<a
+					href={provider.programUrl}
+					target="_blank"
+					rel="noreferrer"
+					class="relative mt-2 inline-flex w-fit items-center gap-1 py-2.5 text-sm font-medium text-muted-foreground hover:text-[--brand] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--brand]"
+				>
+					{provider.program}
+					<ArrowUpRight class="h-3.5 w-3.5" />
+				</a>
+			</div>
+		{/each}
 	</div>
-</section>
+</Section>

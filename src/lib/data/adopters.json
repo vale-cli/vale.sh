@@ -1,12 +1,19 @@
 [
 	{
-		"name": "Microsoft",
-		"category": "Cloud & infrastructure",
-		"context": "Active .vale.ini in the Spring Cloud Azure documentation.",
-		"url": "https://github.com/microsoft/spring-cloud-azure/blob/main/docs/.vale.ini",
-		"github": "microsoft",
-		"avatar": "/users/avatars/microsoft.png",
-		"logo": "/users/Microsoft.svg"
+		"name": "Airbyte",
+		"category": "Data & observability",
+		"context": "Lints its docs with a custom Vale style built on Google and write-good.",
+		"url": "https://github.com/airbytehq/airbyte/tree/master/docs/vale-styles",
+		"github": "airbytehq",
+		"avatar": "/users/avatars/airbytehq.png"
+	},
+	{
+		"name": "Aiven",
+		"category": "Data & observability",
+		"context": "Resources and docs for projects on the Aiven platform.",
+		"url": "https://github.com/aiven/devportal/blob/main/.vale.ini",
+		"github": "aiven",
+		"avatar": "/users/avatars/aiven.png"
 	},
 	{
 		"name": "Amazon Web Services",
@@ -18,52 +25,106 @@
 		"logo": "/users/Amazon Web Services.svg"
 	},
 	{
-		"name": "NVIDIA",
+		"name": "Auth0",
 		"category": "Developer tools",
-		"context": "All NeMo Agent Toolkit documentation is checked with Vale before it merges.",
-		"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html",
-		"icon": "nvidia",
-		"logo": "/users/NVIDIA.svg"
+		"context": "Lints the Auth0 documentation content repository with Vale.",
+		"url": "https://github.com/auth0/docs-v2",
+		"github": "auth0",
+		"avatar": "/users/avatars/auth0.png"
 	},
 	{
-		"name": "Texas Instruments",
+		"name": "AWS Deadline Cloud",
+		"category": "Cloud & infrastructure",
+		"context": "Lints its sample job documentation with Vale.",
+		"url": "https://github.com/aws-deadline/deadline-cloud-samples/blob/mainline/.vale.ini",
+		"github": "aws-deadline",
+		"avatar": "/users/avatars/aws-deadline.png"
+	},
+	{
+		"name": "Camunda",
 		"category": "Enterprise",
-		"context": "Processor SDK docs build on the Red Hat style package with a custom PSDK vocabulary.",
-		"url": "https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini",
-		"github": "TexasInstruments",
-		"avatar": "/users/avatars/TexasInstruments.png",
-		"logo": "/users/Texas Instruments.svg"
+		"context": "Every rule on by default, relaxed only for generated SDK reference.",
+		"url": "https://github.com/camunda/camunda-docs/blob/HEAD/.vale.ini",
+		"github": "camunda",
+		"avatar": "/users/avatars/camunda.png"
 	},
 	{
-		"name": "Mintlify",
-		"category": "Developer tools",
-		"context": "Runs Vale as a built-in CI check and reports the results on pull requests.",
-		"url": "https://www.mintlify.com/docs/deploy/ci",
-		"icon": "mintlify"
-	},
-	{
-		"name": "GitLab",
-		"category": "Developer tools",
-		"context": "A required check in GitLab's documentation testing pipeline.",
-		"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
-		"icon": "gitlab",
-		"logo": "/users/GitLab.svg"
-	},
-	{
-		"name": "Red Hat",
+		"name": "Canonical",
 		"category": "Open source",
-		"context": "Maintains \"Vale at Red Hat\", a public style package and onboarding guide.",
-		"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
-		"icon": "redhat",
-		"logo": "/users/Red Hat.svg"
+		"context": "Ships Vale rules with its public documentation style guide, plus a GitHub Action.",
+		"url": "https://github.com/canonical/documentation-style-guide",
+		"icon": "canonical"
 	},
 	{
-		"name": "Grafana Labs",
+		"name": "CircleCI",
+		"category": "Developer tools",
+		"context": "Writes Vale into the docs style guide its AI assistants follow, with a vale-linter skill that fixes error-level alerts and opens a pull request per file.",
+		"url": "https://github.com/circleci/circleci-docs/blob/main/AGENTS.md",
+		"github": "circleci",
+		"avatar": "/users/avatars/circleci.png"
+	},
+	{
+		"name": "ClickHouse",
 		"category": "Data & observability",
-		"context": "Powers the prose linting rules in the Grafana Writers' Toolkit.",
-		"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
-		"icon": "grafana",
-		"logo": "/users/Grafana Labs.svg"
+		"context": "A single in-house ClickHouse style over the documentation site.",
+		"url": "https://github.com/clickhouse/clickhouse-docs/blob/HEAD/.vale.ini",
+		"github": "ClickHouse",
+		"avatar": "/users/avatars/ClickHouse.png"
+	},
+	{
+		"name": "CloudQuery",
+		"category": "Data & observability",
+		"context": "Linting the official CloudQuery documentation.",
+		"url": "https://github.com/cloudquery/cloudquery/blob/main/.vale.ini",
+		"github": "cloudquery",
+		"avatar": "/users/avatars/cloudquery.png"
+	},
+	{
+		"name": "CockroachDB",
+		"category": "Data & observability",
+		"context": "Style enforcement for CockroachDB user documentation.",
+		"url": "https://github.com/cockroachdb/docs/blob/master/.vale.ini",
+		"icon": "cockroachlabs"
+	},
+	{
+		"name": "commercetools",
+		"category": "Enterprise",
+		"context": "Tools for developing documentation websites.",
+		"url": "https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini",
+		"github": "commercetools",
+		"avatar": "/users/avatars/commercetools.png"
+	},
+	{
+		"name": "Consensys",
+		"category": "Developer tools",
+		"context": "Runs Vale on every PR across its doc sites via a shared documentation template.",
+		"url": "https://docs-template.consensys.io/contribute/run-vale",
+		"github": "Consensys",
+		"avatar": "/users/avatars/Consensys.png"
+	},
+	{
+		"name": "Contentsquare",
+		"category": "Enterprise",
+		"context": "Helping engineers become better writers.",
+		"url": "https://engineering.contentsquare.com/2023/using-vale-to-help-engineers-become-better-writers/",
+		"github": "contentsquare",
+		"avatar": "/users/avatars/contentsquare.png"
+	},
+	{
+		"name": "D2iQ",
+		"category": "Cloud & infrastructure",
+		"context": "D2iQ product documentation and docs website code.",
+		"url": "https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini",
+		"github": "d2iq",
+		"avatar": "/users/avatars/d2iq.png"
+	},
+	{
+		"name": "Dagster",
+		"category": "Data & observability",
+		"context": "Dagster and Terms styles alongside Vale's built-in rules.",
+		"url": "https://github.com/dagster-io/dagster/blob/HEAD/docs/.vale.ini",
+		"github": "dagster-io",
+		"avatar": "/users/avatars/dagster-io.png"
 	},
 	{
 		"name": "Datadog",
@@ -74,12 +135,461 @@
 		"logo": "/users/Datadog.svg"
 	},
 	{
+		"name": "dbt Labs",
+		"category": "Data & observability",
+		"context": "A custom style applied to the docs.getdbt.com source.",
+		"url": "https://github.com/dbt-labs/docs.getdbt.com/blob/HEAD/.vale.ini",
+		"github": "dbt-labs",
+		"avatar": "/users/avatars/dbt-labs.png"
+	},
+	{
+		"name": "Determinate Systems",
+		"category": "Developer tools",
+		"context": "A DetSys style beside Vale's built-in rules, on the Zero to Nix guide.",
+		"url": "https://github.com/DeterminateSystems/zero-to-nix/blob/HEAD/.vale.ini",
+		"github": "DeterminateSystems",
+		"avatar": "/users/avatars/DeterminateSystems.png"
+	},
+	{
+		"name": "Discord",
+		"category": "Developer tools",
+		"context": "Vale's built-in rules across the public API documentation.",
+		"url": "https://github.com/discord/discord-api-docs/blob/HEAD/.vale.ini",
+		"github": "discord",
+		"avatar": "/users/avatars/discord.png"
+	},
+	{
 		"name": "Docker",
 		"category": "Developer tools",
 		"context": "Enforces style standards across the Docker product docs.",
 		"url": "https://github.com/docker/docs/blob/main/.vale.ini",
 		"icon": "docker",
 		"logo": "/users/Docker.svg"
+	},
+	{
+		"name": "DocsGPT",
+		"category": "Open source",
+		"context": "A DocsGPT style of their own over the project documentation.",
+		"url": "https://github.com/arc53/DocsGPT/blob/HEAD/.vale.ini",
+		"github": "arc53",
+		"avatar": "/users/avatars/arc53.png"
+	},
+	{
+		"name": "DuckDB",
+		"category": "Data & observability",
+		"context": "A root .vale.ini setting the alert level and skipping front matter.",
+		"url": "https://github.com/duckdb/duckdb-web/blob/HEAD/.vale.ini",
+		"github": "duckdb",
+		"avatar": "/users/avatars/duckdb.png"
+	},
+	{
+		"name": "Eclipse Che",
+		"category": "Open source",
+		"context": "Publishes a Vale style for the Eclipse Che documentation and related projects.",
+		"url": "https://github.com/eclipse-che/che-docs-vale-style",
+		"github": "eclipse-che",
+		"avatar": "/users/avatars/eclipse-che.png"
+	},
+	{
+		"name": "Elastic",
+		"category": "Data & observability",
+		"context": "Ships an Elastic style guide implemented as Vale rules.",
+		"url": "https://www.elastic.co/docs/contribute-docs/vale-linter",
+		"icon": "elastic"
+	},
+	{
+		"name": "Espressif",
+		"category": "Open source",
+		"context": "An Espressif-latest style, with Google, Microsoft and RedHat available.",
+		"url": "https://github.com/espressif/esp-idf/blob/HEAD/.vale.ini",
+		"github": "espressif",
+		"avatar": "/users/avatars/espressif.png"
+	},
+	{
+		"name": "Expo",
+		"category": "Developer tools",
+		"context": "MDX mapped to Markdown, with writing styles vendored into the repo.",
+		"url": "https://github.com/expo/expo/blob/HEAD/docs/.vale.ini",
+		"github": "expo",
+		"avatar": "/users/avatars/expo.png"
+	},
+	{
+		"name": "Fedora Linux",
+		"category": "Open source",
+		"context": "Part of the Fedora docs contributor toolchain.",
+		"url": "https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/",
+		"icon": "fedora"
+	},
+	{
+		"name": "Fern",
+		"category": "Developer tools",
+		"context": "Recommends Vale for linting docs and improving writing quality.",
+		"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
+		"github": "fern-api",
+		"avatar": "/users/avatars/fern-api.png"
+	},
+	{
+		"name": "Foundries.io",
+		"category": "Cloud & infrastructure",
+		"context": "A Fio-docs style published as a reusable Vale package.",
+		"url": "https://github.com/foundriesio/fio-style/blob/HEAD/_vale.ini",
+		"github": "foundriesio",
+		"avatar": "/users/avatars/foundriesio.png"
+	},
+	{
+		"name": "FreeBSD",
+		"category": "Open source",
+		"context": "A FreeBSD style over the project's documentation tree.",
+		"url": "https://github.com/freebsd/freebsd-doc/blob/HEAD/.vale.ini",
+		"github": "freebsd",
+		"avatar": "/users/avatars/freebsd.png"
+	},
+	{
+		"name": "GitHub",
+		"category": "Developer tools",
+		"context": "Used to lint the CodeQL documentation.",
+		"url": "https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini",
+		"icon": "github"
+	},
+	{
+		"name": "GitLab",
+		"category": "Developer tools",
+		"context": "A required check in GitLab's documentation testing pipeline.",
+		"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
+		"icon": "gitlab",
+		"logo": "/users/GitLab.svg"
+	},
+	{
+		"name": "GOV.UK",
+		"category": "Open source",
+		"context": "Publishes the GOV.UK Technical Style guide as a public Vale style package.",
+		"url": "https://github.com/alphagov/tech-docs-linter",
+		"github": "alphagov",
+		"avatar": "/users/avatars/alphagov.png"
+	},
+	{
+		"name": "Grafana Labs",
+		"category": "Data & observability",
+		"context": "Powers the prose linting rules in the Grafana Writers' Toolkit.",
+		"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
+		"icon": "grafana",
+		"logo": "/users/Grafana Labs.svg"
+	},
+	{
+		"name": "Graphile",
+		"category": "Developer tools",
+		"context": "Lints the Grafast and PostGraphile docs in the Crystal monorepo.",
+		"url": "https://github.com/graphile/crystal/blob/main/.vale.ini",
+		"github": "graphile",
+		"avatar": "/users/avatars/graphile.png"
+	},
+	{
+		"name": "Homebrew",
+		"category": "Open source",
+		"context": "The missing package manager for macOS (and Linux).",
+		"url": "https://github.com/Homebrew/brew/blob/master/.vale.ini",
+		"icon": "homebrew"
+	},
+	{
+		"name": "InfluxData",
+		"category": "Data & observability",
+		"context": "Google, write-good and a Hugo package, plus an InfluxDataDocs style.",
+		"url": "https://github.com/influxdata/docs-v2/blob/HEAD/.vale.ini",
+		"github": "influxdata",
+		"avatar": "/users/avatars/influxdata.png"
+	},
+	{
+		"name": "Infrahub",
+		"category": "Cloud & infrastructure",
+		"context": "An Infrahub style over both Markdown and MDX, with imports ignored.",
+		"url": "https://github.com/opsmill/infrahub/blob/HEAD/.vale.ini",
+		"github": "opsmill",
+		"avatar": "/users/avatars/opsmill.png"
+	},
+	{
+		"name": "ING",
+		"category": "Enterprise",
+		"context": "Automating technical documentation at a global banking platform.",
+		"url": "https://medium.com/ing-blog/automating-technical-documentation-at-ing-using-vale-699b9ce528eb",
+		"github": "ing-bank",
+		"avatar": "/users/avatars/ing-bank.png"
+	},
+	{
+		"name": "InSpec",
+		"category": "Developer tools",
+		"context": "Auditing and testing framework documentation.",
+		"url": "https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale",
+		"github": "inspec",
+		"avatar": "/users/avatars/inspec.png"
+	},
+	{
+		"name": "IPFS",
+		"category": "Open source",
+		"context": "A docs style in .github/styles, with code spans ignored.",
+		"url": "https://github.com/ipfs/ipfs-docs/blob/HEAD/.vale.ini",
+		"github": "ipfs",
+		"avatar": "/users/avatars/ipfs.png"
+	},
+	{
+		"name": "Kong",
+		"category": "Developer tools",
+		"context": "Source for docs.konghq.com.",
+		"url": "https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini",
+		"icon": "kong"
+	},
+	{
+		"name": "LangChain",
+		"category": "Developer tools",
+		"context": "proselint and write-good alongside a LangChain style.",
+		"url": "https://github.com/langchain-ai/docs/blob/HEAD/.vale.ini",
+		"github": "langchain-ai",
+		"avatar": "/users/avatars/langchain-ai.png"
+	},
+	{
+		"name": "Linode",
+		"category": "Cloud & infrastructure",
+		"context": "Style enforcement for Linode product documentation.",
+		"url": "https://github.com/linode/docs/blob/develop/.vale.ini",
+		"github": "linode",
+		"avatar": "/users/avatars/linode.png"
+	},
+	{
+		"name": "Mautic",
+		"category": "Open source",
+		"context": "User documentation for the Mautic project.",
+		"url": "https://github.com/mautic/mautic-documentation/blob/main/.vale.ini",
+		"icon": "mautic"
+	},
+	{
+		"name": "Medusa",
+		"category": "Developer tools",
+		"context": "Vale's built-in rules and write-good, with a docs style in the monorepo.",
+		"url": "https://github.com/medusajs/medusa/blob/HEAD/.vale.ini",
+		"github": "medusajs",
+		"avatar": "/users/avatars/medusajs.png"
+	},
+	{
+		"name": "Meilisearch",
+		"category": "Data & observability",
+		"context": "Prose linting for the open-source search engine's docs.",
+		"url": "https://blog.meilisearch.com/prose-linting-with-vale/",
+		"icon": "meilisearch"
+	},
+	{
+		"name": "Microsoft",
+		"category": "Cloud & infrastructure",
+		"context": "Runs a packaged PowerShell-Docs style in their Documentarian toolkit.",
+		"url": "https://github.com/microsoft/Documentarian",
+		"github": "microsoft",
+		"avatar": "/users/avatars/microsoft.png",
+		"logo": "/users/Microsoft.svg"
+	},
+	{
+		"name": "Mintlify",
+		"category": "Developer tools",
+		"context": "Runs Vale as a built-in CI check and reports the results on pull requests.",
+		"url": "https://www.mintlify.com/docs/deploy/ci",
+		"icon": "mintlify"
+	},
+	{
+		"name": "MUI",
+		"category": "Open source",
+		"context": "An MUI style with the Google package, in the main repository.",
+		"url": "https://github.com/mui/material-ui/blob/HEAD/.vale.ini",
+		"github": "mui",
+		"avatar": "/users/avatars/mui.png"
+	},
+	{
+		"name": "n8n",
+		"category": "Developer tools",
+		"context": "Their own n8n-styles alongside vendored Microsoft and write-good rules.",
+		"url": "https://github.com/n8n-io/n8n-docs/blob/HEAD/.vale.ini",
+		"github": "n8n-io",
+		"avatar": "/users/avatars/n8n-io.png"
+	},
+	{
+		"name": "Nix",
+		"category": "Open source",
+		"context": "A Style directory of their own, applied across nix.dev.",
+		"url": "https://github.com/nixos/nix.dev/blob/HEAD/.vale.ini",
+		"github": "NixOS",
+		"avatar": "/users/avatars/NixOS.png"
+	},
+	{
+		"name": "NMSU HPC",
+		"category": "Community & services",
+		"context": "Runs Vale in GitLab CI on every merge request, with a custom HPC style and vocabulary.",
+		"url": "https://hpc.nmsu.edu/contribution/vale/",
+		"github": "nmsu-hpc",
+		"avatar": "/users/avatars/nmsu-hpc.png"
+	},
+	{
+		"name": "Novu",
+		"category": "Developer tools",
+		"context": "The Google and write-good packages plus a Novu style of their own.",
+		"url": "https://github.com/novuhq/docs/blob/HEAD/.vale.ini",
+		"github": "novuhq",
+		"avatar": "/users/avatars/novuhq.png"
+	},
+	{
+		"name": "NVIDIA",
+		"category": "Developer tools",
+		"context": "All NeMo Agent Toolkit documentation is checked with Vale before it merges.",
+		"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html#checks",
+		"icon": "nvidia"
+	},
+	{
+		"name": "Open Policy Agent",
+		"category": "Cloud & infrastructure",
+		"context": "An OPA style with per-directory overrides and fenced code ignored.",
+		"url": "https://github.com/open-policy-agent/opa/blob/HEAD/docs/.vale.ini",
+		"github": "open-policy-agent",
+		"avatar": "/users/avatars/open-policy-agent.png"
+	},
+	{
+		"name": "OpenSearch",
+		"category": "Data & observability",
+		"context": "An OpenSearch style on top of Vale's built-in rules.",
+		"url": "https://github.com/opensearch-project/documentation-website/blob/HEAD/.vale.ini",
+		"github": "opensearch-project",
+		"avatar": "/users/avatars/opensearch-project.png"
+	},
+	{
+		"name": "OpenShift",
+		"category": "Cloud & infrastructure",
+		"context": "Pipelines as Code, the Tekton-based CI project.",
+		"url": "https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini",
+		"github": "openshift",
+		"avatar": "/users/avatars/openshift.png"
+	},
+	{
+		"name": "openSUSE",
+		"category": "Open source",
+		"context": "A Vale-compatible package implementing the SUSE Documentation Style Guide.",
+		"url": "https://github.com/openSUSE/suse-vale-styleguide",
+		"github": "openSUSE",
+		"avatar": "/users/avatars/openSUSE.png"
+	},
+	{
+		"name": "PingCAP",
+		"category": "Data & observability",
+		"context": "Documentation for TiDB, TiKV, and PD.",
+		"url": "https://github.com/pingcap/docs/blob/master/.vale.ini",
+		"icon": "tidb"
+	},
+	{
+		"name": "Platform.sh",
+		"category": "Cloud & infrastructure",
+		"context": "Official Platform.sh documentation linting.",
+		"url": "https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini",
+		"icon": "platformsh"
+	},
+	{
+		"name": "PostHog",
+		"category": "Data & observability",
+		"context": "Documents Vale and prose linting in the public company handbook.",
+		"url": "https://posthog.com/handbook/wizard-and-docs/vale",
+		"icon": "posthog"
+	},
+	{
+		"name": "PowerShell Docs",
+		"category": "Developer tools",
+		"context": "A PowerShell-Docs style distributed to writers as a Vale package.",
+		"url": "https://github.com/MicrosoftDocs/PowerShell-Docs/blob/HEAD/.vale.ini",
+		"github": "MicrosoftDocs",
+		"avatar": "/users/avatars/MicrosoftDocs.png"
+	},
+	{
+		"name": "Prefect",
+		"category": "Data & observability",
+		"context": "The Google package with CustomStyles, run from the docs directory.",
+		"url": "https://github.com/prefecthq/prefect/blob/HEAD/docs/.vale.ini",
+		"github": "PrefectHQ",
+		"avatar": "/users/avatars/PrefectHQ.png"
+	},
+	{
+		"name": "Progress Chef",
+		"category": "Developer tools",
+		"context": "The source for docs published on docs.chef.io.",
+		"url": "https://github.com/chef/chef-web-docs/tree/master/tools/vale",
+		"icon": "chef"
+	},
+	{
+		"name": "Pulumi",
+		"category": "Cloud & infrastructure",
+		"context": "The Google package and write-good, extended by a Pulumi style.",
+		"url": "https://github.com/pulumi/docs/blob/HEAD/.vale.ini",
+		"github": "pulumi",
+		"avatar": "/users/avatars/pulumi.png"
+	},
+	{
+		"name": "Qiskit",
+		"category": "Open source",
+		"context": "The IBMQuantum style, with Latin abbreviations demoted to warnings.",
+		"url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/HEAD/docs/.vale.ini",
+		"github": "Qiskit",
+		"avatar": "/users/avatars/Qiskit.png"
+	},
+	{
+		"name": "Qt",
+		"category": "Open source",
+		"context": "Documented setup guide for Qt contributors.",
+		"url": "https://wiki.qt.io/Setting_Up_Vale",
+		"icon": "qt"
+	},
+	{
+		"name": "Quarkus",
+		"category": "Open source",
+		"context": "A single Quarkus style over the documentation in the main repository.",
+		"url": "https://github.com/quarkusio/quarkus/blob/HEAD/docs/.vale.ini",
+		"github": "quarkusio",
+		"avatar": "/users/avatars/quarkusio.png"
+	},
+	{
+		"name": "Rackspace",
+		"category": "Cloud & infrastructure",
+		"context": "Custom style for the Rackspace Expert Insights technical blog.",
+		"url": "https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini",
+		"github": "rackerlabs",
+		"avatar": "/users/avatars/rackerlabs.png"
+	},
+	{
+		"name": "Red Hat",
+		"category": "Open source",
+		"context": "Maintains \"Vale at Red Hat\", a public style package and onboarding guide.",
+		"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
+		"icon": "redhat",
+		"logo": "/users/Red Hat.svg"
+	},
+	{
+		"name": "Rocky Linux",
+		"category": "Open source",
+		"context": "Publishes a guide for setting up Vale in Neovim via NvChad.",
+		"url": "https://docs.rockylinux.org/10/books/nvchad/vale_nvchad/",
+		"icon": "rockylinux"
+	},
+	{
+		"name": "Rubin Observatory",
+		"category": "Community & services",
+		"context": "Lints the Rubin Science Platform docs against the Google style package plus house RSP rules, advisory on every pull request.",
+		"url": "https://rsp.lsst.io/contributing/vale.html",
+		"github": "lsst",
+		"avatar": "/users/avatars/lsst.png"
+	},
+	{
+		"name": "SAP",
+		"category": "Enterprise",
+		"context": "Style checks for the SAP Cloud SDK documentation.",
+		"url": "https://github.com/SAP/cloud-sdk/blob/main/.vale.ini",
+		"icon": "sap"
+	},
+	{
+		"name": "SixLabors",
+		"category": "Open source",
+		"context": "API docs and tutorials for ImageSharp and related projects.",
+		"url": "https://github.com/SixLabors/docs/blob/main/vale.ini",
+		"github": "SixLabors",
+		"avatar": "/users/avatars/SixLabors.png"
 	},
 	{
 		"name": "Spectro Cloud",
@@ -91,196 +601,11 @@
 		"logo": "/users/Spectro Cloud.svg"
 	},
 	{
-		"name": "GitHub",
-		"category": "Developer tools",
-		"context": "Used to lint the CodeQL documentation.",
-		"url": "https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini",
-		"icon": "github"
-	},
-	{
 		"name": "Spotify",
 		"category": "Developer tools",
 		"context": "Lints Backstage, the open platform for developer portals.",
 		"url": "https://github.com/spotify/backstage/blob/master/.vale.ini",
 		"icon": "spotify"
-	},
-	{
-		"name": "SAP",
-		"category": "Enterprise",
-		"context": "Style checks for the SAP Cloud SDK documentation.",
-		"url": "https://github.com/SAP/cloud-sdk/blob/main/.vale.ini",
-		"icon": "sap"
-	},
-	{
-		"name": "Canonical",
-		"category": "Open source",
-		"context": "Ships Vale rules with its public documentation style guide, plus a GitHub Action.",
-		"url": "https://github.com/canonical/documentation-style-guide",
-		"icon": "canonical"
-	},
-	{
-		"name": "openSUSE",
-		"category": "Open source",
-		"context": "A Vale-compatible package implementing the SUSE Documentation Style Guide.",
-		"url": "https://github.com/openSUSE/suse-vale-styleguide",
-		"github": "openSUSE",
-		"avatar": "/users/avatars/openSUSE.png"
-	},
-	{
-		"name": "Auth0",
-		"category": "Developer tools",
-		"context": "Lints the Auth0 documentation content repository with Vale.",
-		"url": "https://github.com/auth0/docs-v2",
-		"github": "auth0",
-		"avatar": "/users/avatars/auth0.png"
-	},
-	{
-		"name": "Graphile",
-		"category": "Developer tools",
-		"context": "Lints the Grafast and PostGraphile docs in the Crystal monorepo.",
-		"url": "https://github.com/graphile/crystal/blob/main/.vale.ini",
-		"github": "graphile",
-		"avatar": "/users/avatars/graphile.png"
-	},
-	{
-		"name": "CircleCI",
-		"category": "Developer tools",
-		"context": "Writes Vale into the docs style guide its AI assistants follow, with a vale-linter skill that fixes error-level alerts and opens a pull request per file.",
-		"url": "https://github.com/circleci/circleci-docs/blob/main/AGENTS.md",
-		"github": "circleci",
-		"avatar": "/users/avatars/circleci.png"
-	},
-	{
-		"name": "Consensys",
-		"category": "Developer tools",
-		"context": "Runs Vale on every PR across its doc sites via a shared documentation template.",
-		"url": "https://docs-template.consensys.io/contribute/run-vale",
-		"github": "Consensys",
-		"avatar": "/users/avatars/Consensys.png"
-	},
-	{
-		"name": "Eclipse Che",
-		"category": "Open source",
-		"context": "Publishes a Vale style for the Eclipse Che documentation and related projects.",
-		"url": "https://github.com/eclipse-che/che-docs-vale-style",
-		"github": "eclipse-che",
-		"avatar": "/users/avatars/eclipse-che.png"
-	},
-	{
-		"name": "Airbyte",
-		"category": "Data & observability",
-		"context": "Lints its docs with a custom Vale style built on Google and write-good.",
-		"url": "https://github.com/airbytehq/airbyte/tree/master/docs/vale-styles",
-		"github": "airbytehq",
-		"avatar": "/users/avatars/airbytehq.png"
-	},
-	{
-		"name": "AWS Deadline Cloud",
-		"category": "Cloud & infrastructure",
-		"context": "Lints its sample job documentation with Vale.",
-		"url": "https://github.com/aws-deadline/deadline-cloud-samples/blob/mainline/.vale.ini",
-		"github": "aws-deadline",
-		"avatar": "/users/avatars/aws-deadline.png"
-	},
-	{
-		"name": "Fedora Linux",
-		"category": "Open source",
-		"context": "Part of the Fedora docs contributor toolchain.",
-		"url": "https://docs.fedoraproject.org/en-US/fedora-docs/contributing-docs/tools-vale-linter/",
-		"icon": "fedora"
-	},
-	{
-		"name": "Rocky Linux",
-		"category": "Open source",
-		"context": "Publishes a guide for setting up Vale in Neovim via NvChad.",
-		"url": "https://docs.rockylinux.org/10/books/nvchad/vale_nvchad/",
-		"icon": "rockylinux"
-	},
-	{
-		"name": "Qt",
-		"category": "Open source",
-		"context": "Documented setup guide for Qt contributors.",
-		"url": "https://wiki.qt.io/Setting_Up_Vale",
-		"icon": "qt"
-	},
-	{
-		"name": "Elastic",
-		"category": "Data & observability",
-		"context": "Ships an Elastic style guide implemented as Vale rules.",
-		"url": "https://www.elastic.co/docs/contribute-docs/vale-linter",
-		"icon": "elastic"
-	},
-	{
-		"name": "PostHog",
-		"category": "Data & observability",
-		"context": "Documents Vale and prose linting in the public company handbook.",
-		"url": "https://posthog.com/handbook/wizard-and-docs/vale",
-		"icon": "posthog"
-	},
-	{
-		"name": "Homebrew",
-		"category": "Open source",
-		"context": "The missing package manager for macOS (and Linux).",
-		"url": "https://github.com/Homebrew/brew/blob/master/.vale.ini",
-		"icon": "homebrew"
-	},
-	{
-		"name": "webpack",
-		"category": "Open source",
-		"context": "Lints the official webpack documentation site.",
-		"url": "https://github.com/webpack/webpack.js.org/blob/master/.vale.ini",
-		"icon": "webpack"
-	},
-	{
-		"name": "CockroachDB",
-		"category": "Data & observability",
-		"context": "Style enforcement for CockroachDB user documentation.",
-		"url": "https://github.com/cockroachdb/docs/blob/master/.vale.ini",
-		"icon": "cockroachlabs"
-	},
-	{
-		"name": "Timescale",
-		"category": "Data & observability",
-		"context": "Style enforcement for Timescale product documentation.",
-		"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
-		"icon": "timescale"
-	},
-	{
-		"name": "PingCAP",
-		"category": "Data & observability",
-		"context": "Documentation for TiDB, TiKV, and PD.",
-		"url": "https://github.com/pingcap/docs/blob/master/.vale.ini",
-		"icon": "tidb"
-	},
-	{
-		"name": "Meilisearch",
-		"category": "Data & observability",
-		"context": "Prose linting for the open-source search engine's docs.",
-		"url": "https://blog.meilisearch.com/prose-linting-with-vale/",
-		"icon": "meilisearch"
-	},
-	{
-		"name": "Aiven",
-		"category": "Data & observability",
-		"context": "Resources and docs for projects on the Aiven platform.",
-		"url": "https://github.com/aiven/devportal/blob/main/.vale.ini",
-		"github": "aiven",
-		"avatar": "/users/avatars/aiven.png"
-	},
-	{
-		"name": "CloudQuery",
-		"category": "Data & observability",
-		"context": "Linting the official CloudQuery documentation.",
-		"url": "https://github.com/cloudquery/cloudquery/blob/main/.vale.ini",
-		"github": "cloudquery",
-		"avatar": "/users/avatars/cloudquery.png"
-	},
-	{
-		"name": "Kong",
-		"category": "Developer tools",
-		"context": "Source for docs.konghq.com.",
-		"url": "https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini",
-		"icon": "kong"
 	},
 	{
 		"name": "Stoplight",
@@ -291,14 +616,6 @@
 		"avatar": "/users/avatars/stoplightio.png"
 	},
 	{
-		"name": "Fern",
-		"category": "Developer tools",
-		"context": "Recommends Vale for linting docs and improving writing quality.",
-		"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
-		"github": "fern-api",
-		"avatar": "/users/avatars/fern-api.png"
-	},
-	{
 		"name": "Stream",
 		"category": "Developer tools",
 		"context": "Linting docs in CI to increase quality and consistency.",
@@ -307,120 +624,28 @@
 		"avatar": "/users/avatars/GetStream.png"
 	},
 	{
-		"name": "Progress Chef",
+		"name": "Temporal",
 		"category": "Developer tools",
-		"context": "The source for docs published on docs.chef.io.",
-		"url": "https://github.com/chef/chef-web-docs/tree/master/tools/vale",
-		"icon": "chef"
+		"context": "Google, Microsoft and alex packages, plus a Temporal style.",
+		"url": "https://github.com/temporalio/documentation/blob/HEAD/.vale.ini",
+		"github": "temporalio",
+		"avatar": "/users/avatars/temporalio.png"
 	},
 	{
-		"name": "InSpec",
-		"category": "Developer tools",
-		"context": "Auditing and testing framework documentation.",
-		"url": "https://github.com/inspec/inspec/tree/main/docs-chef-io/tools/vale",
-		"github": "inspec",
-		"avatar": "/users/avatars/inspec.png"
-	},
-	{
-		"name": "OpenShift",
-		"category": "Cloud & infrastructure",
-		"context": "Pipelines as Code, the Tekton-based CI project.",
-		"url": "https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini",
-		"github": "openshift",
-		"avatar": "/users/avatars/openshift.png"
-	},
-	{
-		"name": "Platform.sh",
-		"category": "Cloud & infrastructure",
-		"context": "Official Platform.sh documentation linting.",
-		"url": "https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini",
-		"icon": "platformsh"
-	},
-	{
-		"name": "Linode",
-		"category": "Cloud & infrastructure",
-		"context": "Style enforcement for Linode product documentation.",
-		"url": "https://github.com/linode/docs/blob/develop/.vale.ini",
-		"github": "linode",
-		"avatar": "/users/avatars/linode.png"
-	},
-	{
-		"name": "Rackspace",
-		"category": "Cloud & infrastructure",
-		"context": "Custom style for the Rackspace Expert Insights technical blog.",
-		"url": "https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini",
-		"github": "rackerlabs",
-		"avatar": "/users/avatars/rackerlabs.png"
-	},
-	{
-		"name": "D2iQ",
-		"category": "Cloud & infrastructure",
-		"context": "D2iQ product documentation and docs website code.",
-		"url": "https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini",
-		"github": "d2iq",
-		"avatar": "/users/avatars/d2iq.png"
-	},
-	{
-		"name": "VSHN",
-		"category": "Cloud & infrastructure",
-		"context": "The VSHN Application Catalog documentation.",
-		"url": "https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini",
-		"github": "vshn",
-		"avatar": "/users/avatars/vshn.png"
-	},
-	{
-		"name": "ING",
+		"name": "Texas Instruments",
 		"category": "Enterprise",
-		"context": "Automating technical documentation at a global banking platform.",
-		"url": "https://medium.com/ing-blog/automating-technical-documentation-at-ing-using-vale-699b9ce528eb",
-		"github": "ing-bank",
-		"avatar": "/users/avatars/ing-bank.png"
+		"context": "Processor SDK docs build on the Red Hat style package with a custom PSDK vocabulary.",
+		"url": "https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini",
+		"github": "TexasInstruments",
+		"avatar": "/users/avatars/TexasInstruments.png",
+		"logo": "/users/Texas Instruments.svg"
 	},
 	{
-		"name": "Contentsquare",
-		"category": "Enterprise",
-		"context": "Helping engineers become better writers.",
-		"url": "https://engineering.contentsquare.com/2023/using-vale-to-help-engineers-become-better-writers/",
-		"github": "contentsquare",
-		"avatar": "/users/avatars/contentsquare.png"
-	},
-	{
-		"name": "commercetools",
-		"category": "Enterprise",
-		"context": "Tools for developing documentation websites.",
-		"url": "https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini",
-		"github": "commercetools",
-		"avatar": "/users/avatars/commercetools.png"
-	},
-	{
-		"name": "Umbraco",
-		"category": "Open source",
-		"context": "The official Umbraco documentation.",
-		"url": "https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini",
-		"icon": "umbraco"
-	},
-	{
-		"name": "Mautic",
-		"category": "Open source",
-		"context": "User documentation for the Mautic project.",
-		"url": "https://github.com/mautic/mautic-documentation/blob/main/.vale.ini",
-		"icon": "mautic"
-	},
-	{
-		"name": "SixLabors",
-		"category": "Open source",
-		"context": "API docs and tutorials for ImageSharp and related projects.",
-		"url": "https://github.com/SixLabors/docs/blob/main/vale.ini",
-		"github": "SixLabors",
-		"avatar": "/users/avatars/SixLabors.png"
-	},
-	{
-		"name": "Write the Docs",
-		"category": "Community & services",
-		"context": "Main website for the Write the Docs community.",
-		"url": "https://github.com/writethedocs/www/blob/main/vale/vale.ini",
-		"github": "writethedocs",
-		"avatar": "/users/avatars/writethedocs.png"
+		"name": "Timescale",
+		"category": "Data & observability",
+		"context": "Style enforcement for Timescale product documentation.",
+		"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
+		"icon": "timescale"
 	},
 	{
 		"name": "TrussWorks",
@@ -431,27 +656,49 @@
 		"avatar": "/users/avatars/trussworks.png"
 	},
 	{
-		"name": "GOV.UK",
+		"name": "Umbraco",
 		"category": "Open source",
-		"context": "Publishes the GOV.UK Technical Style guide as a public Vale style package.",
-		"url": "https://github.com/alphagov/tech-docs-linter",
-		"github": "alphagov",
-		"avatar": "/users/avatars/alphagov.png"
+		"context": "The official Umbraco documentation.",
+		"url": "https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini",
+		"icon": "umbraco"
 	},
 	{
-		"name": "NMSU HPC",
-		"category": "Community & services",
-		"context": "Runs Vale in GitLab CI on every merge request, with a custom HPC style and vocabulary.",
-		"url": "https://hpc.nmsu.edu/contribution/vale/",
-		"github": "nmsu-hpc",
-		"avatar": "/users/avatars/nmsu-hpc.png"
+		"name": "VSHN",
+		"category": "Cloud & infrastructure",
+		"context": "The VSHN Application Catalog documentation.",
+		"url": "https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini",
+		"github": "vshn",
+		"avatar": "/users/avatars/vshn.png"
 	},
 	{
-		"name": "Rubin Observatory",
+		"name": "webpack",
+		"category": "Open source",
+		"context": "Lints the official webpack documentation site.",
+		"url": "https://github.com/webpack/webpack.js.org/blob/master/.vale.ini",
+		"icon": "webpack"
+	},
+	{
+		"name": "Write the Docs",
 		"category": "Community & services",
-		"context": "Lints the Rubin Science Platform docs against the Google style package plus house RSP rules, advisory on every pull request.",
-		"url": "https://rsp.lsst.io/contributing/vale.html",
-		"github": "lsst",
-		"avatar": "/users/avatars/lsst.png"
+		"context": "Main website for the Write the Docs community.",
+		"url": "https://github.com/writethedocs/www/blob/main/vale/vale.ini",
+		"github": "writethedocs",
+		"avatar": "/users/avatars/writethedocs.png"
+	},
+	{
+		"name": "Yii",
+		"category": "Open source",
+		"context": "The Microsoft style applied to the framework's documentation.",
+		"url": "https://github.com/yiisoft/docs/blob/HEAD/.vale.ini",
+		"github": "yiisoft",
+		"avatar": "/users/avatars/yiisoft.png"
+	},
+	{
+		"name": "YugabyteDB",
+		"category": "Data & observability",
+		"context": "A Yugabyte style beside Vale's built-in rules, scoped to docs.",
+		"url": "https://github.com/yugabyte/yugabyte-db/blob/HEAD/docs/.vale.ini",
+		"github": "yugabyte",
+		"avatar": "/users/avatars/yugabyte.png"
 	}
 ]

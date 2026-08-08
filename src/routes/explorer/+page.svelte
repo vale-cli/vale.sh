@@ -7,6 +7,8 @@
 	import Copy from 'lucide-svelte/icons/copy';
 	import Check from 'lucide-svelte/icons/check';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
+	import ArrowRight from 'lucide-svelte/icons/arrow-right';
+	import { Icons } from '$lib/components/icons';
 
 	type Pkg = {
 		name: string;
@@ -92,8 +94,39 @@
 		</p>
 	</div>
 
+	<!--
+		The wider ecosystem, up top rather than as a footnote: this page lists the
+		curated packages, and the tag is where everyone else's live.
+	-->
+	<a
+		href="https://github.com/topics/vale-linter-style"
+		target="_blank"
+		rel="noreferrer"
+		class="group mx-auto mt-10 flex max-w-3xl items-center gap-4 rounded-xl border border-lime-500/30 bg-gradient-to-r from-lime-500/10 to-emerald-500/10 p-4 transition-colors hover:border-lime-500/60 hover:from-lime-500/15 hover:to-emerald-500/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 sm:p-5"
+	>
+		<span
+			class="hidden h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-lime-500/25 bg-lime-500/10 text-lime-600 dark:text-lime-400 sm:inline-flex"
+		>
+			<Icons.GitHub class="h-5 w-5" />
+		</span>
+
+		<span class="min-w-0 flex-1">
+			<span class="block text-sm font-semibold text-foreground sm:text-base">
+				Looking for more? Browse the community tag
+			</span>
+			<span class="mt-0.5 block text-sm text-muted-foreground">
+				Every package published under
+				<code class="font-mono text-[13px] text-foreground">vale-linter-style</code> on GitHub.
+			</span>
+		</span>
+
+		<ArrowRight
+			class="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5"
+		/>
+	</a>
+
 	<!-- Toolbar -->
-	<div class="mt-12 flex flex-col gap-3 sm:flex-row sm:items-center">
+	<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
 		<div class="relative flex-1">
 			<Search
 				class="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground"
@@ -208,14 +241,4 @@
 			</ul>
 		{/if}
 	</div>
-
-	<p class="mt-10 text-center text-sm text-muted-foreground">
-		Looking for more? Browse the
-		<a
-			href="https://github.com/topics/vale-linter-style"
-			target="_blank"
-			rel="noreferrer"
-			class="font-medium text-lime-500 hover:underline">vale-linter-style</a
-		> tag on GitHub.
-	</p>
 </div>

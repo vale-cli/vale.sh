@@ -12,6 +12,7 @@ export const siteConfig = {
 		org: 'https://github.com/vale-cli',
 		twitter: 'https://twitter.com/jdkato',
 		jdkato: 'https://github.com/jdkato',
+		// Not linked anywhere yet: the channel has one video on it.
 		youtube: 'https://www.youtube.com/@valecli',
 		releases: 'https://github.com/errata-ai/vale/releases',
 		docker: 'https://hub.docker.com/r/jdkato/vale',

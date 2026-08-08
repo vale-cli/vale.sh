@@ -9,7 +9,14 @@ By default, Vale ignores:
 * Indented blocks: Blocks starting with four or more spaces.
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
+* Math: `$$…$$` blocks and `$x^2$` spans. See [Math](markdown.md#math).
 * URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
+
+## [Math](markdown.md#math)
+
+Both `$$…$$` display math and `$x^2$` inline math are ignored. Inline math follows Pandoc's delimiter rules, which are what tell an equation from a price: the opening `$` needs a non-space character to its right, and the closing `$` needs one to its left and no digit after it. So `$g_i = g(p)_i$` is math, while `It costs $5 and $10` stays prose and is linted as such.
+
+A span may wrap onto the next line, but not past the end of its paragraph. Write `\$` for a literal dollar sign that would otherwise open one.
 
 ## [R Markdown](markdown.md#r-markdown)
 
@@ -29,11 +36,11 @@ A configuration section still needs to match the extension:
 BasedOnStyles = Vale
 ```
 
-Pandoc syntax that isn't Markdown—inline math, citations—can be excluded with [`TokenIgnores`](../keys/tokenignores.md):
+Pandoc syntax that isn't Markdown—citations, for one—can be excluded with [`TokenIgnores`](../keys/tokenignores.md):
 
 ```ini
 [*.{md,Rmd}]
-TokenIgnores = (\$[^\n$]+\$), (\[@[^\n\]]+\])
+TokenIgnores = (\[@[^\n\]]+\])
 ```
 
 ## [Comments](markdown.md#comments)

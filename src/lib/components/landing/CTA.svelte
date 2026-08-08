@@ -16,13 +16,3 @@
 		>
 	</div>
 </div>
-
-<div class="mx-auto max-w-7xl px-6 pb-24 sm:pb-32 lg:px-8">
-	<p class="text-sm/6 text-muted-foreground">
-		Setting up with a coding agent? Drop
-		<a href="/AGENTS.md" class="font-semibold text-lime-500 hover:underline">AGENTS.md</a>
-		in your repository, or pick one of the
-		<a href="/skills" class="font-semibold text-lime-500 hover:underline">agent skills</a>
-		for setup, fixing alerts, or wiring up CI.
-	</p>
-</div>

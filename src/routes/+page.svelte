@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Hero from '$lib/components/landing/Hero.svelte';
-	import LogoWall from '$lib/components/landing/LogoWall.svelte';
+	import AdopterConfigs from '$lib/components/landing/AdopterConfigs.svelte';
 	import SponsorSpotlight from '$lib/components/landing/SponsorSpotlight.svelte';
 	import SectionNav from '$lib/components/landing/SectionNav.svelte';
 	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
@@ -45,13 +45,8 @@
 />
 
 <Hero stats={data.stats} />
-<SponsorSpotlight
-	name="Mintlify"
-	slug="mintlify"
-	href="/sponsors/mintlify"
-	blurb="Funds Vale's development, and ships it as a built-in CI check."
-/>
-<LogoWall />
+<SponsorSpotlight />
+<AdopterConfigs />
 <SectionNav {hasEvents} />
 <Features />
 <Ai />

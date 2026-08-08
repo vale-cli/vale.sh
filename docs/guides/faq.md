@@ -211,6 +211,8 @@ Your default `text`-scoped rules run on them too.
 
 They apply only to [supported formats](../formats/). For anything else, Vale has no markup to reason about, so there is nothing for those keys to select.
 
+The other cause is a section that doesn't match the file. A section names files as they are on disk, so a [format association](../topics/.vale.ini.md#format-associations) doesn't make `[*.md]` reach a `.qmd`—that needs `[*.qmd]`. A section keyed on a path needs to be written relative to where you run Vale.
+
 ### Can Vale lint the URL inside a link?
 
 No. There is no scope more specific than `raw` for this, and matching a link target reliably from raw text is difficult because the scope is so wide.

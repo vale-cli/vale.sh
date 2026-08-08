@@ -54,9 +54,11 @@ tokens:
 
 ## [Math and citations](myst.md#math-and-citations)
 
-Inline dollar math (`$x^2$`) and citations (`[@ref]`) are read as prose, since a bare `$` or bracket is ordinary punctuation more often than not. To exclude them, use [`TokenIgnores`](../keys/tokenignores.md):
+Math is ignored, both `$$…$$` display blocks and `$x^2$` inline spans. See [Math](markdown.md#math) for the delimiter rules, which are what keep `It costs $5 and $10` prose.
+
+Citations (`[@ref]`) are read as prose, since a bare bracket is ordinary punctuation more often than not. To exclude them, use [`TokenIgnores`](../keys/tokenignores.md):
 
 ```ini
 [*.{md,myst}]
-TokenIgnores = (\$[^\n$]+\$), (\[@[^\n\]]+\])
+TokenIgnores = (\[@[^\n\]]+\])
 ```
