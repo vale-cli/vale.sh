@@ -62,7 +62,7 @@
 		here just hid the end of every message.
 	-->
 	<div
-		class="px-4 py-4 font-mono text-[13px] leading-relaxed"
+		class="px-4 py-4 font-mono text-[12px] leading-relaxed sm:text-[13px]"
 		role="tabpanel"
 		aria-label="{run.name} lint output"
 	>
@@ -72,16 +72,31 @@
 
 		<div class="mt-3 break-all text-zinc-100 underline underline-offset-4">{run.file}</div>
 
-		{#each run.alerts as alert (alert.loc + alert.rule)}
-			<div class="mt-1 flex gap-3 sm:gap-4">
-				<span class="w-14 shrink-0 text-zinc-500 sm:w-16">{alert.loc}</span>
-				<span class="w-[62px] shrink-0 sm:w-[74px] {sevColor[alert.sev]}">{alert.sev}</span>
-				<span class="min-w-0 flex-1">
-					<span class="text-zinc-200">{alert.msg}</span>
-					<span class="text-zinc-500">&nbsp;{alert.rule}</span>
-				</span>
-			</div>
-		{/each}
+		<!--
+			Columns are sized by content rather than by fixed widths: 'suggestion'
+			is wider than the 62px the severity column used to reserve, so it ran
+			into the message. `contents` flattens each alert into that grid so the
+			three columns still line up across rows.
+
+			Below `sm` there is no room for three columns at all -- 295px on a
+			375px phone left the message about 19 characters and pushed the rule
+			name off the right edge -- so the location and severity move to their
+			own line and the message gets the full width.
+		-->
+		<div class="mt-1 sm:grid sm:grid-cols-[auto_auto_minmax(0,1fr)] sm:gap-x-4 sm:gap-y-1">
+			{#each run.alerts as alert (alert.loc + alert.rule)}
+				<div class="mt-2 flex flex-col sm:contents">
+					<span class="flex gap-3 sm:contents">
+						<span class="shrink-0 text-zinc-500">{alert.loc}</span>
+						<span class="shrink-0 {sevColor[alert.sev]}">{alert.sev}</span>
+					</span>
+					<span class="min-w-0 break-words">
+						<span class="text-zinc-200">{alert.msg}</span>
+						<span class="text-zinc-500">&nbsp;{alert.rule}</span>
+					</span>
+				</div>
+			{/each}
+		</div>
 
 		<div class="mt-3 text-zinc-400">
 			<span class={run.summary.startsWith('0 errors') ? 'text-amber-400' : 'text-red-400'}>✖</span>
