@@ -87,6 +87,7 @@
 * [pre-commit](integrations/pre-commit.md)
 * [JetBrains](https://plugins.jetbrains.com/plugin/19613-vale-cli/docs)
 * [Laravel](https://github.com/beyondcode/laravel-prose-linter)
+* [MegaLinter](https://megalinter.io/latest/descriptors/spell_vale/)
 * [Obsidian](https://github.com/ChrisChinchilla/obsidian-vale)
 * [Oxygen XML](https://www.oxygenxml.com/doc/versions/23.1/ug-editor/topics/vale-linter-addon.html)
 * [Sublime Text](https://packagecontrol.io/packages/LSP-vale-ls)
