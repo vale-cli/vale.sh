@@ -1,9 +1,9 @@
 # TokenIgnores
 
-Learn define custom inline-level ignores in your Vale configuration.
+Learn how to define custom inline-level ignores in your Vale configuration.
 
 {% hint style="warning" %}
-`TokenIgnores` are only supported in Markdown, reStructuredText, AsciiDoc, and Org Mode.
+`TokenIgnores` are supported in AsciiDoc, Markdown, MDX, MyST, Org Mode, QDoc, Quarto, reStructuredText, and Typst. MyST, QDoc, Quarto, and Typst require Vale v3.18.0 or later.
 
 They work by wrapping each match in the format's inline code delimiter, so they need a markup format to wrap it with. In a source code file they have no effect—but associating a markup format with your comments makes them available. See [Code](../formats/code.md#associations).
 {% endhint %}
