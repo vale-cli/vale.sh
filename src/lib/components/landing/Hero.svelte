@@ -2,7 +2,6 @@
 	import { siteConfig } from '$lib/config/site.js';
 	import type { Stats } from '$lib/types/stats';
 	import Terminal from './Terminal.svelte';
-	import HeroFeatures from './HeroFeatures.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Star from 'lucide-svelte/icons/star';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
@@ -81,14 +80,13 @@
 			</div>
 		</div>
 
-		<!-- Terminal demo -->
-		<div class="mx-auto mt-14 max-w-3xl sm:mt-16">
+		<!--
+			Terminal demo. Wider than the copy above it: at max-w-3xl the longest
+			alert line ran past the edge and needed a sideways scroll on a desktop,
+			which a hero should never ask for.
+		-->
+		<div class="mx-auto mt-14 max-w-4xl sm:mt-16">
 			<Terminal />
-
-			<!-- What the panel above cannot show: what you can teach it. -->
-			<div class="mt-10">
-				<HeroFeatures />
-			</div>
 		</div>
 
 		<!--

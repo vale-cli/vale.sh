@@ -1,53 +1,68 @@
 <script lang="ts">
 	/*
-		A recreation of Vale's default CLI output. The file is invented; the rules
-		are not.
+		A recreation of a Vale session. The files are invented; the rules are not.
 
-		Every alert below was produced by running Vale against a short README with
-		`BasedOnStyles = Vale, Microsoft`, so each name, level and message is the
-		real one. The previous version had `Microsoft.Vocab` reporting "Use 'use'
-		instead of 'utilize'" as a warning -- that rule exists, but it is a
-		suggestion and says "Verify your use of '%s' with the A-Z word list". The
-		utilize/use call belongs to Microsoft.Wordiness. `write-good.Passive` was
-		likewise shown as a suggestion with Google's phrasing, when it is a
-		warning with its own.
+		Everything here except the custom `Docs.*` rules was produced by running
+		Vale over a two-file directory with `BasedOnStyles = Vale, Microsoft`, so
+		the names, levels, messages, ordering and summary line are its own. Vale
+		sorts files alphabetically and prints each under its own path, which is
+		why configure.md comes first.
+
+		`Docs.Terms` stands in for a rule a team wrote themselves -- the message
+		follows the `substitution` extension's format. Nothing ships a rule by
+		that name, and that is the point: the interesting rules on a real project
+		are the ones nobody else has.
+
+		One session rather than a single command, because `sync` is where the
+		styles come from and a directory run is what anyone actually types.
 	*/
 	type Sev = 'error' | 'warning' | 'suggestion';
-	interface Alert {
-		loc: string;
-		sev: Sev;
-		msg: string;
-		rule: string;
-	}
+	type Alert = { loc: string; sev: Sev; msg: string; rule: string };
 
-	const alerts: Alert[] = [
+	const files: { path: string; alerts: Alert[] }[] = [
 		{
-			loc: '3:31',
-			sev: 'suggestion',
-			msg: "Consider using 'use' instead of 'utilize'.",
-			rule: 'Microsoft.Wordiness'
+			path: 'docs/configure.md',
+			alerts: [
+				{
+					loc: '3:7',
+					sev: 'suggestion',
+					msg: "Consider using 'use' instead of 'utilize'.",
+					rule: 'Microsoft.Wordiness'
+				},
+				{
+					loc: '3:44',
+					sev: 'suggestion',
+					msg: "'are loaded' looks like passive voice.",
+					rule: 'Microsoft.Passive'
+				},
+				{
+					loc: '9:12',
+					sev: 'error',
+					msg: "Use 'Vale CLI' instead of 'Vale cli'.",
+					rule: 'Docs.Terms'
+				}
+			]
 		},
 		{
-			loc: '6:1',
-			sev: 'warning',
-			msg: "Use 'select' instead of the input-specific verb 'Click'.",
-			rule: 'Microsoft.UIVerbs'
-		},
-		{
-			loc: '6:48',
-			sev: 'suggestion',
-			msg: "'are loaded' looks like passive voice.",
-			rule: 'Microsoft.Passive'
-		},
-		{
-			loc: '7:30',
-			sev: 'error',
-			msg: "Did you really mean 'existant'?",
-			rule: 'Vale.Spelling'
+			path: 'docs/install.md',
+			alerts: [
+				{
+					loc: '3:40',
+					sev: 'warning',
+					msg: "Use 'select' instead of the input-specific verb 'Click'.",
+					rule: 'Microsoft.UIVerbs'
+				},
+				{
+					loc: '4:28',
+					sev: 'error',
+					msg: "Did you really mean 'existant'?",
+					rule: 'Vale.Spelling'
+				}
+			]
 		}
 	];
 
-	const summary = '1 error, 1 warning and 2 suggestions in 1 file.';
+	const summary = '2 errors, 1 warning and 2 suggestions in 2 files.';
 
 	// Both themes: the panel used to be permanently near-black, which sat as a
 	// hole in the middle of an otherwise light page.
@@ -70,26 +85,39 @@
 	<!-- Body -->
 	<div class="overflow-x-auto px-4 py-4 font-mono text-[13px] leading-relaxed">
 		<div class="whitespace-pre text-foreground">
-			<span class="text-lime-600 dark:text-lime-400">$</span> vale README.md
+			<span class="text-lime-600 dark:text-lime-400">$</span> vale sync
+		</div>
+		<div class="mt-1 whitespace-pre">
+			<span
+				class="rounded-sm bg-lime-600/15 px-1.5 py-0.5 font-semibold text-lime-700 dark:text-lime-400"
+				>SUCCESS</span
+			>
+			<span class="text-muted-foreground"> Synced 2 package(s) to 'styles'.</span>
 		</div>
 
-		<div class="mt-3 whitespace-pre font-medium text-foreground">README.md</div>
+		<div class="mt-4 whitespace-pre text-foreground">
+			<span class="text-lime-600 dark:text-lime-400">$</span> vale docs/
+		</div>
 
-		{#each alerts as a}
-			<div class="mt-1 flex gap-4 whitespace-pre">
-				<span class="w-16 shrink-0 text-muted-foreground">{a.loc}</span>
-				<span class="w-[76px] shrink-0 {sevColor[a.sev]}">{a.sev}</span>
-				<span class="text-foreground">{a.msg}</span>
-				<span class="text-muted-foreground/70">{a.rule}</span>
+		{#each files as file (file.path)}
+			<div class="mt-4 whitespace-pre font-medium text-foreground underline underline-offset-4">
+				{file.path}
 			</div>
+			{#each file.alerts as a (a.loc + a.rule)}
+				<div class="mt-1 flex gap-4 whitespace-pre">
+					<span class="w-14 shrink-0 text-muted-foreground">{a.loc}</span>
+					<span class="w-[76px] shrink-0 {sevColor[a.sev]}">{a.sev}</span>
+					<span class="text-foreground">{a.msg}</span>
+					<span class="text-muted-foreground/70">{a.rule}</span>
+				</div>
+			{/each}
 		{/each}
 
 		<!--
 			One expression, not wrapped markup: `whitespace-pre` keeps whatever line
-			break the formatter puts in the template, which split this across two
-			lines mid-sentence.
+			break the formatter puts in the template.
 		-->
-		<div class="mt-3 whitespace-pre text-muted-foreground">
+		<div class="mt-4 whitespace-pre text-muted-foreground">
 			<span class="text-red-600 dark:text-red-400">✖</span>
 			{summary}
 		</div>
