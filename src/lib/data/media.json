@@ -1,15 +1,5 @@
 [
 	{
-		"title": "How to set up Vale as a linter for text in Neovim",
-		"url": "https://tkreuziger.com/posts/2024-10-29-how_to_set_up_vale_as_a_linter_for_text_in_neovim/",
-		"author": "Tristan Kreuziger",
-		"year": 2024,
-		"type": "post",
-		"description": "A guide to configuring Vale as a prose linter in Neovim, from the config file to running vale sync.",
-		"image": "",
-		"site": "tkreuziger.com"
-	},
-	{
 		"title": "An open grammar and style checker",
 		"url": "https://www.youtube.com/watch?v=ObaNkZVEoDQ",
 		"author": "Chris Chinchilla",
@@ -18,6 +8,36 @@
 		"description": "Vale checks text against configurable rules, but those rules are regular expressions and carry no sense of context. This talk pairs the Vale MCP server with open models to see how far a rule-based linter and an LLM get together — an open alternative to the proprietary grammar tools.",
 		"image": "https://img.youtube.com/vi/ObaNkZVEoDQ/hqdefault.jpg",
 		"site": "Everything Open"
+	},
+	{
+		"title": "Vale & The OpenAPI Specification [2026 update]",
+		"url": "https://medium.com/valelint/vale-the-openapi-specification-2026-update-d2c86b246226",
+		"author": "jdkato",
+		"year": 2026,
+		"type": "post",
+		"description": "An updated tutorial on linting your OpenAPI Specification files, using Views to target the prose fields you care about.",
+		"image": "",
+		"site": "Medium"
+	},
+	{
+		"title": "Docs Linting Guide",
+		"url": "https://buildwithfern.com/post/docs-linting-guide",
+		"author": "Fern",
+		"year": 2026,
+		"type": "post",
+		"description": "A walkthrough of docs linting, covering Vale and how to wire prose checks into CI/CD alongside the rest of your quality gates.",
+		"image": "",
+		"site": "buildwithfern.com"
+	},
+	{
+		"title": "Vale Linter: The Complete Guide for Docs Teams in 2026",
+		"url": "https://docsio.co/blog/vale-linter",
+		"author": "Docsio",
+		"year": 2026,
+		"type": "post",
+		"description": "Installing Vale, configuring styles, writing custom rules, and wiring it into CI, ending with a working setup.",
+		"image": "",
+		"site": "docsio.co"
 	},
 	{
 		"title": "Upgrade your Docs-As-Code Foo with the Vale Text Linter",
@@ -40,16 +60,6 @@
 		"site": "ammil.industries"
 	},
 	{
-		"title": "Vale & The OpenAPI Specification [2026 update]",
-		"url": "https://medium.com/valelint/vale-the-openapi-specification-2026-update-d2c86b246226",
-		"author": "jdkato",
-		"year": 2026,
-		"type": "post",
-		"description": "An updated tutorial on linting your OpenAPI Specification files, using Views to target the prose fields you care about.",
-		"image": "",
-		"site": "Medium"
-	},
-	{
 		"title": "How we use Vale to enforce better writing in docs and beyond",
 		"url": "https://www.spectrocloud.com/blog/how-we-use-vale-to-enforce-better-writing-in-docs-and-beyond",
 		"author": "Karl Cardenas | Spectro Cloud",
@@ -58,6 +68,26 @@
 		"description": "Learn how we use Vale.sh, a programmatic writing linter, and how we use it at Spectro Cloud.",
 		"image": "https://cdn.prod.website-files.com/64196dbe03e13c204de1b1c8/6788f479dc9a1b030b339f6a_Vale.sh-800x418.png",
 		"site": ""
+	},
+	{
+		"title": "Automating technical documentation style at ING with Vale",
+		"url": "https://medium.com/ing-blog/automating-technical-documentation-at-ing-using-vale-699b9ce528eb",
+		"author": "Gina Hofstede | ING",
+		"year": 2025,
+		"type": "post",
+		"description": "How Vale became an integral part of ING technical documentation system, checking writing against pre-defined styles.",
+		"image": "",
+		"site": "medium.com"
+	},
+	{
+		"title": "How to set up Vale as a linter for text in Neovim",
+		"url": "https://tkreuziger.com/posts/2024-10-29-how_to_set_up_vale_as_a_linter_for_text_in_neovim/",
+		"author": "Tristan Kreuziger",
+		"year": 2024,
+		"type": "post",
+		"description": "A guide to configuring Vale as a prose linter in Neovim, from the config file to running vale sync.",
+		"image": "",
+		"site": "tkreuziger.com"
 	},
 	{
 		"title": "How to create a Vale linter custom rule: Manually vs. AI-prompting approach",

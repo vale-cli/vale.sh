@@ -1,127 +1,131 @@
+// Fills in the presentational fields of src/lib/data/media.json -- the
+// description, image and site each card shows -- from a URL's OpenGraph tags.
+//
+// This used to rebuild the file from errata-ai/library's library.json, which
+// made that the source of truth and this a derived artifact. It was not being
+// used that way: five entries existed only here, so a run would have deleted
+// them. media.json is the source now, and this only ever adds to it -- an
+// entry is never dropped, and a field that is already filled is left alone
+// unless -force says otherwise.
+//
+// Add a resource by appending title, url, author, year and type to
+// media.json, then running `make media` to fill in the rest.
 package main
 
 import (
 	"encoding/json"
+	"flag"
 	"fmt"
 	"log"
 	"net/http"
 	"os"
+	"path/filepath"
+	"time"
 )
 
-const library = "https://raw.githubusercontent.com/errata-ai/library/refs/heads/main/library.json"
 const ogLambda = `https://vale.sh/.netlify/functions/preview?url=%s`
-const data = "../../src/lib/data/media.json"
 
 type OGData struct {
-	Type             string `json:"type"`
-	URL              string `json:"url"`
-	Title            string `json:"title"`
-	Description      string `json:"description"`
-	Determiner       string `json:"determiner"`
-	SiteName         string `json:"site_name"`
-	Locale           string `json:"locale"`
-	LocalesAlternate any    `json:"locales_alternate"`
-	Images           []struct {
-		URL       string `json:"url"`
-		SecureURL string `json:"secure_url"`
-		Type      string `json:"type"`
-		Width     int    `json:"width"`
-		Height    int    `json:"height"`
+	Description string `json:"description"`
+	SiteName    string `json:"site_name"`
+	Images      []struct {
+		URL string `json:"url"`
 	} `json:"images"`
-	Audios  any `json:"audios"`
-	Videos  any `json:"videos"`
-	Article struct {
-		PublishedTime  any    `json:"published_time"`
-		ModifiedTime   any    `json:"modified_time"`
-		ExpirationTime any    `json:"expiration_time"`
-		Section        string `json:"section"`
-		Tags           any    `json:"tags"`
-		Authors        any    `json:"authors"`
-	} `json:"article"`
 }
 
-type LibraryEntry struct {
-	Title  string `json:"title"`
-	URL    string `json:"url"`
-	Author string `json:"author"`
-	Year   int    `json:"year"`
-	Type   string `json:"type"`
-}
-
+// Media is one media.json record. Every field round-trips, so a key this tool
+// does not understand survives a run.
 type Media struct {
-	LibraryEntry
+	Title       string `json:"title"`
+	URL         string `json:"url"`
+	Author      string `json:"author"`
+	Year        int    `json:"year"`
+	Type        string `json:"type"`
 	Description string `json:"description"`
 	Image       string `json:"image"`
 	Site        string `json:"site"`
 }
 
-func main() {
-	// Fetch the library
-	resp, err := http.Get(library)
+var client = &http.Client{Timeout: 30 * time.Second}
+
+// reachable reports whether an image URL still serves something. Hosts drop
+// images and start blocking hotlinks, and a card is better with no image than
+// with a broken one.
+func reachable(url string) bool {
+	resp, err := client.Get(url)
 	if err != nil {
-		log.Fatal(err)
+		return false
+	}
+	defer resp.Body.Close()
+	return resp.StatusCode == http.StatusOK
+}
+
+func fetchOG(url string) (OGData, error) {
+	var og OGData
+
+	resp, err := client.Get(fmt.Sprintf(ogLambda, url))
+	if err != nil {
+		return og, err
 	}
 	defer resp.Body.Close()
 
-	// Decode the library
-	var library []LibraryEntry
-	if err := json.NewDecoder(resp.Body).Decode(&library); err != nil {
-		log.Fatal(err)
+	return og, json.NewDecoder(resp.Body).Decode(&og)
+}
+
+func main() {
+	root := flag.String("root", ".", "repository root")
+	force := flag.Bool("force", false, "refetch entries that already have all three fields")
+	flag.Parse()
+
+	path := filepath.Join(*root, "src", "lib", "data", "media.json")
+
+	src, err := os.ReadFile(path)
+	if err != nil {
+		log.Fatalf("reading %s: %v", path, err)
 	}
 
-	// Print the library
 	var media []Media
-	for _, m := range library {
-		// Fetch the OG data
-		resp, err := http.Get(fmt.Sprintf(ogLambda, m.URL))
+	if err := json.Unmarshal(src, &media); err != nil {
+		log.Fatalf("parsing %s: %v", path, err)
+	}
+
+	filled := 0
+	for i, m := range media {
+		complete := m.Description != "" && m.Site != "" && m.Image != ""
+		if complete && !*force {
+			continue
+		}
+
+		og, err := fetchOG(m.URL)
 		if err != nil {
-			log.Fatal(err)
-		}
-		defer resp.Body.Close()
-
-		// Decode the OG data
-		var ogData OGData
-		if err := json.NewDecoder(resp.Body).Decode(&ogData); err != nil {
-			log.Fatal(err)
+			// One unreachable host is not a reason to abandon the rest.
+			log.Printf("warn: %s: %v (leaving as-is)", m.URL, err)
+			continue
 		}
 
-		image := ""
-		if len(ogData.Images) > 0 {
-			image = ogData.Images[0].URL
+		if m.Description == "" || *force {
+			media[i].Description = og.Description
 		}
-
-		// Check if image URL is accessible:
-		if image != "" {
-			resp, err := http.Get(image)
-			if err != nil {
-				log.Printf("Image URL not accessible: %s", image)
-				image = ""
+		if m.Site == "" || *force {
+			media[i].Site = og.SiteName
+		}
+		if (m.Image == "" || *force) && len(og.Images) > 0 {
+			if img := og.Images[0].URL; reachable(img) {
+				media[i].Image = img
 			} else {
-				defer resp.Body.Close()
+				log.Printf("warn: %s: image not reachable, leaving empty", img)
 			}
 		}
-
-		// Append the media
-		media = append(media, Media{
-			LibraryEntry: m,
-			Description:  ogData.Description,
-			Image:        image,
-			Site:         ogData.SiteName,
-		})
+		filled++
 	}
 
-	file, err := os.Create(data)
+	out, err := json.MarshalIndent(media, "", "\t")
 	if err != nil {
 		log.Fatal(err)
 	}
-
-	// Write the JSON
-	if err := json.NewEncoder(file).Encode(media); err != nil {
+	if err := os.WriteFile(path, append(out, '\n'), 0o644); err != nil {
 		log.Fatal(err)
 	}
 
-	// Close the file
-	if err := file.Close(); err != nil {
-		log.Fatal(err)
-	}
+	log.Printf("%d entries, %d updated", len(media), filled)
 }

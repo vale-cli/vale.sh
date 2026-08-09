@@ -25,3 +25,6 @@ vite.config.ts.timestamp-*
 /lambda/search/INDEX
 INDEX.zip
 static/wasm/
+
+# Built by `make index`
+bin/
