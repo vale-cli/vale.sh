@@ -16,7 +16,7 @@ define build_index
 	$(CURDIR)/bin/index-media
 endef
 
-.PHONY: all build preview index media configs
+.PHONY: all build preview index media configs demo
 
 all: build
 
@@ -41,3 +41,9 @@ media:
 # the counts the generator shows. Run it when adopters.json changes.
 configs:
 	node script/configs/main.mjs
+
+# Re-fetch the source lines the hero demo marks up, and check every recorded
+# span still sits where it says. Run it when demo-runs.ts changes; it exits
+# non-zero rather than emitting a highlight that lands on the wrong words.
+demo:
+	node script/demo/main.mjs

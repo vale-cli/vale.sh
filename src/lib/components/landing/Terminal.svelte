@@ -1,7 +1,8 @@
 <script lang="ts">
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import BrandIcon from './BrandIcon.svelte';
-	import { demoRuns, type Severity } from '$lib/data/demo-runs';
+	import { demoRuns, type Severity, type Alert } from '$lib/data/demo-runs';
+	import context from '$lib/data/demo-context.json';
 
 	// Real output, captured per project. See src/lib/data/demo-runs.ts for the
 	// commands that regenerate it.
@@ -13,6 +14,68 @@
 		warning: 'text-amber-400',
 		suggestion: 'text-sky-400'
 	};
+
+	type Excerpt = {
+		label: number;
+		text: string;
+		spans: { col: number; length: number }[];
+		locs: string[];
+	};
+
+	/*
+		One excerpt per sentence, not one per alert. Docker's `very` and `really`
+		fall in the same sentence -- wrapped across two lines -- and CircleCI flags
+		`will` twice in one; printing the source per alert would have shown those
+		sentences twice over. script/demo does the joining and names the alerts
+		each excerpt covers.
+	*/
+	const groups = $derived(
+		((context as Record<string, Excerpt[]>)[run.id] ?? []).map((source) => ({
+			source,
+			alerts: run.alerts.filter((a) => source.locs.includes(a.loc))
+		}))
+	);
+
+	/**
+	 * Splits a source line into marked and unmarked runs.
+	 *
+	 * Long lines are windowed around the marks rather than wrapped in full --
+	 * CircleCI's line 103 runs past 190 characters, and the interesting part is
+	 * the two words Vale objected to, not the sentence they sit in.
+	 */
+	const PAD = 34;
+	function segment(source: Excerpt) {
+		const first = source.spans[0];
+		const last = source.spans[source.spans.length - 1];
+		let start = Math.max(0, first.col - 1 - PAD);
+		let end = Math.min(source.text.length, last.col - 1 + last.length + PAD);
+
+		// Snap to whitespace so a window never opens mid-word: cutting at a fixed
+		// offset produced "…M service or machine provisioner".
+		if (start > 0) {
+			const space = source.text.indexOf(' ', start);
+			if (space !== -1 && space < first.col - 1) start = space + 1;
+		}
+		if (end < source.text.length) {
+			const space = source.text.lastIndexOf(' ', end);
+			if (space > last.col - 1 + last.length) end = space;
+		}
+
+		const parts: { text: string; marked: boolean }[] = [];
+		let at = start;
+		for (const span of source.spans) {
+			const from = span.col - 1;
+			if (from > at) parts.push({ text: source.text.slice(at, from), marked: false });
+			parts.push({ text: source.text.slice(from, from + span.length), marked: true });
+			at = from + span.length;
+		}
+		if (at < end) parts.push({ text: source.text.slice(at, end), marked: false });
+
+		return { parts, leading: start > 0, trailing: end < source.text.length };
+	}
+
+	/** The rule name, without the style that owns it. */
+	const ruleName = (alert: Alert) => alert.rule.split('.').slice(1).join('.') || alert.rule;
 </script>
 
 <div class="overflow-hidden rounded-xl border border-border bg-zinc-950">
@@ -73,27 +136,43 @@
 		<div class="mt-3 break-all text-zinc-100 underline underline-offset-4">{run.file}</div>
 
 		<!--
-			Columns are sized by content rather than by fixed widths: 'suggestion'
-			is wider than the 62px the severity column used to reserve, so it ran
-			into the message. `contents` flattens each alert into that grid so the
-			three columns still line up across rows.
-
-			Below `sm` there is no room for three columns at all -- 295px on a
-			375px phone left the message about 19 characters and pushed the rule
-			name off the right edge -- so the location and severity move to their
-			own line and the message gets the full width.
+			The prose, then what Vale said about it. Printing the alerts alone asked
+			the reader to trust a judgement about a file they could not see -- "avoid
+			first-person plural like 'we'" never said which sentence.
 		-->
-		<div class="mt-1 sm:grid sm:grid-cols-[auto_auto_minmax(0,1fr)] sm:gap-x-4 sm:gap-y-1">
-			{#each run.alerts as alert (alert.loc + alert.rule)}
-				<div class="mt-2 flex flex-col sm:contents">
-					<span class="flex gap-3 sm:contents">
-						<span class="shrink-0 text-zinc-500">{alert.loc}</span>
-						<span class="shrink-0 {sevColor[alert.sev]}">{alert.sev}</span>
-					</span>
-					<span class="min-w-0 break-words">
-						<span class="text-zinc-200">{alert.msg}</span>
-						<span class="text-zinc-500">&nbsp;{alert.rule}</span>
-					</span>
+		<div class="mt-3 space-y-3">
+			{#each groups as group (group.source.label)}
+				<div class="rounded-md border border-white/[0.07] bg-white/[0.02] p-2.5">
+					{#if group.source}
+						{@const seg = segment(group.source)}
+						<div class="flex gap-2.5">
+							<span class="shrink-0 select-none text-zinc-600">{group.source.label}</span>
+							<p class="min-w-0 break-words text-zinc-400">
+								{#if seg.leading}<span class="text-zinc-600">…</span
+									>{/if}{#each seg.parts as part}{#if part.marked}<mark
+											class="rounded-[3px] bg-lime-400/20 px-0.5 text-zinc-100 decoration-lime-400/70 decoration-wavy underline-offset-4"
+											>{part.text}</mark
+										>{:else}{part.text}{/if}{/each}{#if seg.trailing}<span class="text-zinc-600"
+										>…</span
+									>{/if}
+							</p>
+						</div>
+					{/if}
+
+					<div class="mt-2 space-y-1 {group.source ? 'sm:ml-[calc(1.5rem+0.625rem)]' : ''}">
+						{#each group.alerts as alert (alert.loc + alert.rule)}
+							<div class="flex flex-col gap-x-3 sm:flex-row">
+								<span class="flex gap-3">
+									<span class="shrink-0 text-zinc-500">{alert.loc}</span>
+									<span class="shrink-0 {sevColor[alert.sev]}">{alert.sev}</span>
+								</span>
+								<span class="min-w-0 break-words">
+									<span class="text-zinc-200">{alert.msg}</span>
+									<span class="text-zinc-500">&nbsp;{ruleName(alert)}</span>
+								</span>
+							</div>
+						{/each}
+					</div>
 				</div>
 			{/each}
 		</div>

@@ -21,6 +21,15 @@ export type Alert = {
 	sev: Severity;
 	msg: string;
 	rule: string;
+	/**
+	 * The exact text Vale flagged, so the demo can mark it in the source line.
+	 *
+	 * Vale prints where an alert starts but not how far it runs, so this is
+	 * recorded by hand. script/demo checks every one against the file at
+	 * `commit` and fails if it does not sit at the stated column -- marking the
+	 * wrong words would be worse than marking none.
+	 */
+	match: string;
 };
 
 export type DemoRun = {
@@ -49,35 +58,46 @@ export const demoRuns: DemoRun[] = [
 		format: 'Markdown',
 		formatIcon: 'markdown',
 		repo: 'docker/docs',
-		commit: '86dd043',
-		file: 'content/manuals/engine/install/_index.md',
+		commit: 'bf47d79',
+		file: 'content/manuals/engine/swarm/how-swarm-mode-works/services.md',
 		alerts: [
 			{
-				loc: '52:1',
-				sev: 'error',
-				msg: "Use 'Docker Engine' instead of 'Docker CE'.",
-				rule: 'Docker.Forbidden'
-			},
-			{
-				loc: '58:1',
+				loc: '11:70',
 				sev: 'suggestion',
-				msg: "Consider using 'select' instead of 'Click'",
-				rule: 'Docker.RecommendedWords'
+				msg: "Consider using 'want' instead of 'wish'",
+				rule: 'Docker.RecommendedWords',
+				match: 'wish'
 			},
 			{
-				loc: '131:35',
+				loc: '89:77',
 				sev: 'warning',
-				msg: "Avoid using first-person plural like 'we'.",
-				rule: 'Docker.We'
+				msg: "Consider removing 'very'.",
+				rule: 'Docker.Avoid',
+				match: 'very'
 			},
 			{
-				loc: '131:67',
+				loc: '91:3',
 				sev: 'warning',
-				msg: "Avoid using first-person plural like 'our'.",
-				rule: 'Docker.We'
+				msg: "Consider removing 'really'.",
+				rule: 'Docker.Avoid',
+				match: 'really'
+			},
+			{
+				loc: '104:32',
+				sev: 'warning',
+				msg: "Use the Oxford comma in 'deployments, replicated and global.'.",
+				rule: 'Docker.OxfordComma',
+				match: 'deployments, replicated and global.'
+			},
+			{
+				loc: '119:10',
+				sev: 'suggestion',
+				msg: "Consider using 'versus' instead of 'vs'",
+				rule: 'Docker.RecommendedWords',
+				match: 'vs'
 			}
 		],
-		summary: '1 error, 2 warnings and 1 suggestion in 1 file.'
+		summary: '0 errors, 3 warnings and 2 suggestions in 1 file.'
 	},
 	{
 		id: 'ti',
@@ -93,19 +113,22 @@ export const demoRuns: DemoRun[] = [
 				loc: '4:1',
 				sev: 'suggestion',
 				msg: "Use sentence-style capitalization in 'Debian Developer's Guide'.",
-				rule: 'RedHat.Headings'
+				rule: 'RedHat.Headings',
+				match: "Debian Developer's Guide"
 			},
 			{
 				loc: '32:60',
 				sev: 'suggestion',
 				msg: 'Separate words by underscores in user-replaced values.',
-				rule: 'RedHat.UserReplacedValues'
+				rule: 'RedHat.UserReplacedValues',
+				match: '<technical-support>'
 			},
 			{
 				loc: '36:58',
 				sev: 'warning',
 				msg: 'Do not use "please" in technical documentation.',
-				rule: 'RedHat.DoNotUseTerms'
+				rule: 'RedHat.DoNotUseTerms',
+				match: 'please'
 			}
 		],
 		summary: '0 errors, 1 warning and 2 suggestions in 1 file.'
@@ -124,25 +147,29 @@ export const demoRuns: DemoRun[] = [
 				loc: '96:37',
 				sev: 'suggestion',
 				msg: "'are supported' may be passive voice. Use active voice if you can.",
-				rule: 'circleci-docs.Passive'
+				rule: 'circleci-docs.Passive',
+				match: 'are supported'
 			},
 			{
 				loc: '97:123',
 				sev: 'error',
 				msg: "'This is' is an unclear antecedent. Clarify what 'this' refers to.",
-				rule: 'circleci-docs.UnclearAntecedent'
+				rule: 'circleci-docs.UnclearAntecedent',
+				match: 'This is'
 			},
 			{
 				loc: '103:149',
 				sev: 'warning',
 				msg: 'Possible future tense.',
-				rule: 'circleci-docs.FutureTense'
+				rule: 'circleci-docs.FutureTense',
+				match: 'will'
 			},
 			{
 				loc: '103:185',
 				sev: 'warning',
 				msg: 'Possible future tense.',
-				rule: 'circleci-docs.FutureTense'
+				rule: 'circleci-docs.FutureTense',
+				match: 'will'
 			}
 		],
 		summary: '1 error, 2 warnings and 1 suggestion in 1 file.'
