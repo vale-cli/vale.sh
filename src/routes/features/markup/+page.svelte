@@ -212,6 +212,33 @@
 			ext: '.xml',
 			parser: 'xsltproc',
 			href: 'https://manpages.debian.org/bookworm/xsltproc/xsltproc.1.en.html'
+		},
+		// Added from docs.vale.sh/formats -- the table had stopped at eight and
+		// the docs list twelve. Extensions and parsers are each taken from that
+		// format's own page.
+		{
+			name: 'MyST',
+			ext: '.myst',
+			parser: 'docs.vale.sh',
+			href: 'https://docs.vale.sh/formats/myst'
+		},
+		{
+			name: 'Quarto',
+			ext: '.qmd',
+			parser: 'Pandoc',
+			href: 'https://pandoc.org/'
+		},
+		{
+			name: 'Typst',
+			ext: '.typ',
+			parser: 'typst2vast',
+			href: 'https://github.com/jdkato/typst2vast'
+		},
+		{
+			name: 'QDoc',
+			ext: '.qdoc',
+			parser: 'built in',
+			href: 'https://docs.vale.sh/formats/qdoc'
 		}
 	];
 
@@ -273,7 +300,7 @@
 	];
 
 	const description =
-		'Vale parses Markdown, AsciiDoc, reStructuredText, HTML, and more with real parsers—so rules can target headings, lists, or table cells, and skip code and URLs entirely.';
+		'Vale parses Markdown, AsciiDoc, reStructuredText, MDX, MyST, Quarto, Typst, HTML, XML, DITA, Org, and QDoc with real parsers—so rules can target headings, lists, or table cells, and skip code and URLs entirely.';
 </script>
 
 <MetaTags

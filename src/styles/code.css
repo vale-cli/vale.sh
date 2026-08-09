@@ -8,12 +8,10 @@ html.dark .shiki span {
     text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
+/* Was #eaeaea with an html.dark override of #333 -- two hardcoded greys that
+   belonged to no palette and did not move when the theme did. */
 pre {
-    border: 1px solid #eaeaea;
-}
-
-html.dark pre {
-    border: 1px solid #333;
+    border: 1px solid hsl(var(--border));
 }
 
 .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
@@ -61,7 +59,7 @@ pre {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            border-bottom: 1px solid #e5e7eb;
+            border-bottom: 1px solid hsl(var(--border));
             margin-bottom: 0.5em;
 
             & .copy-code {
@@ -79,17 +77,13 @@ pre {
             }
 
             & .code-block-title {
-                /* muted text color */
-                color: #999;
+                /*
+                    The dark override under this used to set #555 -- darker than
+                    the #999 it replaced, on a near-black ground. Both are gone:
+                    --muted-foreground already lightens in dark mode.
+                */
+                color: hsl(var(--muted-foreground));
             }
-        }
-
-        html.dark & .wrapper-copy-code {
-            border-bottom: 1px solid #333;
-        }
-
-        html.dark & .code-block-title {
-            color: #555;
         }
     }
 }

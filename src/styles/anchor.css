@@ -4,7 +4,7 @@
 
 .prose .anchor::after {
     content: '#';
-    color: #999;
+    color: hsl(var(--muted-foreground));
     margin-left: 0.25rem;
     opacity: 0;
     transition: opacity 0.2s ease-in-out;
@@ -18,6 +18,9 @@
     opacity: 1;
 }
 
-.prose .anchor .dark & {
-    color: #fff;
-}
+/*
+    A `.prose .anchor .dark & { color: #fff }` rule sat here. Plain CSS nesting
+    expands `&` to the whole outer selector, so it compiled to
+    `.prose .anchor .dark .prose .anchor` and matched nothing. The mark takes
+    --muted-foreground in both themes now, which is what it was reaching for.
+*/

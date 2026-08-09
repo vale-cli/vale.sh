@@ -15,17 +15,17 @@ export const features = [
 		slug: 'markup',
 		icon: Code,
 		title: 'Markup-aware',
-		tagline: 'Parses your source instead of pattern-matching it',
+		tagline: 'Parses your markup instead of guessing at it',
 		description:
-			'Markdown, AsciiDoc, reStructuredText, HTML, DITA, and Org—each parsed by a real parser, so rules can target headings, lists, or table cells and skip code and URLs entirely.'
+			'Markdown, AsciiDoc, reStructuredText, MDX, MyST, Quarto, Typst, HTML, XML, DITA, Org, and QDoc each go through a real parser. Rules can target headings, lists, or table cells—and code spans, URLs, and fenced blocks are skipped before a rule ever runs.'
 	},
 	{
 		slug: 'code',
 		icon: FileCode,
 		title: 'Code-aware',
-		tagline: 'Reads comments with tree-sitter, in 20+ languages',
+		tagline: 'Your comments are documentation too',
 		description:
-			'Comments are prose. Vale extracts them with a real grammar—never a regex—and can lint the Markdown inside them as if it were a standalone file.'
+			'Vale lifts comments out of more than twenty languages with tree-sitter grammars, so it knows where a comment ends and a marker inside a string literal stays code. The Markdown inside a doc comment is linted as though it were its own file.'
 	},
 	{
 		slug: 'extensible',
@@ -33,15 +33,15 @@ export const features = [
 		title: 'Extensible',
 		tagline: 'Rules are YAML—no plugin API, no compile step',
 		description:
-			'Twelve extension points cover everything from banned terms to readability scores and part-of-speech patterns. Write a rule in a text editor, share it as a package.'
+			'Twelve extension points, from banned terms to readability scores to part-of-speech patterns. Write one in a text editor, drop it in a folder, and share the folder as a package.'
 	},
 	{
 		slug: 'speed',
 		icon: Gauge,
 		title: 'Fast',
-		tagline: 'One binary, no runtime, files linted in parallel',
+		tagline: 'One binary, nothing to install alongside it',
 		description:
-			'A single Go executable with nothing to install alongside it. GitLab checks all 2,827 pages of its documentation with it.'
+			'Written in Go, with no runtime and files linted in parallel. GitLab runs 82 rules across all 2,827 pages of its documentation in under twenty seconds.'
 	}
 ] as const;
 

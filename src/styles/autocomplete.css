@@ -10,6 +10,11 @@
  * indigo. The triplets below are therefore the RGB form of those same tokens,
  * and the comment on each line names the token it mirrors so the two stay
  * legible together.
+ *
+ * Being a copy, this file does not follow app.css on its own -- when the theme
+ * moved off the stock stone palette these still held stone's greys, and the
+ * search panel rendered in the old colours on top of the new page. If you
+ * change a token in app.css, convert it and change it here too.
  */
 :root {
 	--aa-search-input-height: 44px;
@@ -27,39 +32,38 @@
 	--aa-font-weight-bold: 700;
 	--aa-icon-size: 20px;
 	--aa-icon-stroke-width: 1.6;
-	--aa-icon-color-rgb: 120, 113, 108; /* --muted-foreground */
+	--aa-icon-color-rgb: 108, 116, 99; /* --muted-foreground */
 	--aa-icon-color-alpha: 1;
 	--aa-action-icon-size: 20px;
-	--aa-text-color-rgb: 12, 10, 9; /* --foreground */
+	--aa-text-color-rgb: 18, 21, 14; /* --foreground */
 	--aa-text-color-alpha: 1;
-	--aa-primary-color-rgb: 132, 204, 22; /* lime-500, the site's accent */
+	--aa-primary-color-rgb: 157, 223, 42; /* --primary */
 	--aa-primary-color-alpha: 0.35;
-	--aa-muted-color-rgb: 120, 113, 108; /* --muted-foreground */
+	--aa-muted-color-rgb: 108, 116, 99; /* --muted-foreground */
 	--aa-muted-color-alpha: 1;
-	--aa-panel-border-color-rgb: 231, 229, 228; /* --border */
+	--aa-panel-border-color-rgb: 228, 231, 223; /* --border */
 	--aa-panel-border-color-alpha: 1;
-	--aa-input-border-color-rgb: 231, 229, 228; /* --border */
+	--aa-input-border-color-rgb: 221, 224, 214; /* --input */
 	--aa-input-border-color-alpha: 1;
-	--aa-background-color-rgb: 255, 255, 255; /* --background */
+	--aa-background-color-rgb: 255, 255, 255; /* --popover */
 	--aa-background-color-alpha: 1;
-	--aa-input-background-color-rgb: 255, 255, 255; /* --background */
+	--aa-input-background-color-rgb: 255, 255, 255; /* --popover */
 	--aa-input-background-color-alpha: 1;
-	--aa-selected-color-rgb: 245, 245, 244; /* --accent */
+	--aa-selected-color-rgb: 239, 245, 230; /* --accent */
 	--aa-selected-color-alpha: 1;
-	--aa-description-highlight-background-color-rgb: 132, 204, 22; /* lime-500 */
+	--aa-description-highlight-background-color-rgb: 157, 223, 42; /* --primary */
 	--aa-description-highlight-background-color-alpha: 0.22;
 	--aa-detached-media-query: (max-width: 680px);
 	--aa-detached-modal-media-query: (min-width: 680px);
 	--aa-detached-modal-max-width: 680px;
 	--aa-detached-modal-max-height: 500px;
-	--aa-overlay-color-rgb: 12, 10, 9; /* --foreground */
+	--aa-overlay-color-rgb: 18, 21, 14; /* --foreground */
 	--aa-overlay-color-alpha: 0.6;
-	--aa-panel-shadow: 0 0 0 1px rgba(231, 229, 228, 1), 0 10px 15px -3px rgba(12, 10, 9, 0.1),
-		0 4px 6px -4px rgba(12, 10, 9, 0.1);
+	--aa-panel-shadow: 0 0 0 1px rgba(228, 231, 223, 1), var(--shadow-lg);
 	--aa-scrollbar-width: 13px;
-	--aa-scrollbar-track-background-color-rgb: 245, 245, 244; /* --muted */
+	--aa-scrollbar-track-background-color-rgb: 244, 246, 241; /* --muted */
 	--aa-scrollbar-track-background-color-alpha: 1;
-	--aa-scrollbar-thumb-background-color-rgb: 231, 229, 228; /* --border */
+	--aa-scrollbar-thumb-background-color-rgb: 228, 231, 223; /* --border */
 	--aa-scrollbar-thumb-background-color-alpha: 1;
 }
 
@@ -72,25 +76,24 @@
 
 html.dark,
 html[data-theme='dark'] {
-	--aa-text-color-rgb: 250, 250, 249; /* --foreground */
-	--aa-primary-color-rgb: 163, 230, 53; /* lime-400, the site's dark accent */
-	--aa-muted-color-rgb: 168, 162, 158; /* --muted-foreground */
-	--aa-icon-color-rgb: 168, 162, 158; /* --muted-foreground */
-	--aa-panel-border-color-rgb: 41, 37, 36; /* --border */
-	--aa-input-border-color-rgb: 41, 37, 36; /* --border */
-	--aa-background-color-rgb: 12, 10, 9; /* --background */
-	--aa-input-background-color-rgb: 12, 10, 9; /* --background */
-	--aa-selected-color-rgb: 41, 37, 36; /* --accent */
+	--aa-text-color-rgb: 245, 247, 243; /* --foreground */
+	--aa-primary-color-rgb: 170, 231, 64; /* --primary */
+	--aa-muted-color-rgb: 165, 172, 154; /* --muted-foreground */
+	--aa-icon-color-rgb: 165, 172, 154; /* --muted-foreground */
+	--aa-panel-border-color-rgb: 43, 47, 39; /* --border */
+	--aa-input-border-color-rgb: 54, 58, 49; /* --input */
+	--aa-background-color-rgb: 24, 27, 21; /* --popover */
+	--aa-input-background-color-rgb: 24, 27, 21; /* --popover */
+	--aa-selected-color-rgb: 44, 53, 34; /* --accent */
 	--aa-selected-color-alpha: 1;
 
-	--aa-description-highlight-background-color-rgb: 163, 230, 53; /* lime-400 */
+	--aa-description-highlight-background-color-rgb: 170, 231, 64; /* --primary */
 	--aa-description-highlight-background-color-alpha: 0.22;
 
-	--aa-panel-shadow: 0 0 0 1px rgba(41, 37, 36, 1), 0 10px 15px -3px rgba(0, 0, 0, 0.5),
-		0 4px 6px -4px rgba(0, 0, 0, 0.5);
+	--aa-panel-shadow: 0 0 0 1px rgba(43, 47, 39, 1), var(--shadow-lg);
 
-	--aa-scrollbar-track-background-color-rgb: 41, 37, 36; /* --muted */
-	--aa-scrollbar-thumb-background-color-rgb: 68, 64, 60; /* stone-700 */
+	--aa-scrollbar-track-background-color-rgb: 36, 39, 32; /* --muted */
+	--aa-scrollbar-thumb-background-color-rgb: 66, 72, 61; /* one step above --border */
 }
 
 .aa-Autocomplete *,

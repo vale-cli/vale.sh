@@ -16,7 +16,7 @@
 	those tokens follow the visitor's theme, and this must not.
 -->
 <div
-	class="overflow-hidden rounded-2xl border shadow-2xl shadow-lime-950/20 dark:shadow-black/40"
+	class="overflow-hidden rounded-2xl border shadow-2xl"
 	style="background: var(--e-bg); border-color: var(--e-line); color: var(--e-fg);
 	       --e-bg:#16180f; --e-line:#2a2e1f; --e-fg:#d7d6c8; --e-dim:#8a8d78; --e-faint:#62654f; --e-panel:#14160e;"
 >

@@ -50,16 +50,27 @@ const config: Config = {
                     DEFAULT: "hsl(var(--card) / <alpha-value>)",
                     foreground: "hsl(var(--card-foreground) / <alpha-value>)"
                 },
-                sidebar: {
-                    DEFAULT: "hsl(var(--sidebar-background))",
-                    foreground: "hsl(var(--sidebar-foreground))",
-                    primary: "hsl(var(--sidebar-primary))",
-                    "primary-foreground": "hsl(var(--sidebar-primary-foreground))",
-                    accent: "hsl(var(--sidebar-accent))",
-                    "accent-foreground": "hsl(var(--sidebar-accent-foreground))",
-                    border: "hsl(var(--sidebar-border))",
-                    ring: "hsl(var(--sidebar-ring))",
-                },
+                // `sidebar` used to be declared here against --sidebar-*
+                // variables that app.css has never defined, so every one of
+                // those utilities emitted `hsl()` with nothing in it. Nothing
+                // in src/ referenced them.
+            },
+
+            // Elevation comes from the theme rather than from Tailwind's
+            // defaults. Overriding the stock names rather than adding new ones
+            // means the ~35 existing `shadow-sm` / `shadow-md` / `shadow-lg`
+            // usages pick up the palette-tinted scale untouched, and dark mode
+            // gets its own values for free. See the token block in app.css.
+            boxShadow: {
+                "2xs": "var(--shadow-2xs)",
+                xs: "var(--shadow-xs)",
+                sm: "var(--shadow-sm)",
+                DEFAULT: "var(--shadow)",
+                md: "var(--shadow-md)",
+                lg: "var(--shadow-lg)",
+                xl: "var(--shadow-xl)",
+                "2xl": "var(--shadow-2xl)",
+                none: "none",
             },
             borderRadius: {
                 xl: "calc(var(--radius) + 4px)",

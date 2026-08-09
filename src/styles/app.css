@@ -2,50 +2,130 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+    === Theme ===
+
+    This was the stock shadcn `stone` preset, untouched, and it showed. Three
+    things were wrong with it, and they are the three things fixed here.
+
+    1. The brand colour was not in the theme. `--primary` was near-black, so
+       every primary button on the site was black, while the lime that actually
+       identifies Vale lived in ~390 ad-hoc `lime-*` utilities scattered across
+       components. The theme had no idea the project had an accent. `--primary`
+       is now that lime, with a near-black foreground on top of it rather than
+       white -- chartreuse is a light colour, and the pairing that reads is the
+       dark one (10.5:1, comfortably past AA).
+
+    2. There were no shadow tokens, so every elevation on the site was one of
+       Tailwind's defaults: pure-black, one-size, unrelated to the palette. The
+       scale below is tinted with the same near-black green as the foreground
+       and is mapped over Tailwind's own names in tailwind.config.ts, so the
+       existing `shadow-sm` / `shadow-lg` classes pick it up with no churn.
+
+    3. In dark mode `--card` and `--background` were the same value. Cards had
+       no surface, which is a real bug and was being worked around in
+       components -- see the comment in landing/Features.svelte about tiles
+       reading as "a hole cut in the page" and painting `bg-muted` instead.
+       Every dark surface token is now stepped off the background.
+
+    The neutrals are recast from stone's warm hue (20-24) to ~85-90, a graphite
+    with a green cast. It is a small shift and deliberately not a visible one on
+    its own: it means the greys and the lime belong to the same family instead
+    of the lime sitting on top of an unrelated palette. Tailwind's own `lime-*`
+    scale is hue 80-85, so the utilities that remain sit in it too.
+*/
 @layer base {
     :root {
-        --background: 0 0% 100%;
-        --foreground: 20 14.3% 4.1%;
+        /* Not pure white: a paper cast, so cards and the terminal can be
+           white and still read as lifted off the page. It has to be far
+           enough down for that to work -- at 99.2% the gap to a white card
+           was two values out of 255 and cards read as flat. */
+        --background: 80 24% 98.4%;
+        --foreground: 90 20% 7%;
         --card: 0 0% 100%;
-        --card-foreground: 20 14.3% 4.1%;
+        --card-foreground: 90 20% 7%;
         --popover: 0 0% 100%;
-        --popover-foreground: 20 14.3% 4.1%;
-        --primary: 24 9.8% 10%;
-        --primary-foreground: 60 9.1% 97.8%;
-        --secondary: 60 4.8% 95.9%;
-        --secondary-foreground: 24 9.8% 10%;
-        --muted: 60 4.8% 95.9%;
-        --muted-foreground: 25 5.3% 44.7%;
-        --accent: 60 4.8% 95.9%;
-        --accent-foreground: 24 9.8% 10%;
-        --destructive: 0 72.22% 50.59%;
-        --destructive-foreground: 60 9.1% 97.8%;
-        --border: 20 5.9% 90%;
-        --input: 20 5.9% 90%;
-        --ring: 20 14.3% 4.1%;
-        --radius: 0.5rem;
+        --popover-foreground: 90 20% 7%;
+
+        /* The brand, as the actual primary. Dark text on it, not white. */
+        --primary: 82 74% 52%;
+        --primary-foreground: 90 60% 9%;
+
+        --secondary: 80 20% 95.5%;
+        --secondary-foreground: 90 20% 12%;
+        --muted: 80 20% 95.5%;
+        --muted-foreground: 88 8% 42%;
+
+        /* Hover and selected states, tinted rather than grey. */
+        --accent: 82 42% 93%;
+        --accent-foreground: 88 42% 18%;
+
+        --destructive: 0 72% 48%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 82 14% 89%;
+        --input: 82 14% 86%;
+        /* Focus rings are branded: they are the one piece of chrome every
+           keyboard user sees on every page. */
+        --ring: 82 62% 42%;
+
+        --radius: 0.625rem;
+
+        /*
+            Elevation. Two layers each -- a tight contact shadow and a wider
+            ambient one -- because a single blur reads as a smudge. Tinted with
+            the foreground's near-black green rather than pure black.
+        */
+        --shadow-2xs: 0 1px 2px 0 hsl(90 22% 8% / 0.04);
+        --shadow-xs: 0 1px 3px 0 hsl(90 22% 8% / 0.05);
+        --shadow-sm: 0 1px 2px -1px hsl(90 22% 8% / 0.06), 0 2px 4px -1px hsl(90 22% 8% / 0.05);
+        --shadow: 0 1px 2px -1px hsl(90 22% 8% / 0.07), 0 2px 6px -1px hsl(90 22% 8% / 0.06);
+        --shadow-md: 0 2px 4px -2px hsl(90 22% 8% / 0.07), 0 6px 12px -2px hsl(90 22% 8% / 0.08);
+        --shadow-lg: 0 4px 8px -3px hsl(90 22% 8% / 0.07), 0 12px 24px -4px hsl(90 22% 8% / 0.09);
+        --shadow-xl: 0 8px 16px -6px hsl(90 22% 8% / 0.08), 0 24px 40px -8px hsl(90 22% 8% / 0.11);
+        --shadow-2xl: 0 32px 64px -12px hsl(90 22% 8% / 0.22);
     }
 
     .dark {
-        --background: 20 14.3% 4.1%;
-        --foreground: 60 9.1% 97.8%;
-        --card: 20 14.3% 4.1%;
-        --card-foreground: 60 9.1% 97.8%;
-        --popover: 20 14.3% 4.1%;
-        --popover-foreground: 60 9.1% 97.8%;
-        --primary: 60 9.1% 97.8%;
-        --primary-foreground: 24 9.8% 10%;
-        --secondary: 12 6.5% 15.1%;
-        --secondary-foreground: 60 9.1% 97.8%;
-        --muted: 12 6.5% 15.1%;
-        --muted-foreground: 24 5.4% 63.9%;
-        --accent: 12 6.5% 15.1%;
-        --accent-foreground: 60 9.1% 97.8%;
-        --destructive: 0 62.8% 30.6%;
-        --destructive-foreground: 60 9.1% 97.8%;
-        --border: 12 6.5% 15.1%;
-        --input: 12 6.5% 15.1%;
-        --ring: 24 5.7% 82.9%;
+        --background: 90 16% 5.5%;
+        --foreground: 80 18% 96%;
+        /* +3% and +4% off the background. Cards are surfaces again. */
+        --card: 90 12% 8.5%;
+        --card-foreground: 80 18% 96%;
+        --popover: 90 12% 9.5%;
+        --popover-foreground: 80 18% 96%;
+
+        /* Brighter than the light-mode primary: the same hue has to carry
+           against a near-black ground. */
+        --primary: 82 78% 58%;
+        --primary-foreground: 90 60% 8%;
+
+        --secondary: 90 10% 14%;
+        --secondary-foreground: 80 18% 96%;
+        --muted: 90 10% 14%;
+        --muted-foreground: 85 10% 64%;
+
+        --accent: 88 22% 17%;
+        --accent-foreground: 82 58% 76%;
+
+        --destructive: 0 65% 52%;
+        --destructive-foreground: 0 0% 100%;
+
+        --border: 90 9% 17%;
+        --input: 90 9% 21%;
+        --ring: 82 70% 50%;
+
+        /* Pure black and heavier: a tinted shadow is invisible on a dark
+           ground, and the depth has to come from the shadow alone once the
+           surface can no longer be lighter than white. */
+        --shadow-2xs: 0 1px 2px 0 hsl(0 0% 0% / 0.24);
+        --shadow-xs: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
+        --shadow-sm: 0 1px 2px -1px hsl(0 0% 0% / 0.36), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
+        --shadow: 0 1px 2px -1px hsl(0 0% 0% / 0.4), 0 2px 6px -1px hsl(0 0% 0% / 0.34);
+        --shadow-md: 0 2px 4px -2px hsl(0 0% 0% / 0.4), 0 6px 12px -2px hsl(0 0% 0% / 0.38);
+        --shadow-lg: 0 4px 8px -3px hsl(0 0% 0% / 0.42), 0 12px 24px -4px hsl(0 0% 0% / 0.44);
+        --shadow-xl: 0 8px 16px -6px hsl(0 0% 0% / 0.46), 0 24px 40px -8px hsl(0 0% 0% / 0.5);
+        --shadow-2xl: 0 32px 64px -12px hsl(0 0% 0% / 0.7);
     }
 }
 
@@ -97,10 +177,8 @@
     /* Mobile tap highlight */
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
     html {
-        -webkit-tap-highlight-color: rgba(128, 128, 128, 0.5);
+        -webkit-tap-highlight-color: hsl(var(--primary) / 0.25);
     }
-
-    /* Font face Geist font */
 
     /* === Scrollbars === */
 
@@ -117,14 +195,12 @@
         @apply rounded-sm !bg-muted-foreground/30;
     }
 
-    /* Firefox */
+    /* Firefox. Was a hardcoded blue-grey (hue 215) left over from a palette
+       the site does not use; it now tracks the theme like the WebKit rules
+       above it. */
     /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
     html {
-        scrollbar-color: hsl(215.4 16.3% 46.9% / 0.3);
-    }
-
-    html.dark {
-        scrollbar-color: hsl(215.4 16.3% 56.9% / 0.3);
+        scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
     }
 
     .hide-scrollbar::-webkit-scrollbar {

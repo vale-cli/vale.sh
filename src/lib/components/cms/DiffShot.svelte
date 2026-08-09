@@ -27,7 +27,7 @@
 </script>
 
 <div
-	class="overflow-hidden rounded-2xl border shadow-xl shadow-lime-950/10 dark:shadow-black/40"
+	class="overflow-hidden rounded-2xl border shadow-xl"
 	style="background: var(--d-bg); border-color: var(--d-line); color: var(--d-fg);
 	       --d-bg:#16180f; --d-line:#2a2e1f; --d-fg:#d7d6c8; --d-dim:#8a8d78; --d-faint:#62654f; --d-panel:#14160e;"
 >

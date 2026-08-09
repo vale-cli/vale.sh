@@ -33,7 +33,7 @@
 				{ v: '' },
 				{ v: '// Get returns the record for id.', prose: true },
 				{ v: '//', prose: true },
-				{ v: '// It utilizes the cache when possible.', prose: true },
+				{ v: '// It can utilize the cache when possible.', prose: true },
 				{ v: 'func Get(id string) (*Record, error) {' },
 				{ v: '\tkey := "// not a comment"' },
 				{ v: '\treturn s.lookup(key + id)' },
@@ -52,7 +52,7 @@
 				{ v: 'def get(id):' },
 				{ v: '    """Return the record for id.', prose: true },
 				{ v: '', prose: true },
-				{ v: '    It utilizes the cache when possible.', prose: true },
+				{ v: '    It can utilize the cache when possible.', prose: true },
 				{ v: '    """', prose: true },
 				{ v: '    marker = """not a docstring"""' },
 				{ v: '    return lookup(marker + id)' }
@@ -67,7 +67,7 @@
 			lines: [
 				{ v: '/// Returns the record for `id`.', prose: true },
 				{ v: '///', prose: true },
-				{ v: '/// It utilizes the cache when possible.', prose: true },
+				{ v: '/// It can utilize the cache when possible.', prose: true },
 				{ v: 'pub fn get(id: &str) -> Option<Record> {' },
 				{ v: '    let key = "/// not a comment";' },
 				{ v: '    lookup(&format!("{key}{id}"))' },
@@ -84,7 +84,7 @@
 				{ v: '/**', prose: true },
 				{ v: ' * Returns the record for `id`.', prose: true },
 				{ v: ' *', prose: true },
-				{ v: ' * It utilizes the cache when possible.', prose: true },
+				{ v: ' * It can utilize the cache when possible.', prose: true },
 				{ v: ' */', prose: true },
 				{ v: 'export function get(id) {' },
 				{ v: '  const key = "/* not a comment */";' },
@@ -175,8 +175,13 @@
 		'Swift'
 	];
 
+	// Not "never a regex": Vale's own rules are regex -- `existence` takes
+	// literal tokens or regular expressions, and /features/extensible documents
+	// that and links to regexp2. The claim that holds is about knowing where a
+	// comment ends, which a grammar does and a pattern match over raw source
+	// does not.
 	const description =
-		'Vale extracts comments and docstrings with tree-sitter grammars—never a regex—and can lint the Markdown inside them as if it were a standalone file.';
+		'Vale extracts comments and docstrings with tree-sitter grammars, so it knows where each one ends, and can lint the Markdown inside them as if it were a standalone file.';
 </script>
 
 <MetaTags
