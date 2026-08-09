@@ -11,8 +11,6 @@
 		alertLevels,
 		sampleSize,
 		adopterCount,
-		keyUsage,
-		vocabPath,
 		type Option,
 		type Level
 	} from './config.js';
@@ -45,19 +43,12 @@ BasedOnStyles = Vale`);
 	// config that matches nothing is the one outcome with no visible symptom.
 	let selectedFormats = $state<string[]>(['md']);
 	let alertLevel = $state<Level>('suggestion');
-	// 27 of the 55 sampled configs define one -- the most-used optional key
-	// there is, and the generator never offered it.
-	let useVocab = $state(false);
-	let vocabName = $state('Docs');
-	/** Vale rejects a name it cannot use as a directory. */
-	const cleanVocab = $derived(vocabName.trim().replace(/[^\w.-]/g, '') || 'Docs');
 
 	const hasSelections = $derived(
 		baseStyle !== '' ||
 			selectedStyles.length > 0 ||
 			selectedConfigs.length > 0 ||
 			alertLevel !== 'suggestion' ||
-			useVocab ||
 			selectedFormats.length !== 1 ||
 			selectedFormats[0] !== 'md'
 	);
@@ -89,8 +80,6 @@ BasedOnStyles = Vale`);
 		selectedConfigs = [];
 		selectedFormats = ['md'];
 		alertLevel = 'suggestion';
-		useVocab = false;
-		vocabName = 'Docs';
 	}
 
 	let copied = $state(false);
@@ -173,24 +162,6 @@ BasedOnStyles = Vale`);
 		}
 
 		const lines = ['StylesPath = styles', '', `MinAlertLevel = ${alertLevel}`, ''];
-		if (useVocab) {
-			// Named but absent is a fatal config error, so the file it needs is
-			// spelled out rather than left to the docs.
-			lines.push(
-				`Vocab = ${cleanVocab}`,
-				'',
-				"# A vocabulary is your project's own words: product names, jargon,",
-				'# anything a style would otherwise flag. Create it before running Vale,',
-				'# because a vocabulary named here but missing on disk is an error:',
-				'#',
-				`#   mkdir -p ${vocabPath('styles', cleanVocab)}`,
-				`#   touch ${vocabPath('styles', cleanVocab)}/accept.txt`,
-				'#',
-				'# One term per line; accept.txt allows them, reject.txt flags them.',
-				'# https://docs.vale.sh/keys/vocab',
-				''
-			);
-		}
 		if (pkgs.length > 0) {
 			lines.push(`Packages = ${pkgs.join(', ')}`, '');
 		}
@@ -481,68 +452,10 @@ BasedOnStyles = Vale`);
 				</div>
 			</section>
 
-			<!--
-				Step 5: Vocabulary. 27 of the 55 sampled configs set `Vocab`, more
-				than any other optional key, and it is the answer to the complaint a
-				first run always produces: Vale flagging your own product names.
-			-->
+			<!-- Step 5: Configurations -->
 			<section>
 				<div class="flex items-center gap-3">
 					{@render stepBadge(5)}
-					<h2 class="text-lg font-semibold text-foreground">Vocabulary</h2>
-				</div>
-				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
-					Your own words—product names, jargon—so a style stops flagging them.
-				</p>
-				<div class="mt-4 grid gap-2">
-					<button
-						type="button"
-						onclick={() => (useVocab = !useVocab)}
-						aria-pressed={useVocab}
-						class="flex items-start gap-3 rounded-lg border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {useVocab
-							? 'border-lime-500 bg-lime-500/[0.06]'
-							: 'border-border hover:border-lime-500/40 hover:bg-muted/40'}"
-					>
-						<span
-							class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded border {useVocab
-								? 'border-lime-500 bg-lime-500 text-black'
-								: 'border-input'}"
-						>
-							{#if useVocab}<Check class="h-3.5 w-3.5" strokeWidth={3} />{/if}
-						</span>
-						<span class="min-w-0 flex-1">
-							<span class="block text-sm font-medium text-foreground">Add a vocabulary</span>
-							<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
-								Two word lists: one Vale accepts, one it flags. The generated file says which
-								directories to create—Vale treats a vocabulary that is named but missing as an
-								error, not a warning.
-							</span>
-							<span class="mt-1.5 block text-[11px] font-medium text-foreground">
-								Used by {keyUsage.Vocab ?? 0} of {sampleSize}
-							</span>
-						</span>
-					</button>
-
-					{#if useVocab}
-						<label class="ml-8 flex flex-wrap items-center gap-2 text-sm">
-							<span class="text-muted-foreground">Name</span>
-							<input
-								bind:value={vocabName}
-								spellcheck="false"
-								class="w-40 rounded-md border border-input bg-background px-2.5 py-1.5 font-mono text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
-							/>
-							<span class="font-mono text-xs text-muted-foreground">
-								{vocabPath('styles', cleanVocab)}/
-							</span>
-						</label>
-					{/if}
-				</div>
-			</section>
-
-			<!-- Step 6: Configurations -->
-			<section>
-				<div class="flex items-center gap-3">
-					{@render stepBadge(6)}
 					<h2 class="text-lg font-semibold text-foreground">Markup support</h2>
 				</div>
 				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">

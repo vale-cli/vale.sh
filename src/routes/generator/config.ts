@@ -47,22 +47,6 @@ const pairs = stats.pairedWith as Record<string, Record<string, number>>;
 export const sampleSize = stats.sampleSize;
 export const adopterCount = stats.adopterCount;
 
-/** How many sampled configs set a given key at all. */
-export const keyUsage = stats.keys as Record<string, number>;
-
-/**
- * Where Vale looks for a vocabulary, relative to StylesPath.
- *
- * `VocabDir = filepath.Join(ConfigDir, "vocabularies")` with `ConfigDir =
- * "config"`, and the loader walks that directory for `accept.txt` and
- * `reject.txt` -- see internal/core/config.go and ini.go in vale-cli/vale.
- * A vocabulary named in the config but missing on disk is a hard error
- * (`NewE100("vocab", ...)`), not a warning, so anything that writes `Vocab`
- * has to say which files to create alongside it.
- */
-export const vocabPath = (stylesPath: string, name: string) =>
-	`${stylesPath}/config/vocabularies/${name}`;
-
 function build(value: string, fallback: string): Option {
 	const pkg = byName.get(value.toLowerCase());
 	const rules = pkg?.rules ?? [];
