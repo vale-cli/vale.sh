@@ -19,7 +19,12 @@
 		<MainNav />
 		<MobileNav />
 		<div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
-			<div class="w-full flex-1 md:w-auto md:flex-none">
+			<!--
+				`md:flex-none` pinned this to the button's own width; it shrinks now
+				so the header fits at 768px, where the nav, the search and the icon
+				row are all shown together.
+			-->
+			<div class="w-full min-w-0 flex-1 md:w-auto md:max-w-[14rem] md:shrink">
 				<DocSearch />
 			</div>
 			<nav class="flex items-center">

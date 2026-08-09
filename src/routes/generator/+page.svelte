@@ -210,9 +210,16 @@ BasedOnStyles = Vale`);
 		</p>
 	</div>
 
+	<!--
+		`min-w-0` on both children, because a grid track is sized to its content's
+		min-content by default and the editor below reports the width of its
+		longest line. Under `lg` the two share one column, so that measurement
+		stretched the whole page to 449px inside a 342px phone -- the options
+		column overflowed even though nothing in it is wide.
+	-->
 	<div class="mt-14 grid gap-10 lg:grid-cols-2 lg:gap-12">
 		<!-- Options -->
-		<div class="space-y-10">
+		<div class="min-w-0 space-y-10">
 			<!-- Step 1: Base style -->
 			<section>
 				<div class="flex items-center gap-3">
@@ -284,7 +291,7 @@ BasedOnStyles = Vale`);
 		</div>
 
 		<!-- Output -->
-		<div class="lg:sticky lg:top-24 lg:self-start">
+		<div class="min-w-0 lg:sticky lg:top-24 lg:self-start">
 			<div class="overflow-hidden rounded-xl border border-border shadow-sm">
 				<div
 					class="flex items-center justify-between gap-2 border-b border-border bg-muted/40 px-3 py-2"
