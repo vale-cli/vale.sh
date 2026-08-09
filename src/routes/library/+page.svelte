@@ -67,9 +67,20 @@
 		};
 	}
 
+	// The autocomplete bundle comes from a CDN in app.html. When that request
+	// fails -- blocked, offline, a slow network -- destructuring it threw and
+	// took the whole effect down, which left an empty search box and a caption
+	// pointing at operators the visitor had no input to type into. The filters
+	// and the grid below need none of it, so a miss just hides the search.
+	let searchFailed = $state(false);
+
 	onMount(() => {
-		// Loaded from a CDN in app.html, so there is nothing to import types from.
-		const { autocomplete } = (window as unknown as Record<string, any>)['@algolia/autocomplete-js'];
+		const lib = (window as unknown as Record<string, any>)['@algolia/autocomplete-js'];
+		if (!lib?.autocomplete) {
+			searchFailed = true;
+			return;
+		}
+		const { autocomplete } = lib;
 
 		autocomplete({
 			container: '#autocomplete',
@@ -178,7 +189,7 @@
 			Articles, talks, and videos about Vale from across the community.
 		</p>
 
-		<div class="mx-auto mt-8 max-w-xl">
+		<div class="mx-auto mt-8 max-w-xl" class:hidden={searchFailed}>
 			<div id="autocomplete" class="w-full"></div>
 			<p class="mt-3 text-sm text-muted-foreground">
 				Search the full library, including
@@ -208,7 +219,7 @@
 <Events />
 
 <!-- Grid -->
-<div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
+<div class="mx-auto max-w-6xl border-border/60 px-6 py-14 lg:border-x lg:px-8">
 	<!-- Filters -->
 	<div class="flex flex-wrap items-center gap-2">
 		{#each filters as f}
@@ -228,13 +239,24 @@
 		</span>
 	</div>
 
-	<div class="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+	<!--
+		Nearly half the library has no usable thumbnail -- some entries never had
+		one, others link to hosts that have since stopped serving them -- and
+		giving those a 16:9 placeholder turned a third of the grid into empty grey
+		boxes. They render as text cards instead, with the type on the chip.
+
+		That leaves cards of two very different heights, which a row-aligned grid
+		can only absorb as dead space. Columns pack them instead. The cost is
+		reading order: items flow down each column rather than across, so the
+		year-sorted list reads newest-to-oldest per column, not per row.
+	-->
+	<div class="mt-8 columns-1 gap-6 sm:columns-2 lg:columns-3">
 		{#each items as m}
 			<article
-				class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-lime-500/40"
+				class="group relative mb-6 flex break-inside-avoid flex-col overflow-hidden rounded-2xl border border-border bg-card transition-colors hover:border-lime-500/40"
 			>
-				<div class="relative aspect-[16/9] w-full overflow-hidden bg-muted">
-					{#if showImage(m.image)}
+				{#if showImage(m.image)}
+					<div class="relative aspect-[16/9] w-full overflow-hidden bg-muted">
 						<img
 							src={m.image}
 							alt=""
@@ -242,26 +264,23 @@
 							class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.02]"
 							loading="lazy"
 						/>
-					{:else}
-						<div
-							class="flex h-full w-full items-center justify-center bg-gradient-to-br from-lime-500/10 via-muted to-muted"
-						>
-							{#if m.type === 'video'}
-								<Play class="h-9 w-9 text-muted-foreground/40" />
-							{:else if m.type === 'talk'}
-								<Presentation class="h-9 w-9 text-muted-foreground/40" />
-							{:else}
-								<FileText class="h-9 w-9 text-muted-foreground/40" />
-							{/if}
-						</div>
-					{/if}
-				</div>
+					</div>
+				{/if}
 				<div class="flex flex-1 flex-col p-5">
+					<!-- The chip carries the icon now that the thumbnail may not. -->
 					<div class="flex items-center gap-2 text-xs">
 						<span
-							class="rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20"
-							>{typeLabel(m.type).replace(/s$/, '')}</span
+							class="inline-flex items-center gap-1.5 rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20"
 						>
+							{#if m.type === 'video'}
+								<Play class="h-3 w-3" />
+							{:else if m.type === 'talk'}
+								<Presentation class="h-3 w-3" />
+							{:else}
+								<FileText class="h-3 w-3" />
+							{/if}
+							{typeLabel(m.type).replace(/s$/, '')}
+						</span>
 						<span class="text-muted-foreground">{m.year}</span>
 					</div>
 					<h3 class="mt-3 font-semibold leading-snug text-foreground">
