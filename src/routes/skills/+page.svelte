@@ -4,6 +4,7 @@
 	import { skills } from '$lib/data/skills';
 	import { assistants } from '$lib/assistants';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
+	import AgentTools from '$lib/components/AgentTools.svelte';
 
 	const description =
 		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, and CI. Free, local, and driven by the CLI.';
@@ -66,7 +67,7 @@
 		</p>
 	</div>
 
-	<ul class="mx-auto mt-8 grid max-w-3xl gap-4">
+	<ul id="skill-list" class="mx-auto mt-8 grid max-w-3xl scroll-mt-24 gap-4">
 		{#each skills as skill}
 			<li>
 				<a
@@ -87,4 +88,12 @@
 			</li>
 		{/each}
 	</ul>
+</div>
+
+<!--
+	The rest of the toolchain. Skills are one of three pieces, and the other two
+	-- the edit hook and the MCP server -- have no other home on the site.
+-->
+<div class="mt-16 border-t border-border/60 pb-20 pt-10">
+	<AgentTools />
 </div>

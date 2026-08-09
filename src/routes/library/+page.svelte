@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
+	import Events from '$lib/components/landing/Events.svelte';
+	import Press from '$lib/components/landing/Press.svelte';
 	import * as Popover from '$lib/components/ui/popover';
 	import { onMount } from 'svelte';
 	import data from '$lib/data/media.json';
@@ -199,6 +201,12 @@
 	</div>
 </section>
 
+<!--
+	Upcoming first: an event has a date on it, and renders nothing at all once
+	that date passes. The searchable grid below is the standing archive.
+-->
+<Events />
+
 <!-- Grid -->
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
 	<!-- Filters -->
@@ -275,3 +283,6 @@
 		{/each}
 	</div>
 </div>
+
+<!-- Curated coda: the books, talks, and write-ups worth calling out by hand. -->
+<Press />

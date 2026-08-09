@@ -6,9 +6,10 @@
 	import Server from 'lucide-svelte/icons/server';
 	import CopyButton from '$lib/components/CopyButton.svelte';
 
-	// The hero already links to /skills, but the plugin, the edit hook and the
-	// MCP server had no home on this page at all — so the only Vale-for-agents
-	// story a visitor saw was "paste a URL into a chat".
+	// Lives on /skills rather than the landing page: the hero and the footer
+	// already link here, and the edit hook and the MCP server have no other
+	// surface on the site at all. Keeping the three together is the point --
+	// the skills alone read as "paste a URL into a chat".
 	//
 	// The free/paid split is stated on each card rather than buried in a
 	// footnote. Two of these three need no account, and that has to be obvious
@@ -31,7 +32,8 @@
 			title: 'Skills',
 			cost: 'Free',
 			body: 'Setup, fixing alerts, triaging a noisy first run, vocabularies, and CI. Each one runs the CLI in your repository and ends with a report.',
-			href: '/skills',
+			// An anchor, not a link: this renders on /skills, above the list.
+			href: '#skill-list',
 			cta: 'Browse the skills',
 			external: false
 		},

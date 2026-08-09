@@ -30,7 +30,8 @@
 				{ label: 'Vale Studio', href: 'https://studio.vale.sh', external: true },
 				{ label: 'Style Explorer', href: '/explorer' },
 				{ label: 'Config Generator', href: '/generator' },
-				{ label: 'Agent Skills', href: '/skills' }
+				{ label: 'Agent Skills', href: '/skills' },
+				{ label: 'Media Library', href: '/library' }
 			]
 		},
 		{
@@ -45,8 +46,9 @@
 					href: 'https://github.com/topics/vale-linter-style',
 					external: true
 				},
-				{ label: 'GitHub Sponsors', href: siteConfig.links.sponsors, external: true },
-				{ label: 'Open Collective', href: siteConfig.links.openCollective, external: true }
+				{ label: 'Adopters', href: '/adopters' },
+				// Both funding links live on /sponsor now, as the page's two CTAs.
+				{ label: 'Support Vale', href: '/sponsor' }
 			]
 		}
 	];

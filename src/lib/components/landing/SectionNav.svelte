@@ -2,31 +2,16 @@
 	import { onMount } from 'svelte';
 	import Download from 'lucide-svelte/icons/download';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
-	import Bot from 'lucide-svelte/icons/bot';
 	import Blocks from 'lucide-svelte/icons/blocks';
-	import Building2 from 'lucide-svelte/icons/building-2';
-	import Newspaper from 'lucide-svelte/icons/newspaper';
-	import Heart from 'lucide-svelte/icons/heart';
-	import Server from 'lucide-svelte/icons/server';
-	import Calendar from 'lucide-svelte/icons/calendar';
 
-	// `events` is dropped when there's nothing upcoming — the section renders
-	// nothing in that case, so a chip would point at a missing anchor.
-	let { hasEvents = false }: { hasEvents?: boolean } = $props();
-
-	const sections = $derived(
-		[
-			{ id: 'features', label: 'Features', icon: Sparkles },
-			{ id: 'ai', label: 'For agents', icon: Bot },
-			{ id: 'stats', label: 'Downloads', icon: Download },
-			{ id: 'integrations', label: 'Integrations', icon: Blocks },
-			{ id: 'adopters', label: 'Adopters', icon: Building2 },
-			{ id: 'events', label: 'Events', icon: Calendar },
-			{ id: 'press', label: 'Press', icon: Newspaper },
-			{ id: 'support', label: 'Supporters', icon: Heart },
-			{ id: 'thanks', label: 'Infrastructure', icon: Server }
-		].filter((s) => s.id !== 'events' || hasEvents)
-	);
+	// Only the sections still on this page. Adopters, press, supporters and
+	// infrastructure moved to /adopters, /library and /sponsor, and a chip
+	// scrolling to an anchor that is not here would land on nothing.
+	const sections = [
+		{ id: 'features', label: 'Features', icon: Sparkles },
+		{ id: 'stats', label: 'Downloads', icon: Download },
+		{ id: 'integrations', label: 'Integrations', icon: Blocks }
+	];
 
 	let active = $state('');
 	let nav: HTMLElement | undefined = $state();

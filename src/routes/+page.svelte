@@ -5,21 +5,12 @@
 	import SectionNav from '$lib/components/landing/SectionNav.svelte';
 	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
 	import Features from '$lib/components/landing/Features.svelte';
-	import Ai from '$lib/components/landing/Ai.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
-	import AdopterExplorer from '$lib/components/landing/AdopterExplorer.svelte';
-	import Events from '$lib/components/landing/Events.svelte';
-	import Press from '$lib/components/landing/Press.svelte';
-	import Recognition from '$lib/components/landing/Recognition.svelte';
-	import Thanks from '$lib/components/landing/Thanks.svelte';
 	import CTA from '$lib/components/landing/CTA.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
-	import { upcomingEvents } from '$lib/events';
 	import type { PageData } from './$types';
 
 	let { data }: { data: PageData } = $props();
-
-	const hasEvents = upcomingEvents().length > 0;
 
 	const description =
 		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
@@ -44,17 +35,19 @@
 	}}
 />
 
+<!--
+	The page makes its case and then stops. Everything a visitor might want
+	*after* being convinced lives on its own page now: the 90-adopter explorer
+	on /adopters, recognition and infrastructure on /sponsor, events and press
+	in the library, and the agent toolchain on /skills. AdopterConfigs stays
+	because the proof is the argument, not an appendix to it, and the sponsor
+	band stays because that visibility is what a sponsorship buys.
+-->
 <Hero stats={data.stats} />
 <SponsorSpotlight />
 <AdopterConfigs />
-<SectionNav {hasEvents} />
+<SectionNav />
 <Features />
-<Ai />
 <Ecosystem stats={data.stats} />
 <Integrations />
-<AdopterExplorer />
-<Events />
-<Press />
-<Recognition stats={data.stats} />
-<Thanks />
 <CTA />

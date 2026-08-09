@@ -199,7 +199,7 @@
 
 	<div class="mt-8 flex justify-center">
 		<a
-			href="#adopters"
+			href="/adopters"
 			class="group inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"
 		>
 			Browse all {total}
