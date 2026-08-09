@@ -67,89 +67,106 @@
 		};
 	}
 
-	// The autocomplete bundle comes from a CDN in app.html. When that request
-	// fails -- blocked, offline, a slow network -- destructuring it threw and
-	// took the whole effect down, which left an empty search box and a caption
-	// pointing at operators the visitor had no input to type into. The filters
-	// and the grid below need none of it, so a miss just hides the search.
-	let searchFailed = $state(false);
+	onMount(async () => {
+		// The npm package rather than the CDN copy app.html used to load: that
+		// one was unpinned, so the version served drifted from the one in the
+		// lockfile, and a failed request left a search box that never appeared.
+		//
+		// Imported here rather than at the top because the package is CommonJS
+		// and a static named import of it fails during SSR. It is only wanted in
+		// the browser anyway, so this keeps it out of the server bundle too.
+		//
+		// Typed on SearchHit so the source below is checked against the records
+		// the lambda returns; the CDN build reached this through an `any` global
+		// and nothing here was checked at all.
+		const { autocomplete } = await import('@algolia/autocomplete-js');
 
-	onMount(() => {
-		const lib = (window as unknown as Record<string, any>)['@algolia/autocomplete-js'];
-		if (!lib?.autocomplete) {
-			searchFailed = true;
-			return;
-		}
-		const { autocomplete } = lib;
-
-		autocomplete({
+		autocomplete<SearchHit>({
 			container: '#autocomplete',
-			placeholder: 'Search topics or keywords',
+			placeholder: 'Search the library...',
 			debug: false,
 			defaultActiveItemId: 0,
-			getSources({ query }: { query: string }) {
-				return searchLambda(query)
-					.then((response) => response.json())
-					.then((data) => {
-						return [
-							{
-								sourceId: 'predictions',
-								getItemUrl({ item }: { item: SearchHit }) {
-									return getParts(item.ID).url;
-								},
-								getItems() {
-									return data || [];
-								},
-								templates: {
-									noResults({ html }: { html: any }) {
-										return html`<div class="prose dark:prose-invert">
-											<h3 class="mt-0">No results found.</h3>
-											<p>Try adjusting your search with a query string:</p>
-											<ul>
-												<li class="pb-1 pt-1">
-													Faceted search: <code>date:>2021</code> or <code>author:jdkato</code>
-												</li>
-												<li class="pb-1 pt-1">
-													Fuzzy search: <code>term~1</code> or <code>term~2</code>
-												</li>
-												<li class="pb-1 pt-1">
-													Boosted search: <code>text:neovim title:neovim^5</code>
-												</li>
-												<li class="pb-1 pt-1">
-													Regex search: <code>author:/(jdkato|another)/</code>
-												</li>
-											</ul>
-										</div>`;
-									},
-									item({
-										item,
-										html,
-										createElement
-									}: {
-										item: SearchHit;
-										html: any;
-										createElement: any;
-									}) {
-										const parsed = getParts(item.ID);
-										const sample = createElement('p', {
-											dangerouslySetInnerHTML: { __html: item.Fragment }
-										});
-										const chip =
-											'mr-2 inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border';
-										return html`<div class="prose w-full rounded-lg p-6 dark:prose-invert">
-											<a class="no-underline" href="${parsed.url}" target="_blank">
-												<h5 class="font-bold tracking-tight underline">${parsed.title}</h5>
-												<p class="un text-sm text-muted-foreground">${sample}</p>
-												<span class="${chip}">${parsed.type}</span>
-												<span class="${chip}">${parsed.year}</span>
-												<span class="${chip}">${parsed.author}</span>
-											</a>
-										</div>`;
-									}
+			// Always detached, which is the modal DocSearch is built on: a
+			// trigger button here, and the search itself in an overlay. Left at
+			// its default this only kicked in under 680px, so a phone got the
+			// bare version of a mode the desktop never showed at all.
+			detachedMediaQuery: '(min-width: 0px)',
+			openOnFocus: true,
+			async getSources({ query }: { query: string }) {
+				// A rejected promise here leaves the panel empty -- no rows and no
+				// `noResults`, so a search backend that is down reads as a blank
+				// sheet. The failure is caught and told apart from a genuine miss.
+				let items: SearchHit[] = [];
+				let failed = false;
+				try {
+					const response = await searchLambda(query);
+					items = (await response.json()) ?? [];
+				} catch {
+					failed = true;
+				}
+
+				return [
+					{
+						sourceId: 'predictions',
+						getItemUrl({ item }: { item: SearchHit }) {
+							return getParts(item.ID).url;
+						},
+						getItems() {
+							return items;
+						},
+						templates: {
+							noResults({ html }: { html: any }) {
+								if (failed) {
+									return html`<div class="prose dark:prose-invert">
+										<h3 class="mt-0">Search is unavailable.</h3>
+										<p>The index could not be reached. The full library is still listed below.</p>
+									</div>`;
 								}
+								return html`<div class="prose dark:prose-invert">
+									<h3 class="mt-0">No results found.</h3>
+									<p>Try adjusting your search with a query string:</p>
+									<ul>
+										<li class="pb-1 pt-1">
+											Faceted search: <code>date:>2021</code> or <code>author:jdkato</code>
+										</li>
+										<li class="pb-1 pt-1">
+											Fuzzy search: <code>term~1</code> or <code>term~2</code>
+										</li>
+										<li class="pb-1 pt-1">
+											Boosted search: <code>text:neovim title:neovim^5</code>
+										</li>
+										<li class="pb-1 pt-1">Regex search: <code>author:/(jdkato|another)/</code></li>
+									</ul>
+								</div>`;
+							},
+							item({
+								item,
+								html,
+								createElement
+							}: {
+								item: SearchHit;
+								html: any;
+								createElement: any;
+							}) {
+								const parsed = getParts(item.ID);
+								const sample = createElement('p', {
+									dangerouslySetInnerHTML: { __html: item.Fragment }
+								});
+								const chip =
+									'mr-2 inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border';
+								return html`<div class="prose w-full rounded-lg p-6 dark:prose-invert">
+									<a class="no-underline" href="${parsed.url}" target="_blank">
+										<h5 class="font-bold tracking-tight underline">${parsed.title}</h5>
+										<p class="un text-sm text-muted-foreground">${sample}</p>
+										<span class="${chip}">${parsed.type}</span>
+										<span class="${chip}">${parsed.year}</span>
+										<span class="${chip}">${parsed.author}</span>
+									</a>
+								</div>`;
 							}
-						];
-					});
+						}
+					}
+				];
 			}
 		});
 	});
@@ -189,7 +206,7 @@
 			Articles, talks, and videos about Vale from across the community.
 		</p>
 
-		<div class="mx-auto mt-8 max-w-xl" class:hidden={searchFailed}>
+		<div class="mx-auto mt-8 max-w-xl">
 			<div id="autocomplete" class="w-full"></div>
 			<p class="mt-3 text-sm text-muted-foreground">
 				Search the full library, including

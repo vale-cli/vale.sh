@@ -1218,3 +1218,120 @@ html[data-theme='dark'] {
 .aa-Item {
 	border-radius: calc(var(--radius) - 2px);
 }
+
+/*
+ * Detached mode, dressed as DocSearch.
+ *
+ * DocSearch is this same library in detached mode with a designed modal on
+ * top, so /library runs detached at every width and borrows the dimensions
+ * docsearch.css already sets -- a 640px modal, a 48px search field, 52px
+ * rows. Without this the trigger and overlay keep Autocomplete's unstyled
+ * defaults, which is the "worse than the main one" gap.
+ */
+
+/* Trigger: the button that stands in for the input. */
+.aa-DetachedSearchButton {
+	align-items: center;
+	background-color: hsl(var(--background));
+	border: 1px solid hsl(var(--border));
+	border-radius: var(--radius);
+	color: hsl(var(--muted-foreground));
+	cursor: pointer;
+	display: flex;
+	font-size: 0.875rem;
+	gap: 0.5rem;
+	height: 44px;
+	margin: 0;
+	padding: 0 0.875rem;
+	transition: border-color 0.15s ease;
+	width: 100%;
+}
+
+.aa-DetachedSearchButton:hover {
+	border-color: hsl(var(--muted-foreground) / 0.5);
+}
+
+.aa-DetachedSearchButton:focus-visible {
+	border-color: rgba(var(--aa-primary-color-rgb), 1);
+	box-shadow: rgba(var(--aa-primary-color-rgb), var(--aa-primary-color-alpha)) 0 0 0 3px;
+	outline: none;
+}
+
+.aa-DetachedSearchButtonIcon {
+	color: hsl(var(--muted-foreground));
+	width: 20px;
+}
+
+/* Overlay and modal shell. */
+.aa-DetachedOverlay {
+	background-color: hsl(0 0% 0% / 0.8);
+	z-index: 60;
+}
+
+.aa-DetachedContainer {
+	background-color: hsl(var(--popover));
+	z-index: 61;
+}
+
+.aa-DetachedContainer--modal {
+	border: 1px solid hsl(var(--border));
+	border-radius: calc(var(--radius) + 0.25rem);
+	box-shadow:
+		0 10px 15px -3px hsl(0 0% 0% / 0.1),
+		0 4px 6px -4px hsl(0 0% 0% / 0.1);
+	max-width: 640px;
+	padding: 0;
+}
+
+/* The form inside the modal: a bare field with a rule under it, not a box
+   inside a box -- the modal is already the container. */
+.aa-DetachedFormContainer {
+	border-bottom: 1px solid hsl(var(--border));
+	padding: 0.75rem;
+}
+
+.aa-DetachedContainer .aa-Form {
+	background-color: transparent;
+	border: 0;
+	box-shadow: none;
+	height: 48px;
+}
+
+.aa-DetachedContainer .aa-Form:focus-within {
+	border: 0;
+	box-shadow: none;
+}
+
+.aa-DetachedCancelButton {
+	background: none;
+	border: 0;
+	border-radius: calc(var(--radius) - 2px);
+	color: hsl(var(--muted-foreground));
+	font-size: 0.875rem;
+	margin-left: 0.5rem;
+	padding: 0.375rem 0.625rem;
+}
+
+.aa-DetachedCancelButton:focus,
+.aa-DetachedCancelButton:hover {
+	background-color: hsl(var(--accent));
+	box-shadow: none;
+	color: hsl(var(--foreground));
+}
+
+.aa-DetachedContainer .aa-Panel {
+	border: 0;
+	box-shadow: none;
+}
+
+.aa-DetachedContainer .aa-PanelLayout {
+	padding: 0.5rem;
+}
+
+/* Phones get the whole screen, which is what DocSearch does too. */
+@media (max-width: 680px) {
+	.aa-DetachedContainer--modal {
+		border: 0;
+		border-radius: 0;
+	}
+}
