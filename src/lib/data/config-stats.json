@@ -93,6 +93,24 @@
 		"error": 4,
 		"suggestions": 1
 	},
+	"keys": {
+		"BasedOnStyles": 54,
+		"StylesPath": 54,
+		"MinAlertLevel": 49,
+		"Vocab": 27,
+		"TokenIgnores": 19,
+		"BlockIgnores": 15,
+		"Packages": 14,
+		"IgnoredScopes": 8,
+		"SkippedScopes": 7,
+		"IgnoredClasses": 3,
+		"CommentDelimiters": 2,
+		"WordTemplate": 2,
+		"experimental": 1,
+		"IgnorePatterns": 1,
+		"Vale": 1
+	},
+	"pathScoped": 13,
 	"pairedWith": {
 		"Aiven": {},
 		"write-good": {

@@ -39,6 +39,14 @@ function parse(text) {
 	const styles = new Set();
 	const packages = new Set();
 	const formats = new Set();
+	// Which keys the file sets at all, and whether it scopes any section to a
+	// path rather than a bare extension. Both say more about how Vale is really
+	// configured than the style list does.
+	const keys = new Set();
+	let pathScoped = false;
+	// Entries under `[formats]` are extension mappings, not configuration keys;
+	// counting them put `mdx = md` in the key tally as though it were one.
+	let inFormats = false;
 	let minAlertLevel = null;
 
 	// Join continuation lines: a trailing backslash, or an indented line under
@@ -63,11 +71,18 @@ function parse(text) {
 				const e = ext.trim().replace(/^\./, '').toLowerCase();
 				if (/^[a-z0-9]{1,6}$/.test(e)) formats.add(e);
 			}
+			// `[docs/**/*.md]` rather than `[*.md]`: the section is limited to
+			// part of the tree. `[formats]` and `[*]` are neither.
+			const name = section[1];
+			inFormats = /^formats$/i.test(name);
+			if (name.includes('/') && !inFormats) pathScoped = true;
 			continue;
 		}
 
 		const kv = line.match(/^([A-Za-z]+)\s*=\s*(.*)$/);
 		if (!kv) continue;
+		if (inFormats) continue;
+		keys.add(kv[1]);
 		const key = kv[1].toLowerCase();
 		// Values carry trailing comments in real configs -- `MinAlertLevel =
 		// warning # suggestion, warning or error` -- which otherwise become part
@@ -96,7 +111,14 @@ function parse(text) {
 		}
 	}
 
-	return { styles: [...styles], packages: [...packages], formats: [...formats], minAlertLevel };
+	return {
+		styles: [...styles],
+		packages: [...packages],
+		formats: [...formats],
+		keys: [...keys],
+		pathScoped,
+		minAlertLevel
+	};
 }
 
 const adopters = JSON.parse(await readFile(ADOPTERS, 'utf8'));
@@ -110,6 +132,8 @@ const styleCounts = new Map();
 const packageCounts = new Map();
 const formatCounts = new Map();
 const levelCounts = new Map();
+const keyCounts = new Map();
+let pathScopedCount = 0;
 const pairs = new Map(); // style -> Map(otherStyle -> count)
 const sampled = [];
 const failures = [];
@@ -131,6 +155,8 @@ for (const target of targets) {
 		parsed.packages.forEach((p) => bump(packageCounts, p));
 		parsed.formats.forEach((f) => bump(formatCounts, f));
 		if (parsed.minAlertLevel) bump(levelCounts, parsed.minAlertLevel);
+		parsed.keys.forEach((k) => bump(keyCounts, k));
+		if (parsed.pathScoped) pathScopedCount += 1;
 
 		for (const a of parsed.styles) {
 			if (!pairs.has(a)) pairs.set(a, new Map());
@@ -155,6 +181,10 @@ const stats = {
 	packages: sortDesc(packageCounts),
 	formats: sortDesc(formatCounts),
 	minAlertLevels: sortDesc(levelCounts),
+	// How many configs set each key at all, and how many limit a section to a
+	// path. These are what the generator's later steps are justified by.
+	keys: sortDesc(keyCounts),
+	pathScoped: pathScopedCount,
 	pairedWith: Object.fromEntries([...pairs.entries()].map(([k, v]) => [k, sortDesc(v)])),
 	sampled
 };
