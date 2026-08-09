@@ -1,177 +1,179 @@
 /**
- * Real Vale output, captured from the projects /features/speed measures.
+ * The hero demo: one paragraph, three style guides.
  *
- * Each entry is one file's COMPLETE output -- every alert Vale raised, in the
- * order it raised them, with the summary line it printed. Nothing is trimmed
- * to fit, because a trimmed list would misreport how noisy a rule set is.
+ * This is the only place on the site where the prose is ours. Everywhere else
+ * -- /features/speed, /adopters -- reports Vale run against real repositories
+ * at pinned commits, and that is where the evidence belongs. A hero has a
+ * different job: a few seconds to show what a prose linter *does*. A real
+ * file's complete output is the wrong tool for that, because it is whatever
+ * the file happened to contain -- in practice three near-identical
+ * passive-voice alerts and a rule nobody can evaluate at a glance.
  *
- * To regenerate an entry, clone the repo at `commit`, then from its root:
+ * So the paragraph is written, and the alerts are not. Each run is the genuine
+ * output of `vale` against demo-sample.md with `BasedOnStyles` set to that one
+ * style, captured with:
  *
- *     vale sync           # only if the project's .vale.ini lists Packages
- *     vale --no-wrap <file>
+ *     vale sync                      # Packages = Microsoft, Google, RedHat
+ *     vale --no-wrap demo-sample.md
  *
- * Each project supplies its own .vale.ini and its own styles; none of this is
- * a configuration written to look good.
+ * Three styles on identical prose is the demonstration: Microsoft alone
+ * objects to `click`, Google alone to `will`, Red Hat alone to `whitelist`,
+ * `please` and `a number of`. All three flag "In order to" and the passive, at
+ * different severities and in different words. That is the argument the
+ * tagline makes, shown instead of claimed.
  */
 export type Severity = 'error' | 'warning' | 'suggestion';
 
 export type Alert = {
-	/** line:column, as Vale prints it. */
+	/** line:column into demo-sample.md, as Vale prints it. */
 	loc: string;
 	sev: Severity;
 	msg: string;
 	rule: string;
 	/**
-	 * The exact text Vale flagged, so the demo can mark it in the source line.
+	 * The exact text Vale flagged, so the demo can mark it in the sample.
 	 *
-	 * Vale prints where an alert starts but not how far it runs, so this is
-	 * recorded by hand. script/demo checks every one against the file at
-	 * `commit` and fails if it does not sit at the stated column -- marking the
-	 * wrong words would be worse than marking none.
+	 * Vale prints where an alert starts but not how far it runs, so this comes
+	 * from its JSON output. script/demo checks every one against demo-sample.md
+	 * and fails if it does not sit at the stated column -- marking the wrong
+	 * words would be worse than marking none.
 	 */
 	match: string;
 };
 
-export type DemoRun = {
+export type StyleRun = {
 	id: string;
+	/** The style as a reader knows it. */
 	name: string;
-	/** Logo, already in static/users/avatars. */
-	avatar: string;
-	/** Markup Vale had to parse before it could read the prose. */
-	format: string;
-	/** Key into brandIcons for that markup's mark -- reStructuredText uses Sphinx's. */
-	formatIcon: string;
-	/** Shown in the title bar. */
-	repo: string;
-	commit: string;
-	file: string;
+	/** The package name, which is also its Style Explorer page. */
+	pkg: string;
+	/** What the style is, in one clause. */
+	blurb: string;
 	alerts: Alert[];
 	/** Vale's own summary line, verbatim. */
 	summary: string;
 };
 
-export const demoRuns: DemoRun[] = [
+/** The file name shown in the prompt. The prose itself is demo-sample.md. */
+export const sampleFile = 'deploy.md';
+
+export const styleRuns: StyleRun[] = [
 	{
-		id: 'docker',
-		name: 'Docker',
-		avatar: '/users/avatars/docker.png',
-		format: 'Markdown',
-		formatIcon: 'markdown',
-		repo: 'docker/docs',
-		commit: 'bf47d79',
-		file: 'content/manuals/engine/swarm/how-swarm-mode-works/services.md',
+		id: 'microsoft',
+		name: 'Microsoft',
+		pkg: 'Microsoft',
+		blurb: 'Microsoft Writing Style Guide',
 		alerts: [
 			{
-				loc: '11:70',
+				loc: '1:8',
+				sev: 'warning',
+				msg: "Use 'select' instead of the input-specific verb 'click'.",
+				rule: 'Microsoft.UIVerbs',
+				match: 'click'
+			},
+			{
+				loc: '1:55',
 				sev: 'suggestion',
-				msg: "Consider using 'want' instead of 'wish'",
-				rule: 'Docker.RecommendedWords',
-				match: 'wish'
+				msg: "'be triggered' looks like passive voice.",
+				rule: 'Microsoft.Passive',
+				match: 'be triggered'
 			},
 			{
-				loc: '89:77',
-				sev: 'warning',
-				msg: "Consider removing 'very'.",
-				rule: 'Docker.Avoid',
-				match: 'very'
-			},
-			{
-				loc: '91:3',
-				sev: 'warning',
-				msg: "Consider removing 'really'.",
-				rule: 'Docker.Avoid',
-				match: 'really'
-			},
-			{
-				loc: '104:32',
-				sev: 'warning',
-				msg: "Use the Oxford comma in 'deployments, replicated and global.'.",
-				rule: 'Docker.OxfordComma',
-				match: 'deployments, replicated and global.'
-			},
-			{
-				loc: '119:10',
+				loc: '2:16',
 				sev: 'suggestion',
-				msg: "Consider using 'versus' instead of 'vs'",
-				rule: 'Docker.RecommendedWords',
-				match: 'vs'
+				msg: "Consider using 'to' instead of 'In order to'.",
+				rule: 'Microsoft.Wordiness',
+				match: 'In order to'
+			},
+			{
+				loc: '4:26',
+				sev: 'error',
+				msg: "Use 'for example' instead of 'e.g. '.",
+				rule: 'Microsoft.Foreign',
+				match: 'e.g. '
 			}
 		],
-		summary: '0 errors, 3 warnings and 2 suggestions in 1 file.'
+		summary: '1 error, 1 warning and 2 suggestions in 1 file.'
 	},
 	{
-		id: 'ti',
-		name: 'Texas Instruments',
-		avatar: '/users/avatars/TexasInstruments.png',
-		format: 'reStructuredText',
-		formatIcon: 'sphinx',
-		repo: 'TexasInstruments/processor-sdk-doc',
-		commit: 'ccab88e',
-		file: 'source/devices/AM62X/debian/index.rst',
+		id: 'google',
+		name: 'Google',
+		pkg: 'Google',
+		blurb: 'Google developer documentation style guide',
 		alerts: [
 			{
-				loc: '4:1',
-				sev: 'suggestion',
-				msg: "Use sentence-style capitalization in 'Debian Developer's Guide'.",
-				rule: 'RedHat.Headings',
-				match: "Debian Developer's Guide"
+				loc: '1:50',
+				sev: 'warning',
+				msg: "Avoid using 'will'.",
+				rule: 'Google.Will',
+				match: 'will'
 			},
 			{
-				loc: '32:60',
+				loc: '1:55',
 				sev: 'suggestion',
-				msg: 'Separate words by underscores in user-replaced values.',
-				rule: 'RedHat.UserReplacedValues',
-				match: '<technical-support>'
+				msg: "In general, use active voice instead of passive voice ('be triggered').",
+				rule: 'Google.Passive',
+				match: 'be triggered'
 			},
 			{
-				loc: '36:58',
+				loc: '2:16',
+				sev: 'warning',
+				msg: "Use 'to' instead of 'In order to'.",
+				rule: 'Google.WordListCase',
+				match: 'In order to'
+			},
+			{
+				loc: '4:26',
+				sev: 'error',
+				msg: "Use 'for example' instead of 'e.g.'.",
+				rule: 'Google.Latin',
+				match: 'e.g.'
+			}
+		],
+		summary: '1 error, 2 warnings and 1 suggestion in 1 file.'
+	},
+	{
+		id: 'redhat',
+		name: 'Red Hat',
+		pkg: 'RedHat',
+		blurb: 'Red Hat supplementary style guide',
+		alerts: [
+			{
+				loc: '1:55',
+				sev: 'suggestion',
+				msg: "'be triggered' is passive voice. In general, use active voice. Consult the style guide for acceptable use of passive voice.",
+				rule: 'RedHat.PassiveVoice',
+				match: 'be triggered'
+			},
+			{
+				loc: '2:16',
+				sev: 'warning',
+				msg: "Consider using 'to' rather than 'In order to' unless updating existing content that uses the term.",
+				rule: 'RedHat.TermsWarnings',
+				match: 'In order to'
+			},
+			{
+				loc: '2:49',
 				sev: 'warning',
 				msg: 'Do not use "please" in technical documentation.',
 				rule: 'RedHat.DoNotUseTerms',
 				match: 'please'
-			}
-		],
-		summary: '0 errors, 1 warning and 2 suggestions in 1 file.'
-	},
-	{
-		id: 'circleci',
-		name: 'CircleCI',
-		avatar: '/users/avatars/circleci.png',
-		format: 'AsciiDoc',
-		formatIcon: 'asciidoctor',
-		repo: 'circleci/circleci-docs',
-		commit: '6ae1fec',
-		file: 'docs/guides/modules/execution-managed/pages/using-arm.adoc',
-		alerts: [
-			{
-				loc: '96:37',
-				sev: 'suggestion',
-				msg: "'are supported' may be passive voice. Use active voice if you can.",
-				rule: 'circleci-docs.Passive',
-				match: 'are supported'
 			},
 			{
-				loc: '97:123',
+				loc: '3:1',
+				sev: 'warning',
+				msg: "Use 'allowlist' rather than 'whitelist'.",
+				rule: 'RedHat.ConsciousLanguage',
+				match: 'whitelist'
+			},
+			{
+				loc: '3:28',
 				sev: 'error',
-				msg: "'This is' is an unclear antecedent. Clarify what 'this' refers to.",
-				rule: 'circleci-docs.UnclearAntecedent',
-				match: 'This is'
-			},
-			{
-				loc: '103:149',
-				sev: 'warning',
-				msg: 'Possible future tense.',
-				rule: 'circleci-docs.FutureTense',
-				match: 'will'
-			},
-			{
-				loc: '103:185',
-				sev: 'warning',
-				msg: 'Possible future tense.',
-				rule: 'circleci-docs.FutureTense',
-				match: 'will'
+				msg: "Use 'several' rather than 'a number of'.",
+				rule: 'RedHat.TermsErrors',
+				match: 'a number of'
 			}
 		],
-		summary: '1 error, 2 warnings and 1 suggestion in 1 file.'
+		summary: '1 error, 3 warnings and 1 suggestion in 1 file.'
 	}
 ];

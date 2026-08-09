@@ -1,126 +1,76 @@
 {
-	"docker": [
-		{
-			"label": 11,
-			"text": "To deploy an application image when Docker Engine is in Swarm mode, you create a service. Frequently a service is the image for a microservice within the context of some larger application. Examples of services might include an HTTP server, a database, or any other type of executable program that you wish to run in a distributed environment.",
-			"spans": [
-				{
-					"col": 303,
-					"length": 4
-				}
-			],
-			"locs": ["11:70"]
-		},
-		{
-			"label": 89,
-			"text": "- You can reserve a specific amount of memory for a service. If no node in the swarm has the required amount of memory, the service remains in a pending state until a node is available which can run its tasks. If you specify a very large value, such as 500 GB, the task stays pending forever, unless you really have a node which can satisfy it.",
-			"spans": [
-				{
-					"col": 228,
-					"length": 4
-				},
-				{
-					"col": 305,
-					"length": 6
-				}
-			],
-			"locs": ["89:77", "91:3"]
-		},
-		{
-			"label": 104,
-			"text": "There are two types of service deployments, replicated and global.",
-			"spans": [
-				{
-					"col": 32,
-					"length": 35
-				}
-			],
-			"locs": ["104:32"]
-		},
-		{
-			"label": 119,
-			"text": "![Global vs replicated services](../images/replicated-vs-global.webp?w=450)",
-			"spans": [
-				{
-					"col": 10,
-					"length": 2
-				}
-			],
-			"locs": ["119:10"]
-		}
-	],
-	"ti": [
-		{
-			"label": 4,
-			"text": "Debian Developer's Guide",
-			"spans": [
-				{
-					"col": 1,
-					"length": 24
-				}
-			],
-			"locs": ["4:1"]
-		},
-		{
-			"label": 32,
-			"text": "We are always striving to improve this product. If you have feedback, suggestions, or ideas on how to improve the SDK or docs, it is very appreciated. Please post your ideas to the Linux forum listed at :ref:`Technical Support <technical-support>`.",
-			"spans": [
-				{
-					"col": 228,
-					"length": 19
-				}
-			],
-			"locs": ["32:60"]
-		},
-		{
-			"label": 36,
-			"text": "| .. Image:: /images/E2e.jpg     | For technical support please post your questions at `https://e2e.ti.com <https://e2e.ti.com/>`__.  |",
-			"spans": [
-				{
-					"col": 58,
-					"length": 6
-				}
-			],
-			"locs": ["36:58"]
-		}
-	],
-	"circleci": [
-		{
-			"label": 96,
-			"text": "* Only 64-bit `arm64` architectures are supported.",
-			"spans": [
-				{
-					"col": 37,
-					"length": 13
-				}
-			],
-			"locs": ["96:37"]
-		},
-		{
-			"label": 97,
-			"text": "* In CircleCI Server, Arm resources are only available when using the EC2 provider for VM service or machine provisioner. This is because there are no Arm instances available in GCP.",
-			"spans": [
-				{
-					"col": 123,
-					"length": 7
-				}
-			],
-			"locs": ["97:123"]
-		},
-		{
-			"label": 103,
-			"text": "Docker images built on M1 Macs, are by default, not compatible with the CircleCI standard platform. The `spin up environment` job in your pipelines will give you a green tick, but you will see the following message in the response:",
-			"spans": [
-				{
-					"col": 149,
-					"length": 4
-				},
-				{
-					"col": 185,
-					"length": 4
-				}
-			],
-			"locs": ["103:149", "103:185"]
-		}
-	]
+	"paragraph": "Simply click the **Deploy** button and the build will be triggered automatically. In order to roll back a release, please contact the whitelist owner. There are a number of options you can use to customize this behavior, e.g. the retry count.",
+	"runs": {
+		"microsoft": [
+			{
+				"col": 8,
+				"length": 5,
+				"loc": "1:8"
+			},
+			{
+				"col": 55,
+				"length": 12,
+				"loc": "1:55"
+			},
+			{
+				"col": 83,
+				"length": 11,
+				"loc": "2:16"
+			},
+			{
+				"col": 222,
+				"length": 5,
+				"loc": "4:26"
+			}
+		],
+		"google": [
+			{
+				"col": 50,
+				"length": 4,
+				"loc": "1:50"
+			},
+			{
+				"col": 55,
+				"length": 12,
+				"loc": "1:55"
+			},
+			{
+				"col": 83,
+				"length": 11,
+				"loc": "2:16"
+			},
+			{
+				"col": 222,
+				"length": 4,
+				"loc": "4:26"
+			}
+		],
+		"redhat": [
+			{
+				"col": 55,
+				"length": 12,
+				"loc": "1:55"
+			},
+			{
+				"col": 83,
+				"length": 11,
+				"loc": "2:16"
+			},
+			{
+				"col": 116,
+				"length": 6,
+				"loc": "2:49"
+			},
+			{
+				"col": 135,
+				"length": 9,
+				"loc": "3:1"
+			},
+			{
+				"col": 162,
+				"length": 11,
+				"loc": "3:28"
+			}
+		]
+	}
 }
