@@ -1,14 +1,24 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
 	import { copyStringToClipboard } from '$lib/utils.js';
+	import { goto } from '$app/navigation';
 	import TextEditor from '$lib/components/TextEditor.svelte';
-	import { supplementaryStyles, baseStyles, configs } from './config.js';
+	import {
+		supplementaryStyles,
+		baseStyles,
+		configs,
+		formats,
+		alertLevels,
+		sampleSize,
+		adopterCount,
+		type Option,
+		type Level
+	} from './config.js';
 	import Check from 'lucide-svelte/icons/check';
 	import Copy from 'lucide-svelte/icons/copy';
 	import Download from 'lucide-svelte/icons/download';
 	import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
-
-	type Option = { value: string; label: string; description: string };
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 
 	let value = $state(`StylesPath = styles
 
@@ -29,9 +39,18 @@ BasedOnStyles = Vale`);
 	let baseStyle = $state('');
 	let selectedStyles = $state<string[]>([]);
 	let selectedConfigs = $state<string[]>([]);
+	// Markdown by default because 46 of the 55 sampled configs lint it, and a
+	// config that matches nothing is the one outcome with no visible symptom.
+	let selectedFormats = $state<string[]>(['md']);
+	let alertLevel = $state<Level>('suggestion');
 
 	const hasSelections = $derived(
-		baseStyle !== '' || selectedStyles.length > 0 || selectedConfigs.length > 0
+		baseStyle !== '' ||
+			selectedStyles.length > 0 ||
+			selectedConfigs.length > 0 ||
+			alertLevel !== 'suggestion' ||
+			selectedFormats.length !== 1 ||
+			selectedFormats[0] !== 'md'
 	);
 
 	function toggleBase(v: string) {
@@ -47,10 +66,20 @@ BasedOnStyles = Vale`);
 			? selectedConfigs.filter((s) => s !== v)
 			: [...selectedConfigs, v];
 	}
+	function toggleFormat(v: string) {
+		const next = selectedFormats.includes(v)
+			? selectedFormats.filter((s) => s !== v)
+			: [...selectedFormats, v];
+		// Never leave the section glob empty: a config that matches no file is
+		// indistinguishable from a clean run.
+		selectedFormats = next.length ? next : selectedFormats;
+	}
 	function reset() {
 		baseStyle = '';
 		selectedStyles = [];
 		selectedConfigs = [];
+		selectedFormats = ['md'];
+		alertLevel = 'suggestion';
 	}
 
 	let copied = $state(false);
@@ -76,13 +105,22 @@ BasedOnStyles = Vale`);
 	/*
 		The section glob follows the formats selected. MDX files are `.mdx`, and a
 		`[*.{md}]` section does not match them -- the styles would install, `vale
-		sync` would succeed, and nothing would ever be linted (#95).
+		sync` would succeed, and nothing would ever be linted (#95). Picking the
+		MDX package therefore implies the extension.
 	*/
-	const section = $derived(selectedConfigs.includes('MDX') ? '*.{md,mdx}' : '*.{md}');
+	const activeFormats = $derived(
+		[...new Set(selectedConfigs.includes('MDX') ? [...selectedFormats, 'mdx'] : selectedFormats)]
+			.slice()
+			.sort()
+	);
+	const section = $derived(`*.{${activeFormats.join(',')}}`);
 
 	function header(glob: string) {
+		const names = activeFormats
+			.map((f) => formats.find((o) => o.value === f)?.label ?? f)
+			.join(', ');
 		return `[${glob}]
-# ^ This section applies to only ${glob === '*.{md,mdx}' ? 'Markdown and MDX' : 'Markdown'} files.
+# ^ This section applies to ${names} files only.
 #
 # You can change (or add) file extensions here
 # to apply these settings to other file types.
@@ -123,7 +161,7 @@ BasedOnStyles = Vale`);
 			}
 		}
 
-		const lines = ['StylesPath = styles', '', 'MinAlertLevel = suggestion', ''];
+		const lines = ['StylesPath = styles', '', `MinAlertLevel = ${alertLevel}`, ''];
 		if (pkgs.length > 0) {
 			lines.push(`Packages = ${pkgs.join(', ')}`, '');
 		}
@@ -181,12 +219,78 @@ BasedOnStyles = Vale`);
 		>
 			{#if checked}<Check class="h-3.5 w-3.5" strokeWidth={3} />{/if}
 		</span>
-		<span class="min-w-0">
-			<span class="block text-sm font-medium text-foreground">{item.label}</span>
+		<span class="min-w-0 flex-1">
+			<span class="flex flex-wrap items-baseline gap-x-2">
+				<span class="text-sm font-medium text-foreground">{item.label}</span>
+				{#if item.ruleCount > 0}
+					<span class="font-mono text-[11px] text-muted-foreground">{item.ruleCount} rules</span>
+				{/if}
+			</span>
 			<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground"
 				>{item.description}</span
 			>
+
+			<!--
+				What the option costs and who else picked it. The severity mix is the
+				honest version of "how noisy is this": a style that is mostly errors
+				behaves very differently on a first run from one that is mostly
+				suggestions, and nothing else on the page says so.
+			-->
+			{#if item.ruleCount > 0}
+				<span class="mt-2 flex flex-wrap items-center gap-x-3 gap-y-1 text-[11px]">
+					{#if item.levels.error}
+						<span class="text-red-500">{item.levels.error} error</span>
+					{/if}
+					{#if item.levels.warning}
+						<span class="text-amber-500">{item.levels.warning} warning</span>
+					{/if}
+					{#if item.levels.suggestion}
+						<span class="text-sky-500">{item.levels.suggestion} suggestion</span>
+					{/if}
+				</span>
+			{/if}
+
+			<span class="mt-1.5 flex flex-wrap items-center gap-x-2 gap-y-1 text-[11px]">
+				{#if item.adoption > 0}
+					<span class="font-medium text-foreground">
+						Used by {item.adoption} of {sampleSize}
+					</span>
+					{#if item.pairedWith.length}
+						<span class="text-muted-foreground">
+							· often with {item.pairedWith.map((p) => p.name).join(' and ')}
+						</span>
+					{/if}
+				{:else}
+					<span class="text-muted-foreground">Not in the sampled configs</span>
+				{/if}
+			</span>
 		</span>
+
+		{#if item.explorer}
+			<!--
+				A link inside a button is invalid, so the card's own click is
+				suppressed here rather than nesting one.
+			-->
+			<span
+				role="link"
+				tabindex="0"
+				onclick={(e) => {
+					e.stopPropagation();
+					goto(item.explorer!);
+				}}
+				onkeydown={(e) => {
+					if (e.key === 'Enter' || e.key === ' ') {
+						e.preventDefault();
+						e.stopPropagation();
+						goto(item.explorer!);
+					}
+				}}
+				class="mt-0.5 inline-flex shrink-0 items-center gap-0.5 rounded px-1 py-0.5 text-[11px] font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:hover:text-lime-400"
+			>
+				Rules
+				<ArrowUpRight class="h-3 w-3" />
+			</span>
+		{/if}
 	</button>
 {/snippet}
 
@@ -207,6 +311,18 @@ BasedOnStyles = Vale`);
 		</h1>
 		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
 			Pick your styles and formats—we'll assemble a ready-to-use configuration file.
+		</p>
+		<!--
+			Where the numbers on each option come from. Without this the counts are
+			just a badge; with it they are the same kind of evidence the adopters
+			page trades on, and the reader can go and check them.
+		-->
+		<p class="mx-auto mt-3 text-sm text-muted-foreground">
+			Each option shows what it contains and how often it turns up in
+			<a href="/adopters" class="font-medium text-lime-500 hover:underline">
+				{sampleSize} public <code class="font-mono">.vale.ini</code> files
+			</a>
+			from the {adopterCount} projects we track.
 		</p>
 	</div>
 
@@ -245,7 +361,7 @@ BasedOnStyles = Vale`);
 				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
 					Smaller, focused styles you can layer on top of your base. Add as many as you like.
 				</p>
-				<div class="mt-4 grid gap-2 sm:grid-cols-2">
+				<div class="mt-4 grid gap-2">
 					{#each supplementaryStyles as item}
 						{@render optionCard(
 							item,
@@ -257,16 +373,95 @@ BasedOnStyles = Vale`);
 				</div>
 			</section>
 
-			<!-- Step 3: Configurations -->
+			<!--
+				Step 3: Formats. This was hard-coded to Markdown, which is right for
+				46 of the 55 sampled configs and silently wrong for the rest: Vale
+				only reads a file a section matches, so an unmatched extension looks
+				exactly like a clean run.
+			-->
 			<section>
 				<div class="flex items-center gap-3">
 					{@render stepBadge(3)}
-					<h2 class="text-lg font-semibold text-foreground">Configurations</h2>
+					<h2 class="text-lg font-semibold text-foreground">File formats</h2>
+				</div>
+				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
+					What Vale reads. Anything not listed here is skipped without a word.
+				</p>
+				<div class="mt-4 flex flex-wrap gap-2">
+					{#each formats as fmt}
+						{@const checked = activeFormats.includes(fmt.value)}
+						{@const forced = fmt.value === 'mdx' && selectedConfigs.includes('MDX')}
+						<button
+							type="button"
+							onclick={() => toggleFormat(fmt.value)}
+							aria-pressed={checked}
+							disabled={forced}
+							title={forced ? 'Required by the MDX package selected below' : undefined}
+							class="inline-flex items-center gap-2 rounded-full border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 disabled:cursor-not-allowed disabled:opacity-70 {checked
+								? 'border-lime-500 bg-lime-500/10 text-foreground'
+								: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
+						>
+							{fmt.label}
+							<span class="font-mono text-[11px] text-muted-foreground">.{fmt.value}</span>
+							{#if fmt.adoption > 0}
+								<span class="text-[11px] text-muted-foreground">{fmt.adoption}</span>
+							{/if}
+						</button>
+					{/each}
+				</div>
+			</section>
+
+			<!-- Step 4: Alert level -->
+			<section>
+				<div class="flex items-center gap-3">
+					{@render stepBadge(4)}
+					<h2 class="text-lg font-semibold text-foreground">Strictness</h2>
+				</div>
+				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
+					The lowest severity Vale reports. Everything quieter is hidden.
+				</p>
+				<div class="mt-4 grid gap-2">
+					{#each alertLevels as level}
+						{@const checked = alertLevel === level.value}
+						<button
+							type="button"
+							onclick={() => (alertLevel = level.value)}
+							aria-pressed={checked}
+							class="flex items-start gap-3 rounded-lg border p-4 text-left transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {checked
+								? 'border-lime-500 bg-lime-500/[0.06]'
+								: 'border-border hover:border-lime-500/40 hover:bg-muted/40'}"
+						>
+							<span
+								class="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full border {checked
+									? 'border-lime-500 bg-lime-500 text-black'
+									: 'border-input'}"
+							>
+								{#if checked}<Check class="h-3.5 w-3.5" strokeWidth={3} />{/if}
+							</span>
+							<span class="min-w-0 flex-1">
+								<span class="block text-sm font-medium text-foreground">{level.label}</span>
+								<span class="mt-0.5 block text-xs leading-relaxed text-muted-foreground">
+									{level.description}
+								</span>
+								<span class="mt-1.5 block text-[11px] font-medium text-foreground">
+									Used by {level.adoption} of {sampleSize}
+								</span>
+							</span>
+						</button>
+					{/each}
+				</div>
+			</section>
+
+			<!-- Step 5: Configurations -->
+			<section>
+				<div class="flex items-center gap-3">
+					{@render stepBadge(5)}
+					<h2 class="text-lg font-semibold text-foreground">Markup support</h2>
 				</div>
 				<p class="ml-10 mt-1.5 text-sm text-muted-foreground">
 					Format- and library-specific settings for handling non-standard markup.
 				</p>
-				<div class="mt-4 grid gap-2 sm:grid-cols-2">
+				<div class="mt-4 grid gap-2">
 					{#each configs as item}
 						{@render optionCard(
 							item,

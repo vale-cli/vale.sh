@@ -1,0 +1,544 @@
+{
+	"sampleSize": 55,
+	"adopterCount": 90,
+	"styles": {
+		"Google": 8,
+		"write-good": 8,
+		"Microsoft": 6,
+		"proselint": 4,
+		"docs": 2,
+		"RedHat": 2,
+		"ai-tells": 1,
+		"Aiven": 1,
+		"alex": 1,
+		"all": 1,
+		"ClickHouse": 1,
+		"CockroachDB": 1,
+		"commercetools": 1,
+		"custom": 1,
+		"CustomStyles": 1,
+		"Dagster": 1,
+		"DeadlineSamples": 1,
+		"DetSys": 1,
+		"Docker": 1,
+		"DocsGPT": 1,
+		"Espressif-latest": 1,
+		"expo-docs": 1,
+		"FreeBSD": 1,
+		"from-microsoft": 1,
+		"from-write-good": 1,
+		"Graphile": 1,
+		"Homebrew": 1,
+		"IBMQuantum": 1,
+		"InfluxDataDocs": 1,
+		"Infrahub": 1,
+		"kong": 1,
+		"LangChain": 1,
+		"Linode": 1,
+		"Mautic": 1,
+		"MUI": 1,
+		"n8n-styles": 1,
+		"Novu": 1,
+		"OPA": 1,
+		"OpenSearch": 1,
+		"PaaC": 1,
+		"PingCAP": 1,
+		"Platform": 1,
+		"PowerShell-Docs": 1,
+		"PSDK": 1,
+		"Pulumi": 1,
+		"Quarkus": 1,
+		"Rackspace": 1,
+		"SAP": 1,
+		"Semmle": 1,
+		"Speciesism": 1,
+		"Style": 1,
+		"Styles": 1,
+		"Temporal": 1,
+		"Terms": 1,
+		"ttd-light": 1,
+		"UmbracoDocs": 1,
+		"vale": 1,
+		"Yugabyte": 1
+	},
+	"packages": {
+		"Google": 7,
+		"write-good": 5,
+		"Microsoft": 3,
+		"RedHat": 3,
+		"ai-tells": 1,
+		"alex": 1,
+		"Espressif-latest": 1,
+		"Hugo": 1,
+		"MDX": 1,
+		"PowerShell-Docs": 1,
+		"proselint": 1,
+		"vale": 1
+	},
+	"formats": {
+		"md": 46,
+		"mdx": 12,
+		"rst": 7,
+		"adoc": 3,
+		"csv": 1,
+		"docs": 1,
+		"html": 1,
+		"learn": 1,
+		"rb": 1,
+		"txt": 1
+	},
+	"minAlertLevels": {
+		"suggestion": 28,
+		"warning": 16,
+		"error": 4,
+		"suggestions": 1
+	},
+	"pairedWith": {
+		"Aiven": {},
+		"write-good": {
+			"Google": 4,
+			"proselint": 2,
+			"ai-tells": 1,
+			"commercetools": 1,
+			"DeadlineSamples": 1,
+			"docs": 1,
+			"InfluxDataDocs": 1,
+			"LangChain": 1,
+			"Microsoft": 1,
+			"Novu": 1,
+			"Pulumi": 1,
+			"ttd-light": 1,
+			"vale": 1
+		},
+		"ai-tells": {
+			"DeadlineSamples": 1,
+			"write-good": 1
+		},
+		"DeadlineSamples": {
+			"ai-tells": 1,
+			"write-good": 1
+		},
+		"all": {},
+		"ClickHouse": {},
+		"proselint": {
+			"write-good": 2,
+			"LangChain": 1,
+			"Microsoft": 1,
+			"Speciesism": 1,
+			"ttd-light": 1,
+			"vale": 1
+		},
+		"CockroachDB": {},
+		"Google": {
+			"write-good": 4,
+			"alex": 1,
+			"commercetools": 1,
+			"CustomStyles": 1,
+			"InfluxDataDocs": 1,
+			"Mautic": 1,
+			"Microsoft": 1,
+			"Novu": 1,
+			"Pulumi": 1,
+			"Temporal": 1
+		},
+		"commercetools": {
+			"Google": 1,
+			"write-good": 1
+		},
+		"Microsoft": {
+			"alex": 1,
+			"Google": 1,
+			"Graphile": 1,
+			"proselint": 1,
+			"Rackspace": 1,
+			"Temporal": 1,
+			"ttd-light": 1,
+			"write-good": 1
+		},
+		"ttd-light": {
+			"Microsoft": 1,
+			"proselint": 1,
+			"write-good": 1
+		},
+		"Dagster": {
+			"Terms": 1
+		},
+		"Terms": {
+			"Dagster": 1
+		},
+		"custom": {},
+		"DetSys": {},
+		"Docker": {},
+		"DocsGPT": {},
+		"Espressif-latest": {},
+		"expo-docs": {},
+		"FreeBSD": {},
+		"Semmle": {},
+		"Graphile": {
+			"Microsoft": 1
+		},
+		"Homebrew": {},
+		"InfluxDataDocs": {
+			"Google": 1,
+			"write-good": 1
+		},
+		"Infrahub": {},
+		"docs": {
+			"write-good": 1
+		},
+		"kong": {},
+		"LangChain": {
+			"proselint": 1,
+			"vale": 1,
+			"write-good": 1
+		},
+		"vale": {
+			"LangChain": 1,
+			"proselint": 1,
+			"write-good": 1
+		},
+		"Linode": {},
+		"Mautic": {
+			"Google": 1
+		},
+		"MUI": {},
+		"from-write-good": {
+			"from-microsoft": 1,
+			"n8n-styles": 1
+		},
+		"n8n-styles": {
+			"from-microsoft": 1,
+			"from-write-good": 1
+		},
+		"from-microsoft": {
+			"from-write-good": 1,
+			"n8n-styles": 1
+		},
+		"Style": {},
+		"Novu": {
+			"Google": 1,
+			"write-good": 1
+		},
+		"OPA": {},
+		"OpenSearch": {},
+		"RedHat": {
+			"PaaC": 1,
+			"PSDK": 1
+		},
+		"PaaC": {
+			"RedHat": 1
+		},
+		"PingCAP": {},
+		"Platform": {},
+		"PowerShell-Docs": {},
+		"CustomStyles": {
+			"Google": 1
+		},
+		"Pulumi": {
+			"Google": 1,
+			"write-good": 1
+		},
+		"IBMQuantum": {},
+		"Quarkus": {},
+		"Rackspace": {
+			"Microsoft": 1
+		},
+		"SAP": {},
+		"alex": {
+			"Google": 1,
+			"Microsoft": 1,
+			"Temporal": 1
+		},
+		"Temporal": {
+			"alex": 1,
+			"Google": 1,
+			"Microsoft": 1
+		},
+		"PSDK": {
+			"RedHat": 1
+		},
+		"Styles": {},
+		"UmbracoDocs": {},
+		"Speciesism": {
+			"proselint": 1
+		},
+		"Yugabyte": {}
+	},
+	"sampled": [
+		{
+			"name": "Aiven",
+			"url": "https://github.com/aiven/devportal/blob/main/.vale.ini",
+			"styles": ["Aiven"]
+		},
+		{
+			"name": "AWS Deadline Cloud",
+			"url": "https://github.com/aws-deadline/deadline-cloud-samples/blob/mainline/.vale.ini",
+			"styles": ["write-good", "ai-tells", "DeadlineSamples"]
+		},
+		{
+			"name": "Camunda",
+			"url": "https://github.com/camunda/camunda-docs/blob/HEAD/.vale.ini",
+			"styles": ["all"]
+		},
+		{
+			"name": "ClickHouse",
+			"url": "https://github.com/clickhouse/clickhouse-docs/blob/HEAD/.vale.ini",
+			"styles": ["ClickHouse"]
+		},
+		{
+			"name": "CloudQuery",
+			"url": "https://github.com/cloudquery/cloudquery/blob/main/.vale.ini",
+			"styles": ["proselint"]
+		},
+		{
+			"name": "CockroachDB",
+			"url": "https://github.com/cockroachdb/docs/blob/master/.vale.ini",
+			"styles": ["CockroachDB"]
+		},
+		{
+			"name": "commercetools",
+			"url": "https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini",
+			"styles": ["write-good", "Google", "commercetools"]
+		},
+		{
+			"name": "D2iQ",
+			"url": "https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini",
+			"styles": ["write-good", "Microsoft", "ttd-light", "proselint"]
+		},
+		{
+			"name": "Dagster",
+			"url": "https://github.com/dagster-io/dagster/blob/HEAD/docs/.vale.ini",
+			"styles": ["Dagster", "Terms"]
+		},
+		{
+			"name": "dbt Labs",
+			"url": "https://github.com/dbt-labs/docs.getdbt.com/blob/HEAD/.vale.ini",
+			"styles": ["custom"]
+		},
+		{
+			"name": "Determinate Systems",
+			"url": "https://github.com/DeterminateSystems/zero-to-nix/blob/HEAD/.vale.ini",
+			"styles": ["DetSys"]
+		},
+		{
+			"name": "Discord",
+			"url": "https://github.com/discord/discord-api-docs/blob/HEAD/.vale.ini",
+			"styles": []
+		},
+		{
+			"name": "Docker",
+			"url": "https://github.com/docker/docs/blob/main/.vale.ini",
+			"styles": ["Docker"]
+		},
+		{
+			"name": "DocsGPT",
+			"url": "https://github.com/arc53/DocsGPT/blob/HEAD/.vale.ini",
+			"styles": ["DocsGPT"]
+		},
+		{
+			"name": "DuckDB",
+			"url": "https://github.com/duckdb/duckdb-web/blob/HEAD/.vale.ini",
+			"styles": []
+		},
+		{
+			"name": "Espressif",
+			"url": "https://github.com/espressif/esp-idf/blob/HEAD/.vale.ini",
+			"styles": ["Espressif-latest"]
+		},
+		{
+			"name": "Expo",
+			"url": "https://github.com/expo/expo/blob/HEAD/docs/.vale.ini",
+			"styles": ["expo-docs"]
+		},
+		{
+			"name": "FreeBSD",
+			"url": "https://github.com/freebsd/freebsd-doc/blob/HEAD/.vale.ini",
+			"styles": ["FreeBSD"]
+		},
+		{
+			"name": "GitHub",
+			"url": "https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini",
+			"styles": ["Semmle"]
+		},
+		{
+			"name": "Graphile",
+			"url": "https://github.com/graphile/crystal/blob/main/.vale.ini",
+			"styles": ["Microsoft", "Graphile"]
+		},
+		{
+			"name": "Homebrew",
+			"url": "https://github.com/Homebrew/brew/blob/master/.vale.ini",
+			"styles": ["Homebrew"]
+		},
+		{
+			"name": "InfluxData",
+			"url": "https://github.com/influxdata/docs-v2/blob/HEAD/.vale.ini",
+			"styles": ["InfluxDataDocs", "Google", "write-good"]
+		},
+		{
+			"name": "Infrahub",
+			"url": "https://github.com/opsmill/infrahub/blob/HEAD/.vale.ini",
+			"styles": ["Infrahub"]
+		},
+		{
+			"name": "IPFS",
+			"url": "https://github.com/ipfs/ipfs-docs/blob/HEAD/.vale.ini",
+			"styles": ["docs"]
+		},
+		{
+			"name": "Kong",
+			"url": "https://github.com/Kong/docs.konghq.com/blob/main/.vale.ini",
+			"styles": ["kong"]
+		},
+		{
+			"name": "LangChain",
+			"url": "https://github.com/langchain-ai/docs/blob/HEAD/.vale.ini",
+			"styles": ["LangChain", "proselint", "vale", "write-good"]
+		},
+		{
+			"name": "Linode",
+			"url": "https://github.com/linode/docs/blob/develop/.vale.ini",
+			"styles": ["Linode"]
+		},
+		{
+			"name": "Mautic",
+			"url": "https://github.com/mautic/mautic-documentation/blob/main/.vale.ini",
+			"styles": ["Google", "Mautic"]
+		},
+		{
+			"name": "Medusa",
+			"url": "https://github.com/medusajs/medusa/blob/HEAD/.vale.ini",
+			"styles": ["write-good", "docs"]
+		},
+		{
+			"name": "MUI",
+			"url": "https://github.com/mui/material-ui/blob/HEAD/.vale.ini",
+			"styles": ["MUI"]
+		},
+		{
+			"name": "n8n",
+			"url": "https://github.com/n8n-io/n8n-docs/blob/HEAD/.vale.ini",
+			"styles": ["from-write-good", "n8n-styles", "from-microsoft"]
+		},
+		{
+			"name": "Nix",
+			"url": "https://github.com/nixos/nix.dev/blob/HEAD/.vale.ini",
+			"styles": ["Style"]
+		},
+		{
+			"name": "Novu",
+			"url": "https://github.com/novuhq/docs/blob/HEAD/.vale.ini",
+			"styles": ["Google", "Novu", "write-good"]
+		},
+		{
+			"name": "Open Policy Agent",
+			"url": "https://github.com/open-policy-agent/opa/blob/HEAD/docs/.vale.ini",
+			"styles": ["OPA"]
+		},
+		{
+			"name": "OpenSearch",
+			"url": "https://github.com/opensearch-project/documentation-website/blob/HEAD/.vale.ini",
+			"styles": ["OpenSearch"]
+		},
+		{
+			"name": "OpenShift",
+			"url": "https://github.com/openshift-pipelines/pipelines-as-code/blob/main/.vale.ini",
+			"styles": ["RedHat", "PaaC"]
+		},
+		{
+			"name": "PingCAP",
+			"url": "https://github.com/pingcap/docs/blob/master/.vale.ini",
+			"styles": ["PingCAP"]
+		},
+		{
+			"name": "Platform.sh",
+			"url": "https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini",
+			"styles": ["Platform"]
+		},
+		{
+			"name": "PowerShell Docs",
+			"url": "https://github.com/MicrosoftDocs/PowerShell-Docs/blob/HEAD/.vale.ini",
+			"styles": ["PowerShell-Docs"]
+		},
+		{
+			"name": "Prefect",
+			"url": "https://github.com/prefecthq/prefect/blob/HEAD/docs/.vale.ini",
+			"styles": ["Google", "CustomStyles"]
+		},
+		{
+			"name": "Pulumi",
+			"url": "https://github.com/pulumi/docs/blob/HEAD/.vale.ini",
+			"styles": ["Pulumi", "Google", "write-good"]
+		},
+		{
+			"name": "Qiskit",
+			"url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/HEAD/docs/.vale.ini",
+			"styles": ["IBMQuantum"]
+		},
+		{
+			"name": "Quarkus",
+			"url": "https://github.com/quarkusio/quarkus/blob/HEAD/docs/.vale.ini",
+			"styles": ["Quarkus"]
+		},
+		{
+			"name": "Rackspace",
+			"url": "https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini",
+			"styles": ["Rackspace", "Microsoft"]
+		},
+		{
+			"name": "SAP",
+			"url": "https://github.com/SAP/cloud-sdk/blob/main/.vale.ini",
+			"styles": ["SAP"]
+		},
+		{
+			"name": "Spotify",
+			"url": "https://github.com/spotify/backstage/blob/master/.vale.ini",
+			"styles": []
+		},
+		{
+			"name": "Temporal",
+			"url": "https://github.com/temporalio/documentation/blob/HEAD/.vale.ini",
+			"styles": ["Google", "Microsoft", "alex", "Temporal"]
+		},
+		{
+			"name": "Texas Instruments",
+			"url": "https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini",
+			"styles": ["RedHat", "PSDK"]
+		},
+		{
+			"name": "Timescale",
+			"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
+			"styles": ["Google"]
+		},
+		{
+			"name": "TrussWorks",
+			"url": "https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini",
+			"styles": ["Styles"]
+		},
+		{
+			"name": "Umbraco",
+			"url": "https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini",
+			"styles": ["UmbracoDocs"]
+		},
+		{
+			"name": "VSHN",
+			"url": "https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini",
+			"styles": ["Microsoft"]
+		},
+		{
+			"name": "webpack",
+			"url": "https://github.com/webpack/webpack.js.org/blob/master/.vale.ini",
+			"styles": ["proselint", "Speciesism"]
+		},
+		{
+			"name": "Yii",
+			"url": "https://github.com/yiisoft/docs/blob/HEAD/.vale.ini",
+			"styles": ["Microsoft"]
+		},
+		{
+			"name": "YugabyteDB",
+			"url": "https://github.com/yugabyte/yugabyte-db/blob/HEAD/docs/.vale.ini",
+			"styles": ["Yugabyte"]
+		}
+	]
+}

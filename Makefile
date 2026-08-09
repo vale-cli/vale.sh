@@ -16,7 +16,7 @@ define build_index
 	$(CURDIR)/bin/index-media
 endef
 
-.PHONY: all build preview index media
+.PHONY: all build preview index media configs
 
 all: build
 
@@ -36,3 +36,8 @@ index:
 # OpenGraph tags. Additive: it fills fields in, and never drops an entry.
 media:
 	cd script/media && go run . -root $(CURDIR)
+
+# Re-read the public .vale.ini files the adopters list points at and rebuild
+# the counts the generator shows. Run it when adopters.json changes.
+configs:
+	node script/configs/main.mjs
