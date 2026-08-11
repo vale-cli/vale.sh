@@ -2,6 +2,14 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import { features } from '$lib/features';
 	import Section from './Section.svelte';
+	import * as Carousel from '$lib/components/ui/carousel/index.js';
+	import type { CarouselAPI } from '$lib/components/ui/carousel/context.js';
+	import { extensionPoints } from '$lib/data/extension-points';
+	import { markupFormats } from '$lib/data/markup-formats';
+	import { codeLanguages } from '$lib/data/code-languages';
+	import { highlightYaml, tokenClass } from '$lib/highlight-yaml';
+	import BrandIcon from './BrandIcon.svelte';
+	import FileText from 'lucide-svelte/icons/file-text';
 
 	/*
 		Four rows, alternating, one artifact each.
@@ -42,7 +50,104 @@
 	   order class so the DOM order stays copy-then-artifact for a screen
 	   reader regardless of which side it renders on. */
 	const row = 'grid items-center gap-8 lg:grid-cols-2 lg:gap-14';
+
+	/*
+		The extensible row's artifact is a carousel rather than one panel.
+
+		A single example can only ever show one shape of rule, and whichever one
+		it shows becomes what a visitor believes Vale is. The five slides are
+		ordered as an escalation -- grammar, then a cross-file relationship, then
+		memory, then arithmetic, then a program -- so the further you page, the
+		less a pattern match could have done it.
+
+		The severity levels come from the runs the data file describes, so a slide
+		that says `warning` is the level Vale actually reported.
+	*/
+	let api = $state<CarouselAPI>();
+	let selected = $state(0);
+
+	/*
+		Embla lays the slides out in a flex row, so the track is as tall as the
+		tallest slide and every shorter one is padded out to match. The `script`
+		rule is thirteen lines of Tengo and the `sequence` rule is seven, which
+		left the first slide with a panel most of it empty.
+
+		Measuring the active slide and setting the track's height fixes it: each
+		panel is its own height, and the transition keeps the page from jumping
+		as you page through. `slideNodes()` is embla's own handle on the DOM, so
+		there is nothing to bind here.
+	*/
+	let trackHeight = $state<number | undefined>();
+
+	$effect(() => {
+		if (!api) return;
+
+		const current = api;
+
+		const sync = () => {
+			selected = current.selectedScrollSnap();
+			trackHeight = current.slideNodes()[selected]?.scrollHeight;
+		};
+
+		sync();
+		current.on('select', sync);
+		current.on('reInit', sync);
+		// Fires on viewport resize, when a panel reflows to a new line count.
+		current.on('resize', sync);
+
+		return () => {
+			current.off('select', sync);
+			current.off('reInit', sync);
+			current.off('resize', sync);
+		};
+	});
+
+	const sevColor: Record<string, string> = {
+		error: 'text-red-600 dark:text-red-400',
+		warning: 'text-amber-600 dark:text-amber-400',
+		suggestion: 'text-sky-600 dark:text-sky-400'
+	};
+
+	/* The mark is a literal substring of the sample, so the split is exact. An
+	   absent or unmatched mark leaves the line unmarked rather than throwing. */
+	function splitOnMark(text: string, mark?: string): [string, string, string] {
+		if (!mark) return [text, '', ''];
+
+		const at = text.indexOf(mark);
+		if (at === -1) return [text, '', ''];
+
+		return [text.slice(0, at), mark, text.slice(at + mark.length)];
+	}
 </script>
+
+<!--
+	The format and language lists were comma runs inside their paragraphs -- a
+	twelve-item one and a "more than twenty languages" claim -- which is the
+	kind of sentence a reader's eye slides off. As marks they are countable at
+	a glance, and the count is the argument.
+
+	The name stays next to each mark on purpose. Half of these are not
+	recognisable on sight -- Typst, Org, Quarto, Julia -- and four carry no mark
+	at all, so a logo-only row would be a guessing game with holes in it. The
+	extension is the tooltip, since that is what someone actually checks.
+-->
+{#snippet chips(items: { name: string; slug?: string; ext: string }[])}
+	<ul class="mt-6 flex flex-wrap gap-1.5">
+		{#each items as item (item.name)}
+			<li
+				title="{item.name} ({item.ext})"
+				class="inline-flex items-center gap-1.5 rounded-md border border-border/60 bg-card px-2 py-1 text-xs text-muted-foreground"
+			>
+				{#if item.slug}
+					<BrandIcon name={item.name} slug={item.slug} size="h-3.5 w-3.5" class="opacity-70" />
+				{:else}
+					<FileText class="h-3.5 w-3.5 shrink-0 opacity-50" aria-hidden="true" />
+				{/if}
+				{item.name}
+			</li>
+		{/each}
+	</ul>
+{/snippet}
 
 <Section
 	id="features"
@@ -58,6 +163,9 @@
 				<span class={eyebrow}><MarkupIcon class="h-4 w-4" /> {markup.title}</span>
 				<h3 class={heading}>{markup.tagline}</h3>
 				<p class={lede}>{markup.description}</p>
+
+				{@render chips(markupFormats)}
+
 				<a href="/features/{markup.slug}" class={link}>
 					How scopes work
 					<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -109,6 +217,9 @@
 				<span class={eyebrow}><CodeIcon class="h-4 w-4" /> {code.title}</span>
 				<h3 class={heading}>{code.tagline}</h3>
 				<p class={lede}>{code.description}</p>
+
+				{@render chips(codeLanguages)}
+
 				<a href="/features/{code.slug}" class={link}>
 					Inside the grammar
 					<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
@@ -155,31 +266,86 @@
 				</a>
 			</div>
 
-			<div class={panel}>
-				<div class="whitespace-pre text-muted-foreground"># styles/Brand/Terms.yml</div>
-				<div class="mt-2 whitespace-pre">
-					<span class="text-muted-foreground">extends:</span>
-					<span class="text-foreground/90">existence</span>
-				</div>
-				<div class="whitespace-pre">
-					<span class="text-muted-foreground">message:</span>
-					<span class="text-foreground/90">"Avoid '%s'."</span>
-				</div>
-				<div class="whitespace-pre">
-					<span class="text-muted-foreground">level:</span>
-					<span class="text-foreground/90">warning</span>
-				</div>
-				<div class="whitespace-pre text-muted-foreground">tokens:</div>
-				<div class="whitespace-pre">
-					<span class="text-muted-foreground">{'  - '}</span><span
-						class="text-lime-600 dark:text-lime-400">utilize</span
+			<!--
+				This slot used to hold one `existence` rule with a two-word token
+				list, which is the single shape of Vale rule a `grep -f` could stand
+				in for -- the page's own strongest evidence for the "it's just regex"
+				reading. Every slide here is something a pattern match cannot do.
+			-->
+			<div class="min-w-0">
+				<Carousel.Root setApi={(e) => (api = e)} opts={{ align: 'start' }}>
+					<Carousel.Content
+						class="items-start transition-[height] duration-300 ease-out motion-reduce:transition-none"
+						style={trackHeight ? `height: ${trackHeight}px` : undefined}
 					>
-				</div>
-				<div class="whitespace-pre">
-					<span class="text-muted-foreground">{'  - '}</span><span
-						class="text-lime-600 dark:text-lime-400">leverage</span
-					>
-				</div>
+						{#each extensionPoints as point (point.id)}
+							<Carousel.Item>
+								<div class="{panel} flex flex-col">
+									<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+										<span class="font-medium text-lime-600 dark:text-lime-400">{point.id}</span>
+										<span class="font-sans text-xs text-muted-foreground">{point.claim}</span>
+									</div>
+
+									<pre class="mt-4 overflow-x-auto text-[13px] leading-relaxed"><code
+											>{#each highlightYaml(point.yaml) as tokens, i (i)}{#if i > 0}{'\n'}{/if}{#each tokens as token, j (j)}<span
+														class={tokenClass[token.t]}>{token.v}</span
+													>{/each}{/each}</code
+										></pre>
+
+									<div class="mt-4 space-y-1.5 border-t border-border/60 pt-4 text-foreground/90">
+										{#each point.sample as line, i (i)}
+											{@const [before, mark, after] = splitOnMark(line.text, line.mark)}
+											<div class="text-pretty">
+												{before}{#if mark}<span
+														class="decoration-red-500 underline-offset-4 [text-decoration:underline_wavy]"
+														>{mark}</span
+													>{/if}{after}
+											</div>
+										{/each}
+									</div>
+
+									<div class="mt-4 space-y-1.5 border-t border-border/60 pt-4">
+										<div class="flex flex-wrap gap-x-4 gap-y-1">
+											<span class="w-20 shrink-0 {sevColor[point.alert.level]}"
+												>{point.alert.level}</span
+											>
+											<span class="text-foreground/80">{point.alert.message}</span>
+										</div>
+										<div class="text-pretty text-muted-foreground/70"># {point.note}</div>
+									</div>
+								</div>
+							</Carousel.Item>
+						{/each}
+					</Carousel.Content>
+
+					<!--
+						The controls sit under the panel rather than at the component's
+						default `-left-12`/`-right-12`, which would hang outside a
+						half-width column. `static` wins over the built-in `absolute`
+						through tailwind-merge, and the inset utilities it leaves behind
+						are inert once the button is no longer positioned.
+					-->
+					<div class="mt-5 flex items-center justify-center gap-4">
+						<Carousel.Previous class="static translate-x-0 translate-y-0" />
+
+						<div class="flex items-center gap-2">
+							{#each extensionPoints as point, i (point.id)}
+								<button
+									type="button"
+									aria-label="Show the {point.id} rule"
+									aria-current={selected === i}
+									onclick={() => api?.scrollTo(i)}
+									class="h-1.5 rounded-full transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:ring-offset-2 {selected ===
+									i
+										? 'w-5 bg-lime-500'
+										: 'w-1.5 bg-border hover:bg-muted-foreground/50'}"
+								></button>
+							{/each}
+						</div>
+
+						<Carousel.Next class="static translate-x-0 translate-y-0" />
+					</div>
+				</Carousel.Root>
 			</div>
 		</div>
 

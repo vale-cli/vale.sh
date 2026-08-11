@@ -17,7 +17,7 @@ export const features = [
 		title: 'Markup-aware',
 		tagline: 'Parses your markup instead of guessing at it',
 		description:
-			'Markdown, AsciiDoc, reStructuredText, MDX, MyST, Quarto, Typst, HTML, XML, DITA, Org, and QDoc each go through a real parser. Rules can target headings, lists, or table cells—and code spans, URLs, and fenced blocks are skipped before a rule ever runs.'
+			'Twelve formats, each through a real parser rather than a pattern. Rules can target headings, lists, or table cells—and code spans, URLs, and fenced blocks are skipped before a rule ever runs.'
 	},
 	{
 		slug: 'code',
@@ -25,15 +25,15 @@ export const features = [
 		title: 'Code-aware',
 		tagline: 'Your comments are documentation too',
 		description:
-			'Vale lifts comments out of more than twenty languages with tree-sitter grammars, so it knows where a comment ends and a marker inside a string literal stays code. The Markdown inside a doc comment is linted as though it were its own file.'
+			'Vale lifts comments out of nineteen languages with tree-sitter grammars, so it knows where a comment ends and a marker inside a string literal stays code. The Markdown inside a doc comment is linted as though it were its own file.'
 	},
 	{
 		slug: 'extensible',
 		icon: SlidersHorizontal,
 		title: 'Extensible',
-		tagline: 'Rules are YAML—no plugin API, no compile step',
+		tagline: 'Rules that read grammar, not just strings',
 		description:
-			'Twelve extension points, from banned terms to readability scores to part-of-speech patterns. Write one in a text editor, drop it in a folder, and share the folder as a package.'
+			'Part-of-speech patterns, cross-file relationships, readability formulas, and Tengo scripts sit alongside the token lists—twelve extension points in all. Each is a few lines of YAML in a folder you can hand around as a package.'
 	},
 	{
 		slug: 'speed',
