@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Check from 'lucide-svelte/icons/check';
 
-	// Every figure here is confirmed against the live Polar catalogue (Vale Labs
+	// Every figure here is confirmed against the live Polar catalog (Vale Labs
 	// org), not against the docs: Pro $19/mo or $180/yr, Site $1,000/yr, and a
 	// one-month trial on each. Polar's trial is `trial_interval: month`, so the
 	// copy says "1 month" rather than "30 days".
@@ -73,7 +73,7 @@
 			],
 			cta: 'Start free trial',
 			featured: false,
-			// Annual only: a site licence billed monthly invites buying one month,
+			// Annual only: a site license billed monthly invites buying one month,
 			// pointing every pipeline at it, and cancelling.
 			annualOnly: true,
 			trial: '1 month free · cancel anytime'

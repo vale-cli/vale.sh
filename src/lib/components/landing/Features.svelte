@@ -52,6 +52,20 @@
 	const row = 'grid items-center gap-8 lg:grid-cols-2 lg:gap-14';
 
 	/*
+		The Markdown sample below is a source view, so its syntax characters and
+		its alerts each want one definition rather than a copy per line.
+
+		`marker` carries the leading `# `, `> ` and `- ` as padding instead of a
+		trailing space, which HTML collapses -- that collapse is why one line of
+		the sample used to need `whitespace-pre` and the rest did not.
+	*/
+	const syntax = 'text-muted-foreground';
+	const marker = 'pr-1 text-muted-foreground';
+	const flagged = 'underline-offset-4 [text-decoration:underline_wavy]';
+	const flagWarn = `${flagged} decoration-amber-500`;
+	const flagError = `${flagged} decoration-red-500`;
+
+	/*
 		The extensible row's artifact is a carousel rather than one panel.
 
 		A single example can only ever show one shape of rule, and whichever one
@@ -78,6 +92,11 @@
 		there is nothing to bind here.
 	*/
 	let trackHeight = $state<number | undefined>();
+	type MarkupScope = 'heading' | 'paragraph' | 'blockquote' | 'list' | 'link' | 'code' | 'url';
+	type CodeScope = 'line-comment' | 'doc-comment' | 'markdown' | 'string' | 'code';
+
+	let activeMarkupScope = $state<MarkupScope | undefined>();
+	let activeCodeScope = $state<CodeScope | undefined>();
 
 	$effect(() => {
 		if (!api) return;
@@ -117,6 +136,50 @@
 		if (at === -1) return [text, '', ''];
 
 		return [text.slice(0, at), mark, text.slice(at + mark.length)];
+	}
+
+	function scopeButton(scope: typeof activeMarkupScope, checked = true) {
+		const active = activeMarkupScope === scope;
+		const base =
+			'rounded-md px-2 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:ring-offset-2';
+
+		if (active)
+			return `${base} bg-lime-500 text-white shadow-sm dark:bg-lime-400 dark:text-zinc-950`;
+		if (checked)
+			return `${base} bg-lime-500/10 text-lime-700 hover:bg-lime-500/20 dark:text-lime-300`;
+		return `${base} bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`;
+	}
+
+	function scopeHighlight(scope: typeof activeMarkupScope, checked = true) {
+		if (activeMarkupScope !== scope) return '';
+
+		const color = checked
+			? 'bg-lime-500/15 ring-lime-500/30'
+			: 'bg-muted-foreground/10 ring-border';
+
+		return `${color} rounded px-1 ring-1`;
+	}
+
+	function codeScopeButton(scope: CodeScope, checked = true) {
+		const active = activeCodeScope === scope;
+		const base =
+			'rounded-md px-2 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:ring-offset-2';
+
+		if (active)
+			return `${base} bg-lime-500 text-white shadow-sm dark:bg-lime-400 dark:text-zinc-950`;
+		if (checked)
+			return `${base} bg-lime-500/10 text-lime-700 hover:bg-lime-500/20 dark:text-lime-300`;
+		return `${base} bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`;
+	}
+
+	function codeScopeHighlight(scope: CodeScope, checked = true) {
+		if (activeCodeScope !== scope) return '';
+
+		const color = checked
+			? 'bg-lime-500/15 ring-lime-500/30'
+			: 'bg-muted-foreground/10 ring-border';
+
+		return `${color} rounded px-1 ring-1`;
 	}
 </script>
 
@@ -177,31 +240,138 @@
 				is absent: the link and the code span raise nothing.
 			-->
 			<div class={panel}>
-				<div class="whitespace-pre">
-					<span class="text-muted-foreground">{'# '}</span><span class="text-foreground/90"
-						>Installation</span
-					>
+				<div
+					class="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-4"
+				>
+					<div>
+						<div class="font-sans text-xs font-medium text-foreground">Installation.md</div>
+						<div class="mt-1 font-mono text-[11px] text-muted-foreground">
+							Markdown parsed before prose rules run
+						</div>
+					</div>
+
+					<div class="flex flex-wrap gap-1.5 font-sans text-[11px]">
+						<button
+							type="button"
+							class={scopeButton('heading')}
+							aria-pressed={activeMarkupScope === 'heading'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'heading' ? undefined : 'heading')}
+							>heading</button
+						>
+						<button
+							type="button"
+							class={scopeButton('paragraph')}
+							aria-pressed={activeMarkupScope === 'paragraph'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'paragraph' ? undefined : 'paragraph')}
+							>paragraph</button
+						>
+						<button
+							type="button"
+							class={scopeButton('blockquote')}
+							aria-pressed={activeMarkupScope === 'blockquote'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'blockquote' ? undefined : 'blockquote')}
+							>blockquote</button
+						>
+						<button
+							type="button"
+							class={scopeButton('list')}
+							aria-pressed={activeMarkupScope === 'list'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'list' ? undefined : 'list')}
+							>list</button
+						>
+						<button
+							type="button"
+							class={scopeButton('link', false)}
+							aria-pressed={activeMarkupScope === 'link'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'link' ? undefined : 'link')}
+							>link ignored</button
+						>
+						<button
+							type="button"
+							class={scopeButton('code', false)}
+							aria-pressed={activeMarkupScope === 'code'}
+							onclick={() =>
+								(activeMarkupScope = activeMarkupScope === 'code' ? undefined : 'code')}
+							>code ignored</button
+						>
+						<button
+							type="button"
+							class={scopeButton('url', false)}
+							aria-pressed={activeMarkupScope === 'url'}
+							onclick={() => (activeMarkupScope = activeMarkupScope === 'url' ? undefined : 'url')}
+							>footnote ignored</button
+						>
+					</div>
 				</div>
-				<div class="mt-2 text-foreground/90">
-					You can <span class="text-muted-foreground">**</span><span
-						class="decoration-amber-500 underline-offset-4 [text-decoration:underline_wavy]"
-						>utilize</span
-					><span class="text-muted-foreground">**</span> Vale to lint
-					<span class="text-muted-foreground">[</span>prose<span class="text-muted-foreground"
-						>](/docs)</span
-					>—it ignores syntax like <span class="text-muted-foreground">`code`</span> and URLs.
-				</div>
-				<div class="mt-2 text-foreground/90">
-					Vale is <span
-						class="decoration-red-500 underline-offset-4 [text-decoration:underline_wavy]"
-						>availible</span
-					> for macOS, Windows, and Linux.
+
+				<div class="mt-4 space-y-3">
+					<div class="rounded-lg bg-muted/40 p-3">
+						<div class={scopeHighlight('heading')}>
+							<span class={marker}>#</span><span class="text-foreground/90">Installation</span>
+						</div>
+
+						<div class="mt-2 text-foreground/90 {scopeHighlight('paragraph')}">
+							You can <span class={syntax}>**</span><span class={flagWarn}>utilize</span><span
+								class={syntax}>**</span
+							>
+							Vale to lint
+							<span class="{syntax} {scopeHighlight('link', false)}">[</span><span
+								class={scopeHighlight('link', false)}>prose</span
+							><span class="{syntax} {scopeHighlight('link', false)}">](/docs)</span>—it ignores
+							syntax like
+							<span class="{syntax} {scopeHighlight('code', false)}">`code`</span> and URLs.
+						</div>
+
+						<div class="mt-2 text-foreground/90 {scopeHighlight('blockquote')}">
+							<span class={marker}>&gt;</span>A blockquote can still contain
+							<span class={flagWarn}>very unique</span> product guidance.
+						</div>
+
+						<div class="mt-2 text-foreground/90 {scopeHighlight('list')}">
+							<span class={marker}>-</span>Install the extension before the
+							<span class={flagWarn}>end result</span> ships.
+						</div>
+
+						<div class="mt-2 text-foreground/90 {scopeHighlight('paragraph')}">
+							Vale is <span class={flagError}>availible</span> for macOS, Windows, and Linux.
+						</div>
+
+						<div
+							class="mt-3 rounded-md bg-background/70 p-2 {syntax} {scopeHighlight('code', false)}"
+						>
+							<div>{'```js'}</div>
+							<div>{'const message = "This code utilizes a URL";'}</div>
+							<div>{'```'}</div>
+						</div>
+
+						<div class="mt-2 {syntax} {scopeHighlight('url', false)}">
+							[^install]: https://example.com/docs/utilize
+						</div>
+					</div>
+
+					<div class="grid grid-cols-2 gap-2 font-sans text-xs">
+						<div class="rounded-lg border border-border bg-background/60 p-3">
+							<div class="font-medium text-foreground">Checked</div>
+							<div class="mt-1 text-muted-foreground">headings, prose, quotes, lists</div>
+						</div>
+						<div class="rounded-lg border border-border bg-background/60 p-3">
+							<div class="font-medium text-foreground">Skipped</div>
+							<div class="mt-1 text-muted-foreground">syntax, links, code, footnotes</div>
+						</div>
+					</div>
 				</div>
 
 				<div class="mt-4 space-y-1.5 border-t border-border/60 pt-4">
 					<div class="flex flex-wrap gap-x-4 gap-y-1">
 						<span class="w-20 shrink-0 text-muted-foreground">suggestion</span>
-						<span class="text-foreground/80">Consider using 'use' instead of 'utilize'.</span>
+						<span class="text-foreground/80"
+							>Consider replacing 'utilize', 'very unique', and 'end result'.</span
+						>
 					</div>
 					<div class="flex flex-wrap gap-x-4 gap-y-1">
 						<span class="w-20 shrink-0 text-red-600 dark:text-red-400">error</span>
@@ -227,25 +397,130 @@
 			</div>
 
 			<!--
+				Adapted from the Rust book's `Person` example, which is also a
+				fixture in Vale's own test suite.
+
+				Rust earns the slot Go had: a `///` doc comment whose body is real
+				Markdown, with a fenced block inside it. That block is Rust inside
+				Markdown inside a comment inside Rust, and Vale skips it -- which is
+				the whole claim, and a `//` comment could not make it.
+
 				`utilizes` is not in Wordiness's token list, so an earlier version of
 				this showed an alert that would never fire. The comment says
 				`utilize`, which does.
 			-->
 			<div class="{panel} lg:order-1">
-				<div class="whitespace-pre text-muted-foreground">
-					func Get(id string) (*Record, error) {'{'}
+				<div
+					class="flex flex-wrap items-center justify-between gap-3 border-b border-border/60 pb-4"
+				>
+					<div>
+						<div class="font-sans text-xs font-medium text-foreground">person.rs</div>
+						<div class="mt-1 font-mono text-[11px] text-muted-foreground">
+							comments extracted with tree-sitter
+						</div>
+					</div>
+
+					<div class="flex flex-wrap gap-1.5 font-sans text-[11px]">
+						<button
+							type="button"
+							class={codeScopeButton('line-comment')}
+							aria-pressed={activeCodeScope === 'line-comment'}
+							onclick={() =>
+								(activeCodeScope = activeCodeScope === 'line-comment' ? undefined : 'line-comment')}
+							>line comment</button
+						>
+						<button
+							type="button"
+							class={codeScopeButton('doc-comment')}
+							aria-pressed={activeCodeScope === 'doc-comment'}
+							onclick={() =>
+								(activeCodeScope = activeCodeScope === 'doc-comment' ? undefined : 'doc-comment')}
+							>doc comment</button
+						>
+						<button
+							type="button"
+							class={codeScopeButton('markdown')}
+							aria-pressed={activeCodeScope === 'markdown'}
+							onclick={() =>
+								(activeCodeScope = activeCodeScope === 'markdown' ? undefined : 'markdown')}
+							>markdown</button
+						>
+						<button
+							type="button"
+							class={codeScopeButton('string', false)}
+							aria-pressed={activeCodeScope === 'string'}
+							onclick={() =>
+								(activeCodeScope = activeCodeScope === 'string' ? undefined : 'string')}
+							>string ignored</button
+						>
+						<button
+							type="button"
+							class={codeScopeButton('code', false)}
+							aria-pressed={activeCodeScope === 'code'}
+							onclick={() => (activeCodeScope = activeCodeScope === 'code' ? undefined : 'code')}
+							>code ignored</button
+						>
+					</div>
 				</div>
-				<div class="-mx-1 mt-1 whitespace-pre rounded bg-lime-500/10 px-1">
-					<span class="text-muted-foreground">{'\t// '}</span><span class="text-foreground/90"
-						>{'It can '}</span
-					><span class="decoration-amber-500 underline-offset-4 [text-decoration:underline_wavy]"
-						>utilize</span
-					><span class="text-foreground/90">{' the cache when possible.'}</span>
+
+				<div class="mt-4 space-y-3">
+					<div class="overflow-x-auto rounded-lg bg-muted/40 p-3">
+						<div class="whitespace-pre text-foreground/90 {codeScopeHighlight('doc-comment')}">
+							<span class={syntax}>{'/// '}</span>Creates a person with the given name.
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('doc-comment')}">{'///'}</div>
+						<div class="whitespace-pre text-foreground/90 {codeScopeHighlight('doc-comment')}">
+							<span class={syntax}>{'/// '}</span><span class={codeScopeHighlight('markdown')}
+								>{'# Examples'}</span
+							>
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('doc-comment')}">{'///'}</div>
+
+						<!-- Rust, inside Markdown, inside a doc comment, inside Rust. -->
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('markdown')}">
+							{'/// '}{'```'}
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('code', false)}">
+							{'/// use doc::Person;'}
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('code', false)}">
+							{'/// let person = Person::new("name");'}
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('markdown')}">
+							{'/// '}{'```'}
+						</div>
+
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('code', false)}">
+							{'pub fn new(name: &str) -> Person {'}
+						</div>
+						<div class="whitespace-pre text-foreground/90 {codeScopeHighlight('line-comment')}">
+							<span class={syntax}>{'    // '}</span><span>{'Names can '}</span><span
+								class={flagWarn}>utilize</span
+							><span>{' any script.'}</span>
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('code', false)}">
+							{'    let raw = '}<span class={codeScopeHighlight('string', false)}
+								>{'"// not a comment and not prose"'}</span
+							>{';'}
+						</div>
+						<div class="whitespace-pre {syntax} {codeScopeHighlight('code', false)}">{'}'}</div>
+					</div>
+
+					<div class="grid grid-cols-2 gap-2 font-sans text-xs">
+						<div class="rounded-lg border border-border bg-background/60 p-3">
+							<div class="font-medium text-foreground">Checked</div>
+							<div class="mt-1 text-muted-foreground">
+								line comments, doc comments, Markdown prose
+							</div>
+						</div>
+						<div class="rounded-lg border border-border bg-background/60 p-3">
+							<div class="font-medium text-foreground">Skipped</div>
+							<div class="mt-1 text-muted-foreground">
+								syntax, identifiers, strings, fenced code
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="whitespace-pre text-muted-foreground">
-					{'\tkey := "// not a comment"'}
-				</div>
-				<div class="whitespace-pre text-muted-foreground">{'}'}</div>
 
 				<div class="mt-4 flex flex-wrap gap-x-4 gap-y-1 border-t border-border/60 pt-4">
 					<span class="w-20 shrink-0 text-muted-foreground">suggestion</span>

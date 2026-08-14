@@ -10,7 +10,7 @@
  * quoted scalars, list markers, and block scalars (`|`). Inside a block scalar
  * the body is no longer YAML -- it is a Tengo program or an arithmetic formula
  * -- so it gets its own minimal pass rather than being forced through the YAML
- * rules, which would colour `text :=` as a key.
+ * rules, which would color `text :=` as a key.
  *
  * It is deliberately not a YAML parser. Anchors, flow collections, multi-line
  * plain scalars, and `? :` keys are not handled because no snippet uses them.

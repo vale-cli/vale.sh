@@ -6,7 +6,7 @@
 		display?: string;
 		/** Sits under the label — what the reader should take from this bar. */
 		note?: string;
-		/** Draws the bar in the muted track colour instead of the accent. */
+		/** Draws the bar in the muted track color instead of the accent. */
 		muted?: boolean;
 		/** Links the label to the corpus, so a figure can be checked at source. */
 		href?: string;

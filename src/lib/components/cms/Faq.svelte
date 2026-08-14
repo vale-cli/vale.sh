@@ -1,7 +1,7 @@
 <script lang="ts">
 	// The objections a Vale user actually raises, answered without hedging. Every
 	// answer here is checked against the product, not aspirational:
-	//   - free tier and read-only behaviour: canEdit() in the CMS repo
+	//   - free tier and read-only behavior: canEdit() in the CMS repo
 	//   - Team withdrawn, Site by email domain: valed's siteTier/checkoutProductID
 	//   - one-month trial: Polar trial_interval on both Pro and Site
 	//   - no enforcement claim: enforcement stays with the CLI, by design
@@ -22,7 +22,7 @@
 		},
 		{
 			q: 'Can my assistant use it without me?',
-			a: 'On a Site licence, yes. Entitlement resolves by the email domain on the subscription, so an account your CI or an agent signs in as is covered like any colleague. On Pro the MCP token is tied to you personally.'
+			a: 'On a Site license, yes. Entitlement resolves by the email domain on the subscription, so an account your CI or an agent signs in as is covered like any colleague. On Pro the MCP token is tied to you personally.'
 		},
 		{
 			q: 'What can I do without paying?',

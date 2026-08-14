@@ -284,7 +284,7 @@
 
 		<!--
 			Built in markup rather than dropped in as an SVG: an <img> reads the OS
-			colour scheme, not the site's own theme toggle, so an inline diagram is
+			color scheme, not the site's own theme toggle, so an inline diagram is
 			the only kind that follows the reader's choice.
 		-->
 		<ol class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">

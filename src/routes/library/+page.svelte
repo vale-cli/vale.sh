@@ -259,7 +259,7 @@
 	<!--
 		Nearly half the library has no usable thumbnail -- some entries never had
 		one, others link to hosts that have since stopped serving them -- and
-		giving those a 16:9 placeholder turned a third of the grid into empty grey
+		giving those a 16:9 placeholder turned a third of the grid into empty gray
 		boxes. They render as text cards instead, with the type on the chip.
 
 		That leaves cards of two very different heights, which a row-aligned grid

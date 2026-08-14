@@ -1,4 +1,5 @@
 <script lang="ts">
+	import InlineCode from '$lib/components/features/InlineCode.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import FeatureShell from '$lib/components/features/FeatureShell.svelte';
@@ -318,9 +319,7 @@ script: LongSection.tengo`,
 				</h3>
 				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 					A backtracking engine, so patterns can use lookahead, lookbehind, and backreferences—all
-					of which Go's standard <code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]"
-						>regexp</code
-					> rejects outright.
+					of which Go's standard <InlineCode>regexp</InlineCode> rejects outright.
 				</p>
 			</div>
 			<div class="rounded-xl border border-border/60 bg-card p-5">
@@ -329,8 +328,7 @@ script: LongSection.tengo`,
 				</h3>
 				<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
 					Sentence segmentation and part-of-speech tagging. It is what lets a
-					<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">sequence</code> rule match
-					on grammar rather than on words.
+					<InlineCode>sequence</InlineCode> rule match on grammar rather than on words.
 				</p>
 			</div>
 			<div class="rounded-xl border border-border/60 bg-card p-5">
@@ -413,8 +411,7 @@ script: LongSection.tengo`,
 				<h3 class="font-semibold text-foreground">Config generator</h3>
 				<p class="text-sm leading-relaxed text-muted-foreground">
 					Answer a few questions and get a working
-					<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">.vale.ini</code> to start
-					from.
+					<InlineCode>.vale.ini</InlineCode> to start from.
 				</p>
 				<span
 					class="mt-auto inline-flex items-center gap-1 pt-2 text-sm font-medium text-lime-600 dark:text-lime-400"

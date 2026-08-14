@@ -40,7 +40,7 @@
 		},
 		{
 			title: 'It resolves the config instead of describing it',
-			body: 'Styles, per-rule toggles and format sections cascade. The visualiser shows the state each rule ends up in, per glob, after all of it — beside a grounded preview of what your ignore patterns actually swallow.',
+			body: 'Styles, per-rule toggles and format sections cascade. The visualizer shows the state each rule ends up in, per glob, after all of it — beside a grounded preview of what your ignore patterns actually swallow.',
 			why: 'The .vale.ini text cannot tell you which rules run in this file, at what level.'
 		},
 		{

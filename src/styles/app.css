@@ -39,8 +39,14 @@
         /* Not pure white: a paper cast, so cards and the terminal can be
            white and still read as lifted off the page. It has to be far
            enough down for that to work -- at 99.2% the gap to a white card
-           was two values out of 255 and cards read as flat. */
-        --background: 80 24% 98.4%;
+           was two values out of 255 and cards read as flat.
+
+           It also has to be far enough down for the hue to survive. At 98.4%
+           the green cast was #FBFCFA: a channel spread of two, so the page
+           read as plain white while dark mode read as green graphite. The
+           whole surface stack below moves with it, keeping the gaps the
+           earlier tuning established. */
+        --background: 80 34% 96.5%;
         --foreground: 90 20% 7%;
         --card: 0 0% 100%;
         --card-foreground: 90 20% 7%;
@@ -51,20 +57,20 @@
         --primary: 82 74% 52%;
         --primary-foreground: 90 60% 9%;
 
-        --secondary: 80 20% 95.5%;
+        --secondary: 80 26% 93.6%;
         --secondary-foreground: 90 20% 12%;
-        --muted: 80 20% 95.5%;
+        --muted: 80 26% 93.6%;
         --muted-foreground: 88 8% 42%;
 
         /* Hover and selected states, tinted rather than grey. */
-        --accent: 82 42% 93%;
+        --accent: 82 44% 91.1%;
         --accent-foreground: 88 42% 18%;
 
         --destructive: 0 72% 48%;
         --destructive-foreground: 0 0% 100%;
 
-        --border: 82 14% 89%;
-        --input: 82 14% 86%;
+        --border: 82 18% 87.1%;
+        --input: 82 18% 84.1%;
         /* Focus rings are branded: they are the one piece of chrome every
            keyboard user sees on every page. */
         --ring: 82 62% 42%;

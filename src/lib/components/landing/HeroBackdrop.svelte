@@ -1,5 +1,5 @@
 <!--
-	Faint vertical rules, drifting. No accent colour: the movement is the only
+	Faint vertical rules, drifting. No accent color: the movement is the only
 	effect, so tinting it green made two things compete at once.
 
 	The pattern repeats every 72px and the layer travels exactly 72px per cycle,

@@ -311,7 +311,7 @@
 
 	// A ~30-line highlighter instead of a syntax-highlighting dependency. These
 	// panels hold JSON, a little YAML, and some plain engine output — all of it
-	// authored in this file. Shipping Shiki to colour that would cost more than
+	// authored in this file. Shipping Shiki to color that would cost more than
 	// the whole section weighs.
 	//
 	// Order in the alternation is the precedence: quoted strings are matched

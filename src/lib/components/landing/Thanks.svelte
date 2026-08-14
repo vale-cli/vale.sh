@@ -5,7 +5,7 @@
 
 	// Hosting providers, kept separate from the grants and sponsors above.
 	//
-	// Each card carries the provider's own brand colour. `fg` is set per brand
+	// Each card carries the provider's own brand color. `fg` is set per brand
 	// rather than computed — GitBook's pale blue needs a dark glyph, DigitalOcean's
 	// blue a white one.
 	const providers = [
