@@ -111,12 +111,8 @@
 		lede="Mintlify ships two CI checks: one for broken links, one for prose. The prose one is Vale."
 	>
 		<p class="leading-7 text-muted-foreground">
-			Nothing to install, no workflow to copy. Flip on the
-			<span class="font-medium text-foreground">Grammar linter</span> add-on and it runs on your
-			pull requests—as a
-			<span class="font-medium text-foreground">Warning</span> that notes what it found, or as
-			<span class="font-medium text-foreground">Blocking</span> when the prose has to be right before
-			the merge.
+			Flip on the Grammar linter add-on and it runs on your pull requests — as a Warning that notes
+			what it found, or as Blocking when the prose has to be right before the merge.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">

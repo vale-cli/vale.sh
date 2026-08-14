@@ -154,47 +154,27 @@
 		</div>
 
 		<p class="mt-8 leading-7 text-muted-foreground">
-			There is nothing to turn on. Vale is
-			<span class="font-medium text-foreground">
-				“enabled automatically when Promptless detects a Vale configuration file in your docs
-				repository”
-			</span>, and from then on it lints
-			<span class="font-medium text-foreground">
-				“every prose file it creates or substantially edits.”
-			</span>
+			Vale is “enabled automatically when Promptless detects a Vale configuration file in your docs
+			repository”, and from then on it lints “every prose file it creates or substantially edits.”
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			Your configuration decides what happens next. Set
-			<InlineCode>MinAlertLevel</InlineCode> and Promptless
-			<span class="font-medium text-foreground">
-				“fixes every finding Vale reports at or above that level, including warnings and
-				suggestions”
-			</span>
-			— it reads the bar you set as a deliberate choice rather than a hint. Leave it unset and it falls
-			back to treating
+			Set <InlineCode>MinAlertLevel</InlineCode> and Promptless “fixes every finding Vale reports at
+			or above that level, including warnings and suggestions.” Leave it unset and it treats
 			<InlineCode>error</InlineCode> rules as hard constraints, weighing warnings and suggestions against
-			the voice already in your docs. Either way the result, in their words, is
-			<span class="font-medium text-foreground">
-				“suggestions aligned with your style guide from the start, reducing back-and-forth during
-				review.”
-			</span>
+			the voice already in your docs.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			It also reads the Vale job in your GitHub Actions workflows and reproduces that invocation
-			locally on the changed files, confirming they pass before the suggestion is raised. For
-			<span class="font-medium text-foreground">
-				“errors that slip through or arise from later edits”
-			</span>, a failing Vale run on a Promptless pull request is analyzed and the fix pushed to the
-			branch.
+			It reads the Vale job in your GitHub Actions workflows and reproduces that invocation locally
+			on the changed files, confirming they pass before the suggestion is raised. When a run fails
+			on a Promptless pull request anyway, it analyzes the failure and pushes the fix to the branch.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			The important shift is that your
-			<InlineCode>.vale.ini</InlineCode> is what tells an agent how your team writes. The style guide
-			stops being a document people are asked to remember and becomes the constraint the drafts are generated
-			against.
+			Your <InlineCode>.vale.ini</InlineCode> is what tells an agent how your team writes. The style
+			guide stops being a document people are asked to remember and becomes the constraint the drafts
+			are generated against.
 		</p>
 
 		<div class="mt-8">
