@@ -35,8 +35,8 @@
     scale is hue 80-85, so the utilities that remain sit in it too.
 */
 @layer base {
-    :root {
-        /* Not pure white: a paper cast, so cards and the terminal can be
+	:root {
+		/* Not pure white: a paper cast, so cards and the terminal can be
            white and still read as lifted off the page. It has to be far
            enough down for that to work -- at 99.2% the gap to a white card
            was two values out of 255 and cards read as flat.
@@ -46,267 +46,275 @@
            read as plain white while dark mode read as green graphite. The
            whole surface stack below moves with it, keeping the gaps the
            earlier tuning established. */
-        --background: 80 34% 96.5%;
-        --foreground: 90 20% 7%;
-        --card: 0 0% 100%;
-        --card-foreground: 90 20% 7%;
-        --popover: 0 0% 100%;
-        --popover-foreground: 90 20% 7%;
+		--background: 80 34% 96.5%;
+		--foreground: 90 20% 7%;
+		--card: 0 0% 100%;
+		--card-foreground: 90 20% 7%;
+		--popover: 0 0% 100%;
+		--popover-foreground: 90 20% 7%;
 
-        /* The brand, as the actual primary. Dark text on it, not white. */
-        --primary: 82 74% 52%;
-        --primary-foreground: 90 60% 9%;
+		/* The brand, as the actual primary. Dark text on it, not white. */
+		--primary: 82 74% 52%;
+		--primary-foreground: 90 60% 9%;
 
-        --secondary: 80 26% 93.6%;
-        --secondary-foreground: 90 20% 12%;
-        --muted: 80 26% 93.6%;
-        --muted-foreground: 88 8% 42%;
+		--secondary: 80 26% 93.6%;
+		--secondary-foreground: 90 20% 12%;
+		--muted: 80 26% 93.6%;
+		/* Body copy is mostly this token, so it carries the page's readability.
+           At 42% it cleared AA by a tenth (4.61:1 on the background) and the
+           /70 and /60 variants used for captions were well under. 36% takes the
+           base to 5.81:1 and those variants back over 4. */
+		--muted-foreground: 88 9% 36%;
 
-        /* Hover and selected states, tinted rather than grey. */
-        --accent: 82 44% 91.1%;
-        --accent-foreground: 88 42% 18%;
+		/* Hover and selected states, tinted rather than grey. */
+		--accent: 82 44% 91.1%;
+		--accent-foreground: 88 42% 18%;
 
-        --destructive: 0 72% 48%;
-        --destructive-foreground: 0 0% 100%;
+		--destructive: 0 72% 48%;
+		--destructive-foreground: 0 0% 100%;
 
-        --border: 82 18% 87.1%;
-        --input: 82 18% 84.1%;
-        /* Focus rings are branded: they are the one piece of chrome every
+		--border: 82 18% 87.1%;
+		--input: 82 18% 84.1%;
+		/* Focus rings are branded: they are the one piece of chrome every
            keyboard user sees on every page. */
-        --ring: 82 62% 42%;
+		--ring: 82 62% 42%;
 
-        --radius: 0.625rem;
+		--radius: 0.625rem;
 
-        /*
+		/*
             Elevation. Two layers each -- a tight contact shadow and a wider
             ambient one -- because a single blur reads as a smudge. Tinted with
             the foreground's near-black green rather than pure black.
         */
-        --shadow-2xs: 0 1px 2px 0 hsl(90 22% 8% / 0.04);
-        --shadow-xs: 0 1px 3px 0 hsl(90 22% 8% / 0.05);
-        --shadow-sm: 0 1px 2px -1px hsl(90 22% 8% / 0.06), 0 2px 4px -1px hsl(90 22% 8% / 0.05);
-        --shadow: 0 1px 2px -1px hsl(90 22% 8% / 0.07), 0 2px 6px -1px hsl(90 22% 8% / 0.06);
-        --shadow-md: 0 2px 4px -2px hsl(90 22% 8% / 0.07), 0 6px 12px -2px hsl(90 22% 8% / 0.08);
-        --shadow-lg: 0 4px 8px -3px hsl(90 22% 8% / 0.07), 0 12px 24px -4px hsl(90 22% 8% / 0.09);
-        --shadow-xl: 0 8px 16px -6px hsl(90 22% 8% / 0.08), 0 24px 40px -8px hsl(90 22% 8% / 0.11);
-        --shadow-2xl: 0 32px 64px -12px hsl(90 22% 8% / 0.22);
-    }
+		--shadow-2xs: 0 1px 2px 0 hsl(90 22% 8% / 0.04);
+		--shadow-xs: 0 1px 3px 0 hsl(90 22% 8% / 0.05);
+		--shadow-sm: 0 1px 2px -1px hsl(90 22% 8% / 0.06), 0 2px 4px -1px hsl(90 22% 8% / 0.05);
+		--shadow: 0 1px 2px -1px hsl(90 22% 8% / 0.07), 0 2px 6px -1px hsl(90 22% 8% / 0.06);
+		--shadow-md: 0 2px 4px -2px hsl(90 22% 8% / 0.07), 0 6px 12px -2px hsl(90 22% 8% / 0.08);
+		--shadow-lg: 0 4px 8px -3px hsl(90 22% 8% / 0.07), 0 12px 24px -4px hsl(90 22% 8% / 0.09);
+		--shadow-xl: 0 8px 16px -6px hsl(90 22% 8% / 0.08), 0 24px 40px -8px hsl(90 22% 8% / 0.11);
+		--shadow-2xl: 0 32px 64px -12px hsl(90 22% 8% / 0.22);
+	}
 
-    .dark {
-        --background: 90 16% 5.5%;
-        --foreground: 80 18% 96%;
-        /* +3% and +4% off the background. Cards are surfaces again. */
-        --card: 90 12% 8.5%;
-        --card-foreground: 80 18% 96%;
-        --popover: 90 12% 9.5%;
-        --popover-foreground: 80 18% 96%;
+	.dark {
+		--background: 90 16% 5.5%;
+		--foreground: 80 18% 96%;
+		/* +3% and +4% off the background. Cards are surfaces again. */
+		--card: 90 12% 8.5%;
+		--card-foreground: 80 18% 96%;
+		--popover: 90 12% 9.5%;
+		--popover-foreground: 80 18% 96%;
 
-        /* Brighter than the light-mode primary: the same hue has to carry
+		/* Brighter than the light-mode primary: the same hue has to carry
            against a near-black ground. */
-        --primary: 82 78% 58%;
-        --primary-foreground: 90 60% 8%;
+		--primary: 82 78% 58%;
+		--primary-foreground: 90 60% 8%;
 
-        --secondary: 90 10% 14%;
-        --secondary-foreground: 80 18% 96%;
-        --muted: 90 10% 14%;
-        --muted-foreground: 85 10% 64%;
+		--secondary: 90 10% 14%;
+		--secondary-foreground: 80 18% 96%;
+		--muted: 90 10% 14%;
+		/* The light-mode counterpart, moved the same direction. Dark started
+           comfortable at 8.18:1, so this is a smaller step than 42% -> 36%. */
+		--muted-foreground: 85 10% 68%;
 
-        --accent: 88 22% 17%;
-        --accent-foreground: 82 58% 76%;
+		--accent: 88 22% 17%;
+		--accent-foreground: 82 58% 76%;
 
-        --destructive: 0 65% 52%;
-        --destructive-foreground: 0 0% 100%;
+		--destructive: 0 65% 52%;
+		--destructive-foreground: 0 0% 100%;
 
-        --border: 90 9% 17%;
-        --input: 90 9% 21%;
-        --ring: 82 70% 50%;
+		--border: 90 9% 17%;
+		--input: 90 9% 21%;
+		--ring: 82 70% 50%;
 
-        /* Pure black and heavier: a tinted shadow is invisible on a dark
+		/* Pure black and heavier: a tinted shadow is invisible on a dark
            ground, and the depth has to come from the shadow alone once the
            surface can no longer be lighter than white. */
-        --shadow-2xs: 0 1px 2px 0 hsl(0 0% 0% / 0.24);
-        --shadow-xs: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
-        --shadow-sm: 0 1px 2px -1px hsl(0 0% 0% / 0.36), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
-        --shadow: 0 1px 2px -1px hsl(0 0% 0% / 0.4), 0 2px 6px -1px hsl(0 0% 0% / 0.34);
-        --shadow-md: 0 2px 4px -2px hsl(0 0% 0% / 0.4), 0 6px 12px -2px hsl(0 0% 0% / 0.38);
-        --shadow-lg: 0 4px 8px -3px hsl(0 0% 0% / 0.42), 0 12px 24px -4px hsl(0 0% 0% / 0.44);
-        --shadow-xl: 0 8px 16px -6px hsl(0 0% 0% / 0.46), 0 24px 40px -8px hsl(0 0% 0% / 0.5);
-        --shadow-2xl: 0 32px 64px -12px hsl(0 0% 0% / 0.7);
-    }
+		--shadow-2xs: 0 1px 2px 0 hsl(0 0% 0% / 0.24);
+		--shadow-xs: 0 1px 3px 0 hsl(0 0% 0% / 0.3);
+		--shadow-sm: 0 1px 2px -1px hsl(0 0% 0% / 0.36), 0 2px 4px -1px hsl(0 0% 0% / 0.3);
+		--shadow: 0 1px 2px -1px hsl(0 0% 0% / 0.4), 0 2px 6px -1px hsl(0 0% 0% / 0.34);
+		--shadow-md: 0 2px 4px -2px hsl(0 0% 0% / 0.4), 0 6px 12px -2px hsl(0 0% 0% / 0.38);
+		--shadow-lg: 0 4px 8px -3px hsl(0 0% 0% / 0.42), 0 12px 24px -4px hsl(0 0% 0% / 0.44);
+		--shadow-xl: 0 8px 16px -6px hsl(0 0% 0% / 0.46), 0 24px 40px -8px hsl(0 0% 0% / 0.5);
+		--shadow-2xl: 0 32px 64px -12px hsl(0 0% 0% / 0.7);
+	}
 }
 
 @layer base {
-    /* Inter, variable and self-hosted. Split by unicode-range so the 48 KB
+	/* Inter, variable and self-hosted. Split by unicode-range so the 48 KB
        latin file is all most visitors pay for. */
-    @font-face {
-        font-family: 'Inter';
-        src: url('/fonts/Inter/inter-latin.woff2') format('woff2');
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: swap;
-        unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA,
-            U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193,
-            U+2212, U+2215, U+FEFF, U+FFFD;
-    }
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter/inter-latin.woff2') format('woff2');
+		font-weight: 100 900;
+		font-style: normal;
+		font-display: swap;
+		unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304,
+			U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+	}
 
-    @font-face {
-        font-family: 'Inter';
-        src: url('/fonts/Inter/inter-latin-ext.woff2') format('woff2');
-        font-weight: 100 900;
-        font-style: normal;
-        font-display: swap;
-        unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF,
-            U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020,
-            U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
-    }
+	@font-face {
+		font-family: 'Inter';
+		src: url('/fonts/Inter/inter-latin-ext.woff2') format('woff2');
+		font-weight: 100 900;
+		font-style: normal;
+		font-display: swap;
+		unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308,
+			U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113,
+			U+2C60-2C7F, U+A720-A7FF;
+	}
 
-    * {
-        @apply border-border;
-    }
+	* {
+		@apply border-border;
+	}
 
-    body {
-        @apply bg-background text-foreground;
-        /* calt/liga are Inter's contextual alternates; cv11 is its
+	body {
+		@apply bg-background text-foreground;
+		/* calt/liga are Inter's contextual alternates; cv11 is its
            single-storey g, which reads better at display sizes. */
-        font-feature-settings: 'liga' 1, 'calt' 1, 'cv11' 1;
-        font-synthesis-weight: none;
-        text-rendering: optimizeLegibility;
-    }
+		font-feature-settings:
+			'liga' 1,
+			'calt' 1,
+			'cv11' 1;
+		font-synthesis-weight: none;
+		text-rendering: optimizeLegibility;
+	}
 
-    /* Display type: tight and balanced, never tracked out. */
-    h1,
-    h2,
-    h3 {
-        @apply text-balance tracking-tight;
-    }
+	/* Display type: tight and balanced, never tracked out. */
+	h1,
+	h2,
+	h3 {
+		@apply text-balance tracking-tight;
+	}
 
-    /* Mobile tap highlight */
-    /* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
-    html {
-        -webkit-tap-highlight-color: hsl(var(--primary) / 0.25);
-    }
+	/* Mobile tap highlight */
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/-webkit-tap-highlight-color */
+	html {
+		-webkit-tap-highlight-color: hsl(var(--primary) / 0.25);
+	}
 
-    /* === Scrollbars === */
+	/* === Scrollbars === */
 
-    ::-webkit-scrollbar {
-        @apply w-2;
-        @apply h-2;
-    }
+	::-webkit-scrollbar {
+		@apply w-2;
+		@apply h-2;
+	}
 
-    ::-webkit-scrollbar-track {
-        @apply !bg-muted;
-    }
+	::-webkit-scrollbar-track {
+		@apply !bg-muted;
+	}
 
-    ::-webkit-scrollbar-thumb {
-        @apply rounded-sm !bg-muted-foreground/30;
-    }
+	::-webkit-scrollbar-thumb {
+		@apply rounded-sm !bg-muted-foreground/30;
+	}
 
-    /* Firefox. Was a hardcoded blue-grey (hue 215) left over from a palette
+	/* Firefox. Was a hardcoded blue-grey (hue 215) left over from a palette
        the site does not use; it now tracks the theme like the WebKit rules
        above it. */
-    /* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
-    html {
-        scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
-    }
+	/* https://developer.mozilla.org/en-US/docs/Web/CSS/scrollbar-color#browser_compatibility */
+	html {
+		scrollbar-color: hsl(var(--muted-foreground) / 0.3) transparent;
+	}
 
-    .hide-scrollbar::-webkit-scrollbar {
-        display: none;
-    }
+	.hide-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
 
-    .hide-scrollbar {
-        -ms-overflow-style: none;
-        scrollbar-width: none;
-    }
+	.hide-scrollbar {
+		-ms-overflow-style: none;
+		scrollbar-width: none;
+	}
 
-    .antialised {
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-    }
+	.antialised {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
 }
 
 @layer utilities {
-    .step {
-        counter-increment: step;
-    }
+	.step {
+		counter-increment: step;
+	}
 
-    .step:before {
-        @apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
-        @apply ml-[-50px] mt-[-4px];
-        content: counter(step);
-    }
+	.step:before {
+		@apply absolute inline-flex h-9 w-9 items-center justify-center rounded-full border-4 border-background bg-muted text-center -indent-px font-mono text-base font-medium;
+		@apply ml-[-50px] mt-[-4px];
+		content: counter(step);
+	}
 
-    .chunk-container {
-        @apply shadow-none;
-    }
+	.chunk-container {
+		@apply shadow-none;
+	}
 
-    .chunk-container::after {
-        content: '';
-        @apply absolute -inset-4 rounded-xl border shadow-xl;
-    }
+	.chunk-container::after {
+		content: '';
+		@apply absolute -inset-4 rounded-xl border shadow-xl;
+	}
 }
 
 @media (max-width: 640px) {
-    .container {
-        @apply px-4;
-    }
+	.container {
+		@apply px-4;
+	}
 }
 
 [data-theme='default'] {
-    display: flex;
+	display: flex;
 }
 
 [data-style='new-york'] [data-style='default'] {
-    display: none;
+	display: none;
 }
 
 [data-style='default'] [data-style='default'] {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 [data-style='new-york'] [data-style='new-york'] {
-    display: flex;
-    flex-direction: column;
+	display: flex;
+	flex-direction: column;
 }
 
 [data-style='default'] [data-style='new-york'] {
-    display: none;
+	display: none;
 }
 
 .super-debug {
-    @apply bg-zinc-950 text-[#FFF8] dark:bg-zinc-900 !important;
+	@apply bg-zinc-950 text-[#FFF8] dark:bg-zinc-900 !important;
 }
 
 .super-debug--pre {
-    @apply !bg-transparent !text-[#FFF8];
+	@apply !bg-transparent !text-[#FFF8];
 }
 
 .super-debug--code {
-    @apply !bg-transparent;
+	@apply !bg-transparent;
 }
 
 .super-debug--code .key {
-    @apply text-white !important;
+	@apply text-white !important;
 }
 
 .super-debug--code .undefined {
-    @apply !text-[#FFF8];
+	@apply !text-[#FFF8];
 }
 
 .super-debug--code .string {
-    @apply !text-[#FFF8];
+	@apply !text-[#FFF8];
 }
 
 .super-debug--code .number {
-    @apply !text-[#FFF8];
+	@apply !text-[#FFF8];
 }
 
 .super-debug--code .boolean {
-    @apply !text-[#FFF8];
+	@apply !text-[#FFF8];
 }
 
 .vis-xy-container {
-    --vis-tooltip-padding: '0px';
-    --vis-tooltip-background-color: 'transparent';
-    --vis-tooltip-border-color: 'transparent';
+	--vis-tooltip-padding: '0px';
+	--vis-tooltip-background-color: 'transparent';
+	--vis-tooltip-border-color: 'transparent';
 }
