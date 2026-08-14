@@ -55,7 +55,7 @@
 	const workflow = [
 		{
 			title: 'Sync',
-			body: "Downloads the external style packages your `Packages` key references, when they aren't already vendored in the repository.",
+			body: "Downloads the external style packages your config references, when they aren't already vendored in your repository.",
 			icon: Download
 		},
 		{
@@ -165,10 +165,16 @@
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			Your severities decide what happens next. Promptless treats
-			<InlineCode>error</InlineCode>-severity violations as blocking and fixes them before the
-			suggestion is ever raised; warnings and suggestions are weighed in context rather than applied
-			blindly. The result, in their words, is
+			Your configuration decides what happens next. Set
+			<InlineCode>MinAlertLevel</InlineCode> and Promptless
+			<span class="font-medium text-foreground">
+				“fixes every finding Vale reports at or above that level, including warnings and
+				suggestions”
+			</span>
+			— it reads the bar you set as a deliberate choice rather than a hint. Leave it unset and it falls
+			back to treating
+			<InlineCode>error</InlineCode> rules as hard constraints, weighing warnings and suggestions against
+			the voice already in your docs. Either way the result, in their words, is
 			<span class="font-medium text-foreground">
 				“suggestions aligned with your style guide from the start, reducing back-and-forth during
 				review.”
@@ -176,8 +182,12 @@
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			And when something slips past — a later edit, a rule that only fires in combination — their CI
-			handling catches the failing Vale run, analyzes it, and pushes the fix to the branch.
+			It also reads the Vale job in your GitHub Actions workflows and reproduces that invocation
+			locally on the changed files, confirming they pass before the suggestion is raised. For
+			<span class="font-medium text-foreground">
+				“errors that slip through or arise from later edits”
+			</span>, a failing Vale run on a Promptless pull request is analyzed and the fix pushed to the
+			branch.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
