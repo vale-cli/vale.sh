@@ -36,6 +36,7 @@
 								<BrandIcon
 									name={item.name}
 									slug={item.slug}
+									avatar={item.avatar}
 									class="text-foreground/70 transition-colors group-hover:text-lime-500"
 								/>
 								<span class="min-w-0 flex-1">

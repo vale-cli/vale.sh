@@ -13,7 +13,7 @@
  * automating it is "optional", which is true of any repository of Markdown.
  *
  * `slug` is a key from $lib/data/brand-icons. Leave it off and BrandIcon falls
- * back to a monogram.
+ * back to a monogram, unless `avatar` names a file to use instead.
  */
 
 export type Integration = {
@@ -22,6 +22,8 @@ export type Integration = {
 	detail: string;
 	href: string;
 	slug?: string;
+	/** For a brand Simple Icons does not carry -- see static/users/avatars. */
+	avatar?: string;
 };
 
 export type IntegrationGroup = {
@@ -33,8 +35,8 @@ export type IntegrationGroup = {
 
 export const integrationGroups: IntegrationGroup[] = [
 	{
-		title: 'Editors',
-		note: 'Through the language server, so diagnostics arrive as you type.',
+		title: 'Apps',
+		note: 'Wherever the prose gets written, with diagnostics as you type.',
 		items: [
 			{
 				name: 'VS Code',
@@ -71,13 +73,7 @@ export const integrationGroups: IntegrationGroup[] = [
 				detail: 'IntelliJ, PyCharm, WebStorm',
 				href: 'https://plugins.jetbrains.com/plugin/19613-vale-cli/docs',
 				slug: 'jetbrains'
-			}
-		]
-	},
-	{
-		title: 'Writing apps',
-		note: 'The same rules, away from the editor.',
-		items: [
+			},
 			{
 				name: 'Obsidian',
 				detail: 'obsidian-vale',
@@ -137,6 +133,12 @@ export const integrationGroups: IntegrationGroup[] = [
 				detail: 'Built-in CI check',
 				href: 'https://www.mintlify.com/docs/deploy/ci',
 				slug: 'mintlify'
+			},
+			{
+				name: 'Promptless',
+				detail: 'Lints every draft it writes',
+				href: 'https://promptless.ai/docs/audit/standards-enforcement/',
+				avatar: '/users/avatars/Promptless.png'
 			}
 		]
 	}
