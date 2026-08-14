@@ -6,7 +6,17 @@
 
 	// Kept separate from LogoWall on purpose: that band claims a company ships
 	// Vale in its pipeline, which a sponsor has not necessarily done.
-	let { sponsors = allSponsors }: { sponsors?: Sponsor[] } = $props();
+	let {
+		sponsors = allSponsors,
+		more = true
+	}: {
+		sponsors?: Sponsor[];
+		/**
+		 * Link on to /sponsor. Off on /sponsor itself, which renders this section
+		 * too and would otherwise point at the page the reader is already on.
+		 */
+		more?: boolean;
+	} = $props();
 
 	// One sponsor fills the row; the rest share it. A grid rather than a scroll
 	// rail: at two, a rail cut the second card off at the viewport edge to
@@ -63,5 +73,21 @@
 				</a>
 			{/each}
 		</div>
+
+		{#if more}
+			<!--
+				Quieter than the brand cards above it on purpose: those two are the
+				section, and this only says there is more behind them.
+			-->
+			<div class="mt-8 flex justify-center">
+				<a
+					href="/sponsor"
+					class="group/all inline-flex h-11 items-center justify-center gap-2 rounded-lg border border-border bg-background px-6 text-sm font-medium text-foreground transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+				>
+					See everyone who funds Vale
+					<ArrowRight class="h-4 w-4 transition-transform group-hover/all:translate-x-0.5" />
+				</a>
+			</div>
+		{/if}
 	</Section>
 {/if}

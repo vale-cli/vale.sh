@@ -16,6 +16,11 @@ export type Sponsor = {
 	avatar?: string;
 	/** Vale's own write-up, not the sponsor's homepage. */
 	href: string;
+	/**
+	 * Their Open Collective slug, which is what the spotlight page reads its
+	 * amount from. Absent for a sponsor who gave some other way.
+	 */
+	collective?: string;
 	brand: string;
 	fg: string;
 	/**
@@ -36,6 +41,7 @@ export const sponsors: Sponsor[] = [
 		name: 'Mintlify',
 		icon: 'mintlify',
 		href: '/sponsors/mintlify',
+		collective: 'mintlifydocs',
 		brand: '#18E299',
 		fg: '#04231A',
 		shot: {
@@ -51,6 +57,7 @@ export const sponsors: Sponsor[] = [
 		// AWS do.
 		avatar: '/users/avatars/Promptless.png',
 		href: '/sponsors/promptless',
+		collective: 'promptless',
 		// `--pl-color-accent` from promptless.ai, dark type from the same
 		// palette: 8.6:1.
 		brand: '#a6b0ff',

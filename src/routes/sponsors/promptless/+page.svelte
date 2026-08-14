@@ -18,15 +18,17 @@
 	import HeartHandshake from 'lucide-svelte/icons/heart-handshake';
 	import Wrench from 'lucide-svelte/icons/wrench';
 	import { sponsors } from '$lib/data/sponsors';
+	import type { PageData } from './$types';
 
 	// The card on the landing page and this panel are the same brand; read it
 	// from the one place that defines it.
 	const sponsor = sponsors.find((s) => s.name === 'Promptless')!;
 
-	// The means varies by sponsor -- Open Collective, GitHub Sponsors, direct.
-	// TODO: confirm the amount and channel before publishing.
+	// The amount is read from Open Collective at build time; see
+	// src/lib/server/collective.ts. Only the channel is stated here, because
+	// that varies by sponsor -- Open Collective, GitHub Sponsors, direct.
+	let { data }: { data: PageData } = $props();
 	const sponsorship = {
-		amount: '$1,000',
 		via: 'Open Collective',
 		href: 'https://opencollective.com/vale'
 	};
@@ -103,7 +105,7 @@
 			</p>
 
 			<div class="mt-7 flex flex-wrap items-center gap-2">
-				<Badge class="text-sm">{sponsorship.amount}</Badge>
+				<Badge class="text-sm">{data.funding.amount}</Badge>
 				<Badge variant="outline" href={sponsorship.href} target="_blank" rel="noreferrer">
 					via {sponsorship.via}
 				</Badge>

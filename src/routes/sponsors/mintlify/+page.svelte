@@ -6,6 +6,7 @@
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import Screenshot from '$lib/components/features/Screenshot.svelte';
 	import { sponsors } from '$lib/data/sponsors';
+	import type { PageData } from './$types';
 	import { Icons } from '$lib/components/icons';
 	import { Badge } from '$lib/components/ui/badge';
 	import { sponsorPageLabels } from '$lib/data/sponsor-page';
@@ -17,9 +18,11 @@
 
 	const sponsor = sponsors.find((s) => s.name === 'Mintlify')!;
 
-	// The means varies by sponsor -- Open Collective, GitHub Sponsors, direct.
+	// The amount is read from Open Collective at build time; see
+	// src/lib/server/collective.ts. Only the channel is stated here, because
+	// that varies by sponsor -- Open Collective, GitHub Sponsors, direct.
+	let { data }: { data: PageData } = $props();
 	const sponsorship = {
-		amount: '$1,000',
 		via: 'Open Collective',
 		href: 'https://opencollective.com/vale'
 	};
@@ -87,7 +90,7 @@
 			</p>
 
 			<div class="mt-7 flex flex-wrap items-center gap-2">
-				<Badge class="text-sm">{sponsorship.amount}</Badge>
+				<Badge class="text-sm">{data.funding.amount}</Badge>
 				<Badge variant="outline" href={sponsorship.href} target="_blank" rel="noreferrer">
 					via {sponsorship.via}
 				</Badge>

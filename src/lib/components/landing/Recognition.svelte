@@ -1,17 +1,15 @@
 <script lang="ts">
-	import type { Stats } from '$lib/types/stats';
-	import { siteConfig } from '$lib/config/site.js';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import Award from 'lucide-svelte/icons/award';
 	import HeartHandshake from 'lucide-svelte/icons/heart-handshake';
 	import Landmark from 'lucide-svelte/icons/landmark';
-	import Heart from 'lucide-svelte/icons/heart';
-	import Users from 'lucide-svelte/icons/users';
 	import Section from './Section.svelte';
 
-	let { stats }: { stats: Stats } = $props();
-
-	const highlights = $derived([
+	// Awards and grants only. The two funding channels used to sit in this grid
+	// as well, which put "here is who recognized Vale" and "here is how to pay
+	// for it" in one row of identical cards; the header and the backer wall each
+	// make the ask better than a card could.
+	const highlights = [
 		{
 			icon: Award,
 			eyebrow: 'Google Open Source',
@@ -32,79 +30,47 @@
 			title: 'OSS Fund recipient',
 			context: 'Alongside Algolia, MongoDB, Fastly, and DigitalOcean.',
 			url: 'https://dev.to/appwrite/appwrite-oss-fund-sponsors-vale-4oig'
-		},
-		{
-			icon: Users,
-			eyebrow: 'Open Collective',
-			title: `${stats.funding.backers} backers`,
-			context: `$${stats.funding.yearlyIncome.toLocaleString('en-US')} a year. Every expense is public.`,
-			url: siteConfig.links.openCollective
-		},
-		{
-			icon: Heart,
-			eyebrow: 'GitHub Sponsors',
-			title: 'Sponsor the maintainer',
-			context: 'Recurring sponsorship, billed by GitHub.',
-			url: siteConfig.links.sponsors
-		}
-	]);
-
-	// Open Collective's SVG embeds are transparent, so they work in both themes.
-	const embeds = [
-		{
-			label: 'Organizations',
-			src: 'https://opencollective.com/vale/organizations.svg?width=880&button=false'
-		},
-		{
-			label: 'Individuals',
-			src: 'https://opencollective.com/vale/individuals.svg?width=880&button=false'
 		}
 	];
 </script>
 
-<Section id="support" eyebrow="Supporters" title="Grants, awards, and sponsors">
-	<div class="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+<Section
+	id="support"
+	eyebrow="Recognition"
+	title="Grants &amp; Awards"
+	lede="Programs that have funded the project or named it as work worth funding."
+>
+	<!-- Three items, so three columns from `md` up rather than a 2 + 1 orphan. -->
+	<div class="grid gap-5 md:grid-cols-3">
 		{#each highlights as item}
 			{@const Icon = item.icon}
 			<a
 				href={item.url}
 				target="_blank"
 				rel="noreferrer"
-				class="group flex flex-col rounded-2xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+				class="group relative flex flex-col overflow-hidden rounded-2xl border border-border bg-card p-7 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
 			>
+				<!-- The same top rule the sponsor cards use, so the two grids on this
+				     page read as one family. -->
 				<span
-					class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-lime-500/10 text-lime-500"
-				>
-					<Icon class="h-5 w-5" />
-				</span>
-				<p class="mt-5 text-sm font-medium text-muted-foreground">{item.eyebrow}</p>
-				<div class="mt-1 flex items-start justify-between gap-3">
-					<h3 class="text-lg font-semibold tracking-tight">{item.title}</h3>
+					aria-hidden="true"
+					class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-lime-500/50 to-transparent opacity-0 transition-opacity duration-200 group-hover:opacity-100"
+				></span>
+
+				<div class="flex items-start justify-between gap-3">
+					<span
+						class="inline-flex h-10 w-10 items-center justify-center rounded-lg bg-lime-500/10 text-lime-500"
+					>
+						<Icon class="h-5 w-5" />
+					</span>
 					<ArrowUpRight
-						class="mt-1 h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+						class="mt-1 h-4 w-4 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-lime-500"
 					/>
 				</div>
-				<p class="mt-3 text-sm leading-6 text-muted-foreground">{item.context}</p>
-			</a>
-		{/each}
-	</div>
 
-	<!-- Live backer walls from Open Collective -->
-	<div class="mx-auto mt-10 flex max-w-3xl flex-col items-center gap-8">
-		{#each embeds as embed}
-			<a
-				href={siteConfig.links.openCollective}
-				target="_blank"
-				rel="noreferrer"
-				class="block w-full"
-				aria-label="Vale {embed.label} on Open Collective"
-			>
-				<img
-					src={embed.src}
-					alt="Vale {embed.label.toLowerCase()} on Open Collective"
-					class="mx-auto w-full"
-					loading="lazy"
-				/>
+				<p class="mt-5 text-sm font-medium text-muted-foreground">{item.eyebrow}</p>
+				<h3 class="mt-1 text-xl font-semibold tracking-tight">{item.title}</h3>
+				<p class="mt-3 text-sm leading-6 text-muted-foreground">{item.context}</p>
 			</a>
 		{/each}
 	</div>
