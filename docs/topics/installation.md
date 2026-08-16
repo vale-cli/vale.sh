@@ -30,6 +30,8 @@ This will ensure that Vale is available on your `$PATH` and allow you to stay up
 
 Vale can also be found at a number of [other package repositories](https://repology.org/project/vale/versions). These are community-maintained, so please read the package’s documentation before installing.
 
+On Debian, the [pkg.haus](https://pkg.haus) APT archive ships Vale for stable, testing and unstable (amd64 and arm64), built from source at release tags. Set up the archive per the instructions on [pkg.haus](https://pkg.haus), then run `sudo apt install vale`.
+
 ## [GitHub Releases](installation.md#github-releases)
 
 [Archives of precompiled binaries](https://github.com/vale-cli/vale/releases) are available for Windows, macOS, and Linux. To use one of these, you’ll need to download the archive for your platform, extract it to a local directory, and (optionally) add the extracted directory to your `$PATH`.
