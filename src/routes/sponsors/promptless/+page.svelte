@@ -161,8 +161,8 @@
 		</div>
 
 		<p class="mt-8 leading-7 text-muted-foreground">
-			Connect a doc collection and Promptless looks for <InlineCode>.vale.ini</InlineCode> or
-			<InlineCode>vale.ini</InlineCode> in your docs repo. It lints with whatever it finds. Set the path
+			When you connect a doc collection, Promptless looks for <InlineCode>.vale.ini</InlineCode> or
+			<InlineCode>vale.ini</InlineCode> in your docs repo and lints with whatever it finds. Set the path
 			by hand if your config lives somewhere other than the root.
 		</p>
 
