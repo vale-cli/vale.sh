@@ -62,8 +62,14 @@ export const sponsors: Sponsor[] = [
 		// palette: 8.6:1.
 		brand: '#a6b0ff',
 		fg: '#171a23',
-		// Only a dark capture so far; Screenshot shows it in both themes.
-		shot: { dark: '/sponsors/promptless/demo.webp' },
+		// Promptless supplied a diagram of their pipeline rather than a home-page
+		// capture, in both themes. The accent differs per theme -- their brand
+		// indigo (#506AEA) on white, `--pl-color-accent` on dark -- so each file
+		// is drawn for its own ground rather than inverted.
+		shot: {
+			light: '/sponsors/promptless/diagram-light.webp',
+			dark: '/sponsors/promptless/diagram-dark.webp'
+		},
 		blurb: 'Runs Vale on every doc its agents write.'
 	}
 ];

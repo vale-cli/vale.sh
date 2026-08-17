@@ -57,7 +57,7 @@
 	const workflow = [
 		{
 			title: 'Sync',
-			body: "Downloads the external style packages your config references, when they aren't already vendored in your repository.",
+			body: "Downloads the external style packages your config references, if they aren't already in your repository.",
 			icon: Download
 		},
 		{
@@ -67,7 +67,7 @@
 		},
 		{
 			title: 'Fix',
-			body: 'Fixes findings against your `MinAlertLevel` — every finding Vale reports when you set one, or `error`-severity as blocking when you leave it unset.',
+			body: 'Set `MinAlertLevel` and Promptless fixes every finding at or above it. Leave it unset and it fixes every `error`, then weighs warnings and suggestions against the voice in your docs.',
 			icon: Wrench
 		}
 	];
@@ -104,6 +104,11 @@
 				your product changes. You review, edit, and ship.
 			</p>
 
+			<p class="mt-4 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
+				Promptless drafts against your Vale configuration and won't hand you content that violates
+				your style guide.
+			</p>
+
 			<div class="mt-7 flex flex-wrap items-center gap-2">
 				<Badge class="text-sm">{data.funding.amount}</Badge>
 				<Badge variant="outline" href={sponsorship.href} target="_blank" rel="noreferrer">
@@ -115,7 +120,7 @@
 				<Screenshot
 					light={sponsor.shot?.light}
 					dark={sponsor.shot?.dark}
-					alt="The Promptless home page"
+					alt="A change arrives from a merged pull request, a Slack thread, or a ticket. Promptless reads it alongside context from Linear, Jira, Confluence, Notion, GitHub, GitLab, Google Drive, Slack, and Microsoft Teams, then drafts a pull request that cites its source. You review and edit it before it lands in your repo."
 					caption="promptless.ai"
 					href="https://promptless.ai/"
 					brand={sponsor.brand}
@@ -126,7 +131,7 @@
 
 	<Section
 		title={sponsorPageLabels.integration('Promptless')}
-		lede="Vale runs on the draft, before a human is asked to read it."
+		lede="Vale runs on the draft, before it reaches your review queue."
 	>
 		<div
 			class="grid gap-3 sm:grid-cols-3"
@@ -156,27 +161,26 @@
 		</div>
 
 		<p class="mt-8 leading-7 text-muted-foreground">
-			Vale is “enabled automatically when Promptless detects a Vale configuration file in your docs
-			repository”, and from then on it lints “every prose file it creates or substantially edits.”
+			Connect a doc collection and Promptless looks for <InlineCode>.vale.ini</InlineCode> or
+			<InlineCode>vale.ini</InlineCode> in your docs repo. It lints with whatever it finds. Set the path
+			by hand if your config lives somewhere other than the root.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			Set <InlineCode>MinAlertLevel</InlineCode> and Promptless “fixes every finding Vale reports at
-			or above that level, including warnings and suggestions.” Leave it unset and it treats
-			<InlineCode>error</InlineCode> rules as hard constraints, weighing warnings and suggestions against
-			the voice already in your docs.
+			Vale is one of several gates on a Promptless docs update, alongside persona reviews,
+			broken-link checks, Doc Detective tests, and your existing CI jobs. Promptless iterates on
+			suggestions until the content clears all of them.
 		</p>
 
 		<p class="mt-6 leading-7 text-muted-foreground">
-			It reads the Vale job in your GitHub Actions workflows and reproduces that invocation locally
-			on the changed files, confirming they pass before the suggestion is raised. When a run fails
-			on a Promptless pull request anyway, it analyzes the failure and pushes the fix to the branch.
-		</p>
-
-		<p class="mt-6 leading-7 text-muted-foreground">
-			Your <InlineCode>.vale.ini</InlineCode> is what tells an agent how your team writes. The style
-			guide stops being a document people are asked to remember and becomes the constraint the drafts
-			are generated against.
+			Mautic, the open-source marketing automation project, runs Promptless on both its
+			<ExternalLink href="https://github.com/mautic/user-documentation">user</ExternalLink> and
+			<ExternalLink href="https://github.com/mautic/developer-documentation-new"
+				>developer</ExternalLink
+			>
+			documentation, with Vale enabled on each. Its <InlineCode>.vale.ini</InlineCode> sets
+			<InlineCode>MinAlertLevel = suggestion</InlineCode>, builds on Google's style package, and
+			adds a vocabulary of its own. Both repos are public, and so are the configs.
 		</p>
 
 		<div class="mt-8">
@@ -190,6 +194,12 @@
 				<ArrowRight class="h-4 w-4" />
 			</a>
 		</div>
+
+		<p class="mt-8 leading-7 text-muted-foreground">
+			Maintaining an open-source project? Promptless is free for CNCF, Linux Foundation, and other
+			eligible non-commercial projects. Email
+			<ExternalLink href="mailto:help@gopromptless.ai">help@gopromptless.ai</ExternalLink>.
+		</p>
 	</Section>
 
 	<Section title={sponsorPageLabels.readMore}>
