@@ -180,7 +180,7 @@
 			>
 			documentation, with Vale enabled on each. Its <InlineCode>.vale.ini</InlineCode> sets
 			<InlineCode>MinAlertLevel = suggestion</InlineCode>, builds on Google's style package, and
-			adds a vocabulary of its own. Both repos are public, and so are the configs.
+			adds a vocabulary of its own. Both repos are public, as are Promptless's style-conforming doc updates.
 		</p>
 
 		<div class="mt-8">
