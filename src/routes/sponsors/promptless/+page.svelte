@@ -67,7 +67,7 @@
 		},
 		{
 			title: 'Fix',
-			body: 'Set `MinAlertLevel` and Promptless fixes every finding at or above it. Leave it unset and it fixes every `error`, then weighs warnings and suggestions against the voice in your docs.',
+			body: 'Fixes findings at or above your `MinAlertLevel`, then weighs other findings against the voice in your docs.',
 			icon: Wrench
 		}
 	];
