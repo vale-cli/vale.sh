@@ -43,6 +43,7 @@ The exact steps for setting environment variables depend on your operating syste
 | `--no-global`     | <p>Do not load the global configuration.<br><code>$ vale --no-global README.md</code></p>                                                                               |
 | `--output`        | <p>Change the output format. See <a href="templates.md">Templates</a> for more information.<br><code>$ vale --output=JSON README.md</code></p>                          |
 | `--path`          | <p>Associate a file path with stdin, so that configuration sections and format detection apply.<br><code>$ cat draft.md &#124; vale --path=docs/draft.md</code></p>     |
+| `--plain-progress` | <p>Log each step instead of drawing a progress bar. Useful for CI logs, which otherwise record only redrawn frames.<br><code>$ vale sync --plain-progress</code></p>   |
 | `--version`       | <p>Print the version of Vale.<br><code>$ vale --version</code></p>                                                                                                      |
 
 ## [Return codes](cli.md#return-codes)

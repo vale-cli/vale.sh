@@ -98,6 +98,27 @@ A directive's name lands here too: a [MyST](../formats/myst.md) or [Quarto](../f
 
 Classes nest, so a block inside two classed elements is reachable as `text.class.outer.class.inner`—and every block inside a classed container carries its class, however many blocks that is. To ignore classed content rather than target it, see [`IgnoredClasses`](../keys/ignoredclasses.md).
 
+### [The meta scope](scopes.md#the-meta-scope)
+
+{% hint style="info" %}
+Requires Vale v3.18.0 or later.
+{% endhint %}
+
+A document's machine-readable content—an anchor name, an image's file name—is collected under the `meta` scope. A [QDoc](../formats/qdoc.md) file's anchors and image file names land here, as does the content of an HTML `data` element.
+
+Like the [inline scopes](scopes.md#inline-scopes), `meta` is a sibling of `text`: an ordinary prose rule passes over it, and only a rule that asks for `meta` reaches it. Its text isn't segmented, either—an identifier has no sentences.
+
+Each piece carries its kind as a class, so a rule can target all of a document's metadata or one kind of it:
+
+```yaml
+extends: existence
+message: "Don't use spaces in a file name."
+scope: meta.class.image
+level: error
+tokens:
+  - " "
+```
+
 The supported formats for markup files are:
 
 * [AsciiDoc](../formats/asciidoc.md)
