@@ -19,6 +19,7 @@ docstrings?
 ESLint
 Grammarly
 Grazie
+heredoc
 Hunspell
 knitr
 Laravel

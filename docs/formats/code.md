@@ -10,6 +10,7 @@ Vale supports linting source code comments in a number of languages (see below).
 | C#         | `.cs`, `.csx`                        | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | C++        | `.cpp`, `.cc`, `.cxx`, `.hpp`        | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | CSS        | `.css`                               | <p><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                                                                                  |
+| Elixir     | `.ex`, `.exs`                        | <p><code>#</code> (<code>text.comment.line.ext</code>),<br><code>@doc</code> (<code>text.comment.doc.line.ext</code>),<br><code>@moduledoc</code> (<code>text.comment.doc.block.ext</code>)</p>                                             |
 | Go         | `.go`                                | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | Haskell    | `.hs`                                | <p><code>--</code> (<code>text.comment.line.ext</code>),<br><code>{-</code> (<code>text.comment.block.ext</code>)</p>                                                                                                                       |
 | Java       | `.java`, `.bsh`                      | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
@@ -30,6 +31,27 @@ Vale supports linting source code comments in a number of languages (see below).
 | Scala      | `.scala`, `.sbt`                     | `//` (`text.comment.line.ext`)                                                                                                                                                                                                              |
 | Swift      | `.swift`                             | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | TypeScript | `.ts`, `.tsx`                        | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
+
+## [Documentation attributes](code.md#documentation-attributes)
+
+{% hint style="info" %}
+Requires Vale v3.19.0 or later.
+{% endhint %}
+
+Elixir has no documentation comment syntax: its published API documentation lives in module attributes holding a string or a heredoc, and that is what `mix docs` renders.
+
+```elixir
+defmodule Session do
+  @moduledoc """
+  A scheduled period of care delivery.
+  """
+
+  @doc "Books a session for a client."
+  def book(client), do: ...
+end
+```
+
+Both comments and attributes are extracted. `@moduledoc`, `@doc`, `@typedoc`, and `@shortdoc` carry a `doc` scope—`text.comment.doc.line` and `text.comment.doc.block`—so published documentation can be held to a different standard than an implementation note, or excluded on its own via [`IgnoredScopes`](../keys/ignoredscopes.md). `@doc false` and `@doc since: "1.0.0"` hold no prose, and neither is extracted.
 
 ## [Associations](code.md#associations)
 

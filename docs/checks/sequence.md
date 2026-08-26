@@ -48,6 +48,13 @@ tag: '...'
 # this token and the next one.
 skip: 3
 
+# [optional]: How many times the token must occur --
+# "at least two nouns", not just one. Each occurrence
+# gets its own `skip` window, so `skip: 8, min: 2`
+# reads "a noun within eight words, then another noun
+# within eight words". The default is 1.
+min: 2
+
 # [optional]: A universal part-of-speech tag --
 # NOUN, VERB, ADJ, and so on -- instead of a
 # Penn Treebank `tag`. Universal tags are
@@ -63,6 +70,27 @@ target: true # or false
 ```
 
 `sequence`-based are [sentence-scoped](../topics/scopes.md). See [prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging) for a full list of supported part-of-speech tags.
+
+{% hint style="info" %}
+`min` requires Vale v3.19.0 or later.
+{% endhint %}
+
+`min` and `skip` combine to express "at least *n* occurrences within a window." For example, a pronoun is ambiguous when two or more nouns precede it:
+
+```yaml
+extends: sequence
+message: "Avoid ambiguous pronouns."
+level: warning
+tokens:
+  - tag: NN|NNP|NNPS|NNS
+    skip: 8
+    min: 2
+  - pattern: \w+
+    tag: PRP
+    target: true
+```
+
+This matches "The dog chased the cat until **it** tired" — two nouns, then a pronoun — but not "The dog barked because it hungered." Without `skip`, `min` means consecutive occurrences: `tag: JJ, min: 2` is two adjectives in a row.
 
 {% hint style="info" %}
 Reaching every block, and honoring a declared `scope`, requires Vale v3.17.0 or later. Earlier versions read sentences from paragraphs only.

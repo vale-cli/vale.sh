@@ -8,15 +8,39 @@ Vale v3.18.0 or later parses [MDX](https://mdxjs.com/) natively. Earlier version
 
 The supported extension is `.mdx`.
 
-MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions—none of which hold prose. Vale treats each as code and ignores it:
+MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions. The JavaScript holds no prose, and Vale treats it as code and ignores it:
 
-* JSX elements, children included: nothing inside `<Component>...</Component>` is linted.
+* JSX tags, their attributes, and self-closing elements (`<Chart data={population} />`).
 * ESM `import` and `export` statements, including multiline bodies.
 * JavaScript expressions—inline (`{Math.PI * 2}`) and standing on their own.
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
 
 Because MDX removed indented code blocks from the grammar, four leading spaces are an ordinary paragraph and its prose is linted.
+
+## [JSX children](mdx.md#jsx-children)
+
+{% hint style="info" %}
+Requires Vale v3.19.0 or later. Earlier versions skipped a JSX element entirely, children included.
+{% endhint %}
+
+A JSX element's *children* are Markdown, just as MDX itself reads them, so the prose inside `<Steps>...</Steps>` or `<Aside>...</Aside>` is linted:
+
+```mdx
+<Aside type="info">
+  This text is linted. The `type` attribute is not.
+</Aside>
+```
+
+The children carry the element's name as a [class scope](../topics/scopes.md#class-scopes), so a rule can target one component's content (`scope: text.class.Aside`), and a component whose content shouldn't be linted can be excluded by name:
+
+```ini
+IgnoredClasses = RawOutput
+```
+
+The same applies inline: in `<abbr>HTML</abbr> is a language`, the word "HTML" is linted as part of its sentence.
+
+One exception: an element opened *and* closed on a single standalone line (`<Box>inner</Box>` as its own block) is read as code.
 
 ## [The MDX package](mdx.md#the-mdx-package)
 
