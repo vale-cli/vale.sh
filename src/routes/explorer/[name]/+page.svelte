@@ -140,7 +140,7 @@
 				class="mt-4 h-10 w-full rounded-lg border border-border bg-background px-3 text-sm transition-colors placeholder:text-muted-foreground focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
 			/>
 
-			<ul class="mt-4 divide-y divide-border rounded-lg border border-border">
+			<ul class="mt-4 max-h-[60vh] divide-y divide-border overflow-y-auto rounded-lg border border-border">
 				{#each shown as rule}
 					<li class="flex flex-col gap-1 p-4">
 						<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
