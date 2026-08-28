@@ -20,11 +20,3 @@ export const query = async (endpoint = '', data = {}) => {
 		return { serverError: err };
 	}
 };
-
-export const search = async (query: string) => {
-	// Bounded so a hung request fails instead of spinning forever: the caller
-	// can only tell the visitor something is wrong once the promise settles.
-	return fetch(`https://vale.sh/.netlify/functions/search?q=${encodeURIComponent(query)}`, {
-		signal: AbortSignal.timeout(8000)
-	});
-};

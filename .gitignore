@@ -22,9 +22,10 @@ vite.config.ts.timestamp-*
 
 .netlify
 
-/lambda/search/INDEX
-INDEX.zip
 static/wasm/
 
 # Built by `make index`
 bin/
+
+# Left over from the pre-Algolia index pipeline.
+INDEX.zip

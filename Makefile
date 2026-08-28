@@ -1,16 +1,9 @@
-# The search index behind /library is built here, from this repository's own
-# src/lib/data/media.json.
+# The search index behind /library is published here, from this repository's
+# own src/lib/data/media.json, to the Algolia index the page queries.
 #
-# It used to be downloaded from errata-ai/library's releases:
-#
-#     curl .../releases/latest/download/INDEX.zip -L -o INDEX.zip
-#     unzip INDEX.zip -d lambda/search
-#
-# That put the entry list in another repository, so adding one link meant a
-# pull request there, a merge, a release, and a rebuild here. Entries were
-# added straight to media.json instead and the two drifted -- five of them
-# rendered in the grid but could not be found by the search, because the index
-# was built from the other copy. See script/index/main.go.
+# Publishing needs ALGOLIA_ADMIN_KEY; without it the step scrapes, reports what
+# it would send, and stops, so a local build needs no credential. See
+# script/index/main.go.
 define build_index
 	cd script/index && go build -ldflags="-s -w" -o $(CURDIR)/bin/index-media .
 	$(CURDIR)/bin/index-media
