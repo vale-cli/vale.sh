@@ -1338,3 +1338,128 @@ html[data-theme='dark'] {
 		border-radius: 0;
 	}
 }
+
+/*
+ * Library hits, drawn as DocSearch hits.
+ *
+ * The two search panels sit behind the same header, so a result should read
+ * the same in both: a title, a muted line under it, and the whole row
+ * highlighting on selection. These mirror the .DocSearch-Hit rules in
+ * docsearch.css rather than restating Autocomplete's card defaults.
+ */
+.lib-Hit {
+	background: hsl(var(--card));
+	border-radius: calc(var(--radius) - 2px);
+	box-shadow: 0 1px 3px hsl(0 0% 0% / 0.08);
+	color: hsl(var(--foreground));
+	display: flex;
+	align-items: center;
+	min-height: 56px;
+	padding: 0.625rem 0.875rem;
+	text-decoration: none;
+	width: 100%;
+}
+
+.lib-Hit-content {
+	display: flex;
+	flex-direction: column;
+	gap: 3px;
+	min-width: 0;
+	width: 100%;
+}
+
+.lib-Hit-title {
+	font-size: 0.875rem;
+	font-weight: 500;
+	line-height: 1.3;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*
+ * Two lines of context, then an ellipsis: a snippet is cut from the middle of
+ * an article and has no natural length, and a row that grows with it turns the
+ * panel into the cards this replaced.
+ */
+.lib-Hit-snippet {
+	-webkit-box-orient: vertical;
+	-webkit-line-clamp: 2;
+	color: hsl(var(--muted-foreground));
+	display: -webkit-box;
+	font-size: 0.75rem;
+	line-height: 1.45;
+	overflow: hidden;
+}
+
+.lib-Hit-meta {
+	color: hsl(var(--muted-foreground) / 0.8);
+	font-size: 0.6875rem;
+	letter-spacing: 0.02em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.lib-Hit mark {
+	background: transparent;
+	color: hsl(var(--primary));
+	font-weight: 600;
+}
+
+.aa-Item[aria-selected='true'] .lib-Hit {
+	background-color: hsl(var(--accent));
+	color: hsl(var(--accent-foreground));
+}
+
+.aa-Item[aria-selected='true'] .lib-Hit-meta,
+.aa-Item[aria-selected='true'] .lib-Hit-snippet {
+	color: hsl(var(--accent-foreground) / 0.75);
+}
+
+.aa-Item[aria-selected='true'] .lib-Hit mark {
+	color: inherit;
+	text-decoration: underline;
+	text-underline-offset: 2px;
+}
+
+/*
+ * Panel shell for the composed footer.
+ *
+ * The results scroll and the footer does not, which is how DocSearch's modal
+ * behaves: wrapping the panel without this makes the whole thing scroll and
+ * carries the footer off the bottom of a long result list.
+ */
+.lib-PanelWrap {
+	display: flex;
+	flex-direction: column;
+	max-height: inherit;
+	min-height: 0;
+}
+
+.lib-PanelBody {
+	flex: 1 1 auto;
+	min-height: 0;
+	overflow-y: auto;
+}
+
+/*
+ * The `esc` key is wider than a glyph, and DocSearch's fixed 20px key would
+ * clip it.
+ */
+.lib-PanelWrap .DocSearch-Commands-Key {
+	font-size: 0.6875rem;
+	padding: 0 0.25rem;
+	width: auto;
+	min-width: 20px;
+}
+
+.lib-PanelWrap .DocSearch-Logo {
+	color: hsl(var(--muted-foreground));
+	font-size: 0.75rem;
+	text-decoration: none;
+}
+
+.lib-PanelWrap .DocSearch-Logo:hover {
+	color: hsl(var(--foreground));
+}

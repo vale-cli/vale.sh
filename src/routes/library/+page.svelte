@@ -99,30 +99,108 @@
 			// bare version of a mode the desktop never showed at all.
 			detachedMediaQuery: '(min-width: 0px)',
 			openOnFocus: true,
+			// Autocomplete draws no footer, so the panel is composed here: the
+			// results, then the bar DocSearch ends on. The class names are
+			// DocSearch's because its stylesheet defines them globally, which
+			// is what keeps the two panels identical rather than merely
+			// similar. The attribution is also what Algolia's open-source plan
+			// asks for in return for the index.
+			render({ children, render, html }: any, root: any) {
+				render(
+					html`<div class="lib-PanelWrap">
+						<div class="lib-PanelBody">${children}</div>
+						<div class="DocSearch-Footer">
+							<a
+								class="DocSearch-Logo"
+								href="https://www.algolia.com/ref/docsearch/"
+								target="_blank"
+								rel="noreferrer"
+								>Search by Algolia</a
+							>
+							<ul class="DocSearch-Commands">
+								<li>
+									<kbd class="DocSearch-Commands-Key">↵</kbd><span>to select</span>
+								</li>
+								<li>
+									<kbd class="DocSearch-Commands-Key">↑</kbd><kbd class="DocSearch-Commands-Key"
+										>↓</kbd
+									><span>to navigate</span>
+								</li>
+								<li>
+									<kbd class="DocSearch-Commands-Key">esc</kbd><span>to close</span>
+								</li>
+							</ul>
+						</div>
+					</div>`,
+					root
+				);
+			},
 			async getSources({ query }: { query: string }) {
+				// One row renderer for both sources: a resource and an issue
+				// carry the same fields, and a result should read the same
+				// whichever list it came from.
+				const row = (
+					item: SearchHit,
+					html: any,
+					createElement: any
+				) => {
+					// The snippet carries Algolia's <mark> tags, so it is set as
+					// HTML; falling back to the description keeps a row that
+					// matched on title alone from rendering empty.
+					const snippet =
+						item._snippetResult?.text?.value ||
+						item._snippetResult?.description?.value ||
+						item.description;
+					const sample = createElement('span', {
+						class: 'lib-Hit-snippet',
+						dangerouslySetInnerHTML: { __html: snippet }
+					});
+					const meta = [item.type, item.year, item.author].filter(Boolean).join(' · ');
+
+					// Laid out like a DocSearch hit -- title, then a muted line
+					// under it -- rather than as a card, so the two search
+					// panels on the site read as one design.
+					return html`<a class="lib-Hit" href="${item.url}" target="_blank" rel="noreferrer">
+						<span class="lib-Hit-content">
+							<span class="lib-Hit-title">${item.title}</span>
+							${snippet ? sample : ''}
+							<span class="lib-Hit-meta">${meta}</span>
+						</span>
+					</a>`;
+				};
+
 				// A rejected promise here leaves the panel empty -- no rows and no
 				// `noResults`, so a search backend that is down reads as a blank
 				// sheet. The failure is caught and told apart from a genuine miss.
 				let items: SearchHit[] = [];
+				let tracker: SearchHit[] = [];
 				let failed = false;
 				try {
+					const shared = {
+						indexName: ALGOLIA_INDEX,
+						query,
+						// The whole article is indexed, so a match is often far
+						// from the top of it; a snippet is what shows the reader
+						// the part that matched.
+						attributesToSnippet: ['text:35', 'description:35'],
+						// Turns on the two operators the tips document: "exact
+						// phrase" and -excluded. Off by default.
+						advancedSyntax: true,
+						highlightPreTag: '<mark>',
+						highlightPostTag: '</mark>'
+					};
+
+					// Asked for separately so the tracker cannot bury the
+					// library: there are twenty issues for every resource, and
+					// this page is about the resources.
 					const { results } = await client.search<SearchHit>({
 						requests: [
-							{
-								indexName: ALGOLIA_INDEX,
-								query,
-								// The whole article is indexed, so a match is often far
-								// from the top of it; a snippet is what shows the
-								// reader the part that matched.
-								attributesToSnippet: ['text:35', 'description:35'],
-								highlightPreTag: '<mark>',
-								highlightPostTag: '</mark>',
-								hitsPerPage: 8
-							}
+							{ ...shared, filters: 'NOT type:issue', hitsPerPage: 6 },
+							{ ...shared, filters: 'type:issue', hitsPerPage: 4 }
 						]
 					});
-					const first = results[0];
-					items = 'hits' in first ? first.hits : [];
+					items = 'hits' in results[0] ? results[0].hits : [];
+					tracker = 'hits' in results[1] ? results[1].hits : [];
 				} catch {
 					failed = true;
 				}
@@ -158,27 +236,38 @@
 								html: any;
 								createElement: any;
 							}) {
-								// The snippet carries Algolia's <mark> tags, so it is set
-								// as HTML; falling back to the description keeps a row
-								// that matched on title alone from rendering empty.
-								const snippet =
-									item._snippetResult?.text?.value ||
-									item._snippetResult?.description?.value ||
-									item.description;
-								const sample = createElement('p', {
-									dangerouslySetInnerHTML: { __html: snippet }
-								});
-								const chip =
-									'mr-2 inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border';
-								return html`<div class="prose w-full rounded-lg p-6 dark:prose-invert">
-									<a class="no-underline" href="${item.url}" target="_blank">
-										<h5 class="font-bold tracking-tight underline">${item.title}</h5>
-										<p class="un text-sm text-muted-foreground">${sample}</p>
-										<span class="${chip}">${item.type}</span>
-										<span class="${chip}">${item.year}</span>
-										<span class="${chip}">${item.author}</span>
-									</a>
-								</div>`;
+								return row(item, html, createElement);
+							}
+						}
+					},
+					{
+						sourceId: 'issues',
+						getItemUrl({ item }: { item: SearchHit }) {
+							return item.url;
+						},
+						getItems() {
+							return tracker;
+						},
+						templates: {
+							header({ html }: { html: any }) {
+								if (tracker.length === 0) {
+									return null;
+								}
+								return html`<span
+									class="mt-2 block border-t border-border px-6 pt-4 text-xs font-semibold uppercase tracking-wide text-muted-foreground"
+									>From the issue tracker</span
+								>`;
+							},
+							item({
+								item,
+								html,
+								createElement
+							}: {
+								item: SearchHit;
+								html: any;
+								createElement: any;
+							}) {
+								return row(item, html, createElement);
 							}
 						}
 					}
@@ -228,15 +317,17 @@
 				Search the full library, including
 				<Popover.Root>
 					<Popover.Trigger class="font-medium text-lime-500 hover:underline"
-						>advanced operators</Popover.Trigger
+						>search tips</Popover.Trigger
 					>
 					<Popover.Content class="prose prose-sm dark:prose-invert">
-						<p>The Media Library is indexed daily and supports a variety of search operators:</p>
+						<p>
+							The library is searched in full — the whole text of each article, not
+							just its title — and refreshed weekly.
+						</p>
 						<ul class="list-disc">
-							<li>Faceted search: <code>date:>2021</code> or <code>author:jdkato</code></li>
-							<li>Fuzzy search: <code>term~1</code> or <code>term~2</code></li>
-							<li>Boosted search: <code>text:neovim title:neovim^5</code></li>
-							<li>Regex search: <code>author:/(jdkato|another)/</code></li>
+							<li>Misspellings still match: <code>lintr</code> finds <code>linter</code></li>
+							<li>Exact phrase: <code>"documentation as code"</code></li>
+							<li>Exclude a word: <code>vale -server</code></li>
 						</ul>
 					</Popover.Content>
 				</Popover.Root>.

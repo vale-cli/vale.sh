@@ -46,6 +46,11 @@ const (
 	appID = "2Y8OU39U1X"
 	index = "library"
 
+	// The issue tracker is indexed alongside the media entries: a question
+	// about Vale's behavior has usually been asked there first, and the
+	// answer is rarely anywhere else.
+	repo = "vale-cli/vale"
+
 	// Algolia rejects anything larger; see the note above on why the whole
 	// article still fits comfortably.
 	maxRecord = 100_000
@@ -187,6 +192,109 @@ func strip(markup string) string {
 	return strings.TrimSpace(strings.Join(strings.Fields(text), " "))
 }
 
+// Issue is the part of a GitHub issue worth searching.
+type Issue struct {
+	Number    int    `json:"number"`
+	Title     string `json:"title"`
+	Body      string `json:"body"`
+	HTMLURL   string `json:"html_url"`
+	State     string `json:"state"`
+	CreatedAt string `json:"created_at"`
+	User      struct {
+		Login string `json:"login"`
+	} `json:"user"`
+	// Set on a pull request, which this endpoint returns alongside issues.
+	PullRequest *struct{} `json:"pull_request"`
+}
+
+// issues reads every issue in the tracker, open and closed.
+//
+// A failure returns what it has rather than stopping the build: the media
+// entries are the page's own content, and they should still be published when
+// GitHub is unreachable or the run is rate-limited. GITHUB_TOKEN lifts the
+// unauthenticated 60/hr limit and is set in CI.
+func issues() []Record {
+	var out []Record
+
+	client := &http.Client{Timeout: 60 * time.Second}
+	for page := 1; page <= 20; page++ {
+		endpoint := fmt.Sprintf(
+			"https://api.github.com/repos/%s/issues?state=all&per_page=100&page=%d", repo, page)
+
+		req, err := http.NewRequest(http.MethodGet, endpoint, nil)
+		if err != nil {
+			log.Printf("warn: issues: %v", err)
+			return out
+		}
+		req.Header.Set("Accept", "application/vnd.github+json")
+		req.Header.Set("User-Agent", "vale.sh-index")
+		if token := os.Getenv("GITHUB_TOKEN"); token != "" {
+			req.Header.Set("Authorization", "Bearer "+token)
+		}
+
+		resp, err := client.Do(req)
+		if err != nil {
+			log.Printf("warn: issues page %d: %v", page, err)
+			return out
+		}
+
+		body, err := io.ReadAll(resp.Body)
+		resp.Body.Close()
+		if err != nil {
+			log.Printf("warn: issues page %d: %v", page, err)
+			return out
+		}
+		if resp.StatusCode != http.StatusOK {
+			log.Printf("warn: issues page %d -> %s", page, resp.Status)
+			return out
+		}
+
+		var batch []Issue
+		if err := json.Unmarshal(body, &batch); err != nil {
+			log.Printf("warn: issues page %d: %v", page, err)
+			return out
+		}
+		if len(batch) == 0 {
+			break
+		}
+
+		for _, issue := range batch {
+			// The issues endpoint returns pull requests too, and a diff is
+			// not what someone searching the tracker is looking for.
+			if issue.PullRequest != nil {
+				continue
+			}
+
+			text := issue.Body
+			if len(text) > maxRecord {
+				text = text[:maxRecord]
+			}
+
+			year := 0
+			if len(issue.CreatedAt) >= 4 {
+				fmt.Sscanf(issue.CreatedAt[:4], "%d", &year)
+			}
+
+			out = append(out, Record{
+				ObjectID:    issue.HTMLURL,
+				Title:       issue.Title,
+				URL:         issue.HTMLURL,
+				Author:      issue.User.Login,
+				Year:        year,
+				Type:        "issue",
+				Description: fmt.Sprintf("#%d, %s", issue.Number, issue.State),
+				Text:        text,
+			})
+		}
+
+		if len(batch) < 100 {
+			break
+		}
+	}
+
+	return out
+}
+
 // records scrapes each post for its body text, which is what makes the search
 // match on more than a title.
 //
@@ -230,17 +338,19 @@ func records(entries []Entry) []Record {
 	return out
 }
 
-// replaceAll swaps the index's contents for these records in one operation, so
-// a search during the update sees either the old set or the new one, and an
-// entry dropped from media.json disappears rather than lingering.
-func replaceAll(key string, recs []Record) error {
-	body, err := json.Marshal(map[string]any{"requests": requests(recs)})
-	if err != nil {
-		return err
+// call sends one request to Algolia and returns an error carrying the
+// response body, which is where Algolia explains a rejection.
+func call(method, path, key string, payload any) error {
+	var body []byte
+	if payload != nil {
+		var err error
+		if body, err = json.Marshal(payload); err != nil {
+			return err
+		}
 	}
 
-	url := fmt.Sprintf("https://%s.algolia.net/1/indexes/%s/batch", appID, index)
-	req, err := http.NewRequest(http.MethodPost, url, bytes.NewReader(body))
+	endpoint := fmt.Sprintf("https://%s.algolia.net%s", appID, path)
+	req, err := http.NewRequest(method, endpoint, bytes.NewReader(body))
 	if err != nil {
 		return err
 	}
@@ -248,19 +358,62 @@ func replaceAll(key string, recs []Record) error {
 	req.Header.Set("X-Algolia-API-Key", key)
 	req.Header.Set("Content-Type", "application/json")
 
-	client := &http.Client{Timeout: 60 * time.Second}
+	client := &http.Client{Timeout: 120 * time.Second}
 	resp, err := client.Do(req)
 	if err != nil {
 		return err
 	}
 	defer resp.Body.Close()
 
-	if resp.StatusCode != http.StatusOK {
+	if resp.StatusCode < 200 || resp.StatusCode > 299 {
 		var msg bytes.Buffer
 		_, _ = msg.ReadFrom(resp.Body)
-		return fmt.Errorf("algolia -> %s: %s", resp.Status, msg.String())
+		return fmt.Errorf("%s %s -> %s: %s", method, path, resp.Status, msg.String())
 	}
 	return nil
+}
+
+// publish replaces the index's contents atomically: records are written to a
+// temporary index, which is then moved over the live one. A search during the
+// update therefore sees the old set or the new one, never a half-written
+// index -- and a record dropped from the sources disappears, which an upsert
+// on its own would leave behind.
+//
+// The move replaces everything about the destination, settings included, so
+// the settings are written to the temporary index first.
+func publish(key string, recs []Record) error {
+	tmp := index + "_tmp"
+
+	// Set here rather than in the dashboard, so the index a reindex leaves
+	// behind is the one this file describes.
+	//
+	// The attribute order is the ranking: a query matching a title beats one
+	// matching a paragraph halfway down an article. `type` is filterable so
+	// the page can ask for resources and issues separately.
+	if err := call(http.MethodPut, "/1/indexes/"+tmp+"/settings", key, map[string]any{
+		"searchableAttributes":  []string{"title", "description", "text"},
+		"attributesForFaceting": []string{"filterOnly(type)"},
+		"customRanking":         []string{"desc(year)"},
+	}); err != nil {
+		return err
+	}
+
+	// Algolia caps a batch by size rather than count, so these are chunked
+	// well under it: an issue body is small, but 800 of them are not.
+	const chunk = 100
+	for start := 0; start < len(recs); start += chunk {
+		end := min(start+chunk, len(recs))
+		if err := call(http.MethodPost, "/1/indexes/"+tmp+"/batch", key, map[string]any{
+			"requests": requests(recs[start:end]),
+		}); err != nil {
+			return err
+		}
+	}
+
+	return call(http.MethodPost, "/1/indexes/"+tmp+"/operation", key, map[string]any{
+		"operation":   "move",
+		"destination": index,
+	})
 }
 
 func requests(recs []Record) []map[string]any {
@@ -280,6 +433,10 @@ func main() {
 
 	recs := records(entries)
 
+	tracker := issues()
+	log.Printf("read %d issues from %s", len(tracker), repo)
+	recs = append(recs, tracker...)
+
 	scraped := 0
 	for _, rec := range recs {
 		if rec.Text != "" {
@@ -294,7 +451,7 @@ func main() {
 		return
 	}
 
-	if err := replaceAll(key, recs); err != nil {
+	if err := publish(key, recs); err != nil {
 		log.Fatalf("publishing to %s: %v", index, err)
 	}
 	log.Printf("published %d records to %s", len(recs), index)

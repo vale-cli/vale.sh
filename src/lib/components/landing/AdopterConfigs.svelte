@@ -38,7 +38,12 @@
 		Printing the full path is useless once it truncates -- Datadog's is a
 		sixty-character slug -- so a page shows only its host.
 	*/
-	function receipt(url: string) {
+	// Named, so that `kind` stays one of the three the icon map answers to
+	// rather than widening to `string` -- which is what it does when the
+	// literals are only inferred, leaving the lookup below unindexable.
+	type Kind = 'Public config' | 'Repository' | 'Writeup';
+
+	function receipt(url: string): { primary: string; secondary: string; kind: Kind } {
 		const config = CONFIG.exec(url);
 		if (config) return { primary: config[2], secondary: config[1], kind: 'Public config' };
 
@@ -53,7 +58,7 @@
 		};
 	}
 
-	const kindIcon = {
+	const kindIcon: Record<Kind, typeof FileText> = {
 		'Public config': FileText,
 		Repository: GitBranch,
 		Writeup: BookOpen
