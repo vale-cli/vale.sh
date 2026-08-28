@@ -19,6 +19,7 @@
  */
 
 export type Skill = {
+	/** The folder in agent-tools, which is also what the plugin calls it. */
 	name: string;
 	summary: string;
 	guard: string;
