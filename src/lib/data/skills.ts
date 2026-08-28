@@ -1,5 +1,9 @@
 /**
- * Agent skills, published from `skills/` in this repository.
+ * Agent skills, published from the vale-cli/agent-tools repository.
+ *
+ * They live there rather than here because that repository is also the Claude
+ * plugin that installs them; keeping a second copy beside this page meant two
+ * sources to edit and, in time, two that disagreed.
  *
  * A skill is a folder with a SKILL.md that an assistant reads while working in
  * someone's repository: it runs the Vale CLI, edits their files, opens their
@@ -22,47 +26,47 @@ export type Skill = {
 	path: string;
 };
 
-const base = 'https://github.com/vale-cli/vale.sh/blob/svelte/skills';
+const base = 'https://github.com/vale-cli/agent-tools/blob/main/skills';
 
 export const skills: Skill[] = [
 	{
-		name: 'vale-setup',
+		name: 'setup',
 		summary:
 			'Install Vale, write a .vale.ini that matches the formats actually present, sync the styles, and get a first run.',
 		guard:
 			'Points Vale at the prose rather than the whole repository, and reports the first-run count instead of hiding it behind MinAlertLevel.',
-		path: `${base}/vale-setup/SKILL.md`
+		path: `${base}/setup/SKILL.md`
 	},
 	{
-		name: 'vale-fix',
+		name: 'fix',
 		summary:
 			'Fix alerts a file at a time, applying the replacement each rule defines, one pull request per file.',
 		guard:
 			'Error level by default, markup preserved, one branch per file, and never silencing a rule to make the run pass.',
-		path: `${base}/vale-fix/SKILL.md`
+		path: `${base}/fix/SKILL.md`
 	},
 	{
-		name: 'vale-triage',
+		name: 'triage',
 		summary:
 			'Turn a first run on an existing corpus into a decision per rule: fix, downgrade, or switch off.',
 		guard:
 			'Reports which few rules produce most of the output, so the answer is a plan rather than a raised alert level.',
-		path: `${base}/vale-triage/SKILL.md`
+		path: `${base}/triage/SKILL.md`
 	},
 	{
-		name: 'vale-vocab',
+		name: 'vocab',
 		summary:
 			'Add project terms to a vocabulary so spell check accepts them, and commit it as the source it is.',
 		guard:
 			'The alternative — disabling Vale.Spelling over one product name — stops checking every other word in the repository.',
-		path: `${base}/vale-vocab/SKILL.md`
+		path: `${base}/vocab/SKILL.md`
 	},
 	{
-		name: 'vale-ci',
+		name: 'ci',
 		summary:
 			'Run Vale in GitHub Actions, a pre-commit hook, or any other runner, with pinned versions.',
 		guard:
 			'Says plainly whether the job is advisory or blocking, since only error sets a non-zero exit code.',
-		path: `${base}/vale-ci/SKILL.md`
+		path: `${base}/ci/SKILL.md`
 	}
 ];
