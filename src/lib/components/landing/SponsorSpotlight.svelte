@@ -26,6 +26,7 @@
 
 {#if sponsors.length}
 	<Section
+		id="spotlight"
 		title={many ? 'Sponsor spotlights' : 'Sponsor spotlight'}
 		lede="These companies support Vale's future — and put it to work in their own products today."
 	>

@@ -133,7 +133,7 @@
 	or the page they wrote about running it.
 {/snippet}
 
-<Section title="Read their configs" lede={configsLede}>
+<Section id="configs" title="Read their configs" lede={configsLede}>
 	<!--
 		Three static rows rather than one scrolling one.
 
