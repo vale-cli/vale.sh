@@ -137,7 +137,7 @@ export const integrationGroups: IntegrationGroup[] = [
 			{
 				name: 'Promptless',
 				detail: 'Lints every draft it writes',
-				href: 'https://promptless.ai/docs/audit/standards-enforcement/',
+				href: 'https://promptless.ai/docs/for-docs/audit/standards-enforcement/',
 				avatar: '/users/avatars/Promptless.png'
 			}
 		]

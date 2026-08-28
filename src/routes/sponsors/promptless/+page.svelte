@@ -41,7 +41,7 @@
 			source: 'Promptless docs',
 			title: 'Standards enforcement',
 			body: 'How Vale fits into the drafting loop, and what happens to a violation at each severity.',
-			href: 'https://promptless.ai/docs/audit/standards-enforcement/'
+			href: 'https://promptless.ai/docs/for-docs/audit/standards-enforcement/'
 		},
 		{
 			source: 'Promptless',
@@ -185,7 +185,7 @@
 
 		<div class="mt-8">
 			<a
-				href="https://promptless.ai/docs/audit/standards-enforcement/"
+				href="https://promptless.ai/docs/for-docs/audit/standards-enforcement/"
 				target="_blank"
 				rel="noreferrer"
 				class="inline-flex h-11 items-center justify-center gap-2 rounded-lg bg-foreground px-6 text-sm font-medium text-background transition-opacity hover:opacity-90"
