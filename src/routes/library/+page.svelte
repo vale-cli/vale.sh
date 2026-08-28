@@ -5,13 +5,28 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { onMount } from 'svelte';
 	import data from '$lib/data/media.json';
-	import { search as searchLambda } from '$lib/api';
+	import { liteClient } from 'algoliasearch/lite';
 	import FileText from 'lucide-svelte/icons/file-text';
 	import Play from 'lucide-svelte/icons/play';
 	import Presentation from 'lucide-svelte/icons/presentation';
 
-	/** One search result: fields packed into `ID`, plus the matched snippet. */
-	type SearchHit = { ID: string; Fragment: string };
+	// Published by script/index, which scrapes each entry and replaces the
+	// index. The key is search-only and scoped to this index, so it ships to
+	// the browser the way DocSearch's does.
+	const ALGOLIA_APP = '2Y8OU39U1X';
+	const ALGOLIA_INDEX = 'library';
+	const ALGOLIA_SEARCH_KEY = '0e82d6007f06d9f280629a37bb8a0892';
+
+	/** A record in the `library` Algolia index, plus the matched snippet. */
+	type SearchHit = {
+		title: string;
+		url: string;
+		author: string;
+		year: number;
+		type: string;
+		description: string;
+		_snippetResult?: { text?: { value: string }; description?: { value: string } };
+	};
 
 	type Media = {
 		title: string;
@@ -53,19 +68,6 @@
 		inside the autocomplete renderer, so it comes back empty and renders as a
 		blank row.
 	*/
-	function getParts(id: string) {
-		const tag = id.match(/title=(.+)&url=(.+)&author=(.+)&year=(.+)&type=(.+)/);
-		if (tag === null) {
-			return { title: id, url: '', author: '', year: '', type: '' };
-		}
-		return {
-			title: tag[1],
-			url: tag[2],
-			author: tag[3],
-			year: tag[4],
-			type: tag[5]
-		};
-	}
 
 	onMount(async () => {
 		// The npm package rather than the CDN copy app.html used to load: that
@@ -80,6 +82,11 @@
 		// the lambda returns; the CDN build reached this through an `any` global
 		// and nothing here was checked at all.
 		const { autocomplete } = await import('@algolia/autocomplete-js');
+
+		// Built here rather than at module scope: the client validates its key on
+		// construction, and this page is prerendered, so doing it at import time
+		// fails the build instead of the search.
+		const client = liteClient(ALGOLIA_APP, ALGOLIA_SEARCH_KEY);
 
 		autocomplete<SearchHit>({
 			container: '#autocomplete',
@@ -99,8 +106,23 @@
 				let items: SearchHit[] = [];
 				let failed = false;
 				try {
-					const response = await searchLambda(query);
-					items = (await response.json()) ?? [];
+					const { results } = await client.search<SearchHit>({
+						requests: [
+							{
+								indexName: ALGOLIA_INDEX,
+								query,
+								// The whole article is indexed, so a match is often far
+								// from the top of it; a snippet is what shows the
+								// reader the part that matched.
+								attributesToSnippet: ['text:35', 'description:35'],
+								highlightPreTag: '<mark>',
+								highlightPostTag: '</mark>',
+								hitsPerPage: 8
+							}
+						]
+					});
+					const first = results[0];
+					items = 'hits' in first ? first.hits : [];
 				} catch {
 					failed = true;
 				}
@@ -109,7 +131,7 @@
 					{
 						sourceId: 'predictions',
 						getItemUrl({ item }: { item: SearchHit }) {
-							return getParts(item.ID).url;
+							return item.url;
 						},
 						getItems() {
 							return items;
@@ -124,19 +146,7 @@
 								}
 								return html`<div class="prose dark:prose-invert">
 									<h3 class="mt-0">No results found.</h3>
-									<p>Try adjusting your search with a query string:</p>
-									<ul>
-										<li class="pb-1 pt-1">
-											Faceted search: <code>date:>2021</code> or <code>author:jdkato</code>
-										</li>
-										<li class="pb-1 pt-1">
-											Fuzzy search: <code>term~1</code> or <code>term~2</code>
-										</li>
-										<li class="pb-1 pt-1">
-											Boosted search: <code>text:neovim title:neovim^5</code>
-										</li>
-										<li class="pb-1 pt-1">Regex search: <code>author:/(jdkato|another)/</code></li>
-									</ul>
+									<p>Try a shorter query, or browse the full library below.</p>
 								</div>`;
 							},
 							item({
@@ -148,19 +158,25 @@
 								html: any;
 								createElement: any;
 							}) {
-								const parsed = getParts(item.ID);
+								// The snippet carries Algolia's <mark> tags, so it is set
+								// as HTML; falling back to the description keeps a row
+								// that matched on title alone from rendering empty.
+								const snippet =
+									item._snippetResult?.text?.value ||
+									item._snippetResult?.description?.value ||
+									item.description;
 								const sample = createElement('p', {
-									dangerouslySetInnerHTML: { __html: item.Fragment }
+									dangerouslySetInnerHTML: { __html: snippet }
 								});
 								const chip =
 									'mr-2 inline-flex items-center rounded-md bg-muted px-2 py-1 text-xs font-medium text-muted-foreground ring-1 ring-inset ring-border';
 								return html`<div class="prose w-full rounded-lg p-6 dark:prose-invert">
-									<a class="no-underline" href="${parsed.url}" target="_blank">
-										<h5 class="font-bold tracking-tight underline">${parsed.title}</h5>
+									<a class="no-underline" href="${item.url}" target="_blank">
+										<h5 class="font-bold tracking-tight underline">${item.title}</h5>
 										<p class="un text-sm text-muted-foreground">${sample}</p>
-										<span class="${chip}">${parsed.type}</span>
-										<span class="${chip}">${parsed.year}</span>
-										<span class="${chip}">${parsed.author}</span>
+										<span class="${chip}">${item.type}</span>
+										<span class="${chip}">${item.year}</span>
+										<span class="${chip}">${item.author}</span>
 									</a>
 								</div>`;
 							}

@@ -4,6 +4,8 @@
 [sS]hortcodes?
 [bB]oolean
 [cC]onfig
+cgo
+conda
 [gG]lob(?:bing)?
 [lL]ookaheads?
 [lL]ookarounds?
@@ -22,8 +24,10 @@ Grazie
 heredoc
 Hunspell
 knitr
+Repology
 Laravel
 Levenshtein
+npm
 Linode
 Lua
 metascopes?
@@ -45,6 +49,7 @@ spylls
 stdin
 Stylebook
 Tengo
+winget
 Typst
 triaging
 validator

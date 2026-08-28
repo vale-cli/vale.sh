@@ -11,6 +11,27 @@
 </script>
 
 <Section id="stats" eyebrow="Distribution" title="Where Vale is downloaded">
+	<!--
+		The running total covers only the channels reporting an all-time figure;
+		the rest count a trailing window, and adding those in would sum spans
+		that aren't comparable. Said plainly under the number, since it makes
+		this a floor rather than a headline.
+	-->
+	<div class="mb-10 text-center">
+		<span
+			class="block text-6xl font-semibold tabular-nums tracking-tight text-foreground sm:text-7xl"
+		>
+			<Counter value={stats.lifetime.value} />
+		</span>
+		<span class="mt-3 block text-sm text-muted-foreground">
+			downloads to date, across {stats.lifetime.sources.length} channels reporting a lifetime total
+		</span>
+		<span class="mt-1 block text-xs text-muted-foreground/80">
+			{stats.lifetime.sources.join(' · ')} — the channels below that count only a recent window
+			aren't included
+		</span>
+	</div>
+
 	<!-- Channels that publish download counts -->
 	<ul class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 		{#each stats.channels as channel}

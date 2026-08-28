@@ -50,6 +50,14 @@ export type Funding = {
 
 export type Stats = {
 	channels: Channel[];
+	/**
+	 * Downloads summed across the channels reporting a lifetime figure.
+	 *
+	 * Only those: the windowed channels count a trailing month or year, so
+	 * adding them in would total numbers that measure different spans. The
+	 * real figure is therefore higher than this one, not lower.
+	 */
+	lifetime: { value: number; sources: string[]; live: boolean };
 	availability: Availability[];
 	funding: Funding;
 	contributors: number;

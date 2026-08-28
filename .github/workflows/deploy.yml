@@ -1,0 +1,52 @@
+name: Deploy
+
+# Builds the site here and uploads the finished output, so the deploy costs
+# GitHub Actions minutes rather than Netlify build minutes.
+#
+# The schedule is what keeps the download figures on the landing page current:
+# they are gathered at build time (see src/lib/server/stats.ts), so without a
+# periodic rebuild they are only as fresh as the last push.
+on:
+  schedule:
+    # Mondays, 06:00 UTC.
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: runner / netlify
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # `make` builds the /library search index with this Go program before it
+      # builds the site.
+      - uses: actions/setup-go@v5
+        with:
+          go-version-file: script/index/go.mod
+
+      - run: corepack enable && pnpm install --frozen-lockfile
+
+      # GITHUB_TOKEN keeps the lookups in stats.ts off the runner's shared
+      # 60/hr unauthenticated budget; ALGOLIA_ADMIN_KEY is what lets `make`
+      # republish the /library search index rather than only scrape for it.
+      - run: make
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          ALGOLIA_ADMIN_KEY: ${{ secrets.ALGOLIA_ADMIN_KEY }}
+
+      - name: Deploy to Netlify
+        run: |
+          npx --yes netlify-cli@latest deploy \
+            --prod \
+            --no-build \
+            --dir=build \
+            --functions=lambda \
+            --message="scheduled stats refresh"
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}

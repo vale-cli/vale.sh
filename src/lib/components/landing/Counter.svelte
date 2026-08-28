@@ -9,7 +9,10 @@
 	});
 
 	let el: HTMLSpanElement | undefined = $state();
-	let current = $state(0);
+	// Starts at the real number so the prerendered HTML carries it: the count-up
+	// is decoration, and a crawler or a reader without JS should not be told the
+	// figure is zero. The effect below rewinds it once the browser takes over.
+	let current = $state(value);
 
 	function run() {
 		const start = performance.now();
@@ -33,6 +36,7 @@
 			return;
 		}
 
+		current = 0;
 		const observer = new IntersectionObserver(
 			(entries) => {
 				if (entries.some((e) => e.isIntersecting)) {

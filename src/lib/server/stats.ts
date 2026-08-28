@@ -9,7 +9,7 @@
  * Three GitHub API calls are made (releases pagination + contributors). Set
  * GITHUB_TOKEN in the build env to keep them off the 60/hr per-IP budget.
  *
- * Verified 2026-07-24 — the fallbacks below are the real values on that date.
+ * Verified 2026-08-28 — the fallbacks below are the real values on that date.
  */
 
 import type { Availability, Channel, Stats } from '$lib/types/stats';
@@ -19,19 +19,20 @@ const REPO = 'vale-cli/vale';
 const DOCKER_IMAGE = 'jdkato/vale';
 
 /** Date the fallbacks below were last confirmed by hand. */
-const FALLBACK_DATE = '2026-07-24';
+const FALLBACK_DATE = '2026-08-28';
 
 const FALLBACKS = {
-	releases: 9_893_086,
-	docker: 2_188_606,
-	pypi: 1_358_908,
-	conda: 138_280,
-	brew: 66_557,
-	chocolatey: 19_449,
-	contributors: 59,
-	stars: 5_586,
-	wingetVersion: '3.15.1',
-	snapVersion: '3.15.1',
+	releases: 10_680_199,
+	docker: 2_234_958,
+	pypi: 1_584_285,
+	npm: 131_006,
+	conda: 153_174,
+	brew: 75_395,
+	chocolatey: 19_472,
+	contributors: 63,
+	stars: 6_038,
+	wingetVersion: '3.17.1',
+	snapVersion: '3.17.1',
 	repologyFamilies: 17,
 	backers: 38,
 	yearlyIncome: 1450
@@ -152,6 +153,16 @@ async function fetchChocolatey(fetch: Fetch): Promise<number> {
 	return total;
 }
 
+/**
+ * npm downloads of the community wrapper. The registry's API serves fixed
+ * windows rather than a lifetime total, so this is the trailing month.
+ */
+async function fetchNpm(fetch: Fetch): Promise<number> {
+	const data = await json(fetch, 'https://api.npmjs.org/downloads/point/last-month/@vvago/vale');
+	if (typeof data?.downloads !== 'number') throw new Error('no npm downloads');
+	return data.downloads;
+}
+
 /** Lifetime conda-forge downloads across all versions. */
 async function fetchConda(fetch: Fetch): Promise<number> {
 	const pkg = await json(fetch, 'https://api.anaconda.org/package/conda-forge/vale');
@@ -235,6 +246,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[releases, releasesLive],
 		[docker, dockerLive],
 		[pypi, pypiLive],
+		[npm, npmLive],
 		[conda, condaLive],
 		[brew, brewLive],
 		[chocolatey, chocoLive],
@@ -248,6 +260,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		safely('releases', FALLBACKS.releases, () => fetchReleases(fetch)),
 		safely('docker pulls', FALLBACKS.docker, () => fetchDockerPulls(fetch)),
 		safely('pypi', FALLBACKS.pypi, () => fetchPypi(fetch)),
+		safely('npm', FALLBACKS.npm, () => fetchNpm(fetch)),
 		safely('conda-forge', FALLBACKS.conda, () => fetchConda(fetch)),
 		safely('brew installs', FALLBACKS.brew, () => fetchBrew(fetch)),
 		safely('chocolatey', FALLBACKS.chocolatey, () => fetchChocolatey(fetch)),
@@ -288,6 +301,15 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 			note: 'community-maintained wrapper',
 			source: 'https://pypi.org/project/vale/',
 			live: pypiLive
+		},
+		{
+			name: 'npm',
+			icon: 'npm',
+			value: npm,
+			window: 'past mo',
+			note: 'community-maintained wrapper',
+			source: 'https://www.npmjs.com/package/@vvago/vale',
+			live: npmLive
 		},
 		{
 			name: 'conda-forge',
@@ -337,11 +359,22 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		}
 	];
 
+	// Summed over the lifetime channels alone. Adding the windowed ones would
+	// mix a trailing month against an all-time count, so this understates the
+	// true figure rather than inflating it.
+	const counted = channels.filter((c) => c.window === 'lifetime');
+	const lifetime = {
+		value: counted.reduce((sum, c) => sum + c.value, 0),
+		sources: counted.map((c) => c.name),
+		live: counted.every((c) => c.live)
+	};
+
 	const allLive =
 		channels.every((c) => c.live) && availability.every((a) => a.live) && contributorsLive;
 
 	return {
 		channels,
+		lifetime,
 		availability,
 		funding: { ...collective, live: collectiveLive },
 		contributors,
