@@ -1,5 +1,153 @@
 [
   {
+    "name": "AiTells",
+    "description": "Flags the tells of AI-written prose: em-dash habits, epigrams, abstract-noun triads, clichés, and 13 more benchmarked rules.",
+    "homepage": "https://github.com/krishnasunkam/vale-ai-tells",
+    "url": "https://github.com/krishnasunkam/vale-ai-tells/releases/latest/download/AiTells.zip",
+    "logo": "https://github.com/krishnasunkam.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AbstractTriad",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Abstract-noun triad '%s': name one concrete thing instead of three abstractions.",
+        "link": ""
+      },
+      {
+        "name": "Adverb",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Filler adverb '%s': let the verb carry it.",
+        "link": ""
+      },
+      {
+        "name": "Cliche",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Cliche '%s': cut it or say the literal thing.",
+        "link": ""
+      },
+      {
+        "name": "CodeToken",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Code-like token '%s' in prose: use a human name, not a CONSTANT or formula.",
+        "link": ""
+      },
+      {
+        "name": "CopulaInflation",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Copula inflation '%s': use a plain verb.",
+        "link": ""
+      },
+      {
+        "name": "Dash",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Em/en dash: recast with a period, comma, colon, or 'to' for a range.",
+        "link": ""
+      },
+      {
+        "name": "EpigramContrast",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Epigram contrast '%s': cut the negated half; the positive claim is stronger.",
+        "link": ""
+      },
+      {
+        "name": "FilePath",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Raw file path '%s' in prose: name the document by its human title.",
+        "link": ""
+      },
+      {
+        "name": "HiddenVerb",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Hidden verb '%s': use the direct verb (analyze, not conduct an analysis).",
+        "link": ""
+      },
+      {
+        "name": "LinkText",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Vague link text '%s': describe the destination.",
+        "link": ""
+      },
+      {
+        "name": "NegParallel",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'not just X, but Y' escalation: say Y.",
+        "link": ""
+      },
+      {
+        "name": "NeverTag",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "', never X' antithesis tag: state the behavior once and stop.",
+        "link": ""
+      },
+      {
+        "name": "Passive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Passive voice '%s': name who does the verb.",
+        "link": ""
+      },
+      {
+        "name": "SectionCode",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Section/source code '%s' in prose: name it, do not cite a code.",
+        "link": ""
+      },
+      {
+        "name": "StatusBracket",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Status bracket '%s': keep grades in a source-notes block, not inline prose.",
+        "link": ""
+      },
+      {
+        "name": "VirtueHonest",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Claimed honesty '%s': cut the claim and state the thing plainly.",
+        "link": ""
+      },
+      {
+        "name": "WeakResume",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Weak duty-phrasing '%s': lead with a quantified outcome (X by Y measured Z).",
+        "link": ""
+      }
+    ]
+  },
+  {
     "name": "AsciiDoc",
     "description": "A Vale-compatible implementation of select AsciiDoc syntax rules.",
     "homepage": "https://redhat-documentation.github.io/vale-at-red-hat/index.html#asciidoc-style-for-vale",
@@ -124,6 +272,362 @@
     ]
   },
   {
+    "name": "AsciiDocDITA",
+    "description": "A Vale-compatible implementation of select DITA transformation guidelines for transforming existing AsciiDoc files into a DITA-compatible format.",
+    "homepage": "https://github.com/jhradilek/asciidoctor-dita-vale",
+    "url": "https://github.com/jhradilek/asciidoctor-dita-vale/releases/latest/download/AsciiDocDITA.zip",
+    "logo": "https://github.com/redhat-documentation.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AdmonitionTitle",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Admonition titles are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "AssemblyContents",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Content other than additional resources cannot follow include directives.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "AttributeDefinition",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "AttributeReference",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "AuthorLine",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Author lines are not supported for topics.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "BlockTitle",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Block titles can only be assigned to examples, figures, and tables in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "CalloutList",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Callouts are not supported in DITA.",
+        "link": ""
+      },
+      {
+        "name": "ConceptLink",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Move all links and cross references to Additional resources.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "ConditionalCode",
+        "extends": "script",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "ContentType",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The '_mod-docs-content-type' attribute definition is missing.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "DiscreteHeading",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Discrete headings are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "DocumentId",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The document ID assigned to the level 0 (=) heading is missing.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "DocumentTitle",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The document title (=) is missing.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "EntityReference",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "HTML character entity references are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "EquationFormula",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Equations and formulas are not implemented.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "ExampleBlock",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Example blocks can not be inside of other blocks in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "IgnoredFile",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "IncludeDirective",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "IntrinsicAttribute",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "LineBreak",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Hard line breaks are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapChunk",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The chunk=\"to-content\" attribute cannot be nested.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapContents",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Maps only support document titles, IDs, include directives, and attribute definitions.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapFilename",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Use only lowercase alphanumeric characters and hyphens (a-z, 0-9, and -) in file names.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapLevel",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Invalid leveloffset value.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapSize",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The number of include directives exceeds 200.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MapToc",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The toc=\"no\" attribute is missing.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "MismatchedId",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "The quotes in the ID are mismatched.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "NestedSection",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Level 2, 3, 4, and 5 sections (=== and deeper) are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "PageBreak",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Page breaks are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "RelatedLinks",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Content other than links cannot be mapped to DITA related-links.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "ShortDescription",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Assign [role=\"_abstract\"] to a paragraph to use it as <shortdesc> in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "SidebarBlock",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Sidebars are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "SnippetLink",
+        "extends": "script",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "TableFooter",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Table footers are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "TagDirective",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%s",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#suggestions"
+      },
+      {
+        "name": "TaskContents",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The '.Procedure' block title is missing.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "TaskDuplicate",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Duplicate titles cannot be mapped to DITA tasks.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "TaskExample",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Examples are allowed only once in DITA tasks.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "TaskInclude",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The included file may introduce content that cannot be mapped to DITA steps.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "TaskSection",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Sections (==) are not allowed in DITA tasks.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#errors"
+      },
+      {
+        "name": "TaskStep",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Content other than a single list cannot be mapped to DITA steps.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "TaskTitle",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Unsupported titles cannot be mapped to DITA tasks.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      },
+      {
+        "name": "ThematicBreak",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Thematic breaks are not supported in DITA.",
+        "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
+      }
+    ]
+  },
+  {
     "name": "Elastic",
     "description": "Elastic Docs' style guide rules for the Vale linter.",
     "homepage": "https://github.com/elastic/vale-rules",
@@ -202,7 +706,7 @@
         "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "Don't use '%s'.",
+        "message": "Don't use '%s'. Choose a more precise or reader-focused term.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/word-choice"
       },
       {
@@ -210,7 +714,7 @@
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
-        "message": "In general, don't use an ellipsis.",
+        "message": "Use ellipses sparingly. Remove the ellipsis unless it appears in UI text.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
       },
       {
@@ -226,7 +730,7 @@
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
-        "message": "Use exclamation points sparingly. Consider removing the exclamation point.",
+        "message": "Use exclamation points sparingly. Remove the exclamation point unless it appears in UI text.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#tone"
       },
       {
@@ -234,7 +738,7 @@
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
-        "message": "Use caution when using first-person pronouns such as '%s.'",
+        "message": "Use first-person pronouns sparingly. Rephrase '%s' if the sentence can focus on the user or product instead.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#use-singular-first-person-pronouns-sparingly-i-me-my-mine"
       },
       {
@@ -282,7 +786,7 @@
         "extends": "existence",
         "level": "warning",
         "scope": "raw",
-        "message": "mapped_pages should only be added or updated in rare scenarios. Talk with your local technical writer before pushing changes to this key.",
+        "message": "Avoid editing mapped_pages unless you are preserving an existing URL mapping. Talk with your local technical writer before changing this key.",
         "link": ""
       },
       {
@@ -354,7 +858,7 @@
         "extends": "existence",
         "level": "suggestion",
         "scope": "sentence",
-        "message": "Use semicolons judiciously.",
+        "message": "Use semicolons sparingly. Consider splitting the sentence or using a comma or conjunction.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/grammar-spelling#semicolons"
       },
       {
@@ -688,6 +1192,4395 @@
         "scope": "text",
         "message": "Use '%s' instead of '%s'.",
         "link": "https://developers.google.com/style/word-list"
+      }
+    ]
+  },
+  {
+    "name": "Harper",
+    "description": "A Vale-compatible implementation of the Harper grammar checker.",
+    "homepage": "https://github.com/vale-cli/Harper",
+    "url": "https://github.com/vale-cli/Harper/releases/latest/download/Harper.zip",
+    "logo": "https://writewithharper.com/apple-touch-icon.png",
+    "tags": [
+      "style",
+      "grammar"
+    ],
+    "rules": [
+      {
+        "name": "ACoupleMore",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "The correct wording is `a couple more`, without the `of`.",
+        "link": ""
+      },
+      {
+        "name": "Addicting",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When used as an adjective, `addictive` is the traditional and more f form.",
+        "link": ""
+      },
+      {
+        "name": "AdjectiveDoubleDegree",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the adjective on its own?",
+        "link": ""
+      },
+      {
+        "name": "AdNauseam",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This phrase comes from Latin, where `ad` means `to`.",
+        "link": ""
+      },
+      {
+        "name": "AfterAll",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `after all`?",
+        "link": ""
+      },
+      {
+        "name": "AfterAWhile",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When describing a timeframe, use `a while`.",
+        "link": ""
+      },
+      {
+        "name": "AfterLater",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`after` and `later` are redundant together.",
+        "link": ""
+      },
+      {
+        "name": "AheadAnd",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you make a typo? Shouldn't it be `and`?",
+        "link": ""
+      },
+      {
+        "name": "Albeit",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This should be written as a single word with a single `l`: `albeit`.",
+        "link": ""
+      },
+      {
+        "name": "ALittleOfPractice",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Have you perhaps confused `a little practice` or `a bit of practice`?",
+        "link": ""
+      },
+      {
+        "name": "AllHellBreakLoose",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `all hell breaks loose`.",
+        "link": ""
+      },
+      {
+        "name": "AllIntentsAndPurposes",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The idiom is `for all intents and purposes`.",
+        "link": ""
+      },
+      {
+        "name": "AllOfASudden",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer the standard phrasing `all of a sudden`.",
+        "link": ""
+      },
+      {
+        "name": "AllowTo1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Flags erroneous usage of `allow to` without a subject.",
+        "link": ""
+      },
+      {
+        "name": "AllowTo2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Flags erroneous usage of `allow to` without a subject.",
+        "link": ""
+      },
+      {
+        "name": "AllReady",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `already` before adjectives instead of the two-word phrase.",
+        "link": ""
+      },
+      {
+        "name": "AllThough",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Merge `all` and `though` into the conjunction `although`.",
+        "link": ""
+      },
+      {
+        "name": "Alongside",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use the single word `alongside`.",
+        "link": ""
+      },
+      {
+        "name": "ALongTime",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `a long time` for referring to a duration of time.",
+        "link": ""
+      },
+      {
+        "name": "AlzheimersDisease",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct medical term.",
+        "link": ""
+      },
+      {
+        "name": "AMeansToAnEnd",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `a means to an end`.",
+        "link": ""
+      },
+      {
+        "name": "AmInTheMorning",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The time period is redundant because it repeats what's already specified by the AM/PM indicator.",
+        "link": ""
+      },
+      {
+        "name": "AmountsFor",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "`amounts for` is not idiomatic English. You probably meant `amounts to` or `accounts for`.",
+        "link": ""
+      },
+      {
+        "name": "AnAnother",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `another` on its own.",
+        "link": ""
+      },
+      {
+        "name": "AndSuch",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `and such`?",
+        "link": ""
+      },
+      {
+        "name": "AndTheLike",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "If you intended the idiom meaning `similar things`, the correct form is with `the like`.",
+        "link": ""
+      },
+      {
+        "name": "AnotherAn",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `another` on its own.",
+        "link": ""
+      },
+      {
+        "name": "AnotherOnes",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`another` is singular but `ones` is plural. Or maybe you meant the possessive `one's`.",
+        "link": ""
+      },
+      {
+        "name": "AnotherThingComing",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Corrects `another think coming` to `another thing coming`",
+        "link": ""
+      },
+      {
+        "name": "AnotherThings",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`another` is singular but `things` is plural.",
+        "link": ""
+      },
+      {
+        "name": "AOkHyphen",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `A-OK` when stating that something is acceptable or ready.",
+        "link": ""
+      },
+      {
+        "name": "ApartFrom",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `from` to spell `apart from`.",
+        "link": ""
+      },
+      {
+        "name": "AsComparedTo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `as compared to`?",
+        "link": ""
+      },
+      {
+        "name": "AsEvidentBy",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `evidenced`? The correct phrase uses the past participle of the verb `evidence`.",
+        "link": ""
+      },
+      {
+        "name": "AsFarBackAs",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `as far back as` for referring to a time in the past.",
+        "link": ""
+      },
+      {
+        "name": "AsFollows",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `as follows`.",
+        "link": ""
+      },
+      {
+        "name": "AsHow",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider rephrasing to `as to how`.",
+        "link": ""
+      },
+      {
+        "name": "AsIfThough",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This should be `as if` or `as though`.",
+        "link": ""
+      },
+      {
+        "name": "AsIsWithAnything",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "The phrase `as is with anything` is ungrammatical. Use `as with anything` or `as is the case with anything`.",
+        "link": ""
+      },
+      {
+        "name": "AsItHappens",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `as it happens`?",
+        "link": ""
+      },
+      {
+        "name": "AskNoPreposition",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The verb `to {verb} someone` should not be preceded by the preposition `to`.",
+        "link": ""
+      },
+      {
+        "name": "AsLongAs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`As long` is two words and the last word should be `as`.",
+        "link": ""
+      },
+      {
+        "name": "AsMuchAs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This epxression requires `as` and not `than`.",
+        "link": ""
+      },
+      {
+        "name": "AsOfCurrently",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Standard equivalents are `currently` or `as of now`.",
+        "link": ""
+      },
+      {
+        "name": "AsOfLately",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Standard equivalents are `lately` or `as of late`.",
+        "link": ""
+      },
+      {
+        "name": "AsOpposedTo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `as opposed to`?",
+        "link": ""
+      },
+      {
+        "name": "AspireTo",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `aspire to` instead of `aspire for`.",
+        "link": ""
+      },
+      {
+        "name": "AtAllCosts",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `at all costs`?",
+        "link": ""
+      },
+      {
+        "name": "AtFaceValue",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "`at face value` is more idiomatic and more common.",
+        "link": ""
+      },
+      {
+        "name": "AtLeasToLeast",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the standard phrase with `least` here.",
+        "link": ""
+      },
+      {
+        "name": "AtLestToLeast",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the standard phrase with `least` here.",
+        "link": ""
+      },
+      {
+        "name": "AtTheBestOfTimes",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `at the best of times`?",
+        "link": ""
+      },
+      {
+        "name": "AtTheEndOfTheDay",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean `at the end of the day`?",
+        "link": ""
+      },
+      {
+        "name": "AtTheExpenseOf",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "In the context of tradeoffs, use `at the expense of`. `Expanse` means ",
+        "link": ""
+      },
+      {
+        "name": "AtTheVeryLeast",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean `at the very least`?",
+        "link": ""
+      },
+      {
+        "name": "AvoidAndAlso",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using just `and`.",
+        "link": ""
+      },
+      {
+        "name": "AvoidCurses",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Try to avoid offensive language.",
+        "link": ""
+      },
+      {
+        "name": "AwareOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `aware of` instead of `aware about`.",
+        "link": ""
+      },
+      {
+        "name": "AWaysToGo",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This idiom requires the word `a`.",
+        "link": ""
+      },
+      {
+        "name": "AWaysToGo2",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This idiom requires the word `a`.",
+        "link": ""
+      },
+      {
+        "name": "AWhile",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `a while`?",
+        "link": ""
+      },
+      {
+        "name": "BadRap",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `bad rap`?",
+        "link": ""
+      },
+      {
+        "name": "BanTogether",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `band together`?",
+        "link": ""
+      },
+      {
+        "name": "BareInMind",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `bear in mind`?",
+        "link": ""
+      },
+      {
+        "name": "BatedBreath",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `bated breath`?",
+        "link": ""
+      },
+      {
+        "name": "BeAllowed",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Add `be` so this reads `be allowed`.",
+        "link": ""
+      },
+      {
+        "name": "BeckAndCall",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `beck and call`?",
+        "link": ""
+      },
+      {
+        "name": "BeenThere",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `been there`?",
+        "link": ""
+      },
+      {
+        "name": "Beforehand",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prefer the single-word adverb `beforehand`.",
+        "link": ""
+      },
+      {
+        "name": "BesideThePoint",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `beside` in the idiom `beside the point`.",
+        "link": ""
+      },
+      {
+        "name": "BestOfAllTime",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This expression uses singular `time`",
+        "link": ""
+      },
+      {
+        "name": "BestRegards",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `best regards` to convey sincere well wishes in a closing.",
+        "link": ""
+      },
+      {
+        "name": "BetterOffPhrase1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This expression usually takes `off` instead of `of`.",
+        "link": ""
+      },
+      {
+        "name": "BetterOffPhrase2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This expression usually takes `off` instead of `of`.",
+        "link": ""
+      },
+      {
+        "name": "BetterOffPhrasePhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This expression usually takes `off` instead of `of`.",
+        "link": ""
+      },
+      {
+        "name": "BetterOffWith",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This phrase uses the word `off`.",
+        "link": ""
+      },
+      {
+        "name": "BewareOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `beware of` when naming the object you want readers to avoid.",
+        "link": ""
+      },
+      {
+        "name": "BlacklistWhitelist",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Treat color-based deny/allow lists as single words like `blacklist` or `whitelist`.",
+        "link": ""
+      },
+      {
+        "name": "BlanketStatement",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the more idiomatic phrasing.",
+        "link": ""
+      },
+      {
+        "name": "BluRayHyphen",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated spelling for this media format.",
+        "link": ""
+      },
+      {
+        "name": "BoarderBorder",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `border`?",
+        "link": ""
+      },
+      {
+        "name": "Brutality",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This word has a more standard, more common synonym.",
+        "link": ""
+      },
+      {
+        "name": "ByAccident1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `by accident`?",
+        "link": ""
+      },
+      {
+        "name": "ByAccident2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `by accident`?",
+        "link": ""
+      },
+      {
+        "name": "ByOnesOwn",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "`By one's own` is not idiomatic. Consider either `on one's own` or `by oneself`.",
+        "link": ""
+      },
+      {
+        "name": "ByTheBook",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the idiom `by the book`?",
+        "link": ""
+      },
+      {
+        "name": "CallItQuits",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This idiom uses the plural 'quits' to mean 'gives up' or 'stops'.",
+        "link": ""
+      },
+      {
+        "name": "CanBeSeen",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `can be seen`?",
+        "link": ""
+      },
+      {
+        "name": "CantWay",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `wait`?",
+        "link": ""
+      },
+      {
+        "name": "CapitalizeOn",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "CaseInPoint",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "`Case in point` is the correct form of the phrase.",
+        "link": ""
+      },
+      {
+        "name": "CaseSensitive",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated form for `case-sensitive`.",
+        "link": ""
+      },
+      {
+        "name": "Catch22",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This idiom uses 'catch' instead of 'cache' or 'cash'.",
+        "link": ""
+      },
+      {
+        "name": "CauseItIsBecause",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prefer `because it is` in this clause.",
+        "link": ""
+      },
+      {
+        "name": "CautionaryTale",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `tale` (story)?",
+        "link": ""
+      },
+      {
+        "name": "ChangeTack",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `tack`, as in a sailing heading?",
+        "link": ""
+      },
+      {
+        "name": "ClicheAccent",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "ClickThroughRate",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Keep the metric modifier bonded so the compound explicitly names the analytics signal.",
+        "link": ""
+      },
+      {
+        "name": "CloseTightKnit",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `knit`?",
+        "link": ""
+      },
+      {
+        "name": "CodeInWriteIn",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "For writing code, the preposition should be `in` rather than `on`.",
+        "link": ""
+      },
+      {
+        "name": "ColdModalTypo1",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This looks like a modal typo.",
+        "link": ""
+      },
+      {
+        "name": "ColdModalTypo2",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This looks like a modal typo.",
+        "link": ""
+      },
+      {
+        "name": "ColdModalTypoPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This looks like a modal typo.",
+        "link": ""
+      },
+      {
+        "name": "ComplainAsNoun",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the noun `complaint`?",
+        "link": ""
+      },
+      {
+        "name": "ComplainAsNoun2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the noun `complaints`?",
+        "link": ""
+      },
+      {
+        "name": "ComprisesOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid `comprises of`; let `comprises` stand on its own or choose `consists of`.",
+        "link": ""
+      },
+      {
+        "name": "CondenseAllThe",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider simplifying to `all the`.",
+        "link": ""
+      },
+      {
+        "name": "Confident",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the adjective.",
+        "link": ""
+      },
+      {
+        "name": "CoursingThroughVeins",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "In this idiom, blood `courses` (flows) through veins, not `curses`.",
+        "link": ""
+      },
+      {
+        "name": "CraveFor",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The verb `crave` should not be followed by `for`.",
+        "link": ""
+      },
+      {
+        "name": "CrossPlatform",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Cross-platform` should always be hyphenated in all positions.",
+        "link": ""
+      },
+      {
+        "name": "CureFor",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer `cure for` when describing a treatment target.",
+        "link": ""
+      },
+      {
+        "name": "CuttingAgeEggcorn",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `cutting-edge` (adjective before a noun) or `cutting edge` (in other positions)?",
+        "link": ""
+      },
+      {
+        "name": "Cybersec",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `cybersecurity` instead of `cybersec`.",
+        "link": ""
+      },
+      {
+        "name": "DampSquib",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for a disappointing outcome.",
+        "link": ""
+      },
+      {
+        "name": "DayAndAge",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `in this day and age`.",
+        "link": ""
+      },
+      {
+        "name": "DegreesKelvin",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `kelvins` when discussing the unit Kelvin.",
+        "link": ""
+      },
+      {
+        "name": "DegreesKelvinSymbol",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use just the symbol `K` when discussing the unit Kelvin.",
+        "link": ""
+      },
+      {
+        "name": "DespiteItIs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the gerund form of the verb after `despite`.",
+        "link": ""
+      },
+      {
+        "name": "DespiteOf",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The phrase “despite of” is incorrect. Please use either “despite” or “in spite of” instead.",
+        "link": ""
+      },
+      {
+        "name": "Didnt",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using `didn't` here.",
+        "link": ""
+      },
+      {
+        "name": "DiscourseMarkers",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "A discourse marker needs a comma after it.",
+        "link": ""
+      },
+      {
+        "name": "DoIAdjective",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "When describing how you feel, `I` pairs with `am`, not `do`.",
+        "link": ""
+      },
+      {
+        "name": "DoMistake",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `make` with `mistake`, not `do`.",
+        "link": ""
+      },
+      {
+        "name": "DoMistake2",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `make` with `mistake`, not `do`.",
+        "link": ""
+      },
+      {
+        "name": "DoNotWant",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the full verb `want` after negation: `don't want` or `do not want.`",
+        "link": ""
+      },
+      {
+        "name": "DontCan",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The grammatically correct form is `can't` or `cannot`.",
+        "link": ""
+      },
+      {
+        "name": "DotInitialisms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Initialisms should have dot-separated letters.",
+        "link": ""
+      },
+      {
+        "name": "DoubleCheckHyphen",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated form in this compound.",
+        "link": ""
+      },
+      {
+        "name": "DoubleNegative",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "With `didn't/did not`, using `no` creates a double negative; replace `no` with `any` to keep a single negation.",
+        "link": ""
+      },
+      {
+        "name": "DueDiligence",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "If this phrase should function as a noun it should be `due diligence`. If it should function as a verb it should be `do due diligence",
+        "link": ""
+      },
+      {
+        "name": "EachAndEveryOne",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `each and every one` for referring to a group of people or things.",
+        "link": ""
+      },
+      {
+        "name": "EachOthersPossessive",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the reciprocal possessive form here.",
+        "link": ""
+      },
+      {
+        "name": "EagleEyed",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Hyphenate `eagle eyed` when it acts as a single adjective before a noun.",
+        "link": ""
+      },
+      {
+        "name": "EggYolk",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `egg yolk` when you mean the yellow portion of an egg.",
+        "link": ""
+      },
+      {
+        "name": "ElsePossessive",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Add the missing possessive apostrophe: use `else’s`.",
+        "link": ""
+      },
+      {
+        "name": "EludedTo",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `alluded to`?",
+        "link": ""
+      },
+      {
+        "name": "EnRoute",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `en route`?",
+        "link": ""
+      },
+      {
+        "name": "EnvironmentVariable",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "EverPresent",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Hyphenate `ever-present` when it functions as a compound adjective.",
+        "link": ""
+      },
+      {
+        "name": "EverSince",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `ever since`?",
+        "link": ""
+      },
+      {
+        "name": "Everyday",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "You probably mean the adverb `every day` here.",
+        "link": ""
+      },
+      {
+        "name": "Everyday2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "You probably mean the adjective `everyday` here.",
+        "link": ""
+      },
+      {
+        "name": "EveryOnceAndAgain",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "For things that happen only occasionaly use `every once in a while. For things that persistently happen use `once again`.",
+        "link": ""
+      },
+      {
+        "name": "EverySingleOneOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This phrase is missing the word `one`.",
+        "link": ""
+      },
+      {
+        "name": "EveryTime",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Everytime` as a single word is proscribed. Use `every time` instead.",
+        "link": ""
+      },
+      {
+        "name": "Excellent",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Vocabulary enhancement: use `excellent` instead of `very good`",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext1",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext2",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext3",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext4",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext5",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext6",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext7",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContext8",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExitedExcitedContextPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This word choice looks off for this meaning.",
+        "link": ""
+      },
+      {
+        "name": "ExpandBecause",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `because` instead of informal `cuz`",
+        "link": ""
+      },
+      {
+        "name": "ExpandConfiguration",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prose usually spells this out.",
+        "link": ""
+      },
+      {
+        "name": "ExpandControl",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `control` instead of informal `ctrl`",
+        "link": ""
+      },
+      {
+        "name": "ExpandForward",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `forward` instead of `fwd`",
+        "link": ""
+      },
+      {
+        "name": "ExpandMemoryShorthands",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prose usually spells out the unit.",
+        "link": ""
+      },
+      {
+        "name": "ExpandMinimum",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `minimum` instead of `min`",
+        "link": ""
+      },
+      {
+        "name": "ExpandPerformance",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `performance` instead of `perf`",
+        "link": ""
+      },
+      {
+        "name": "ExpandPreference",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use %[1]s instead of %[2]s",
+        "link": ""
+      },
+      {
+        "name": "ExpandPrevious",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `previous` instead of `prev`",
+        "link": ""
+      },
+      {
+        "name": "ExpandThough",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `though` instead of `tho`",
+        "link": ""
+      },
+      {
+        "name": "ExpandThrough",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `thru` instead of `through`",
+        "link": ""
+      },
+      {
+        "name": "ExpandTimeShorthands",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Prose usually spells out the unit.",
+        "link": ""
+      },
+      {
+        "name": "ExpandWithout",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `without` instead of `w/o`",
+        "link": ""
+      },
+      {
+        "name": "FaceFirst",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Should this be `face-first`?",
+        "link": ""
+      },
+      {
+        "name": "FairBit",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "A `decent amount` is a `fair bit`. `Fare` is the price of a ticket.",
+        "link": ""
+      },
+      {
+        "name": "FallBelow",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`below` is redundant after a distance fallen.",
+        "link": ""
+      },
+      {
+        "name": "FarAndFewBetween",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The correct idiom is `few and far between`?",
+        "link": ""
+      },
+      {
+        "name": "FascinatedBy",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct prepositions to use with `fascinated` are `by` or `with`.",
+        "link": ""
+      },
+      {
+        "name": "FastPaste",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `fast-paced`?",
+        "link": ""
+      },
+      {
+        "name": "FatalOutcome",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider using `death` for clarity.",
+        "link": ""
+      },
+      {
+        "name": "FeelFell",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `feel`?",
+        "link": ""
+      },
+      {
+        "name": "FellowCoRedundancy",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Using `fellow` with `co` is redundant.",
+        "link": ""
+      },
+      {
+        "name": "FetalPosition",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct term for a curled-up posture.",
+        "link": ""
+      },
+      {
+        "name": "FindFine",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `fine`?",
+        "link": ""
+      },
+      {
+        "name": "FindOut",
+        "extends": "sequence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `find` instead of `find out` when you mean to discover something directly.",
+        "link": ""
+      },
+      {
+        "name": "FirstAidKit",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `kit` (a set of items) instead of “kid”?",
+        "link": ""
+      },
+      {
+        "name": "FleshOutVsFullFledged",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the other word?",
+        "link": ""
+      },
+      {
+        "name": "FondOn",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `found on` or `fond of` instead of `fond on`.",
+        "link": ""
+      },
+      {
+        "name": "FootInchMinuteSecondSymbols",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "ForALongTime",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the standard phrase `for a long time` to indicate an extended duration.",
+        "link": ""
+      },
+      {
+        "name": "ForArgumentsSake",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive `argument's`.",
+        "link": ""
+      },
+      {
+        "name": "ForAWhile",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "When describing a timeframe, use `a while`.",
+        "link": ""
+      },
+      {
+        "name": "ForFreeOfCharge",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use only either `for free` or `free of charge`",
+        "link": ""
+      },
+      {
+        "name": "FormativeYears",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `formative years`? Use `formative` to describe a period of growth or influence. `Formidable` is typically used for something intimidating.",
+        "link": ""
+      },
+      {
+        "name": "ForTheMostPart",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `for the most part` instead of `for most part`.",
+        "link": ""
+      },
+      {
+        "name": "ForTheNthTime",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "The standard form of this construction requires the word 'the' to precede the ordinal.",
+        "link": ""
+      },
+      {
+        "name": "FreePredicate",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `free` here to show that something costs nothing.",
+        "link": ""
+      },
+      {
+        "name": "FreeRein",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for unrestricted control.",
+        "link": ""
+      },
+      {
+        "name": "Freezing",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "A more vivid adjective would better capture extreme cold.",
+        "link": ""
+      },
+      {
+        "name": "FriendOfMe",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use a possessive pronoun -- `mine`, `yours`, `his`, `ours`, `theirs` -- instead of an object pronoun.",
+        "link": ""
+      },
+      {
+        "name": "FromTheGetGo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated form: `from the get-go`.",
+        "link": ""
+      },
+      {
+        "name": "GildedAge",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The period of economic prosperity is called the `Gilded Age`.",
+        "link": ""
+      },
+      {
+        "name": "GoggleBrand",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "You probably meant to spell the company name `Google`.",
+        "link": ""
+      },
+      {
+        "name": "GoingTo",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `going to`?",
+        "link": ""
+      },
+      {
+        "name": "GoodAt",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'good at' to describe proficiency with a skill.",
+        "link": ""
+      },
+      {
+        "name": "GoSoFarAsTo1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "If this is intended to express going beyond what's expected, the standard idiom is `go so far as to`",
+        "link": ""
+      },
+      {
+        "name": "GoToWar",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `to` instead of `at`.",
+        "link": ""
+      },
+      {
+        "name": "GuineaBissau",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The official spelling is hyphenated.",
+        "link": ""
+      },
+      {
+        "name": "HadOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `had have` or `had've`?",
+        "link": ""
+      },
+      {
+        "name": "HalfAnHour",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Remember the silent 'h' when writing `hour`: `half an hour`.",
+        "link": ""
+      },
+      {
+        "name": "Handful",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write this quantity as the single word `handful`.",
+        "link": ""
+      },
+      {
+        "name": "Haphazard",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `haphazard` for randomness or lack of organization.",
+        "link": ""
+      },
+      {
+        "name": "HaveAHardTime",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The idiom is `have a hard time`.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny5",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny6",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "HaveNegNoAny7",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This negative form sounds nonstandard; use `any` after the negated auxiliary.",
+        "link": ""
+      },
+      {
+        "name": "Hazzle",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard5",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeard6",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeartToHeardPhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the verb `heard` (= past tense of `hear`)?",
+        "link": ""
+      },
+      {
+        "name": "HeDos1",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `does`?",
+        "link": ""
+      },
+      {
+        "name": "HeDos2",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `does`?",
+        "link": ""
+      },
+      {
+        "name": "HeDos3",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `does`?",
+        "link": ""
+      },
+      {
+        "name": "HeDosPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `does`?",
+        "link": ""
+      },
+      {
+        "name": "HelloGreeting",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer `hello` as a greeting; `halo` refers to the optical effect.",
+        "link": ""
+      },
+      {
+        "name": "Hereby",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the closed compound `hereby`?",
+        "link": ""
+      },
+      {
+        "name": "HiddenIn",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `hidden in`?",
+        "link": ""
+      },
+      {
+        "name": "HowDoesCompared",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the base form of the verb `compare`.",
+        "link": ""
+      },
+      {
+        "name": "HumanBeings",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `human beings` to refer to people collectively.",
+        "link": ""
+      },
+      {
+        "name": "HumanLife",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `human life`?",
+        "link": ""
+      },
+      {
+        "name": "HungerPang",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `hunger pang`?",
+        "link": ""
+      },
+      {
+        "name": "IAm",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `I am`?",
+        "link": ""
+      },
+      {
+        "name": "IDo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`I` pairs with the bare verb `do`; the –s inflection `does` is reserved for third-person singular subjects.",
+        "link": ""
+      },
+      {
+        "name": "IfWouldve",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "If this is counterfactual or hypothetical, use `had` after `if` rather than `would have` or `had have`.",
+        "link": ""
+      },
+      {
+        "name": "ImitateFrom",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `of` with `imitate` when naming the source you copy.",
+        "link": ""
+      },
+      {
+        "name": "Impressed",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct preposition after `impressed` is `by` or `with`.",
+        "link": ""
+      },
+      {
+        "name": "InADifferentDirection",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `in a different direction`?",
+        "link": ""
+      },
+      {
+        "name": "InAHurry",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `in a hurry`.",
+        "link": ""
+      },
+      {
+        "name": "InAnyWay",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `in any way` for emphasizing a point.",
+        "link": ""
+      },
+      {
+        "name": "InAWhile",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When describing a timeframe, use `a while`.",
+        "link": ""
+      },
+      {
+        "name": "IncidentReport",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "InDueCourse",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `in due course` instead of `in do course`.",
+        "link": ""
+      },
+      {
+        "name": "InFavourOfDoing",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The word `of` is missing.",
+        "link": ""
+      },
+      {
+        "name": "InHindsight",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `in hindsight` when reflecting on past events with the benefit of current knowledge.",
+        "link": ""
+      },
+      {
+        "name": "Initiatively",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `proactive` (taking initiative, acting in advance) or `initially` (at first, in the beginning)?",
+        "link": ""
+      },
+      {
+        "name": "InLieuOf",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `in lieu of`?",
+        "link": ""
+      },
+      {
+        "name": "InNeedOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `in need of` for when something is required or necessary.",
+        "link": ""
+      },
+      {
+        "name": "InOfItself",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `in itself` (more common) or `in and of itself` (more formal) to mean 'intrinsically'.",
+        "link": ""
+      },
+      {
+        "name": "Insensitive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This word has a more standard, more common synonym.",
+        "link": ""
+      },
+      {
+        "name": "InspiredBy",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `inspired by` instead of `inspired from` when citing a source of inspiration.",
+        "link": ""
+      },
+      {
+        "name": "InsteadOf",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the modern single word `instead of` to indicate a replacement.",
+        "link": ""
+      },
+      {
+        "name": "Insurmountable",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This word has a more standard, more common synonym.",
+        "link": ""
+      },
+      {
+        "name": "InterestedIn",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `interested in`.",
+        "link": ""
+      },
+      {
+        "name": "InThe",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `in the`?",
+        "link": ""
+      },
+      {
+        "name": "InTimeFromNow",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid redundancy by using either `in [period of time]` or `[period of time] from now`, but not both together.",
+        "link": ""
+      },
+      {
+        "name": "IntroCueCommaBeforeThanks",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Set off `no` with a comma in the response phrase `no, thanks`.",
+        "link": ""
+      },
+      {
+        "name": "IsBeenAuxSequence",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This helper sequence is nonstandard in edited English.",
+        "link": ""
+      },
+      {
+        "name": "IsKnownFor",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `is known for`?",
+        "link": ""
+      },
+      {
+        "name": "ItCan",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `It can`?",
+        "link": ""
+      },
+      {
+        "name": "ItsPossessive",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive `its` here.",
+        "link": ""
+      },
+      {
+        "name": "ItsPossessive2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive `its` here.",
+        "link": ""
+      },
+      {
+        "name": "ItsPossessive3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive `its` here.",
+        "link": ""
+      },
+      {
+        "name": "ItsPossessive4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive `its` here.",
+        "link": ""
+      },
+      {
+        "name": "ItTimeAuxiliary",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This phrase usually needs the contraction `it's` before `time` in this construction.",
+        "link": ""
+      },
+      {
+        "name": "IveGotTo",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `I've got to` for necessity or obligation.",
+        "link": ""
+      },
+      {
+        "name": "JawDropping",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for something astonishing.",
+        "link": ""
+      },
+      {
+        "name": "JumpTheGun",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `jump the gun`.",
+        "link": ""
+      },
+      {
+        "name": "JustDeserts",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for receiving what one deserves.",
+        "link": ""
+      },
+      {
+        "name": "KindOf",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "`Kinda` already means `kind of`, so `kinda of` is redundant.",
+        "link": ""
+      },
+      {
+        "name": "KindRegards",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `kind regards`?",
+        "link": ""
+      },
+      {
+        "name": "KnowNothingVerb",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This looks like a misspelled verb in this phrase.",
+        "link": ""
+      },
+      {
+        "name": "LastButNotLeast",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the more idiomatic phrasing.",
+        "link": ""
+      },
+      {
+        "name": "LastDitch",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "In this idiom, `ditch` is a noun and a hyphen is needed.",
+        "link": ""
+      },
+      {
+        "name": "LastNight",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "The idiomatic phrase is `last night`.",
+        "link": ""
+      },
+      {
+        "name": "LaughOfAt",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `laugh at ...` instead of `laugh of ...` when pointing at someone.",
+        "link": ""
+      },
+      {
+        "name": "LaughOfAt2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `laugh at ...` instead of `laugh of ...` when pointing at someone.",
+        "link": ""
+      },
+      {
+        "name": "LeadRiseTo",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `give rise to`.",
+        "link": ""
+      },
+      {
+        "name": "LeaveToFor",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `for` when pointing a departure toward a place.",
+        "link": ""
+      },
+      {
+        "name": "LeavingInDroves",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Drones` is an eggcorn. The correct word is `droves`.",
+        "link": ""
+      },
+      {
+        "name": "LeftRightHand",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use a hyphen in `left-hand` or `right-hand` when modifying a noun.",
+        "link": ""
+      },
+      {
+        "name": "LessWorse",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Suggests alternatives to `less/least worse/worst` for more standard, clearer comparisons.",
+        "link": ""
+      },
+      {
+        "name": "LetAlone",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `let alone`?",
+        "link": ""
+      },
+      {
+        "name": "LetToDo1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The word `to` should not be used with `let` in this way.",
+        "link": ""
+      },
+      {
+        "name": "LetToDo2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The word `to` should not be used with `let` in this way.",
+        "link": ""
+      },
+      {
+        "name": "LetToDo3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The word `to` should not be used with `let` in this way.",
+        "link": ""
+      },
+      {
+        "name": "LikeAsIf",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid redundancy. Use either `like` or `as if`.",
+        "link": ""
+      },
+      {
+        "name": "LikelyHood",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Merge `likely hood` into the established noun `likelihood`.",
+        "link": ""
+      },
+      {
+        "name": "LikeThePlague",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Things are avoided `like the plague` not `like a plague`.",
+        "link": ""
+      },
+      {
+        "name": "LikeTheresNoTomorrow",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct phrase is `like there's no tomorrow`.",
+        "link": ""
+      },
+      {
+        "name": "LinesOfCode",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct plural is `lines of code`.",
+        "link": ""
+      },
+      {
+        "name": "LinkedList",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "If you mean the low-level data structure, use %[1]s instead of %[2]s.",
+        "link": ""
+      },
+      {
+        "name": "LittleKnown",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The idiom is `a little known fact`.",
+        "link": ""
+      },
+      {
+        "name": "LittleKnown2",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This reads better without the article.",
+        "link": ""
+      },
+      {
+        "name": "LookDownOnesNose",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `look down one's nose`.",
+        "link": ""
+      },
+      {
+        "name": "LookInto",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Keep `look into` together before question words so the verb stays idiomatic.",
+        "link": ""
+      },
+      {
+        "name": "LooksLikes",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Drop the extra `s` in `likes` when it immediately follows a form of `look`.",
+        "link": ""
+      },
+      {
+        "name": "LowHangingFruit",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The standard form is `low-hanging fruit` with a hyphen and singular form.",
+        "link": ""
+      },
+      {
+        "name": "ManagerialReins",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Swap in `reins` when talking about control of a team or project.",
+        "link": ""
+      },
+      {
+        "name": "MassExodus",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Corrects `max exodues` to `mass exodus`.",
+        "link": ""
+      },
+      {
+        "name": "MayOfPronoun",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "MeansALotTo",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "MercedesBenzHyphen",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Hyphenate the two components of this classic Mercedes-Benz trademark.",
+        "link": ""
+      },
+      {
+        "name": "Misspell",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write `misspell` and its inflections as a single word.",
+        "link": ""
+      },
+      {
+        "name": "MixedBag",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `mixed bag`?",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective1",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective2",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective3",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective4",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective5",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective6",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective7",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreAdjective8",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This is not an error, but an inflected form of this adjective also exists",
+        "link": ""
+      },
+      {
+        "name": "MoreBetter",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "MoreThanMeetsTheEye",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "For something that has hidden complexity or depth, `more than meets the eye` is the most idiomatic and most standard.",
+        "link": ""
+      },
+      {
+        "name": "MoreThatLikely",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `more than likely`?",
+        "link": ""
+      },
+      {
+        "name": "MostNumber",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Most` is not standard before a count.",
+        "link": ""
+      },
+      {
+        "name": "MostOfTheTimes",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Singular `time` is usually the correct form in this phrase.",
+        "link": ""
+      },
+      {
+        "name": "MyHouse",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `my house`?",
+        "link": ""
+      },
+      {
+        "name": "NailOnTheHead",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `head`?",
+        "link": ""
+      },
+      {
+        "name": "NeedHelp",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `need help`?",
+        "link": ""
+      },
+      {
+        "name": "NeitherHereNorThere",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "NerveRacking",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `nerve-racking` for something that causes anxiety or tension.",
+        "link": ""
+      },
+      {
+        "name": "NobelPeacePrize",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Spell the name of the international peace award as Nobel Peace Prize.",
+        "link": ""
+      },
+      {
+        "name": "NoHarmNoFoul",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "NoLongerPronoun",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Put the subject before `no longer`.",
+        "link": ""
+      },
+      {
+        "name": "NoMatchFor",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "If you mean the idiom, it's `no match for`.",
+        "link": ""
+      },
+      {
+        "name": "NominalWants",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `{replacement}`?",
+        "link": ""
+      },
+      {
+        "name": "NorModalPronoun",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Invert the subject and the modal verb after `nor`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot5",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot6",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot7",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot8",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNot9",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotBeAfterNotPhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "When a negative clause already uses `be`, drop the extra `be` that follows `not`.",
+        "link": ""
+      },
+      {
+        "name": "NotIn",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `not in` for correct grammar.",
+        "link": ""
+      },
+      {
+        "name": "NotLongAfter",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean %[1]s?",
+        "link": ""
+      },
+      {
+        "name": "NotOnlyInversion",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Invert the subject and the verb after `not only`.",
+        "link": ""
+      },
+      {
+        "name": "NotTo",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `not to`?",
+        "link": ""
+      },
+      {
+        "name": "NowKnownAs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `now known as` instead of `now know as`.",
+        "link": ""
+      },
+      {
+        "name": "NowWay",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `no way`?",
+        "link": ""
+      },
+      {
+        "name": "NumericRangeEnDash",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use an en dash (–) in ranges of numbers. Ignore this if it is math.",
+        "link": ""
+      },
+      {
+        "name": "OfCourse",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `of course`?",
+        "link": ""
+      },
+      {
+        "name": "OffTheCuff",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated form for `off-the-cuff`.",
+        "link": ""
+      },
+      {
+        "name": "OkToOkay",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `okay` instead of `ok`.",
+        "link": ""
+      },
+      {
+        "name": "OldestInTheBook",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `in the book`?",
+        "link": ""
+      },
+      {
+        "name": "OldWivesTale",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for a superstition or myth.",
+        "link": ""
+      },
+      {
+        "name": "OnceInAWhile",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct idiom is `once in a while`.",
+        "link": ""
+      },
+      {
+        "name": "OnceOrTwice",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean “or”?",
+        "link": ""
+      },
+      {
+        "name": "OneFellSwoop",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for something happening suddenly.",
+        "link": ""
+      },
+      {
+        "name": "OnesOwnAccord",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct preposition is `of`.",
+        "link": ""
+      },
+      {
+        "name": "OnesSelf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "If you mean the reflexive pronoun for a generic or unspecified person, use `oneself`. Ignore this if you 're referring to an individual's distinct identity or ego.",
+        "link": ""
+      },
+      {
+        "name": "OnFirstGlance",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `at first glance` instead of `on first glance` when describing an immediate impression.",
+        "link": ""
+      },
+      {
+        "name": "OnSecondThought",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Idiomatic expression: use `on second thought` instead of `on second though`",
+        "link": ""
+      },
+      {
+        "name": "OnTheSpurOfTheMoment",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for acting spontaneously.",
+        "link": ""
+      },
+      {
+        "name": "OnTopOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `on top of`?",
+        "link": ""
+      },
+      {
+        "name": "OpenCompounds",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "`{phrase}` should be written as two words.",
+        "link": ""
+      },
+      {
+        "name": "OughtToBe",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `ought to be`?",
+        "link": ""
+      },
+      {
+        "name": "OutOfSync",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `out of sync` or `out of synch`?",
+        "link": ""
+      },
+      {
+        "name": "OverPlus",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "It's redundant to use both `over` and `plus`.",
+        "link": ""
+      },
+      {
+        "name": "PaleByComparison",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "In this idiom, the word `pale` is correctly a verb, not an adjective.",
+        "link": ""
+      },
+      {
+        "name": "PartsOfSpeech",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct plural is `parts of speech`.",
+        "link": ""
+      },
+      {
+        "name": "PassionateAbout",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `about` instead of `of` with `passionate`",
+        "link": ""
+      },
+      {
+        "name": "PasswordProtectedHyphen",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Hyphenate `password-protected` when the phrase modifies a following resource.",
+        "link": ""
+      },
+      {
+        "name": "PeaceOfMind",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The phrase is `peace of mind`, meaning `calm`. A `piece` is a `part` of something.",
+        "link": ""
+      },
+      {
+        "name": "PedalToTheMetal",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the idiom `pedal to the metal`.",
+        "link": ""
+      },
+      {
+        "name": "PerSe",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The correct spelling is `per se` (with no hyphen)",
+        "link": ""
+      },
+      {
+        "name": "PleasRequestVerb",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `please` as the request opener.",
+        "link": ""
+      },
+      {
+        "name": "PluralWrongWordOfPhrase",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This phrase is pluralized on the main noun, not on the last noun.",
+        "link": ""
+      },
+      {
+        "name": "PointsOfView",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct plural is `points of view`.",
+        "link": ""
+      },
+      {
+        "name": "PortAuPrince",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The official spelling is hyphenated.",
+        "link": ""
+      },
+      {
+        "name": "PortoNovo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The official spelling is hyphenated.",
+        "link": ""
+      },
+      {
+        "name": "PossessiveYour",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The possessive version of this word is more common in this context.",
+        "link": ""
+      },
+      {
+        "name": "PrayingMantis",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the insect's correct name.",
+        "link": ""
+      },
+      {
+        "name": "PrincipleToPrincipalRoleNoun",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `principal` for the adjective meaning `main` in this phrase.",
+        "link": ""
+      },
+      {
+        "name": "ProgressiveNeedsBe",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "A progressive verb after `have` needs `been`.",
+        "link": ""
+      },
+      {
+        "name": "ProgressiveNeedsBeContracted",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "A progressive verb after `have` needs `been`.",
+        "link": ""
+      },
+      {
+        "name": "PronounAre",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the full verb or the contraction after this pronoun.",
+        "link": ""
+      },
+      {
+        "name": "QuantifierNeedsOf",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Add `of` in this quantity phrase.",
+        "link": ""
+      },
+      {
+        "name": "QuiteMany",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `quite a few` instead of `quite many`.",
+        "link": ""
+      },
+      {
+        "name": "RapidFire",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "It is more idiomatic to hypenate `rapid-fire`.",
+        "link": ""
+      },
+      {
+        "name": "ReadsAndWrites",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `reads and writes` or `read and write`? If they are main nouns they should probably both be plural (disk reads and writes). If they describe another noun, they should probably both be singular (read and write permissions).",
+        "link": ""
+      },
+      {
+        "name": "RealTrouper",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for someone who perseveres.",
+        "link": ""
+      },
+      {
+        "name": "ReasonForDoing",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'for' instead of 'of' with 'reason' and progressive verbs.",
+        "link": ""
+      },
+      {
+        "name": "ReasonForDoing2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'for' instead of 'of' with 'reason' and progressive verbs.",
+        "link": ""
+      },
+      {
+        "name": "RedundantAcronyms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The acronym's last letter already stands for the last word. Use just the acronym or the full phrase.",
+        "link": ""
+      },
+      {
+        "name": "RedundantAcronyms2",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The acronym's last letter already stands for the last word. Use just the acronym or the full phrase.",
+        "link": ""
+      },
+      {
+        "name": "RedundantAdditiveAdverbs",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Two additive adverbs together say the same thing twice.",
+        "link": ""
+      },
+      {
+        "name": "RedundantFirsts",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This verb already means the action happened first.",
+        "link": ""
+      },
+      {
+        "name": "RedundantIIRC",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "`IIRC` already means 'if I recall correctly', so adding 'if' or 'correctly' is redundant.",
+        "link": ""
+      },
+      {
+        "name": "RedundantPretty",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Avoid redundancy.",
+        "link": ""
+      },
+      {
+        "name": "RedundantProgressiveComparative",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This phrasing is redundant; use a direct comparative like `more and more`.",
+        "link": ""
+      },
+      {
+        "name": "RedundantSelf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid redundancy by using `self` only once.",
+        "link": ""
+      },
+      {
+        "name": "RedundantThat",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider whether the second `that` adds meaning in this context.",
+        "link": ""
+      },
+      {
+        "name": "RelayOnForRely",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `rely on` when you mean depend on something.",
+        "link": ""
+      },
+      {
+        "name": "RifeWith",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for something abundant.",
+        "link": ""
+      },
+      {
+        "name": "RiseTheRanks",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `through the ranks`?",
+        "link": ""
+      },
+      {
+        "name": "RoadMap",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean `road map`?",
+        "link": ""
+      },
+      {
+        "name": "RollerSkated",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Hyphenate this verb as `roller-skated`.",
+        "link": ""
+      },
+      {
+        "name": "RollerSkated2",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "Hyphenate this verb as `roller-skated`.",
+        "link": ""
+      },
+      {
+        "name": "RulesOfThumb",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct plural is `rules of thumb`.",
+        "link": ""
+      },
+      {
+        "name": "RunIntoProblemsOrTrouble",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "SameAs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `same as`?",
+        "link": ""
+      },
+      {
+        "name": "ScantilyClad",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for minimal attire.",
+        "link": ""
+      },
+      {
+        "name": "SendAnEmailTo",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use the shorter verb form.",
+        "link": ""
+      },
+      {
+        "name": "ShootOneselfInTheFoot",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The idiom is `shoot oneself in the foot`.",
+        "link": ""
+      },
+      {
+        "name": "ShutdownVerb",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the verbal phrase `shut down` when an auxiliary pulls it into a predicate.",
+        "link": ""
+      },
+      {
+        "name": "SimilarLike",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer 'similar to' instead of 'similar like'.",
+        "link": ""
+      },
+      {
+        "name": "SimpleGrammatical",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `simple grammatical` for correct adjective usage.",
+        "link": ""
+      },
+      {
+        "name": "SimplePastToPastParticiple",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the past participle after a form of `have` or `be`.",
+        "link": ""
+      },
+      {
+        "name": "SinceDuration",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`since` takes a point in time; use `for` with a length of time.",
+        "link": ""
+      },
+      {
+        "name": "SneakingSuspicion",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `sneaking suspicion`?",
+        "link": ""
+      },
+      {
+        "name": "SneakPeekPreview",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `peek` for the preview phrase.",
+        "link": ""
+      },
+      {
+        "name": "SomebodyElses",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This should be `somebody else's`?",
+        "link": ""
+      },
+      {
+        "name": "SomeOfThe",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Add `of` to form the partitive phrase: `some of the`.",
+        "link": ""
+      },
+      {
+        "name": "SomethingIs",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer the contraction or full `is` rather than pluralizing this pronoun.",
+        "link": ""
+      },
+      {
+        "name": "SomewhatSomething",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Consider using `something of a` in more formal writing.",
+        "link": ""
+      },
+      {
+        "name": "SomeWithoutArticle",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Detects the redundant article in front of `some` and suggests more natural phrasing.",
+        "link": ""
+      },
+      {
+        "name": "SoonerOrLater",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `sooner rather than later` or `sooner or later`?",
+        "link": ""
+      },
+      {
+        "name": "SoonToBe",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use hyphens when `soon to be` modifies a noun.",
+        "link": ""
+      },
+      {
+        "name": "SoonToBe2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use hyphens when `soon to be` modifies a noun.",
+        "link": ""
+      },
+      {
+        "name": "SoonToBe3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use hyphens when `soon to be` modifies a noun.",
+        "link": ""
+      },
+      {
+        "name": "SoughtAfter",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `sought after`?",
+        "link": ""
+      },
+      {
+        "name": "SoughtAfter2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `sought after`?",
+        "link": ""
+      },
+      {
+        "name": "SpecialAttention",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `special attention`?",
+        "link": ""
+      },
+      {
+        "name": "SpinalChord",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Drop the `h` after these anatomical or wiring descriptors; the structure is a `cord`.",
+        "link": ""
+      },
+      {
+        "name": "Starving",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "A more vivid adjective would better convey intense hunger.",
+        "link": ""
+      },
+      {
+        "name": "StateOfTheArt",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `state of the art`?",
+        "link": ""
+      },
+      {
+        "name": "StatuteOfLimitations",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "A `statue` is a sculpture; in legal terms, the correct word is `statute`.",
+        "link": ""
+      },
+      {
+        "name": "StrikeChord",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the idiom with `chord` when describing a feeling or reaction.",
+        "link": ""
+      },
+      {
+        "name": "SubjectPronoun",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Put the other person first and use `I` in this compound subject.",
+        "link": ""
+      },
+      {
+        "name": "SufficeItToSay",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Suffice it to say` is the more standard and more common variant.",
+        "link": ""
+      },
+      {
+        "name": "SupposedTo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `supposed to`?",
+        "link": ""
+      },
+      {
+        "name": "TakeItPersonally",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The more standard, less colloquial form is `take it personally`.",
+        "link": ""
+      },
+      {
+        "name": "ThanksALot",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The indefinite article `a` is required in `thanks a lot`.",
+        "link": ""
+      },
+      {
+        "name": "ThatChallenged",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `that challenged` for correct relative clause.",
+        "link": ""
+      },
+      {
+        "name": "ThatThis",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `that this`?",
+        "link": ""
+      },
+      {
+        "name": "The",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean the definite article?",
+        "link": ""
+      },
+      {
+        "name": "TheAnother",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `the other` or `another`, not both.",
+        "link": ""
+      },
+      {
+        "name": "TheDifferenceBetween",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The correct word is `difference`, not `different` or `differents`.",
+        "link": ""
+      },
+      {
+        "name": "TheEntiretyOf",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `the entirety of` instead of `the entire of`.",
+        "link": ""
+      },
+      {
+        "name": "TheMy",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use either the definite article 'the' or the possessive. Using both together is ungrammatical in English.",
+        "link": ""
+      },
+      {
+        "name": "TheMy2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use either the definite article 'the' or the possessive. Using both together is ungrammatical in English.",
+        "link": ""
+      },
+      {
+        "name": "ThenThan",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `than` for comparisons.",
+        "link": ""
+      },
+      {
+        "name": "ThenThanMoreLess",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `than` for comparisons.",
+        "link": ""
+      },
+      {
+        "name": "ThePointFor",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `the point of`?",
+        "link": ""
+      },
+      {
+        "name": "ThereAfterCompound",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This two-word form is likely intended as the single adverb.",
+        "link": ""
+      },
+      {
+        "name": "ThereAfterCompound2",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This two-word form is likely intended as the single adverb.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreement",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreementContracted",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreementInverted",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreementInvertedPast",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreementPluralBe",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereIsAgreementPluralBeInverted",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "There is disagreement in number between the verb and the noun.",
+        "link": ""
+      },
+      {
+        "name": "ThereMissingIsClause",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "This clause usually needs a linking verb after `there`.",
+        "link": ""
+      },
+      {
+        "name": "ThereOwn",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the possessive `their`?",
+        "link": ""
+      },
+      {
+        "name": "ThereOwn2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the possessive `their`?",
+        "link": ""
+      },
+      {
+        "name": "ThereOwn3",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "Did you mean the possessive `their`?",
+        "link": ""
+      },
+      {
+        "name": "ThereOwn4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean the possessive `their`?",
+        "link": ""
+      },
+      {
+        "name": "TheTheToThatThe",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `that the` or just `the`?",
+        "link": ""
+      },
+      {
+        "name": "TheWhetherWeather",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "This phrase likely uses the noun for atmospheric conditions.",
+        "link": ""
+      },
+      {
+        "name": "TheyreToTheir",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `their`?",
+        "link": ""
+      },
+      {
+        "name": "TheyToThem",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `them` when the pronoun follows a preposition or transitive verb.",
+        "link": ""
+      },
+      {
+        "name": "ThieveNoun",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `thief` for a single person who steals.",
+        "link": ""
+      },
+      {
+        "name": "ThieveNounPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use `thief` for a single person who steals.",
+        "link": ""
+      },
+      {
+        "name": "ThingThink",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `think`?",
+        "link": ""
+      },
+      {
+        "name": "ThinkKnowOff1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This collocation usually takes `of` rather than `off`.",
+        "link": ""
+      },
+      {
+        "name": "ThinkKnowOff2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This collocation usually takes `of` rather than `off`.",
+        "link": ""
+      },
+      {
+        "name": "ThisTypeOfThing",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The grammatical number of the determiner and the two nouns must agree.",
+        "link": ""
+      },
+      {
+        "name": "ThoughtProcess",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `thought process`?",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerb1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerb2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerb3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerb4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerb5",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThreatenVerbPhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Modal verbs followed by `threat` almost always intend the verb `threaten`.",
+        "link": ""
+      },
+      {
+        "name": "ThriveOn",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `thrive on`?",
+        "link": ""
+      },
+      {
+        "name": "ThrowAway",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `throw away` or `threw away`, depending on the tense you need.",
+        "link": ""
+      },
+      {
+        "name": "TickingTimeClock",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use `ticking time bomb` for disastrous consequences, otherwise avoid redundancy with just `ticking clock`.",
+        "link": ""
+      },
+      {
+        "name": "ToBackOut",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Separate `backout` into the verb `back out` after `to`.",
+        "link": ""
+      },
+      {
+        "name": "ToDoHyphen",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Hyphenate `to-do`.",
+        "link": ""
+      },
+      {
+        "name": "ToGreatLengths",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "The idiom is to go `to great lengths`.",
+        "link": ""
+      },
+      {
+        "name": "ToLoseTooLoose",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "For `not to win`, use `to lose`. For `not tight enough`, use `too loose`.",
+        "link": ""
+      },
+      {
+        "name": "TomorrowPossessiveModifier1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive form when this time word modifies a following noun phrase.",
+        "link": ""
+      },
+      {
+        "name": "TomorrowPossessiveModifier3",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive form when this time word modifies a following noun phrase.",
+        "link": ""
+      },
+      {
+        "name": "TomorrowPossessiveModifier4",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive form when this time word modifies a following noun phrase.",
+        "link": ""
+      },
+      {
+        "name": "TomorrowPossessiveModifier5",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive form when this time word modifies a following noun phrase.",
+        "link": ""
+      },
+      {
+        "name": "TomorrowPossessiveModifier6",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the possessive form when this time word modifies a following noun phrase.",
+        "link": ""
+      },
+      {
+        "name": "TongueInCheek",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `tongue in cheek` for the idiom.",
+        "link": ""
+      },
+      {
+        "name": "ToSomeDegree",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The correct preposition in this phrase is 'to', not 'in'.",
+        "link": ""
+      },
+      {
+        "name": "ToTheMannerBorn",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for being naturally suited to something.",
+        "link": ""
+      },
+      {
+        "name": "Touristic",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "The word `touristic` is rarely used by native speakers.",
+        "link": ""
+      },
+      {
+        "name": "Towards",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use `towards` without the preceding `to`.",
+        "link": ""
+      },
+      {
+        "name": "ToWorryAbout",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean the progressive form?",
+        "link": ""
+      },
+      {
+        "name": "TrialAndError",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "You misspelled `trial`.",
+        "link": ""
+      },
+      {
+        "name": "TrueToWord",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Replace the plural `words` with the idiomatic singular form when someone stays true to a promise.",
+        "link": ""
+      },
+      {
+        "name": "TruthToTheFact",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "A `fact` is something that is true. Did you mean a `claim`, `story`, `allegation`, or etc.?",
+        "link": ""
+      },
+      {
+        "name": "TryOnesHandAt",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "This idiom uses the singular `hand`.",
+        "link": ""
+      },
+      {
+        "name": "TryOnesLuck",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Try out` is a different idiom than `try one's luck`",
+        "link": ""
+      },
+      {
+        "name": "TuffEnough",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Swap `tuff` for `tough` when it describes strength or difficulty followed by 'enough' or 'like'.",
+        "link": ""
+      },
+      {
+        "name": "TurnItOff",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `turn it off`?",
+        "link": ""
+      },
+      {
+        "name": "Unless",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Unless if` is not idiomatic English. `Unless`, `except if`, and `except when` express a condition that is true in all cases except one.",
+        "link": ""
+      },
+      {
+        "name": "VeryKnown",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Replace `very known` with the idiomatic phrasing that mentions recognition explicitly.",
+        "link": ""
+      },
+      {
+        "name": "VeryLess",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "English doesn't use `very` with `less`.",
+        "link": ""
+      },
+      {
+        "name": "VeryUnique",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Unique` is absolute, so consider using `unique` alone or a more precise adjective such as `special`, `rare`, or `unusual`.",
+        "link": ""
+      },
+      {
+        "name": "ViceVersa",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "The expression \"vice versa\" is spelled without hyphens.",
+        "link": ""
+      },
+      {
+        "name": "WantBe",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean `won't be` or `want to be`?",
+        "link": ""
+      },
+      {
+        "name": "WasAloud",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `{verb} allowed`?",
+        "link": ""
+      },
+      {
+        "name": "WasComprisedOf",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Many style guides treat this wording as nonstandard; consider a clearer construction.",
+        "link": ""
+      },
+      {
+        "name": "WaveFunction",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean `wave function`?",
+        "link": ""
+      },
+      {
+        "name": "WebScraping",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use %s: `scrape` means to extract, `scrap` means to discard.",
+        "link": ""
+      },
+      {
+        "name": "WellBeing",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the hyphenated form for `well-being`.",
+        "link": ""
+      },
+      {
+        "name": "WellEducated",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Prefer `well-educated` for this compound.",
+        "link": ""
+      },
+      {
+        "name": "WellKept",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Highly-kept` is not standard. To describe secrets, `well-kept` is the most used phrase.",
+        "link": ""
+      },
+      {
+        "name": "WereWhere",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean %s?",
+        "link": ""
+      },
+      {
+        "name": "Whereas",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Whereas` is commonly mistaken for `where as`.",
+        "link": ""
+      },
+      {
+        "name": "WhetYourAppetite",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the correct phrase for stimulating desire.",
+        "link": ""
+      },
+      {
+        "name": "WidelyAccepted",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the adverb `widely` in this context. For example, `widely accepted` or `widely used` is standard usage.",
+        "link": ""
+      },
+      {
+        "name": "WillContain",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `will contain`?",
+        "link": ""
+      },
+      {
+        "name": "WillNonLemma",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "`Will` and `shall` should be followed by a verb in its base form.",
+        "link": ""
+      },
+      {
+        "name": "WinPrize",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Perhaps you meant the word for an award.",
+        "link": ""
+      },
+      {
+        "name": "WishCould1",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'could' instead of 'can' after 'wish'.",
+        "link": ""
+      },
+      {
+        "name": "WishCould2",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'could' instead of 'can' after 'wish'.",
+        "link": ""
+      },
+      {
+        "name": "WithoutOut",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Drop the duplicated `out` when it follows `without`.",
+        "link": ""
+      },
+      {
+        "name": "WokVerbTypo1",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `work`?",
+        "link": ""
+      },
+      {
+        "name": "WokVerbTypo2",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `work`?",
+        "link": ""
+      },
+      {
+        "name": "WokVerbTypo3",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `work`?",
+        "link": ""
+      },
+      {
+        "name": "WokVerbTypo4",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `work`?",
+        "link": ""
+      },
+      {
+        "name": "WokVerbTypoPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Did you mean `work`?",
+        "link": ""
+      },
+      {
+        "name": "WorstCaseScenario",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Hyphenate `worst-case`.",
+        "link": ""
+      },
+      {
+        "name": "WorthToDo",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the `gerund` of the verb, the form that ends in `-ing`",
+        "link": ""
+      },
+      {
+        "name": "WouldNeverHave",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "For a more standard style, consider using %s.",
+        "link": ""
+      },
+      {
+        "name": "WrongApostrophe",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Did you mean `{replacement_str}`?",
+        "link": ""
+      },
+      {
+        "name": "WroughtIron",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Prefer the standard term `wrought iron`.",
+        "link": ""
+      },
+      {
+        "name": "YeaToYeah",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "If you mean the informal word for `yes` and not the biblical or legalistic `yea`, the standard spelling is `yeah`.",
+        "link": ""
+      },
+      {
+        "name": "YehToYeah",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "If you mean the informal word for `yes`, the standard spelling is `yeah`.",
+        "link": ""
+      },
+      {
+        "name": "YourOutClauseAgreement",
+        "extends": "sequence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the contraction for `you are` in this clause.",
+        "link": ""
+      },
+      {
+        "name": "YourOutClauseAgreementPhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the contraction for `you are` in this clause.",
+        "link": ""
+      },
+      {
+        "name": "YourPredicateAdjective",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the contraction `you're` (you are) before predicate adjectives instead of the possessive `your` or its variants.",
+        "link": ""
+      },
+      {
+        "name": "Yourself",
+        "extends": "sequence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Did you mean the closed compound `yourself`?",
+        "link": ""
       }
     ]
   },
@@ -1246,43 +6139,6 @@
         "scope": "text",
         "message": "Consider using '%s' instead of '%s'.",
         "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
-      }
-    ]
-  },
-  {
-    "name": "NoAnimalViolence",
-    "description": "Vale style rules for flagging language patterns that have established plain-language alternatives. Covers 60+ documented patterns across comments, docs, and prose.",
-    "homepage": "https://github.com/Open-Paws/vale-no-animal-violence",
-    "url": "https://github.com/Open-Paws/vale-no-animal-violence/releases/latest/download/NoAnimalViolence.zip",
-    "logo": "https://github.com/Open-Paws.png",
-    "tags": [
-      "style",
-      "inclusive-language"
-    ],
-    "rules": [
-      {
-        "name": "AnimalIdioms",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'. This phrase normalizes violence toward animals.",
-        "link": "https://doi.org/10.1007/s43681-023-00380-w"
-      },
-      {
-        "name": "AnimalMetaphors",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'. This term references animals as objects or tools.",
-        "link": "https://doi.org/10.1007/s43681-023-00380-w"
-      },
-      {
-        "name": "TechTerminology",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'. This technical term has a more precise alternative.",
-        "link": "https://doi.org/10.1007/s43681-023-00380-w"
       }
     ]
   },

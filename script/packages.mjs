@@ -14,7 +14,7 @@
  * pages are static, work without JavaScript, and can be indexed.
  */
 
-import { writeFileSync, mkdirSync } from 'node:fs';
+import { existsSync, writeFileSync, mkdirSync } from 'node:fs';
 import { dirname } from 'node:path';
 import { unzipSync, strFromU8 } from 'fflate';
 import { parse } from 'yaml';
@@ -88,13 +88,25 @@ async function rulesFor(pkg) {
 	return rules;
 }
 
-const res = await fetch(LIBRARY);
-if (!res.ok) {
-	console.error(`packages: ${res.status} fetching library.json`);
+// Part of `make build`, so an unreachable library must not stop a build: the
+// last generated file is checked in, and rebuilding from it is what a local
+// build without a network -- or a GitHub outage mid-deploy -- should do. Only
+// a first run, with nothing to fall back to, has no page to render.
+let library;
+try {
+	const res = await fetch(LIBRARY);
+	if (!res.ok) {
+		throw new Error(`${res.status} fetching library.json`);
+	}
+	library = await res.json();
+} catch (err) {
+	if (existsSync(OUT)) {
+		console.warn(`packages: ${err.message}; keeping the existing ${OUT}`);
+		process.exit(0);
+	}
+	console.error(`packages: ${err.message}`);
 	process.exit(1);
 }
-
-const library = await res.json();
 const packages = [];
 let failed = 0;
 

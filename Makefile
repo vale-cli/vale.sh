@@ -14,6 +14,7 @@ endef
 all: build
 
 build:
+	node script/packages.mjs
 	$(call build_index)
 	pnpm run build
 
@@ -34,3 +35,9 @@ media:
 # the counts the generator shows. Run it when adopters.json changes.
 configs:
 	node script/configs/main.mjs
+
+# Rebuild /explorer alone, without the rest of a build. `build` runs this too,
+# so the page follows the package library on its own; this is for checking that
+# step by itself.
+packages:
+	node script/packages.mjs
