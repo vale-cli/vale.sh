@@ -235,11 +235,11 @@ for name, bg, fill in (('dark', GRAPHITE, GRASS_LIGHT), ('light', PAPER, GRASS))
 
 # Social card, 1200x630.
 CW, CH = 1200, 630
-lock_h = 150
+lock_h = 210
 k = lock_h / LOCK_H
-tag, tag_w = text_path('A linter for prose.', INTER, 34, 0, 0, MUTED)
-top = (CH - (lock_h + 74)) / 2
-tag, _ = text_path('A linter for prose.', INTER, 34, (CW - tag_w) / 2, top + lock_h + 74, MUTED)
+tag, tag_w = text_path('Your style, our editor.', INTER, 42, 0, 0, MUTED)
+top = (CH - (lock_h + 96)) / 2
+tag, _ = text_path('Your style, our editor.', INTER, 42, (CW - tag_w) / 2, top + lock_h + 96, MUTED)
 social = (
     f'{SVG} viewBox="0 0 {CW} {CH}"><rect width="{CW}" height="{CH}" fill="{GRAPHITE}"/>'
     f'<g transform="translate({(CW - LOCK_W * k) / 2:.2f} {top:.2f}) scale({k:.6f})">{body(LOCK_DARK)}</g>{tag}</svg>\n'
