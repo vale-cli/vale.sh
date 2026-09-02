@@ -6,7 +6,7 @@ Learn about the sequence extension point.
 | ------------ | ------------ | ------------------------------------------------------------------------ |
 | `tokens`     | `[]NLPToken` | A list of tokens with associated NLP metadata.                           |
 | `ignorecase` | `bool`       | Makes all matches case-insensitive.                                      |
-| `exceptions` | `[]string`   | Regexes marking sentence regions; a match beginning inside one is dropped. |
+| `exceptions` | `[]string`   | Sentence regions, as regexes; a match beginning inside one is dropped. |
 
 While most extension points focus on writing _style_, `sequence` aims to support grammar-focused rules.
 
@@ -36,6 +36,10 @@ Tokens judge the sentence one word at a time. When a rule needs a judgment about
 exceptions:
   - '^(?i:(?:in|on|at|when|while|if)\b[^,]{0,60}),'
 ```
+
+{% hint style="info" %}
+`exceptions`, and the boundary behavior of `negate` described below, require Vale v3.20.0 or later.
+{% endhint %}
 
 Each entry in a sequence is known as an `NLPToken` and has the following structure:
 

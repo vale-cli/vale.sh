@@ -2,6 +2,7 @@
 	import { JsonLd, MetaTags } from 'svelte-meta-tags';
 
 	import PostBanner from '$lib/components/PostBanner.svelte';
+	import PostDiscuss from '$lib/components/PostDiscuss.svelte';
 	import PostLintFooter from '$lib/components/PostLintFooter.svelte';
 	import report from '$lib/data/lint.json';
 	import { authorOf } from '$lib/posts';
@@ -126,6 +127,8 @@
 	</header>
 
 	<Body />
+
+	<PostDiscuss />
 
 	<PostLintFooter slug={data.meta.slug} />
 </article>

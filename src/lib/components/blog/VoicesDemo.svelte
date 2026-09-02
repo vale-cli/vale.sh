@@ -5,6 +5,11 @@
 	import { before, repo, voices } from '$lib/data/voices';
 
 	import DraftTabs from './DraftTabs.svelte';
+	import Figure from './Figure.svelte';
+
+	let { caption }: { caption?: string } = $props();
+
+	const step = 'mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground';
 
 	// The shared core isn't a voice you pick -- it's on under every one of
 	// them -- so it doesn't get a pill.
@@ -26,7 +31,8 @@
 	const ruleUrl = (rule: string) => `${repo}/Voices/styles/${rule.replace('.', '/')}.yml`;
 </script>
 
-<div class="not-prose my-8">
+<Figure {caption}>
+	<p class={step}>1 · Pick a voice</p>
 	<div class="flex flex-wrap gap-2">
 		{#each selectable as voice (voice.name)}
 			<button
@@ -49,6 +55,7 @@
 		>
 	</div>
 
+	<p class="{step} mt-6">2 · Read the rewrite, or the diff against the draft</p>
 	<DraftTabs
 		{before}
 		after={active.after}
@@ -61,7 +68,7 @@
 
 	<div class="mt-5">
 		<p class="mb-2 flex items-baseline gap-2 text-xs font-semibold uppercase tracking-wide">
-			<span class="text-muted-foreground">What Vale returned on the draft</span>
+			<span class="text-muted-foreground">3 · What Vale returned on the draft</span>
 			<span
 				class="rounded bg-muted px-1.5 py-0.5 font-mono text-[10px] normal-case tabular-nums tracking-normal text-muted-foreground"
 				>{active.alerts.length}</span
@@ -122,4 +129,4 @@
 			a model cannot hold in its head and a lookup table gets exactly right.
 		</p>
 	{/if}
-</div>
+</Figure>

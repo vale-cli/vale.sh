@@ -5,14 +5,21 @@
 	// tokens only on the requests where a draft breaks one, so their honest
 	// shape is a band: the top edge is the worst case (every draft dirty at
 	// the full 735-token report), the bottom is a clean session at zero.
+	//
+	// The SVG holds only the marks, so it can scale to any column width; the
+	// labels are HTML underneath, where they stay legible on a phone.
+	import Figure from './Figure.svelte';
+
+	let { caption }: { caption?: string } = $props();
+
 	const REQUESTS = 50;
 	const SKILL = 3777;
 	const BRIEF = 1535;
 	const ALERTS = 735;
 
 	const W = 700;
-	const H = 300;
-	const M = { top: 24, right: 215, bottom: 36, left: 16 };
+	const H = 280;
+	const M = { top: 12, right: 12, bottom: 12, left: 12 };
 
 	const yMax = SKILL * REQUESTS;
 	const x = (r: number) => M.left + (r / REQUESTS) * (W - M.left - M.right);
@@ -20,82 +27,57 @@
 
 	const fmt = (n: number) => n.toLocaleString('en-US');
 
-	const lines = [
-		{ label: `skill · ${fmt(SKILL * REQUESTS)}`, per: SKILL, cls: 'stroke-rose-400 fill-rose-400' },
+	const series = [
+		{ label: 'skill', total: SKILL * REQUESTS, stroke: 'stroke-rose-400', swatch: 'bg-rose-400' },
+		{ label: 'briefs', total: BRIEF * REQUESTS, stroke: 'stroke-amber-400', swatch: 'bg-amber-400' },
 		{
-			label: `briefs · ${fmt(BRIEF * REQUESTS)}`,
-			per: BRIEF,
-			cls: 'stroke-amber-400 fill-amber-400'
-		}
+			label: 'rules, worst',
+			total: ALERTS * REQUESTS,
+			stroke: 'stroke-lime-500',
+			swatch: 'bg-lime-500'
+		},
+		{ label: 'rules, clean', total: 0, stroke: 'stroke-lime-500', swatch: 'bg-lime-500' }
 	];
 </script>
 
-<div class="not-prose my-8 overflow-x-auto">
+<Figure {caption}>
 	<svg
 		viewBox="0 0 {W} {H}"
-		class="min-w-[560px]"
+		class="w-full"
 		role="img"
 		aria-label="Cumulative token cost over fifty requests: a resident skill and briefs rise as straight lines; rules stay in a band between zero and the worst case."
 	>
-		<!-- Baseline and worst-case edge of the rules band. -->
+		<line x1={x(0)} y1={y(0)} x2={x(REQUESTS)} y2={y(0)} class="stroke-border" />
+		<!-- The rules band: from a clean session on the baseline up to the worst case. -->
 		<polygon
 			points="{x(0)},{y(0)} {x(REQUESTS)},{y(ALERTS * REQUESTS)} {x(REQUESTS)},{y(0)}"
 			class="fill-lime-500/15"
 		/>
-		<line
-			x1={x(0)}
-			y1={y(0)}
-			x2={x(REQUESTS)}
-			y2={y(ALERTS * REQUESTS)}
-			class="stroke-lime-500"
-			stroke-width="2"
-		/>
-		<line
-			x1={x(0)}
-			y1={y(0)}
-			x2={x(REQUESTS)}
-			y2={y(0)}
-			class="stroke-lime-500"
-			stroke-width="2.5"
-		/>
-		<text
-			x={x(REQUESTS) + 10}
-			y={y(ALERTS * REQUESTS) + 4}
-			class="fill-lime-600 text-[12px] dark:fill-lime-400"
-			font-family="ui-monospace, monospace">rules, worst · {fmt(ALERTS * REQUESTS)}</text
-		>
-		<text
-			x={x(REQUESTS) + 10}
-			y={y(0) + 4}
-			class="fill-lime-600 text-[12px] font-bold dark:fill-lime-400"
-			font-family="ui-monospace, monospace">rules, clean · 0</text
-		>
-
-		{#each lines as line (line.label)}
+		{#each series as s (s.label)}
 			<line
 				x1={x(0)}
 				y1={y(0)}
 				x2={x(REQUESTS)}
-				y2={y(line.per * REQUESTS)}
-				class={line.cls}
-				stroke-width="2"
+				y2={y(s.total)}
+				class={s.stroke}
+				stroke-width={s.total === 0 ? 3 : 2}
+				stroke-linecap="round"
 			/>
-			<text
-				x={x(REQUESTS) + 10}
-				y={y(line.per * REQUESTS) + 4}
-				class="{line.cls} text-[12px]"
-				font-family="ui-monospace, monospace">{line.label}</text
-			>
 		{/each}
-
-		<!-- Axes. -->
-		<line x1={x(0)} y1={y(0)} x2={x(REQUESTS)} y2={y(0)} class="stroke-border" />
-		<text
-			x={x(REQUESTS / 2)}
-			y={H - 10}
-			text-anchor="middle"
-			class="fill-muted-foreground text-[12px]"
-			font-family="ui-monospace, monospace">requests → {REQUESTS}</text
-		>
 	</svg>
-</div>
+
+	<div class="mt-2 flex items-baseline justify-between text-xs text-muted-foreground">
+		<span class="font-mono">1 request</span>
+		<span class="font-mono">{REQUESTS} requests</span>
+	</div>
+
+	<ul class="mt-3 grid grid-cols-2 gap-x-6 gap-y-1.5 text-sm sm:flex sm:flex-wrap sm:gap-x-8">
+		{#each series as s (s.label)}
+			<li class="flex items-center gap-2">
+				<span class="h-2.5 w-2.5 shrink-0 rounded-full {s.swatch}" aria-hidden="true"></span>
+				<span>{s.label}</span>
+				<span class="font-mono tabular-nums text-muted-foreground">{fmt(s.total)}</span>
+			</li>
+		{/each}
+	</ul>
+</Figure>

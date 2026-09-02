@@ -116,4 +116,24 @@ proselint.Typography = YES
 
 See [MinAlertLevel](minalertlevel.md) for how levels affect Vale's exit code.
 
+## [Parameters](basedonstyles.md#parameters)
+
+{% hint style="info" %}
+Bracketed parameters require Vale v3.20.0 or later.
+{% endhint %}
+
+A bracketed key overrides one scalar on a rule you have enabled, keeping the rule's identity:
+
+```ini
+[*.md]
+BasedOnStyles = Std
+
+# The rule stays Std.SentenceLength; only its threshold moves.
+Std.SentenceLength[max] = 30
+```
+
+Values are coerced to the field's type at compile time, and an unknown parameter fails the rule's compilation rather than being silently dropped.
+
+Only scalars can be tuned this way. A structural field — `tokens`, `swap`, `message` — is refused with a pointer at [extending the rule](../topics/styles.md#extending-another-rule) in a style, which is what authoring is for. `[level]` is refused too: the classic `Style.Rule = warning` syntax already says that.
+
 Related: [MinAlertLevel](minalertlevel.md) [SkippedScopes](skippedscopes.md)

@@ -77,6 +77,72 @@ Each rule _extends_ a specific check, which is a built-in function that performs
 | [sequence](../checks/sequence.md)             | Ensure that a regex pattern is used in a specific order. Supports part-of-speech tagging. |
 | [script](../checks/script.md)                 | Run a custom Tengo script to check your content.                                          |
 
+## [Extending another rule](styles.md#extending-another-rule)
+
+{% hint style="info" %}
+Rule inheritance requires Vale v3.20.0 or later.
+{% endhint %}
+
+An `extends` value containing a dot names a rule rather than a check: the new rule starts from that rule's full definition and lays its own keys on top. Two styles can share one carefully built pattern and disagree only about message, level, or a handful of entries:
+
+```yaml
+# House/Hedging.yml
+extends: Direct.Hedging
+message: "Hedge: '%s'. We state things plainly here."
+level: error
+```
+
+The parent has to be present on the `StylesPath`, not enabled — inheritance is a file reference, and `vale sync` is what puts the file there.
+
+A bare key replaces the parent's value wholesale. Lists and maps also take overlay edits:
+
+* `key+` appends to the parent's list, or merges into a parent map with the child's entries winning.
+* `key-` removes entries from a parent list by their source text, or the named keys from a parent map. Removing something the parent doesn't have is a compile error, so an upstream rename is heard about rather than silently diverged from.
+
+```yaml
+# Stricter than the parent: two more phrases, one dropped.
+extends: Direct.Hedging
+message: "Hedge: '%s'."
+tokens+:
+  - 'arguably'
+  - 'to some extent'
+tokens-:
+  - 'perhaps'
+```
+
+Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once.
+
+A directory whose name starts with `_` or `.` is skipped at load time but stays visible to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
+
+```
+styles/GenZ/
+├── _shared/
+│   └── Slang.yml   # never loads; Density, Budget, and Presence extend it
+├── Budget.yml
+├── Density.yml
+└── Presence.yml
+```
+
+A fragment is validated as the chain's root, so it must carry a `message` — even one no alert will ever show.
+
+## [Nested directories](styles.md#nested-directories)
+
+{% hint style="info" %}
+Nested rule directories require Vale v3.20.0 or later.
+{% endhint %}
+
+A style can organize its rules in subdirectories, and the path joins the rule's name: `Std/dates/TimeFormat.yml` is addressed as `Std.dates.TimeFormat` everywhere a rule name goes — configuration, in-text comments, filters, and output.
+
+```
+styles/Std/
+├── dates/
+│   ├── DateFormat.yml
+│   └── TimeFormat.yml
+└── SentenceLength.yml
+```
+
+As above, directories prefixed with `.` or `_` are inert, so drafts and shared fragments can sit inside a style without loading.
+
 ## [Regex](styles.md#regex)
 
 Many rules will require the use of regular expressions to match specific patterns in your content. Vale uses [a superset](https://github.com/dlclark/regexp2?tab=readme-ov-file#compare-regexp-and-regexp2) of Go’s [regexp/syntax](https://pkg.go.dev/regexp/syntax) package to provide a powerful and flexible regex engine.

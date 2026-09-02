@@ -39,7 +39,7 @@ export type Cost = { label: string; tokens: number; when: string };
 
 /** One hedged draft, checked against every voice. */
 export const before =
-	"# Understanding Why Your Component Keeps Re-Rendering\n\nHere's the thing: it's worth noting that the reason your\nReact component is re-rendering is likely because you're\ncreating a new object reference on each render cycle,\nwhich breaks React's referential equality check — so you\nmay want to consider memoization.\n\nThis is not just a performance problem, it's a\ncorrectness problem. Furthermore, experts agree that a\nrobust approach to this paradigm shift will empower your\nteam to streamline a number of things in the render\npath, underscoring its significance.\n\nIn conclusion, the team made a decision to leverage\nseveral caching solutions.";
+	"# Understanding Why Your Component Keeps Re-Rendering\n\nHere's the thing: it's worth noting that the reason your\nReact component is re-rendering is likely because you're\ncreating a new object reference on each render cycle,\nwhich breaks React's referential equality check — so you\nmay want to consider memoization.\n\nThis is not just a performance problem, it's a\ncorrectness problem. Furthermore, experts agree that a\nrobust approach to this paradigm shift will empower your\nteam to streamline a number of things in the render\npath, underscoring its significance.\n\nIn conclusion, the team made a decision to leverage\nseveral caching solutions.\n\nThe considerations motivating this determination are\nnumerous and multidimensional, necessitating individual\nelaboration of unprecedented comprehensiveness below:\n\n- the initial consideration, comprehensible exclusively\n  in relation to the subsequent consideration\n- the subsequent consideration, substantially a\n  reformulation of the initial consideration\n- a tertiary consideration, incorporated for\n  organizational completeness\n- a quaternary consideration, because enumerations\n  communicate methodological rigorousness\n- a quinary consideration, at which point attention\n  has comprehensively evaporated";
 
 export const voices: Voice[] = [
 	{
@@ -203,7 +203,7 @@ export const voices: Voice[] = [
 			'# Understanding Why Your Component Keeps Re-Rendering\n\nYour render path is cooked. You build a new object every\nrender, and React compares props by reference. A new\nreference never equals the old one, so the memo check\nfails and the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. Stable reference, clean diff, massive W.',
 		alerts: [
 			{
-				line: 1,
+				line: 3,
 				rule: 'GenZ.Presence',
 				message: 'A paragraph here has no slang. This voice is not off.'
 			},
@@ -211,6 +211,11 @@ export const voices: Voice[] = [
 				line: 3,
 				rule: 'Voices.ThroatClearing',
 				message: "Throat-clearing: 'Here's the thing'. Cut it and state the point."
+			},
+			{
+				line: 9,
+				rule: 'GenZ.Presence',
+				message: 'A paragraph here has no slang. This voice is not off.'
 			},
 			{
 				line: 9,
@@ -255,6 +260,11 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 15,
+				rule: 'GenZ.Presence',
+				message: 'A paragraph here has no slang. This voice is not off.'
+			},
+			{
+				line: 15,
 				rule: 'Voices.Recap',
 				message: "Recap ending: 'In conclusion'. End on the last concrete point."
 			},
@@ -267,6 +277,11 @@ export const voices: Voice[] = [
 				line: 15,
 				rule: 'Voices.InflatedWords',
 				message: "Inflated word: use 'use' instead of 'leverage'."
+			},
+			{
+				line: 18,
+				rule: 'GenZ.Presence',
+				message: 'A paragraph here has no slang. This voice is not off.'
 			}
 		]
 	},
@@ -890,5 +905,30 @@ export const coverage: Coverage[] = [
 		voice: 'Simple',
 		source: CATALOG_MIT,
 		why: 'A closed vocabulary'
+	}
+];
+
+/**
+ * One draft, checked both ways, timed once on an Apple M1 (2026-09-02).
+ * Vale is the v3 branch at fcd23e65 with `Voices, Direct` enabled; the model
+ * is claude-fable-5 through Claude Code 2.1.238 with no-ai-slop's SKILL.md
+ * (b53e265) as its system prompt, tools and MCP off, asked to list every
+ * violation in fixtures/before.md. Both figures are wall clock, startup
+ * included. The model also found 24 items to Vale's 17: every pattern
+ * alert, neither sentence-length alert, and nine judgment calls no rule
+ * covers.
+ */
+export type Timing = { label: string; seconds: number; detail: string };
+
+export const timings: Timing[] = [
+	{
+		label: 'Fable 5, full skill loaded',
+		seconds: 23.54,
+		detail: '4,452 tokens in, 2,060 out, $0.19'
+	},
+	{
+		label: 'Vale, Voices + Direct',
+		seconds: 0.05,
+		detail: '17 alerts, no tokens, free'
 	}
 ];

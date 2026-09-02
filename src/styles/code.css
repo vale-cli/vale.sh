@@ -12,6 +12,7 @@ html.dark .shiki span {
    belonged to no palette and did not move when the theme did. */
 pre {
 	border: 1px solid hsl(var(--border));
+	box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
 }
 
 /* Line numbers, on source blocks long enough to cite (the transformer adds
@@ -40,9 +41,11 @@ pre code.numbered .line::before {
 	line-height: 1.7142857;
 	margin-top: 1.7142857em;
 	margin-bottom: 1.7142857em;
-	border-radius: 0.375rem;
+	border-radius: 0.75rem;
 
-	/*padding-top: 0;*/
+	/* The header is a full-bleed title bar, so the block's own padding
+	   starts below it. */
+	padding-top: 0;
 	padding-inline-end: 1.1428571em;
 	padding-bottom: 0.8571429em;
 	padding-inline-start: 1.1428571em;
@@ -70,24 +73,33 @@ pre {
 			width: max-content;
 		}
 
-		/* No language, no header: the rule and label row vanish and Copy sits
-           quietly in the corner. */
-		& .wrapper-copy-code.unlabeled {
-			border-bottom: none;
-			justify-content: flex-end;
-			margin-bottom: 0;
-			padding-bottom: 0;
-		}
-
 		& .wrapper-copy-code {
 			align-items: center;
-			flex-direction: row;
+			background-color: hsl(var(--muted) / 0.4);
+			border-bottom: 1px solid hsl(var(--border) / 0.6);
 			display: flex;
-			justify-content: space-between;
-			width: 100%;
-			border-bottom: 1px solid hsl(var(--border));
+			flex-direction: row;
+			gap: 6px;
+			justify-content: flex-start;
 			margin-bottom: 0.5em;
-			padding-bottom: calc(16px * 0.4);
+			margin-inline: -1.1428571em;
+			min-height: 32px;
+			padding: 0.375rem 0.875rem;
+			width: calc(100% + 2.2857142em);
+
+			/* The three window lights: one dot, two shadows. */
+			&::before {
+				background-color: rgb(239 68 68 / 0.8);
+				border-radius: 9999px;
+				box-shadow:
+					16px 0 0 rgb(245 158 11 / 0.8),
+					32px 0 0 rgb(132 204 22 / 0.8);
+				content: '';
+				flex-shrink: 0;
+				height: 10px;
+				margin-right: 32px;
+				width: 10px;
+			}
 
 			& .copy-code {
 				background-color: transparent;
@@ -95,12 +107,11 @@ pre {
 				border-radius: 6px;
 				color: hsl(var(--muted-foreground));
 				cursor: pointer;
-				font-family: ui-monospace, monospace;
-				font-size: 11px;
+				font-family: inherit;
+				font-size: 12px;
 				line-height: 1rem;
-				margin-top: calc(16px * 0.25);
-				margin-bottom: calc(16px * 0.25);
-				padding: 3px 10px;
+				margin-left: auto;
+				padding: 2px 8px;
 				transition:
 					color 0.15s,
 					border-color 0.15s;
@@ -121,9 +132,8 @@ pre {
 				color: hsl(var(--muted-foreground));
 				display: flex;
 				font-family: ui-monospace, monospace;
-				font-size: 11px;
+				font-size: 12px;
 				gap: 8px;
-				letter-spacing: 0.08em;
 			}
 
 			/* The language chip leads with its icon when simple-icons has one,

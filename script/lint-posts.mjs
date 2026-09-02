@@ -7,10 +7,19 @@
 // deploy, so the numbers are pinned to the Vale version that produced them
 // and the site builds without a Vale binary present.
 import { execFileSync } from 'node:child_process';
-import { readdirSync, writeFileSync } from 'node:fs';
+import { mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join } from 'node:path';
 
 const root = new URL('..', import.meta.url).pathname;
 const run = (...args) => execFileSync('vale', args, { cwd: root, encoding: 'utf8' });
+
+// A component whose props span lines -- `<TermApp` alone on its line -- is
+// not a complete tag to Markdown, so Vale would read the props as prose.
+// The lint run skips them through BlockIgnores in .vale.ini, but ls-metrics
+// builds its own configuration, so the metrics run gets a copy of the post
+// with those blocks cut out instead.
+const reComponent = /^<[A-Z][A-Za-z]*\n[\s\S]*?\/>$/gm;
 
 const version = run('-v')
 	.trim()
@@ -32,7 +41,11 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 	const alerts = Object.values(JSON.parse(output || '{}')).flat();
 	const count = (sev) => alerts.filter((a) => a.Severity === sev).length;
 
-	const m = JSON.parse(run('ls-metrics', path));
+	const scratch = mkdtempSync(join(tmpdir(), 'lint-posts-'));
+	const prose = join(scratch, file);
+	writeFileSync(prose, readFileSync(`${root}${path}`, 'utf8').replace(reComponent, ''));
+	const m = JSON.parse(run('ls-metrics', prose));
+	rmSync(scratch, { recursive: true, force: true });
 	const round = (n) => Math.round(n * 10) / 10;
 
 	posts[slug] = {

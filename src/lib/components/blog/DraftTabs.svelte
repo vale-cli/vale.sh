@@ -2,11 +2,15 @@
 	// A draft, its rewrite, and the redline between them, as tabs. The diff is
 	// a word-level LCS computed here rather than shipped as data, so it can
 	// never disagree with the texts it compares.
+	import Figure from './Figure.svelte';
+
 	type Tab = 'before' | 'after' | 'diff';
 
 	let {
 		before,
 		after,
+		caption,
+		hint,
 		beforeLabel = 'Before',
 		afterLabel = 'After',
 		beforeHref,
@@ -15,6 +19,8 @@
 	}: {
 		before: string;
 		after: string;
+		caption?: string;
+		hint?: string;
 		beforeLabel?: string;
 		afterLabel?: string;
 		beforeHref?: string;
@@ -96,7 +102,8 @@
 		'inline-flex items-center gap-1 text-[11px] text-muted-foreground/70 underline decoration-dotted underline-offset-4 hover:text-foreground';
 </script>
 
-<div class="not-prose my-6">
+{#snippet body()}
+<div>
 	<div class="flex items-end justify-between gap-2">
 		<div class="flex" role="tablist">
 			<button
@@ -153,3 +160,10 @@
 		{/if}
 	</div>
 </div>
+{/snippet}
+
+{#if caption || hint}
+	<Figure {caption} {hint}>{@render body()}</Figure>
+{:else}
+	<div class="not-prose">{@render body()}</div>
+{/if}

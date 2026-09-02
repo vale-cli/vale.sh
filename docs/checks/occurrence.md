@@ -26,6 +26,25 @@ token: ','
 
 In the example above, we’re limiting the number of commas per sentence.
 
+## [min](occurrence.md#min)
+
+`min` makes absence a violation: a scope with fewer than `min` matches is flagged. The rule is evaluated once per scope, so a document that satisfies it in one paragraph and not the next is flagged at the paragraph that fell short.
+
+```yaml
+extends: occurrence
+message: 'A paragraph here has no example (found %d).'
+level: suggestion
+scope: paragraph
+min: 1
+token: 'for example'
+```
+
+When a scope has zero matches there is no occurrence to point at, so the alert is anchored to the scope's first word — one alert per scope that fell short, at that scope's own position.
+
+{% hint style="info" %}
+Per-scope positions for `min` shortfalls require Vale v3.20.0 or later. Earlier versions report once per file, at `1:1`.
+{% endhint %}
+
 ## [message](occurrence.md#message)
 
 The `message` key can contain an optional format specifier `%s` which will be populated with the number of occurrences:

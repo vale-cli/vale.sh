@@ -1,5 +1,5 @@
 {
-	"vale": "v3.17.1",
+	"vale": "v3.20.0-dev.fdc4cc75",
 	"generated": "2026-09-02",
 	"posts": {
 		"openapi": {
@@ -14,7 +14,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 136
+			"ms": 100
 		},
 		"std": {
 			"errors": 0,
@@ -28,21 +28,21 @@
 			"smog": 9.8,
 			"complex": 9,
 			"minutes": 3,
-			"ms": 117
+			"ms": 96
 		},
 		"voices": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 1545,
-			"sentences": 114,
-			"paragraphs": 38,
-			"grade": 6.7,
-			"ease": 71.2,
-			"smog": 9.6,
-			"complex": 8,
-			"minutes": 8,
-			"ms": 155
+			"words": 1787,
+			"sentences": 131,
+			"paragraphs": 40,
+			"grade": 6.6,
+			"ease": 72.2,
+			"smog": 9.4,
+			"complex": 7,
+			"minutes": 9,
+			"ms": 99
 		}
 	}
 }
