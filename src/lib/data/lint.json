@@ -1,0 +1,48 @@
+{
+	"vale": "v3.17.1",
+	"generated": "2026-09-02",
+	"posts": {
+		"openapi": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 687,
+			"sentences": 41,
+			"paragraphs": 19,
+			"grade": 9.6,
+			"ease": 56,
+			"smog": 12.1,
+			"complex": 11,
+			"minutes": 3,
+			"ms": 150
+		},
+		"std": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 559,
+			"sentences": 44,
+			"paragraphs": 16,
+			"grade": 6.8,
+			"ease": 69.2,
+			"smog": 9.7,
+			"complex": 9,
+			"minutes": 3,
+			"ms": 118
+		},
+		"voices": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1274,
+			"sentences": 97,
+			"paragraphs": 31,
+			"grade": 6.8,
+			"ease": 69.8,
+			"smog": 9.7,
+			"complex": 9,
+			"minutes": 6,
+			"ms": 166
+		}
+	}
+}

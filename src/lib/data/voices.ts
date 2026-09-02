@@ -1,5 +1,5 @@
 /**
- * The measurements behind /voices.
+ * The measurements behind the Voices announcement at /blog/voices.
  *
  * None of this is written by hand. `before` is fixtures/before.md from the
  * Voices package; each `after` is fixtures/after/<voice>.md, which the
@@ -66,8 +66,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'strong' instead of 'robust'."
 			},
 			{
 				line: 11,
@@ -81,8 +81,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'simplify' instead of 'streamline'."
 			},
 			{
 				line: 13,
@@ -101,8 +101,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'use' instead of 'leverage'."
 			}
 		]
 	},
@@ -113,11 +113,7 @@ export const voices: Voice[] = [
 		after:
 			'# Understanding Why Your Component Keeps Re-Rendering\n\nYour component re-renders because you create a new\nobject on every render. React compares props by\nreference, and a new reference is never equal to the old\none. The memo check fails, so the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. If it never changes, move it out of the component.',
 		alerts: [
-			{
-				line: 3,
-				rule: 'Direct.Length',
-				message: 'Sentence runs to 45 words. Split it.'
-			},
+			{ line: 3, rule: 'Direct.Length', message: 'Sentence runs to 45 words. Split it.' },
 			{
 				line: 3,
 				rule: 'Voices.ThroatClearing',
@@ -149,11 +145,7 @@ export const voices: Voice[] = [
 				message:
 					"Binary contrast: 'is not just a performance problem, it's'. State the second half directly."
 			},
-			{
-				line: 10,
-				rule: 'Direct.Length',
-				message: 'Sentence runs to 28 words. Split it.'
-			},
+			{ line: 10, rule: 'Direct.Length', message: 'Sentence runs to 28 words. Split it.' },
 			{
 				line: 10,
 				rule: 'Voices.Weasel',
@@ -161,8 +153,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'strong' instead of 'robust'."
 			},
 			{
 				line: 11,
@@ -176,8 +168,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'simplify' instead of 'streamline'."
 			},
 			{
 				line: 13,
@@ -196,198 +188,22 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'use' instead of 'leverage'."
 			}
 		]
 	},
 	{
-		name: 'Plain',
-		basedOn: 'Voices, Plain',
-		summary:
-			'Twelfth-grade reading level, sentences under 35 words, verbs rather than nominalizations.',
+		name: 'GenZ',
+		basedOn: 'Voices, GenZ',
+		summary: 'One slang term a sentence, two a paragraph, at least one.',
 		after:
-			'# Understanding Why Your Component Keeps Re-Rendering\n\nYour component re-renders because you create a new\nobject on every render. React compares props by\nreference, and a new reference is never equal to the old\none. The memo check fails, so the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. If it never changes, move it out of the component.',
+			'# Understanding Why Your Component Keeps Re-Rendering\n\nYour render path is cooked. You build a new object every\nrender, and React compares props by reference. A new\nreference never equals the old one, so the memo check\nfails and the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. Stable reference, clean diff, massive W.',
 		alerts: [
 			{
 				line: 1,
-				rule: 'Plain.Readability',
-				message: 'Grade level is 15.14. Simplify the wording.'
-			},
-			{
-				line: 3,
-				rule: 'Voices.ThroatClearing',
-				message: "Throat-clearing: 'Here's the thing'. Cut it and state the point."
-			},
-			{
-				line: 3,
-				rule: 'Plain.Length',
-				message: 'Sentence runs to 45 words. Split it.'
-			},
-			{
-				line: 9,
-				rule: 'Voices.BinaryContrast',
-				message:
-					"Binary contrast: 'is not just a performance problem, it's'. State the second half directly."
-			},
-			{
-				line: 10,
-				rule: 'Voices.Weasel',
-				message: "Weasel attribution: 'experts agree'. Name the source or cut the claim."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'paradigm shift'. Say the plain thing."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'empower'. Say the plain thing."
-			},
-			{
-				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
-			},
-			{
-				line: 13,
-				rule: 'Voices.SuperficialAnalysis',
-				message: "Superficial analysis: ', underscoring'. Say what it does for the reader."
-			},
-			{
-				line: 15,
-				rule: 'Voices.Recap',
-				message: "Recap ending: 'In conclusion'. End on the last concrete point."
-			},
-			{
-				line: 15,
-				rule: 'Voices.WeakVerbs',
-				message: "Weak verb phrase: use 'decided' instead of 'made a decision'."
-			},
-			{
-				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
-			}
-		]
-	},
-	{
-		name: 'Unslop',
-		basedOn: 'Voices, Unslop',
-		summary: 'No em dashes, sentence-case headings, no vague nouns.',
-		after:
-			'# Why your component keeps re-rendering\n\nYour component re-renders because you create a new\nobject on every render. React compares props by\nreference, and a new reference is never equal to the old\none. The memo check fails, so the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. If it never changes, move it out of the component.',
-		alerts: [
-			{
-				line: 1,
-				rule: 'Unslop.Headings',
-				message: "'Understanding Why Your Component Keeps Re-Rendering' should be sentence-cased."
-			},
-			{
-				line: 3,
-				rule: 'Voices.ThroatClearing',
-				message: "Throat-clearing: 'Here's the thing'. Cut it and state the point."
-			},
-			{
-				line: 6,
-				rule: 'Unslop.Punctuation',
-				message: 'Em dash. Use a comma, a colon, or two sentences.'
-			},
-			{
-				line: 9,
-				rule: 'Voices.BinaryContrast',
-				message:
-					"Binary contrast: 'is not just a performance problem, it's'. State the second half directly."
-			},
-			{
-				line: 10,
-				rule: 'Voices.Weasel',
-				message: "Weasel attribution: 'experts agree'. Name the source or cut the claim."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'paradigm shift'. Say the plain thing."
-			},
-			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'empower'. Say the plain thing."
-			},
-			{
-				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
-			},
-			{
-				line: 12,
-				rule: 'Unslop.Vague',
-				message: "Vague noun: 'a number of'. Name the thing."
-			},
-			{
-				line: 12,
-				rule: 'Unslop.Vague',
-				message: "Vague noun: 'things'. Name the thing."
-			},
-			{
-				line: 13,
-				rule: 'Voices.SuperficialAnalysis',
-				message: "Superficial analysis: ', underscoring'. Say what it does for the reader."
-			},
-			{
-				line: 15,
-				rule: 'Voices.Recap',
-				message: "Recap ending: 'In conclusion'. End on the last concrete point."
-			},
-			{
-				line: 15,
-				rule: 'Voices.WeakVerbs',
-				message: "Weak verb phrase: use 'decided' instead of 'made a decision'."
-			},
-			{
-				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
-			},
-			{
-				line: 16,
-				rule: 'Unslop.Vague',
-				message: "Vague noun: 'several'. Name the thing."
-			},
-			{
-				line: 16,
-				rule: 'Unslop.Vague',
-				message: "Vague noun: 'solutions'. Name the thing."
-			}
-		]
-	},
-	{
-		name: 'Brevity',
-		basedOn: 'Voices, Brevity',
-		summary: 'Six-word headlines, a required “Why it matters:”, sentences under 20 words.',
-		after:
-			'# New object, new reference\n\nYour component re-renders because you build a new object\nevery render. React compares props by reference. A new\nreference never equals the old one.\n\nWhy it matters: the memo check fails, so every child re-\nrenders on every parent render. On a large tree that is\nthe whole frame budget.\n\n## The fix\n\nWrap the object in `useMemo` with the values it depends\non. If it never changes, move it out of the component.',
-		alerts: [
-			{
-				line: 1,
-				rule: 'Brevity.WhyItMatters',
-				message: "No 'Why it matters:' section. Say why the reader should care."
-			},
-			{
-				line: 3,
-				rule: 'Brevity.Length',
-				message: 'Sentence runs to 45 words. Smart Brevity caps it at twenty.'
+				rule: 'GenZ.Presence',
+				message: 'A paragraph here has no slang. This voice is not off.'
 			},
 			{
 				line: 3,
@@ -402,8 +218,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 10,
-				rule: 'Brevity.Length',
-				message: 'Sentence runs to 28 words. Smart Brevity caps it at twenty.'
+				rule: 'GenZ.Register',
+				message: "Corporate register: 'Furthermore'. Not this voice."
 			},
 			{
 				line: 10,
@@ -412,8 +228,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'strong' instead of 'robust'."
 			},
 			{
 				line: 11,
@@ -427,8 +243,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'simplify' instead of 'streamline'."
 			},
 			{
 				line: 13,
@@ -447,8 +263,84 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 15,
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'use' instead of 'leverage'."
+			}
+		]
+	},
+	{
+		name: 'Coach',
+		basedOn: 'Voices, Coach',
+		summary: "One note of at most one hundred words, one image, one 'Next:' action.",
+		after:
+			'# One note on your serve\n\nYour toss drifts left, so your contact point follows\nit and the serve sprays wide. Hold the finish of your\ntoss arm for a beat; the drift shows up right there.\n\n![Toss drift at contact](toss.png)\n\nNext: film ten serves tonight and count the drifts.',
+		alerts: [
+			{
+				line: 1,
+				rule: 'Coach.Image',
+				message: 'Found 0 images. A coaching note carries exactly one.'
+			},
+			{
+				line: 1,
+				rule: 'Coach.NextAction',
+				message: "Found 0 'Next:' lines. A coaching note ends with exactly one."
+			},
+			{ line: 1, rule: 'Coach.Note', message: '166 words. One note means one hundred words.' },
+			{
+				line: 3,
+				rule: 'Voices.ThroatClearing',
+				message: "Throat-clearing: 'Here's the thing'. Cut it and state the point."
+			},
+			{
+				line: 9,
+				rule: 'Voices.BinaryContrast',
+				message:
+					"Binary contrast: 'is not just a performance problem, it's'. State the second half directly."
+			},
+			{
+				line: 10,
+				rule: 'Voices.Weasel',
+				message: "Weasel attribution: 'experts agree'. Name the source or cut the claim."
+			},
+			{
+				line: 11,
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'strong' instead of 'robust'."
+			},
+			{
+				line: 11,
 				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
+				message: "Inflated word: 'paradigm shift'. Say the plain thing."
+			},
+			{
+				line: 11,
+				rule: 'Voices.Banned',
+				message: "Inflated word: 'empower'. Say the plain thing."
+			},
+			{
+				line: 12,
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'simplify' instead of 'streamline'."
+			},
+			{
+				line: 13,
+				rule: 'Voices.SuperficialAnalysis',
+				message: "Superficial analysis: ', underscoring'. Say what it does for the reader."
+			},
+			{
+				line: 15,
+				rule: 'Voices.Recap',
+				message: "Recap ending: 'In conclusion'. End on the last concrete point."
+			},
+			{
+				line: 15,
+				rule: 'Voices.WeakVerbs',
+				message: "Weak verb phrase: use 'decided' instead of 'made a decision'."
+			},
+			{
+				line: 15,
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'use' instead of 'leverage'."
 			}
 		]
 	},
@@ -612,13 +504,13 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
+				rule: 'Simple.Vocabulary',
+				message: "'robust' is outside Basic English. Say it in shorter words."
 			},
 			{
 				line: 11,
-				rule: 'Simple.Vocabulary',
-				message: "'robust' is outside Basic English. Say it in shorter words."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'strong' instead of 'robust'."
 			},
 			{
 				line: 11,
@@ -662,8 +554,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'simplify' instead of 'streamline'."
 			},
 			{
 				line: 12,
@@ -717,8 +609,8 @@ export const voices: Voice[] = [
 			},
 			{
 				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
+				rule: 'Voices.InflatedWords',
+				message: "Inflated word: use 'use' instead of 'leverage'."
 			},
 			{
 				line: 16,
@@ -734,81 +626,191 @@ export const voices: Voice[] = [
 				line: 16,
 				rule: 'Simple.Vocabulary',
 				message: "'solutions' is outside Basic English. Say it in shorter words."
-			}
-		]
-	},
-	{
-		name: 'GenZ',
-		basedOn: 'Voices, GenZ',
-		summary: 'One slang term a sentence, two a paragraph, at least one.',
-		after:
-			'# Understanding Why Your Component Keeps Re-Rendering\n\nYour render path is cooked. You build a new object every\nrender, and React compares props by reference. A new\nreference never equals the old one, so the memo check\nfails and the child renders again.\n\nWrap the object in `useMemo` with the values it depends\non. Stable reference, clean diff, massive W.',
-		alerts: [
-			{
-				line: 1,
-				rule: 'GenZ.Presence',
-				message: 'No slang in this paragraph. This voice is not off.'
 			},
 			{
-				line: 3,
-				rule: 'Voices.ThroatClearing',
-				message: "Throat-clearing: 'Here's the thing'. Cut it and state the point."
+				line: 18,
+				rule: 'Simple.Vocabulary',
+				message: "'considerations' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 9,
-				rule: 'Voices.BinaryContrast',
-				message:
-					"Binary contrast: 'is not just a performance problem, it's'. State the second half directly."
+				line: 18,
+				rule: 'Simple.Vocabulary',
+				message: "'motivating' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 10,
-				rule: 'GenZ.Register',
-				message: "Corporate register: 'Furthermore'. Not this voice."
+				line: 18,
+				rule: 'Simple.Vocabulary',
+				message: "'determination' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 10,
-				rule: 'Voices.Weasel',
-				message: "Weasel attribution: 'experts agree'. Name the source or cut the claim."
+				line: 19,
+				rule: 'Simple.Vocabulary',
+				message: "'numerous' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'robust'. Say the plain thing."
+				line: 19,
+				rule: 'Simple.Vocabulary',
+				message: "'multidimensional' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'paradigm shift'. Say the plain thing."
+				line: 19,
+				rule: 'Simple.Vocabulary',
+				message: "'necessitating' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 11,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'empower'. Say the plain thing."
+				line: 19,
+				rule: 'Simple.Vocabulary',
+				message: "'individual' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 12,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'streamline'. Say the plain thing."
+				line: 20,
+				rule: 'Simple.Vocabulary',
+				message: "'elaboration' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 13,
-				rule: 'Voices.SuperficialAnalysis',
-				message: "Superficial analysis: ', underscoring'. Say what it does for the reader."
+				line: 20,
+				rule: 'Simple.Vocabulary',
+				message: "'unprecedented' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 15,
-				rule: 'Voices.Recap',
-				message: "Recap ending: 'In conclusion'. End on the last concrete point."
+				line: 20,
+				rule: 'Simple.Vocabulary',
+				message: "'comprehensiveness' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 15,
-				rule: 'Voices.WeakVerbs',
-				message: "Weak verb phrase: use 'decided' instead of 'made a decision'."
+				line: 22,
+				rule: 'Simple.Vocabulary',
+				message: "'initial' is outside Basic English. Say it in shorter words."
 			},
 			{
-				line: 15,
-				rule: 'Voices.Banned',
-				message: "Inflated word: 'leverage'. Say the plain thing."
+				line: 22,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 22,
+				rule: 'Simple.Vocabulary',
+				message: "'comprehensible' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 22,
+				rule: 'Simple.Vocabulary',
+				message: "'exclusively' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 23,
+				rule: 'Simple.Vocabulary',
+				message: "'subsequent' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 23,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 24,
+				rule: 'Simple.Vocabulary',
+				message: "'subsequent' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 24,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 24,
+				rule: 'Simple.Vocabulary',
+				message: "'substantially' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 25,
+				rule: 'Simple.Vocabulary',
+				message: "'reformulation' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 25,
+				rule: 'Simple.Vocabulary',
+				message: "'initial' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 25,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 26,
+				rule: 'Simple.Vocabulary',
+				message: "'tertiary' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 26,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 26,
+				rule: 'Simple.Vocabulary',
+				message: "'incorporated' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 27,
+				rule: 'Simple.Vocabulary',
+				message: "'organizational' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 27,
+				rule: 'Simple.Vocabulary',
+				message: "'completeness' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 28,
+				rule: 'Simple.Vocabulary',
+				message: "'quaternary' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 28,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 28,
+				rule: 'Simple.Vocabulary',
+				message: "'enumerations' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 29,
+				rule: 'Simple.Vocabulary',
+				message: "'communicate' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 29,
+				rule: 'Simple.Vocabulary',
+				message: "'methodological' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 29,
+				rule: 'Simple.Vocabulary',
+				message: "'rigorousness' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 30,
+				rule: 'Simple.Vocabulary',
+				message: "'quinary' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 30,
+				rule: 'Simple.Vocabulary',
+				message: "'consideration' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 31,
+				rule: 'Simple.Vocabulary',
+				message: "'comprehensively' is outside Basic English. Say it in shorter words."
+			},
+			{
+				line: 31,
+				rule: 'Simple.Vocabulary',
+				message: "'evaporated' is outside Basic English. Say it in shorter words."
 			}
 		]
 	}
@@ -870,33 +872,21 @@ export const coverage: Coverage[] = [
 		source: SLOP_MIT
 	},
 	{
-		styles: ['plain-english'],
-		voice: 'Plain',
+		styles: ['gen-z', 'street'],
+		voice: 'GenZ',
 		source: CATALOG_MIT,
-		why: 'Length, reading grade, active voice'
+		why: 'The density budget, not the persona'
 	},
 	{
-		styles: ['unslop'],
-		voice: 'Unslop',
+		styles: ['coach'],
+		voice: 'Coach',
 		source: CATALOG_MIT,
-		why: 'Punctuation, heading case, concrete nouns'
-	},
-	{
-		styles: ['smart-brevity'],
-		voice: 'Brevity',
-		source: CATALOG_MIT,
-		why: 'A required section and two budgets'
+		why: 'One note, one image, one next action'
 	},
 	{
 		styles: ['thing-explainer'],
 		voice: 'Simple',
 		source: CATALOG_MIT,
 		why: 'A closed vocabulary'
-	},
-	{
-		styles: ['gen-z', 'street'],
-		voice: 'GenZ',
-		source: CATALOG_MIT,
-		why: 'The density budget, not the persona'
 	}
 ];

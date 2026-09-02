@@ -37,3 +37,6 @@
 # integrations/, and the index.
 /docs/*               https://docs.vale.sh/:splat                301!
 /docs                 https://docs.vale.sh/                      301!
+
+# The Voices demo moved into the announcement post.
+/voices               /blog/voices                               301!

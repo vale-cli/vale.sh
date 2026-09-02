@@ -31,6 +31,10 @@ export const docsConfig: DocsConfig = {
 		{
 			title: 'Library',
 			href: '/library'
+		},
+		{
+			title: 'Blog',
+			href: '/blog'
 		}
 	]
 };
