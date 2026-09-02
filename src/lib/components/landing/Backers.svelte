@@ -164,7 +164,7 @@
 							</span>
 						</span>
 						<ArrowUpRight
-							class="h-4 w-4 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-lime-500"
+							class="h-4 w-4 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 						/>
 					</a>
 				{/each}

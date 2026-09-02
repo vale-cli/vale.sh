@@ -143,8 +143,7 @@
 		const base =
 			'rounded-md px-2 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:ring-offset-2';
 
-		if (active)
-			return `${base} bg-lime-500 text-white shadow-sm dark:bg-lime-400 dark:text-zinc-950`;
+		if (active) return `${base} bg-primary text-primary-foreground shadow-sm`;
 		if (checked)
 			return `${base} bg-lime-500/10 text-lime-700 hover:bg-lime-500/20 dark:text-lime-300`;
 		return `${base} bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`;
@@ -165,8 +164,7 @@
 		const base =
 			'rounded-md px-2 py-1 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 focus-visible:ring-offset-2';
 
-		if (active)
-			return `${base} bg-lime-500 text-white shadow-sm dark:bg-lime-400 dark:text-zinc-950`;
+		if (active) return `${base} bg-primary text-primary-foreground shadow-sm`;
 		if (checked)
 			return `${base} bg-lime-500/10 text-lime-700 hover:bg-lime-500/20 dark:text-lime-300`;
 		return `${base} bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground`;

@@ -9,7 +9,7 @@ define build_index
 	$(CURDIR)/bin/index-media
 endef
 
-.PHONY: all build preview index media configs
+.PHONY: all build preview index media configs brand
 
 all: build
 
@@ -41,3 +41,8 @@ configs:
 # step by itself.
 packages:
 	node script/packages.mjs
+
+# Rebuild static/brand and the favicons from the mark's geometry. Needs
+# rsvg-convert and `pip install -r script/brand/requirements.txt`.
+brand:
+	python3 script/brand/main.py

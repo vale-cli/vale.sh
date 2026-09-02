@@ -11,7 +11,9 @@
 </script>
 
 <section class="border-b border-border/60">
-	<div class="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-border/60 sm:grid-cols-4 sm:divide-y-0">
+	<div
+		class="mx-auto grid max-w-6xl grid-cols-2 divide-x divide-y divide-border/60 sm:grid-cols-4 sm:divide-y-0"
+	>
 		{#each stats as stat}
 			<a
 				href={stat.href}
@@ -22,7 +24,10 @@
 				<span class="text-4xl font-semibold tracking-tight text-foreground sm:text-5xl">
 					{stat.value}
 				</span>
-				<span class="text-sm text-muted-foreground group-hover:text-lime-500">{stat.label}</span>
+				<span
+					class="text-sm text-muted-foreground group-hover:text-lime-600 dark:group-hover:text-lime-400"
+					>{stat.label}</span
+				>
 			</a>
 		{/each}
 	</div>

@@ -1,7 +1,7 @@
 export const siteConfig = {
 	name: 'Vale CLI',
 	url: 'https://vale.sh',
-	ogImage: 'https://shadcn-svelte.com/og.png',
+	ogImage: 'https://vale.sh/brand/vale-social.png',
 	description: ' A markup-aware linter for prose built with speed and extensibility in mind.',
 	links: {
 		// The repo, for anything that means *this project* — starring it, its

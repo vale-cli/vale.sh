@@ -19,32 +19,35 @@
 
 <div class="mx-auto max-w-5xl px-6 py-16 sm:py-20 lg:px-8">
 	<div class="mx-auto max-w-2xl sm:text-center">
-		<h1 class="text-base/7 font-semibold text-lime-500">Agent skills</h1>
+		<h1 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">Agent skills</h1>
 		<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-balance sm:text-5xl">
 			Hand the setup to your assistant.
 		</p>
 		<p class="mt-6 text-lg/8 text-neutral-500">
-			Each of these is a <code class="font-mono text-base">SKILL.md</code> that a coding agent
-			reads while working in your repository. They run the Vale CLI, edit your files, and open
-			your pull request&mdash;nothing to sign up for.
+			Each of these is a <code class="font-mono text-base">SKILL.md</code> that a coding agent reads
+			while working in your repository. They run the Vale CLI, edit your files, and open your pull request&mdash;nothing
+			to sign up for.
 		</p>
 	</div>
 
 	<div class="mx-auto mt-10 max-w-3xl rounded-2xl border border-border bg-card p-6">
 		<h2 class="text-sm font-semibold">Get started</h2>
 		<p class="mt-2 text-sm leading-relaxed text-muted-foreground">
-			In Claude Code, install the plugin&mdash;the second command restarts the session, which
-			is what registers the linting hook and the MCP server alongside the skills:
+			In Claude Code, install the plugin&mdash;the second command restarts the session, which is
+			what registers the linting hook and the MCP server alongside the skills:
 		</p>
-		<pre class="mt-3 overflow-x-auto rounded-lg border border-border bg-background p-3 font-mono text-xs leading-relaxed"><code>/plugin marketplace add vale-cli/agent-tools
-/plugin install vale@agent-tools</code></pre>
+		<pre
+			class="mt-3 overflow-x-auto rounded-lg border border-border bg-background p-3 font-mono text-xs leading-relaxed"><code
+				>/plugin marketplace add vale-cli/agent-tools
+/plugin install vale@agent-tools</code
+			></pre>
 		<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-			Then type <code class="font-mono">/vale:</code> and the five below should complete. For
-			an assistant that reads skills from a folder, copy one into
-			<code class="font-mono">.claude/skills/</code> instead; for one with no skill support,
-			hand it
-			<a href="/AGENTS.md" class="font-medium text-lime-500 hover:underline">AGENTS.md</a>,
-			which covers the same ground as prose.
+			Then type <code class="font-mono">/vale:</code> and the five below should complete. For an
+			assistant that reads skills from a folder, copy one into
+			<code class="font-mono">.claude/skills/</code> instead; for one with no skill support, hand it
+			<a href="/AGENTS.md" class="font-medium text-lime-600 hover:underline dark:text-lime-400"
+				>AGENTS.md</a
+			>, which covers the same ground as prose.
 		</p>
 
 		<div class="mt-4 flex flex-wrap gap-3">
@@ -70,8 +73,9 @@
 		<p class="mt-4 text-sm leading-relaxed text-muted-foreground">
 			Want the engine itself rather than the CLI&mdash;scaffolding rules, auditing a style, diffing
 			a rule change across a corpus? That is what
-			<a href="/cms" class="font-medium text-lime-500 hover:underline">Vale CMS</a> and its MCP server
-			are for. These skills stay on the command line.
+			<a href="/cms" class="font-medium text-lime-600 hover:underline dark:text-lime-400"
+				>Vale CMS</a
+			> and its MCP server are for. These skills stay on the command line.
 		</p>
 	</div>
 
@@ -89,7 +93,7 @@
 							<span class="text-muted-foreground">/vale:</span>{skill.name}
 						</h2>
 						<ArrowUpRight
-							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 						/>
 					</div>
 					<p class="mt-2 text-sm leading-relaxed">{skill.summary}</p>

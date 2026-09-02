@@ -48,7 +48,7 @@
 			<!-- Large and medium-weight, not bold: the display size carries it. -->
 			<h1 class="mt-6 text-5xl font-medium leading-[1.05] sm:text-6xl lg:text-[4.25rem]">
 				Vale is a linter for
-				<span class="text-lime-500">prose</span>
+				<span class="text-lime-600 dark:text-lime-400">prose</span>
 			</h1>
 
 			<p class="mx-auto mt-6 max-w-xl text-pretty text-lg leading-8 text-muted-foreground">

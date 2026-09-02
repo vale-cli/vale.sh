@@ -1,4 +1,8 @@
-<script lang="ts">
+<script lang="ts" module>
+	export type Sev = 'error' | 'warning' | 'suggestion';
+	export type Alert = { loc: string; sev: Sev; msg: string; rule: string };
+	export type File = { path: string; alerts: Alert[] };
+
 	/*
 		A recreation of a Vale session. The files are invented; the rules are not.
 
@@ -16,10 +20,7 @@
 		One session rather than a single command, because `sync` is where the
 		styles come from and a directory run is what anyone actually types.
 	*/
-	type Sev = 'error' | 'warning' | 'suggestion';
-	type Alert = { loc: string; sev: Sev; msg: string; rule: string };
-
-	const files: { path: string; alerts: Alert[] }[] = [
+	export const session: File[] = [
 		{
 			path: 'docs/configure.md',
 			alerts: [
@@ -61,8 +62,23 @@
 			]
 		}
 	];
+</script>
 
-	const summary = '2 errors, 1 warning and 2 suggestions in 2 files.';
+<script lang="ts">
+	// The home page shows the session above. /brand passes its own files, so
+	// the summary and the sync line are computed rather than typed in.
+	let { files = session, packages = 2 }: { files?: File[]; packages?: number } = $props();
+
+	const plural = (n: number, word: string) => `${n} ${word}${n === 1 ? '' : 's'}`;
+
+	// Vale's own wording: "2 errors, 1 warning and 2 suggestions in 2 files."
+	const summary = $derived.by(() => {
+		const all = files.flatMap((f) => f.alerts);
+		const n = (sev: Sev) => all.filter((a) => a.sev === sev).length;
+		const shown = files.filter((f) => f.alerts.length > 0);
+		return `${plural(n('error'), 'error')}, ${plural(n('warning'), 'warning')} and ${plural(n('suggestion'), 'suggestion')} in ${plural(shown.length, 'file')}.`;
+	});
+	const clean = $derived(files.every((f) => f.alerts.length === 0));
 
 	// Both themes: the panel used to be permanently near-black, which sat as a
 	// hole in the middle of an otherwise light page.
@@ -92,7 +108,7 @@
 				class="rounded-sm bg-lime-600/15 px-1.5 py-0.5 font-semibold text-lime-700 dark:text-lime-400"
 				>SUCCESS</span
 			>
-			<span class="text-muted-foreground"> Synced 2 package(s) to 'styles'.</span>
+			<span class="text-muted-foreground"> Synced {packages} package(s) to 'styles'.</span>
 		</div>
 
 		<div class="mt-4 whitespace-pre text-foreground">
@@ -100,17 +116,19 @@
 		</div>
 
 		{#each files as file (file.path)}
-			<div class="mt-4 whitespace-pre font-medium text-foreground underline underline-offset-4">
-				{file.path}
-			</div>
-			{#each file.alerts as a (a.loc + a.rule)}
-				<div class="mt-1 flex gap-4 whitespace-pre">
-					<span class="w-14 shrink-0 text-muted-foreground">{a.loc}</span>
-					<span class="w-[76px] shrink-0 {sevColor[a.sev]}">{a.sev}</span>
-					<span class="text-foreground">{a.msg}</span>
-					<span class="text-muted-foreground/70">{a.rule}</span>
+			{#if file.alerts.length > 0}
+				<div class="mt-4 whitespace-pre font-medium text-foreground underline underline-offset-4">
+					{file.path}
 				</div>
-			{/each}
+				{#each file.alerts as a (a.loc + a.rule)}
+					<div class="mt-1 flex gap-4 whitespace-pre">
+						<span class="w-14 shrink-0 text-muted-foreground">{a.loc}</span>
+						<span class="w-[76px] shrink-0 {sevColor[a.sev]}">{a.sev}</span>
+						<span class="text-foreground">{a.msg}</span>
+						<span class="text-muted-foreground/70">{a.rule}</span>
+					</div>
+				{/each}
+			{/if}
 		{/each}
 
 		<!--
@@ -118,8 +136,13 @@
 			break the formatter puts in the template.
 		-->
 		<div class="mt-4 whitespace-pre text-muted-foreground">
-			<span class="text-red-600 dark:text-red-400">✖</span>
-			{summary}
+			{#if clean}
+				<span class="text-lime-600 dark:text-lime-400">✔</span> 0 errors, 0 warnings and 0 suggestions
+				in 0 files.
+			{:else}
+				<span class="text-red-600 dark:text-red-400">✖</span>
+				{summary}
+			{/if}
 		</div>
 	</div>
 </div>

@@ -45,7 +45,7 @@
 			class="group flex flex-col gap-5 rounded-2xl border border-border bg-card p-6 transition-colors duration-200 hover:border-lime-500/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 sm:flex-row sm:items-center sm:p-7"
 		>
 			<span
-				class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-500"
+				class="inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400"
 			>
 				<BookOpen class="h-6 w-6" />
 			</span>
@@ -62,7 +62,7 @@
 				{/if}
 			</div>
 			<ArrowUpRight
-				class="hidden h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500 sm:block"
+				class="hidden h-5 w-5 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400 sm:block"
 			/>
 		</a>
 	{/if}
@@ -81,7 +81,7 @@
 							{item.outlet}{item.year ? ` · ${item.year}` : ''}
 						</p>
 						<ArrowUpRight
-							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 						/>
 					</div>
 					<h3 class="mt-1 grow text-sm font-semibold leading-6 tracking-tight text-foreground">
@@ -100,7 +100,7 @@
 	<div class="mt-8 text-center">
 		<a
 			href="/library"
-			class="inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium text-lime-500 hover:text-lime-600"
+			class="inline-flex items-center gap-1.5 px-3 py-2.5 text-sm font-medium text-lime-600 hover:text-lime-600 dark:text-lime-400 dark:hover:text-lime-400"
 		>
 			{remaining > 0 ? `Browse all ${rest.length} in the library` : 'Browse the library'}
 			<ArrowRight class="h-4 w-4" />

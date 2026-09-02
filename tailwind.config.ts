@@ -50,6 +50,24 @@ const config: Config = {
                     DEFAULT: "hsl(var(--card) / <alpha-value>)",
                     foreground: "hsl(var(--card-foreground) / <alpha-value>)"
                 },
+                // The brand ramp, over Tailwind's `lime` so the ~390 existing
+                // `lime-*` utilities follow it untouched. 500 is Grass, the
+                // mark and the buttons; 600 is the step dark enough for links
+                // on the light page (4.6:1); 400 is the mark and links on dark
+                // (10.7:1).
+                lime: {
+                    50: "hsl(92 50% 96% / <alpha-value>)",
+                    100: "hsl(92 50% 91% / <alpha-value>)",
+                    200: "hsl(92 50% 82% / <alpha-value>)",
+                    300: "hsl(92 55% 70% / <alpha-value>)",
+                    400: "hsl(92 60% 58% / <alpha-value>)",
+                    500: "hsl(92 62% 40% / <alpha-value>)",
+                    600: "hsl(92 65% 30% / <alpha-value>)",
+                    700: "hsl(92 65% 23% / <alpha-value>)",
+                    800: "hsl(92 60% 16% / <alpha-value>)",
+                    900: "hsl(92 55% 11% / <alpha-value>)",
+                    950: "hsl(92 50% 7% / <alpha-value>)",
+                },
                 // `sidebar` used to be declared here against --sidebar-*
                 // variables that app.css has never defined, so every one of
                 // those utilities emitted `hsl()` with nothing in it. Nothing

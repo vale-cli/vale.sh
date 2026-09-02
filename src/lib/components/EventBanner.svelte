@@ -32,7 +32,7 @@
 		<div
 			class="mx-auto flex max-w-7xl items-center justify-center gap-x-2 gap-y-1 px-6 py-2 text-sm lg:px-8"
 		>
-			<Calendar class="h-4 w-4 shrink-0 text-lime-500" aria-hidden="true" />
+			<Calendar class="h-4 w-4 shrink-0 text-lime-600 dark:text-lime-400" aria-hidden="true" />
 			<span class="font-semibold text-lime-600 dark:text-lime-400">Coming up</span>
 			<span class="text-muted-foreground" aria-hidden="true">·</span>
 			<span class="truncate font-medium">{next.title}</span>
@@ -40,7 +40,7 @@
 				{next.host} · {day(next.date)}
 			</span>
 			<ArrowRight
-				class="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-lime-500"
+				class="h-4 w-4 shrink-0 text-muted-foreground transition-transform duration-200 group-hover:translate-x-0.5 group-hover:text-lime-600 dark:group-hover:text-lime-400"
 				aria-hidden="true"
 			/>
 		</div>

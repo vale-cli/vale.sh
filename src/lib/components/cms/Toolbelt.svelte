@@ -328,7 +328,7 @@
 	const NUM = 'text-sky-600 dark:text-sky-400';
 	const LIT = 'text-violet-600 dark:text-violet-400';
 	const DIM = 'text-muted-foreground';
-	const MARK = 'text-lime-500';
+	const MARK = 'text-lime-600 dark:text-lime-400';
 
 	function highlight(src: string): string {
 		return esc(src)
@@ -363,7 +363,7 @@
 <section id="toolbelt" class="scroll-mt-20 border-b border-border/60 bg-muted/30 py-16 sm:py-20">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="max-w-3xl">
-			<h2 class="text-base font-semibold text-lime-500">The MCP surface</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">The MCP surface</h2>
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
 				{total} tools, and every one of them can say &ldquo;no&rdquo;
 			</p>

@@ -59,7 +59,7 @@
 <section id="assets" class="scroll-mt-20 border-b border-border/60 py-16 sm:py-20">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="max-w-3xl">
-			<h2 class="text-base font-semibold text-lime-500">Not a rule editor</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">Not a rule editor</h2>
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
 				A text editor opens these files. It can't tell you what they do.
 			</p>

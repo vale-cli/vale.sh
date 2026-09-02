@@ -81,7 +81,7 @@
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
 	<!-- Header -->
 	<div class="mx-auto max-w-2xl text-center">
-		<p class="text-base font-semibold text-lime-500">Package Explorer</p>
+		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Package Explorer</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
 			Styles &amp; configurations
 		</h1>
@@ -157,7 +157,7 @@
 				onclick={() => (activeTag = tag)}
 				class="rounded-full border px-3 py-1 text-sm font-medium transition-colors {activeTag ===
 				tag
-					? 'border-lime-500/50 bg-lime-500/10 text-lime-600'
+					? 'border-lime-500/50 bg-lime-500/10 text-lime-600 dark:text-lime-400'
 					: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
 			>
 				{fmt(tag)}
@@ -193,7 +193,7 @@
 									<!-- Stretched link: makes the whole card open the package's page -->
 									<a
 										href="/explorer/{pkg.name}"
-										class="transition-colors after:absolute after:inset-0 after:rounded-xl focus:outline-none focus-visible:underline group-hover:text-lime-500"
+										class="transition-colors after:absolute after:inset-0 after:rounded-xl focus:outline-none focus-visible:underline group-hover:text-lime-600 dark:group-hover:text-lime-400"
 									>
 										{pkg.name}
 									</a>
@@ -230,7 +230,7 @@
 								aria-label="Copy package name"
 							>
 								{#if copied === pkg.name}
-									<Check class="h-3.5 w-3.5 text-lime-500" /> Copied
+									<Check class="h-3.5 w-3.5 text-lime-600 dark:text-lime-400" /> Copied
 								{:else}
 									<Copy class="h-3.5 w-3.5" /> Copy name
 								{/if}

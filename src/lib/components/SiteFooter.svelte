@@ -1,13 +1,26 @@
 <script lang="ts">
 	import { siteConfig } from '$lib/config/site.js';
 	import { Icons } from '$lib/components/icons';
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import PenTool from 'lucide-svelte/icons/pen-tool';
+	import PackageSearch from 'lucide-svelte/icons/package-search';
+	import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
+	import Sparkles from 'lucide-svelte/icons/sparkles';
 
 	/*
-		Three columns of links, a brand column, and a hairline rule above the
-		attribution. Grouped by what someone is trying to do rather than by where
-		the link happens to point, so docs.vale.sh and /library sit together under
-		Resources even though one is a different host.
+		Two bands. The first is the brand beside a toolbar of the site's own
+		apps: those are things you open, so they get buttons rather than a
+		column of links. The second is three columns grouped by what someone is
+		trying to do, so docs.vale.sh and /library sit together under Resources
+		even though one is a different host.
 	*/
+	const tools = [
+		{ label: 'Vale Studio', href: 'https://studio.vale.sh', icon: PenTool, external: true },
+		{ label: 'Style Explorer', href: '/explorer', icon: PackageSearch },
+		{ label: 'Config Generator', href: '/generator', icon: WandSparkles },
+		{ label: 'Agent Skills', href: '/skills', icon: Sparkles }
+	];
+
 	const columns = [
 		{
 			heading: 'Get Vale',
@@ -27,11 +40,9 @@
 			heading: 'Resources',
 			links: [
 				{ label: 'Documentation', href: 'https://docs.vale.sh', external: true },
-				{ label: 'Vale Studio', href: 'https://studio.vale.sh', external: true },
-				{ label: 'Style Explorer', href: '/explorer' },
-				{ label: 'Config Generator', href: '/generator' },
-				{ label: 'Agent Skills', href: '/skills' },
-				{ label: 'Media Library', href: '/library' }
+				{ label: 'Media Library', href: '/library' },
+				{ label: 'Press Guide', href: '/press' },
+				{ label: 'Brand Assets', href: '/brand' }
 			]
 		},
 		{
@@ -63,19 +74,22 @@
 			class: 'h-3.5 w-3.5'
 		}
 	];
+
+	const eyebrow =
+		'font-mono text-xs font-semibold uppercase tracking-[0.14em] text-lime-600 dark:text-lime-400';
 </script>
 
 <footer class="border-t border-border/40">
 	<div class="mx-auto max-w-6xl border-border/40 px-6 lg:border-x lg:px-8">
-		<div class="grid gap-10 py-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_repeat(3,1fr)] lg:gap-8">
-			<!-- Brand -->
-			<div>
-				<a href="/" class="inline-flex items-center gap-2">
+		<!-- Brand and toolbar -->
+		<div class="flex flex-col gap-10 py-12 lg:flex-row lg:items-start lg:justify-between">
+			<div class="max-w-sm">
+				<a href="/" class="inline-flex items-center gap-2" aria-label="Vale">
 					<Icons.logo class="h-5 w-5" />
-					<span class="text-base font-semibold tracking-tight text-foreground">Vale</span>
+					<Icons.wordmark class="h-4 w-auto text-foreground" />
 				</a>
 
-				<p class="mt-3 max-w-xs text-sm leading-6 text-muted-foreground">
+				<p class="mt-3 text-sm leading-6 text-muted-foreground">
 					{siteConfig.description.trim()}
 				</p>
 
@@ -91,13 +105,37 @@
 				</a>
 			</div>
 
+			<nav aria-label="Tools" class="lg:max-w-lg">
+				<h2 class={eyebrow}>Tools</h2>
+				<ul class="mt-4 flex flex-wrap gap-2">
+					{#each tools as tool (tool.label)}
+						{@const Glyph = tool.icon}
+						<li>
+							<a
+								href={tool.href}
+								target={tool.external ? '_blank' : undefined}
+								rel={tool.external ? 'noreferrer' : undefined}
+								class="group inline-flex items-center gap-2 rounded-lg border border-border bg-card px-3.5 py-2 text-sm font-medium text-foreground transition-colors hover:border-lime-500/40 hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+							>
+								<Glyph class="h-4 w-4 text-lime-600 dark:text-lime-400" />
+								{tool.label}
+								{#if tool.external}
+									<ArrowUpRight
+										class="h-3.5 w-3.5 text-muted-foreground/60 transition-colors group-hover:text-foreground"
+									/>
+								{/if}
+							</a>
+						</li>
+					{/each}
+				</ul>
+			</nav>
+		</div>
+
+		<!-- Link columns -->
+		<div class="grid gap-10 border-t border-border/40 py-10 sm:grid-cols-3 lg:gap-8">
 			{#each columns as column (column.heading)}
 				<div>
-					<h2
-						class="font-mono text-xs font-semibold uppercase tracking-[0.14em] text-lime-600 dark:text-lime-400"
-					>
-						{column.heading}
-					</h2>
+					<h2 class={eyebrow}>{column.heading}</h2>
 					<ul class="mt-4 space-y-2.5">
 						{#each column.links as link (link.label)}
 							<li>

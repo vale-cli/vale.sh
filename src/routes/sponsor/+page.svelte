@@ -64,7 +64,7 @@
 		class="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(hsl(var(--foreground)/0.05)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_60%,transparent_100%)]"
 	></div>
 	<div class="mx-auto max-w-4xl px-6 py-16 text-center lg:px-8">
-		<p class="text-base font-semibold text-lime-500">Support</p>
+		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Support</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
 			Who keeps Vale running
 		</h1>

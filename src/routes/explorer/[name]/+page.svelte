@@ -80,7 +80,7 @@
 			href={pkg.homepage}
 			target="_blank"
 			rel="noreferrer"
-			class="inline-flex items-center gap-1 font-medium text-lime-500 hover:underline"
+			class="inline-flex items-center gap-1 font-medium text-lime-600 hover:underline dark:text-lime-400"
 		>
 			Source <ExternalLink class="h-3.5 w-3.5" />
 		</a>
@@ -107,7 +107,9 @@
 				aria-label="Copy configuration"
 				class="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
 			>
-				{#if copied}<Check class="h-4 w-4 text-lime-500" />{:else}<Copy class="h-4 w-4" />{/if}
+				{#if copied}<Check class="h-4 w-4 text-lime-600 dark:text-lime-400" />{:else}<Copy
+						class="h-4 w-4"
+					/>{/if}
 			</button>
 		</div>
 	</section>
@@ -140,7 +142,9 @@
 				class="mt-4 h-10 w-full rounded-lg border border-border bg-background px-3 text-sm transition-colors placeholder:text-muted-foreground focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
 			/>
 
-			<ul class="mt-4 max-h-[60vh] divide-y divide-border overflow-y-auto rounded-lg border border-border">
+			<ul
+				class="mt-4 max-h-[60vh] divide-y divide-border overflow-y-auto rounded-lg border border-border"
+			>
 				{#each shown as rule}
 					<li class="flex flex-col gap-1 p-4">
 						<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
@@ -155,7 +159,7 @@
 									href={rule.link}
 									target="_blank"
 									rel="noreferrer"
-									class="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-lime-500"
+									class="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-lime-600 dark:hover:text-lime-400"
 								>
 									Style guide <ExternalLink class="h-3 w-3" />
 								</a>

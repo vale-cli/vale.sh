@@ -27,8 +27,8 @@
 			downloads to date, across {stats.lifetime.sources.length} channels reporting a lifetime total
 		</span>
 		<span class="mt-1 block text-xs text-muted-foreground/80">
-			{stats.lifetime.sources.join(' · ')} — the channels below that count only a recent window
-			aren't included
+			{stats.lifetime.sources.join(' · ')} — the channels below that count only a recent window aren't
+			included
 		</span>
 	</div>
 
@@ -48,12 +48,12 @@
 							<BrandIcon
 								name={channel.name}
 								slug={channel.icon}
-								class="text-foreground/70 transition-colors group-hover:text-lime-500"
+								class="text-foreground/70 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 							/>
 							<span class="text-sm font-medium text-muted-foreground">{channel.name}</span>
 						</span>
 						<ArrowUpRight
-							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+							class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 						/>
 					</div>
 					<span
@@ -82,7 +82,7 @@
 				<BrandIcon
 					name={channel.name}
 					slug={channel.icon}
-					class="h-4 w-4 text-foreground/70 transition-colors group-hover:text-lime-500"
+					class="h-4 w-4 text-foreground/70 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 				/>
 				<span class="font-medium text-foreground">{channel.name}</span>
 				<span class="text-xs text-muted-foreground">{channel.detail}</span>

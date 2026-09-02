@@ -8,13 +8,13 @@
     This was the stock shadcn `stone` preset, untouched, and it showed. Three
     things were wrong with it, and they are the three things fixed here.
 
-    1. The brand colour was not in the theme. `--primary` was near-black, so
-       every primary button on the site was black, while the lime that actually
+    1. The brand color was not in the theme. `--primary` was near-black, so
+       every primary button on the site was black, while the accent that
        identifies Vale lived in ~390 ad-hoc `lime-*` utilities scattered across
-       components. The theme had no idea the project had an accent. `--primary`
-       is now that lime, with a near-black foreground on top of it rather than
-       white -- chartreuse is a light colour, and the pairing that reads is the
-       dark one (10.5:1, comfortably past AA).
+       components. `--primary` is now that accent: Grass, with near-black text
+       on it in both themes (6:1 and better), since the green is too bright for
+       white. The `lime-*` utilities are remapped onto the same ramp in
+       tailwind.config.ts, so the two never disagree.
 
     2. There were no shadow tokens, so every elevation on the site was one of
        Tailwind's defaults: pure-black, one-size, unrelated to the palette. The
@@ -53,8 +53,8 @@
 		--popover: 0 0% 100%;
 		--popover-foreground: 90 20% 7%;
 
-		/* The brand, as the actual primary. Dark text on it, not white. */
-		--primary: 82 74% 52%;
+		/* The brand, as the actual primary: Grass (lime-500), dark text on it. */
+		--primary: 92 62% 40%;
 		--primary-foreground: 90 60% 9%;
 
 		--secondary: 80 26% 93.6%;
@@ -77,7 +77,7 @@
 		--input: 82 18% 84.1%;
 		/* Focus rings are branded: they are the one piece of chrome every
            keyboard user sees on every page. */
-		--ring: 82 62% 42%;
+		--ring: 92 62% 36%;
 
 		--radius: 0.625rem;
 
@@ -105,9 +105,8 @@
 		--popover: 90 12% 9.5%;
 		--popover-foreground: 80 18% 96%;
 
-		/* Brighter than the light-mode primary: the same hue has to carry
-           against a near-black ground. */
-		--primary: 82 78% 58%;
+		/* The light step of the same hue (lime-400), dark text on it. */
+		--primary: 92 60% 58%;
 		--primary-foreground: 90 60% 8%;
 
 		--secondary: 90 10% 14%;
@@ -125,7 +124,7 @@
 
 		--border: 90 9% 17%;
 		--input: 90 9% 21%;
-		--ring: 82 70% 50%;
+		--ring: 92 60% 50%;
 
 		/* Pure black and heavier: a tinted shadow is invisible on a dark
            ground, and the depth has to come from the shadow alone once the

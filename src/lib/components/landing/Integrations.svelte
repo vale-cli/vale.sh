@@ -6,7 +6,7 @@
 
 <div id="integrations" class="mx-auto max-w-7xl px-6 pt-7 lg:px-8">
 	<div class="mx-auto max-w-2xl sm:text-center">
-		<h2 class="text-base/7 font-semibold text-lime-500">One tool, every app</h2>
+		<h2 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">One tool, every app</h2>
 		<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-balance sm:text-5xl">
 			More than just a command-line interface.
 		</p>
@@ -37,14 +37,14 @@
 									name={item.name}
 									slug={item.slug}
 									avatar={item.avatar}
-									class="text-foreground/70 transition-colors group-hover:text-lime-500"
+									class="text-foreground/70 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 								/>
 								<span class="min-w-0 flex-1">
 									<span class="block truncate text-sm font-medium">{item.name}</span>
 									<span class="block truncate text-xs text-muted-foreground">{item.detail}</span>
 								</span>
 								<ArrowUpRight
-									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 								/>
 							</a>
 						</li>
@@ -58,7 +58,10 @@
 		<p
 			class="relative rounded-full bg-gray-50 px-4 py-1.5 text-sm/6 ring-1 ring-inset ring-gray-900/5 dark:bg-gray-400/5"
 		>
-			<a href="https://docs.vale.sh/guides/lsp" class="font-semibold text-lime-500">
+			<a
+				href="https://docs.vale.sh/guides/lsp"
+				class="font-semibold text-lime-600 dark:text-lime-400"
+			>
 				<span class="absolute inset-0" aria-hidden="true"></span>
 				Learn more about our integrations
 				<span aria-hidden="true">&rarr;</span>

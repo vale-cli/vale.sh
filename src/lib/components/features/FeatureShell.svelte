@@ -35,11 +35,11 @@
 
 			<div class="mt-8 flex items-center gap-3">
 				<div
-					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-lime-500/20 bg-lime-500/10 text-lime-500"
+					class="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-lime-500/20 bg-lime-500/10 text-lime-600 dark:text-lime-400"
 				>
 					<Icon class="h-5 w-5" />
 				</div>
-				<p class="text-sm font-medium text-lime-500">{feature.tagline}</p>
+				<p class="text-sm font-medium text-lime-600 dark:text-lime-400">{feature.tagline}</p>
 			</div>
 
 			<h1 class="mt-5 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
@@ -62,7 +62,7 @@
 	<!-- Keep reading: the other three deep dives, in their landing-page order. -->
 	<section class="border-t border-border/60 bg-muted/20">
 		<div class="mx-auto max-w-6xl px-6 py-14 sm:py-16 lg:px-8">
-			<h2 class="text-base font-semibold text-lime-500">Keep reading</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">Keep reading</h2>
 			<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-3">
 				{#each rest as other}
 					{@const OtherIcon = other.icon}
@@ -71,7 +71,7 @@
 						class="group flex flex-col gap-3 rounded-2xl border border-border/60 bg-card p-6 transition-colors hover:border-lime-500/40"
 					>
 						<div
-							class="flex h-9 w-9 items-center justify-center rounded-lg border border-lime-500/20 bg-lime-500/10 text-lime-500"
+							class="flex h-9 w-9 items-center justify-center rounded-lg border border-lime-500/20 bg-lime-500/10 text-lime-600 dark:text-lime-400"
 						>
 							<OtherIcon class="h-4 w-4" />
 						</div>

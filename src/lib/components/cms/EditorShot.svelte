@@ -55,9 +55,9 @@
 			</div>
 			<div
 				class="flex items-center gap-1.5 py-1 pl-7 pr-4 text-lime-50"
-				style="background: rgb(132 204 22 / 0.14); box-shadow: inset 2px 0 0 #84cc16"
+				style="background: rgb(98 165 39 / 0.14); box-shadow: inset 2px 0 0 #62a527"
 			>
-				<span class="text-lime-500">▸</span> Passive.yml
+				<span class="text-lime-600 dark:text-lime-400">▸</span> Passive.yml
 			</div>
 			<div class="flex items-center gap-1.5 py-1 pl-7 pr-4">
 				<span style="color: var(--e-faint)">▸</span> Terms.yml
@@ -159,7 +159,7 @@
 				class="flex flex-wrap items-baseline gap-x-2.5 gap-y-1 border-t px-4 py-2.5 font-mono text-[11.5px]"
 				style="border-color: var(--e-line); background: var(--e-panel); color: var(--e-dim)"
 			>
-				<span class="text-lime-500">compiled</span>
+				<span class="text-lime-600 dark:text-lime-400">compiled</span>
 				<span style="color:#c9a6f2">(?:is|are|was|were|been)</span>
 				<span style="color: var(--e-faint)">→</span>
 				<span style="color:#e3b168">RB?</span>
@@ -232,7 +232,7 @@
 		class="flex items-center gap-4 border-t px-4 py-2 font-mono text-[11px]"
 		style="border-color: var(--e-line); background: var(--e-panel); color: var(--e-dim)"
 	>
-		<span class="text-lime-500">● engine ready</span>
+		<span class="text-lime-600 dark:text-lime-400">● engine ready</span>
 		<span>16 assets</span>
 		<span>3 alerts</span>
 		<span class="ml-auto">saved · main</span>

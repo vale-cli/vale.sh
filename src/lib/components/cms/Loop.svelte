@@ -31,7 +31,7 @@
 <section id="loop" class="scroll-mt-20 border-b border-border/60 bg-muted/30 py-16 sm:py-20">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="max-w-2xl">
-			<h2 class="text-base font-semibold text-lime-500">The loop</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">The loop</h2>
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
 				Author, preview, and ship — without leaving the browser
 			</p>

@@ -21,7 +21,7 @@
 	<section id="events" class="border-b border-border/60 py-14 sm:py-16">
 		<div class="mx-auto max-w-6xl px-6 lg:px-8">
 			<div class="mx-auto max-w-2xl text-center">
-				<h2 class="text-base/7 font-semibold text-lime-500">Events</h2>
+				<h2 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">Events</h2>
 				<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-5xl">Coming up</p>
 			</div>
 
@@ -36,12 +36,12 @@
 						>
 							<div class="flex items-start justify-between gap-3">
 								<span
-									class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-lime-500/10 text-lime-500"
+									class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-lime-500/10 text-lime-600 dark:text-lime-400"
 								>
 									<Calendar class="h-5 w-5" />
 								</span>
 								<ArrowUpRight
-									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 								/>
 							</div>
 							<p class="mt-5 text-sm font-medium text-muted-foreground">{event.host}</p>

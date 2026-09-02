@@ -30,7 +30,8 @@
 
 		<MobileLink href="/" class="flex items-center gap-2" bind:open>
 			<Icons.logo class="h-5 w-5" />
-			<span class="font-bold">{siteConfig.name}</span>
+			<Icons.wordmark class="h-4 w-auto" />
+			<span class="sr-only">{siteConfig.name}</span>
 		</MobileLink>
 
 		<nav class="flex flex-col gap-3 text-base">

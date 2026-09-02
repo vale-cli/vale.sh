@@ -4,24 +4,14 @@
 	type $$Props = HTMLAttributes<SVGElement>;
 </script>
 
-<svg
-	version="1.0"
-	viewBox="0 0 417.000000 387.000000"
-	preserveAspectRatio="xMidYMid meet"
-	xmlns="http://www.w3.org/2000/svg"
-	{...$$restProps}
->
-	<defs />
-	<g
-		transform="translate(0.000000,387.000000) scale(0.100000,-0.100000)"
-		fill="#82CB15"
-		stroke="none"
-	>
-		<path
-			d="M2761 3207 c-30 -61 -162 -329 -293 -593 -131 -265 -238 -488 -238&#10;-495 0 -8 75 -165 166 -349 92 -184 170 -346 175 -359 8 -19 12 -21 24 -11 8&#10;7 15 16 15 20 0 5 132 275 293 602 162 326 370 748 464 938 94 190 169 348&#10;166 353 -2 4 -165 7 -361 7 l-357 0 -54 -113z"
-		/>
-		<path
-			d="M560 2467 c0 -2 20 -39 45 -83 25 -43 45 -82 45 -86 0 -4 134 -279&#10;299 -610 452 -914 541 -1095 541 -1107 0 -7 12 -16 26 -21 33 -13 684 -13 704&#10;0 12 8 13 13 3 27 -7 10 -30 54 -52 98 -41 84 -332 674 -673 1365 -110 223&#10;-205 408 -212 412 -10 7 -726 12 -726 5z"
-		/>
-	</g>
+<!--
+	The mark, drawn on a grid: both strokes run at a 1:2 slope, and the right
+	one is cut by a line parallel to the left so the gap between them is exactly
+	one stroke wide. The same path ships in static/brand/vale-mark.svg.
+
+	Painted in the primary token, which is Grass on light and its light step on
+	dark, so the mark follows the theme without a class on every call site.
+-->
+<svg viewBox="0 0 128 120" xmlns="http://www.w3.org/2000/svg" {...$$restProps}>
+	<path fill="hsl(var(--primary))" d="M0 40 32 40 72 120 40 120ZM96 0 128 0 86 84 70 52Z" />
 </svg>

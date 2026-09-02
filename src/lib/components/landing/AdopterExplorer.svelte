@@ -212,12 +212,12 @@
 										name={user.name}
 										slug={user.icon}
 										avatar={user.avatar}
-										class="text-foreground/70 transition-colors group-hover:text-lime-500"
+										class="text-foreground/70 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 									/>
 									<span class="font-semibold tracking-tight text-foreground">{user.name}</span>
 								</span>
 								<ArrowUpRight
-									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-500"
+									class="h-4 w-4 shrink-0 text-muted-foreground transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
 								/>
 							</div>
 							<p class="mt-2 grow text-sm leading-6 text-muted-foreground">{user.context}</p>
@@ -250,7 +250,7 @@
 					query = '';
 					activeCategory = 'All';
 				}}
-				class="mt-3 text-sm font-medium text-lime-500 hover:text-lime-600"
+				class="mt-3 text-sm font-medium text-lime-600 hover:text-lime-600 dark:text-lime-400 dark:hover:text-lime-400"
 			>
 				Reset filters
 			</button>

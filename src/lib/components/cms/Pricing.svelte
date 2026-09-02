@@ -84,7 +84,7 @@
 <section id="pricing" class="scroll-mt-20 border-b border-border/60 bg-muted/30 py-16 sm:py-20">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl text-center">
-			<h2 class="text-base font-semibold text-lime-500">Pricing</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">Pricing</h2>
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
 				Explore free. Author on Pro.
 			</p>
@@ -169,7 +169,7 @@
 					<ul class="mb-6 mt-5 flex flex-col gap-3">
 						{#each tier.features as feature (feature)}
 							<li class="flex items-start gap-2.5 text-sm leading-6">
-								<Check class="mt-1 size-4 shrink-0 text-lime-500" />
+								<Check class="mt-1 size-4 shrink-0 text-lime-600 dark:text-lime-400" />
 								<span>{feature}</span>
 							</li>
 						{/each}

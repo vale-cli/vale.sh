@@ -86,7 +86,11 @@
 						? 'bg-lime-500/10 font-medium text-foreground'
 						: 'text-muted-foreground hover:bg-muted/60 hover:text-foreground'}"
 				>
-					<Icon class="h-4 w-4 shrink-0 {active === section.id ? 'text-lime-500' : ''}" />
+					<Icon
+						class="h-4 w-4 shrink-0 {active === section.id
+							? 'text-lime-600 dark:text-lime-400'
+							: ''}"
+					/>
 					{section.label}
 				</a>
 			</li>

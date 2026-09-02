@@ -22,7 +22,7 @@
 		<div class="mx-auto max-w-3xl text-center">
 			<h2 class="text-balance text-3xl font-semibold tracking-tight sm:text-5xl">
 				Stop shipping rules you
-				<span class="text-lime-500">hope</span> work.
+				<span class="text-lime-600 dark:text-lime-400">hope</span> work.
 			</h2>
 			<p class="mx-auto mt-5 max-w-2xl text-pretty text-lg leading-8 text-muted-foreground">
 				A month of the full editor and the MCP server, on your own repository. If it hasn't caught

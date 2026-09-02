@@ -36,7 +36,9 @@
 <section class="border-b border-border/60 py-16 sm:py-20">
 	<div class="mx-auto grid max-w-6xl gap-10 px-6 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14 lg:px-8">
 		<div>
-			<h2 class="text-base font-semibold text-lime-500">Built for private repositories</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">
+				Built for private repositories
+			</h2>
 			<!--
 				State the design, not the disaster. An earlier headline opened with a
 				server breach, which makes the reader picture one — on a page whose job

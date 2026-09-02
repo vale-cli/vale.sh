@@ -38,7 +38,7 @@
 <section id="faq" class="scroll-mt-20 border-b border-border/60 bg-muted/30 py-16 sm:py-20">
 	<div class="mx-auto max-w-6xl px-6 lg:px-8">
 		<div class="max-w-2xl">
-			<h2 class="text-base font-semibold text-lime-500">Before you ask</h2>
+			<h2 class="text-base font-semibold text-lime-600 dark:text-lime-400">Before you ask</h2>
 			<p class="mt-2 text-balance text-3xl font-semibold tracking-tight sm:text-4xl">
 				The questions we'd ask too
 			</p>

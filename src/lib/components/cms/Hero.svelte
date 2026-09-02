@@ -20,7 +20,7 @@
 
 			<h1 class="mt-6 text-balance text-4xl font-semibold tracking-tight sm:text-6xl">
 				A style guide that doesn't compile is
-				<span class="text-lime-500">just a document.</span>
+				<span class="text-lime-600 dark:text-lime-400">just a document.</span>
 			</h1>
 
 			<!--

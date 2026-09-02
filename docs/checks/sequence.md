@@ -2,10 +2,11 @@
 
 Learn about the sequence extension point.
 
-| Name         | Type         | Description                                    |
-| ------------ | ------------ | ---------------------------------------------- |
-| `tokens`     | `[]NLPToken` | A list of tokens with associated NLP metadata. |
-| `ignorecase` | `bool`       | Makes all matches case-insensitive.            |
+| Name         | Type         | Description                                                              |
+| ------------ | ------------ | ------------------------------------------------------------------------ |
+| `tokens`     | `[]NLPToken` | A list of tokens with associated NLP metadata.                           |
+| `ignorecase` | `bool`       | Makes all matches case-insensitive.                                      |
+| `exceptions` | `[]string`   | Regexes marking sentence regions; a match beginning inside one is dropped. |
 
 While most extension points focus on writing _style_, `sequence` aims to support grammar-focused rules.
 
@@ -28,6 +29,14 @@ tokens:
 
 Every `sequence`-based rule is required to have at least one `pattern` (such as `pattern: be`, shown above). This becomes the “anchor” of the sequence: we find all instances of the first pattern and then check that the left- and right-hand sides of the sequence match.
 
+Tokens judge the sentence one word at a time. When a rule needs a judgment about a *region* — for example, “the comma closing a fronted phrase isn’t a list comma” — hand that part to `exceptions`: each entry is a regular expression matched against the sentence, and a sequence match that begins inside one of its matches is dropped. Unlike other checks’ `exceptions`, these are regions rather than vocabulary terms, so the project’s accepted vocabulary is never merged in.
+
+```yaml
+# Skip matches that begin inside a fronted phrase.
+exceptions:
+  - '^(?i:(?:in|on|at|when|while|if)\b[^,]{0,60}),'
+```
+
 Each entry in a sequence is known as an `NLPToken` and has the following structure:
 
 ```yaml
@@ -36,7 +45,10 @@ Each entry in a sequence is known as an `NLPToken` and has the following structu
 pattern: '...'
 
 # [optional]: If true, indicates that we
-# *shouldn't* match this token.
+# *shouldn't* match this token. A negated token at
+# the start or end of a sequence is also satisfied
+# by the sentence boundary itself: "not preceded by
+# X" holds when nothing precedes the match at all.
 negate: true # or false
 
 # [optional]: A part-of-speech tag (required

@@ -118,17 +118,12 @@
 								>Search by Algolia</a
 							>
 							<ul class="DocSearch-Commands">
+								<li><kbd class="DocSearch-Commands-Key">↵</kbd><span>to select</span></li>
 								<li>
-									<kbd class="DocSearch-Commands-Key">↵</kbd><span>to select</span>
+									<kbd class="DocSearch-Commands-Key">↑</kbd
+									><kbd class="DocSearch-Commands-Key">↓</kbd><span>to navigate</span>
 								</li>
-								<li>
-									<kbd class="DocSearch-Commands-Key">↑</kbd><kbd class="DocSearch-Commands-Key"
-										>↓</kbd
-									><span>to navigate</span>
-								</li>
-								<li>
-									<kbd class="DocSearch-Commands-Key">esc</kbd><span>to close</span>
-								</li>
+								<li><kbd class="DocSearch-Commands-Key">esc</kbd><span>to close</span></li>
 							</ul>
 						</div>
 					</div>`,
@@ -139,11 +134,7 @@
 				// One row renderer for both sources: a resource and an issue
 				// carry the same fields, and a result should read the same
 				// whichever list it came from.
-				const row = (
-					item: SearchHit,
-					html: any,
-					createElement: any
-				) => {
+				const row = (item: SearchHit, html: any, createElement: any) => {
 					// The snippet carries Algolia's <mark> tags, so it is set as
 					// HTML; falling back to the description keeps a row that
 					// matched on title alone from rendering empty.
@@ -303,7 +294,7 @@
 		class="pointer-events-none absolute inset-0 -z-10 [background-image:radial-gradient(hsl(var(--foreground)/0.05)_1px,transparent_1px)] [background-size:22px_22px] [mask-image:radial-gradient(ellipse_60%_60%_at_50%_0%,#000_60%,transparent_100%)]"
 	></div>
 	<div class="mx-auto max-w-3xl px-6 py-16 text-center lg:px-8">
-		<p class="text-base font-semibold text-lime-500">Media Library</p>
+		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Media Library</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
 			Vale in the wild
 		</h1>
@@ -316,13 +307,13 @@
 			<p class="mt-3 text-sm text-muted-foreground">
 				Search the full library, including
 				<Popover.Root>
-					<Popover.Trigger class="font-medium text-lime-500 hover:underline"
+					<Popover.Trigger class="font-medium text-lime-600 hover:underline dark:text-lime-400"
 						>search tips</Popover.Trigger
 					>
 					<Popover.Content class="prose prose-sm dark:prose-invert">
 						<p>
-							The library is searched in full — the whole text of each article, not
-							just its title — and refreshed weekly.
+							The library is searched in full — the whole text of each article, not just its title —
+							and refreshed weekly.
 						</p>
 						<ul class="list-disc">
 							<li>Misspellings still match: <code>lintr</code> finds <code>linter</code></li>
@@ -351,7 +342,7 @@
 				type="button"
 				onclick={() => (activeType = f)}
 				class="rounded-full border px-3 py-1 text-sm font-medium transition-colors {activeType === f
-					? 'border-lime-500/50 bg-lime-500/10 text-lime-600'
+					? 'border-lime-500/50 bg-lime-500/10 text-lime-600 dark:text-lime-400'
 					: 'border-border text-muted-foreground hover:border-lime-500/40 hover:text-foreground'}"
 			>
 				{typeLabel(f)}
@@ -394,7 +385,7 @@
 					<!-- The chip carries the icon now that the thumbnail may not. -->
 					<div class="flex items-center gap-2 text-xs">
 						<span
-							class="inline-flex items-center gap-1.5 rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20"
+							class="inline-flex items-center gap-1.5 rounded-full bg-lime-500/10 px-2 py-0.5 font-medium text-lime-600 ring-1 ring-inset ring-lime-500/20 dark:text-lime-400"
 						>
 							{#if m.type === 'video'}
 								<Play class="h-3 w-3" />
@@ -412,7 +403,7 @@
 							href={m.url}
 							target="_blank"
 							rel="noreferrer"
-							class="transition-colors after:absolute after:inset-0 focus:outline-none focus-visible:underline group-hover:text-lime-500"
+							class="transition-colors after:absolute after:inset-0 focus:outline-none focus-visible:underline group-hover:text-lime-600 dark:group-hover:text-lime-400"
 						>
 							{m.title}
 						</a>

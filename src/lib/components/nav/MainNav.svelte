@@ -7,11 +7,9 @@
 </script>
 
 <div class="mr-4 hidden md:flex">
-	<a href="/" class="mr-6 flex items-center space-x-2">
+	<a href="/" class="mr-6 flex items-center gap-2" aria-label={siteConfig.name}>
 		<Icons.logo class="h-6 w-6" />
-		<span class="hidden font-bold lg:inline-block">
-			{siteConfig.name}
-		</span>
+		<Icons.wordmark class="hidden h-[19px] w-auto lg:block" />
 	</a>
 	<nav class="flex items-center gap-6 text-sm">
 		{#each docsConfig.mainNav as { href, title }, i}

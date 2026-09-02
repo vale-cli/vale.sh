@@ -296,7 +296,7 @@ BasedOnStyles = Vale`);
 
 {#snippet stepBadge(n: number)}
 	<span
-		class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-sm font-semibold text-lime-600 ring-1 ring-inset ring-lime-500/20"
+		class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-lime-500/10 text-sm font-semibold text-lime-600 ring-1 ring-inset ring-lime-500/20 dark:text-lime-400"
 	>
 		{n}
 	</span>
@@ -305,9 +305,9 @@ BasedOnStyles = Vale`);
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
 	<!-- Header -->
 	<div class="mx-auto max-w-2xl text-center">
-		<p class="text-base font-semibold text-lime-500">Config generator</p>
+		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Config generator</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-			Build your <code class="font-mono text-lime-500">.vale.ini</code>
+			Build your <code class="font-mono text-lime-600 dark:text-lime-400">.vale.ini</code>
 		</h1>
 		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
 			Pick your styles and formats—we'll assemble a ready-to-use configuration file.
@@ -319,7 +319,7 @@ BasedOnStyles = Vale`);
 		-->
 		<p class="mx-auto mt-3 text-sm text-muted-foreground">
 			Each option shows what it contains and how often it turns up in
-			<a href="/adopters" class="font-medium text-lime-500 hover:underline">
+			<a href="/adopters" class="font-medium text-lime-600 hover:underline dark:text-lime-400">
 				{sampleSize} public <code class="font-mono">.vale.ini</code> files
 			</a>
 			from the {adopterCount} projects we track.
@@ -505,7 +505,7 @@ BasedOnStyles = Vale`);
 							aria-label="Copy configuration"
 						>
 							{#if copied}
-								<Check class="h-3.5 w-3.5 text-lime-500" /> Copied
+								<Check class="h-3.5 w-3.5 text-lime-600 dark:text-lime-400" /> Copied
 							{:else}
 								<Copy class="h-3.5 w-3.5" /> Copy
 							{/if}
@@ -532,7 +532,9 @@ BasedOnStyles = Vale`);
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code
 				>
 				to install the packages. Browse everything available in the
-				<a class="font-medium text-lime-500 hover:underline" href="/explorer">Package Explorer</a>.
+				<a class="font-medium text-lime-600 hover:underline dark:text-lime-400" href="/explorer"
+					>Package Explorer</a
+				>.
 			</div>
 		</div>
 	</div>

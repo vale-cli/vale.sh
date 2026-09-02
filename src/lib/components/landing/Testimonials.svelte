@@ -20,7 +20,9 @@
 <div class="pt-14">
 	<div class="mx-auto max-w-7xl px-6 lg:px-8">
 		<div class="mx-auto max-w-2xl sm:text-center">
-			<h2 class="text-base/7 font-semibold text-lime-500">Used around the world</h2>
+			<h2 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">
+				Used around the world
+			</h2>
 			<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-balance sm:text-5xl">
 				Powering collaboration and consistency across industries.
 			</p>
@@ -70,7 +72,7 @@
 						? 'bg-gray-400/5'
 						: 'bg-gray-50'} px-4 py-1.5 text-sm/6 ring-1 ring-inset ring-gray-900/5"
 				>
-					<a href="/library" class="font-semibold text-lime-500"
+					<a href="/library" class="font-semibold text-lime-600 dark:text-lime-400"
 						><span class="absolute inset-0" aria-hidden="true"></span> Learn more about how Vale is
 						being used
 						<span aria-hidden="true">&rarr;</span></a

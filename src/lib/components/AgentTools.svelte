@@ -60,7 +60,7 @@
 
 <div id="ai" class="mx-auto max-w-7xl scroll-mt-24 px-6 pt-7 lg:px-8">
 	<div class="mx-auto max-w-2xl sm:text-center">
-		<h2 class="text-base/7 font-semibold text-lime-500">Vale for agents</h2>
+		<h2 class="text-base/7 font-semibold text-lime-600 dark:text-lime-400">Vale for agents</h2>
 		<p class="mt-2 text-pretty text-4xl font-semibold tracking-tight sm:text-balance sm:text-5xl">
 			Your assistant writes the docs. Something should check them.
 		</p>
