@@ -6895,6 +6895,998 @@
     ]
   },
   {
+    "name": "Std",
+    "description": "The standard library for Vale: general-purpose rules you extend to build your own style.",
+    "homepage": "https://github.com/vale-cli/Std",
+    "url": "https://github.com/vale-cli/Std/releases/latest/download/Std.zip",
+    "logo": "https://github.com/vale-cli.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "Abbreviations.Acronyms",
+        "extends": "conditional",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Spell out '%s' on first use.",
+        "link": ""
+      },
+      {
+        "name": "Abbreviations.Latin",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "DateTime.DateFormat",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Ambiguous date format: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "DateTime.TimeFormat",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Inconsistent time format: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Grammar.Contractions",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Grammar.PassiveVoice",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' looks like passive voice.",
+        "link": ""
+      },
+      {
+        "name": "Punctuation.Ellipses",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Ellipsis.",
+        "link": ""
+      },
+      {
+        "name": "Punctuation.OxfordComma",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Missing serial comma before '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Punctuation.Spacing",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' should have one space.",
+        "link": ""
+      },
+      {
+        "name": "Readability.SentenceLength",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "Long sentence: %d words.",
+        "link": ""
+      },
+      {
+        "name": "Usage.FirstPersonPlural",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "First-person plural: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Usage.FirstPersonSingular",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "First-person singular: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Usage.GenderedPronouns",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is not a gender-neutral pronoun.",
+        "link": ""
+      },
+      {
+        "name": "Usage.GenderedTerms",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": ""
+      }
+    ]
+  },
+  {
+    "name": "ai-tells",
+    "description": "Flags the fingerprints of AI-written prose, with rule messages that name the fix rather than only the phrase.",
+    "homepage": "https://github.com/tbhb/vale-ai-tells",
+    "url": "https://github.com/tbhb/vale-ai-tells/releases/latest/download/ai-tells.zip",
+    "logo": "https://github.com/tbhb.png",
+    "tags": [
+      "style"
+    ],
+    "rules": [
+      {
+        "name": "AbsoluteAssertions",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overreach: '%s'. Verify this claim or soften it.",
+        "link": ""
+      },
+      {
+        "name": "AffirmativeFormulas",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI affirmation: '%s'. Cut the flourish and state the point plainly.",
+        "link": ""
+      },
+      {
+        "name": "AIAdjectiveNounPairs",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI adjective-noun pair: '%s %s'. Use concrete description instead.",
+        "link": ""
+      },
+      {
+        "name": "AICompoundPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI fingerprint: '%s'. Rewrite with concrete specifics instead of this clichéd phrase.",
+        "link": ""
+      },
+      {
+        "name": "AnnouncementHeadings",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "AI announcement heading: '%s'. Cut the heading or rename it to the topic.",
+        "link": ""
+      },
+      {
+        "name": "AnthropomorphicCognition",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI anthropomorphism: '%s'. State what the tool checks or produces. Disable this rule for prose about people.",
+        "link": ""
+      },
+      {
+        "name": "AnthropomorphicJustification",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI cliché: '%s'. Say what you mean directly.",
+        "link": ""
+      },
+      {
+        "name": "CataphoricForecasting",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI numbered lead-in: '%s'. Present the items or the measured figures directly instead of leading with a count.",
+        "link": ""
+      },
+      {
+        "name": "ClosingPleasantries",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI closing: '%s'. Delete it and end with your actual content.",
+        "link": ""
+      },
+      {
+        "name": "ColloquialAssessments",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI colloquial assessment: '%s'. State the assessment directly.",
+        "link": ""
+      },
+      {
+        "name": "ColonUsage",
+        "extends": "existence",
+        "level": "error",
+        "scope": "~heading",
+        "message": "AI punctuation: '%s'. Lowercase the word after the colon unless it is a proper noun.",
+        "link": ""
+      },
+      {
+        "name": "ConclusionMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI conclusion: '%s'. Delete this and end on your final point.",
+        "link": ""
+      },
+      {
+        "name": "ContrastiveFormulas",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI contrast: '%s'. State the positive claim directly without the 'not X, but Y' formula.",
+        "link": ""
+      },
+      {
+        "name": "ContrastiveNegation",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI contrast by negation: '%s'. State the positive directly without the trailing negation.",
+        "link": ""
+      },
+      {
+        "name": "DefensiveHedges",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI defensive hedge: '%s'. State your point directly without pre-defending it.",
+        "link": ""
+      },
+      {
+        "name": "DespiteChallenges",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI despite-formula: '%s'. Engage with the challenges substantively or remove the hedge.",
+        "link": ""
+      },
+      {
+        "name": "DoubleHyphen",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI punctuation: '%s'. Backtick it if it is a CLI flag or literal, or use a real em dash for punctuation.",
+        "link": ""
+      },
+      {
+        "name": "EmDashUsage",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI punctuation: em-dash detected. Use a comma, period, or parentheses instead.",
+        "link": ""
+      },
+      {
+        "name": "EmphaticCopula",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "AI emphasis: '%s'. Remove the italics. Emphasizing a common word rarely adds meaning.",
+        "link": ""
+      },
+      {
+        "name": "EnforcementMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI enforcement metaphor: '%s'. Say what the check refuses or allows. Disable this rule for security or law-enforcement prose.",
+        "link": ""
+      },
+      {
+        "name": "EvasionMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI evasion metaphor: '%s'. Name what the check missed and why.",
+        "link": ""
+      },
+      {
+        "name": "ExplainerHeadings",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "AI explainer heading: '%s'. Name what you're explaining instead.",
+        "link": ""
+      },
+      {
+        "name": "ExplainerLeads",
+        "extends": "existence",
+        "level": "error",
+        "scope": "~heading",
+        "message": "AI explainer lead: '%s'. State the point directly instead of announcing it.",
+        "link": ""
+      },
+      {
+        "name": "FalseBalance",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI evasion: '%s'. Take a clear position or remove the hedge.",
+        "link": ""
+      },
+      {
+        "name": "FalseExclusivity",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI false exclusivity: '%s'. State the point directly without claiming insider knowledge.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeBreeds",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say the one causes the other. Disable this rule for husbandry or biology prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeCarries",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name what it contains or entails directly. Disable this rule for freight or logistics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeCasts",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. State the doubt or the effect directly. Disable this rule for fishing, metalwork, or theater prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeClears",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI hurdle metaphor: '%s'. Say the check passed. Disable this rule for athletics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeDemands",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say the work requires it. Disable this rule for labor or economics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeDisguises",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI disguise metaphor: '%s'. Name what the thing is, then say how it differs from what it resembles. Disable this rule for security, forensics, or costume prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeDraws",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the source or the comparison directly. Disable this rule for art or card-game prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeFalls",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the shortfall or the membership directly. Disable this rule for gravity or weather prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeFires",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say the rule matches or reports. Disable this rule for firearms or ceramics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeHolds",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. State the comparison or the claim directly. Disable this rule for legal or wrestling prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeIdioms",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI idiom: '%s'. State the literal outcome instead.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeLands",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the literal action: is merged or is routed to. Disable this rule for aviation or nature prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeLends",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. State what it adds or enables directly. Disable this rule for library or finance prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeLives",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say where the item is defined or stored. Disable this rule for biography or housing prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeLoud",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused word: '%s'. Name the actual behavior instead of calling emphasis volume. Disable this rule for prose about sound.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeOwns",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI ownership metaphor: '%s'. Name the file that defines it or the tool that writes it. Disable this rule for concurrency or memory prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativePays",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI money metaphor: '%s'. Name the plain benefit or cost. Disable this rule for finance or commerce prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeQuantities",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI quantity metaphor: '%s'. Give the count, or write 'a few' or 'many'.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeQuiet",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused word: '%s'. Name the actual behavior instead of calling inaction silence. Disable this rule for prose about sound.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeReaches",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say uses or resorts to instead. Disable this rule for sports or robotics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeRides",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the dependency or the mechanism directly. Disable this rule for transit or equestrian prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeRuns",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the actual behavior. Disable this rule for athletics or plumbing prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeSees",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say who uses it or what changed. Disable this rule for prose about eyesight.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeSettles",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI settlement metaphor: '%s'. State the conclusion and the evidence, or name the stable state. Disable this rule for legal or geology prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeSits",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the literal relation: is at or rests with. Disable this rule for furniture or geography prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeStays",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say the item is unchanged, or name what it avoids. Disable this rule for lodging or travel prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeStrikes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. State the effect or the tradeoff directly. Disable this rule for labor or percussion prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeSurfaces",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI discovery metaphor: '%s'. Say what reported the problem and when. Disable this rule for marine or graphics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeSweeps",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the literal action: is removed or is replaced. Disable this rule for housekeeping or weather prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeTravels",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name the literal movement: is sent or is copied. Disable this rule for transit or physics prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeTrips",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Say the text matches the check. Disable this rule for electrical or hiking prose.",
+        "link": ""
+      },
+      {
+        "name": "FigurativeWins",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. State the benefit or the outcome directly. Disable this rule for sports or gaming prose.",
+        "link": ""
+      },
+      {
+        "name": "FillerIntensifier",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI intensifier: '%s'. Delete the intensifier. The determiner already states the count.",
+        "link": ""
+      },
+      {
+        "name": "FillerPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI filler: '%s'. Delete this phrase. It adds nothing.",
+        "link": ""
+      },
+      {
+        "name": "FormalRegister",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI formalism: '%s'. Use a plainer everyday word (e.g., 'use', 'help', 'start').",
+        "link": ""
+      },
+      {
+        "name": "FormalTransitions",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI transition: '%s'. Delete it, or use a simpler connector like 'and', 'but', or 'so'.",
+        "link": ""
+      },
+      {
+        "name": "GrowthMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI growth metaphor: '%s'. Say what literally happens, or disable this rule for medical or nature writing.",
+        "link": ""
+      },
+      {
+        "name": "HedgingPhrases",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI hedge: '%s'. Delete this throat-clearing and state your point directly.",
+        "link": ""
+      },
+      {
+        "name": "HollowAcknowledgment",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI hollow acknowledgment: '%s'. Resolve the thing you just named or cut the clause.",
+        "link": ""
+      },
+      {
+        "name": "HouseStyle",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "AI house compound: use %s instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "IncompleteComparison",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI incomplete comparison: '%s'. Complete it with 'than' and the baseline.",
+        "link": ""
+      },
+      {
+        "name": "JourneyMetaphors",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI journey metaphor: '%s'. Say what literally happened and what the next step is. Disable this rule for travel writing.",
+        "link": ""
+      },
+      {
+        "name": "LabelAndExplain",
+        "extends": "existence",
+        "level": "error",
+        "scope": "~heading",
+        "message": "AI label-and-explain: '%s'. Fold the noun-phrase label into the sentence it introduces.",
+        "link": ""
+      },
+      {
+        "name": "ListIntroductions",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI list intro: '%s'. Skip the announcement and present the content directly.",
+        "link": ""
+      },
+      {
+        "name": "MarketingHeadings",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "AI marketing heading: '%s'. Strip the puffery and name the topic plainly.",
+        "link": ""
+      },
+      {
+        "name": "Metacommentary",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "AI metacommentary: '%s'. Delete it or replace it with substantive content.",
+        "link": ""
+      },
+      {
+        "name": "MicDrop",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI mic-drop: '%s'. Integrate the point into the surrounding text or cut it.",
+        "link": ""
+      },
+      {
+        "name": "MicDropHeadings",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "AI mic-drop: '%s'. Use a descriptive heading instead.",
+        "link": ""
+      },
+      {
+        "name": "NarrativePivots",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI narrative pivot: '%s'. State your point directly.",
+        "link": ""
+      },
+      {
+        "name": "NegatedObject",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI stilted negation: '%s'. Negate the verb with 'doesn't' instead of shifting 'no' onto the object.",
+        "link": ""
+      },
+      {
+        "name": "NegatedSubject",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI negated subject: '%s'. Name who does what: 'you don't need to configure anything' instead of announcing an absence.",
+        "link": ""
+      },
+      {
+        "name": "NounString",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI noun string: '%[2]s %[3]s %[4]s %[5]s'. Rewrite the stack as a phrase that shows how the nouns relate.",
+        "link": ""
+      },
+      {
+        "name": "OpeningCliches",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI opening: '%s'. Start with your actual point instead of this generic lead-in.",
+        "link": ""
+      },
+      {
+        "name": "OrganicConsequence",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI inevitability: '%s'. Say the choice was designed that way.",
+        "link": ""
+      },
+      {
+        "name": "OverusedVocabulary",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI vocabulary: '%s'. Replace with a more specific or common word.",
+        "link": ""
+      },
+      {
+        "name": "OverusedVocabularyVerbs",
+        "extends": "sequence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI vocabulary (verb form): '%s'. Replace with a direct verb.",
+        "link": ""
+      },
+      {
+        "name": "ParallelStaccato",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI staccato: '%s'. Combine these clipped parallel sentences or vary the structure.",
+        "link": ""
+      },
+      {
+        "name": "ParticipialPadding",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI participial padding: '%s'. Delete it or make the point concrete.",
+        "link": ""
+      },
+      {
+        "name": "PromotionalPuffery",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI puffery: '%s'. Use neutral, specific language.",
+        "link": ""
+      },
+      {
+        "name": "RedundantPrecaution",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI cliché: '%s'. Name the specific safeguard or cut the phrase.",
+        "link": ""
+      },
+      {
+        "name": "ResonateOveruse",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused verb: '%s'. Name what connects and why, or disable this rule for physics or audio writing.",
+        "link": ""
+      },
+      {
+        "name": "RestatementMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI restatement: '%s'. Delete it and trust your original phrasing.",
+        "link": ""
+      },
+      {
+        "name": "RhetoricalDevices",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI rhetoric: '%s'. Remove it or rephrase as a plain statement.",
+        "link": ""
+      },
+      {
+        "name": "RhetoricalSelfAnswer",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "AI rhetorical self-answer: '%s'. State the point directly instead of posing and answering your own question.",
+        "link": ""
+      },
+      {
+        "name": "SelfReference",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI cross-reference: '%s'. Rewrite the passage to work without the cross-reference.",
+        "link": ""
+      },
+      {
+        "name": "SemicolonUsage",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI punctuation: '%s'. Replace the semicolon with a period or two sentences.",
+        "link": ""
+      },
+      {
+        "name": "SequencingMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI sequencing: '%s'. Use natural transitions or write an actual list.",
+        "link": ""
+      },
+      {
+        "name": "ServesAsDodge",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI copula dodge: '%s'. Use 'is' or 'are' instead of this inflated construction.",
+        "link": ""
+      },
+      {
+        "name": "ShipOveruse",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI overused word: '%s'. Name the specific action or object. Disable this rule for maritime or logistics writing.",
+        "link": ""
+      },
+      {
+        "name": "StackedAnaphora",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI anaphora: '%s'. Vary the sentence openings or combine into one statement.",
+        "link": ""
+      },
+      {
+        "name": "StackedHedges",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI stacked hedge: '%s'. Drop one hedge, or give a number instead.",
+        "link": ""
+      },
+      {
+        "name": "StrategyBuzzwords",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI strategy buzzword: '%s'. Describe the actual mechanism or advantage plainly.",
+        "link": ""
+      },
+      {
+        "name": "StructureAnnouncements",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI structure announcement: '%s'. Present the content instead of narrating that you're about to.",
+        "link": ""
+      },
+      {
+        "name": "SycophancyMarkers",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI sycophancy: '%s'. Delete this. It sounds robotic and insincere.",
+        "link": ""
+      },
+      {
+        "name": "UniversalObject",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI totality claim: '%s'. Say which cases were checked, or drop the quantifier.",
+        "link": ""
+      },
+      {
+        "name": "UniversalSubject",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI blanket claim: '%s'. Say which cases were checked, or drop the quantifier.",
+        "link": ""
+      },
+      {
+        "name": "UnpackExplore",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI explainer prompt: '%s'. Explain it directly instead of announcing it.",
+        "link": ""
+      },
+      {
+        "name": "UrgencyInflation",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI urgency: '%s'. Delete it or show the stakes concretely.",
+        "link": ""
+      },
+      {
+        "name": "VagueAttributions",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI vague attribution: '%s'. Name the specific source or delete the claim.",
+        "link": ""
+      },
+      {
+        "name": "VerbTricolon",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "AI tricolon: '%s'. Exactly three parallel verbs in series. Restructure or vary the count.",
+        "link": ""
+      },
+      {
+        "name": "VerbTricolonDensity",
+        "extends": "occurrence",
+        "level": "error",
+        "scope": "paragraph",
+        "message": "AI tricolon: multiple verb tricolons in one paragraph (found %d). Rewrite some with two or four items.",
+        "link": ""
+      },
+      {
+        "name": "WrapUpHeadings",
+        "extends": "existence",
+        "level": "error",
+        "scope": "heading",
+        "message": "AI wrap-up heading: '%s'. Delete the section or rename the heading to the topic.",
+        "link": ""
+      }
+    ]
+  },
+  {
     "name": "alex",
     "description": "Catch insensitive, inconsiderate writing.",
     "homepage": "https://github.com/errata-ai/alex",

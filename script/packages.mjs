@@ -63,6 +63,31 @@ function summarize(name, body) {
 	};
 }
 
+/**
+ * Derives a rule's addressable name from its path in the archive.
+ *
+ * A subdirectory joins a rule's name (`Std/Abbreviations/Acronyms.yml` is
+ * `Abbreviations.Acronyms` within the Std style), so the name has to keep the
+ * path — the basename alone gives a name Vale doesn't answer to. The archive
+ * root and, for configuration packages, the `styles/<name>` wrapper are the
+ * style's own identity and are dropped; a directory prefixed with `.` or `_`
+ * never loads, so its files are skipped.
+ */
+function ruleName(path) {
+	const segments = path.replace(/\.yml$/, '').split('/');
+	const file = segments.pop();
+
+	segments.shift(); // The archive's root directory: the style itself.
+	if (segments[0] === 'styles') {
+		segments.splice(0, 2); // `styles/<name>` in a configuration package.
+	}
+	if (segments.some((dir) => dir.startsWith('.') || dir.startsWith('_'))) {
+		return null;
+	}
+
+	return [...segments, file].join('.');
+}
+
 async function rulesFor(pkg) {
 	// `url` is the archive itself, not the directory holding it.
 	const res = await fetch(pkg.url);
@@ -77,7 +102,10 @@ async function rulesFor(pkg) {
 		if (!path.endsWith('.yml') || path.endsWith('meta.json')) {
 			continue;
 		}
-		const name = path.replace(/^.*\//, '').replace(/\.yml$/, '');
+		const name = ruleName(path);
+		if (!name) {
+			continue;
+		}
 		const rule = summarize(name, strFromU8(bytes));
 		if (rule) {
 			rules.push(rule);
