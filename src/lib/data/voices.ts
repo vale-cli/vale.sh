@@ -7,10 +7,12 @@
  * the golden file recording what Vale reported on `before` with that voice
  * enabled.
  *
- * Token counts are real BPE counts from script/tokens/count.py in that repo,
- * not an estimate: OpenAI's o200k_base, because Anthropic publishes no
- * offline tokenizer for Claude 3 and later. The prompt measured is
- * no-ai-slop's SKILL.md at b53e265.
+ * Token counts are Claude's own -- the Fable 5 tokenizer -- measured through
+ * Claude Code on 2026-09-02 by differencing a request's input usage against a
+ * fixed baseline; the bracketing baselines drifted by 5 tokens.
+ * script/tokens/count.py reproduces the numbers, and its tiktoken backend is
+ * the offline o200k_base stand-in. The prompt measured is no-ai-slop's
+ * SKILL.md at b53e265.
  *
  * To refresh after a rule change: run ./test.sh -u in the Voices repo and
  * re-export testdata/ and fixtures/.
@@ -819,17 +821,17 @@ export const voices: Voice[] = [
 export const costs: Cost[] = [
 	{
 		label: 'no-ai-slop SKILL.md, as loaded',
-		tokens: 2418,
+		tokens: 3777,
 		when: 'every session, whether or not it applies'
 	},
 	{
-		label: 'The same rules as a generated brief',
-		tokens: 482,
+		label: 'The same rules, written as a brief',
+		tokens: 1535,
 		when: 'every session, and only if you want priming'
 	},
 	{
 		label: 'Alerts on the draft above',
-		tokens: 459,
+		tokens: 735,
 		when: 'only when something is wrong'
 	},
 	{

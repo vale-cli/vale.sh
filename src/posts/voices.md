@@ -1,9 +1,9 @@
 ---
-title: 'Introducing Voices: AI output styles powered by Vale'
-description: 'Voices turns AI output styles into Vale rules. Checked on every draft rather than remembered, and free until something breaks one.'
+title: 'Introducing Voices: AI writing skills as Vale rules'
+description: 'The writing skill you would reach for, rewritten as Vale rules. Checked on every draft rather than remembered, and free until something breaks one.'
 date: '2026-09-02'
 draft: true
-poster: [2418, 482, 459, 0]
+poster: [3777, 1535, 735, 0]
 imageAlt: 'A token meter showing two prompt-sized bars, one alert-sized bar, and a zero.'
 ---
 
@@ -11,6 +11,7 @@ imageAlt: 'A token meter showing two prompt-sized bars, one alert-sized bar, and
   import DraftTabs from '$lib/components/blog/DraftTabs.svelte';
   import TokenMeter from '$lib/components/blog/TokenMeter.svelte';
   import VoicesDemo from '$lib/components/blog/VoicesDemo.svelte';
+  import SavingsChart from '$lib/components/blog/SavingsChart.svelte';
   import VoicesLoop from '$lib/components/blog/VoicesLoop.svelte';
   import { dnsAfter, dnsBefore, lintkitAfter, lintkitBefore } from '$lib/data/experiments';
 </script>
@@ -21,7 +22,7 @@ A quick note on the name. A voice is not quite the same thing as a style guide. 
 
 The starting material comes from the [output-style catalog](https://github.com/smixs/awesome-claude-output-styles), a collection of prompts that each describe a voice. And the approach is the prose half of an argument already being won for code. [Evil Martians](https://evilmartians.com/chronicles/stop-writing-rules-in-agents-md-use-agent-hooks-and-nano-staged-instead) recommend moving agent rules out of AGENTS.md and into hooks. A rule encoded as a tool is a rule the model can't forget. [Swizec Teller](https://swizec.com/blog/stop-burning-tokens-on-code-review) and [Factory](https://factory.ai/news/using-linters-to-direct-agents) reached the same place for code review.
 
-Compared to a prompt, rules are cheaper, verifiable, cumulative, and measurable. In the following sections, we'll look at each claim in turn, with real output from the model that drafted this post.
+Compared to a prompt, rules are cheaper, verifiable, cumulative, and measurable. In the following sections, we'll look at each claim in turn, with real model output as the evidence.
 
 <VoicesLoop />
 
@@ -56,7 +57,7 @@ A prompt is paid for on every request, whether or not it applies. A rule costs n
 
 <TokenMeter />
 
-These are real BPE counts, not an estimate — OpenAI's `o200k_base`, since Anthropic publishes no offline tokenizer for Claude 3 and later. The prompt measured is no-ai-slop's `SKILL.md` at `b53e265`. [count.py](https://github.com/jdkato/voices/blob/main/script/tokens/count.py) reproduces every figure, and takes an `--backend anthropic` flag for Claude's own count.
+These are Claude's own counts, under the Fable 5 tokenizer. They were measured through Claude Code by differencing a request's usage against a fixed baseline, and the two bracketing baselines differed by five tokens. The prompt measured is no-ai-slop's `SKILL.md` at `b53e265`. [count.py](https://github.com/jdkato/voices/blob/main/script/tokens/count.py) reproduces every figure, and its offline `o200k_base` backend counts the same prompt at 2,418.
 
 The alerts are cheap to act on, too. A rule with one right answer carries it, so the agent applies the fix without spending a turn deciding anything:
 
@@ -67,13 +68,19 @@ The alerts are cheap to act on, too. A rule with one right answer carries it, so
 }
 ```
 
+The gap compounds over a session, because resident context is paid again on every request. Briefs pasted into CLAUDE.md ride along the same way, so they draw a straight line too. Rules draw a band instead. The top edge is the worst case, a dirty draft on every single request, and a clean session sits on the floor:
+
+<SavingsChart />
+
+Fifty requests cost 188,850 tokens under the skill and at most 36,750 under the rules. And you can run with no briefs at all — the bare-model experiment in the next section converges in one repair pass. The priming the briefs buy is already encoded where it matters, because every message is written as an instruction. "State it, or say why you're unsure" teaches the voice at the exact moment it was broken.
+
 The gap matches what Swizec Teller [reports for code review](https://swizec.com/blog/stop-burning-tokens-on-code-review). His AI review bot cost $1,000 a week; the custom lint rules that replaced it run in seconds.
 
 ## Rules are verifiable
 
 There's a second problem with resident instructions, and it isn't the price. Models can't hold many of them at once. The [Curse of Instructions](https://maxpool.dev/research-papers/curse_of_instructions_report.html) paper found that the odds of following every instruction decay roughly exponentially as instructions are added. [IFScale](https://arxiv.org/abs/2507.11538) measured the same decline across every frontier model as instruction density grows. A voice is exactly that — dozens of standing constraints — so "I followed the style" is a claim you can't check. An exit code is a fact you can gate CI on.
 
-Here's what that looks like in practice. The examples below are not staged. Claude (Fable 5), the model that drafted this post, got a bare task with no style instructions. Announce a fictional linter's 2.0 release. The Before tab is what it wrote; the After tab is its one-pass repair, and the Diff tab shows exactly what changed:
+Here's what that looks like in practice. The examples below are not staged. Claude (Fable 5) got a bare task with no style instructions. Announce a fictional linter's 2.0 release. The Before tab is what it wrote; the After tab is its one-pass repair, and the Diff tab shows exactly what changed:
 
 <DraftTabs before={lintkitBefore} after={lintkitAfter} />
 
@@ -108,7 +115,7 @@ The package ships a shared core and four voices — `Direct`, `GenZ`, `Coach`, a
 
 ## Rules are cumulative
 
-A better prompt improves one session. A rule improves the product, permanently, for everyone downstream.
+To be fair, a shared prompt can be improved too — the difference is what an update arrives with. A rule lands with a test that proves it fires, and an exit code enforces it from then on. A prompt's new line still depends on the model honoring it, which is the decay problem all over again.
 
 The LintKit draft above is the proof. When it was first judged, five of its eleven alerts didn't exist. Both puffery matches, the contracted binary contrast, and two of the inflated verbs sailed through, and the model's own judgment caught them. The fix was not a better prompt. Each escape became a pattern, committed with a test that proves it fires, enforced for everyone since.
 
@@ -141,7 +148,48 @@ A voice you can check is a voice you can measure. The footer of this post is Val
 
 ## Using Voices with an agent
 
-The [agent-tools](https://github.com/vale-cli/agent-tools) plugin closes the loop for Claude Code. Every prose file the agent writes is linted, and the alerts return in the same turn, so the repair happens before you read the draft. Outside an agent, the loop is one pipe — no file, no server, and an exit code a prompt can't supply:
+The [agent-tools](https://github.com/vale-cli/agent-tools) plugin closes the loop for Claude Code:
+
+```
+/plugin marketplace add vale-cli/agent-tools
+/plugin install vale@agent-tools
+```
+
+Here's what a whole turn looks like with it installed. You ask Claude for a changelog entry, and it drafts this:
+
+```markdown
+## v2.1.0
+
+We're excited to share v2.1.0, which leverages a new caching layer to
+deliver significantly faster builds. It's worth noting that cold
+starts are not just faster, they're roughly 40% faster.
+```
+
+You never see that version. The hook lints the file the moment it's written, and Vale's report lands back in front of Claude in the same turn:
+
+```
+Vale reports 4 alert(s) at error level or above in this file:
+  line 3: Voices.Puffery [error] — Importance puffery: 'excited to share'.
+  line 3: Voices.InflatedWords [error] — Inflated word: use 'uses' instead of 'leverages'.
+  line 4: Direct.Hedging [error] — Hedge: 'It's worth noting'. State it, or say why you're unsure.
+  line 5: Voices.BinaryContrast [error] — Binary contrast: 'are not just faster, they're'.
+
+Fix these before moving on, preserving the markup exactly.
+Do not disable a rule to clear one.
+```
+
+Claude repairs against those exact spans, the hook re-checks the edit, and this is what reaches you:
+
+```markdown
+## v2.1.0
+
+v2.1.0 adds a caching layer. Builds are faster across the board, and
+cold starts are roughly 40% faster.
+```
+
+Four alerts, none of them your problem. Every artifact above is real — the draft was judged by Vale, the report is the hook's actual output, and the repair exits 0. This post was linted the same way, and at the worst point a single paragraph drew five alerts before it passed.
+
+Outside an agent, the loop is one pipe — no file, no server, and an exit code a prompt can't supply:
 
 ```console
 $ echo "The team made a decision in order to ship." | vale --ext=.md

@@ -21,7 +21,23 @@ export type PostMeta = {
 	// A named banner illustration (see PostBanner) for posts whose subject
 	// has a better picture than a meter.
 	motif?: string;
+	// An AUTHORS key. Posts without one belong to the site's author.
+	author?: string;
 };
+
+export type Author = { name: string; avatar: string; url: string };
+
+export const AUTHORS: Record<string, Author> = {
+	jdkato: {
+		name: 'Joseph Kato',
+		avatar: '/blog/authors/jdkato.png',
+		url: 'https://github.com/jdkato'
+	}
+};
+
+export function authorOf(post: PostMeta): Author {
+	return AUTHORS[post.author ?? 'jdkato'];
+}
 
 export type Post = PostMeta & { slug: string };
 

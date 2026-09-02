@@ -23,6 +23,7 @@
 		// A named subject illustration, drawn in the same terminal window.
 		// 'view': a structured file whose prose fields alone light up.
 		// 'tree': a library of rules as a directory tree.
+		// 'savings': cumulative token cost, resident lines against the rules band.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -128,6 +129,26 @@
 		{ glyph: '└── ', dir: 'Usage/', rules: 'GenderedTerms, FirstPerson…' }
 	];
 
+	// The 'savings' motif: line endpoints as percentages of the tallest line,
+	// from the measured per-request costs (skill 3,777 / briefs 1,535 / a
+	// full alert report 735). Lines scale to the box; labels stay HTML.
+	const savings = [
+		{ y: 0, label: 'skill 189k', cls: 'text-rose-400', line: 'rgb(251 113 133)' },
+		{ y: 59.4, label: 'briefs 77k', cls: 'text-amber-400', line: 'rgb(251 191 36)' },
+		{
+			y: 80.5,
+			label: 'rules ≤37k',
+			cls: 'text-lime-600 dark:text-lime-400',
+			line: 'rgb(132 204 22)'
+		},
+		{
+			y: 100,
+			label: 'clean 0',
+			cls: 'font-bold text-lime-600 dark:text-lime-400',
+			line: 'rgb(132 204 22)'
+		}
+	];
+
 	const title = $derived(
 		motif === 'view' ? 'vale API.yml' : motif === 'tree' ? 'tree Std' : `vale ${seed}.md`
 	);
@@ -179,6 +200,39 @@
 							{/if}
 						</div>
 					{/each}
+				</div>
+			{:else if motif === 'savings'}
+				<div class="flex min-h-0 flex-1 gap-3 px-4 py-3">
+					<div class="relative min-w-0 flex-1">
+						<svg
+							viewBox="0 0 100 100"
+							preserveAspectRatio="none"
+							class="absolute inset-0 h-full w-full"
+							role="presentation"
+							aria-hidden="true"
+						>
+							<polygon points="0,100 100,80.5 100,100" fill="rgb(132 204 22)" opacity="0.15" />
+							{#each savings as s (s.label)}
+								<line
+									x1="0"
+									y1="100"
+									x2="100"
+									y2={s.y}
+									stroke={s.line}
+									stroke-width="2"
+									vector-effect="non-scaling-stroke"
+								/>
+							{/each}
+						</svg>
+					</div>
+					<div class="relative w-20 shrink-0 font-mono text-[10px]">
+						{#each savings as s (s.label)}
+							<span
+								class="absolute right-0 -translate-y-1/2 whitespace-nowrap {s.cls}"
+								style="top: {4 + s.y * 0.92}%">{s.label}</span
+							>
+						{/each}
+					</div>
 				</div>
 			{:else if rows.length > 0}
 				<div class="flex min-h-0 flex-1 flex-col justify-evenly gap-1.5 px-4 py-3">

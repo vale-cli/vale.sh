@@ -5,6 +5,7 @@
 
 	import PostBanner from '$lib/components/PostBanner.svelte';
 	import report from '$lib/data/lint.json';
+	import { authorOf } from '$lib/posts';
 
 	let { data } = $props();
 
@@ -143,7 +144,16 @@
 
 				<div class="grid md:grid-cols-5">
 					<div class="p-6 md:col-span-3 md:p-10">
-						<p class="flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground">
+						<p class="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+							<img
+								src={authorOf(lead).avatar}
+								alt=""
+								width="20"
+								height="20"
+								class="h-5 w-5 rounded-full border border-border"
+							/>
+							<span class="text-foreground">{authorOf(lead).name}</span>
+							<span class="text-muted-foreground/50">·</span>
 							<time datetime={lead.date}>{fmt(lead.date)}</time>
 							{#if lead.draft}
 								<span
@@ -215,7 +225,16 @@
 								/>
 							</div>
 							<div class="p-6">
-								<p class="flex flex-wrap items-center gap-x-3 text-sm text-muted-foreground">
+								<p class="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+									<img
+										src={authorOf(post).avatar}
+										alt=""
+										width="20"
+										height="20"
+										class="h-5 w-5 rounded-full border border-border"
+									/>
+									<span class="text-foreground">{authorOf(post).name}</span>
+									<span class="text-muted-foreground/50">·</span>
 									<time datetime={post.date}>{fmt(post.date)}</time>
 									{#if post.draft}
 										<span

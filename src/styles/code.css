@@ -1,89 +1,146 @@
 html.dark .shiki,
 html.dark .shiki span {
-    color: var(--shiki-dark) !important;
-    background-color: var(--shiki-dark-bg) !important;
-    /* Optional, if you also want font styles */
-    font-style: var(--shiki-dark-font-style) !important;
-    font-weight: var(--shiki-dark-font-weight) !important;
-    text-decoration: var(--shiki-dark-text-decoration) !important;
+	color: var(--shiki-dark) !important;
+	background-color: var(--shiki-dark-bg) !important;
+	/* Optional, if you also want font styles */
+	font-style: var(--shiki-dark-font-style) !important;
+	font-weight: var(--shiki-dark-font-weight) !important;
+	text-decoration: var(--shiki-dark-text-decoration) !important;
 }
 
 /* Was #eaeaea with an html.dark override of #333 -- two hardcoded greys that
    belonged to no palette and did not move when the theme did. */
 pre {
-    border: 1px solid hsl(var(--border));
+	border: 1px solid hsl(var(--border));
+}
+
+/* Line numbers, on source blocks long enough to cite (the transformer adds
+   `numbered`). CSS counters, so copied code stays clean of them. */
+pre code.numbered {
+	counter-reset: line;
+}
+
+pre code.numbered .line::before {
+	color: hsl(var(--muted-foreground) / 0.45);
+	content: counter(line);
+	counter-increment: line;
+	display: inline-block;
+	margin-right: 1.25em;
+	text-align: right;
+	user-select: none;
+	width: 2ch;
 }
 
 .prose :where(pre):not(:where([class~='not-prose'], [class~='not-prose'] *)) {
-    color: var(--tw-prose-pre-code);
-    background-color: var(--tw-prose-pre-bg);
-    overflow-x: auto;
-    font-weight: 400;
-    font-size: 0.875em;
-    line-height: 1.7142857;
-    margin-top: 1.7142857em;
-    margin-bottom: 1.7142857em;
-    border-radius: 0.375rem;
+	color: var(--tw-prose-pre-code);
+	background-color: var(--tw-prose-pre-bg);
+	overflow-x: auto;
+	font-weight: 400;
+	font-size: 0.875em;
+	line-height: 1.7142857;
+	margin-top: 1.7142857em;
+	margin-bottom: 1.7142857em;
+	border-radius: 0.375rem;
 
-    /*padding-top: 0;*/
-    padding-inline-end: 1.1428571em;
-    padding-bottom: 0.8571429em;
-    padding-inline-start: 1.1428571em;
+	/*padding-top: 0;*/
+	padding-inline-end: 1.1428571em;
+	padding-bottom: 0.8571429em;
+	padding-inline-start: 1.1428571em;
 }
 
 pre {
-    & .pre-header {
-        align-items: flex-start;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        left: 0px;
-        position: sticky;
-        top: 0px;
-        width: 100%;
+	& .pre-header {
+		align-items: flex-start;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		left: 0px;
+		position: sticky;
+		top: 0px;
+		width: 100%;
 
-        & .pre-title {
-            background-color: var(--code-block-background-color);
-            border-radius: var(--code-block-border-radius);
-            font-size: var(--code-block-font-size);
-            line-height: 1rem;
-            min-width: 100%;
-            padding: calc(16px * 0.5) calc(16px * 1);
-            text-align: center;
-            width: max-content;
-        }
+		& .pre-title {
+			background-color: var(--code-block-background-color);
+			border-radius: var(--code-block-border-radius);
+			font-size: var(--code-block-font-size);
+			line-height: 1rem;
+			min-width: 100%;
+			padding: calc(16px * 0.5) calc(16px * 1);
+			text-align: center;
+			width: max-content;
+		}
 
-        & .wrapper-copy-code {
-            align-items: center;
-            flex-direction: row;
-            display: flex;
-            justify-content: space-between;
-            width: 100%;
-            border-bottom: 1px solid hsl(var(--border));
-            margin-bottom: 0.5em;
+		/* No language, no header: the rule and label row vanish and Copy sits
+           quietly in the corner. */
+		& .wrapper-copy-code.unlabeled {
+			border-bottom: none;
+			justify-content: flex-end;
+			margin-bottom: 0;
+			padding-bottom: 0;
+		}
 
-            & .copy-code {
-                background-color: transparent;
-                border: none;
-                border-radius: var(--code-block-border-radius);
-                color: var(--code-block-font-color);
-                font-family: monospace;
-                font-size: var(--code-block-font-size);
-                line-height: 1rem;
-                margin-top: calc(16px * 0.25);
-                margin-bottom: calc(16px * 0.25);
-                padding-top: calc(16px * 0.5) calc(16px * 1);
-                padding-bottom: calc(16px * 0.5) calc(16px * 1);
-            }
+		& .wrapper-copy-code {
+			align-items: center;
+			flex-direction: row;
+			display: flex;
+			justify-content: space-between;
+			width: 100%;
+			border-bottom: 1px solid hsl(var(--border));
+			margin-bottom: 0.5em;
+			padding-bottom: calc(16px * 0.4);
 
-            & .code-block-title {
-                /*
+			& .copy-code {
+				background-color: transparent;
+				border: 1px solid hsl(var(--border));
+				border-radius: 6px;
+				color: hsl(var(--muted-foreground));
+				cursor: pointer;
+				font-family: ui-monospace, monospace;
+				font-size: 11px;
+				line-height: 1rem;
+				margin-top: calc(16px * 0.25);
+				margin-bottom: calc(16px * 0.25);
+				padding: 3px 10px;
+				transition:
+					color 0.15s,
+					border-color 0.15s;
+			}
+
+			& .copy-code:hover {
+				border-color: hsl(var(--primary) / 0.6);
+				color: hsl(var(--foreground));
+			}
+
+			& .code-block-title {
+				/*
                     The dark override under this used to set #555 -- darker than
                     the #999 it replaced, on a near-black ground. Both are gone:
                     --muted-foreground already lightens in dark mode.
                 */
-                color: hsl(var(--muted-foreground));
-            }
-        }
-    }
+				align-items: center;
+				color: hsl(var(--muted-foreground));
+				display: flex;
+				font-family: ui-monospace, monospace;
+				font-size: 11px;
+				gap: 8px;
+				letter-spacing: 0.08em;
+			}
+
+			/* The language chip leads with its icon when simple-icons has one,
+               and the brand square -- the banners' and masthead's mark --
+               otherwise. */
+			& .code-block-title:not(.has-icon):not(.unlabeled)::before {
+				background-color: hsl(var(--primary));
+				border-radius: 2px;
+				content: '';
+				height: 8px;
+				width: 8px;
+			}
+
+			& .code-block-title svg {
+				flex-shrink: 0;
+				opacity: 0.8;
+			}
+		}
+	}
 }

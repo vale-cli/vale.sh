@@ -3,12 +3,17 @@
 
 	import PostBanner from '$lib/components/PostBanner.svelte';
 	import PostLintFooter from '$lib/components/PostLintFooter.svelte';
-	import { siteConfig } from '$lib/config/site';
+	import report from '$lib/data/lint.json';
+	import { authorOf } from '$lib/posts';
 
 	let { data } = $props();
 
 	const url = `https://vale.sh/blog/${data.meta.slug}`;
 	const Body = $derived(data.component);
+	const author = $derived(authorOf(data.meta));
+	const minutes = $derived(
+		(report.posts as Record<string, { minutes: number }>)[data.meta.slug]?.minutes
+	);
 
 	// Crawlers resolve relative og:image URLs inconsistently, so the card is
 	// always absolute. A post without its own image gets its banner, rendered
@@ -38,7 +43,7 @@
 		siteName: 'Vale',
 		article: {
 			publishedTime: `${data.meta.date}T00:00:00Z`,
-			authors: [siteConfig.links.jdkato]
+			authors: [author.url]
 		},
 		images: [{ url: image, width: 1200, height: 630, alt: imageAlt }]
 	}}
@@ -64,8 +69,8 @@
 		mainEntityOfPage: url,
 		author: {
 			'@type': 'Person',
-			name: 'Joseph Kato',
-			url: siteConfig.links.jdkato
+			name: author.name,
+			url: author.url
 		},
 		publisher: {
 			'@type': 'Organization',
@@ -90,8 +95,6 @@
 	<header>
 		<p class="text-sm text-muted-foreground">
 			<a class="hover:text-foreground" href="/blog">← Blog</a>
-			<span class="mx-2">·</span>
-			<time datetime={data.meta.date}>{fmt(data.meta.date)}</time>
 			{#if data.meta.draft}
 				<span
 					class="ml-2 rounded-full border border-amber-500/40 px-2 py-0.5 text-xs font-medium text-amber-500"
@@ -103,6 +106,23 @@
 			{data.meta.title}
 		</h1>
 		<p class="mt-4 text-pretty text-lg leading-8 text-muted-foreground">{data.meta.description}</p>
+
+		<div class="mt-6 flex items-center gap-3">
+			<img
+				src={author.avatar}
+				alt=""
+				width="40"
+				height="40"
+				class="h-10 w-10 rounded-full border border-border"
+			/>
+			<div class="text-sm leading-tight">
+				<a class="font-medium hover:underline" href={author.url}>{author.name}</a>
+				<p class="mt-0.5 text-muted-foreground">
+					<time datetime={data.meta.date}>{fmt(data.meta.date)}</time>{#if minutes}
+						<span class="mx-1.5">·</span>{minutes} min read{/if}
+				</p>
+			</div>
+		</div>
 	</header>
 
 	<Body />

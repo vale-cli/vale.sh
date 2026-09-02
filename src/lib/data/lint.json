@@ -14,7 +14,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 96
+			"ms": 136
 		},
 		"std": {
 			"errors": 0,
@@ -28,21 +28,21 @@
 			"smog": 9.8,
 			"complex": 9,
 			"minutes": 3,
-			"ms": 98
+			"ms": 117
 		},
 		"voices": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 1270,
-			"sentences": 97,
-			"paragraphs": 31,
-			"grade": 6.8,
-			"ease": 69.7,
-			"smog": 9.7,
-			"complex": 9,
-			"minutes": 6,
-			"ms": 99
+			"words": 1545,
+			"sentences": 114,
+			"paragraphs": 38,
+			"grade": 6.7,
+			"ease": 71.2,
+			"smog": 9.6,
+			"complex": 8,
+			"minutes": 8,
+			"ms": 155
 		}
 	}
 }

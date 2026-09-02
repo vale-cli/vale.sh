@@ -169,6 +169,28 @@ function sketch(seed) {
 	return out;
 }
 
+function savings() {
+	// Cumulative cost over fifty requests: resident context as straight
+	// lines, rules as a band. Endpoints from the measured per-request costs.
+	const labelW = 250;
+	const x0 = PANE.x;
+	const x1 = PANE.x + PANE.w - labelW;
+	const y0 = PANE.y + PANE.h;
+	const rows = [
+		{ frac: 1, label: 'skill \u00b7 188,850', color: C.rose, bold: false },
+		{ frac: 1535 / 3777, label: 'briefs \u00b7 76,750', color: C.amber, bold: false },
+		{ frac: 735 / 3777, label: 'rules, worst \u00b7 36,750', color: C.lime, bold: false },
+		{ frac: 0, label: 'rules, clean \u00b7 0', color: C.lime, bold: true }
+	];
+	const yFor = (frac) => y0 - frac * PANE.h;
+	let out = `<polygon points="${x0},${y0} ${x1},${yFor(735 / 3777)} ${x1},${y0}" fill="${C.lime}" opacity="0.14"/>`;
+	for (const r of rows) {
+		out += `<line x1="${x0}" y1="${y0}" x2="${x1}" y2="${yFor(r.frac)}" stroke="${r.color}" stroke-width="3"/>`;
+		out += `<text x="${x1 + 16}" y="${yFor(r.frac) + 7}" font-family="${MONO}" font-size="22" ${r.bold ? 'font-weight="bold"' : ''} fill="${r.color}">${r.label}</text>`;
+	}
+	return out;
+}
+
 // Rough two-line wrap for the title; 44 characters fits at 46px.
 function wrap(title) {
 	if (title.length <= 46) return [title];
@@ -190,13 +212,16 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 
 	const title =
 		meta.motif === 'view' ? 'vale API.yml' : meta.motif === 'tree' ? 'tree Std' : `vale ${slug}.md`;
-	const art = meta.poster
-		? meter(meta.poster)
-		: meta.motif === 'view'
-			? view()
-			: meta.motif === 'tree'
-				? tree()
-				: sketch(slug);
+	const art =
+		meta.motif === 'savings'
+			? savings()
+			: meta.poster
+				? meter(meta.poster)
+				: meta.motif === 'view'
+					? view()
+					: meta.motif === 'tree'
+						? tree()
+						: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines
