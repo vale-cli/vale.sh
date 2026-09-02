@@ -11,8 +11,9 @@
 	const Body = $derived(data.component);
 
 	// Crawlers resolve relative og:image URLs inconsistently, so the card is
-	// always absolute; a post without its own image gets the site card.
-	const image = `https://vale.sh${data.meta.image ?? '/brand/vale-social.png'}`;
+	// always absolute. A post without its own image gets its banner, rendered
+	// to a PNG by script/build-og.mjs and committed under static/blog/og.
+	const image = `https://vale.sh${data.meta.image ?? `/blog/og/${data.meta.slug}.png`}`;
 	const imageAlt = data.meta.imageAlt ?? 'Vale';
 
 	const fmt = (iso: string) =>
