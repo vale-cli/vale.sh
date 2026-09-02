@@ -24,7 +24,7 @@ Std/
                      GenderedPronouns, GenderedTerms
 ```
 
-Std ships alongside Vale v3.20, and it exercises every major feature of that release. Each section below introduces one.
+Std ships alongside Vale v3.20, and it exercises the major features of that release. Each section below introduces one.
 
 ## The directory is the name
 
@@ -44,7 +44,7 @@ Only scalar parameters are addressable this way — a `max`, a `min`, an `ignore
 
 ## Extend it
 
-The third feature is rule inheritance. To change what a rule _matches_, extend it in a style of your own:
+The last feature is rule inheritance. To change what a rule _matches_, extend it in a style of your own:
 
 ```yaml
 # styles/House/OxfordComma.yml
@@ -59,40 +59,7 @@ Three lines, your name on the alert, Std's machinery underneath — including ev
 
 ## Every rule carries its tests
 
-The fourth feature is the pair of `tests:` and `vale test`. Std's rules keep their test cases in-source, under a `tests:` key at the end of the file. The new `vale test` command runs them in isolation. Here's `Std.Readability.SentenceLength`, the whole file:
-
-```yaml
-# Extracted from errata-ai/IBM (MIT). See NOTICE.
-#
-# The message carries the count, not the threshold, so a child overriding
-# `max` doesn't inherit a number that no longer matches its own condition.
-extends: occurrence
-message: 'Long sentence: %d words.'
-level: suggestion
-scope: sentence
-max: 25
-token: \b(\w+)\b
-tests:
-  - name: fires
-    input: >
-      This sentence keeps going and going with clause after clause after
-      clause so that it sails far past the twenty-five word threshold the
-      rule enforces by default here.
-    want: |
-      1:1:Std.Readability.SentenceLength:Long sentence: 29 words.
-
-  - name: clean
-    input: >
-      This sentence stays short.
-    want: ''
-```
-
-Each rule has a case that must trip it and one that must stay clean, because a Vale rule that matches nothing fails silently. Running the suite is one command, and this is its real output:
-
-```console
-$ vale test Std
- SUCCESS  14 files — 28 passed, 0 failed
-```
+Every rule in Std is tested, with a case that must trip it and a case that must stay clean. That second half matters more than it sounds. A Vale rule that matches nothing fails silently — it loads, runs, and reports success. A rule is only proven by a fixture that fires it. CI runs the whole set on every push, against a fresh build of Vale.
 
 ## Where the rules come from
 
@@ -109,6 +76,6 @@ Packages = https://github.com/vale-cli/Std/releases/latest/download/Std.zip
 BasedOnStyles = Std
 ```
 
-Std requires Vale v3.20.0, which ships everything above: nested rule directories, bracket parameters, rule inheritance, and in-source tests.
+Std requires Vale v3.20.0, which ships everything above: nested rule directories, bracket parameters, and rule inheritance.
 
 If you have any questions or run into any problems, feel free to open an issue at the [Std repository](https://github.com/vale-cli/Std).

@@ -168,6 +168,6 @@ Packages = https://github.com/jdkato/voices/releases/latest/download/Voices.zip
 BasedOnStyles = Voices, Direct
 ```
 
-Voices requires Vale v3.20.0, which also ships nested rule directories, rule inheritance, bracket parameters, and in-source rule tests.
+Voices requires Vale v3.20.0, which also ships nested rule directories, rule inheritance, and bracket parameters.
 
 If you have any questions or run into any problems, feel free to open an issue at the [Voices repository](https://github.com/jdkato/voices).

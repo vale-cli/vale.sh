@@ -14,35 +14,35 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 150
+			"ms": 96
 		},
 		"std": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 559,
-			"sentences": 44,
-			"paragraphs": 16,
+			"words": 551,
+			"sentences": 43,
+			"paragraphs": 15,
 			"grade": 6.8,
-			"ease": 69.2,
-			"smog": 9.7,
+			"ease": 68.8,
+			"smog": 9.8,
 			"complex": 9,
 			"minutes": 3,
-			"ms": 118
+			"ms": 98
 		},
 		"voices": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 1274,
+			"words": 1270,
 			"sentences": 97,
 			"paragraphs": 31,
 			"grade": 6.8,
-			"ease": 69.8,
+			"ease": 69.7,
 			"smog": 9.7,
 			"complex": 9,
 			"minutes": 6,
-			"ms": 166
+			"ms": 99
 		}
 	}
 }
