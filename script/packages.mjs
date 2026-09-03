@@ -98,8 +98,20 @@ async function rulesFor(pkg) {
 	const files = unzipSync(new Uint8Array(await res.arrayBuffer()));
 	const rules = [];
 
+	// A package's meta.json states the Vale version its rules need -- the one
+	// fact a reader has to know before `vale sync` will do them any good.
+	let valeVersion = '';
+
 	for (const [path, bytes] of Object.entries(files)) {
-		if (!path.endsWith('.yml') || path.endsWith('meta.json')) {
+		if (path.endsWith('meta.json')) {
+			try {
+				valeVersion = JSON.parse(strFromU8(bytes)).vale_version ?? '';
+			} catch {
+				// A malformed meta.json shouldn't cost the package its page.
+			}
+			continue;
+		}
+		if (!path.endsWith('.yml')) {
 			continue;
 		}
 		const name = ruleName(path);
@@ -113,7 +125,7 @@ async function rulesFor(pkg) {
 	}
 
 	rules.sort((a, b) => a.name.localeCompare(b.name));
-	return rules;
+	return { rules, valeVersion };
 }
 
 // Part of `make build`, so an unreachable library must not stop a build: the
@@ -146,12 +158,15 @@ for (const pkg of library) {
 	};
 
 	try {
-		entry.rules = await rulesFor(pkg);
+		const { rules, valeVersion } = await rulesFor(pkg);
+		entry.rules = rules;
+		entry.valeVersion = valeVersion;
 	} catch (err) {
 		// A package that won't download shouldn't take the whole build with it;
 		// it still gets a page, just without the rule listing.
 		console.warn(`packages: ${pkg.name}: ${err.message}`);
 		entry.rules = [];
+		entry.valeVersion = '';
 		failed++;
 	}
 

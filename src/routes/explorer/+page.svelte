@@ -16,6 +16,7 @@
 		homepage: string;
 		url: string;
 		logo: string;
+		valeVersion?: string;
 		tags: string[];
 		rules: {
 			name: string;
@@ -28,6 +29,14 @@
 	};
 
 	const addURL = 'https://github.com/vale-cli/vale.sh#share-a-package-or-configuration';
+
+	// A package's meta.json can declare the Vale version its rules need.
+	// `>=1.0.0` is the legacy "any version" idiom, so only a real floor is
+	// worth a reader's attention.
+	const requires = (p: Pkg) => {
+		if (!p.valeVersion || p.valeVersion === '>=1.0.0') return '';
+		return p.valeVersion.replace(/^>=\s*/, 'Vale ≥ ');
+	};
 
 	const packages: Pkg[] = generated;
 	let query = $state('');
@@ -205,6 +214,12 @@
 											>{fmt(t)}</span
 										>
 									{/each}
+									{#if requires(pkg)}
+										<span
+											class="rounded-full border border-lime-500/40 px-2 py-0.5 font-mono text-[11px] font-medium text-lime-600 dark:text-lime-400"
+											>{requires(pkg)}</span
+										>
+									{/if}
 								</div>
 							</div>
 							<ExternalLink

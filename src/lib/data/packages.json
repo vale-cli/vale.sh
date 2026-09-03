@@ -145,7 +145,8 @@
         "message": "Weak duty-phrasing '%s': lead with a quantified outcome (X by Y measured Z).",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "AsciiDoc",
@@ -269,7 +270,8 @@
         "message": "Unterminated table block found in file.",
         "link": "https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "AsciiDocDITA",
@@ -625,7 +627,8 @@
         "message": "Thematic breaks are not supported in DITA.",
         "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Elastic",
@@ -893,7 +896,8 @@
         "message": "Consider using '%s' instead of '%s'.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Google",
@@ -1193,7 +1197,8 @@
         "message": "Use '%s' instead of '%s'.",
         "link": "https://developers.google.com/style/word-list"
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   },
   {
     "name": "Harper",
@@ -5582,7 +5587,8 @@
         "message": "Did you mean the closed compound `yourself`?",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Hugo",
@@ -5593,7 +5599,8 @@
     "tags": [
       "config"
     ],
-    "rules": []
+    "rules": [],
+    "valeVersion": ""
   },
   {
     "name": "Joblint",
@@ -5741,7 +5748,8 @@
         "message": "Avoid using '%s'",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   },
   {
     "name": "MDX",
@@ -5752,7 +5760,8 @@
     "tags": [
       "config"
     ],
-    "rules": []
+    "rules": [],
+    "valeVersion": ""
   },
   {
     "name": "Microsoft",
@@ -6140,7 +6149,8 @@
         "message": "Consider using '%s' instead of '%s'.",
         "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   },
   {
     "name": "OpenShiftAsciiDoc",
@@ -6280,7 +6290,8 @@
         "message": "The xref is missing link text.",
         "link": "https://redhat-documentation.github.io/supplementary-style-guide/#link-text"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Readability",
@@ -6348,7 +6359,8 @@
         "message": "Try to keep the SMOG grade (%s) below 10.",
         "link": "https://en.wikipedia.org/wiki/SMOG"
       }
-    ]
+    ],
+    "valeVersion": ">=2.13.0"
   },
   {
     "name": "RedHat",
@@ -6656,7 +6668,8 @@
         "message": "Use 'by using' instead of 'using' when it follows a noun for clarity and grammatical correctness.",
         "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#using"
       }
-    ]
+    ],
+    "valeVersion": ">=2.20.0"
   },
   {
     "name": "Salesforce",
@@ -6892,7 +6905,8 @@
         "message": "Use 'Visualforce' instead of '%s'.",
         "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Std",
@@ -7016,7 +7030,8 @@
         "message": "Consider '%s' instead of '%s'.",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ">=3.20.0"
   },
   {
     "name": "ai-tells",
@@ -7884,7 +7899,8 @@
         "message": "AI wrap-up heading: '%s'. Delete the section or rename the heading to the topic.",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "alex",
@@ -7984,7 +8000,8 @@
         "message": "Consider using '%s' instead of '%s' (which may be insensitive).",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   },
   {
     "name": "neighbor",
@@ -8101,7 +8118,8 @@
         "message": "'%s' is a generic gendered pattern. Consider: %s",
         "link": "https://github.com/a11yfred/neighbor"
       }
-    ]
+    ],
+    "valeVersion": ""
   },
   {
     "name": "proselint",
@@ -8385,7 +8403,8 @@
         "message": "Remove '%s'.",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   },
   {
     "name": "write-good",
@@ -8461,6 +8480,7 @@
         "message": "'%s' is a weasel word!",
         "link": ""
       }
-    ]
+    ],
+    "valeVersion": ">=1.0.0"
   }
 ]

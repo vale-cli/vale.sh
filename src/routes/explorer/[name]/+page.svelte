@@ -9,6 +9,15 @@
 	let { data } = $props();
 	const pkg = $derived(data.pkg);
 
+	// A package's meta.json can declare the Vale version its rules need.
+	// `>=1.0.0` is the legacy "any version" idiom, so only a real floor is
+	// worth a reader's attention.
+	const requires = $derived(
+		!pkg.valeVersion || pkg.valeVersion === '>=1.0.0'
+			? ''
+			: pkg.valeVersion.replace(/^>=\s*/, 'Vale ≥ ')
+	);
+
 	// A rule's severity is the first thing people scan for, so the counts sit
 	// above the table and the colours match the CLI's output.
 	const counts = $derived(
@@ -89,6 +98,14 @@
 				>{tag}</span
 			>
 		{/each}
+		{#if requires}
+			<span
+				class="rounded-full border border-lime-500/40 px-2.5 py-0.5 font-mono text-xs text-lime-600 dark:text-lime-400"
+				title="This package's rules need this Vale version or later."
+			>
+				{requires}
+			</span>
+		{/if}
 	</div>
 
 	<!-- Install -->
