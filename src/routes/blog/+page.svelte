@@ -144,7 +144,7 @@
 
 				<div class="grid md:grid-cols-5">
 					<div class="p-6 md:col-span-3 md:p-10">
-						<p class="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+						<p class="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-muted-foreground">
 							<img
 								src={authorOf(lead).avatar}
 								alt=""
@@ -225,7 +225,7 @@
 								/>
 							</div>
 							<div class="p-6">
-								<p class="flex flex-wrap items-center gap-x-2 text-sm text-muted-foreground">
+								<p class="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-muted-foreground">
 									<img
 										src={authorOf(post).avatar}
 										alt=""

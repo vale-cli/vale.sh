@@ -121,19 +121,18 @@
 		viewBox?: string;
 	};
 	type Lockup = 'text' | 'reversed' | 'spaced' | 'small';
+	// One tile per failure class: flipping covers tilting, stretching covers
+	// squeezing, and effects cover outlines. The scale rules already say what
+	// resizing the mark would repeat.
 	const donts: { label: string; mark?: Mark; lockup?: Lockup }[] = [
 		{ label: 'Don’t flip it', mark: { transform: 'translate(128 0) scale(-1 1)' } },
-		{ label: 'Don’t tilt it', mark: { transform: 'rotate(-20 64 60)' } },
 		{ label: 'Don’t stretch it', mark: { transform: 'translate(-32 0) scale(1.5 1)' } },
-		{ label: 'Don’t squeeze it', mark: { transform: 'translate(24 0) scale(0.62 1)' } },
 		{ label: 'Don’t recolor it', mark: { fill: '#E0457B' } },
-		{ label: 'Don’t outline it', mark: { outline: true } },
-		{ label: 'Don’t crop it', mark: { viewBox: '0 0 92 120' } },
 		{ label: 'Don’t add effects', mark: { gradient: true } },
+		{ label: 'Don’t crop it', mark: { viewBox: '0 0 92 120' } },
 		{ label: 'Don’t use the wordmark alone', lockup: 'text' },
 		{ label: 'Don’t put the mark after the name', lockup: 'reversed' },
-		{ label: 'Don’t change the spacing', lockup: 'spaced' },
-		{ label: 'Don’t resize the mark', lockup: 'small' }
+		{ label: 'Don’t change the spacing', lockup: 'spaced' }
 	];
 
 	const markSizes = [16, 24, 32, 48];

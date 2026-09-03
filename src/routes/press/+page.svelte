@@ -42,6 +42,17 @@
 		{ label: 'Source', value: 'github.com/vale-cli', href: siteConfig.links.org }
 	];
 
+	// The repositories a story links: the linter itself, then what ships
+	// around it.
+	const repos = [
+		{ name: 'vale-cli/vale', blurb: 'The linter' },
+		{ name: 'vale-cli/Std', blurb: 'The standard library' },
+		{ name: 'vale-cli/packages', blurb: 'The package library' },
+		{ name: 'vale-cli/Harper', blurb: 'Grammar, as 547 rules' },
+		{ name: 'jdkato/voices', blurb: 'AI writing skills as rules' },
+		{ name: 'vale-cli/agent-tools', blurb: 'The Claude Code plugin' }
+	];
+
 	/*
 		The claims that keep coming back, each with the sentence to use instead.
 		Grounded in the engine: internal/check has twelve check types, of which
@@ -396,6 +407,25 @@
 				</dl>
 			</div>
 			<p class="mt-3 text-xs text-muted-foreground">Numbers updated {data.stats.updated}.</p>
+
+			<ul class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+				{#each repos as repo (repo.name)}
+					<li class="bg-card">
+						<a
+							href="https://github.com/{repo.name}"
+							target="_blank"
+							rel="noreferrer"
+							class="group flex h-full flex-col p-4 transition-colors hover:bg-muted/40"
+						>
+							<span
+								class="font-mono text-sm font-medium text-foreground group-hover:text-lime-600 dark:group-hover:text-lime-400"
+								>{repo.name}</span
+							>
+							<span class="mt-1 text-xs text-muted-foreground">{repo.blurb}</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
 		</div>
 	</section>
 
