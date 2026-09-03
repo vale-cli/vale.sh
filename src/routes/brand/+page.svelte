@@ -444,7 +444,13 @@
 							<img
 								src="/brand/vale-logo.svg"
 								alt=""
-								class="block w-auto"
+								class="block w-auto dark:hidden"
+								style="height: var(--h)"
+							/>
+							<img
+								src="/brand/vale-logo-dark.svg"
+								alt=""
+								class="hidden w-auto dark:block"
 								style="height: var(--h)"
 							/>
 							<span
@@ -465,7 +471,18 @@
 					<div class="flex flex-wrap items-end justify-center gap-x-8 gap-y-4 py-4">
 						{#each markSizes as px (px)}
 							<div class="flex flex-col items-center gap-2">
-								<img src="/brand/vale-mark.svg" alt="" class="w-auto" style="height: {px}px" />
+								<img
+									src="/brand/vale-mark.svg"
+									alt=""
+									class="w-auto dark:hidden"
+									style="height: {px}px"
+								/>
+								<img
+									src="/brand/vale-mark-dark.svg"
+									alt=""
+									class="hidden w-auto dark:block"
+									style="height: {px}px"
+								/>
 								<span class="font-mono text-[11px] text-muted-foreground">{px}px</span>
 							</div>
 						{/each}
@@ -475,7 +492,18 @@
 					>
 						{#each lockupWidths as px (px)}
 							<div class="flex flex-col items-center gap-2">
-								<img src="/brand/vale-logo.svg" alt="" class="h-auto" style="width: {px}px" />
+								<img
+									src="/brand/vale-logo.svg"
+									alt=""
+									class="h-auto dark:hidden"
+									style="width: {px}px"
+								/>
+								<img
+									src="/brand/vale-logo-dark.svg"
+									alt=""
+									class="hidden h-auto dark:block"
+									style="width: {px}px"
+								/>
 								<span class="font-mono text-[11px] text-muted-foreground">{px}px</span>
 							</div>
 						{/each}
