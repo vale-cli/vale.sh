@@ -127,4 +127,4 @@ tokens:
   - pattern: brown
 ```
 
-The scope selects which blocks the sentences are drawn from; the rule still matches sentence by sentence within them.
+The scope selects which blocks the sentences are drawn from; the rule still matches sentence by sentence within them. A [`doc(...)` selection](../topics/scopes.md#selections) works the same way: the rule reads the sentences inside the selected element.
