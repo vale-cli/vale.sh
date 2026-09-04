@@ -56,6 +56,16 @@ message: "Grade level (%s) too high!"
 
 ## [Scope](readability.md#scope)
 
-`readability` is the one extension point that doesn't accept a [scope](../topics/scopes.md).
+A `readability` rule scores the document’s prose as a whole unless it declares a [scope](../topics/scopes.md#checks-and-scopes), and reports the result at line 1. With a scope, it scores each block the scope names and reports on that block’s first line. A section is the natural unit:
 
-A grade level is calculated from whole sentences, so scoring anything smaller than a paragraph—a heading, a list item, a table cell—wouldn't mean anything. Vale always applies the rule to the document's prose as a whole, and reports the result at line 1.
+```yaml
+extends: readability
+message: "The Summary reads at grade %s. Aim below 10."
+level: warning
+scope: 'doc(section:has(> h2:contains("Summary")))'
+metrics:
+  - Flesch-Kincaid
+grade: 10
+```
+
+A grade level is calculated from whole sentences, so scoring anything smaller than a paragraph—a heading, a list item, a table cell—wouldn’t mean anything, even though the scope allows it. Scoping a `readability` rule requires Vale v3.21.0 or later.

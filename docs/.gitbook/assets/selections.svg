@@ -1,0 +1,119 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" width="800" height="560" role="img" aria-label="A Markdown file with an h1, three h2 sections, and an h3 under Decision is wrapped into nested sections. The selector doc(section:has(a direct h2 child containing Decision)) marks the Decision section, so the paragraph and the h3 inside it carry the selection in their scopes while Context and Consequences do not. Alone, the term is the section as one doc block; beside sentence, it is the sentences inside; negated, it is everything outside.">
+  <style>
+    svg {
+      --ink: #1c1917;
+      --soft: #57534e;
+      --faint: #a8a29e;
+      --line: #d6d3d1;
+      --surface: #f5f5f4;
+      --band: #fafaf9;
+      --accent: #55703a;
+      --accent-fill: #eaf0e2;
+      --no: #b91c1c;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9;
+        --soft: #d6d3d1;
+        --faint: #78716c;
+        --line: #44403c;
+        --surface: #292524;
+        --band: #211e1c;
+        --accent: #a3c585;
+        --accent-fill: #2b3323;
+        --no: #f87171;
+      }
+    }
+    .band { fill: var(--band); }
+    .label {
+      font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      fill: var(--faint);
+    }
+    .card { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .src { font: 400 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .dim { fill: var(--faint); }
+    .sec { fill: none; stroke: var(--line); stroke-width: 1.25; stroke-dasharray: 4 3; }
+    .hit { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .tag { font: 500 10px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--faint); }
+    .tag-hit { font: 500 10px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .row { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .row-text { font: 400 13px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--ink); }
+    .pill { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1; }
+    .pill-text { font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .pill-plain { fill: var(--surface); stroke: var(--line); stroke-width: 1; }
+    .pill-plain-text { font: 500 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--soft); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .mono { font: 400 12.5px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .yes { fill: var(--accent); font: 500 12px Inter, ui-sans-serif, system-ui, sans-serif; }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="560" rx="10"/>
+  <text class="label" x="24" y="30">Headings become sections, and a selector names one</text>
+
+  <!-- Source -->
+  <rect class="card" x="24" y="46" width="248" height="246" rx="8"/>
+  <text class="src" x="42" y="74"><tspan class="dim">#</tspan> Bearer tokens</text>
+  <text class="src" x="42" y="104"><tspan class="dim">##</tspan> Context</text>
+  <text class="src" x="42" y="126">We keep sessions.</text>
+  <text class="src" x="42" y="156"><tspan class="dim">##</tspan> Decision</text>
+  <text class="src" x="42" y="178">We will issue tokens.</text>
+  <text class="src" x="42" y="204"><tspan class="dim">###</tspan> Rotation</text>
+  <text class="src" x="42" y="226">Tokens expire weekly.</text>
+  <text class="src" x="42" y="256"><tspan class="dim">##</tspan> Consequences</text>
+  <text class="note" x="42" y="280">adr.md</text>
+
+  <!-- Connector -->
+  <path class="flow" d="M272 169 h40"/>
+
+  <!-- Sections tree -->
+  <rect class="sec" x="312" y="46" width="464" height="246" rx="8"/>
+  <text class="tag" x="324" y="62">section · h1</text>
+
+  <rect class="sec" x="328" y="72" width="432" height="44" rx="6"/>
+  <text class="tag" x="340" y="88">section · h2</text>
+  <text class="row-text" x="340" y="106">Context — We keep sessions.</text>
+
+  <rect class="hit" x="328" y="126" width="432" height="104" rx="6"/>
+  <text class="tag-hit" x="340" y="142">section · h2 · matched</text>
+  <text class="row-text" x="340" y="160">Decision — We will issue tokens.</text>
+  <rect class="sec" x="344" y="172" width="400" height="46" rx="6"/>
+  <text class="tag" x="356" y="188">section · h3</text>
+  <text class="row-text" x="356" y="206">Rotation — Tokens expire weekly.</text>
+
+  <rect class="sec" x="328" y="240" width="432" height="40" rx="6"/>
+  <text class="tag" x="340" y="256">section · h2</text>
+  <text class="row-text" x="340" y="272">Consequences</text>
+
+  <!-- Selector -->
+  <text class="mono" x="24" y="326">doc(section:has(&gt; h2:contains("Decision")))</text>
+  <text class="note" x="380" y="326">— the section whose own h2 reads Decision, subsections included</text>
+
+  <!-- Blocks -->
+  <line class="flow" x1="24" y1="346" x2="776" y2="346"/>
+  <text class="label" x="24" y="374">Blocks inside the element carry the selection; the element is a block of its own</text>
+
+  <rect class="row" x="24" y="388" width="752" height="34" rx="7"/>
+  <text class="row-text" x="40" y="410">We will issue tokens.</text>
+  <rect class="pill" x="640" y="394" width="120" height="22" rx="11"/>
+  <text class="pill-text" x="651" y="409">text.in.7f3a.md</text>
+
+  <rect class="row" x="24" y="428" width="752" height="34" rx="7"/>
+  <text class="row-text" x="40" y="450">Rotation</text>
+  <rect class="pill" x="560" y="434" width="200" height="22" rx="11"/>
+  <text class="pill-text" x="571" y="449">text.heading.h3.in.7f3a.md</text>
+
+  <rect class="row" x="24" y="468" width="752" height="34" rx="7"/>
+  <text class="row-text" x="40" y="490">Decision  We will issue tokens.  Rotation  Tokens expire weekly.</text>
+  <text class="note" x="430" y="490">— the whole section, once</text>
+  <rect class="pill" x="666" y="474" width="94" height="22" rx="11"/>
+  <text class="pill-text" x="677" y="489">doc.7f3a.md</text>
+
+  <rect class="row" x="24" y="508" width="752" height="34" rx="7"/>
+  <text class="row-text" x="40" y="530">We keep sessions.</text>
+  <text class="note" x="170" y="530">— outside the selection</text>
+  <rect class="pill-plain" x="690" y="514" width="70" height="22" rx="11"/>
+  <text class="pill-plain-text" x="701" y="529">text.md</text>
+</svg>
