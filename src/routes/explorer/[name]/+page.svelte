@@ -1,10 +1,8 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
-	import { copyStringToClipboard } from '$lib/utils.js';
 	import ArrowLeft from 'lucide-svelte/icons/arrow-left';
-	import Copy from 'lucide-svelte/icons/copy';
-	import Check from 'lucide-svelte/icons/check';
 	import ExternalLink from 'lucide-svelte/icons/external-link';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	let { data } = $props();
 	const pkg = $derived(data.pkg);
@@ -41,16 +39,33 @@
 		})
 	);
 
-	const snippet = $derived(`Packages = ${pkg.name}\n\n[*.md]\nBasedOnStyles = Vale, ${pkg.name}`);
-
-	let copied = $state(false);
-	let timer: ReturnType<typeof setTimeout>;
-	function copy() {
-		copyStringToClipboard(snippet);
-		copied = true;
-		clearTimeout(timer);
-		timer = setTimeout(() => (copied = false), 1500);
-	}
+	// What a package ships under `config/` besides rules: views, vocabularies,
+	// a dictionary, a template. Grouped by kind, since a kind is how a reader
+	// knows what to do with one.
+	type Asset = {
+		kind: string;
+		name: string;
+		engine?: string;
+		scopes?: string[];
+		accept?: number;
+		reject?: number;
+	};
+	const assetGroups = $derived(
+		Object.entries(
+			((pkg.assets ?? []) as Asset[]).reduce<Record<string, Asset[]>>((groups, a) => {
+				(groups[a.kind] ??= []).push(a);
+				return groups;
+			}, {})
+		)
+	);
+	const plural = (kind: string, n: number) =>
+		n === 1
+			? kind
+			: kind === 'vocabulary'
+				? 'vocabularies'
+				: kind === 'dictionary'
+					? 'dictionaries'
+					: `${kind}s`;
 </script>
 
 <MetaTags
@@ -115,21 +130,55 @@
 			Add it to your <code class="font-mono text-xs text-foreground">.vale.ini</code>, then run
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code>.
 		</p>
-		<div class="relative mt-3">
-			<pre
-				class="overflow-x-auto rounded-lg border border-border bg-muted/40 p-4 font-mono text-[13px] leading-relaxed">{snippet}</pre>
-			<button
-				type="button"
-				onclick={copy}
-				aria-label="Copy configuration"
-				class="absolute right-3 top-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-border bg-background text-muted-foreground transition-colors hover:text-foreground"
-			>
-				{#if copied}<Check class="h-4 w-4 text-lime-600 dark:text-lime-400" />{:else}<Copy
-						class="h-4 w-4"
-					/>{/if}
-			</button>
-		</div>
+		<CodeBlock html={data.snippetHtml} code={data.snippet} class="mt-3" />
 	</section>
+
+	<!-- Assets -->
+	{#if assetGroups.length}
+		<section class="mt-12">
+			<h2 class="text-lg font-semibold">
+				Assets <span class="ml-1 text-sm font-normal text-muted-foreground"
+					>{pkg.assets.length}</span
+				>
+			</h2>
+			<p class="mt-1 text-sm text-muted-foreground">
+				Files the package ships under <code class="font-mono text-xs text-foreground">config/</code
+				>, installed alongside its rules by
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-xs text-foreground">vale sync</code
+				>.
+			</p>
+			<ul class="mt-4 divide-y divide-border rounded-lg border border-border">
+				{#each assetGroups as [kind, items]}
+					<li class="flex flex-col gap-2 p-4">
+						<span class="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+							{items.length}
+							{plural(kind, items.length)}
+						</span>
+						<ul class="flex flex-col gap-1.5">
+							{#each items as a}
+								<li class="flex flex-wrap items-center gap-x-3 gap-y-1 text-sm">
+									<span class="font-mono font-medium">{a.name}</span>
+									{#if a.engine}
+										<span class="font-mono text-xs text-muted-foreground">{a.engine}</span>
+									{/if}
+									{#if a.scopes?.length}
+										<span class="font-mono text-xs text-muted-foreground"
+											>scopes: {a.scopes.join(', ')}</span
+										>
+									{/if}
+									{#if a.kind === 'vocabulary'}
+										<span class="text-xs text-muted-foreground">
+											{a.accept ?? 0} accepted, {a.reject ?? 0} rejected
+										</span>
+									{/if}
+								</li>
+							{/each}
+						</ul>
+					</li>
+				{/each}
+			</ul>
+		</section>
+	{/if}
 
 	<!-- Rules -->
 	<section class="mt-12">

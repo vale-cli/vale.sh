@@ -15,6 +15,7 @@ all: build
 
 build:
 	node script/packages.mjs
+	node script/assets.mjs
 	$(call build_index)
 	pnpm run build
 
@@ -41,6 +42,7 @@ configs:
 # step by itself.
 packages:
 	node script/packages.mjs
+	node script/assets.mjs
 
 # Rebuild static/brand and the favicons from the mark's geometry. Needs
 # rsvg-convert and `pip install -r script/brand/requirements.txt`.

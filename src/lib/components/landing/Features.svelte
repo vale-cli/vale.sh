@@ -7,9 +7,12 @@
 	import { extensionPoints } from '$lib/data/extension-points';
 	import { markupFormats } from '$lib/data/markup-formats';
 	import { codeLanguages } from '$lib/data/code-languages';
-	import { highlightYaml, tokenClass } from '$lib/highlight-yaml';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import BrandIcon from './BrandIcon.svelte';
 	import FileText from 'lucide-svelte/icons/file-text';
+
+	// The carousel's rules, highlighted by the page's load function.
+	let { yamlHtml }: { yamlHtml: Record<string, string> } = $props();
 
 	/*
 		Four rows, alternating, one artifact each.
@@ -559,11 +562,7 @@
 										<span class="font-sans text-xs text-muted-foreground">{point.claim}</span>
 									</div>
 
-									<pre class="mt-4 overflow-x-auto text-[13px] leading-relaxed"><code
-											>{#each highlightYaml(point.yaml) as tokens, i (i)}{#if i > 0}{'\n'}{/if}{#each tokens as token, j (j)}<span
-														class={tokenClass[token.t]}>{token.v}</span
-													>{/each}{/each}</code
-										></pre>
+									<CodeBlock html={yamlHtml[point.id]} bare class="mt-4" />
 
 									<div class="mt-4 space-y-1.5 border-t border-border/60 pt-4 text-foreground/90">
 										{#each point.sample as line, i (i)}

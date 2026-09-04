@@ -1,4 +1,5 @@
 <script lang="ts">
+	let { data } = $props();
 	import { MetaTags } from 'svelte-meta-tags';
 	import Hero from '$lib/components/cms/Hero.svelte';
 	import Surfaces from '$lib/components/cms/Surfaces.svelte';
@@ -47,7 +48,7 @@
 <Hero />
 <Surfaces />
 <Mcp />
-<Toolbelt />
+<Toolbelt exampleHtml={data.exampleHtml} />
 <Assets />
 <Loop />
 <Trust />

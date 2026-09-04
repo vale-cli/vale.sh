@@ -4,95 +4,15 @@
 	import Section from '$lib/components/features/Section.svelte';
 	import ExternalLink from '$lib/components/features/ExternalLink.svelte';
 	import { features } from '$lib/features';
+	import { languages, type Line } from '$lib/data/code-queries';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
+
+	let { data } = $props();
 
 	const feature = features.find((f) => f.slug === 'code')!;
 
-	/*
-		The language picker. `prose: true` marks the lines a rule actually sees —
-		which is the argument: the boundary is drawn by the grammar, not by
-		looking for a `#` or a `//`.
-	*/
-	type Line = { v: string; prose?: boolean };
-
-	const languages: {
-		id: string;
-		label: string;
-		file: string;
-		query: string;
-		note: string;
-		lines: Line[];
-	}[] = [
-		{
-			id: 'go',
-			label: 'Go',
-			file: 'store.go',
-			query: '(comment) @comment',
-			note: 'One query covers line and block comments alike—the grammar already knows the difference.',
-			lines: [
-				{ v: 'package store' },
-				{ v: '' },
-				{ v: '// Get returns the record for id.', prose: true },
-				{ v: '//', prose: true },
-				{ v: '// It can utilize the cache when possible.', prose: true },
-				{ v: 'func Get(id string) (*Record, error) {' },
-				{ v: '\tkey := "// not a comment"' },
-				{ v: '\treturn s.lookup(key + id)' },
-				{ v: '}' }
-			]
-		},
-		{
-			id: 'py',
-			label: 'Python',
-			file: 'store.py',
-			query: `((function_definition
-  body: (block . (expression_statement (string) @docstring)))
- (#offset! @docstring 0 3 0 -3))`,
-			note: 'Docstrings are string literals, not comments. Only a grammar can tell one apart from a string that happens to sit at the top of a function.',
-			lines: [
-				{ v: 'def get(id):' },
-				{ v: '    """Return the record for id.', prose: true },
-				{ v: '', prose: true },
-				{ v: '    It can utilize the cache when possible.', prose: true },
-				{ v: '    """', prose: true },
-				{ v: '    marker = """not a docstring"""' },
-				{ v: '    return lookup(marker + id)' }
-			]
-		},
-		{
-			id: 'rs',
-			label: 'Rust',
-			file: 'store.rs',
-			query: '(line_comment)+ @comment',
-			note: "Rust's grammar calls `///` and `//!` line comments, so doc comments come along without a special case. The trailing `+` groups a run of adjacent comments into one block, so a rule sees the whole passage rather than each line alone.",
-			lines: [
-				{ v: '/// Returns the record for `id`.', prose: true },
-				{ v: '///', prose: true },
-				{ v: '/// It can utilize the cache when possible.', prose: true },
-				{ v: 'pub fn get(id: &str) -> Option<Record> {' },
-				{ v: '    let key = "/// not a comment";' },
-				{ v: '    lookup(&format!("{key}{id}"))' },
-				{ v: '}' }
-			]
-		},
-		{
-			id: 'js',
-			label: 'JavaScript',
-			file: 'store.js',
-			query: '(comment) @comment',
-			note: 'JSDoc blocks are comments too. The leading asterisks are stripped before the body reaches a rule.',
-			lines: [
-				{ v: '/**', prose: true },
-				{ v: ' * Returns the record for `id`.', prose: true },
-				{ v: ' *', prose: true },
-				{ v: ' * It can utilize the cache when possible.', prose: true },
-				{ v: ' */', prose: true },
-				{ v: 'export function get(id) {' },
-				{ v: '  const key = "/* not a comment */";' },
-				{ v: '  return lookup(key + id);' },
-				{ v: '}' }
-			]
-		}
-	];
+	// The language picker lives in $lib/data/code-queries, and the load
+	// function highlights each query.
 
 	let active = $state('go');
 	const current = $derived(languages.find((l) => l.id === active)!);
@@ -240,8 +160,7 @@
 
 			<div class="border-t border-border/60 px-5 py-4 sm:px-6">
 				<div class="text-xs uppercase tracking-wider text-muted-foreground/70">Query</div>
-				<pre
-					class="mt-2 overflow-x-auto font-mono text-[13px] leading-relaxed text-foreground/90">{current.query}</pre>
+				<CodeBlock html={data.queryHtml[current.id]} bare class="mt-2" />
 				<p class="mt-3 text-sm leading-relaxed text-muted-foreground">{current.note}</p>
 			</div>
 		</div>

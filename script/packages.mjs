@@ -88,6 +88,76 @@ function ruleName(path) {
 	return [...segments, file].join('.');
 }
 
+/** The directories under `config/` Vale reads, and the kind each holds. */
+const ASSET_DIRS = {
+	views: 'view',
+	filters: 'filter',
+	scripts: 'script',
+	actions: 'action',
+	vocabularies: 'vocabulary',
+	templates: 'template',
+	dictionaries: 'dictionary',
+	ignore: 'ignore'
+};
+
+/**
+ * Reads one file under `config/` into a listing entry.
+ *
+ * A view says the most about itself -- its engine and the scopes it exposes
+ * -- so those are read out of it. A vocabulary is two word lists, so it is
+ * counted. Everything else is listed by name.
+ */
+function asset(kind, name, body) {
+	if (kind === 'view') {
+		try {
+			const view = parse(body);
+			return {
+				kind,
+				name: name.replace(/\.yml$/, ''),
+				engine: view?.engine ?? '',
+				scopes: (view?.scopes ?? []).map((s) => s.name).filter(Boolean)
+			};
+		} catch {
+			return { kind, name };
+		}
+	}
+	return { kind, name };
+}
+
+/**
+ * Collects the assets a package ships under `config/`, keyed by kind and
+ * name. A vocabulary's accept.txt and reject.txt land on one entry.
+ */
+function collectAsset(assets, path, bytes) {
+	const m = path.match(/\/config\/([^/]+)\/(.+)$/);
+	if (!m || !ASSET_DIRS[m[1]]) {
+		return;
+	}
+	const kind = ASSET_DIRS[m[1]];
+	const rest = m[2];
+
+	if (kind === 'vocabulary') {
+		const [name, file] = rest.split('/');
+		if (!file) {
+			return;
+		}
+		const key = `${kind}/${name}`;
+		const entry = assets.get(key) ?? { kind, name, accept: 0, reject: 0 };
+		const words = strFromU8(bytes)
+			.split('\n')
+			.filter((w) => w.trim() && !w.startsWith('#')).length;
+		if (file === 'accept.txt') entry.accept += words;
+		if (file === 'reject.txt') entry.reject += words;
+		assets.set(key, entry);
+		return;
+	}
+
+	if (rest.includes('/')) {
+		return; // Nothing else nests.
+	}
+	assets.set(`${kind}/${rest}`, asset(kind, rest, strFromU8(bytes)));
+}
+
 async function rulesFor(pkg) {
 	// `url` is the archive itself, not the directory holding it.
 	const res = await fetch(pkg.url);
@@ -97,6 +167,7 @@ async function rulesFor(pkg) {
 
 	const files = unzipSync(new Uint8Array(await res.arrayBuffer()));
 	const rules = [];
+	const assets = new Map();
 
 	// A package's meta.json states the Vale version its rules need -- the one
 	// fact a reader has to know before `vale sync` will do them any good.
@@ -109,6 +180,10 @@ async function rulesFor(pkg) {
 			} catch {
 				// A malformed meta.json shouldn't cost the package its page.
 			}
+			continue;
+		}
+		if (path.includes('/config/')) {
+			collectAsset(assets, path, bytes);
 			continue;
 		}
 		if (!path.endsWith('.yml')) {
@@ -125,7 +200,10 @@ async function rulesFor(pkg) {
 	}
 
 	rules.sort((a, b) => a.name.localeCompare(b.name));
-	return { rules, valeVersion };
+	const listed = [...assets.values()].sort(
+		(a, b) => a.kind.localeCompare(b.kind) || a.name.localeCompare(b.name)
+	);
+	return { rules, assets: listed, valeVersion };
 }
 
 // Part of `make build`, so an unreachable library must not stop a build: the
@@ -158,20 +236,23 @@ for (const pkg of library) {
 	};
 
 	try {
-		const { rules, valeVersion } = await rulesFor(pkg);
+		const { rules, assets, valeVersion } = await rulesFor(pkg);
 		entry.rules = rules;
+		entry.assets = assets;
 		entry.valeVersion = valeVersion;
 	} catch (err) {
 		// A package that won't download shouldn't take the whole build with it;
 		// it still gets a page, just without the rule listing.
 		console.warn(`packages: ${pkg.name}: ${err.message}`);
 		entry.rules = [];
+		entry.assets = [];
 		entry.valeVersion = '';
 		failed++;
 	}
 
 	packages.push(entry);
-	console.log(`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules`);
+	const extra = entry.assets.length ? `, ${entry.assets.length} assets` : '';
+	console.log(`  ${entry.name.padEnd(16)} ${String(entry.rules.length).padStart(3)} rules${extra}`);
 }
 
 mkdirSync(dirname(OUT), { recursive: true });

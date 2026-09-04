@@ -4,7 +4,7 @@
 	import Sparkles from 'lucide-svelte/icons/sparkles';
 	import Zap from 'lucide-svelte/icons/zap';
 	import Server from 'lucide-svelte/icons/server';
-	import CopyButton from '$lib/components/CopyButton.svelte';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	// Lives on /skills rather than the landing page: the hero and the footer
 	// already link here, and the edit hook and the MCP server have no other
@@ -14,17 +14,9 @@
 	// The free/paid split is stated on each card rather than buried in a
 	// footnote. Two of these three need no account, and that has to be obvious
 	// on a page whose whole promise is that Vale is free.
-	const install = `/plugin marketplace add vale-cli/agent-tools
-/plugin install vale@agent-tools`;
-
-	// CopyButton owns the icon and its own absolute placement; the copied state
-	// and the clipboard write stay here.
-	let copied = $state(false);
-	function copyCode() {
-		navigator.clipboard.writeText(install);
-		copied = true;
-		setTimeout(() => (copied = false), 2000);
-	}
+	// The install commands and their highlighted form come from the page's
+	// load function, which is where the highlighter runs.
+	let { install, installHtml }: { install: string; installHtml: string } = $props();
 
 	const pieces = [
 		{
@@ -112,17 +104,7 @@
 					Other clients can read <code class="font-mono">skills/</code> directly.
 				</p>
 			</div>
-			<div class="relative mt-3">
-				<pre
-					class="overflow-x-auto rounded-lg border border-border bg-background p-4 pr-12 font-mono text-[12.5px] leading-relaxed"><code
-						>{install}</code
-					></pre>
-				<CopyButton
-					{copied}
-					{copyCode}
-					className="text-muted-foreground hover:bg-muted hover:text-foreground"
-				/>
-			</div>
+			<CodeBlock html={installHtml} code={install} class="mt-3" />
 			<p class="mt-3 text-sm text-muted-foreground">
 				The skills and the hook need nothing but the Vale binary. The MCP server is the one paid
 				piece &mdash; it runs on <a

@@ -47,7 +47,7 @@
 <SponsorSpotlight />
 <AdopterConfigs />
 <SectionNav />
-<Features />
+<Features yamlHtml={data.yamlHtml} />
 <Ecosystem stats={data.stats} />
 <Integrations />
 <CTA />

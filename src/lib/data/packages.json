@@ -146,6 +146,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -271,6 +272,7 @@
         "link": "https://docs.asciidoctor.org/asciidoc/latest/tables/build-a-basic-table/"
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -628,6 +630,7 @@
         "link": "https://github.com/jhradilek/asciidoctor-dita-vale/blob/main/README.md#warnings"
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -895,6 +898,32 @@
         "scope": "~text.frontmatter.navigation_title",
         "message": "Consider using '%s' instead of '%s'.",
         "link": "https://www.elastic.co/docs/contribute-docs/style-guide/voice-tone#write-like-a-minimalist"
+      }
+    ],
+    "assets": [
+      {
+        "kind": "vocabulary",
+        "name": "ElasticTerms",
+        "accept": 165,
+        "reject": 0
+      },
+      {
+        "kind": "vocabulary",
+        "name": "GeographicNames",
+        "accept": 34,
+        "reject": 0
+      },
+      {
+        "kind": "vocabulary",
+        "name": "TechJargon",
+        "accept": 1361,
+        "reject": 0
+      },
+      {
+        "kind": "vocabulary",
+        "name": "ThirdPartyProducts",
+        "accept": 415,
+        "reject": 0
       }
     ],
     "valeVersion": ""
@@ -1198,6 +1227,7 @@
         "link": "https://developers.google.com/style/word-list"
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   },
   {
@@ -5588,6 +5618,12 @@
         "link": ""
       }
     ],
+    "assets": [
+      {
+        "kind": "dictionary",
+        "name": "harper.dict"
+      }
+    ],
     "valeVersion": ""
   },
   {
@@ -5600,6 +5636,7 @@
       "config"
     ],
     "rules": [],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -5749,6 +5786,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   },
   {
@@ -5761,6 +5799,7 @@
       "config"
     ],
     "rules": [],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -6150,6 +6189,7 @@
         "link": "https://learn.microsoft.com/en-us/style-guide/word-choice/use-simple-words-concise-sentences"
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   },
   {
@@ -6291,6 +6331,7 @@
         "link": "https://redhat-documentation.github.io/supplementary-style-guide/#link-text"
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -6360,6 +6401,7 @@
         "link": "https://en.wikipedia.org/wiki/SMOG"
       }
     ],
+    "assets": [],
     "valeVersion": ">=2.13.0"
   },
   {
@@ -6669,6 +6711,7 @@
         "link": "https://redhat-documentation.github.io/vale-at-red-hat/reference-guide.html#using"
       }
     ],
+    "assets": [],
     "valeVersion": ">=2.20.0"
   },
   {
@@ -6906,6 +6949,7 @@
         "link": "https://developer.salesforce.com/docs/atlas.en-us.salesforce_pubs_style_guide.meta/salesforce_pubs_style_guide/glossary_master.htm"
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -7031,6 +7075,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ">=3.20.0"
   },
   {
@@ -7900,6 +7945,12 @@
         "link": ""
       }
     ],
+    "assets": [
+      {
+        "kind": "template",
+        "name": "ai-tells-agent.tmpl"
+      }
+    ],
     "valeVersion": ""
   },
   {
@@ -8001,6 +8052,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   },
   {
@@ -8119,6 +8171,7 @@
         "link": "https://github.com/a11yfred/neighbor"
       }
     ],
+    "assets": [],
     "valeVersion": ""
   },
   {
@@ -8404,6 +8457,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   },
   {
@@ -8481,6 +8535,7 @@
         "link": ""
       }
     ],
+    "assets": [],
     "valeVersion": ">=1.0.0"
   }
 ]

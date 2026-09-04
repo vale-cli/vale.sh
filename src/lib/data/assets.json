@@ -1,0 +1,126 @@
+[
+  {
+    "name": "errors",
+    "kind": "filter",
+    "description": "Only error-level rules, for a hook or a CI step that should block on nothing else.",
+    "path": "assets/filters/errors.expr",
+    "tags": [
+      "ci"
+    ],
+    "content": ".Level in [\"error\"]\n",
+    "usage": "vale --filter=errors.expr ."
+  },
+  {
+    "name": "no-spelling",
+    "kind": "filter",
+    "description": "Every rule but the spell checker, for a run over text full of names Vale doesn't know.",
+    "path": "assets/filters/no-spelling.expr",
+    "tags": [],
+    "content": ".Name != \"Vale.Spelling\"\n",
+    "usage": "vale --filter=no-spelling.expr ."
+  },
+  {
+    "name": "github",
+    "kind": "template",
+    "description": "GitHub Actions annotations, one per alert, so each shows on its line in the pull request.",
+    "path": "assets/templates/github.tmpl",
+    "tags": [
+      "ci",
+      "github"
+    ],
+    "content": "{{- /* GitHub Actions annotations: one workflow command per alert, so each\n       shows up on the changed line in the pull request. Suggestions become\n       notices, which GitHub shows without failing the check. */ -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts -}}\n{{- $level := \"notice\" -}}\n{{- if eq .Severity \"error\" -}}{{- $level = \"error\" -}}\n{{- else if eq .Severity \"warning\" -}}{{- $level = \"warning\" -}}\n{{- end -}}\n::{{ $level }} file={{ $path }},line={{ .Line }},col={{ index .Span 0 }},endColumn={{ index .Span 1 }},title={{ .Check }}::{{ .Message }}\n{{ end -}}\n{{- end -}}\n",
+    "usage": "vale --output=github.tmpl ."
+  },
+  {
+    "name": "jsonl",
+    "kind": "template",
+    "description": "JSON Lines, one object per alert, for a tool or an agent that reads alerts one at a time.",
+    "path": "assets/templates/jsonl.tmpl",
+    "tags": [
+      "ci",
+      "ai"
+    ],
+    "content": "{{- /* JSON Lines: one object per alert, for a tool or an agent that reads\n       alerts one at a time. Every field is JSON-encoded, so a message with a\n       quote in it stays valid. */ -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts -}}\n{{ dict \"path\" $path \"line\" .Line \"column\" (index .Span 0) \"end\" (index .Span 1) \"check\" .Check \"severity\" .Severity \"message\" .Message \"match\" .Match \"link\" .Link | toJson }}\n{{ end -}}\n{{- end -}}\n",
+    "usage": "vale --output=jsonl.tmpl ."
+  },
+  {
+    "name": "summary",
+    "kind": "template",
+    "description": "A Markdown summary with a table per file and the totals, for a pull request comment or a job summary.",
+    "path": "assets/templates/summary.tmpl",
+    "tags": [
+      "ci",
+      "github"
+    ],
+    "content": "{{- /* A Markdown summary, for a pull request comment or a job summary:\n       a table per file, then the totals. */ -}}\n{{- $e := 0 -}}{{- $w := 0 -}}{{- $s := 0 -}}\n{{- range .Files -}}\n### `{{ .Path }}`\n\n| Line | Level | Rule | Message |\n| ---: | ----- | ---- | ------- |\n{{ range .Alerts -}}\n{{- if eq .Severity \"error\" -}}{{- $e = add1 $e -}}\n{{- else if eq .Severity \"warning\" -}}{{- $w = add1 $w -}}\n{{- else -}}{{- $s = add1 $s -}}{{- end -}}\n| {{ .Line }}:{{ index .Span 0 }} | {{ .Severity }} | `{{ .Check }}` | {{ .Message }} |\n{{ end }}\n{{ end -}}\n**{{ $e }} {{ $e | int | plural \"error\" \"errors\" }}, {{ $w }} {{ $w | int | plural \"warning\" \"warnings\" }}, {{ $s }} {{ $s | int | plural \"suggestion\" \"suggestions\" }}.**\n",
+    "usage": "vale --output=summary.tmpl ."
+  },
+  {
+    "name": "Commit",
+    "kind": "view",
+    "description": "A commit message as a subject, a body, and trailers, each its own scope.",
+    "path": "assets/views/Commit.yml",
+    "section": "COMMIT_EDITMSG",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "git"
+    ],
+    "content": "# A commit message: a subject line, a blank line, a body, and trailers.\n#\n#   [COMMIT_EDITMSG]\n#   BasedOnStyles = Vale\n#   View = Commit\n#\n# Then, in a commit-msg hook: vale --path=COMMIT_EDITMSG < \"$1\"\nengine: textfsm\ntemplate: |\n  Value Subject (.+)\n  Value List Body (.*)\n  Value List Trailer ([A-Z][\\w-]+: .+)\n\n  Start\n    ^${Subject} -> Body\n\n  Body\n    ^${Trailer}\n    ^${Body}\nscopes:\n  - name: subject\n    expr: Subject\n\n  - name: body\n    expr: Body\n    type: md\n\n  - name: trailer\n    expr: Trailer\n",
+    "usage": "[COMMIT_EDITMSG]\nBasedOnStyles = Vale\n\nView = Commit"
+  },
+  {
+    "name": "OpenAPI",
+    "kind": "view",
+    "description": "The title and every description and summary in an OpenAPI document, read as Markdown.",
+    "path": "assets/views/OpenAPI.yml",
+    "section": "*.{yml,yaml}",
+    "tags": [
+      "dasel",
+      "api"
+    ],
+    "content": "# An OpenAPI description: the title, and every `description` and `summary`\n# field, which are Markdown by the specification.\n#\n#   [*.{yml,yaml}]\n#   BasedOnStyles = Vale\n#   View = OpenAPI\nengine: dasel\nscopes:\n  - name: title\n    expr: info.title\n\n  - name: description\n    expr: 'search(has(\"description\")).map(description)'\n    type: md\n\n  - name: summary\n    expr: 'search(has(\"summary\")).map(summary)'\n    type: md\n",
+    "usage": "[*.{yml,yaml}]\nBasedOnStyles = Vale\n\nView = OpenAPI"
+  },
+  {
+    "name": "Python",
+    "kind": "view",
+    "description": "Comments and docstrings in Python source, read as Markdown.",
+    "path": "assets/views/Python.yml",
+    "section": "*.py",
+    "tags": [
+      "tree-sitter",
+      "code"
+    ],
+    "content": "# Python source: comments and docstrings, read as Markdown.\n#\n#   [*.py]\n#   BasedOnStyles = Vale\n#   View = Python\nengine: tree-sitter\nscopes:\n  - name: comment\n    expr: (comment)+ @comment\n    type: md\n\n  - name: docstring\n    expr: |\n      ((function_definition\n        body: (block . (expression_statement (string) @docstring)))\n      (#offset! @docstring 0 3 0 -3))\n    type: md\n",
+    "usage": "[*.py]\nBasedOnStyles = Vale\n\nView = Python"
+  },
+  {
+    "name": "Subtitles",
+    "kind": "view",
+    "description": "The cue text of a SubRip file, with the indexes and timings left alone.",
+    "path": "assets/views/Subtitles.yml",
+    "section": "*.srt",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "media"
+    ],
+    "content": "# SubRip subtitles: a cue is an index, a timing line, and one or more lines\n# of text, separated by blank lines. Only the text is exposed.\n#\n#   [*.srt]\n#   BasedOnStyles = Vale\n#   View = Subtitles\nengine: textfsm\ntemplate: |\n  Value Index (\\d+)\n  Value Timing (\\d\\d:\\d\\d:\\d\\d,\\d\\d\\d --> \\d\\d:\\d\\d:\\d\\d,\\d\\d\\d.*)\n  Value List Cue (.+)\n\n  Start\n    ^${Index}$ -> Timing\n\n  Timing\n    ^${Timing}$ -> Cue\n\n  Cue\n    ^$ -> Record Start\n    ^${Cue}\nscopes:\n  - name: cue\n    expr: Cue\n",
+    "usage": "[*.srt]\nBasedOnStyles = Vale\n\nView = Subtitles"
+  },
+  {
+    "name": "Transcript",
+    "kind": "view",
+    "description": "A chat transcript, exposing only the model's turns so the prompts are never linted.",
+    "path": "assets/views/Transcript.yml",
+    "section": "*.txt",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "ai"
+    ],
+    "content": "# A chat transcript with `user:` and `assistant:` turns. Only the model's\n# turns are exposed, so the prompts are never linted.\n#\n#   [*.txt]\n#   BasedOnStyles = Vale\n#   View = Transcript\nengine: textfsm\ntemplate: |\n  Value List Assistant (.*)\n  Value List User (.*)\n\n  Start\n    ^assistant: ${Assistant} -> Assistant\n    ^user: ${User} -> User\n\n  Assistant\n    ^(?:user|assistant): -> Continue.Record\n    ^assistant: ${Assistant}\n    ^user: ${User} -> User\n    ^${Assistant}\n\n  User\n    ^(?:user|assistant): -> Continue.Record\n    ^user: ${User}\n    ^assistant: ${Assistant} -> Assistant\n    ^${User}\nscopes:\n  - name: assistant\n    expr: Assistant\n    type: md\n",
+    "usage": "[*.txt]\nBasedOnStyles = Vale\n\nView = Transcript"
+  }
+]

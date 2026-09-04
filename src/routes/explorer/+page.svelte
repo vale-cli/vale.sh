@@ -26,6 +26,7 @@
 			message: string;
 			link: string;
 		}[];
+		assets?: { kind: string; name: string }[];
 	};
 
 	const addURL = 'https://github.com/vale-cli/vale.sh#share-a-package-or-configuration';
@@ -148,6 +149,13 @@
 			/>
 		</div>
 		<a
+			href="/explorer/assets"
+			class="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:border-lime-500/40 hover:bg-muted/60"
+		>
+			Views &amp; filters
+			<ArrowRight class="h-4 w-4" />
+		</a>
+		<a
 			href={addURL}
 			target="_blank"
 			rel="noreferrer"
@@ -231,9 +239,14 @@
 							{pkg.description}
 						</p>
 
-						{#if pkg.rules?.length}
+						{#if pkg.rules?.length || pkg.assets?.length}
 							<p class="mt-3 text-xs text-muted-foreground">
-								{pkg.rules.length} rules
+								{[
+									pkg.rules?.length ? `${pkg.rules.length} rules` : '',
+									pkg.assets?.length ? `${pkg.assets.length} assets` : ''
+								]
+									.filter(Boolean)
+									.join(' · ')}
 							</p>
 						{/if}
 

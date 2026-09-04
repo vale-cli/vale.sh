@@ -1,10 +1,12 @@
 <script lang="ts">
+	let { data } = $props();
 	import { MetaTags } from 'svelte-meta-tags';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import { skills } from '$lib/data/skills';
 	import { assistants } from '$lib/assistants';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import AgentTools from '$lib/components/AgentTools.svelte';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	const description =
 		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, and CI. Free, local, and driven by the CLI.';
@@ -36,11 +38,7 @@
 			In Claude Code, install the plugin&mdash;the second command restarts the session, which is
 			what registers the linting hook and the MCP server alongside the skills:
 		</p>
-		<pre
-			class="mt-3 overflow-x-auto rounded-lg border border-border bg-background p-3 font-mono text-xs leading-relaxed"><code
-				>/plugin marketplace add vale-cli/agent-tools
-/plugin install vale@agent-tools</code
-			></pre>
+		<CodeBlock html={data.installHtml} code={data.install} class="mt-3" />
 		<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
 			Then type <code class="font-mono">/vale:</code> and the five below should complete. For an
 			assistant that reads skills from a folder, copy one into
@@ -109,5 +107,5 @@
 	-- the edit hook and the MCP server -- have no other home on the site.
 -->
 <div class="mt-16 border-t border-border/60 pb-20 pt-10">
-	<AgentTools />
+	<AgentTools install={data.install} installHtml={data.installHtml} />
 </div>
