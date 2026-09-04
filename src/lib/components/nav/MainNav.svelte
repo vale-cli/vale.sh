@@ -11,16 +11,21 @@
 		<Icons.logo class="h-6 w-6" />
 		<Icons.wordmark class="hidden h-[19px] w-auto lg:block" />
 	</a>
-	<nav class="flex items-center gap-6 text-sm">
-		{#each docsConfig.mainNav as { href, title }, i}
+	<!-- The icons show from lg up, where the wordmark does: at md the header
+	     already fits the nav, the search, and the icon row with nothing to spare. -->
+	<nav class="flex items-center gap-5 text-sm">
+		{#each docsConfig.mainNav as item (item.href)}
 			<a
-				{href}
+				href={item.href}
 				class={cn(
-					'transition-colors hover:text-foreground/80',
-					$page.url.pathname === href ? 'text-foreground' : 'text-foreground/60'
+					'inline-flex items-center gap-1.5 transition-colors hover:text-foreground/80',
+					$page.url.pathname === item.href ? 'text-foreground' : 'text-foreground/60'
 				)}
 			>
-				{title}
+				{#if item.icon}
+					<item.icon class="hidden h-4 w-4 shrink-0 lg:block" aria-hidden="true" />
+				{/if}
+				{item.title}
 			</a>
 		{/each}
 	</nav>

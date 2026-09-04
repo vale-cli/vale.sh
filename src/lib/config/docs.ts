@@ -1,4 +1,10 @@
 import type { NavItem } from '$lib/types/nav';
+import BookOpen from 'lucide-svelte/icons/book-open';
+import AppWindow from 'lucide-svelte/icons/app-window';
+import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
+import Package from 'lucide-svelte/icons/package';
+import Library from 'lucide-svelte/icons/library';
+import Newspaper from 'lucide-svelte/icons/newspaper';
 
 // The documentation itself lives on docs.vale.sh, which GitBook publishes and
 // which carries its own navigation. This file is only the site's own top-level
@@ -13,28 +19,34 @@ export const docsConfig: DocsConfig = {
 		{
 			title: 'Docs',
 			href: 'https://docs.vale.sh',
-			external: true
+			external: true,
+			icon: BookOpen
 		},
 		{
 			title: 'Studio',
 			href: 'https://studio.vale.sh',
-			external: true
+			external: true,
+			icon: AppWindow
 		},
 		{
 			title: 'Generator',
-			href: '/generator'
+			href: '/generator',
+			icon: WandSparkles
 		},
 		{
 			title: 'Explorer',
-			href: '/explorer'
+			href: '/explorer',
+			icon: Package
 		},
 		{
 			title: 'Library',
-			href: '/library'
+			href: '/library',
+			icon: Library
 		},
 		{
 			title: 'Blog',
-			href: '/blog'
+			href: '/blog',
+			icon: Newspaper
 		}
 	]
 };

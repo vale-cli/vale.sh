@@ -38,7 +38,10 @@
 			<MobileLink href="/" bind:open>Home</MobileLink>
 			{#each docsConfig.mainNav as navItem, index (navItem.href ?? index)}
 				{#if navItem.href}
-					<MobileLink href={navItem.href} bind:open class="flex items-center gap-1.5">
+					<MobileLink href={navItem.href} bind:open class="flex items-center gap-2.5">
+						{#if navItem.icon}
+							<navItem.icon class="h-4 w-4 shrink-0 text-muted-foreground" aria-hidden="true" />
+						{/if}
 						{navItem.title}
 						{#if navItem.external}
 							<ExternalLink class="h-3.5 w-3.5 text-muted-foreground" />

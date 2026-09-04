@@ -1,11 +1,13 @@
-import type { Icons } from '$lib/components/icons';
+import type { ComponentType, SvelteComponent } from 'svelte';
+import type { IconProps } from 'lucide-svelte';
 
 export type NavItem = {
 	title: string;
 	href?: string;
 	disabled?: boolean;
 	external?: boolean;
-	icon?: keyof typeof Icons;
+	/** A lucide icon, shown beside the title. */
+	icon?: ComponentType<SvelteComponent<IconProps>>;
 	label?: string;
 	info?: string;
 };
