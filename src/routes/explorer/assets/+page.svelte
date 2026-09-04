@@ -1,9 +1,9 @@
 <script lang="ts">
 	import { MetaTags } from 'svelte-meta-tags';
 	import Search from 'lucide-svelte/icons/search';
-	import ArrowLeft from 'lucide-svelte/icons/arrow-left';
 	import Plus from 'lucide-svelte/icons/plus';
 	import { assets, kindInfo, requires, type Asset } from '$lib/data/assets';
+	import Tabs from '$lib/components/explorer/Tabs.svelte';
 
 	const addURL = 'https://github.com/vale-cli/packages#sharing-an-asset';
 
@@ -33,37 +33,31 @@
 
 <MetaTags
 	title="Asset Explorer"
-	description="Views, filters, and other single-file assets to copy into a Vale StylesPath."
+	description="Views, filters, and output templates: single-file assets to copy into a Vale StylesPath."
 	canonical="https://vale.sh/explorer/assets"
 	openGraph={{
 		url: 'https://vale.sh/explorer/assets',
 		title: 'Vale Asset Explorer',
-		description: 'Ready-made views, filters, and other assets, each one file to copy.'
+		description: 'Ready-made views, filters, and output templates, each one file to copy.'
 	}}
 />
 
 <div class="mx-auto max-w-6xl px-6 py-14 lg:px-8">
-	<a
-		href="/explorer"
-		class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-	>
-		<ArrowLeft class="h-4 w-4" />
-		Package Explorer
-	</a>
-
 	<!-- Header -->
-	<div class="mx-auto mt-6 max-w-2xl text-center">
+	<div class="mx-auto max-w-2xl text-center">
 		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Asset Explorer</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-			Views, filters &amp; more
+			Views, filters &amp; templates
 		</h1>
 		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
 			Single files to copy into your
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground">StylesPath</code
-			>. A view names the parts of a file Vale can’t otherwise parse; a filter picks the rules a run
-			applies.
+			>. A view names the parts of a file Vale can’t otherwise parse, a filter picks the rules a run
+			applies, and a template shapes what a run prints.
 		</p>
 	</div>
+
+	<Tabs active="assets" />
 
 	<!-- Toolbar -->
 	<div class="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">

@@ -53,13 +53,13 @@
 				// Styles people publish themselves, as opposed to the curated ones
 				// under Resources.
 				{
-					label: 'GitHub Topic',
+					label: 'Topic',
 					href: 'https://github.com/topics/vale-linter-style',
 					external: true
 				},
 				{ label: 'Adopters', href: '/adopters' },
 				// Both funding links live on /sponsor now, as the page's two CTAs.
-				{ label: 'Support Vale', href: '/sponsor' }
+				{ label: 'Support', href: '/sponsor' }
 			]
 		}
 	];

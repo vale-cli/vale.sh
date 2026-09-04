@@ -9,6 +9,7 @@
 	import ExternalLink from 'lucide-svelte/icons/external-link';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import { Icons } from '$lib/components/icons';
+	import Tabs from '$lib/components/explorer/Tabs.svelte';
 
 	type Pkg = {
 		name: string;
@@ -104,6 +105,8 @@
 		</p>
 	</div>
 
+	<Tabs active="packages" />
+
 	<!--
 		The wider ecosystem, up top rather than as a footnote: this page lists the
 		curated packages, and the tag is where everyone else's live.
@@ -148,13 +151,6 @@
 				class="h-10 w-full rounded-lg border border-border bg-background pl-9 pr-3 text-sm text-foreground transition-colors placeholder:text-muted-foreground focus:border-lime-500/50 focus:outline-none focus:ring-2 focus:ring-lime-500/20"
 			/>
 		</div>
-		<a
-			href="/explorer/assets"
-			class="inline-flex h-10 items-center justify-center gap-1.5 rounded-lg border border-border bg-background px-4 text-sm font-medium text-foreground transition-colors hover:border-lime-500/40 hover:bg-muted/60"
-		>
-			Views &amp; filters
-			<ArrowRight class="h-4 w-4" />
-		</a>
 		<a
 			href={addURL}
 			target="_blank"
