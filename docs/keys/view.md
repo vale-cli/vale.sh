@@ -11,7 +11,7 @@ BasedOnStyles = Vale
 View = MyView
 ```
 
-`View` names a View to apply to the matched files. A View is a set of steps that pull named [scopes](../topics/scopes.md) out of a structured file—the descriptions in an OpenAPI spec, the docstrings in a source file—so that Vale lints those and ignores the rest.
+`View` names a View to apply to the matched files. A View is a set of steps that pull named [scopes](../topics/scopes.md) out of a file Vale can’t otherwise parse—the descriptions in an OpenAPI spec, the docstrings in a source file, the subject and body of a commit message—so that Vale lints those and ignores the rest.
 
 The named View is loaded from `<StylesPath>/config/views/<name>.yml`, and Vale reports an error at startup if it isn't there.
 
