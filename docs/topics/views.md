@@ -210,3 +210,5 @@ scopes:
 A rule scoped to `assistant` runs over the model’s turns, and a misspelling in the user’s prompt goes unreported, because no scope names the `User` value.
 
 The same shape fits any text with a convention: subtitles, where the cue text is prose and the timestamps aren’t; patch mail, with a description above the diff; `debian/changelog` entries; `.po` translation catalogs, where `msgstr` is the translation and `msgid` the source; man page sources; screenplays, where dialogue follows different rules from action.
+
+The [TextFSM guide](../guides/textfsm.md) walks through the template language, how captures become scopes, and how to see what a template captured.
