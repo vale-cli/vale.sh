@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-label="Two configuration files are laid over one another. The user-level file, read first, sets StylesPath, MinAlertLevel suggestion, and BasedOnStyles write-good. The project file, read second, sets StylesPath, MinAlertLevel error, and BasedOnStyles ProjectStyle. The result keeps both StylesPath entries with the project's last, takes the project's MinAlertLevel because it was read later, and joins BasedOnStyles into write-good, ProjectStyle in reading order.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-node { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .mono { font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .mono-accent { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .cap { fill: var(--line); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="340" rx="10"/>
+  <text class="label" x="24" y="30">Read in order, laid over</text>
+
+  <text class="label" x="48" y="56">User-level, read first</text>
+  <rect class="node" x="48" y="64" width="340" height="104" rx="7"/>
+  <text class="mono" x="66" y="88">StylesPath = styles</text>
+  <text class="mono" x="66" y="108">MinAlertLevel = suggestion</text>
+  <text class="mono" x="66" y="128">[*.md]</text>
+  <text class="mono" x="66" y="148">BasedOnStyles = write-good</text>
+
+  <text class="label" x="412" y="56">Project, read second</text>
+  <rect class="node" x="412" y="64" width="340" height="104" rx="7"/>
+  <text class="mono" x="430" y="88">StylesPath = styles</text>
+  <text class="mono" x="430" y="108">MinAlertLevel = error</text>
+  <text class="mono" x="430" y="128">[*.md]</text>
+  <text class="mono" x="430" y="148">BasedOnStyles = ProjectStyle</text>
+
+  <path class="flow" d="M218 168 v30"/>
+  <polygon class="cap" points="218,204 212,192 224,192"/>
+  <path class="flow" d="M582 168 v30"/>
+  <polygon class="cap" points="582,204 576,192 588,192"/>
+
+  <rect class="accent-node" x="48" y="210" width="704" height="100" rx="7"/>
+  <text class="mono-accent" x="66" y="234">StylesPath = &lt;user&gt;/styles, &lt;project&gt;/styles</text>
+  <text class="note" x="440" y="234">both, each resolved against its own file</text>
+  <text class="mono-accent" x="66" y="258">MinAlertLevel = error</text>
+  <text class="note" x="440" y="258">a single value: the file read later</text>
+  <text class="mono-accent" x="66" y="282">BasedOnStyles = write-good, ProjectStyle</text>
+  <text class="note" x="440" y="282">a list: every value, in reading order</text>
+</svg>

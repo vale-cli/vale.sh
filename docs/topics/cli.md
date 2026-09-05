@@ -24,7 +24,7 @@ A run needs a configuration file, found in this order:
 2. The file named by `VALE_CONFIG_PATH`.
 3. The first of `.vale.ini`, `_vale.ini`, `vale.ini`, `.vale`, or `_vale` found in the working directory or any directory above it, then in the home directory.
 
-Whichever one is found, the user-level configuration in the operating system's config directory is read too, after the others, so preferences that hold across projects live in one place. `vale ls-dirs` prints where that is, and `--no-global` leaves it out of a run.
+Whichever one is found, the user-level configuration in the operating system's config directory is read too, underneath it, so preferences that hold across projects live in one place and a project's own settings win. `vale ls-dirs` prints where that is, and `--no-global` leaves it out of a run.
 
 The same two environment variables `ls-vars` reports are all Vale reads:
 

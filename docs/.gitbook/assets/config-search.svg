@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 434" width="800" height="434" role="img" aria-label="Vale looks for a configuration file in this order: the --config option, then VALE_CONFIG_PATH, then a .vale.ini searched for from the working directory upwards. The global configuration is always loaded as well, and is read last so it can override the others.">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 434" width="800" height="434" role="img" aria-label="Vale looks for a configuration file in this order: the --config option, then VALE_CONFIG_PATH, then a .vale.ini searched for from the working directory upwards. The global configuration is always loaded as well, read first, so the file that was found is laid over it and its values win.">
   <style>
     svg {
       --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
@@ -58,7 +58,7 @@
   <path class="flow-accent" d="M100 326 v33"/>
   <rect class="accent-node" x="48" y="359" width="330" height="52" rx="7"/>
   <text class="mono-accent" x="66" y="383">global .vale.ini, again</text>
-  <text class="note" x="66" y="403">always loaded, and read last</text>
-  <text class="note" x="396" y="383">Whichever file was found above, the</text>
-  <text class="note" x="396" y="403">global one is applied on top of it.</text>
+  <text class="note" x="66" y="403">always loaded, and read first</text>
+  <text class="note" x="396" y="383">Whichever file was found above is laid</text>
+  <text class="note" x="396" y="403">over the global one, so its values win.</text>
 </svg>

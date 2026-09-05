@@ -99,6 +99,8 @@ vale --path=COMMIT_EDITMSG < "$1"
 
 ## How a template is read
 
+![The template as a state machine: Start moves to Body on a line matching Subject, capturing it; Body stays in Body on a Trailer or Body line, capturing one each; the record is emitted at the end of the file and each value becomes a scope.](../.gitbook/assets/textfsm-states.svg)
+
 A template has two parts. The values come first, one per line, up to the first blank line. Each is `Value [options] Name (pattern)`, and a line starting with `#` is a comment. The states follow: a state is a name at the left margin, and its rules are the indented lines beneath it. Every template needs a `Start` state; `End` and `EOF` are reserved.
 
 In the View’s YAML, the template is a block scalar (`|`), so backslashes in patterns need no escaping, and the indent under a state name is what marks a line as a rule.

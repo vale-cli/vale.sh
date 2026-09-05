@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 316" width="800" height="316" role="img" aria-label="The commit template as a state machine. Reading begins in Start; a line matching Subject captures it and moves to Body. In Body, a Trailer line or a Body line captures one value each and stays in Body. The record is emitted at the end of the file, holding one Subject, the Body lines, and the Trailers, and each value becomes a scope: subject, body, trailer.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-node { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .mono { font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .mono-accent { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .cap { fill: var(--line); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="316" rx="10"/>
+  <text class="label" x="24" y="30">A template is a state machine</text>
+
+  <rect class="node" x="48" y="56" width="200" height="38" rx="7"/>
+  <text class="mono" x="66" y="80">Start</text>
+
+  <path class="flow" d="M148 94 v46"/>
+  <polygon class="cap" points="148,146 142,134 154,134"/>
+  <text class="mono" x="164" y="114">^${Subject} -> Body</text>
+  <text class="note" x="164" y="132">captures Subject, moves on</text>
+
+  <rect class="node" x="48" y="146" width="200" height="38" rx="7"/>
+  <text class="mono" x="66" y="170">Body</text>
+
+  <path class="flow" d="M248 165 h36 v54 h-136 v-23"/>
+  <polygon class="cap" points="148,184 142,196 154,196"/>
+  <text class="mono" x="300" y="200">^${Trailer}</text>
+  <text class="mono" x="300" y="218">^${Body}</text>
+  <text class="note" x="300" y="236">stay in Body, capturing a line each</text>
+
+  <text class="label" x="470" y="56">What the record holds</text>
+  <rect class="accent-node" x="470" y="64" width="282" height="46" rx="7"/>
+  <text class="mono-accent" x="488" y="84">Subject</text>
+  <text class="note" x="488" y="102">fix: report the shortfall at the scope…</text>
+
+  <rect class="accent-node" x="470" y="120" width="282" height="46" rx="7"/>
+  <text class="mono-accent" x="488" y="140">Body  (List)</text>
+  <text class="note" x="488" y="158">the lines of the body, joined into paragraphs</text>
+
+  <rect class="accent-node" x="470" y="176" width="282" height="46" rx="7"/>
+  <text class="mono-accent" x="488" y="196">Trailer  (List)</text>
+  <text class="note" x="488" y="214">Signed-off-by: Joseph Kato &lt;j@example.com&gt;</text>
+
+  <text class="note" x="48" y="272">The record is emitted at the end of the file, and each value becomes a scope a rule can name:</text>
+  <text class="mono" x="48" y="294">subject</text>
+  <text class="mono" x="130" y="294">body</text>
+  <text class="mono" x="190" y="294">trailer</text>
+</svg>

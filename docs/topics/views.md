@@ -36,6 +36,8 @@ A scope's `name` is how a rule reaches what the query found. It is appended to t
 
 A scope's `type` is the format the extracted text is parsed as: `md`, `rst`, `html`, `org`, or `adoc`. Without one, the text is read as plain lines, which is right for a title and wrong for a description written in Markdown.
 
+![A file goes to an engine, whose query yields values placed at their line and column, and each value becomes a block whose scope carries the query's name. Dasel reads a data file with a selector, tree-sitter reads source code with a query, and TextFSM reads plain text with a template's named value.](../.gitbook/assets/views-engines.svg)
+
 ## [Data](views.md#data)
 
 A `dasel` View applies to `.json`, `.yml`, `.yaml`, and `.toml` files, and each `expr` is a [Dasel](https://github.com/TomWright/dasel) selector over the parsed document. A selector may land on one string or many; every string it selects is one value, and anything that is not a string is dropped.

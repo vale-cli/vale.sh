@@ -31,6 +31,8 @@ action:
 
 Because every operation takes a fixed number of arguments, the same pipeline written flat, `[trim_right, '!', lower, wrap, '`']`, means the same thing; that is the form the alert carries.
 
+![The match Wow! passes through a right trim, a lowercase, and a wrap step in turn, becoming Wow, then wow, then wow in backticks, which is the suggestion.](../.gitbook/assets/edit-pipeline.svg)
+
 ## [The token's groups](edit.md#the-tokens-groups)
 
 An argument can name what the rule matched. `$0` is the whole match, and `$1`, `$2`, and so on are the capture groups of the token that matched, in that token's own numbering. An `existence` rule can therefore reorder or reuse its match without a `regex` step that matches it again:

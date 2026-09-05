@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 292" width="800" height="292" role="img" aria-label="A View in four stages: the file openapi.yml goes to the engine, whose query info.title yields the value Pet Store placed at line 2, which becomes a block scoped text.title.yml that a rule reaches. Below, the three engines: dasel reads a data file with a selector over the parsed document, tree-sitter reads source code with a query over the syntax tree, and textfsm reads plain text with a template's named value.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-node { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .mono { font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .mono-accent { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .cap { fill: var(--line); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="292" rx="10"/>
+  <text class="label" x="24" y="30">A view names the prose in a file</text>
+
+  <rect class="node" x="48" y="56" width="150" height="60" rx="7"/>
+  <text class="mono" x="66" y="80">openapi.yml</text>
+  <text class="note" x="66" y="100">the file</text>
+  <path class="flow" d="M198 86 h18"/>
+  <polygon class="cap" points="224,86 212,80 212,92"/>
+
+  <rect class="node" x="224" y="56" width="150" height="60" rx="7"/>
+  <text class="mono" x="242" y="80">info.title</text>
+  <text class="note" x="242" y="100">the engine's query</text>
+  <path class="flow" d="M374 86 h18"/>
+  <polygon class="cap" points="400,86 388,80 388,92"/>
+
+  <rect class="node" x="400" y="56" width="150" height="60" rx="7"/>
+  <text class="mono" x="418" y="80">"Pet Store"</text>
+  <text class="note" x="418" y="100">a value, at line 2</text>
+  <path class="flow" d="M550 86 h18"/>
+  <polygon class="cap" points="576,86 564,80 564,92"/>
+
+  <rect class="accent-node" x="576" y="56" width="176" height="60" rx="7"/>
+  <text class="mono-accent" x="594" y="80">text.title.yml</text>
+  <text class="note" x="594" y="100">a block a rule reaches</text>
+
+  <text class="label" x="48" y="158">The engines</text>
+
+  <text class="mono" x="48" y="188">dasel</text>
+  <text class="note" x="200" y="188">a data file: JSON, YAML, or TOML</text>
+  <text class="note" x="470" y="188">a selector over the parsed document</text>
+
+  <text class="mono" x="48" y="218">tree-sitter</text>
+  <text class="note" x="200" y="218">source code</text>
+  <text class="note" x="470" y="218">a query over the syntax tree</text>
+
+  <text class="mono" x="48" y="248">textfsm</text>
+  <text class="note" x="200" y="248">plain text with a convention</text>
+  <text class="note" x="470" y="248">a template's named value</text>
+</svg>

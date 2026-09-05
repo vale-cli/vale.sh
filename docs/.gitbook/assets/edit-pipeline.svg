@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 412" width="800" height="412" role="img" aria-label="The match Wow! passes through three edit steps in turn. trim_right with an exclamation point leaves Wow; lower leaves wow; wrap with a backtick leaves wow in backticks, which is the suggestion the alert carries and an editor applies.">
+  <style>
+    svg {
+      --ink: #1c1917; --soft: #57534e; --faint: #a8a29e; --line: #d6d3d1;
+      --surface: #f5f5f4; --band: #fafaf9; --accent: #55703a; --accent-fill: #eaf0e2;
+    }
+    @media (prefers-color-scheme: dark) {
+      svg {
+        --ink: #fafaf9; --soft: #d6d3d1; --faint: #78716c; --line: #44403c;
+        --surface: #292524; --band: #211e1c; --accent: #a3c585; --accent-fill: #2b3323;
+      }
+    }
+    .band { fill: var(--band); }
+    .label { font: 500 11px Inter, ui-sans-serif, system-ui, sans-serif; letter-spacing: .09em; text-transform: uppercase; fill: var(--faint); }
+    .node { fill: var(--surface); stroke: var(--line); stroke-width: 1.25; }
+    .accent-node { fill: var(--accent-fill); stroke: var(--accent); stroke-width: 1.5; }
+    .mono { font: 400 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--ink); }
+    .mono-accent { font: 500 13px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--accent); }
+    .note { font: 400 12px Inter, ui-sans-serif, system-ui, sans-serif; fill: var(--soft); }
+    .step { font: 600 11px ui-monospace, SFMono-Regular, Menlo, monospace; fill: var(--faint); }
+    .flow { stroke: var(--line); stroke-width: 1.25; fill: none; }
+    .cap { fill: var(--line); }
+  </style>
+
+  <rect class="band" x="0" y="0" width="800" height="412" rx="10"/>
+  <text class="label" x="24" y="30">One step feeds the next</text>
+
+  <rect class="node" x="48" y="56" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="80">Wow!</text>
+  <text class="note" x="396" y="80">The match.</text>
+  <path class="flow" d="M100 94 v18"/>
+  <polygon class="cap" points="100,120 94,108 106,108"/>
+
+  <text class="step" x="26" y="146">1</text>
+  <rect class="node" x="48" y="126" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="150">[trim_right, '!']</text>
+  <text class="mono" x="396" y="150">Wow</text>
+  <path class="flow" d="M100 164 v18"/>
+  <polygon class="cap" points="100,190 94,178 106,178"/>
+
+  <text class="step" x="26" y="216">2</text>
+  <rect class="node" x="48" y="196" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="220">[lower]</text>
+  <text class="mono" x="396" y="220">wow</text>
+  <path class="flow" d="M100 234 v18"/>
+  <polygon class="cap" points="100,260 94,248 106,248"/>
+
+  <text class="step" x="26" y="286">3</text>
+  <rect class="node" x="48" y="266" width="330" height="38" rx="7"/>
+  <text class="mono" x="66" y="290">[wrap, '`']</text>
+  <text class="mono" x="396" y="290">`wow`</text>
+  <path class="flow" d="M100 304 v18"/>
+  <polygon class="cap" points="100,330 94,318 106,318"/>
+
+  <rect class="accent-node" x="48" y="336" width="330" height="52" rx="7"/>
+  <text class="mono-accent" x="66" y="360">`wow`</text>
+  <text class="note" x="66" y="380">the suggestion, surrounding whitespace trimmed</text>
+  <text class="note" x="396" y="360">What the alert carries as its suggestion,</text>
+  <text class="note" x="396" y="380">and what an editor applies.</text>
+</svg>

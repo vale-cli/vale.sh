@@ -35,6 +35,8 @@ tokens:
 
 The `link` is the guidance the rule enforces, shown with every alert. The `level` is how loudly to say it. The `action` is the fix, which an editor or an agent applies without deciding anything. `nonword` is an argument to the check itself: the pattern ends in punctuation, so the check is told not to wrap it in word boundaries.
 
+![The rule's YAML with each key called out: extends is the check, message is what to say, link is the guidance, the next key is an argument to the check, level is how loudly, scope is where to look, action is the fix, and tokens is the pattern.](../.gitbook/assets/rule-anatomy.svg)
+
 ### [The header](styles.md#the-header)
 
 Every rule opens with the same fields, followed by the arguments its check takes:
