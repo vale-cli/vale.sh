@@ -144,7 +144,7 @@ Packages = pkg1, pkg2
 BasedOnStyles = House
 ```
 
-A list key such as `BasedOnStyles` gathers every value from every source, so the styles `pkg1` and `pkg2` switch on run alongside `House`. A single-valued key such as `MinAlertLevel` takes the last value read, which is yours. A rule a package switches on through `BasedOnStyles` can be switched off locally with `Rule = NO`.
+A list key such as `BasedOnStyles` gathers every value from every source, so the styles `pkg1` and `pkg2` switch on run alongside `House`. Any other key takes the last value read: `MinAlertLevel`, a rule's level, a parameter, and a switch all end up as your file has them, and `pkg2` has them as it does where your file is silent.
 
 ## [Publishing a package](packages.md#publishing-a-package)
 
