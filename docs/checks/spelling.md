@@ -11,6 +11,7 @@ Learn about the spelling extension point.
 | `dicpath`      | `string` | The location to look for `.dic` and `.aff` files. Can be absolute or relative to the `StylesPath`. |
 | `dictionaries` | `array`  | An array of dictionaries to load.                                                                  |
 | `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.         |
+| `aff`, `dic`   | `string` | One dictionary as a pair of files, found on the `StylesPath`, used instead of `dictionaries`.       |
 
 `spelling` implements spell checking based on Hunspell-compatible dictionaries.
 

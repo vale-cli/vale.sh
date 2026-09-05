@@ -74,7 +74,7 @@ In addition to using the variables listed above, a `formula` may also use the fo
 | `math.sqrt(x)` |   Square root of `x`  |
 |  `math.abs(x)` | Absolute value of `x` |
 
-A `condition` may use one of `>`, `<`, `==`, `>=`, and `<=`.
+A `condition` is a comparison against the formula's result: `>`, `<`, `==`, `!=`, `>=`, or `<=` and a number. Both the formula and the condition are evaluated as [Tengo](https://tengolang.com/) expressions, so a formula may also use its `math` module.
 
 ## [message](metric.md#message)
 

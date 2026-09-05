@@ -7,6 +7,7 @@ Learn about the sequence extension point.
 | `tokens`     | `[]NLPToken` | A list of tokens with associated NLP metadata.                           |
 | `ignorecase` | `bool`       | Makes all matches case-insensitive.                                      |
 | `exceptions` | `[]string`   | Sentence regions, as regexes; a match beginning inside one is dropped. |
+| `model`      | `string`     | A tagger lexicon, `<name>.dict` in `config/dictionaries`: one word per line, then its tags, tab-separated, most common first. Its entries decide a word's tag ahead of the built-in tagger, for rules written against another checker's idea of a noun. |
 
 While most extension points focus on writing _style_, `sequence` aims to support grammar-focused rules.
 

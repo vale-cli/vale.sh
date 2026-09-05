@@ -47,7 +47,7 @@ Per-scope positions for `min` shortfalls require Vale v3.20.0 or later. Earlier 
 
 ## [message](occurrence.md#message)
 
-The `message` key can contain an optional format specifier `%s` which will be populated with the number of occurrences:
+The `message` key can contain an optional format specifier, `%s` or `%d`, which is populated with the number of occurrences:
 
 ```yaml
 message: 'Titles should use fewer than 70 characters (found: %s).'

@@ -20,7 +20,7 @@ scope: raw
 script: MyScript.tengo
 ```
 
-Where `MyScript.tengo` is a file containing the Tengo script to execute stored at `$StypesPath/config/scripts`.
+Where `MyScript.tengo` is the Tengo script, stored in `<StylesPath>/config/scripts`. It is compiled once with the rule and run once per block of its scope.
 
 ````go
 text := import("text")
@@ -62,5 +62,6 @@ Populate the `matches` array with rule matches. Each match must be a map with th
 
 * `begin`: where the match begins in the content provided by the `scope` variable.
 * `end`: where the match ends in the content provided by the `scope` variable.
+* `message`, optionally: a message for this match, in place of the rule's own. Its `%s` is the matched text.
 {% endstep %}
 {% endstepper %}

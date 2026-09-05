@@ -65,4 +65,4 @@ This allows you to write more complex patterns without having to worry about any
 
 ### [message](existence.md#message)
 
-The `message` key is a string that will be used to generate the final message when a match is found. The (optional) `%s` placeholder will be replaced with the matched text.
+The `message` key is a string that will be used to generate the final message when a match is found. The (optional) `%s` placeholder will be replaced with the matched text. A rule with an [action](../topics/actions.md) may use a second `%s`, which is the fix.
