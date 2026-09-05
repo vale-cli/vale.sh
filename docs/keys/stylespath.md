@@ -143,4 +143,4 @@ BasedOnStyles = Microsoft, write-good, House
 
 ## [Version control](stylespath.md#version-control)
 
-Commit the styles you wrote and the `config/` directory. Everything `vale sync` writes, the installed styles and `.vale-config/`, is rebuilt from `Packages`, and most projects ignore it. The [Packages](packages.md#vcs) page shows a `.gitignore` that keeps the two apart.
+Commit the styles you wrote and the `config/` directory. Everything `vale sync` writes, the installed styles and `.vale-config/`, is rebuilt from `Packages`, and most projects ignore it. The [Packages](packages.md#version-control) page shows a `.gitignore` that keeps the two apart.
