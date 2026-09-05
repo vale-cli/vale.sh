@@ -4,34 +4,27 @@ Learn how to define custom comment delimiters.
 
 `CommentDelimiters` allow you to override standard HTML comment delimiters (`<!-- foo -->`).
 
-Custom comment delimiters are useful when using non-standard markup which do not allow HTML-style comments, such as MDX.
+They are for a format whose tools do not accept an HTML comment, so that comment-based configuration can be written in a form it does. Before a file is parsed, every occurrence of the first delimiter becomes `<!--` and every occurrence of the second becomes `-->`, so the two must differ and neither should appear in the prose for any other reason.
 
 ```ini
-[formats]
-mdx = md
-
-[*.mdx]
+[*.md]
 BasedOnStyles = Vale
 
 CommentDelimiters = {/*, */}
 ```
 
-When `CommentDelimiters` are set, you can take full advantage of markup-based configuration to enable or disable specific rules within a section.
-
-For instance, when using MDX:
-
-```mdx
+```markdown
 {/* vale off */}
-
-This is some text ACT test
 
 This is some text ACT test
 
 {/* vale on */}
 
-{/* vale vale.Redundancy = NO */}
+{/* vale Style.Redundancy = NO */}
 
 This is some text ACT test
 
-{/* vale vale.Redundancy = YES */}
+{/* vale Style.Redundancy = YES */}
 ```
+
+The key applies to the formats that take [`BlockIgnores`](blockignores.md). The formats with a comment syntax of their own, MDX, AsciiDoc, reStructuredText, and Org among them, need none of this; see each [format](../formats/markdown.md) for the form it reads.

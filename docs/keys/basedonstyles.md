@@ -26,7 +26,7 @@ BasedOnStyles = Vale
 
 ## [More than one section](basedonstyles.md#more-than-one-section)
 
-When several sections match a file, the most specific one's `BasedOnStyles` **replaces** the others—it doesn't add to them:
+When several sections match a file, the last one written takes it: its `BasedOnStyles` **replaces** the others rather than adding to them.
 
 ```ini
 [*]

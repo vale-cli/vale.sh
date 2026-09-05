@@ -13,15 +13,17 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 
 `Transform` names a version 1.0 XSL Transformation (XSLT) that converts the matched files to HTML. Vale lints the result, following the same rules it uses for [HTML](../formats/html.md).
 
-It's a section-level setting, so different XML dialects can use different stylesheets:
+It applies to the files Vale reads as XML, `.xml` and `.xsd`, and it is a section-level setting, so different parts of a project can use different stylesheets:
 
 ```ini
-[*.dita]
-Transform = dita/html.xsl
-
-[*.docbook]
+[manuals/*.xml]
 Transform = docbook/html.xsl
+
+[schemas/*.xsd]
+Transform = xsd/html.xsl
 ```
+
+DITA has a converter of its own and does not use this key; see [DITA](../formats/dita.md).
 
 ## [Paths](transform.md#paths)
 

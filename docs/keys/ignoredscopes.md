@@ -21,4 +21,6 @@ This is a sentence that contains inline `code`.
 
 Vale will not raise any alerts for the content within the backticks, such as `code` in the example above.
 
+The key takes scope names as well as tags. In source code, `comment` skips every comment and `text.comment.doc` skips documentation comments alone; see [Code](../formats/code.md).
+
 See [Markup](../topics/scopes.md) for more information.

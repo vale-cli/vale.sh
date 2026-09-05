@@ -53,3 +53,7 @@ The `config` directory is used internally by Vale and contains the following:
 | [`actions`](../topics/actions.md)       | Solutions to your custom rules.            |
 | [`filters`](../topics/filters.md)       | Configuration filters.                     |
 | [`scripts`](../checks/script.md)        | Tengo scripts.                             |
+| [`views`](../topics/views.md)           | Views over data, code, and plain text.     |
+| [`ignore`](../checks/spelling.md#ignore-files) | Word lists a `spelling` rule ignores.  |
+
+`vale sync` also writes a `.vale-config` directory beside them, holding the configuration files that packages carry. It is rebuilt on every sync, so nothing in it is yours to edit.

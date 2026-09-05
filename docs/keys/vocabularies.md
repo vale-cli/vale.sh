@@ -74,7 +74,7 @@ third
 
 The entries are evaluated as case-sensitive (except for rules extending `spelling`, as mentioned above) regular expressions.
 
-Lines starting with `#` are treated as comments and are ignored.
+A line beginning with `#` and a space is a comment and is ignored; `#tag` on its own is an entry.
 
 ## Case sensitivity
 
