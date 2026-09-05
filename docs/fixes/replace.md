@@ -19,7 +19,7 @@ tokens:
   - colour
 ```
 
-A parameter can name the token's capture groups, `$1`, `$2`, and the whole match as `$0`; see [the token's groups](edit.md#the-tokens-groups). Several parameters are several suggestions. The message joins them, `'color or hue'`, an editor offers each as its own quick fix, and `vale fix --apply` skips the alert rather than choose.
+A parameter can name the token's capture groups, `$1`, `$2`, and the whole match as `$0`; see [the token's groups](edit.md#the-tokens-groups). Several parameters are several suggestions. The message joins them, `'color or hue'`, and an editor offers each as its own quick fix.
 
 Rules that extend `substitution` or `capitalization` know their own replacement, so the parameters can be left out:
 

@@ -88,11 +88,10 @@ styles/
 
 The directory is the style's name, and the file is the rule's, joined with a dot: `Microsoft.HeadingPunctuation` is how the rule is addressed in configuration, in an in-text comment, in a filter, and in Vale's output. A subdirectory joins the name too, so `House/dates/TimeFormat.yml` is `House.dates.TimeFormat`.
 
-Three things about the files themselves:
+Two things about the files themselves:
 
 * A rule file ends in `.yml`. Vale reads no other extension as a rule.
 * A directory whose name starts with `.` or `_` is skipped at load time, so drafts and shared fragments can sit inside a style without loading.
-* A file ending in `.test.yml` is a set of test cases for the rule beside it, not a rule. See [Testing a style](styles.md#testing-a-style).
 
 Packages installed with [`vale sync`](../keys/packages.md) land on the same path, so a style you wrote and a style you downloaded are the same kind of thing. The `config/` directory beside them holds what is not a style: vocabularies, dictionaries, views, filters, and templates.
 
@@ -167,29 +166,6 @@ styles/GenZ/
 ```
 
 A fragment is validated as the chain's root, so it must carry a `message`, even one no alert will ever show.
-
-## [Testing a style](styles.md#testing-a-style)
-
-A rule is a small program, and a style of any size needs a way to ask whether each rule still fires where it should. Cases are YAML, they live beside the rule they test, and `vale test` runs them:
-
-```yaml
-# House/Hedging.test.yml
-- name: flags a hedge
-  input: It's worth noting that the cache is cold.
-  contains: House.Hedging
-
-- name: leaves a quoted hedge alone
-  input: The phrase "it's worth noting" is banned.
-  want: ""
-
-- name: linted as reStructuredText
-  format: rst
-  input: |
-    It's worth noting that the cache is cold.
-  contains: House.Hedging
-```
-
-Each case lints `input`, as Markdown unless `format` says otherwise, and asserts on the output: `want` is the exact output, an empty `want` is "no alerts at all," `contains` is an excerpt, and `absent` is a list of what must not appear. A case runs under the configuration a `vale` run in that directory would use; `rule: Hedging.yml` isolates it to one rule instead, so the case says what the rule does and nothing about what a run would surface.
 
 ## [Patterns](styles.md#patterns)
 

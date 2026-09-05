@@ -68,7 +68,7 @@ The same two environment variables `ls-vars` reports are all Vale reads:
 
 ## [Output](cli.md#output)
 
-`--output` chooses how alerts are reported. In every format they are sorted by line and column within each file.
+`--output` chooses how alerts are reported. The built-in formats sort them by line and column within each file.
 
 **`CLI`**, the default, is a colored table per file with a summary line, wrapped to the terminal's width unless `--no-wrap` says otherwise.
 

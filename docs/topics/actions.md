@@ -4,7 +4,7 @@ Learn how a rule carries its own fix, and where that fix goes.
 
 ## [A fix beside the finding](actions.md#a-fix-beside-the-finding)
 
-A rule says what is wrong. An action says what to do about it: the matched text becomes this instead. It is the part of a rule that an editor can apply with one keystroke, that `vale fix --apply` can write to disk, and that an agent can act on without deciding anything.
+A rule says what is wrong. An action says what to do about it: the matched text becomes this instead. It is the part of a rule that an editor can apply with one keystroke, and that an agent can act on without deciding anything.
 
 ```yaml
 extends: existence
@@ -34,7 +34,7 @@ Vale resolves the action when the rule fires, not when someone asks for the fix.
 }
 ```
 
-The one exception is spelling. Ranking a dictionary against a word is real work, so a spelling rule's suggestions are computed on request, by `vale fix` or an editor, and its `Suggestions` list is empty in lint output.
+The one exception is spelling. Ranking a dictionary against a word is real work, so a spelling rule's suggestions are computed when an editor asks for them, and its `Suggestions` list is empty in lint output.
 
 ## [The message](actions.md#the-message)
 
@@ -77,25 +77,4 @@ A `replace` action respects [`matchcase`](styles.md#the-header): with it set, `A
 
 **The CLI** shows it in the message, as above, and in JSON output as `Suggestions`.
 
-**`vale fix --apply`** writes fixes back to the files it lints:
-
-```console
-$ vale fix --apply docs/
-docs/guide.md: applied 4, skipped 1
-  12:9	House.Terms	2 suggestions
-```
-
-A fix is applied only when it is unambiguous: the action resolves to exactly one suggestion, the match is still where the alert says it is, and no other fix touches the same span. Everything else is reported with a reason rather than guessed at. Two rules asking for the same rewrite count as one; two asking for different rewrites of overlapping text are both skipped. A `remove` takes one neighboring space with it, so deleting a word does not leave two behind. Pass `--output=JSON` for the report as data, and a file with nothing to apply is never rewritten.
-
-**`vale fix <alert>`** takes one alert, as a JSON string or a path to a file holding one, and prints its suggestions:
-
-```json
-{
-  "suggestions": ["Overview"],
-  "error": ""
-}
-```
-
-This is the call editors make. It is also how to resolve a spelling alert, whose suggestions lint output leaves empty.
-
-**Editors** get the fix as a quick fix through [`vale-ls`](../guides/lsp.md): a replacement to choose from, or a deletion.
+**Editors** get the fix as a quick fix through [`vale-ls`](../guides/lsp.md): a replacement to choose from, or a deletion. A `remove` applied from an editor takes one neighboring space with the word, so a deletion does not leave two behind.

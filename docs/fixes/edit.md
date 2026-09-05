@@ -49,7 +49,7 @@ tokens:
 
 The same groups reach every `edit` step, so `[prefix, '$2 ']` or `[replace, '$1', '$2']` read as the author thinks.
 
-Every argument is expanded this way except a `regex` step's own, where `$1` keeps meaning that pattern's first group. Write `$$` for a literal dollar sign. A rule whose tokens have no groups sees `$1` as empty, and the alert carries the groups as `Groups` so an editor asking `vale fix` for the suggestion gets the same answer.
+Every argument is expanded this way except a `regex` step's own, where `$1` keeps meaning that pattern's first group. Write `$$` for a literal dollar sign. A rule whose tokens have no groups sees `$1` as empty, and the alert carries the groups as `Groups` so an editor resolving the suggestion later gets the same answer.
 
 ## [Rewriting](edit.md#rewriting)
 

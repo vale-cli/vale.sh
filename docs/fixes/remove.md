@@ -18,4 +18,4 @@ tokens:
   - '...'
 ```
 
-Applied to a whole word, whether by `vale fix --apply` or an editor, the deletion takes one neighboring space with it, so removing `very` from `a very good one` leaves `a good one` rather than two spaces.
+Applied to a whole word from an editor, the deletion takes one neighboring space with it, so removing `very` from `a very good one` leaves `a good one` rather than two spaces.

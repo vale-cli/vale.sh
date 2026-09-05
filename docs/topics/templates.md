@@ -1,55 +1,51 @@
 # Templates
 
-Learn about Vale's output templates.
+Learn how to write an output format of your own.
 
-By default, Vale includes support for three output styles: `line`, `JSON`, and `CLI` (the default). You can specify which style to use via the `--output` flag:
+`--output` takes `CLI`, `line`, or `JSON`, and otherwise the name of a template: a [Go template](https://pkg.go.dev/text/template) that Vale renders with the run's alerts in place of a built-in format.
 
-```bash
-$ vale --output=line README.md
+```sh
+vale --output=sarif.tmpl docs/ > vale.sarif
 ```
 
-In addition to the three provided output styles, Vale also supports _custom_ output styles powered by Go’s [`text/template`](https://golang.org/pkg/text/template/) package.
+The value is read as a path first. When no file is there, it is looked up by name on the `StylesPath`, where templates live in `config/templates`.
 
-To use a custom format, pass the path to a template file through the `--output` option:
+The exit code is the same as for any other format: `1` when an alert at the `error` level was reported, `0` otherwise, and `--no-exit` turns the first into the second.
 
-```bash
-$ vale --output='template.tmpl' somefile.md
-```
+## [The data](templates.md#the-data)
 
-Where `template.tmpl` is a file that contains a valid Go template stored in the `<StylesPath>/config/templates` directory.
-
-## [Templating](templates.md#templating)
-
-Templates have access to the following data structures:
+A template is executed once, with the whole run:
 
 ```go
-type ProcessedFile struct {
-    Alerts []core.Alert
-    Path   string
+type Data struct {
+    Files       []ProcessedFile // every file that had at least one alert
+    LintedTotal int             // every file the run read, alerts or not
 }
 
-type Data struct {
-    Files       []ProcessedFile
-    LintedTotal int
+type ProcessedFile struct {
+    Path   string
+    Alerts []core.Alert
 }
 ```
 
-Where `core.Alert` has the same information as Vale’s `--output=JSON` object.
+A file with no alerts is left out of `Files` and counted in `LintedTotal`, which is how a summary line can say "in 12 files" while ranging over three. Each alert has the fields the [JSON output](cli.md#output) shows: `Check`, `Severity`, `Message`, `Description`, `Link`, `Match`, `Line`, `Span`, `Action`, and `Suggestions`. `Span` is a pair of one-based character columns, and both ends are inclusive.
 
-Templates can also access the following functions:
+## [The functions](templates.md#the-functions)
 
-| Name          | Argument(s) | Description                                                                                                                                                                                                                                           |
-| ------------- | ----------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `red`         | `string`    | Returns the given `string` with an ANSI-formatted red foreground color.                                                                                                                                                                               |
-| `blue`        | `string`    | Returns the given `string` with an ANSI-formatted blue foreground color.                                                                                                                                                                              |
-| `yellow`      | `string`    | Returns the given `string` with an ANSI-formatted yellow foreground color.                                                                                                                                                                            |
-| `underline`   | `string`    | Returns the given `string` with an ANSI-formatted underline.                                                                                                                                                                                          |
-| `newTable`    | `bool`      | Creates a new [`tablewriter`](https://github.com/olekukonko/tablewriter#ascii-table-writer) struct. `newTable` accepts one boolean value representing [`SetAutoWrapText`](https://godoc.org/github.com/olekukonko/tablewriter#Table.SetAutoWrapText). |
-| `addRow`      | `[]string`  | Appends the given row to a table.                                                                                                                                                                                                                     |
-| `renderTable` | `Table`     | Prints the table-formatted output to `stdout`.                                                                                                                                                                                                        |
-| `jsonEscape`  | `string`    | Ensure the given `STRING` is valid JSON.                                                                                                                                                                                                              |
+Every function in [Sprig](http://masterminds.github.io/sprig/) is available, which covers strings, lists, dictionaries, and arithmetic. Vale adds these:
 
-See the [Sprig Function Documentation](http://masterminds.github.io/sprig/) for the full list.
+| Name          | Argument(s)      | Description                                                                                                                                     |
+| ------------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| `red`         | `string`         | The string in red.                                                                                                                              |
+| `yellow`      | `string`         | The string in yellow.                                                                                                                           |
+| `blue`        | `string`         | The string in blue.                                                                                                                             |
+| `underline`   | `string`         | The string underlined.                                                                                                                          |
+| `newTable`    | `bool`           | A table with no borders that writes to standard output. The argument says whether cell text wraps.                                                   |
+| `addRow`      | `Table, []string` | The table with the row appended. Returns the table, so it chains.                                                                              |
+| `renderTable` | `Table`          | Print the table, with a blank line before and after, and empty it for reuse.                                                                    |
+| `jsonEscape`  | `string`         | The string escaped for use inside a JSON string literal, without the surrounding quotes.                                                        |
+
+The colors and the underline are terminal escapes, so a template meant to be redirected to a file should leave them out; `--no-color` disables them for a run.
 
 ## [Examples](templates.md#examples)
 
