@@ -99,36 +99,9 @@ $ echo $?
 
 See [MinAlertLevel](../keys/minalertlevel.md) for changing what gets reported, and [BasedOnStyles](../keys/basedonstyles.md) for enabling and disabling rules.
 
-## [Setting up with a coding agent](quickstart.md#setting-up-with-a-coding-agent)
-
-If an AI assistant is doing the setup, give it [AGENTS.md](https://vale.sh/AGENTS.md)
-rather than this page. It covers the same four steps, plus the things that are
-easy to get wrong without reading further: only `error` sets a non-zero exit
-code, `--output=JSON` is the format to parse, and a term that trips spell check
-belongs in a vocabulary rather than in a disabled rule.
-
-Save it in the root of your repository, where most assistants read it
-automatically.
-
-For task-shaped work — fixing alerts, triaging a first run, adding a vocabulary
-— there are [agent skills](https://vale.sh/skills) to copy in alongside it. In
-Claude Code, the skills, an edit-time linting hook, and the Vale CMS MCP server
-install together as one plugin:
-
-```
-/plugin marketplace add vale-cli/agent-tools
-/plugin install vale@agent-tools
-```
-
-The skills and the hook run the CLI you just installed and need no account. The
-hook lints each prose file as your assistant writes it and hands back only
-error-level alerts, so a mistake is fixed in the same turn it was made. The MCP
-server is the one paid piece — it belongs to [Vale CMS](https://vale.sh/cms) and
-gives an assistant the engine itself to check a rule against, rather than the
-docs about it.
-
 ## [Where to go next](quickstart.md#where-to-go-next)
 
 * Browse the [Package Explorer](https://vale.sh/explorer) for styles beyond Microsoft.
 * Write your own rules with [Styles](styles.md) and the [checks](../checks/existence.md) reference.
 * Narrow what Vale reads using [Scopes](scopes.md).
+* Hand the setup to an assistant with the [Coding agents](../guides/agents.md) guide.

@@ -2,13 +2,13 @@
 
 Learn how to use regex in Vale.
 
-Vale uses the [`regexp2`](https://github.com/dlclark/regexp2) library to process regular expressions in its rules. This library extends the capabilities of the standard Go [regexp](https://pkg.go.dev/regexp/syntax) package by supporting features like lookaheads, lookbehinds, and lazy quantifiers, which are missing in Go’s built-in regexp implementation.
+Vale runs its rules on [`regexp2`](https://github.com/jdkato/regexp2), in its RE2 compatibility mode: the syntax of Go's standard [regexp](https://pkg.go.dev/regexp/syntax) package, plus the lookahead and lookbehind assertions that package leaves out.
 
 This guide provides an overview of regex syntax supported by Vale, along with tips for writing regular expressions in [YAML](https://yaml.org/) files.
 
 ## [Syntax](regex.md#syntax)
 
-For basic information on the supported syntax, see the [Go docs](https://pkg.go.dev/regexp/syntax). For the extended syntax provided by `regexp2`, see their [README](https://github.com/dlclark/regexp2?tab=readme-ov-file#compare-regexp-and-regexp2).
+For the base syntax, see the [Go docs](https://pkg.go.dev/regexp/syntax). For what `regexp2` adds, see its [README](https://github.com/dlclark/regexp2?tab=readme-ov-file#compare-regexp-and-regexp2).
 
 The most commonly used assertion constructs are:
 

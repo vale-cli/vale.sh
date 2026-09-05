@@ -2,7 +2,7 @@
 
 Learn how Vale handles files with no markup.
 
-The supported extension is `.txt`. A file is read as prose: blank lines separate paragraphs, and each paragraph is segmented into sentences, so a rule scoped to `paragraph` or `sentence` works as it does in a markup file. Nothing is ignored, since nothing marks code or links.
+The supported extension is `.txt`. A file is read as prose: blank lines separate paragraphs, and the text is segmented into sentences, so a rule scoped to `paragraph` or `sentence` works as it does in a markup file. The `text` scope is the whole file as one block, so a pattern with `\s+` in it can match across a blank line there. Nothing is ignored, since nothing marks code or links.
 
 Any other extension Vale does not know is read as one block of text under the `text` scope, without paragraph or sentence segmentation. A [format association](../topics/.vale.ini.md#format-associations) reads such a file as one of the formats Vale knows:
 

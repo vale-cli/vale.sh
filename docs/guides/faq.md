@@ -151,7 +151,7 @@ token: "<h[1-9]>problem description"
 
 ### How do I lint a `.txt` file as reStructuredText?
 
-Use a [format association](../topics/styles.md):
+Use a [format association](../topics/.vale.ini.md#format-associations):
 
 ```ini
 [formats]
@@ -233,7 +233,7 @@ Make sure `asciidoctor` is on your `$PATH`. Any standard installation puts it th
 
 ### Where does Vale look for a global config on Windows?
 
-`%UserProfile%`, as [Go's `UserHomeDir`](https://pkg.go.dev/os#UserHomeDir) defines it.
+The user-level file is `%LOCALAPPDATA%\vale\.vale.ini`, and `vale ls-dirs` prints the exact path. A `.vale.ini` in the home directory, `%UserProfile%`, is also found, as the last step of the [search](../topics/.vale.ini.md#search) for a project file.
 
 ### How does Vale split text into tokens?
 
@@ -391,7 +391,21 @@ message: "Avoid the use of '%s' on weekdays. Only use '%[1]s' on weekends."
 
 ### How do I replace a capture group with its uppercase form?
 
-Substitution can't transform a match, so use a [script fix](../fixes/suggest.md).
+With an [`edit`](../fixes/edit.md) action: a step's argument can name the token's groups, and a casing step follows it.
+
+```yaml
+extends: existence
+message: "'%s' should be '%s'."
+action:
+  name: edit
+  params:
+    - [replace, '$0', '$1']
+    - [upper]
+tokens:
+  - '\bid: ([a-z]+)'
+```
+
+The first step replaces the whole match with its first group, and the second puts what is left in upper case.
 
 ### How strict should `capitalization` be?
 
