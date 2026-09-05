@@ -1,81 +1,124 @@
 # Styles
 
-Learn about the primary component of Vale's configuration system.
+Learn what a rule is, how rules are collected into styles, and how a configuration switches them on.
 
-Vale has a powerful extension system that doesn’t require knowledge of any programming language. Instead, it uses collections of individual [YAML](http://yaml.org/) files (or “rules”) to enforce particular writing constructs.
+## [A rule](styles.md#a-rule)
+
+A rule is four decisions. Which _check_ runs, which says what kind of thing is wrong: a pattern that must not appear, a word that must be spelled one way, a count that must not be exceeded. Which _scope_ it runs on, which says where to look: every sentence, only the headings, one section of the document. What the _message_ says when it fires. And, when there is one right answer, what the _action_ is that fixes it.
 
 ```yaml
-# An example rule from the "Microsoft" style.
 extends: existence
 message: "Don't use end punctuation in headings."
-link: https://docs.microsoft.com/en-us/style-guide/punctuation/periods
+scope: heading
+nonword: true
+tokens:
+  - '[a-z][.?!]$'
+```
+
+That is a complete rule. It runs the `existence` check on every heading and reports the span that matched. The same rule, fully dressed, from the Microsoft style:
+
+```yaml
+extends: existence
+message: "Don't use end punctuation in headings."
+link: https://learn.microsoft.com/en-us/style-guide/punctuation/periods
 nonword: true
 level: warning
 scope: heading
 action:
   name: edit
   params:
-    - remove
+    - trim_right
     - '.?!'
 tokens:
-  - '[a-z0-9][.?!](?:\s|$)'
+  - '[a-z][.?!]$'
 ```
 
-These collections are referred to as _styles_ and are organized in a nested folder structure at a user-specified location. For example,
+The `link` is the guidance the rule enforces, shown with every alert. The `level` is how loudly to say it. The `action` is the fix, which an editor or an agent applies without deciding anything. `nonword` is an argument to the check itself: the pattern ends in punctuation, so the check is told not to wrap it in word boundaries.
+
+### [The header](styles.md#the-header)
+
+Every rule opens with the same fields, followed by the arguments its check takes:
+
+| Name          | Required | Default      | Description                                                                                                                                                                       |
+| ------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `extends`     | Yes      |              | <p>The check the rule runs, or another rule to build on.<br><code>extends: existence</code></p>                                                                                   |
+| `message`     | Yes      |              | <p>What to say when the rule fires. Each check offers its own placeholders.<br><code>message: "Don't use '%s' in headings."</code></p>                                             |
+| `level`       | No       | `warning`    | <p><code>suggestion</code>, <code>warning</code>, or <code>error</code>. Only errors set a non-zero exit code.<br><code>level: error</code></p>                                     |
+| `scope`       | No       | `text`       | <p>Where to look. See <a href="scopes.md">Scopes</a>. <code>metric</code> and <code>readability</code> default to the whole document instead.<br><code>scope: heading</code></p> |
+| `link`        | No       |              | <p>The guidance the rule enforces, shown with the alert.<br><code>link: https://example.com</code></p>                                                                             |
+| `description` | No       |              | <p>A longer explanation, for outputs and editors that show one.<br><code>description: "Headings are labels, not sentences."</code></p>                                             |
+| `action`      | No       |              | <p>The fix. See <a href="actions.md">Actions</a>.<br><code>action: { name: replace }</code></p>                                                                                    |
+| `limit`       | No       |              | <p>The most times the rule may fire in one file.<br><code>limit: 3</code></p>                                                                                                      |
+| `matchcase`   | No       | `false`      | <p>Adapt a suggested replacement to the case of the text it replaces.<br><code>matchcase: true</code></p>                                                                          |
+
+### [The checks](styles.md#the-checks)
+
+Each rule _extends_ a check, which is what does the work. Every check runs on any scope.
+
+| Name                                          | Description                                                                         |
+| --------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [existence](../checks/existence.md)           | Report a pattern that is present.                                                   |
+| [substitution](../checks/substitution.md)     | Report a pattern and carry its replacement.                                         |
+| [occurrence](../checks/occurrence.md)         | Count a pattern, and report too few or too many.                                    |
+| [repetition](../checks/repetition.md)         | Report a pattern that repeats.                                                      |
+| [consistency](../checks/consistency.md)       | Report a file that uses two forms of one thing.                                     |
+| [conditional](../checks/conditional.md)       | Report a pattern that appears without another it depends on.                        |
+| [capitalization](../checks/capitalization.md) | Report text that is not cased the way the rule says.                                |
+| [metric](../checks/metric.md)                 | Evaluate a formula over the counts of a block, and report when the condition holds. |
+| [readability](../checks/readability.md)       | Score a block's prose, and report when the grade is too high.                       |
+| [spelling](../checks/spelling.md)             | Spell check against Hunspell-compatible dictionaries.                               |
+| [sequence](../checks/sequence.md)             | Report a sequence of tokens, with part-of-speech tags, in a sentence.               |
+| [script](../checks/script.md)                 | Run a Tengo program over a block, and report what it returns.                       |
+
+## [A style](styles.md#a-style)
+
+A rule is one file, and a style is a directory of them, kept under the [`StylesPath`](../keys/stylespath.md):
 
 ```
-$ tree styles
 styles/
-├── base/
-│   ├── ComplexWords.yml
-│   ├── SentenceLength.yml
-│   ...
-├── blog/
-│   ├── TechTerms.yml
-│   ...
-└── docs/
-    ├── Branding.yml
+├── House/
+│   ├── Hedging.yml
+│   ├── Terms.yml
+│   └── dates/
+│       └── TimeFormat.yml
+└── Microsoft/
+    ├── HeadingPunctuation.yml
+    ...
 ```
 
-where _base_, _blog_, and _docs_ are your styles that each contain certain rules.
+The directory is the style's name, and the file is the rule's, joined with a dot: `Microsoft.HeadingPunctuation` is how the rule is addressed in configuration, in an in-text comment, in a filter, and in Vale's output. A subdirectory joins the name too, so `House/dates/TimeFormat.yml` is `House.dates.TimeFormat`.
 
-## [Rules](styles.md#rules)
+Three things about the files themselves:
 
-{% hint style="warning" %}
-Make sure your rule files end in extension `.yml`. Do not end them in `.yaml`, as Vale will not detect them.
-{% endhint %}
+* A rule file ends in `.yml`. Vale reads no other extension as a rule.
+* A directory whose name starts with `.` or `_` is skipped at load time, so drafts and shared fragments can sit inside a style without loading.
+* A file ending in `.test.yml` is a set of test cases for the rule beside it, not a rule. See [Testing a style](styles.md#testing-a-style).
 
-The building blocks of styles are called _rules_ (YAML files ending in `.yml`), which utilize _checks_ to perform specific tasks.
+Packages installed with [`vale sync`](../keys/packages.md) land on the same path, so a style you wrote and a style you downloaded are the same kind of thing. The `config/` directory beside them holds what is not a style: vocabularies, dictionaries, views, filters, and templates.
 
-The structure of a rule consists header followed by check-specific arguments. Every rule supports the following header fields:
+## [Switching rules on](styles.md#switching-rules-on)
 
-| Name      | Required | Default      | Description                                                                                                                                                                              |
-| --------- | -------- | ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `extends` | Yes      | `N/A`        | <p>The name of the check to extend in the particular rule. See <a href="../checks/existence.md">Rules</a> for more information.<br><code>extends: existence</code></p> |
-| `message` | Yes      | `N/A`        | <p>The message to display when the rule is triggered. Each extension point has different formatting options.<br><code>message: "Don't use '%s' headings."</code></p>   |
-| `level`   | No       | `suggestion` | <p>The severity of the rule. The available options are <code>suggestion</code>, <code>warning</code>, and <code>error</code>.<br><code>level: warning</code></p>       |
-| `scope`   | No       | `text`       | <p>The scope of the rule. See <a href="scopes.md">Scopes</a> for more information.<br><code>scope: heading</code></p>                                                  |
-| `link`    | No       | `N/A`        | <p>A URL to associate with the rule. This is useful for providing more information about the rule.<br><code>link: https://example.com</code></p>                       |
-| `limit`   | No       | `N/A`        | <p>The maximum number of times the rule can be triggered in a single file.<br><code>limit: 3</code></p>                                                                |
-| `vocab`   | No       | `true`       | <p>If set to false, any active vocabularies will be disabled for the rule.<br><code>vocab: false</code></p>                                                            |
+A style is enabled by name in [`BasedOnStyles`](../keys/basedonstyles.md), and every rule in it runs at the level the rule declares. The configuration can then adjust one rule, or a whole style, without touching the files:
 
-## [Checks](styles.md#checks)
+```ini
+[*.md]
+BasedOnStyles = Vale, Microsoft
 
-Each rule _extends_ a specific check, which is a built-in function that performs a particular task. For example, the `existence` check ensures that a given pattern is present in the content.
+# Switch a rule off, or on, or change how loudly it reports.
+Microsoft.Contractions = NO
+Microsoft.HeadingPunctuation = error
 
-| Name                                          | Description                                                                               |
-| --------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [existence](../checks/existence.md)           | Check for the presence of a specific regex pattern.                                       |
-| [substitution](../checks/substitution.md)     | Replace a regex pattern with a specific string.                                           |
-| [occurrence](../checks/occurrence.md)         | Ensure the presence of a regex pattern a specific number of times.                        |
-| [repetition](../checks/repetition.md)         | Avoid repeating a regex pattern a specific number of times.                               |
-| [consistency](../checks/consistency.md)       | Ensure that a regex pattern is used consistently.                                         |
-| [conditional](../checks/conditional.md)       | Check for the presence of a regex pattern based on a condition.                           |
-| [capitalization](../checks/capitalization.md) | Ensure that a regex pattern is capitalized in a specific way.                             |
-| [metric](../checks/metric.md)                 | Check the readability (or other metrics) of your content using custom formulas.          |
-| [spelling](../checks/spelling.md)             | Spell check using Hunspell-compatible dictionaries.                                       |
-| [sequence](../checks/sequence.md)             | Ensure that a regex pattern is used in a specific order. Supports part-of-speech tagging. |
-| [script](../checks/script.md)                 | Run a custom Tengo script to check your content.                                          |
+# Set a level for every rule in a style, and keep exceptions beside it.
+proselint = suggestion
+proselint.Typography = warning
+
+# Adjust a rule's parameter with the bracket key.
+Std.SentenceLength[max] = 30
+```
+
+A rule named on its own, `House.Hedging = YES`, loads even when its style is not in `BasedOnStyles`: every segment after the style is a path, and Vale reads that one file.
+
+The bracket key takes scalars: a number, a boolean, a level. It refuses the keys that make a rule what it is, `message`, `link`, `tokens`, `swap`, `exceptions`, and the rest, because changing those is authoring. For that, extend the rule.
 
 ## [Extending another rule](styles.md#extending-another-rule)
 
@@ -83,7 +126,7 @@ Each rule _extends_ a specific check, which is a built-in function that performs
 Rule inheritance requires Vale v3.20.0 or later.
 {% endhint %}
 
-An `extends` value containing a dot names a rule rather than a check: the new rule starts from that rule's full definition and lays its own keys on top. Two styles can share one carefully built pattern and disagree only about message, level, or a handful of entries:
+An `extends` value containing a dot names a rule rather than a check. The new rule starts from that rule's full definition and lays its own keys on top, so two styles can share one carefully built pattern and disagree only about message, level, or a handful of entries:
 
 ```yaml
 # House/Hedging.yml
@@ -92,12 +135,12 @@ message: "Hedge: '%s'. We state things plainly here."
 level: error
 ```
 
-The parent has to be present on the `StylesPath`, not enabled — inheritance is a file reference, and `vale sync` is what puts the file there.
+The parent has to be present on the `StylesPath`, not enabled: inheritance is a file reference, and `vale sync` is what puts the file there. The built-in `Vale` rules have no file, so they cannot be extended.
 
 A bare key replaces the parent's value wholesale. Lists and maps also take overlay edits:
 
 * `key+` appends to the parent's list, or merges into a parent map with the child's entries winning.
-* `key-` removes entries from a parent list by their source text, or the named keys from a parent map. Removing something the parent doesn't have is a compile error, so an upstream rename is heard about rather than silently diverged from.
+* `key-` removes entries from a parent list by their source text, or the named keys from a parent map. Removing something the parent does not have is an error, so an upstream rename is heard about rather than silently diverged from.
 
 ```yaml
 # Stricter than the parent: two more phrases, one dropped.
@@ -110,7 +153,7 @@ tokens-:
   - 'perhaps'
 ```
 
-Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once.
+Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once. A chain may run ten rules deep before Vale assumes it is a cycle.
 
 A directory whose name starts with `_` or `.` is skipped at load time but stays visible to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
 
@@ -123,41 +166,44 @@ styles/GenZ/
 └── Presence.yml
 ```
 
-A fragment is validated as the chain's root, so it must carry a `message` — even one no alert will ever show.
+A fragment is validated as the chain's root, so it must carry a `message`, even one no alert will ever show.
 
-## [Nested directories](styles.md#nested-directories)
+## [Testing a style](styles.md#testing-a-style)
 
-{% hint style="info" %}
-Nested rule directories require Vale v3.20.0 or later.
-{% endhint %}
+A rule is a small program, and a style of any size needs a way to ask whether each rule still fires where it should. Cases are YAML, they live beside the rule they test, and `vale test` runs them:
 
-A style can organize its rules in subdirectories, and the path joins the rule's name: `Std/dates/TimeFormat.yml` is addressed as `Std.dates.TimeFormat` everywhere a rule name goes — configuration, in-text comments, filters, and output.
+```yaml
+# House/Hedging.test.yml
+- name: flags a hedge
+  input: It's worth noting that the cache is cold.
+  contains: House.Hedging
 
+- name: leaves a quoted hedge alone
+  input: The phrase "it's worth noting" is banned.
+  want: ""
+
+- name: linted as reStructuredText
+  format: rst
+  input: |
+    It's worth noting that the cache is cold.
+  contains: House.Hedging
 ```
-styles/Std/
-├── dates/
-│   ├── DateFormat.yml
-│   └── TimeFormat.yml
-└── SentenceLength.yml
-```
 
-As above, directories prefixed with `.` or `_` are inert, so drafts and shared fragments can sit inside a style without loading.
+Each case lints `input`, as Markdown unless `format` says otherwise, and asserts on the output: `want` is the exact output, an empty `want` is "no alerts at all," `contains` is an excerpt, and `absent` is a list of what must not appear. A case runs under the configuration a `vale` run in that directory would use; `rule: Hedging.yml` isolates it to one rule instead, so the case says what the rule does and nothing about what a run would surface.
 
-## [Regex](styles.md#regex)
+## [Patterns](styles.md#patterns)
 
-Many rules will require the use of regular expressions to match specific patterns in your content. Vale uses [a superset](https://github.com/dlclark/regexp2?tab=readme-ov-file#compare-regexp-and-regexp2) of Go’s [regexp/syntax](https://pkg.go.dev/regexp/syntax) package to provide a powerful and flexible regex engine.
+Most rules are patterns. Vale runs them on a [regexp2](https://github.com/jdkato/regexp2) engine in RE2 mode: Go's [regexp/syntax](https://pkg.go.dev/regexp/syntax), plus positive and negative lookahead (`(?=re)`, `(?!re)`) and positive and negative lookbehind (`(?<=re)`, `(?<!re)`). See the [Regex](../guides/regex.md) guide for how the checks wrap a pattern before running it.
 
-In addition to the standard Go regex syntax, Vale also supports positive lookahead (`(?=re)`), negative lookahead (`(?!re)`), positive lookbehind (`(?<=re)`), and negative lookbehind (`(?<!re)`).
+## [The built-in style](styles.md#the-built-in-style)
 
-See the [Regex](../guides/regex.md) guide for more information.
+One style, `Vale`, is generated at runtime rather than read from disk. Its four rules report as errors:
 
-## [Vale](styles.md#vale)
+| Name              | Description                                                                                                                              |
+| ----------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `Vale.Spelling`   | Spell check, with any Hunspell-compatible dictionaries in `<StylesPath>/config/dictionaries` and any suggestion the dictionary can make. |
+| `Vale.Terms`      | Enforce the casing of the project's accepted [Vocabulary](../keys/vocabularies.md) terms.                                                |
+| `Vale.Avoid`      | Report the project's rejected [Vocabulary](../keys/vocabularies.md) terms.                                                               |
+| `Vale.Repetition` | Report a repeated word, "the the", and carry the fix.                                                                                    |
 
-Vale comes with a single built-in style named `Vale` that implements a few rules, as described in the table below.
-
-| Name              | Description                                                                                                                             |
-| ----------------- | --------------------------------------------------------------------------------------------------------------------------------------- |
-| `Vale.Spelling`   | Checks for spelling errors in your content. Consumes any Hunspell-compatible dictionaries stored in `<StylesPath>/config/dictionaries`. |
-| `Vale.Terms`      | Enforces the current project's accepted [Vocabulary](../keys/vocabularies.md) terms.                                                    |
-| `Vale.Avoid`      | Enforces the current project's rejected [Vocabulary](../keys/vocabularies.md) terms.                                                    |
-| `Vale.Repetition` | Flags repeated words such as "the the" or "and and".                                                                                    |
+They switch on with `BasedOnStyles = Vale`, and each can be adjusted from the configuration like any other rule.

@@ -52,6 +52,7 @@
 * [replace](fixes/replace.md)
 * [remove](fixes/remove.md)
 * [edit](fixes/edit.md)
+* [convert](fixes/convert.md)
 
 ## Formats
 

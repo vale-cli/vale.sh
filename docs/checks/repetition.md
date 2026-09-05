@@ -24,7 +24,7 @@ tokens:
 
 ## [Vale.Repetition](repetition.md#valerepetition)
 
-Vale includes a [built-in implementation](../topics/styles.md#vale) of `repetition` that can be used to flag repeated words such as “the the” or “and and”. This rule will catch almost any instance of a repeated word, including across markup boundaries:
+Vale includes a [built-in implementation](../topics/styles.md#the-built-in-style) of `repetition` that can be used to flag repeated words such as “the the” or “and and”. This rule will catch almost any instance of a repeated word, including across markup boundaries:
 
 ```markdown
 See the Mermaid [Mermaid user guide][1].

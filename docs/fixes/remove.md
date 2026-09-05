@@ -1,12 +1,12 @@
 # remove
 
-Learn how to remove matches from your content.
+Learn how to delete a match.
 
 ```go
 func remove(match string)
 ```
 
-`remove` will remove the matched text of any rule.
+`remove` suggests an empty string in place of the matched text. It takes no parameters.
 
 ```yaml
 extends: existence
@@ -17,3 +17,5 @@ action:
 tokens:
   - '...'
 ```
+
+Applied to a whole word, whether by `vale fix --apply` or an editor, the deletion takes one neighboring space with it, so removing `very` from `a very good one` leaves `a good one` rather than two spaces.

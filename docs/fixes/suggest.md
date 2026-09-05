@@ -1,42 +1,53 @@
 # suggest
 
-Learn how to create dynamic suggestions for your rules.
+Learn how to compute a rule's suggestions.
 
 ```go
 func suggest(match string) []string
 ```
 
-`suggest` returns an array of suggested replacements for the matched text.
+`suggest` returns replacements that have to be worked out from the match: the closest words in a dictionary, or whatever a script of your own decides.
 
-## [script](suggest.md#script)
+## [`spellings`](suggest.md#spellings)
 
 ```yaml
 action:
   name: suggest
   params:
-    - scriptName.tengo
+    - spellings
 ```
 
-The `suggest` action allows you to define a custom suggestion script that will be executed for each match. The script should return an array of strings called `suggestions`.
+The five closest words to the match, by [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein), from every dictionary the rule loads. A capitalized match gets capitalized suggestions.
 
-Scripts are written in [Tengo](https://github.com/d5/tengo) and are stored in the `<StylesPath>/config/actions` directory.
+Ranking a dictionary is real work, so these suggestions are not computed while linting. Lint output leaves the alert's `Suggestions` empty, and `vale fix` or an editor asks for them per alert. On a rule that extends `spelling`, a bare `name: suggest` means the same thing.
 
-Here’s an example script:
+## [A script](suggest.md#a-script)
+
+```yaml
+action:
+  name: suggest
+  params:
+    - CamelToSnake.tengo
+```
+
+Any other parameter names a [Tengo](https://github.com/d5/tengo) script. Vale looks for it in `<StylesPath>/config/actions` first, then in the rule's own style directory, so a style can ship its scripts beside its rules. A script that is in neither place is a load-time error.
+
+The script receives the matched text as `match` and must leave its answer in `suggestions`, an array of strings; anything in the array that is not a string is dropped. The `text`, `fmt`, and `math` modules are available to import.
 
 ```go
 text := import("text")
 
-// `match` is provided by Vale and represents the rule's matched text.
+// `match` is the rule's matched text.
 made := text.re_replace(`([A-Z]\w+)([A-Z]\w+)`, match, `$1-$2`)
 
 made = text.replace(made, "-", "_", 1)
 made = text.to_lower(made)
 
-// `suggestions` is required by Vale and represents the script's output.
+// `suggestions` is what Vale reads back.
 suggestions := [made]
 ```
 
-We would save this script as `CamelToSnake.tengo` and then reference it in our rule:
+Saved as `CamelToSnake.tengo`, the script serves this rule:
 
 ```yaml
 extends: existence
@@ -51,15 +62,4 @@ tokens:
   - '[A-Z]\w+[A-Z]\w+'
 ```
 
-## [spellings](suggest.md#spellings)
-
-```yaml
-action:
-  name: suggest
-  params:
-    - spellings
-```
-
-`spellings` returns the top 5 spelling suggestions for the matched text from all active dictionaries.
-
-Suggestions are ordered by calculating the [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein) between the matched text and the dictionary words.
+A script is compiled once per run and executed for each match.

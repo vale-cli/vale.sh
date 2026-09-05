@@ -1,83 +1,101 @@
 # Actions
 
-Create dynamic suggestions for your rules with Actions.
+Learn how a rule carries its own fix, and where that fix goes.
 
-{% hint style="info" %}
-See [`vale-ls`](../guides/lsp.md) for an easy way to integrate Actions into your favorite text editor.
-{% endhint %}
+## [A fix beside the finding](actions.md#a-fix-beside-the-finding)
 
-Actions provide a way for users to define dynamic fixes for their custom rules that show up in the CLI and LSP-based integrations.
-
-![Actions](../.gitbook/assets/action.png)
-
-In the Sublime Text example above, the “Quick Fix” menu is powered by the action defined in the rule definition:
-
-{% code title="rule.yml" %}
-
-```yaml
-action:
-  name: replace
-```
-
-{% endcode %}
-
-See the documentation on each `action` type for more information:
-
-| Name                             | Description                                                                                  |
-| -------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`suggest`](../fixes/suggest.md) | An array of dynamically-computed suggestions.                                                |
-| [`replace`](../fixes/replace.md) | An array of static suggestions. Supported by default in `substitution` and `capitalization`. |
-| [`remove`](../fixes/remove.md)   | Remove the matched text.                                                                     |
-| [`edit`](../fixes/edit.md)       | In-place edits of the matched text.                                                          |
-
-## [CLI](actions.md#cli)
-
-Most Vale rules are based on _static_ suggestions—for example,
-
-{% code title="rule.yml" %}
-
-```yaml
-extends: substitution
-message: "Use '%s' instead of '%s'."
-level: error
-action:
-  name: replace
-swap:
-  Javascript: JavaScript
-```
-
-{% endcode %}
-
-Here, the `action` is a to _replace_`Javascript` with `JavaScript`. In such cases, we know what we want to suggest to the user ahead of time and Vale can easily generate the appropriate output message.
-
-However, there are cases in which we _don’t_ know the appropriate suggestion ahead of time. For example, consider the following rule:
-
-{% code title="rule.yml" %}
+A rule says what is wrong. An action says what to do about it: the matched text becomes this instead. It is the part of a rule that an editor can apply with one keystroke, that `vale fix --apply` can write to disk, and that an agent can act on without deciding anything.
 
 ```yaml
 extends: existence
-message: "'%s' should be '%s'."
-level: error
+message: "Don't use end punctuation in headings."
+scope: heading
+nonword: true
 action:
   name: edit
   params:
-    - regex
-    - '(\w+)_(\w+)'
-    - '$1-$2'
+    - trim_right
+    - '.?!'
 tokens:
-  - '\w+_\w+'
+  - '\w+[.?!]$'
 ```
 
-{% endcode %}
+Vale resolves the action when the rule fires, not when someone asks for the fix. Every alert carries both the recipe, `Action`, and the answer, `Suggestions`:
 
-This rule is designed to catch instances of `snake_case` and suggest that the user convert to `kebab-case`. In this case, the exact suggestion is dependent on a string transformation that needs to be computed at runtime.
+```json
+{
+  "Action": { "Name": "edit", "Params": ["trim_right", ".?!"] },
+  "Suggestions": ["Overview"],
+  "Check": "House.HeadingPunctuation",
+  "Message": "Don't use end punctuation in headings.",
+  "Match": "Overview.",
+  "Line": 3,
+  "Span": [3, 11]
+}
+```
 
-Using the `edit` action allows us to define a rule that can dynamically generate suggestions based on the matched text in CLI output:
+The one exception is spelling. Ranking a dictionary against a word is real work, so a spelling rule's suggestions are computed on request, by `vale fix` or an editor, and its `Suggestions` list is empty in lint output.
 
-![Vale reporting two errors where identifiers should be written with hyphens.](../.gitbook/assets/snake.svg)
+## [The message](actions.md#the-message)
 
-As you can see, the CLI output is dynamically computing the suggestion based on the matched text.
+A message with two placeholders gets the match first and the fix second:
 
-## [LSP](actions.md#lsp)
+```yaml
+message: "'%s' should be '%s'."
+```
 
-In both static and dynamic cases, any application that uses the [Vale Language Server](../guides/lsp.md) will be able to provide the user with a list of “Quick Fixes” that can be applied to the document.
+A rule whose action yields several suggestions sees them joined: `'colour' should be 'color or colors'`. A rule with no action gets the match alone, and a second placeholder stays empty.
+
+## [The actions](actions.md#the-actions)
+
+| Name                             | Description                                                                                                                          |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| [`replace`](../fixes/replace.md) | One or more replacements written into the rule. `substitution` and `capitalization` fill them in from their own entries.             |
+| [`remove`](../fixes/remove.md)   | Delete the match.                                                                                                                    |
+| [`edit`](../fixes/edit.md)       | Run the match through a pipeline of operations: rewriting, trimming, wrapping, and casing.                                           |
+| [`convert`](../fixes/convert.md) | Change the case of the match.                                                                                                        |
+| [`suggest`](../fixes/suggest.md) | Compute the replacements: spelling suggestions from the active dictionaries, or a Tengo script of your own.                           |
+
+An `edit` with several steps is written as a list of lists, one per operation, and the result of each is the input to the next:
+
+```yaml
+action:
+  name: edit
+  params:
+    - [trim_right, '!']
+    - [lower]
+    - [wrap, '`']
+```
+
+An argument can also name what the rule matched: `$1` is the first capture group of the token that fired, and `$0` is the whole match. A `replace` written as `'$2, $1'` reorders a name without a pattern of its own. See [the token's groups](../fixes/edit.md#the-tokens-groups).
+
+Every action is checked when the rule loads. An unknown name, a missing parameter, an `edit` operation Vale does not have, or a `suggest` script that is not on disk is an `E201` error pointing at the rule file, not a surprise after the rule fires.
+
+A `replace` action respects [`matchcase`](styles.md#the-header): with it set, `A-OK` written into the rule still suggests `a-ok` for `a ok`. The other actions produce their text from the match itself, so they already carry its case.
+
+## [Where a fix goes](actions.md#where-a-fix-goes)
+
+**The CLI** shows it in the message, as above, and in JSON output as `Suggestions`.
+
+**`vale fix --apply`** writes fixes back to the files it lints:
+
+```console
+$ vale fix --apply docs/
+docs/guide.md: applied 4, skipped 1
+  12:9	House.Terms	2 suggestions
+```
+
+A fix is applied only when it is unambiguous: the action resolves to exactly one suggestion, the match is still where the alert says it is, and no other fix touches the same span. Everything else is reported with a reason rather than guessed at. Two rules asking for the same rewrite count as one; two asking for different rewrites of overlapping text are both skipped. A `remove` takes one neighboring space with it, so deleting a word does not leave two behind. Pass `--output=JSON` for the report as data, and a file with nothing to apply is never rewritten.
+
+**`vale fix <alert>`** takes one alert, as a JSON string or a path to a file holding one, and prints its suggestions:
+
+```json
+{
+  "suggestions": ["Overview"],
+  "error": ""
+}
+```
+
+This is the call editors make. It is also how to resolve a spelling alert, whose suggestions lint output leaves empty.
+
+**Editors** get the fix as a quick fix through [`vale-ls`](../guides/lsp.md): a replacement to choose from, or a deletion.
