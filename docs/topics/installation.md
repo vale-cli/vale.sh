@@ -77,7 +77,7 @@ A system-wide install leaves each contributor on whatever version they happened 
 [mise](https://mise-versions.jdx.dev/tools/vale) does this for any project, whatever it's written in:
 
 ```bash
-$ mise use vale@3.19.0
+$ mise use vale@3.20.0
 ```
 
 If your project already installs its tools through a language's package manager, Vale is packaged there too. Each of these downloads the same release binaries and puts `vale` on your `$PATH`:
@@ -148,7 +148,7 @@ By default, the image supports HTML, Markdown, AsciiDoc, and reStructuredText co
 
 ```dockerfile
 # Choose a version to pin:
-FROM jdkato/vale:v3.18.0
+FROM jdkato/vale:v3.20.0
 
 # Copy a local installation of the DITA Open Toolkit:
 COPY bin/dita-ot-3.6 /

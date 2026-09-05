@@ -1,0 +1,58 @@
+name: Release docs
+
+# Keeps the docs' install examples on the current Vale release.
+#
+# Vale's own release workflow sends a `vale-release` dispatch with the tag it
+# published, and this pins the examples (see script/release.mjs) and pushes
+# the change to the branch GitBook syncs from. It can also be run by hand,
+# with or without a version; without one it asks GitHub for the latest
+# release.
+on:
+  repository_dispatch:
+    types: [vale-release]
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'Vale release tag, such as v3.20.0. Empty means the latest.'
+        required: false
+
+permissions:
+  contents: write
+
+jobs:
+  pin:
+    name: runner / pin
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: svelte
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Resolve the version
+        id: version
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          version='${{ github.event.client_payload.version || github.event.inputs.version }}'
+          if [ -z "$version" ]; then
+            version=$(gh release view --repo vale-cli/vale --json tagName --jq .tagName)
+          fi
+          echo "version=$version" >> "$GITHUB_OUTPUT"
+
+      - name: Pin the examples
+        run: node script/release.mjs '${{ steps.version.outputs.version }}'
+
+      - name: Push
+        run: |
+          if git diff --quiet; then
+            echo "already at ${{ steps.version.outputs.version }}"
+            exit 0
+          fi
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git commit -am 'docs: pin the install examples to Vale ${{ steps.version.outputs.version }}'
+          git push origin svelte
