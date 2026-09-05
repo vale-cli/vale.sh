@@ -55,7 +55,7 @@
   <text class="note" x="396" y="312">The fallback when nothing else matched.</text>
 
   <!-- The global file is not only a fallback -->
-  <path class="flow-accent" d="M378 307 h32 v52 h-362 v-16"/>
+  <path class="flow-accent" d="M100 326 v33"/>
   <rect class="accent-node" x="48" y="359" width="330" height="52" rx="7"/>
   <text class="mono-accent" x="66" y="383">global .vale.ini, again</text>
   <text class="note" x="66" y="403">always loaded, and read last</text>

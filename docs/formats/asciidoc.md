@@ -33,7 +33,7 @@ attribute-missing = drop
 BasedOnStyles = Vale
 ```
 
-By default, Vale switches off the attributes that generate text of their own—section numbers (`sectnums`), the table of contents (`toc`), and caption labels such as the "Table 1." prefixed to a block title (`table-caption`, `figure-caption`, `example-caption`, `listing-caption`). Generated text appears nowhere in the source, so a rule matching it would report an unrelated line. An attribute set in the `[asciidoctor]` section overrides these defaults.
+By default, Vale switches off the attributes that generate text of their own—section numbers (`sectnums`), the table of contents (`toc`), and caption labels such as the "Table 1." prefixed to a block title (`table-caption`, `figure-caption`, `example-caption`, `listing-caption`). Generated text appears nowhere in the source, so a rule matching it would report an unrelated line. It also sets `attribute-missing=drop`, so a reference to an undefined attribute disappears rather than being linted as text, and renders the document title. An attribute set in the `[asciidoctor]` section overrides these defaults.
 
 ## [Comments](asciidoc.md#comments)
 

@@ -10,4 +10,4 @@ DITA is supported through the [DITA Open Toolkit](https://www.dita-ot.org/). You
 
 The supported extension is `.dita`.
 
-Vale ignores `<codeblock>`, `<tt>`, and `<codeph>` elements by default.
+Vale runs `dita` with the `html5` transformation and lints the result, so the [HTML](html.md) rules apply: `<codeblock>` becomes `<pre>` and is skipped, and `<codeph>` and `<tt>` become inline code.

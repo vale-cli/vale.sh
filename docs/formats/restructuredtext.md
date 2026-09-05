@@ -8,7 +8,7 @@ reStructuredText is supported through the external program [`rst2html`](http://d
 $ pip install docutils
 ```
 
-You’ll need to ensure that the `rst2html` executable is available in your `$PATH` (this should happen automatically).
+Vale looks for `rst2html`, `rst2html.py`, `rst2html-3`, or `rst2html-3.py` on your `$PATH`, which installing `docutils` normally provides. The script is asked which Python it runs under, so the interpreter `docutils` was installed into is the one used, even when it is not the `python3` on the path.
 
 The supported extensions are `.rst` and `.rest`.
 

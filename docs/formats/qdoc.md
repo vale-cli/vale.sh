@@ -8,7 +8,7 @@ Requires Vale v3.18.0 or later.
 
 [QDoc](https://doc.qt.io/qt-6/01-qdoc-manual.html) is Qt's documentation markup: LaTeX-style commands inside `/*! ... */` comment blocks. Support is built in—nothing to install.
 
-The supported extension is `.qdoc`. Doc comments in C++ and QML sources lint through a [format association](../topics/.vale.ini.md#format-associations):
+The supported extensions are `.qdoc` and `.qdocinc`. An include file is the body of a comment without the `/*! ... */` around it, and is read that way. Doc comments in C++ and QML sources lint through a [format association](../topics/.vale.ini.md#format-associations):
 
 ```ini
 [formats]

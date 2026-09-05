@@ -9,7 +9,7 @@ By default, Vale ignores:
 * [Code blocks](https://orgmode.org/org.html#Structure-of-Code-Blocks).
 * [Literal examples](https://orgmode.org/org.html#Literal-Examples).
 * [Code and verbatim strings](https://orgmode.org/org.html#Emphasis-and-Monospace-1).
-* URLs: See [URL handling](https://orgmode.org/org.html#Structure-of-Code-Blocks) for more information.
+* URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
 
 ## [Comments](org.md#comments)
 

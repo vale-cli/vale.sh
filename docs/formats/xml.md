@@ -10,7 +10,7 @@ XML is supported through the external program [`xsltproc`](http://xmlsoft.org/XS
 
 You’ll need to ensure that the `xsltproc` executable is available in your `$PATH`.
 
-The supported extension is `.xml`.
+The supported extensions are `.xml` and `.xsd`.
 
 You also need to provide a version 1.0 XSL Transformation (XSLT) for converting to HTML:
 

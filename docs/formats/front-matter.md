@@ -2,7 +2,7 @@
 
 Learn how Vale handles front matter.
 
-Linting front matter fields is supported in Markdown, AsciiDoc, reStructuredText, MDX, and Org files.
+Front matter is linted in Markdown and its dialects (MDX, MyST, Quarto, R Markdown), AsciiDoc, reStructuredText, Org, Typst, and QDoc files.
 
 There are 3 supported front matter types – YAML, TOML, and JSON. Each is recognized by the delimiters that open and close it:
 
@@ -104,3 +104,5 @@ scope: text.frontmatter.title
 ```
 
 This rule would then only be applied to the `title` field in the front matter.
+
+Only string-valued fields are linted; a list or a nested map is left alone. A field can be excluded by naming its scope in [`IgnoredScopes`](../keys/ignoredscopes.md).
