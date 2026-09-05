@@ -34,5 +34,3 @@ BasedOnStyles = Vale
 
 Vale.Spelling = warning
 ```
-
-Related: [Vocab](vocabularies.md) [IgnoredScopes](ignoredscopes.md)

@@ -135,5 +135,3 @@ Std.SentenceLength[max] = 30
 Values are coerced to the field's type at compile time, and an unknown parameter fails the rule's compilation rather than being silently dropped.
 
 Only scalars can be tuned this way. A structural field — `tokens`, `swap`, `message` — is refused with a pointer at [extending the rule](../topics/styles.md#extending-another-rule) in a style, which is what authoring is for. `[level]` is refused too: the classic `Style.Rule = warning` syntax already says that.
-
-Related: [MinAlertLevel](minalertlevel.md) [SkippedScopes](skippedscopes.md)

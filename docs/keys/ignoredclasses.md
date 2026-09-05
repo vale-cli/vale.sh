@@ -28,5 +28,3 @@ IgnoredClasses = problematic, guilabel, menuselection
 ```
 
 Because this key matches classes rather than tags, it's the one to reach for when what you want to skip isn't a distinct element—an inline `<span>` among other `<span>`s, say.
-
-Related: [IgnoredScopes](ignoredscopes.md) [SkippedScopes](skippedscopes.md)

@@ -2,7 +2,7 @@
 
 Learn how Vale handles Markdown content.
 
-[GitHub-Flavored Markdown](https://github.github.com/gfm) support is built in. The supported extensions are `.md`, `.mdown`, `.markdown`, and `.markdn`.
+[GitHub-Flavored Markdown](https://github.github.com/gfm) support is built in. The supported extensions are `.md`, `.mdown`, `.markdown`, and `.markdn`. [R Markdown](rmarkdown.md) is read the same way.
 
 By default, Vale ignores:
 
@@ -17,31 +17,6 @@ By default, Vale ignores:
 Both `$$…$$` display math and `$x^2$` inline math are ignored. Inline math follows Pandoc's delimiter rules, which are what tell an equation from a price: the opening `$` needs a non-space character to its right, and the closing `$` needs one to its left and no digit after it. So `$g_i = g(p)_i$` is math, while `It costs $5 and $10` stays prose and is linted as such.
 
 A span may wrap onto the next line, but not past the end of its paragraph. Write `\$` for a literal dollar sign that would otherwise open one.
-
-## [R Markdown](markdown.md#r-markdown)
-
-{% hint style="info" %}
-Requires Vale v3.18.0 or later. Earlier versions can assign the format instead: `Rmd = md` under `[formats]`.
-{% endhint %}
-
-R Markdown (`.Rmd`, `.rmd`) is linted as Markdown. Its knitr syntax is code to Vale:
-
-* Chunks are fenced blocks—the chunk options in the `{r ...}` info string and everything inside the fence are ignored.
-* Inline expressions such as `` `r nrow(df)` `` are code spans, and are ignored by default.
-
-A configuration section still needs to match the extension:
-
-```ini
-[*.{md,Rmd}]
-BasedOnStyles = Vale
-```
-
-Pandoc syntax that isn't Markdown—citations, for one—can be excluded with [`TokenIgnores`](../keys/tokenignores.md):
-
-```ini
-[*.{md,Rmd}]
-TokenIgnores = (\[@[^\n\]]+\])
-```
 
 ## [Comments](markdown.md#comments)
 

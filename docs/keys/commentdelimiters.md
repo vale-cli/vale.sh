@@ -35,5 +35,3 @@ This is some text ACT test
 
 {/* vale vale.Redundancy = YES */}
 ```
-
-Related keys: [TokenIgnores](tokenignores.md) [Transform](transform.md)

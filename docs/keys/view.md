@@ -18,5 +18,3 @@ The named View is loaded from `<StylesPath>/config/views/<name>.yml`, and Vale r
 `View` is set per section, so different file types can be filtered differently.
 
 See [Views](../topics/views.md) for how to write one.
-
-Related: [Transform](transform.md) [Scopes](../topics/scopes.md)

@@ -39,5 +39,3 @@ Transform = ~/xsl/docbook.xsl
 ## [Requirements](transform.md#requirements)
 
 The conversion is performed by [`xsltproc`](http://xmlsoft.org/XSLT/xsltproc.html), which has to be installed and on your `$PATH`. See [XML](../formats/xml.md) for how to install it.
-
-Related: [XML](../formats/xml.md) [CommentDelimiters](commentdelimiters.md)

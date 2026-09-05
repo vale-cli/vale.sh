@@ -22,5 +22,3 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 {% endcode %}
 
 Once converted, Vale will follow the same rules as it does for [HTML](html.md).
-
-Related formats: [reStructuredText](restructuredtext.md) [Org](org.md)

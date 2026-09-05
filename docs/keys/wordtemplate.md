@@ -55,5 +55,3 @@ If only some rules need different boundaries, leave `WordTemplate` alone and use
 
 * `nonword: true` drops the boundaries for one rule.
 * `raw` lets a rule supply its pattern verbatim, boundaries included.
-
-Related: [BasedOnStyles](basedonstyles.md) [View](view.md)

@@ -29,8 +29,3 @@ BlockIgnores = (?s)(<!-- generated -->.*?<!-- /generated -->)
 ```
 
 The pattern matches the file as Vale was asked for it, so write it relative to where you run Vale. See [Globbing](../guides/globbing.md).
-
-Related:
-
-* [TokenIgnores](tokenignores.md)
-* [CommentDelimiters](commentdelimiters.md)

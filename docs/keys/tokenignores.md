@@ -33,8 +33,3 @@ The pattern matches the file as Vale was asked for it, so write it relative to w
 {% hint style="info" %}
 Dollar math needs no `TokenIgnores`: `$x^2$` and `$$…$$` are ignored in Markdown, Quarto, MyST, and MDX. See [Math](../formats/markdown.md#math).
 {% endhint %}
-
-Related:
-
-* [BlockIgnores](blockignores.md)
-* [CommentDelimiters](commentdelimiters.md)

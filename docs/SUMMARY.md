@@ -60,6 +60,7 @@
 * [Markdown](formats/markdown.md)
 * [MyST](formats/myst.md)
 * [Quarto](formats/quarto.md)
+* [R Markdown](formats/rmarkdown.md)
 * [AsciiDoc](formats/asciidoc.md)
 * [MDX](formats/mdx.md)
 * [HTML](formats/html.md)
@@ -69,6 +70,7 @@
 * [Org](formats/org.md)
 * [DITA](formats/dita.md)
 * [QDoc](formats/qdoc.md)
+* [Plain text](formats/text.md)
 * [Code](formats/code.md)
 
 ## Guides
