@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 274" width="800" height="274" role="img" aria-label="Vale's default output for a README: a table with one row per alert giving the line and column, the level, the message, and the rule, then a summary line counting one error, two warnings, and no suggestions in one file.">
+<style>
+.bg{fill:#1c1917;stroke:#3a3532;stroke-width:1.25}
+.chrome{fill:#292524}
+.dot{opacity:.5}
+.t{font:400 13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre}
+.title{font:400 12px ui-monospace,SFMono-Regular,Menlo,monospace;fill:#a8a29e;text-anchor:middle}
+</style>
+<rect class="bg" x="1" y="1" width="798" height="272" rx="10"/>
+<path class="chrome" d="M1 11a10 10 0 0 1 10-10h778a10 10 0 0 1 10 10v27H1z"/>
+<circle class="dot" cx="26" cy="20" r="5.5" fill="#f87171"/>
+<circle class="dot" cx="46" cy="20" r="5.5" fill="#fbbf24"/>
+<circle class="dot" cx="66" cy="20" r="5.5" fill="#a3c585"/>
+<text class="title" x="400.0" y="24">~/Documents/docs</text>
+<text class="t" x="20" y="58" xml:space="preserve"><tspan fill="#a3c585">❯ </tspan><tspan fill="#fafaf9">vale </tspan><tspan fill="#93c5fd">README.md</tspan></text>
+<text class="t" x="20" y="102" xml:space="preserve"><tspan fill="#fafaf9"> README.md</tspan></text>
+<text class="t" x="20" y="124" xml:space="preserve"><tspan fill="#8a827c"> 3:17   </tspan><tspan fill="#fbbf24">warning  </tspan><tspan fill="#d6d3d1">'very' is a weasel word!                         </tspan><tspan fill="#8a827c">write-good.Weasel</tspan></text>
+<text class="t" x="20" y="146" xml:space="preserve"><tspan fill="#8a827c"> 3:37   </tspan><tspan fill="#fbbf24">warning  </tspan><tspan fill="#d6d3d1">'were fixed' may be passive voice. Use active    </tspan><tspan fill="#8a827c">write-good.Passive</tspan></text>
+<text class="t" x="20" y="168" xml:space="preserve"><tspan fill="#8a827c">                 </tspan><tspan fill="#d6d3d1">voice if you can.</tspan></text>
+<text class="t" x="20" y="190" xml:space="preserve"><tspan fill="#8a827c"> 6:23   </tspan><tspan fill="#f87171">error    </tspan><tspan fill="#d6d3d1">Did you really mean 'detials'?                   </tspan><tspan fill="#8a827c">Vale.Spelling</tspan></text>
+<text class="t" x="20" y="234" xml:space="preserve"><tspan fill="#f87171">✖ </tspan><tspan fill="#d6d3d1">1 error, 2 warnings and 0 suggestions in 1 file.</tspan></text>
+</svg>

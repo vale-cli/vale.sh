@@ -85,18 +85,7 @@ VALE_STYLES_PATH | Specify the location of the default StylesPath.              
 
 **`CLI`**, the default, is a colored table per file with a summary line, wrapped to the terminal's width unless `--no-wrap` says otherwise:
 
-```console
-$ vale README.md
-
- README.md
- 3:14  suggestion  Try to avoid using 'is'.                    write-good.E-Prime
- 3:17  warning     'very' is a weasel word!                    write-good.Weasel
- 3:37  warning     'were fixed' may be passive voice. Use      write-good.Passive
-                   active voice if you can.
- 6:23  error       Did you really mean 'detials'?              Vale.Spelling
-
-✖ 1 error, 2 warnings and 1 suggestion in 1 file.
-```
+![Vale's default output for a README: a table with one row per alert giving the line and column, the level, the message, and the rule, then a summary line counting one error, two warnings, and no suggestions in one file.](../.gitbook/assets/cli-output.svg)
 
 Each row is the line and column, the level, the message, and the rule that fired. The summary counts every alert at or above `MinAlertLevel`, and the exit code follows the errors.
 
@@ -104,7 +93,6 @@ Each row is the line and column, the level, the message, and the rule that fired
 
 ```console
 $ vale --output=line README.md
-README.md:3:14:write-good.E-Prime:Try to avoid using 'is'.
 README.md:3:17:write-good.Weasel:'very' is a weasel word!
 README.md:3:37:write-good.Passive:'were fixed' may be passive voice. Use active voice if you can.
 README.md:6:23:Vale.Spelling:Did you really mean 'detials'?
