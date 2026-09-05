@@ -104,4 +104,4 @@ See [MinAlertLevel](../keys/minalertlevel.md) for changing what gets reported, a
 * Browse the [Package Explorer](https://vale.sh/explorer) for styles beyond Microsoft.
 * Write your own rules with [Styles](styles.md) and the [checks](../checks/existence.md) reference.
 * Narrow what Vale reads using [Scopes](scopes.md).
-* Hand the setup to an assistant with the [Coding agents](../guides/agents.md) guide.
+* Put an assistant to work, and hold it to a style, with the [Agents](../guides/agents.md) guide.

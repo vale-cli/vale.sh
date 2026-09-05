@@ -76,7 +76,7 @@
 ## Guides
 
 * [LSP](guides/lsp.md)
-* [Coding agents](guides/agents.md)
+* [Agents](guides/agents.md)
 * [MCP](guides/mcp.md)
 * [Regex](guides/regex.md)
 * [TextFSM](guides/textfsm.md)
