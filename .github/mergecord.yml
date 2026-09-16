@@ -3,11 +3,12 @@
 # The bot itself is generic (github.com/jdkato/mergecord); everything
 # Vale-specific about its deployment lives here, next to the data files it
 # already reads from this repository (adopters, events, the FAQ). The running
-# bot loads a copy of this file from CONFIG_PATH, so after editing, refresh
-# that copy on the server:
+# bot's CONFIG_PATH points at this file's raw URL:
 #
-#   curl -fsSL https://raw.githubusercontent.com/vale-cli/vale.sh/svelte/.github/mergecord.yml \
-#     -o /etc/mergecord/mergecord.yml && systemctl restart mergecord
+#   https://raw.githubusercontent.com/vale-cli/vale.sh/svelte/.github/mergecord.yml
+#
+# It is read once at startup, so an edit here takes effect on the next
+# `systemctl restart mergecord`.
 #
 # Secrets are read from the environment instead, so nothing here is sensitive.
 # Any string may reference an environment variable as ${VAR} or ${VAR:-default}.
