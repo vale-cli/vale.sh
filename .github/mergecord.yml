@@ -1,0 +1,280 @@
+# Mergecord configuration for the Vale community server.
+#
+# The bot itself is generic (github.com/jdkato/mergecord); everything
+# Vale-specific about its deployment lives here, next to the data files it
+# already reads from this repository (adopters, events, the FAQ). The running
+# bot loads a copy of this file from CONFIG_PATH, so after editing, refresh
+# that copy on the server:
+#
+#   curl -fsSL https://raw.githubusercontent.com/vale-cli/vale.sh/svelte/.github/mergecord.yml \
+#     -o /etc/mergecord/mergecord.yml && systemctl restart mergecord
+#
+# Secrets are read from the environment instead, so nothing here is sensitive.
+# Any string may reference an environment variable as ${VAR} or ${VAR:-default}.
+
+project:
+  name: Vale
+  url: https://vale.sh
+
+  # X handle, without the @ — used only to invite follows on the dashboard
+  # and the account-linked page.
+  twitter: jdkato
+
+github:
+  organization: vale-cli
+
+  # GitHub Sponsors listings live on accounts, and Vale's is on its
+  # maintainer's personal account rather than the organization.
+  sponsors_account: jdkato
+
+  # Contributions across every repository listed here roll up into one
+  # contributor profile, and releases from all of them flow into one channel.
+  repositories:
+    - vale
+    - vale-ls
+    - vale-action
+
+    # The site and docs, and the style registry — documentation and registry
+    # contributions are contributions.
+    - vale.sh
+    - packages
+
+    # First-party styles. Their contributors earn Contributor, and their
+    # releases flow into the releases channel like any other.
+    - Google
+    - Microsoft
+    - Harper
+    - MDX
+    - Hugo
+    - Joblint
+    - alex
+    - proselint
+    - readability
+    - write-good
+
+  # Repositories outside the organization. Contributions here never count
+  # towards project contribution totals or the Contributor role; they appear
+  # on a /contributor profile as where somebody also works, and releases from
+  # them reach the feed.
+  # Flagship ecosystem tools. Styles are deliberately not listed here: the
+  # package registry already recognizes their authors, and singling one style
+  # out of the many on the vale-linter-style topic privileges it.
+  external_repositories:
+    - ChrisChinchilla/vale-vscode
+
+opencollective:
+  slug: vale
+
+sponsors:
+  page_url: https://vale.sh/sponsor
+
+  # Sponsor spotlights, keyed by GitHub login or Open Collective slug — the
+  # same two featured on vale.sh/sponsor. A note carrying its own name and
+  # url stands on its own even when the sponsor has no active subscription:
+  # both of these were large one-time gifts.
+  spotlight:
+    notes:
+      mintlifydocs:
+        note: Ships Vale as a built-in CI check
+        name: Mintlify
+        url: https://vale.sh/sponsors/mintlify
+      promptless:
+        note: Runs Vale on every doc its agents write
+        name: Promptless
+        url: https://vale.sh/sponsors/promptless
+
+# Backstage housekeeping for the support channel: unanswered questions are
+# surfaced to staff, and answers the room endorsed with a ✅ are nudged
+# toward the FAQ. Members never see either.
+support:
+  channel: support
+  alert_channel: moderator-only
+
+discord:
+  guild_id: "${DISCORD_GUILD_ID}"
+
+  # Channels may be given as names or IDs. Omit any you do not want used.
+  channels:
+    releases: releases
+    project_feed: feed
+
+    # A single message here is edited in place to act as a live dashboard.
+    status: status
+
+# Roles are a map of your own keys to how each is earned. Discord role names
+# are matched case-insensitively; /setup create:true makes any that are
+# missing, positioned below the bot's own role.
+roles:
+  # Awarded automatically once a pull request is merged in any configured
+  # repository. Permanent by default: contribution history does not expire.
+  contributor:
+    name: Contributor
+    color: "#57F287"
+    hoist: true
+    github:
+      merged_pr: true
+      minimum_merged_prs: 1
+
+  # Active recurring support through either platform. Revoked automatically
+  # when the support lapses.
+  supporter:
+    name: Supporter
+    color: "#EB459E"
+    hoist: true
+    github_sponsors: true
+    open_collective: true
+
+  # Maintainer-assigned only. Reconciliation never adds or removes these on
+  # its own; use /recognize and /unrecognize.
+  maintainer:
+    name: Maintainer
+    color: "#5865F2"
+    hoist: true
+    manual: true
+
+  # Awarded automatically to anyone publishing a package listed in the
+  # registry below. Permanent by default, like contribution roles.
+  package_author:
+    name: Package Author
+    color: "#9B59B6"
+    packages: true
+    minimum_packages: 1
+
+  # Major backers — $1000+ in total support through any provider. Totals
+  # across one-time gifts have no automatic criterion, so this is granted by
+  # hand; it also opens the priority support channel, alongside the Pro and
+  # Team roles Polar manages itself.
+  #
+  # The key stays `partner` even though the role is now called Sponsor:
+  # manual grants are recorded against the key, so renaming it would orphan
+  # every existing grant — and reusing `sponsor` would silently adopt any
+  # grant recorded against the role that name used to mean.
+  partner:
+    name: Sponsor
+    color: "#FEE75C"
+    hoist: true
+    manual: true
+
+# Lets maintainers fold a good Discord answer back into the docs FAQ as a
+# pull request. Needs a GITHUB_TOKEN with write access.
+faq:
+  repository: vale.sh
+  path: docs/guides/faq.md
+  allowed_roles:
+    - Maintainer
+  branch_prefix: faq/
+
+onboarding:
+  # Linked from /contribute.
+  contributing_url: https://github.com/vale-cli/vale/blob/v3/.github/CONTRIBUTING.md
+
+  # Tried in order, most welcoming first.
+  good_first_issue_labels:
+    - good first issue
+    - help wanted
+
+  # Greet new members in their own channel, so welcomes and waves do not
+  # interleave with the releases, merged pull requests and packages in the
+  # feed. Requires Server Members Intent in the developer portal.
+  welcome_channel: welcome
+
+# Lets maintainers promote a #showcase post into a pull request adding an
+# entry to the site's adopters list. Needs a GITHUB_TOKEN with write access.
+showcase:
+  repository: vale.sh
+  path: src/lib/data/adopters.json
+  categories:
+    - Cloud & infrastructure
+    - Community & services
+    - Data & observability
+    - Developer tools
+    - Enterprise
+    - Open source
+  allowed_roles:
+    - Maintainer
+  branch_prefix: showcase/
+
+# Publishes the project's events as native Discord scheduled events.
+# Needs the Manage Events permission.
+events:
+  repository: vale.sh
+  path: src/lib/data/events.json
+  default_duration_minutes: 60
+
+# Enables /packages, awards the Package Author role automatically, and
+# announces newly listed packages in the feed.
+packages:
+  repository: packages
+  path: library.json
+  exclude_owners:
+    - vale-cli
+    - errata-ai
+
+# Announces new posts from the project's blog, read through its RSS feed.
+# Each post gets a card in the project feed: the title, the summary and a
+# link, which vale.sh's end-of-post action points readers back to.
+blog:
+  feed_url: https://vale.sh/blog/rss.xml
+
+# Enables /docs through the site's Algolia DocSearch index. These are the
+# same public search-only credentials vale.sh ships in its own JavaScript,
+# so nothing here is secret and no GitBook token is needed.
+algolia:
+  app_id: 2Y8OU39U1X
+  search_key: 0e82d6007f06d9f280629a37bb8a0892
+  index: docsearch_mock
+
+# Announces repositories newly tagged with the topic in the project feed —
+# discovery only, so maintainers can review them for the registry. Topics
+# are self-applied, so nothing here ever drives a role.
+styles:
+  github_topic: vale-linter-style
+
+# The GitBook API is the alternative /docs backend, and wins over Algolia
+# when both are configured. Uncomment once GITBOOK_TOKEN and
+# GITBOOK_SPACE_ID are set — an empty reference is a startup error.
+# gitbook:
+#   space_id: "${GITBOOK_SPACE_ID}"
+#
+#   # The published documentation site — docs.vale.sh, not vale.sh, or the
+#   # result links 404.
+#   site_url: https://docs.vale.sh
+
+escalation:
+  # Turning a Discord message into a GitHub issue is the one thing Mergecord
+  # writes to GitHub, so it needs a GITHUB_TOKEN with issue write access.
+  default_repository: vale
+  allowed_roles:
+    - Maintainer
+  labels:
+    - from-discord
+  link_back: true
+
+feed:
+  # Merged pull requests carrying any of these labels get a post in the
+  # project feed. Opt-in: routine merges should not reach Discord.
+  significant_pr_labels: []
+  #   - breaking-change
+  #   - enhancement
+
+  # Welcome new sponsors in the feed. Private sponsorships are acknowledged
+  # without naming anyone, and amounts are never shown.
+  announce_new_sponsors: true
+
+  # One post a month: first-time contributors by name, and the month's counts.
+  monthly_recap: true
+
+schedule:
+  reconcile: 1h
+  releases: 15m
+  events: 1h
+  blog: 1h
+  dashboard: 15m
+
+privacy:
+  # Sponsorship amounts are never displayed while this is false.
+  public_sponsor_amounts: false
+
+  # The combined recurring monthly total on the dashboard — an aggregate,
+  # matching what vale.sh/sponsor already publishes; never per-sponsor.
+  public_funding_total: true
