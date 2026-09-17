@@ -12,7 +12,7 @@ You can find more thorough documentation at the [official repository](https://gi
 
 Vale doesn’t use Hunspell directly and doesn’t require it to be installed on your system.
 
-Instead, Vale uses a pure-Go package to parse Hunspell-compatible dictionaries and check the spelling of words. This package supports a (growing) subset of Hunspell’s features.
+Instead, Vale uses a pure-Go package to parse Hunspell-compatible dictionaries and check the spelling of words. It is tested against Hunspell’s own test suite and passes nearly all of it: affixes, the compound rules and their checks, Hunspell’s case model, `FORBIDDENWORD`, `NEEDAFFIX`, `KEEPCASE`, `CIRCUMFIX`, `AF`, `SET`, `ICONV`, `IGNORE`, `CHECKSHARPS`, `BREAK`, and `REP`. Suggestions follow Hunspell’s order but do not yet read `MAP`, `KEY`, or `PHONE`. A directive Vale does not implement is read and ignored.
 
 A Hunspell-compatible dictionary consists of two files:
 

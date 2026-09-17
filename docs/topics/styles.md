@@ -268,6 +268,20 @@ level: error
 
 A fragment is validated as the chain's root, so it must carry a `message`, even one no alert will ever show.
 
+## [Linting a style](styles.md#linting-a-style)
+
+{% hint style="info" %}
+Requires Vale v3.22.0 or later.
+{% endhint %}
+
+A style holds rules and vocabularies, not prose, so a run over a directory skips the `StylesPath`. Name a file or directory inside it to lint it anyway:
+
+```bash
+vale styles/MyStyle
+```
+
+A rule file is then linted by its `message` and `description` alone. Its `tokens`, `swap`, `exceptions`, and the rest are patterns, and are never read as prose, so a pattern like `optimi[sz]e` is not reported as two misspellings.
+
 ## [Patterns](styles.md#patterns)
 
 Most rules are patterns. Vale runs them on a [regexp2](https://github.com/jdkato/regexp2) engine in RE2 mode: Go's [regexp/syntax](https://pkg.go.dev/regexp/syntax), plus positive and negative lookahead (`(?=re)`, `(?!re)`) and positive and negative lookbehind (`(?<=re)`, `(?<!re)`). See the [Regex](../guides/regex.md) guide for how the checks wrap a pattern before running it.

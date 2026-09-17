@@ -9,6 +9,7 @@
 * [CLI](topics/cli.md)
 * [Styles](topics/styles.md)
 * [Scopes](topics/scopes.md)
+* [URLs](topics/urls.md)
 * [Actions](topics/actions.md)
 * [Filters](topics/filters.md)
 * [Templates](topics/templates.md)

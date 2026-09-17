@@ -115,7 +115,19 @@ tokens:
   - click here
 ```
 
-The text inside code spans is skipped by default (`IgnoredScopes` defaults to `tt`, `code`, and `kbd`), so a rule has to ask for `code` explicitly. To exclude inline text rather than target it, see [`IgnoredScopes`](../keys/ignoredscopes.md).
+The text inside code spans is skipped by default (`IgnoredScopes` defaults to `tt`, `code`, and `kbd`), so a rule has to ask for `code` explicitly. To exclude inline text from every rule, see [`IgnoredScopes`](../keys/ignoredscopes.md).
+
+To exclude it from one rule, negate the scope. A negated inline scope keeps the rule running on the block around the element, with the element's text left out (Vale v3.22.0 or later):
+
+```yaml
+extends: substitution
+message: "Use '%s' instead of '%s'."
+scope: ~heading & ~link
+swap:
+  github: GitHub
+```
+
+This rule corrects the casing in paragraphs and list items, and leaves headings and link text, which follow title case, alone. See [URLs](urls.md) for more on links.
 
 ### [Metadata](scopes.md#metadata)
 

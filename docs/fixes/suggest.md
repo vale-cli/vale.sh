@@ -17,7 +17,7 @@ action:
     - spellings
 ```
 
-The five closest words to the match, by [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein), from every dictionary the rule loads. A capitalized match gets capitalized suggestions.
+The closest words to the match, up to six, by [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein). The candidates are every dictionary the rule loads, the words in its ignore files, and the terms in the configuration's [vocabularies](../keys/vocabularies.md); a project's own word comes first among candidates it ties with, spelled as the project spells it, so `kubctl` suggests `kubectl` before `cubical`. A capitalized match gets capitalized suggestions.
 
 Ranking a dictionary is real work, so these suggestions are not computed while linting. Lint output leaves the alert's `Suggestions` empty, and an editor asks for them per alert. On a rule that extends `spelling`, a bare `name: suggest` means the same thing.
 

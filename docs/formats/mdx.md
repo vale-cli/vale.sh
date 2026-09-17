@@ -16,7 +16,9 @@ MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions. T
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
 
-Because MDX removed indented code blocks from the grammar, four leading spaces are an ordinary paragraph and its prose is linted.
+MDX removed indented code blocks from the grammar, so indentation is never code. A paragraph, a fence, a heading, or a list indented four or more spaces, the way `<Steps>` and `<Tabs>` children are often written, is read as what it is.
+
+An expression is only a block of its own when it stands alone on its line. Followed by prose, `{/* note */}Some text.`, the line is a paragraph holding an inline expression, and the prose is linted.
 
 ## [JSX children](mdx.md#jsx-children)
 
@@ -40,7 +42,7 @@ IgnoredClasses = RawOutput
 
 The same applies inline: in `<abbr>HTML</abbr> is a language`, the word "HTML" is linted as part of its sentence.
 
-One exception: an element opened *and* closed on a single standalone line (`<Box>inner</Box>` as its own block) is read as code.
+An element opened and closed on one line with text between its tags, `<Tip>This is a tip</Tip>`, is a paragraph holding an inline element, so its text is linted. One without text, `<video src="a.mp4"></video>`, is code.
 
 ## [The MDX package](mdx.md#the-mdx-package)
 
@@ -69,6 +71,8 @@ This text will be ignored.
 
 {/* vale on */}
 ```
+
+A comment works inline as well, `Some {/* vale off */}ignored{/* vale on */} text`.
 
 * Turn off a specific rule:
 

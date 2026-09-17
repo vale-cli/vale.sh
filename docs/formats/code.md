@@ -33,6 +33,8 @@ Vale lints the comments in source code, found with a [tree-sitter](https://tree-
 | Swift      | `.swift`                             | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | TypeScript | `.ts`, `.tsx`                        | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 
+A URL in a comment is skipped, as one in markup is; see [URLs](../topics/urls.md).
+
 ## [Documentation attributes](code.md#documentation-attributes)
 
 {% hint style="info" %}

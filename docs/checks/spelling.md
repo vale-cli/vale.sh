@@ -12,6 +12,7 @@ Learn about the spelling extension point.
 | `dictionaries` | `array`  | An array of dictionaries to load.                                                                  |
 | `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.         |
 | `aff`, `dic`   | `string` | One dictionary as a pair of files, found on the `StylesPath`, used instead of `dictionaries`.       |
+| `split`        | `bool`   | Check the parts of an identifier rather than skipping it or checking it whole.                     |
 
 `spelling` implements spell checking based on Hunspell-compatible dictionaries.
 
@@ -80,6 +81,23 @@ filters:
   - '[pP]y.*\b'
 ```
 
+## [Identifiers](spelling.md#identifiers)
+
+{% hint style="info" %}
+Requires Vale v3.22.0 or later.
+{% endhint %}
+
+An identifier is neither a word nor a typo. Without `split`, the built-in filters skip a `PascalCase` or hyphenated token and check a `camelCase` or `snake_case` one whole, so a typo inside `RecieveMessage` passes and a correct `receiveMessage` is reported. With `split: true`, an identifier is taken apart at an underscore, a hyphen, a digit, and a change of case, and each part is checked and reported at its own position:
+
+```yaml
+extends: spelling
+message: "Did you really mean '%s'?"
+level: error
+split: true
+```
+
+`getHTTPResponse_v2` is `get`, `HTTP`, `Response`, and `v`. A part in all capitals or under three letters is not checked, so `HTTP`, `Id`, and `v2` pass. A plain word is still reported whole, and a whole identifier that is in a dictionary or an ignore file passes without being split.
+
 ## [Ignore files](spelling.md#ignore-files)
 
 Ignore files are plain-text files that list words to be ignored during spell check (one case-insensitive entry per line). For example:
@@ -99,5 +117,7 @@ ignore:
   - ignore1.txt
   - ignore2.txt
 ```
+
+A word from an ignore file is also a candidate when the rule [suggests](../fixes/suggest.md#spellings) a spelling, placed ahead of a dictionary word it ties with.
 
 See [Vocabularies](../keys/vocabularies.md) for information on rule-agnostic terminology lists.

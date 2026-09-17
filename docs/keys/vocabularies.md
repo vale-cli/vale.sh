@@ -62,6 +62,27 @@ Vocab = Blog
 BasedOnStyles = Vale, MyStyle
 ```
 
+## Vocabularies for a section
+
+{% hint style="info" %}
+Requires Vale v3.22.0 or later.
+{% endhint %}
+
+A section can name a vocabulary of its own, for the files it matches:
+
+```ini
+StylesPath = styles
+Vocab = Product
+
+[*]
+BasedOnStyles = Vale
+
+[api/*.md]
+Vocab = API
+```
+
+Under `api/`, the accepted terms of `API` are added to those of `Product`; elsewhere only `Product` applies. Several matching sections add up. A section's vocabulary gets rules of its own, `Vale.API.Terms` and `Vale.API.Avoid`, which run only on that section's files and can be switched off by name like any other rule.
+
 ## File format
 
 Both `accept.txt` and `reject.txt` are plain-text files that take one entry per line:
@@ -72,9 +93,11 @@ first
 third
 ```
 
-The entries are evaluated as case-sensitive (except for rules extending `spelling`, as mentioned above) regular expressions.
+The entries are evaluated as case-sensitive (except for rules extending `spelling`, as mentioned above) regular expressions, with two allowances for how terms are written. A period is text, not a wildcard, unless the entry uses some other regular-expression construct, so `Node.js` accepts `Node.js` and nothing else. And the space in a phrase matches a line break as well, so `mea culpa` is found where a paragraph wraps between the two words.
 
 A line beginning with `#` and a space is a comment and is ignored; `#tag` on its own is an entry.
+
+An alert from `Vale.Terms` offers the entry's spelling as a [fix](../topics/actions.md) when it is plain text, and the terms are candidates when a `spelling` rule [suggests](../fixes/suggest.md#spellings) a correction, ahead of the dictionary's own words.
 
 ## Case sensitivity
 

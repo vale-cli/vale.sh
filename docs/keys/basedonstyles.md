@@ -80,6 +80,36 @@ A rule can also be enabled on its own, without its style being listed at all:
 Style1.Rule = YES
 ```
 
+## [Starting over](basedonstyles.md#starting-over)
+
+{% hint style="info" %}
+Requires Vale v3.22.0 or later.
+{% endhint %}
+
+An empty `BasedOnStyles` clears everything a file inherited from earlier sections, the rule settings as well as the styles, so the section starts from nothing:
+
+```ini
+[*]
+BasedOnStyles = write-good
+write-good.Weasel = warning
+
+[*.py]
+# No styles, and no inherited Weasel setting either.
+BasedOnStyles =
+```
+
+A rule named in that section still runs. To drop one inherited setting rather than all of them, set it to `UNSET`: the rule follows `BasedOnStyles` again, as if the earlier line had not been written.
+
+```ini
+[*]
+write-good.Weasel = YES
+
+[*.py]
+write-good.Weasel = UNSET
+```
+
+`UNSET` works on a style name too, `write-good = UNSET`, and leaves the settings of individual rules in place.
+
 ## [Severity](basedonstyles.md#severity)
 
 The same syntax sets a rule's level, which overrides whatever the rule file declares:
