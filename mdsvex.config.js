@@ -241,20 +241,24 @@ const mdsvexOptions = {
 	],
 	highlight: {
 		highlighter: async (code, lang = 'text') => {
+			// A backslash in code would be read as an escape in the template
+			// literal below, so emit it as an entity.
 			const html = escapeSvelte(
-				highlighter.codeToHtml(code, {
-					lang,
-					themes: {
-						light: 'vale-light',
-						dark: 'vale-dark'
-					},
-					transformers: [
-						transformerMeta(),
-						transformerLineNumbers(),
-						transformerCreateCodeBlockHeader(),
-						transformerCopyButton()
-					]
-				})
+				highlighter
+					.codeToHtml(code, {
+						lang,
+						themes: {
+							light: 'vale-light',
+							dark: 'vale-dark'
+						},
+						transformers: [
+							transformerMeta(),
+							transformerLineNumbers(),
+							transformerCreateCodeBlockHeader(),
+							transformerCopyButton()
+						]
+					})
+					.replace(/\\/g, '&#92;')
 			);
 			return `{@html \`${html}\` }`;
 		}
