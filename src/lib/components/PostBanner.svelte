@@ -25,6 +25,7 @@
 		// 'tree': a library of rules as a directory tree.
 		// 'savings': cumulative token cost, resident lines against the rules band.
 		// 'commit': a commit message read as subject, body, and trailers.
+		// 'manuscript': a paper's headings as the sections a rule is scoped to.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -153,6 +154,22 @@
 		{ text: 'Signed-off-by: Jane Doe <jane@example.com>', part: 'named' }
 	];
 
+	// The 'manuscript' motif: a paper as the section rules read it. Real
+	// text, because the headings are the point: each opens a section a rule
+	// can be scoped to, and two alerts sit where a checklist item is missing
+	// and a unit lacks its space.
+	type ManuscriptLine = { text: string; part?: 'heading' | 'prose'; alert?: string };
+
+	const manuscriptLines: ManuscriptLine[] = [
+		{ text: '# A randomized trial of zetaprol in adults', part: 'heading' },
+		{ text: '## Abstract', part: 'heading' },
+		{ text: 'Blood pressure fell 12mmHg (p = 0.002).', part: 'prose', alert: '5:21' },
+		{ text: '## Methods', part: 'heading', alert: '7:4' },
+		{ text: 'Adults aged 18–65 years were eligible.', part: 'prose' },
+		{ text: '## Results', part: 'heading' },
+		{ text: 'We analyzed 60 participants per group.', part: 'prose' }
+	];
+
 	// The 'savings' motif: line endpoints as percentages of the tallest line,
 	// from the measured per-request costs (skill 3,777 / briefs 1,535 / a
 	// full alert report 735). Lines scale to the box; labels stay HTML.
@@ -180,7 +197,9 @@
 				? 'tree Std'
 				: motif === 'commit'
 					? 'vale --path=COMMIT_EDITMSG'
-					: `vale ${seed}.md`
+					: motif === 'manuscript'
+						? 'vale trial.md'
+						: `vale ${seed}.md`
 	);
 </script>
 
@@ -241,6 +260,26 @@
 								class={line.part === 'named'
 									? 'text-lime-600 dark:text-lime-400'
 									: 'text-muted-foreground'}>{line.text || ' '}</span
+							>
+							{#if line.alert}
+								<span class="ml-auto flex shrink-0 items-center gap-1.5 pl-3">
+									<span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+									<span class="text-rose-400">{line.alert}</span>
+								</span>
+							{/if}
+						</div>
+					{/each}
+				</div>
+			{:else if motif === 'manuscript'}
+				<div
+					class="flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-2 font-mono text-[10px] leading-[1.6] sm:text-[11px]"
+				>
+					{#each manuscriptLines as line, i (i)}
+						<div class="flex items-center whitespace-pre">
+							<span
+								class={line.part === 'heading'
+									? 'font-medium text-lime-600 dark:text-lime-400'
+									: 'text-muted-foreground'}>{line.text}</span
 							>
 							{#if line.alert}
 								<span class="ml-auto flex shrink-0 items-center gap-1.5 pl-3">

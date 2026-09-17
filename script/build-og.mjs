@@ -163,6 +163,32 @@ function commit() {
 	return out;
 }
 
+function manuscript() {
+	// A paper as the section rules read it: headings lit as the sections a
+	// rule is scoped to, prose muted, one alert on a unit and one on a
+	// heading whose section lacks a checklist item. Mirrors PostBanner.
+	const lines = [
+		['# A randomized trial of zetaprol in adults', 'heading', ''],
+		['## Abstract', 'heading', ''],
+		['Blood pressure fell 12mmHg (p = 0.002).', 'prose', '5:21'],
+		['## Methods', 'heading', '7:4'],
+		['Adults aged 18–65 years were eligible.', 'prose', ''],
+		['## Results', 'heading', ''],
+		['We analyzed 60 participants per group.', 'prose', '']
+	];
+	const rowH = PANE.h / lines.length;
+	let out = '';
+	lines.forEach(([text, part, alert], i) => {
+		const y = PANE.y + i * rowH + rowH / 2 + 8;
+		out += `<text x="${PANE.x}" y="${y}" font-family="${MONO}" font-size="22" fill="${part === 'heading' ? C.lime : C.muted}" xml:space="preserve">${esc(text)}</text>`;
+		if (alert) {
+			out += `<circle cx="${PANE.x + PANE.w - 82}" cy="${y - 7}" r="7" fill="${C.rose}"/>`;
+			out += `<text x="${PANE.x + PANE.w}" y="${y}" text-anchor="end" font-family="${MONO}" font-size="22" fill="${C.rose}">${alert}</text>`;
+		}
+	});
+	return out;
+}
+
 function sketch(seed) {
 	const rand = mulberry32(hash(seed));
 	const LINES = 6;
@@ -244,7 +270,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 				? 'tree Std'
 				: meta.motif === 'commit'
 					? 'vale --path=COMMIT_EDITMSG'
-					: `vale ${slug}.md`;
+					: meta.motif === 'manuscript'
+						? 'vale trial.md'
+						: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -256,7 +284,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 						? tree()
 						: meta.motif === 'commit'
 							? commit()
-							: sketch(slug);
+							: meta.motif === 'manuscript'
+								? manuscript()
+								: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines
