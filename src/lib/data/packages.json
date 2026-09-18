@@ -12,7 +12,7 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 554,
+    "downloads": 895,
     "version": "v1.0.0",
     "released": "2026-08-25",
     "rules": [
@@ -169,9 +169,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 176867,
-    "version": "v677",
-    "released": "2026-08-26",
+    "downloads": 178681,
+    "version": "v678",
+    "released": "2026-09-10",
     "rules": [
       {
         "name": "ClosedAttributeBlocks",
@@ -302,7 +302,7 @@
     "site": "jhradilek/asciidoctor-dita-vale",
     "repo": "jhradilek/asciidoctor-dita-vale",
     "stars": 7,
-    "downloads": 70156,
+    "downloads": 72248,
     "version": "v1.1.14",
     "released": "2026-09-07",
     "rules": [
@@ -675,8 +675,8 @@
     "site": "jdkato/commits",
     "repo": "jdkato/commits",
     "stars": 0,
-    "downloads": 0,
-    "version": "v0.1.0",
+    "downloads": 157,
+    "version": "v0.2.0",
     "released": "2026-09-10",
     "rules": [
       {
@@ -1508,7 +1508,7 @@
     "site": "elastic/vale-rules",
     "repo": "elastic/vale-rules",
     "stars": 11,
-    "downloads": 39303,
+    "downloads": 40888,
     "version": "v1.7.1",
     "released": "2026-08-18",
     "rules": [
@@ -1798,6 +1798,411 @@
     "valeVersion": ""
   },
   {
+    "name": "Fiction",
+    "description": "Fiction: filter words, told emotions, stock phrases, and dialogue punctuation, with the rules of Elmore Leonard, Chuck Palahniuk, and Strunk's 1918 Elements of Style.",
+    "homepage": "https://github.com/jdkato/fiction",
+    "url": "https://github.com/jdkato/fiction/releases/latest/download/Fiction.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/fiction",
+    "repo": "jdkato/fiction",
+    "stars": 0,
+    "downloads": 4,
+    "version": "v0.1.0",
+    "released": "2026-09-18",
+    "rules": [
+      {
+        "name": "ActiveVoice",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Substitute a verb in the active voice for '%s' (Rule 10).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "ActiveVoice",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Substitute a verb in the active voice for '%s' (Rule 10).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Adverb",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Drop the adverb on the tag: '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Adverb",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Drop the adverb on the tag: '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "BeganTo",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Cut '%s' and let the action happen.",
+        "link": ""
+      },
+      {
+        "name": "BeganTo",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Cut '%s' and let the action happen.",
+        "link": ""
+      },
+      {
+        "name": "Cliches",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Stock phrase: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Cliches",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Stock phrase: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Dialect",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "summary",
+        "message": "%d phonetic spellings. Use dialect sparingly.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Dialect",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "summary",
+        "message": "%d phonetic spellings. Use dialect sparingly.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "DialoguePunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Move the %s inside the closing quotation mark.",
+        "link": ""
+      },
+      {
+        "name": "DialoguePunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Move the %s inside the closing quotation mark.",
+        "link": ""
+      },
+      {
+        "name": "Exclamations",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "summary",
+        "message": "%d exclamation points. Leonard allows two or three per 100,000 words.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Exclamations",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "summary",
+        "message": "%d exclamation points. Leonard allows two or three per 100,000 words.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "FactThat",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Revise '%s' out of the sentence (Rule 13).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "FactThat",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Revise '%s' out of the sentence (Rule 13).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "FilterWords",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Filter word '%s': cut it and show the thing itself.",
+        "link": ""
+      },
+      {
+        "name": "FilterWords",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Filter word '%s': cut it and show the thing itself.",
+        "link": ""
+      },
+      {
+        "name": "Hackneyed",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "%s: '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Hackneyed",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "%s: '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "However",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'However' meaning nevertheless should not come first in its sentence (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "However",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'However' meaning nevertheless should not come first in its sentence (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Intensifiers",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Intensifier '%s': find the stronger word instead.",
+        "link": ""
+      },
+      {
+        "name": "Intensifiers",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Intensifier '%s': find the stronger word instead.",
+        "link": ""
+      },
+      {
+        "name": "LikeAs",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'as' before a clause, not '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "LikeAs",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use 'as' before a clause, not '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Misused",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' for '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Misused",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use '%s' for '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Needless",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Omit needless words: '%s' for '%s' (Rule 13).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Needless",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Omit needless words: '%s' for '%s' (Rule 13).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Positive",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Put it in positive form: '%s' for '%s' (Rule 11).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Positive",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Put it in positive form: '%s' for '%s' (Rule 11).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Prologue",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Avoid a prologue: it's backstory, and you can drop it in anywhere.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Prologue",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Avoid a prologue: it's backstory, and you can drop it in anywhere.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Said",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'said' to carry dialogue, not '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Said",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'said' to carry dialogue, not '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "SplitInfinitive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Split infinitive: '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "SplitInfinitive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Split infinitive: '%s' (Chapter V).",
+        "link": "https://www.gutenberg.org/ebooks/37134"
+      },
+      {
+        "name": "Suddenly",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Never use '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Suddenly",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Never use '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "TagCase",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Lowercase the tag: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "TagCase",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Lowercase the tag: '%s'.",
+        "link": ""
+      },
+      {
+        "name": "TellingEmotion",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Telling: '%s'. Show it in what the character does.",
+        "link": ""
+      },
+      {
+        "name": "TellingEmotion",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Telling: '%s'. Show it in what the character does.",
+        "link": ""
+      },
+      {
+        "name": "ThoughtVerbs",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Unpack the thought verb '%s': show what the character does instead.",
+        "link": "https://litreactor.com/essays/chuck-palahniuk/nuts-and-bolts-“thought”-verbs"
+      },
+      {
+        "name": "ThoughtVerbs",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Unpack the thought verb '%s': show what the character does instead.",
+        "link": "https://litreactor.com/essays/chuck-palahniuk/nuts-and-bolts-“thought”-verbs"
+      },
+      {
+        "name": "Weather",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text & doc(h1 + p)",
+        "message": "Never open a book with weather: '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      },
+      {
+        "name": "Weather",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text & doc(h1 + p)",
+        "message": "Never open a book with weather: '%s'.",
+        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.22.0"
+  },
+  {
     "name": "Google",
     "description": "A Vale-compatible implementation of the Google Developer Documentation Style Guide.",
     "homepage": "https://github.com/vale-cli/Google",
@@ -1810,7 +2215,7 @@
     "site": "vale-cli/Google",
     "repo": "vale-cli/Google",
     "stars": 90,
-    "downloads": 1561366,
+    "downloads": 1605913,
     "version": "v0.7.1",
     "released": "2026-08-04",
     "rules": [
@@ -2120,7 +2525,7 @@
     "site": "vale-cli/Harper",
     "repo": "vale-cli/Harper",
     "stars": 1,
-    "downloads": 748,
+    "downloads": 1423,
     "version": "v0.1.0",
     "released": "2026-08-05",
     "rules": [
@@ -6522,7 +6927,7 @@
     "site": "vale-cli/Hugo",
     "repo": "vale-cli/Hugo",
     "stars": 7,
-    "downloads": 121462,
+    "downloads": 124876,
     "version": "v0.4.0",
     "released": "2026-08-28",
     "rules": [],
@@ -6542,7 +6947,7 @@
     "site": "vale-cli/Joblint",
     "repo": "vale-cli/Joblint",
     "stars": 14,
-    "downloads": 129640,
+    "downloads": 131115,
     "version": "v0.4.1",
     "released": "2021-04-07",
     "rules": [
@@ -6698,6 +7103,10 @@
     "host": "github",
     "site": "jdkato/journals",
     "repo": "jdkato/journals",
+    "stars": 0,
+    "downloads": 33,
+    "version": "v0.1.0",
+    "released": "2026-09-17",
     "rules": [
       {
         "name": "Abbreviations",
@@ -8667,7 +9076,7 @@
     "site": "vale-cli/MDX",
     "repo": "vale-cli/MDX",
     "stars": 3,
-    "downloads": 117667,
+    "downloads": 123952,
     "version": "v0.3.0",
     "released": "2026-07-31",
     "rules": [],
@@ -8686,8 +9095,8 @@
     "host": "github",
     "site": "vale-cli/Microsoft",
     "repo": "vale-cli/Microsoft",
-    "stars": 111,
-    "downloads": 768992,
+    "stars": 112,
+    "downloads": 796807,
     "version": "v0.15.1",
     "released": "2026-08-04",
     "rules": [
@@ -9084,9 +9493,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 104568,
-    "version": "v677",
-    "released": "2026-08-26",
+    "downloads": 105306,
+    "version": "v678",
+    "released": "2026-09-10",
     "rules": [
       {
         "name": "AdditionalResourcesHeadingHasRoleID",
@@ -9233,7 +9642,7 @@
     "site": "vale-cli/Readability",
     "repo": "vale-cli/Readability",
     "stars": 29,
-    "downloads": 220824,
+    "downloads": 226000,
     "version": "v0.1.1",
     "released": "2022-10-31",
     "rules": [
@@ -9310,9 +9719,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 325008,
-    "version": "v677",
-    "released": "2026-08-26",
+    "downloads": 328542,
+    "version": "v678",
+    "released": "2026-09-10",
     "rules": [
       {
         "name": "Abbreviations",
@@ -9627,7 +10036,7 @@
     "site": "sfadriaan/Salesforce",
     "repo": "sfadriaan/Salesforce",
     "stars": 1,
-    "downloads": 265,
+    "downloads": 331,
     "version": "v0.1.0",
     "released": "2026-07-30",
     "rules": [
@@ -9872,7 +10281,7 @@
     "site": "vale-cli/Std",
     "repo": "vale-cli/Std",
     "stars": 2,
-    "downloads": 398,
+    "downloads": 1258,
     "version": "v0.2.0",
     "released": "2026-09-08",
     "rules": [

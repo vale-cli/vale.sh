@@ -15,12 +15,15 @@
 		options,
 		selected = $bindable([]),
 		single = false,
-		sampleSize
+		sampleSize,
+		showAdoption = true
 	}: {
 		options: Option[];
 		selected: string[];
 		single?: boolean;
 		sampleSize: number;
+		/** Off when the counts, which come from documentation repos, say nothing about the audience. */
+		showAdoption?: boolean;
 	} = $props();
 
 	function toggle(value: string) {
@@ -64,7 +67,9 @@
 						/>
 					{/if}
 					<span class="text-sm font-medium">{item.label}</span>
-					<span class="font-mono text-[11px] text-muted-foreground">{item.ruleCount} rules</span>
+					{#if item.ruleCount > 0}
+						<span class="font-mono text-[11px] text-muted-foreground">{item.ruleCount} rules</span>
+					{/if}
 				</label>
 				<p class="text-xs leading-relaxed text-muted-foreground">{item.description}</p>
 
@@ -81,7 +86,7 @@
 					{#if item.levels.suggestion}<span class="text-sky-500"
 							>{item.levels.suggestion} suggestion</span
 						>{/if}
-					{#if item.adoption > 0}
+					{#if showAdoption && item.adoption > 0}
 						<span class="text-muted-foreground">· used by {item.adoption} of {sampleSize}</span>
 					{/if}
 				</p>

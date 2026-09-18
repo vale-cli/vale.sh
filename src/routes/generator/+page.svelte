@@ -14,11 +14,12 @@
 	import MultiSelect, { type Choice } from './MultiSelect.svelte';
 	import StylePicker from './StylePicker.svelte';
 	import {
-		supplementaryStyles,
-		baseStyles,
+		presets,
+		optionByValue,
 		alertLevels,
 		sampleSize,
 		adopterCount,
+		type Audience,
 		type Level
 	} from './config.js';
 	import { formats, groups, readAs, byId, type Requirement } from './formats.js';
@@ -28,10 +29,23 @@
 	import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
 	import Plus from 'lucide-svelte/icons/plus';
 	import X from 'lucide-svelte/icons/x';
+	import FileCode from 'lucide-svelte/icons/file-code';
+	import Feather from 'lucide-svelte/icons/feather';
+	import FlaskConical from 'lucide-svelte/icons/flask-conical';
+
+	// What kind of writing the config is for. It decides which formats start
+	// selected and which styles are offered; everything below it is shared.
+	const icons: Record<Audience, typeof FileCode> = {
+		technical: FileCode,
+		creative: Feather,
+		scientific: FlaskConical
+	};
+	let audience = $state<Audience>('technical');
+	const preset = $derived(presets.find((p) => p.id === audience) ?? presets[0]);
 
 	// Markdown by default because 46 of the 55 sampled configs lint it, and a
 	// config that matches nothing is the one outcome with no visible symptom.
-	let selectedFormats = $state<string[]>(['md']);
+	let selectedFormats = $state<string[]>([...presets[0].formats]);
 	let selectedExtras = $state<string[]>([]);
 	let mappings = $state<{ ext: string; as: string }[]>([]);
 	let newExt = $state('');
@@ -44,6 +58,25 @@
 	const baseStyle = $derived(basePick[0] ?? '');
 	let extraStyles = $state<string[]>([]);
 	let alertLevel = $state<Level>('suggestion');
+
+	/** Switch audiences: the formats and styles start over, the rest stays. */
+	function setAudience(id: Audience) {
+		if (id === audience) return;
+		audience = id;
+		selectedFormats = [...preset.formats];
+		selectedExtras = [];
+		basePick = [];
+		extraStyles = [];
+	}
+	// A link can open the generator on its audience: /generator?for=creative.
+	$effect(() => {
+		try {
+			const want = new URLSearchParams(location.search).get('for');
+			if (presets.some((p) => p.id === want)) setAudience(want as Audience);
+		} catch {
+			// No location to read: leave the default.
+		}
+	});
 
 	// One control per kind of file, each with its own list and chips.
 	const formatChoices = (group: string): Choice[] =>
@@ -72,8 +105,8 @@
 			mappings.length > 0 ||
 			commentMarkup !== '' ||
 			alertLevel !== 'suggestion' ||
-			selectedFormats.length !== 1 ||
-			selectedFormats[0] !== 'md'
+			selectedFormats.length !== preset.formats.length ||
+			selectedFormats.some((f) => !preset.formats.includes(f))
 	);
 
 	function toggleFormat(id: string) {
@@ -100,7 +133,7 @@
 		newExt = '';
 	}
 	function reset() {
-		selectedFormats = ['md'];
+		selectedFormats = [...preset.formats];
 		selectedExtras = [];
 		mappings = [];
 		commentMarkup = '';
@@ -147,7 +180,11 @@
 	const files = $derived.by((): OutFile[] => {
 		const picked = [...(baseStyle ? [baseStyle] : []), ...extraStyles];
 		const styles = ['Vale', ...picked];
-		const pkgs = [...picked, ...selectedExtras];
+		// A style inside a package -- IMRaD in Journals -- is enabled by name
+		// and installed by its package, once.
+		const pkgs = [
+			...new Set([...picked.map((v) => optionByValue.get(v)?.package ?? v), ...selectedExtras])
+		];
 
 		const lines = ['StylesPath = styles', '', `MinAlertLevel = ${alertLevel}`, ''];
 		if (pkgs.length) lines.push(`Packages = ${pkgs.join(', ')}`, '');
@@ -278,7 +315,7 @@
 
 <MetaTags
 	title="Config Generator"
-	description="Pick what you write, and get a ready-to-use Vale configuration for it."
+	description="Pick what you write, technical, creative, or scientific, and get a ready-to-use Vale configuration for it."
 	canonical="https://vale.sh"
 	openGraph={{
 		url: 'https://vale.sh',
@@ -316,12 +353,40 @@
 			Build your <code class="font-mono">.vale.ini</code>
 		</h1>
 		<p class="text-sm text-muted-foreground">
-			Pick what you write, then the styles to hold it to. Counts are from
-			<a href="/adopters" class="font-medium text-lime-600 hover:underline dark:text-lime-400">
-				{sampleSize} public configs
-			</a>
-			across {adopterCount} projects.
+			Pick what you write, then the styles to hold it to.
+			{#if preset.counted}
+				Counts are from
+				<a href="/adopters" class="font-medium text-lime-600 hover:underline dark:text-lime-400">
+					{sampleSize} public configs
+				</a>
+				across {adopterCount} projects.
+			{:else}
+				{preset.description}
+			{/if}
 		</p>
+	</div>
+
+	<!-- The kind of writing, first: it decides what the rest of the page offers. -->
+	<div class="mt-6 flex flex-wrap gap-2" role="tablist" aria-label="Kind of writing">
+		{#each presets as p (p.id)}
+			{@const Icon = icons[p.id]}
+			{@const on = p.id === audience}
+			<button
+				type="button"
+				role="tab"
+				aria-selected={on}
+				onclick={() => setAudience(p.id)}
+				class={cn(
+					'inline-flex items-center gap-2 rounded-lg border px-3.5 py-2 text-sm font-medium transition-colors',
+					on
+						? 'border-primary bg-accent text-foreground'
+						: 'border-border text-muted-foreground hover:bg-muted/40 hover:text-foreground'
+				)}
+			>
+				<Icon class={cn('size-4', on ? 'text-lime-600 dark:text-lime-400' : 'opacity-70')} />
+				{p.label}
+			</button>
+		{/each}
 	</div>
 
 	<div class="mt-8 grid gap-8 lg:grid-cols-2">
@@ -452,23 +517,29 @@
 				</details>
 			</div>
 
-			<!-- The base style: one published guide, since two disagree. -->
+			<!-- The base style: one complete guide, since two disagree. -->
 			<div class="flex flex-col gap-2">
 				<p class="text-sm font-medium">Base style</p>
-				<p class="text-xs text-muted-foreground">
-					A published guide to build on. Vale's own rules run either way; pick none to keep only
-					those.
-				</p>
-				<StylePicker options={baseStyles} bind:selected={basePick} single {sampleSize} />
+				<p class="text-xs text-muted-foreground">{preset.baseBlurb}</p>
+				<StylePicker
+					options={preset.base}
+					bind:selected={basePick}
+					single
+					{sampleSize}
+					showAdoption={preset.counted}
+				/>
 			</div>
 
 			<!-- Smaller styles that stack on the base. -->
 			<div class="flex flex-col gap-2">
 				<p class="text-sm font-medium">Supplementary styles</p>
-				<p class="text-xs text-muted-foreground">
-					Single-purpose checks that sit on top of any base. Add as many as you like.
-				</p>
-				<StylePicker options={supplementaryStyles} bind:selected={extraStyles} {sampleSize} />
+				<p class="text-xs text-muted-foreground">{preset.supplementaryBlurb}</p>
+				<StylePicker
+					options={preset.supplementary}
+					bind:selected={extraStyles}
+					{sampleSize}
+					showAdoption={preset.counted}
+				/>
 			</div>
 
 			<!-- The lowest severity reported. -->

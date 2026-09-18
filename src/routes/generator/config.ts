@@ -15,8 +15,10 @@ import stats from '$lib/data/config-stats.json';
 export type Level = 'error' | 'warning' | 'suggestion';
 
 export type Option = {
-	/** The name Vale installs the package under, and the `Packages` entry. */
+	/** The name that goes in `BasedOnStyles`. */
 	value: string;
+	/** The `Packages` entry that carries it: the value itself, or a parent. */
+	package: string;
 	label: string;
 	description: string;
 	/** Rules in the package, and how many fire at each level. */
@@ -52,9 +54,11 @@ const pairs = stats.pairedWith as Record<string, Record<string, number>>;
 export const sampleSize = stats.sampleSize;
 export const adopterCount = stats.adopterCount;
 
-function build(value: string, fallback: string): Option {
-	const pkg = byName.get(value.toLowerCase());
-	const rules = pkg?.rules ?? [];
+function build(value: string, fallback: string, parent?: string): Option {
+	const pkg = byName.get((parent ?? value).toLowerCase());
+	// A style inside a package has no count of its own: the rule entries do
+	// not say which style they belong to.
+	const rules = parent ? [] : (pkg?.rules ?? []);
 
 	const levels: Record<Level, number> = { error: 0, warning: 0, suggestion: 0 };
 	for (const rule of rules) {
@@ -64,6 +68,7 @@ function build(value: string, fallback: string): Option {
 
 	return {
 		value,
+		package: parent ?? value,
 		label: value,
 		description: fallback,
 		ruleCount: rules.length,
@@ -116,6 +121,141 @@ export const supplementaryStyles: Option[] = [
 	build('neighbor', 'Exclusionary language, and the inclusive terms to use instead.'),
 	build('Joblint', 'Biased or exclusionary language in job posts.')
 ].sort(byAdoption);
+
+/**
+ * A complete style for a manuscript. One per audience; the styles inside
+ * each package are the supplementary picks for it.
+ */
+const fiction = build(
+	'Fiction',
+	'Filter words, told emotions, stock phrases, and dialogue punctuation: the checks most fiction editors agree on.'
+);
+const journals = build(
+	'Journals',
+	'The conventions every journal shares: units, numbers, statistics, figure references, and citations.'
+);
+
+const inFiction = (value: string, description: string) => build(value, description, 'Fiction');
+const inJournals = (value: string, description: string) => build(value, description, 'Journals');
+
+const harper = build(
+	'Harper',
+	'Grammar: agreement, articles, and the slips a spell checker misses.'
+);
+const aiTells = build(
+	'AiTells',
+	'The tells of AI-written prose: em-dash habits, epigrams, abstract-noun triads, and clichés.'
+);
+const readability = supplementaryStyles.find((o) => o.value === 'Readability')!;
+const proselint = supplementaryStyles.find((o) => o.value === 'proselint')!;
+const writeGood = supplementaryStyles.find((o) => o.value === 'write-good')!;
+const alexStyle = supplementaryStyles.find((o) => o.value === 'alex')!;
+
+export type Audience = 'technical' | 'creative' | 'scientific';
+
+export type Preset = {
+	id: Audience;
+	label: string;
+	/** One line under the title, in place of the adoption note. */
+	description: string;
+	/** The formats selected when the audience is picked. */
+	formats: string[];
+	base: Option[];
+	supplementary: Option[];
+	baseBlurb: string;
+	supplementaryBlurb: string;
+	/** Adoption counts come from documentation repos, so only that audience shows them. */
+	counted: boolean;
+};
+
+/**
+ * What kind of writing the config is for. Each preset answers the question
+ * the generator exists for -- which of these should I pick? -- with the
+ * styles written for that kind, and nothing from the others.
+ */
+export const presets: Preset[] = [
+	{
+		id: 'technical',
+		label: 'Technical',
+		description: 'Documentation, READMEs, and the comments in code.',
+		formats: ['md'],
+		base: baseStyles,
+		supplementary: supplementaryStyles,
+		baseBlurb:
+			'A published guide to build on. Vale’s own rules run either way; pick none to keep only those.',
+		supplementaryBlurb:
+			'Single-purpose checks that sit on top of any base. Add as many as you like.',
+		counted: true
+	},
+	{
+		id: 'creative',
+		label: 'Creative',
+		description: 'Fiction, essays, and anything with dialogue in it.',
+		formats: ['md', 'txt'],
+		base: [fiction],
+		supplementary: [
+			inFiction(
+				'Leonard',
+				'Elmore Leonard’s ten rules: no weather in the opening, only “said”, no adverb on a tag, exclamation points capped.'
+			),
+			inFiction(
+				'Palahniuk',
+				'Chuck Palahniuk’s thought verbs: thinks, knows, realizes, wants, remembers, loves, hates.'
+			),
+			inFiction(
+				'Strunk',
+				'Strunk’s 1918 Elements of Style: the active voice, positive form, needless words, and the misused words of Chapter V.'
+			),
+			proselint,
+			writeGood,
+			harper,
+			aiTells,
+			readability,
+			alexStyle
+		],
+		baseBlurb: 'The core every fiction editor shares. Vale’s own rules run either way.',
+		supplementaryBlurb:
+			'A writer’s own rules, and general checks that sit on top. Add as many as you like.',
+		counted: false
+	},
+	{
+		id: 'scientific',
+		label: 'Scientific',
+		description:
+			'Papers, preprints, and theses, in Markdown, Quarto, R Markdown, Typst, or a notebook.',
+		formats: ['md', 'qmd'],
+		base: [journals],
+		supplementary: [
+			inJournals(
+				'IMRaD',
+				'The standard sections exist, the abstract is within budget and has no citations, and the Discussion mentions limitations.'
+			),
+			inJournals(
+				'Nature',
+				'Nature’s formatting guide: title and summary limits, superscript citations, Fig. 1, 37 °C.'
+			),
+			inJournals(
+				'PLOS',
+				'PLOS ONE’s submission guidelines: [1] citations, Fig 1, exact p-values, Vancouver references, a named ethics committee.'
+			),
+			inJournals('CONSORT', 'Randomized trials: 19 of the checklist’s 30 items.'),
+			inJournals('STROBE', 'Observational studies: 14 of the checklist’s 22 items.'),
+			inJournals('PRISMA', 'Systematic reviews: 21 of the checklist’s 27 items.'),
+			readability,
+			harper,
+			aiTells
+		],
+		baseBlurb: 'The conventions every journal shares. Vale’s own rules run either way.',
+		supplementaryBlurb:
+			'A structure, a journal, or a reporting checklist, and general checks. Add as many as you like.',
+		counted: false
+	}
+];
+
+/** Every option the presets offer, by the name that goes in the config. */
+export const optionByValue = new Map(
+	presets.flatMap((p) => [...p.base, ...p.supplementary]).map((o) => [o.value, o])
+);
 
 /** Markup support rather than prose rules: no rules of their own. */
 export const configs: Option[] = [
