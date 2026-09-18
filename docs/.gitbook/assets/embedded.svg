@@ -30,11 +30,11 @@
   <text class="step" x="24" y="58">1 · Source</text>
   <rect class="card" x="24" y="68" width="216" height="118" rx="7"/>
   <text class="mono" x="38" y="90"><tspan class="dim">/**</tspan></text>
-  <text class="mono" x="38" y="108"><tspan class="dim"> *</tspan> Reads the record.</text>
-  <text class="mono" x="38" y="126"><tspan class="dim"> *</tspan></text>
-  <text class="mono" x="38" y="144"><tspan class="dim"> * ```</tspan></text>
-  <text class="mono" x="38" y="162"><tspan class="dim"> * </tspan>format(x);</text>
-  <text class="mono" x="38" y="180"><tspan class="dim"> * ```</tspan></text>
+  <text class="mono" xml:space="preserve" x="38" y="108"><tspan class="dim"> *</tspan> Reads the record.</text>
+  <text class="mono" xml:space="preserve" x="38" y="126"><tspan class="dim"> *</tspan></text>
+  <text class="mono" xml:space="preserve" x="38" y="144"><tspan class="dim"> * ```</tspan></text>
+  <text class="mono" xml:space="preserve" x="38" y="162"><tspan class="dim"> * </tspan>format(x);</text>
+  <text class="mono" xml:space="preserve" x="38" y="180"><tspan class="dim"> * ```</tspan></text>
   <text class="note" x="24" y="208">tree-sitter finds the comment</text>
 
   <path class="flow" d="M248 124 h32"/>
@@ -66,6 +66,6 @@
   <polygon class="cap" points="108,284 102,272 114,272"/>
   <text class="step" x="24" y="252">4 · Mapped back</text>
   <rect class="card" x="24" y="290" width="752" height="52" rx="7"/>
-  <text class="mono" x="40" y="314">example.js:2:12  Vale.Spelling  Did you really mean 'recrod'?</text>
+  <text class="mono" xml:space="preserve" x="40" y="314">example.js:2:12  Vale.Spelling  Did you really mean 'recrod'?</text>
   <text class="note" x="40" y="334">Every alert is reported at its line and column in the source file, not in the extracted comment.</text>
 </svg>

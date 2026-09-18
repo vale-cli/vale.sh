@@ -12,11 +12,11 @@
 <circle class="dot" cx="46" cy="20" r="5.5" fill="#fbbf24"/>
 <circle class="dot" cx="66" cy="20" r="5.5" fill="#a3c585"/>
 <text class="title" x="400.0" y="24">~/Documents/docs</text>
-<text class="t" y="58"><tspan x="20.0" fill="#a3c585">❯ </tspan><tspan x="35.6" fill="#fafaf9">vale </tspan><tspan x="74.6" fill="#93c5fd">README.md</tspan></text>
-<text class="t" y="102"><tspan x="27.8" fill="#fafaf9">README.md</tspan></text>
-<text class="t" y="124"><tspan x="20.0" fill="#8a827c"> 3:17</tspan><tspan x="74.6" fill="#fbbf24">warning</tspan><tspan x="144.8" fill="#d6d3d1">'very' is a weasel word!</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">write-good.Weasel</tspan></text>
-<text class="t" y="146"><tspan x="20.0" fill="#8a827c"> 3:37</tspan><tspan x="74.6" fill="#fbbf24">warning</tspan><tspan x="144.8" fill="#d6d3d1">'were fixed' may be passive voice. Use active</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">write-good.Passive</tspan></text>
-<text class="t" y="168"><tspan x="144.8" fill="#d6d3d1">voice if you can.</tspan></text>
-<text class="t" y="190"><tspan x="20.0" fill="#8a827c"> 6:23</tspan><tspan x="74.6" fill="#f87171">error</tspan><tspan x="144.8" fill="#d6d3d1">Did you really mean 'detials'?</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">Vale.Spelling</tspan></text>
-<text class="t" y="234"><tspan x="20.0" fill="#f87171">✖ </tspan><tspan x="35.6" fill="#d6d3d1">1 error, 2 warnings and 0 suggestions in 1 file.</tspan></text>
+<text class="t" xml:space="preserve" y="58"><tspan x="20.0" fill="#a3c585">❯ </tspan><tspan x="35.6" fill="#fafaf9">vale </tspan><tspan x="74.6" fill="#93c5fd">README.md</tspan></text>
+<text class="t" xml:space="preserve" y="102"><tspan x="27.8" fill="#fafaf9">README.md</tspan></text>
+<text class="t" xml:space="preserve" y="124"><tspan x="20.0" fill="#8a827c"> 3:17</tspan><tspan x="74.6" fill="#fbbf24">warning</tspan><tspan x="144.8" fill="#d6d3d1">'very' is a weasel word!</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">write-good.Weasel</tspan></text>
+<text class="t" xml:space="preserve" y="146"><tspan x="20.0" fill="#8a827c"> 3:37</tspan><tspan x="74.6" fill="#fbbf24">warning</tspan><tspan x="144.8" fill="#d6d3d1">'were fixed' may be passive voice. Use active</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">write-good.Passive</tspan></text>
+<text class="t" xml:space="preserve" y="168"><tspan x="144.8" fill="#d6d3d1">voice if you can.</tspan></text>
+<text class="t" xml:space="preserve" y="190"><tspan x="20.0" fill="#8a827c"> 6:23</tspan><tspan x="74.6" fill="#f87171">error</tspan><tspan x="144.8" fill="#d6d3d1">Did you really mean 'detials'?</tspan><tspan x="780.0" text-anchor="end" fill="#8a827c">Vale.Spelling</tspan></text>
+<text class="t" xml:space="preserve" y="234"><tspan x="20.0" fill="#f87171">✖ </tspan><tspan x="35.6" fill="#d6d3d1">1 error, 2 warnings and 0 suggestions in 1 file.</tspan></text>
 </svg>
