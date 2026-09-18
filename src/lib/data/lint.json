@@ -1,19 +1,33 @@
 {
-	"vale": "v3.21.0",
-	"generated": "2026-09-09",
+	"vale": "3.22.0",
+	"generated": "2026-09-18",
 	"posts": {
 		"commits": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 748,
-			"sentences": 50,
-			"paragraphs": 21,
-			"grade": 5.4,
-			"ease": 83.1,
-			"smog": 7.8,
-			"complex": 3,
-			"minutes": 4,
+			"words": 1289,
+			"sentences": 69,
+			"paragraphs": 24,
+			"grade": 7.6,
+			"ease": 73.8,
+			"smog": 9.5,
+			"complex": 5,
+			"minutes": 6,
+			"ms": 121
+		},
+		"journals": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1371,
+			"sentences": 81,
+			"paragraphs": 28,
+			"grade": 8.5,
+			"ease": 64.3,
+			"smog": 11.1,
+			"complex": 10,
+			"minutes": 7,
 			"ms": 101
 		},
 		"openapi": {
@@ -28,7 +42,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 98
+			"ms": 71
 		},
 		"std": {
 			"errors": 0,
@@ -42,7 +56,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 113
+			"ms": 79
 		},
 		"voices": {
 			"errors": 0,
@@ -56,7 +70,7 @@
 			"smog": 9.3,
 			"complex": 7,
 			"minutes": 9,
-			"ms": 105
+			"ms": 76
 		}
 	}
 }

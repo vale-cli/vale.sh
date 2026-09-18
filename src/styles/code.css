@@ -51,6 +51,12 @@ pre code.numbered .line::before {
 	padding-inline-start: 1.1428571em;
 }
 
+/* An inline code span has no space to break at, so a long selector or path
+   ran past a phone's width and scrolled the whole page sideways. */
+.prose :where(:not(pre) > code) {
+	overflow-wrap: anywhere;
+}
+
 pre {
 	& .pre-header {
 		align-items: flex-start;
