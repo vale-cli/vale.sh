@@ -268,7 +268,17 @@ async function rulesFor(pkg) {
 	// fact a reader has to know before `vale sync` will do them any good.
 	let valeVersion = '';
 
+	// A release archive may carry its directory under two spellings, `Name/`
+	// and `name/`, so that a download by either URL unpacks to a directory
+	// Vale can find. The second copy is the same package, not more rules.
+	const seen = new Set();
+
 	for (const [path, bytes] of Object.entries(files)) {
+		const key = path.toLowerCase();
+		if (seen.has(key)) {
+			continue;
+		}
+		seen.add(key);
 		if (path.endsWith('meta.json')) {
 			try {
 				valeVersion = JSON.parse(strFromU8(bytes)).vale_version ?? '';

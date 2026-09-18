@@ -1823,22 +1823,6 @@
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
-        "name": "ActiveVoice",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Substitute a verb in the active voice for '%s' (Rule 10).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "Adverb",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Drop the adverb on the tag: '%s'.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
         "name": "Adverb",
         "extends": "existence",
         "level": "warning",
@@ -1852,22 +1836,6 @@
         "level": "suggestion",
         "scope": "text",
         "message": "Cut '%s' and let the action happen.",
-        "link": ""
-      },
-      {
-        "name": "BeganTo",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Cut '%s' and let the action happen.",
-        "link": ""
-      },
-      {
-        "name": "Cliches",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Stock phrase: '%s'.",
         "link": ""
       },
       {
@@ -1887,36 +1855,12 @@
         "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
       },
       {
-        "name": "Dialect",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "summary",
-        "message": "%d phonetic spellings. Use dialect sparingly.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
         "name": "DialoguePunctuation",
         "extends": "existence",
         "level": "warning",
         "scope": "text",
         "message": "Move the %s inside the closing quotation mark.",
         "link": ""
-      },
-      {
-        "name": "DialoguePunctuation",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Move the %s inside the closing quotation mark.",
-        "link": ""
-      },
-      {
-        "name": "Exclamations",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "summary",
-        "message": "%d exclamation points. Leonard allows two or three per 100,000 words.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
       },
       {
         "name": "Exclamations",
@@ -1935,22 +1879,6 @@
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
-        "name": "FactThat",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Revise '%s' out of the sentence (Rule 13).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "FilterWords",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Filter word '%s': cut it and show the thing itself.",
-        "link": ""
-      },
-      {
         "name": "FilterWords",
         "extends": "existence",
         "level": "suggestion",
@@ -1964,22 +1892,6 @@
         "level": "suggestion",
         "scope": "text",
         "message": "%s: '%s' (Chapter V).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "Hackneyed",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "%s: '%s' (Chapter V).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "However",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "'However' meaning nevertheless should not come first in its sentence (Chapter V).",
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
@@ -1999,35 +1911,11 @@
         "link": ""
       },
       {
-        "name": "Intensifiers",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Intensifier '%s': find the stronger word instead.",
-        "link": ""
-      },
-      {
         "name": "LikeAs",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
         "message": "Use 'as' before a clause, not '%s' (Chapter V).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "LikeAs",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Use 'as' before a clause, not '%s' (Chapter V).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "Misused",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Use '%s' for '%s' (Chapter V).",
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
@@ -2047,22 +1935,6 @@
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
-        "name": "Needless",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Omit needless words: '%s' for '%s' (Rule 13).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
-        "name": "Positive",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Put it in positive form: '%s' for '%s' (Rule 11).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
         "name": "Positive",
         "extends": "substitution",
         "level": "suggestion",
@@ -2076,22 +1948,6 @@
         "level": "suggestion",
         "scope": "heading",
         "message": "Avoid a prologue: it's backstory, and you can drop it in anywhere.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
-        "name": "Prologue",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "heading",
-        "message": "Avoid a prologue: it's backstory, and you can drop it in anywhere.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
-        "name": "Said",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Use 'said' to carry dialogue, not '%s'.",
         "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
       },
       {
@@ -2111,36 +1967,12 @@
         "link": "https://www.gutenberg.org/ebooks/37134"
       },
       {
-        "name": "SplitInfinitive",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Split infinitive: '%s' (Chapter V).",
-        "link": "https://www.gutenberg.org/ebooks/37134"
-      },
-      {
         "name": "Suddenly",
         "extends": "existence",
         "level": "error",
         "scope": "text",
         "message": "Never use '%s'.",
         "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
-        "name": "Suddenly",
-        "extends": "existence",
-        "level": "error",
-        "scope": "text",
-        "message": "Never use '%s'.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
-      },
-      {
-        "name": "TagCase",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Lowercase the tag: '%s'.",
-        "link": ""
       },
       {
         "name": "TagCase",
@@ -2159,36 +1991,12 @@
         "link": ""
       },
       {
-        "name": "TellingEmotion",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Telling: '%s'. Show it in what the character does.",
-        "link": ""
-      },
-      {
         "name": "ThoughtVerbs",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
         "message": "Unpack the thought verb '%s': show what the character does instead.",
         "link": "https://litreactor.com/essays/chuck-palahniuk/nuts-and-bolts-“thought”-verbs"
-      },
-      {
-        "name": "ThoughtVerbs",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Unpack the thought verb '%s': show what the character does instead.",
-        "link": "https://litreactor.com/essays/chuck-palahniuk/nuts-and-bolts-“thought”-verbs"
-      },
-      {
-        "name": "Weather",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text & doc(h1 + p)",
-        "message": "Never open a book with weather: '%s'.",
-        "link": "https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one"
       },
       {
         "name": "Weather",
@@ -7117,35 +6925,11 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-abbreviations"
       },
       {
-        "name": "Abbreviations",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "raw",
-        "message": "'%s' is defined but used fewer than three times; write it out instead.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-abbreviations"
-      },
-      {
         "name": "Abstract",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
         "message": "An Abstract section.",
-        "link": ""
-      },
-      {
-        "name": "Abstract",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
-        "message": "An Abstract section.",
-        "link": ""
-      },
-      {
-        "name": "AbstractAbbreviations",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
-        "message": "Avoid abbreviations in the abstract: '%s'.",
         "link": ""
       },
       {
@@ -7165,36 +6949,12 @@
         "link": ""
       },
       {
-        "name": "AbstractCitations",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
-        "message": "The abstract stands alone; cite in the body, not '%s'.",
-        "link": ""
-      },
-      {
         "name": "AbstractLength",
         "extends": "occurrence",
         "level": "warning",
         "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
         "message": "Abstract runs %d words.",
         "link": ""
-      },
-      {
-        "name": "AbstractLength",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Abstract\"),h2:contains(\"Abstract\")))",
-        "message": "Abstract runs %d words.",
-        "link": ""
-      },
-      {
-        "name": "Acknowledgements",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"cknowledg\"),h2:contains(\"cknowledg\")))",
-        "message": "Thank for assistance, not 'excellent' assistance; cut '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
         "name": "Acknowledgements",
@@ -7213,36 +6973,12 @@
         "link": ""
       },
       {
-        "name": "Acronyms",
-        "extends": "Std.Abbreviations.Acronyms",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "",
-        "link": ""
-      },
-      {
         "name": "Alpha",
         "extends": "occurrence",
         "level": "suggestion",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods state the threshold for significance (alpha).",
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
-      },
-      {
-        "name": "Alpha",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods state the threshold for significance (alpha).",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
-      },
-      {
-        "name": "Analyzed",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results give the number analyzed in each group and the analysis population (items 19 and 21).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
         "name": "Analyzed",
@@ -7261,22 +6997,6 @@
         "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
-        "name": "Availability",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Say which data, code, and materials are available and where (item 27).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Baseline",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results present baseline characteristics for each group (item 18).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
         "name": "Baseline",
         "extends": "occurrence",
         "level": "warning",
@@ -7293,36 +7013,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "Bias",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe efforts to address potential sources of bias (item 9).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
         "name": "Blinding",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods say who was blinded, or that the trial was open label (item 13).",
         "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Blinding",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods say who was blinded, or that the trial was open label (item 13).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Certainty",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Assess and report the certainty of evidence for each outcome (items 15 and 22).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "Certainty",
@@ -7349,30 +7045,6 @@
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
-        "name": "Citations",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "PLOS cites by number in square brackets, not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-references"
-      },
-      {
-        "name": "Citations",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "~doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "Nature sets reference numbers as superscripts, not in brackets: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "CodeAvailability",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "A Code Availability statement.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
         "name": "CodeAvailability",
         "extends": "occurrence",
         "level": "warning",
@@ -7387,30 +7059,6 @@
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods describe how allocation was concealed until assignment (item 12a).",
         "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Concealment",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe how allocation was concealed until assignment (item 12a).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Conflicts",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Declare competing interests (item 5b).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Conflicts",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Declare competing interests (item 26).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "Conflicts",
@@ -7445,44 +7093,12 @@
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
-        "name": "DataAvailability",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "raw",
-        "message": "A Data Availability Statement.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-data-availability"
-      },
-      {
-        "name": "DataAvailability",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "raw",
-        "message": "A Data Availability statement.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
         "name": "DataCollection",
         "extends": "occurrence",
         "level": "warning",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods describe how data were collected from reports (item 9).",
         "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "DataCollection",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe how data were collected from reports (item 9).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "DataPlural",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "'data' is plural in a manuscript: 'data are', not '%s'.",
-        "link": ""
       },
       {
         "name": "DataPlural",
@@ -7501,36 +7117,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
-        "name": "DataSharing",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "State whether and where participant-level data and code are available (item 4).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
         "name": "DataSources",
         "extends": "occurrence",
         "level": "warning",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods give the sources of data and the methods of measurement (item 8).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "DataSources",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods give the sources of data and the methods of measurement (item 8).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Degree",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "A single space between the number and the unit: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
         "name": "Degree",
@@ -7549,22 +7141,6 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "DescriptiveData",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results give the characteristics of participants (item 14).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Discussion",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "A Discussion section.",
-        "link": ""
-      },
-      {
         "name": "Discussion",
         "extends": "occurrence",
         "level": "error",
@@ -7579,22 +7155,6 @@
         "scope": "text",
         "message": "One hedge is enough: '%s'.",
         "link": ""
-      },
-      {
-        "name": "DoubleHedge",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "One hedge is enough: '%s'.",
-        "link": ""
-      },
-      {
-        "name": "EffectMeasures",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods specify the effect measure for each outcome (item 12).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "EffectMeasures",
@@ -7629,52 +7189,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "Eligibility",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods state the eligibility criteria for participants (item 6a).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Eligibility",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods specify the inclusion and exclusion criteria (item 5).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Eligibility",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods give the eligibility criteria and how participants were selected (item 6).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
         "name": "EtAl",
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
         "message": "Write '%s', not '%s'.",
         "link": ""
-      },
-      {
-        "name": "EtAl",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Write '%s', not '%s'.",
-        "link": ""
-      },
-      {
-        "name": "Ethics",
-        "extends": "existence",
-        "level": "error",
-        "scope": "raw",
-        "message": "The study has human or animal subjects; name the committee that approved it.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-human-subjects-research"
       },
       {
         "name": "Ethics",
@@ -7693,36 +7213,12 @@
         "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
-        "name": "Excluded",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results cite the studies that looked eligible but were excluded, and say why (item 16b).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
         "name": "ExtendedData",
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
         "message": "Cite an online-only figure as '%s', not '%s'.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "ExtendedData",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Cite an online-only figure as '%s', not '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "FigureAbbreviation",
-        "extends": "consistency",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Inconsistent figure label: '%s'.",
-        "link": ""
       },
       {
         "name": "FigureAbbreviation",
@@ -7749,44 +7245,12 @@
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
-        "name": "FigureLabel",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Cite a figure as '%s', not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-figures-and-tables"
-      },
-      {
-        "name": "FigureLabel",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Cite a figure as '%s', not '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
         "name": "FlowDiagram",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
         "message": "Results describe the search and selection, ideally with a flow diagram (item 16a).",
         "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "FlowDiagram",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results describe the search and selection, ideally with a flow diagram (item 16a).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Footnotes",
-        "extends": "existence",
-        "level": "error",
-        "scope": "raw",
-        "message": "Footnotes are not permitted; move '%s' into the text.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-manuscript-organization"
       },
       {
         "name": "Footnotes",
@@ -7821,52 +7285,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "Funding",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Name the sources of funding and their role (item 5a).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Funding",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Describe the sources of support and the funders' role (item 25).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Funding",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Give the source of funding and the funders' role (item 22).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
         "name": "Generalizability",
         "extends": "occurrence",
         "level": "warning",
         "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
         "message": "Discussion addresses the generalizability of the results (item 21).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Generalizability",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "Discussion addresses the generalizability of the results (item 21).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Harms",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Describe how harms were assessed and report them (items 15 and 27).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
         "name": "Harms",
@@ -7885,36 +7309,12 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-manuscript-organization"
       },
       {
-        "name": "Headings",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "heading.h5, heading.h6",
-        "message": "PLOS allows three heading levels below the title: '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-manuscript-organization"
-      },
-      {
         "name": "HereWeShow",
         "extends": "occurrence",
         "level": "suggestion",
         "scope": "text & doc(h1 + p)",
         "message": "Introduce the main conclusion with 'Here we show' or an equivalent.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "HereWeShow",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "text & doc(h1 + p)",
-        "message": "Introduce the main conclusion with 'Here we show' or an equivalent.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "Heterogeneity",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Describe how heterogeneity was explored and report it (items 13e and 20c).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "Heterogeneity",
@@ -7933,36 +7333,12 @@
         "link": ""
       },
       {
-        "name": "Hype",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Let the result carry the weight; cut '%s'.",
-        "link": ""
-      },
-      {
         "name": "InformationSources",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods name the sources searched and the date last searched (item 6).",
         "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "InformationSources",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods name the sources searched and the date last searched (item 6).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Intensifiers",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Intensifier '%s' adds nothing a number would not.",
-        "link": ""
       },
       {
         "name": "Intensifiers",
@@ -7981,36 +7357,12 @@
         "link": ""
       },
       {
-        "name": "Introduction",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Introduction\"),h2:contains(\"Introduction\")))",
-        "message": "An Introduction section.",
-        "link": ""
-      },
-      {
         "name": "LabelCase",
         "extends": "existence",
         "level": "warning",
         "scope": "text",
         "message": "Capitalize a numbered label: '%s'.",
         "link": ""
-      },
-      {
-        "name": "LabelCase",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Capitalize a numbered label: '%s'.",
-        "link": ""
-      },
-      {
-        "name": "Legends",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "paragraph & doc(section:haschild(h1:contains(\"egend\"),h2:contains(\"egend\")))",
-        "message": "A figure legend runs %d words; fewer than 300 each.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
         "name": "Legends",
@@ -8053,68 +7405,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "Limitations",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "Discussion addresses the trial's limitations (item 28).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Limitations",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "The Discussion names the study's limitations.",
-        "link": ""
-      },
-      {
-        "name": "Limitations",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "Discussion addresses the limitations of the evidence and of the review process (items 23b and 23c).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Limitations",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Discussion\"),h2:contains(\"Discussion\")))",
-        "message": "Discussion addresses the study's limitations, including sources of bias (item 19).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
         "name": "MainResults",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
         "message": "Results give adjusted estimates with their precision, such as a confidence interval (item 16).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "MainResults",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results give adjusted estimates with their precision, such as a confidence interval (item 16).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Methods",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "A Methods section: a heading containing 'Method' opens it.",
-        "link": ""
-      },
-      {
-        "name": "Methods",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods runs %d words; typically no more than 3,000.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
         "name": "Methods",
@@ -8141,22 +7437,6 @@
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
-        "name": "MissingData",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods explain how missing data were addressed (item 12c).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Participants",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "Results report the numbers of participants at each stage (item 13).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
         "name": "Participants",
         "extends": "occurrence",
         "level": "warning",
@@ -8173,36 +7453,12 @@
         "link": ""
       },
       {
-        "name": "Placeholder",
-        "extends": "existence",
-        "level": "error",
-        "scope": "text",
-        "message": "Placeholder left in the manuscript: '%s'.",
-        "link": ""
-      },
-      {
         "name": "Positional",
         "extends": "existence",
         "level": "warning",
         "scope": "text",
         "message": "Cite the figure by number, not by position: '%s'.",
         "link": ""
-      },
-      {
-        "name": "Positional",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Cite the figure by number, not by position: '%s'.",
-        "link": ""
-      },
-      {
-        "name": "PrimaryOutcome",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "raw",
-        "message": "Define the primary outcome and report it (items 14 and 26).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
         "name": "PrimaryOutcome",
@@ -8229,44 +7485,12 @@
         "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
-        "name": "Protocol",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Say where the protocol and statistical analysis plan can be accessed (item 3).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Protocol",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Say where the protocol can be accessed, or that one was not prepared (item 24b).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
         "name": "Prove",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
         "message": "Results show or support; '%s' claims more than data can.",
         "link": ""
-      },
-      {
-        "name": "Prove",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Results show or support; '%s' claims more than data can.",
-        "link": ""
-      },
-      {
-        "name": "PublicInvolvement",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "raw",
-        "message": "Describe how patients or the public were involved, or that they were not (item 8).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
         "name": "PublicInvolvement",
@@ -8285,22 +7509,6 @@
         "link": ""
       },
       {
-        "name": "PValueCase",
-        "extends": "consistency",
-        "level": "warning",
-        "scope": "text",
-        "message": "Inconsistent case for the p-value: '%s'.",
-        "link": ""
-      },
-      {
-        "name": "PValues",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Report the exact p-value at or above 0.001, not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
-      },
-      {
         "name": "PValues",
         "extends": "existence",
         "level": "warning",
@@ -8314,22 +7522,6 @@
         "level": "suggestion",
         "scope": "text",
         "message": "Space the operator: 'p = 0.03', not '%s'.",
-        "link": ""
-      },
-      {
-        "name": "PValueSpacing",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Space the operator: 'p = 0.03', not '%s'.",
-        "link": ""
-      },
-      {
-        "name": "PValueZero",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Report '%s' as 'p < 0.001'; a p-value is never zero.",
         "link": ""
       },
       {
@@ -8349,44 +7541,12 @@
         "link": "https://doi.org/10.1371/journal.pmed.1004587"
       },
       {
-        "name": "Randomization",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe how the allocation sequence was generated (item 11).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
         "name": "Ranges",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
         "message": "Use an en dash in a range: '%s'.",
         "link": ""
-      },
-      {
-        "name": "Ranges",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Use an en dash in a range: '%s'.",
-        "link": ""
-      },
-      {
-        "name": "ReferenceAuthors",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "list & doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "List the first six authors, then et al.: '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-references"
-      },
-      {
-        "name": "ReferenceAuthors",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "list & doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "Past five authors, give the first author et al.: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
         "name": "ReferenceAuthors",
@@ -8429,60 +7589,12 @@
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
-        "name": "References",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "A References section.",
-        "link": ""
-      },
-      {
-        "name": "References",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "list & doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "Vancouver style ends 'Journal. Year;Vol(Issue):pages.', not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-references"
-      },
-      {
-        "name": "References",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "%d references; Articles typically have no more than 50.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
         "name": "ReferenceShape",
         "extends": "existence",
         "level": "suggestion",
         "scope": "list & doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
         "message": "A Nature reference ends with the year in parentheses: '%s'.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "ReferenceShape",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "list & doc(section:haschild(h1:contains(\"References\"),h2:contains(\"References\")))",
-        "message": "A Nature reference ends with the year in parentheses: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "Registration",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "raw",
-        "message": "Give the trial registry and registration number (item 2).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Registration",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Give the registration and registry, or say the review was not registered (item 24a).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "Registration",
@@ -8509,36 +7621,12 @@
         "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
-        "name": "ReportingBias",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Assess the risk of bias from missing results and report it (items 14 and 21).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
         "name": "Results",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
         "message": "A Results section.",
         "link": ""
-      },
-      {
-        "name": "Results",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"Results\"),h2:contains(\"Results\")))",
-        "message": "A Results section.",
-        "link": ""
-      },
-      {
-        "name": "RiskOfBias",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "raw",
-        "message": "Assess and report the risk of bias in included studies (items 11 and 18).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "RiskOfBias",
@@ -8565,43 +7653,11 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
       },
       {
-        "name": "SampleSize",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods say how the sample size was determined (item 16).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "SampleSize",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods give the sample sizes and how they were determined.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
-      },
-      {
         "name": "SearchStrategy",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods present the full search strategy for at least one source (item 7).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "SearchStrategy",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods present the full search strategy for at least one source (item 7).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "SelectionProcess",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods say how many reviewers screened each record and whether they worked independently (item 8).",
         "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
@@ -8621,36 +7677,12 @@
         "link": ""
       },
       {
-        "name": "SentenceNumeral",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Spell out a number that starts a sentence, or recast it: '%s'.",
-        "link": ""
-      },
-      {
         "name": "Setting",
         "extends": "occurrence",
         "level": "warning",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods describe the setting, locations, and dates (item 5).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Setting",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe the setting, locations, and dates (item 5).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Significant",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "sentence",
-        "message": "'%s' without a statistic in the sentence: give the test, or say 'large'.",
-        "link": ""
       },
       {
         "name": "Significant",
@@ -8669,22 +7701,6 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
       },
       {
-        "name": "Software",
-        "extends": "occurrence",
-        "level": "suggestion",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods name the software package and its version.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-statistical-reporting"
-      },
-      {
-        "name": "Species",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "raw",
-        "message": "Write a species name in italics: '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-nomenclature"
-      },
-      {
         "name": "Species",
         "extends": "existence",
         "level": "warning",
@@ -8698,22 +7714,6 @@
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods describe the statistical methods, including those for confounding (item 12).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "StatisticalMethods",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe the statistical methods, including those for confounding (item 12).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "StudySize",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods explain how the study size was arrived at (item 10).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
       },
       {
@@ -8733,35 +7733,11 @@
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
-        "name": "Subheadings",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "heading.h2, heading.h3",
-        "message": "Subheading runs past 40 characters: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
         "name": "Summary",
         "extends": "occurrence",
         "level": "warning",
         "scope": "text & doc(h1 + p)",
         "message": "The summary paragraph runs %d words; ideally no more than 200.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "Summary",
-        "extends": "occurrence",
-        "level": "warning",
-        "scope": "text & doc(h1 + p)",
-        "message": "The summary paragraph runs %d words; ideally no more than 200.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "SummaryContent",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text & doc(h1 + p)",
-        "message": "The summary paragraph avoids numbers, abbreviations, and measurements unless essential: '%s'.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
@@ -8781,36 +7757,12 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-supporting-information"
       },
       {
-        "name": "SupportingInformation",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Name supporting information 'S1 Fig', 'S1 Table', 'S1 Appendix': '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-supporting-information"
-      },
-      {
         "name": "Symbols",
         "extends": "substitution",
         "level": "suggestion",
         "scope": "text",
         "message": "Use '%s', not '%s'.",
         "link": ""
-      },
-      {
-        "name": "Symbols",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Use '%s', not '%s'.",
-        "link": ""
-      },
-      {
-        "name": "Synthesis",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods describe the synthesis methods (item 13).",
-        "link": "https://doi.org/10.1136/bmj.n71"
       },
       {
         "name": "Synthesis",
@@ -8829,67 +7781,11 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-figures-and-tables"
       },
       {
-        "name": "TableLabel",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Cite a table as '%s', not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-figures-and-tables"
-      },
-      {
         "name": "Thousands",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
         "message": "Separate thousands with commas: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "Thousands",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Separate thousands with commas: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "Title",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "heading.h1",
-        "message": "Identify the study as a randomized trial in the title (item 1).",
-        "link": "https://doi.org/10.1371/journal.pmed.1004587"
-      },
-      {
-        "name": "Title",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "heading.h1",
-        "message": "Identify the report as a systematic review in the title (item 1).",
-        "link": "https://doi.org/10.1136/bmj.n71"
-      },
-      {
-        "name": "Title",
-        "extends": "existence",
-        "level": "error",
-        "scope": "heading.h1",
-        "message": "Title runs past 250 characters.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-title"
-      },
-      {
-        "name": "Title",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "heading.h1",
-        "message": "Indicate the study's design with a common term in the title (item 1).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Title",
-        "extends": "existence",
-        "level": "error",
-        "scope": "heading.h1",
-        "message": "Title runs past 75 characters, including spaces.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
@@ -8941,22 +7837,6 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-title"
       },
       {
-        "name": "TitleAbbreviations",
-        "extends": "existence",
-        "level": "suggestion",
-        "scope": "heading.h1",
-        "message": "Avoid specialist abbreviations in the title: '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-title"
-      },
-      {
-        "name": "TitleCase",
-        "extends": "capitalization",
-        "level": "warning",
-        "scope": "heading.h1",
-        "message": "Write the title in sentence case: '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-title"
-      },
-      {
         "name": "TitleCase",
         "extends": "capitalization",
         "level": "warning",
@@ -8970,22 +7850,6 @@
         "level": "warning",
         "scope": "heading.h1",
         "message": "A Nature title avoids numbers, acronyms, abbreviations, and punctuation: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "TitleContent",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "heading.h1",
-        "message": "A Nature title avoids numbers, acronyms, abbreviations, and punctuation: '%s'.",
-        "link": "https://www.nature.com/nature/for-authors/formatting-guide"
-      },
-      {
-        "name": "UnitSpacing",
-        "extends": "existence",
-        "level": "warning",
-        "scope": "text",
-        "message": "Put a space between the number and the unit: '%s'.",
         "link": "https://www.nature.com/nature/for-authors/formatting-guide"
       },
       {
@@ -9005,36 +7869,12 @@
         "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-nomenclature"
       },
       {
-        "name": "UnitSymbols",
-        "extends": "substitution",
-        "level": "warning",
-        "scope": "text",
-        "message": "Write the unit as '%s', not '%s'.",
-        "link": "https://journals.plos.org/plosone/s/submission-guidelines#loc-nomenclature"
-      },
-      {
         "name": "Variables",
         "extends": "occurrence",
         "level": "error",
         "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
         "message": "Methods define the outcomes, exposures, predictors, and confounders (item 7).",
         "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Variables",
-        "extends": "occurrence",
-        "level": "error",
-        "scope": "doc(section:haschild(h1:contains(\"ethod\"),h2:contains(\"ethod\")))",
-        "message": "Methods define the outcomes, exposures, predictors, and confounders (item 7).",
-        "link": "https://doi.org/10.1371/journal.pmed.0040296"
-      },
-      {
-        "name": "Wordy",
-        "extends": "substitution",
-        "level": "suggestion",
-        "scope": "text",
-        "message": "Use '%s' instead of '%s'.",
-        "link": "https://www.plainlanguage.gov/guidelines/words/use-simple-words-phrases/"
       },
       {
         "name": "Wordy",
@@ -9057,7 +7897,7 @@
       {
         "kind": "vocabulary",
         "name": "Journals",
-        "accept": 298,
+        "accept": 149,
         "reject": 0
       }
     ],

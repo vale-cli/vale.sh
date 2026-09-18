@@ -143,8 +143,8 @@ const harper = build(
 	'Grammar: agreement, articles, and the slips a spell checker misses.'
 );
 const aiTells = build(
-	'AiTells',
-	'The tells of AI-written prose: em-dash habits, epigrams, abstract-noun triads, and clichés.'
+	'ai-tells',
+	'The fingerprints of AI-written prose, with rule messages that name the tell.'
 );
 const readability = supplementaryStyles.find((o) => o.value === 'Readability')!;
 const proselint = supplementaryStyles.find((o) => o.value === 'proselint')!;
