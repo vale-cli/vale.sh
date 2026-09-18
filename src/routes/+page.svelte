@@ -43,7 +43,14 @@
 	that visibility is what a sponsorship buys.
 -->
 <main>
-	<Overview stats={data.stats} ruleHtml={data.snippets.heroRule} />
+	<Overview
+		stats={data.stats}
+		rules={{
+			technical: data.snippets.heroTechnical,
+			creative: data.snippets.heroCreative,
+			scientific: data.snippets.heroScientific
+		}}
+	/>
 	<SponsorSpotlight editorial />
 	<AdopterConfigs editorial />
 	<Features />

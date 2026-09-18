@@ -5,8 +5,107 @@
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
 	import adopters from '$lib/data/adopters.json';
+	import FileCode from 'lucide-svelte/icons/file-code';
+	import Feather from 'lucide-svelte/icons/feather';
+	import FlaskConical from 'lucide-svelte/icons/flask-conical';
 
-	let { stats, ruleHtml }: { stats: Stats; ruleHtml: string } = $props();
+	type Kind = 'technical' | 'creative' | 'scientific';
+	let { stats, rules }: { stats: Stats; rules: Record<Kind, string> } = $props();
+
+	/*
+		The flow figure, once per kind of writing. Each walks a real guideline
+		to the alert a real rule raises: Microsoft-style terminology for docs,
+		Elmore Leonard's fourth rule from the Fiction package, and the unit
+		convention from Journals. The visitor picks the one that is theirs.
+	*/
+	const kinds: {
+		id: Kind;
+		label: string;
+		icon: typeof FileCode;
+		kicker: string;
+		file: string;
+		doc: string;
+		heading: string;
+		before: string;
+		match: string;
+		after: string;
+		sev: 'error' | 'warning';
+		msg: string;
+		rule: string;
+		starters: { name: string; href: string }[];
+	}[] = [
+		{
+			id: 'technical',
+			label: 'Technical',
+			icon: FileCode,
+			kicker: 'Writing guide · Terminology',
+			file: 'styles/Docs/Terms.yml',
+			doc: 'docs/install.md',
+			heading: 'Installation',
+			before: '',
+			match: 'Vale cli',
+			after: ' runs on macOS, Windows, and Linux.',
+			sev: 'error',
+			msg: "Use 'Vale CLI' instead of 'Vale cli'.",
+			rule: 'Docs.Terms',
+			starters: [
+				{ name: 'Microsoft', href: '/explorer/Microsoft' },
+				{ name: 'Google', href: '/explorer/Google' },
+				{ name: 'Red Hat', href: '/explorer/RedHat' }
+			]
+		},
+		{
+			id: 'creative',
+			label: 'Creative',
+			icon: Feather,
+			kicker: 'Elmore Leonard · Rule 4',
+			file: 'styles/Leonard/Adverb.yml',
+			doc: 'manuscript/chapter-01.md',
+			heading: 'One',
+			before: '“No,” he ',
+			match: 'said gravely',
+			after: '. She did not look up.',
+			sev: 'warning',
+			msg: "Drop the adverb on the tag: 'said gravely'.",
+			rule: 'Leonard.Adverb',
+			starters: [
+				{ name: 'Fiction', href: '/explorer/Fiction' },
+				{ name: 'proselint', href: '/explorer/proselint' },
+				{ name: 'write-good', href: '/explorer/write-good' }
+			]
+		},
+		{
+			id: 'scientific',
+			label: 'Scientific',
+			icon: FlaskConical,
+			kicker: 'Author guidelines · Units',
+			file: 'styles/Journals/UnitSpacing.yml',
+			doc: 'paper/results.md',
+			heading: 'Results',
+			before: 'Blood pressure fell ',
+			match: '12mmHg',
+			after: ' after 20 min (p = 0.03).',
+			sev: 'warning',
+			msg: "Put a space between the number and the unit: '12mmHg'.",
+			rule: 'Journals.UnitSpacing',
+			starters: [
+				{ name: 'Journals', href: '/explorer/Journals' },
+				{ name: 'Readability', href: '/explorer/Readability' }
+			]
+		}
+	];
+	let kind = $state<Kind>('technical');
+	const current = $derived(kinds.find((k) => k.id === kind) ?? kinds[0]);
+
+	// A link can open the figure on its own kind: /?for=creative.
+	$effect(() => {
+		try {
+			const want = new URLSearchParams(location.search).get('for');
+			if (kinds.some((k) => k.id === want)) kind = want as Kind;
+		} catch {
+			// No location to read: leave the default.
+		}
+	});
 
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 	// Three figures beside the headline. Each is a fact with a page behind it.
@@ -43,8 +142,8 @@
 			</dl>
 			<div class="hero-description">
 				<p class="intro">
-					Vale brings code-like linting to prose. Turn your team’s writing guidelines into checks
-					that run in your editor and alongside your code.
+					Vale brings code-like linting to prose. Turn a team’s style guide, a house voice, or a
+					journal’s author guidelines into checks that run in your editor and alongside your code.
 				</p>
 				<div class="actions">
 					<Button size="lg" href="https://docs.vale.sh/topics/quickstart"
@@ -58,49 +157,97 @@
 
 		<figure
 			class="flow"
-			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the YAML rule that encodes it, and the error it raises in a Markdown file"
+			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the YAML rule that encodes it, and the alert it raises in a file"
 		>
-			<div class="stage">
-				<div class="stage-label"><span class="n">01</span>Your guideline</div>
-				<div class="stage-body">
-					<p class="guide-kicker">Writing guide · Terminology</p>
-					<p class="guide-text">
-						The product is <strong>Vale CLI</strong>. Don’t write <s>Vale cli</s> or
-						<s>vale-cli</s>.
-					</p>
-				</div>
+			<!--
+				Which kind of writing the figure walks through. A tab list, so
+				the choice reads as a view of one thing and not three features.
+			-->
+			<div class="kinds" role="tablist" aria-label="Kind of writing">
+				{#each kinds as k (k.id)}
+					<button
+						type="button"
+						role="tab"
+						id={`kind-${k.id}`}
+						aria-selected={k.id === kind}
+						aria-controls="flow-stages"
+						tabindex={k.id === kind ? 0 : -1}
+						onclick={() => (kind = k.id)}
+					>
+						<k.icon aria-hidden="true" />
+						{k.label}
+					</button>
+				{/each}
 			</div>
 
-			<div class="stage">
-				<div class="stage-label"><span class="n">02</span>A rule you own</div>
-				<div class="stage-body">
-					<p class="file">styles/Docs/Terms.yml</p>
-					<CodeBlock html={ruleHtml} bare />
+			<div class="stages" id="flow-stages" role="tabpanel" aria-labelledby={`kind-${kind}`}>
+				<div class="stage">
+					<div class="stage-label"><span class="n">01</span>Your guideline</div>
+					<div class="stage-body">
+						<p class="guide-kicker">{current.kicker}</p>
+						{#if kind === 'technical'}
+							<p class="guide-text">
+								The product is <strong>Vale CLI</strong>. Don’t write <s>Vale cli</s> or
+								<s>vale-cli</s>.
+							</p>
+						{:else if kind === 'creative'}
+							<p class="guide-text">
+								Never use an adverb to modify the verb <strong>“said”</strong>. Not
+								<s>he admonished gravely</s>.
+							</p>
+						{:else}
+							<p class="guide-text">
+								A space between a number and its unit: <strong>12 mmHg</strong>, not
+								<s>12mmHg</s>.
+							</p>
+						{/if}
+					</div>
 				</div>
-			</div>
 
-			<div class="stage">
-				<div class="stage-label"><span class="n">03</span>Feedback where you write</div>
-				<div class="stage-body doc">
-					<p class="file">docs/install.md</p>
-					<ol class="lines">
-						<li><span class="src"><span class="syntax">#</span> Installation</span></li>
-						<li><span class="src"></span></li>
-						<li>
-							<span class="src"><mark>Vale cli</mark> runs on macOS, Windows, and Linux.</span>
-						</li>
-					</ol>
-					<div class="diagnostic">
-						<span class="sev">error</span>
-						<span>Use 'Vale CLI' instead of 'Vale cli'.</span>
-						<span class="rule-name">Docs.Terms</span>
+				<div class="stage">
+					<div class="stage-label"><span class="n">02</span>A rule you own</div>
+					<div class="stage-body">
+						<p class="file">{current.file}</p>
+						{#key kind}
+							<CodeBlock html={rules[kind]} bare />
+						{/key}
+					</div>
+				</div>
+
+				<div class="stage">
+					<div class="stage-label"><span class="n">03</span>Feedback where you write</div>
+					<div class="stage-body doc">
+						<p class="file">{current.doc}</p>
+						<ol class="lines">
+							<li>
+								<span class="src"
+									><span class="syntax">{kind === 'scientific' ? '##' : '#'}</span>
+									{current.heading}</span
+								>
+							</li>
+							<li><span class="src"></span></li>
+							<li>
+								<span class="src"
+									>{current.before}<mark class={current.sev}>{current.match}</mark
+									>{current.after}</span
+								>
+							</li>
+						</ol>
+						<div class="diagnostic">
+							<span class="sev {current.sev}">{current.sev}</span>
+							<span>{current.msg}</span>
+							<span class="rule-name">{current.rule}</span>
+						</div>
 					</div>
 				</div>
 			</div>
 
 			<figcaption>
-				Encode your guidelines in YAML, or start with a
-				<a href="/explorer">published style guide</a>.
+				Encode your guidelines in YAML, or start with a published style:
+				{#each current.starters as st, i (st.name)}{#if i > 0}{i === current.starters.length - 1
+							? ', or '
+							: ', '}{/if}<a href={st.href}>{st.name}</a>{/each}. Browse them all in the
+				<a href="/explorer">Explorer</a>.
 			</figcaption>
 		</figure>
 	</div>
@@ -260,14 +407,62 @@
 	}
 	.flow {
 		--error: hsl(var(--destructive));
-		display: grid;
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.1fr);
+		--warning: #b45309;
 		margin-top: 48px;
 		border: 1px solid hsl(var(--border));
 		border-radius: 12px;
 		background: hsl(var(--card));
 		overflow: hidden;
 		box-shadow: var(--shadow-sm);
+	}
+	:global(html.dark) .flow {
+		--warning: #fbbf24;
+	}
+	.kinds {
+		display: flex;
+		gap: 4px;
+		padding: 8px 12px;
+		border-bottom: 1px solid hsl(var(--border));
+		background: hsl(var(--muted) / 0.5);
+	}
+	.kinds button {
+		display: inline-flex;
+		align-items: center;
+		gap: 7px;
+		padding: 6px 12px;
+		border: 1px solid transparent;
+		border-radius: 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: hsl(var(--muted-foreground));
+		background: none;
+		cursor: pointer;
+	}
+	.kinds button :global(svg) {
+		width: 14px;
+		height: 14px;
+		opacity: 0.7;
+	}
+	.kinds button[aria-selected='true'] :global(svg) {
+		opacity: 1;
+		color: hsl(var(--primary));
+	}
+	.kinds button:hover {
+		color: hsl(var(--foreground));
+	}
+	.kinds button[aria-selected='true'] {
+		border-color: hsl(var(--border));
+		background: hsl(var(--card));
+		color: hsl(var(--foreground));
+		box-shadow: var(--shadow-sm);
+	}
+	.kinds button:focus-visible {
+		outline: 2px solid hsl(var(--ring));
+		outline-offset: 2px;
+	}
+	.stages {
+		display: grid;
+		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.1fr);
 	}
 	.stage {
 		min-width: 0;
@@ -361,6 +556,10 @@
 		background: color-mix(in srgb, var(--error) 10%, transparent);
 		color: inherit;
 	}
+	mark.warning {
+		border-bottom-color: var(--warning);
+		background: color-mix(in srgb, var(--warning) 12%, transparent);
+	}
 	.diagnostic {
 		display: flex;
 		flex-wrap: wrap;
@@ -376,6 +575,9 @@
 		color: var(--error);
 		font-weight: 600;
 	}
+	.sev.warning {
+		color: var(--warning);
+	}
 	.rule-name {
 		width: 100%;
 		font:
@@ -384,7 +586,6 @@
 		color: hsl(var(--muted-foreground));
 	}
 	figcaption {
-		grid-column: 1 / -1;
 		padding: 14px 20px;
 		border-top: 1px solid hsl(var(--border));
 		font-size: 12px;
@@ -455,7 +656,7 @@
 			grid-column: 1 / -1;
 			margin-top: 0;
 		}
-		.flow {
+		.stages {
 			grid-template-columns: 1fr 1fr;
 		}
 		.stage:first-child {
@@ -504,8 +705,10 @@
 			font-size: 16px;
 		}
 		.flow {
-			grid-template-columns: 1fr;
 			margin-top: 32px;
+		}
+		.stages {
+			grid-template-columns: 1fr;
 		}
 		.stage + .stage {
 			border-left: 0;
