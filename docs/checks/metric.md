@@ -48,7 +48,33 @@ The table below summarizes all available variables:
 |         `pre`        |                             The number of `pre` tags.                            |
 |      `sentences`     |                             The number of sentences.                             |
 |      `syllables`     |                             The number of syllables.                             |
+|    `quote_words`     |          The number of words inside quotation marks (Vale v3.23.0 or later).           |
+| `sentence_length_sd` | The standard deviation of words per sentence, in words: how much the sentences vary in length (Vale v3.23.0 or later). |
 |        `words`       |                               The number of words.                               |
+
+The readability scores are variables too, computed from the counts above (Vale v3.23.0 or later):
+
+| Variable | Description |
+| :------: | :---------: |
+| `automated_readability` | The [Automated Readability Index](https://en.wikipedia.org/wiki/Automated_readability_index). |
+| `coleman_liau` | The [Coleman–Liau index](https://en.wikipedia.org/wiki/Coleman%E2%80%93Liau_index). |
+| `dale_chall` | The [Dale–Chall score](https://en.wikipedia.org/wiki/Dale%E2%80%93Chall_readability_formula). |
+| `flesch_kincaid` | The [Flesch–Kincaid grade level](https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests). |
+| `flesch_reading_ease` | The [Flesch reading-ease score](https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests). |
+| `gunning_fog` | The [Gunning fog index](https://en.wikipedia.org/wiki/Gunning_fog_index). |
+| `lix` | The [LIX](https://en.wikipedia.org/wiki/Lix_\(readability_test\)) measure. |
+| `smog` | The [SMOG grade](https://en.wikipedia.org/wiki/SMOG). |
+
+The example above is `flesch_kincaid`. With the score as a variable and `round`, a rule can report a grade the way an editor does:
+
+```yaml
+extends: metric
+message: "Hard to read: grade %s. Split it, or trim it."
+level: suggestion
+scope: sentence
+formula: round(automated_readability)
+condition: ">= 10 && words >= 14"
+```
 
 A `metric` rule measures the whole document unless it declares a [scope](../topics/scopes.md#checks-and-scopes). With one, it measures each block the scope names on its own—a paragraph, a heading, a list item, or a `doc(...)` selection—and the alert lands on that block’s first line:
 
@@ -79,6 +105,8 @@ In addition to using the variables listed above, a `formula` may also use the fo
 |       `/`      |        Division       |
 | `math.sqrt(x)` |   Square root of `x`  |
 |  `math.abs(x)` | Absolute value of `x` |
+|  `round(x)`    | `x` rounded to the nearest whole number |
+| `round(x, n)`  | `x` rounded to `n` decimal places |
 
 A `condition` is a comparison against the formula's result: `>`, `<`, `==`, `!=`, `>=`, or `<=` and a number. Both the formula and the condition are evaluated as [Tengo](https://tengolang.com/) expressions, so a formula may also use its `math` module.
 

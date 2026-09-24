@@ -234,12 +234,54 @@ token: '(?s).'
 min: 1
 ```
 
-Selectors follow the syntax of [Selectors Level 4](https://www.w3.org/TR/selectors-4/), including `:has(> x)` for a direct child, `:not`, `:first-of-type`, `:last-of-type`, and the `nth` family. Two things to know:
+Selectors follow the syntax of [Selectors Level 4](https://www.w3.org/TR/selectors-4/): the combinators `>`, `+`, and `~`; `:not()`, `:is()`, and `:where()`; `:has()` with a relative selector or a group of them, such as `:has(> h1, > h2)` for a section opened by either level or `:has(> h2 + p)` for a heading with a paragraph right after it; `:first-of-type`, `:last-of-type`, and the `nth` family; and attribute selectors. Three things to know:
 
-* `:contains("…")` matches any part of the text, so `h2:contains("Decision")` also matches a heading that reads “Decision log.” Give it the whole heading.
+* `:contains("…")` matches any part of the text, ignoring case, so `h2:contains("Decision")` also matches a heading that reads “Decision log.” Give it the whole heading.
 * An element with no prose in it—a code block, an image—selects fine and then has nothing to lint. Selections are for elements that hold text.
+* `:scope` and the `of S` form of `:nth-child()` are not supported. A relative selector in `:has()` is already anchored to the element, so `:has(:scope > h2)` is written `:has(> h2)`.
+
+{% hint style="info" %}
+Sibling combinators inside `:has()`, a group of relative selectors, and `:is()` and `:where()` require Vale v3.23.0 or later.
+{% endhint %}
 
 The elements a selector matches carry a `data-vale-doc` attribute in Vale’s internal HTML, and blocks inside them carry the selection in their scope as `in.<id>`. Neither is something a rule writes; the rule writes the selector.
+
+## [Named scopes](scopes.md#named-scopes)
+
+{% hint style="info" %}
+Requires Vale v3.23.0 or later.
+{% endhint %}
+
+A selector that several rules share can be written once and given a name. Names live in YAML files under `config/scopes/` on the StylesPath, one mapping of names to scope expressions per file:
+
+```yaml
+# styles/config/scopes/Sections.yml
+methods: 'doc(section:has(> h2:contains("Methods")))'
+discussion: 'doc(section:has(> h2:contains("Discussion")))'
+lead: text & doc(h1 + p)
+```
+
+A rule uses the name wherever it would have written the expression: alone, negated, or in a chain.
+
+```yaml
+extends: occurrence
+message: "The Methods section says nothing about blinding."
+level: error
+scope: methods
+token: '(?i)\bblind'
+min: 1
+```
+
+```yaml
+extends: existence
+message: "'%s' belongs in the Discussion."
+level: warning
+scope: sentence & ~discussion
+tokens:
+  - we speculate
+```
+
+Every file under the directory is read, so a package that ships its names beside its rules needs nothing added to a configuration. A name may hold a chain, as `lead` does above; a chained name joins the rule’s other terms, and can’t be negated. A name can’t be one Vale already uses for a scope, such as `heading` or `paragraph`, and the same name defined twice with different expressions is an error.
 
 ## [Combining selectors](scopes.md#combining-selectors)
 
