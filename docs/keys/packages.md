@@ -146,6 +146,37 @@ BasedOnStyles = House
 
 A list key such as `BasedOnStyles` gathers every value from every source, so the styles `pkg1` and `pkg2` switch on run alongside `House`. Any other key takes the last value read: `MinAlertLevel`, a rule's level, a parameter, and a switch all end up as your file has them, and `pkg2` has them as it does where your file is silent.
 
+## [The version Vale supports](packages.md#the-version-vale-supports)
+
+{% hint style="info" %}
+Requires Vale v3.23.0 or later.
+{% endhint %}
+
+A package's `meta.json` names the Vale it needs, as `vale_version`. When the release sync downloads needs a newer Vale than the one running, sync installs the newest release this Vale does support instead, and says so:
+
+```console
+$ vale sync
+ INFO  'Readability' needs Vale >=3.23.0; this is 3.22.0: installed v0.1.1 instead.
+```
+
+If no release supports the running Vale, sync installs the latest one and warns, which is what it always did; the metadata can only improve on that. A package pinned to a release URL is installed as asked, with the same warning when it needs a newer Vale.
+
+This is what lets a package raise the Vale it needs without breaking anyone: an older Vale keeps the last release that worked for it. Sync finds the earlier releases one of two ways:
+
+* **A manifest.** `meta.json` lists the releases, each with its version, the Vale it needs, and its archive URL. The URLs can point anywhere, so this works on any host, and sync downloads only the release it picks:
+
+  ```json
+  {
+    "vale_version": ">=3.23.0",
+    "releases": [
+      {"version": "v0.3.0", "vale_version": ">=3.23.0", "url": "https://example.com/readability/v0.3.0/Readability.zip"},
+      {"version": "v0.2.0", "vale_version": ">=2.13.0", "url": "https://example.com/readability/v0.2.0/Readability.zip"}
+    ]
+  }
+  ```
+
+* **The release feed.** Without a manifest, a package served from a GitHub `releases/latest/download` URL has its releases read from the repository's Atom feed, named in `meta.json` as `feed` or derived from the package's URL, and the ten most recent are tried newest first until one fits.
+
 ## [Publishing a package](packages.md#publishing-a-package)
 
 A package is a release asset: a `.zip` whose single top-level folder is the package's name, attached to a release of a Git repository. The `releases/latest/download` URL then always points at the newest one. To make a package installable by name, add an entry for it to the [library](https://github.com/vale-cli/packages) in a pull request. The repository's README describes the entry.

@@ -29,6 +29,12 @@ By default, Vale ignores:
 * Attributes: `{.class}` lines and the `{.class}` of `[text]{.class}`—the text itself is still linted.
 * Fenced blocks, code spans, and URLs, as in [Markdown](markdown.md).
 
+## [Directives and roles](myst.md#directives-and-roles)
+
+A directive's content is prose unless the directive is one whose content is code, math, or generated: `code-block`, `literalinclude`, `math`, `mermaid`, `toctree`, and the like. A role's content is code, since it is usually an identifier, except for the roles whose content is prose: `ref`, `doc`, `any`, `numref`, `term`, `guilabel`, `menuselection`, `abbr`, and `dfn`. A reference written with a title, `` {ref}`the setup guide <setup>` ``, is linted as its title; a bare target is code.
+
+A project's extensions add to both lists in the same `[sphinx]` section a reStructuredText project uses; see [Sphinx](sphinx.md#directives-and-roles).
+
 ## [Directives](myst.md#directives)
 
 A directive's content is Markdown, and Vale lints it—whether the directive is fenced with backticks or colons:
