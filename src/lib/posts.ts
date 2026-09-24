@@ -25,6 +25,8 @@ export type PostMeta = {
 	motif?: string;
 	// An AUTHORS key. Posts without one belong to the site's author.
 	author?: string;
+	// TAGS keys. A tag the vocabulary doesn't know fails the build.
+	tags?: string[];
 };
 
 export type Author = { name: string; avatar: string; url: string };
@@ -41,6 +43,37 @@ export function authorOf(post: PostMeta): Author {
 	return AUTHORS[post.author ?? 'jdkato'];
 }
 
+export type Tag = { slug: string; label: string; description: string };
+
+// The vocabulary is fixed so the tag pages stay few and each one means
+// something. Add a tag here before using it in a post.
+export const TAGS: Record<string, Tag> = {
+	packages: {
+		slug: 'packages',
+		label: 'Packages',
+		description: 'A new Vale package and what it checks.'
+	},
+	agents: {
+		slug: 'agents',
+		label: 'Agents',
+		description: 'Vale beside AI writing tools.'
+	},
+	tutorials: {
+		slug: 'tutorials',
+		label: 'Tutorials',
+		description: 'A setup, walked through end to end.'
+	},
+	formats: {
+		slug: 'formats',
+		label: 'Formats',
+		description: 'Linting a file that is not Markdown.'
+	}
+};
+
+export function tagsOf(post: PostMeta): Tag[] {
+	return (post.tags ?? []).map((slug) => TAGS[slug]);
+}
+
 export type Post = PostMeta & { slug: string };
 
 type PostModule = { default: Component; metadata: PostMeta };
@@ -53,11 +86,23 @@ const modules = import.meta.glob<PostModule>('/src/posts/*.md', { eager: true })
 // render it without its footer.
 function requireReport(slug: string) {
 	if (!(slug in report.posts)) {
-		throw new Error(`src/posts/${slug}.md has no entry in src/lib/data/lint.json; run node script/lint-posts.mjs`);
+		throw new Error(
+			`src/posts/${slug}.md has no entry in src/lib/data/lint.json; run node script/lint-posts.mjs`
+		);
 	}
 }
 
-export function listPosts(opts: { drafts?: boolean } = {}): Post[] {
+function requireTags(slug: string, meta: PostMeta) {
+	for (const tag of meta.tags ?? []) {
+		if (!(tag in TAGS)) {
+			throw new Error(
+				`src/posts/${slug}.md uses the tag "${tag}", which TAGS in src/lib/posts.ts does not define`
+			);
+		}
+	}
+}
+
+export function listPosts(opts: { drafts?: boolean; tag?: string } = {}): Post[] {
 	const posts: Post[] = [];
 	for (const [path, mod] of Object.entries(modules)) {
 		const slug = path.split('/').pop()!.replace(/\.md$/, '');
@@ -68,9 +113,27 @@ export function listPosts(opts: { drafts?: boolean } = {}): Post[] {
 		if (!meta.draft) {
 			requireReport(slug);
 		}
+		requireTags(slug, meta);
+		if (opts.tag && !(meta.tags ?? []).includes(opts.tag)) {
+			continue;
+		}
 		posts.push({ slug, ...meta });
 	}
 	return posts.sort((a, b) => b.date.localeCompare(a.date));
+}
+
+// Every tag at least one listed post carries, with its count, in the
+// vocabulary's order.
+export function listTags(opts: { drafts?: boolean } = {}): (Tag & { count: number })[] {
+	const counts = new Map<string, number>();
+	for (const post of listPosts(opts)) {
+		for (const tag of post.tags ?? []) {
+			counts.set(tag, (counts.get(tag) ?? 0) + 1);
+		}
+	}
+	return Object.values(TAGS)
+		.filter((tag) => counts.has(tag.slug))
+		.map((tag) => ({ ...tag, count: counts.get(tag.slug)! }));
 }
 
 export function getPost(slug: string): { meta: Post; component: Component } | undefined {
@@ -81,5 +144,6 @@ export function getPost(slug: string): { meta: Post; component: Component } | un
 	if (!mod.metadata.draft) {
 		requireReport(slug);
 	}
+	requireTags(slug, mod.metadata);
 	return { meta: { slug, ...mod.metadata }, component: mod.default };
 }

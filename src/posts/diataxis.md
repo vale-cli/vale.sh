@@ -2,6 +2,7 @@
 title: 'Which kind of page is this?'
 description: 'Diataxis is a Vale package for the four kinds of documentation in Diátaxis: tutorials, how-to guides, reference, and explanation, each checked against the job it claims to do.'
 date: '2026-09-24'
+tags: ['packages']
 motif: 'compass'
 imageAlt: 'A two-by-two grid of the four kinds of documentation, each cell with one alert where the page slipped into another kind.'
 ---

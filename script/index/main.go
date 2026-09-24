@@ -13,6 +13,9 @@
 // function. That buys typo tolerance, highlighting and ranking the embedded
 // index did not have, and it takes a 768 KB index out of the function bundle.
 //
+// The site's own blog is indexed too, read from its Markdown source, so a
+// search here reaches a post as readily as an article about Vale elsewhere.
+//
 // Records carry the whole article. The plan this project is on allows 100 KB
 // per record, and the longest of these runs to about 17 KB, so nothing is
 // truncated or split across records.
@@ -77,7 +80,9 @@ type Record struct {
 	Year        int    `json:"year"`
 	Type        string `json:"type"`
 	Description string `json:"description"`
-	Text        string `json:"text"`
+	// The blog's tags, by label; empty for everything else.
+	Tags []string `json:"tags,omitempty"`
+	Text string   `json:"text"`
 }
 
 func read(path string) ([]Entry, error) {
@@ -391,7 +396,7 @@ func publish(key string, recs []Record) error {
 	// matching a paragraph halfway down an article. `type` is filterable so
 	// the page can ask for resources and issues separately.
 	if err := call(http.MethodPut, "/1/indexes/"+tmp+"/settings", key, map[string]any{
-		"searchableAttributes":  []string{"title", "description", "text"},
+		"searchableAttributes":  []string{"title", "description", "tags", "text"},
 		"attributesForFaceting": []string{"filterOnly(type)"},
 		"customRanking":         []string{"desc(year)"},
 	}); err != nil {
@@ -432,6 +437,13 @@ func main() {
 	log.Printf("indexing %d entries from %s", len(entries), source)
 
 	recs := records(entries)
+
+	blog, err := posts(postsDir)
+	if err != nil {
+		log.Fatalf("reading %s: %v", postsDir, err)
+	}
+	log.Printf("read %d posts from %s", len(blog), postsDir)
+	recs = append(recs, blog...)
 
 	tracker := issues()
 	log.Printf("read %d issues from %s", len(tracker), repo)

@@ -1,5 +1,6 @@
 import { highlightAll } from '$lib/server/highlight';
 import { getStats } from '$lib/server/stats';
+import { listPosts } from '$lib/posts';
 import type { PageServerLoad } from './$types';
 
 // The page is prerendered, so this runs once per build.
@@ -68,5 +69,7 @@ swap:
 			commands: { code: '$ vale sync\n$ vale docs/', lang: 'console' }
 		})
 	]);
-	return { stats, snippets };
+	// The three newest posts; the blog index has the rest.
+	const posts = listPosts();
+	return { stats, snippets, posts: posts.slice(0, 3), postCount: posts.length };
 };

@@ -1,4 +1,4 @@
-import { authorOf, listPosts } from '$lib/posts';
+import { authorOf, listPosts, tagsOf } from '$lib/posts';
 import type { RequestHandler } from './$types';
 
 export const prerender = true;
@@ -25,6 +25,12 @@ export const GET: RequestHandler = () => {
 			const image = post.image ?? `/blog/og/${post.slug}.png`;
 			const imageType = IMAGE_TYPES[image.split('.').pop()?.toLowerCase() ?? ''] ?? 'image/png';
 			const media = `<media:content url="https://vale.sh${escape(image)}" type="${imageType}" medium="image">`;
+			const categories = tagsOf(post)
+				.map(
+					(tag) => `
+			<category domain="https://vale.sh/blog/tags/${tag.slug}">${escape(tag.label)}</category>`
+				)
+				.join('');
 			const alt = post.imageAlt
 				? `
 				<media:description type="plain">${escape(post.imageAlt)}</media:description>
@@ -36,7 +42,7 @@ export const GET: RequestHandler = () => {
 			<guid isPermaLink="true">${url}</guid>
 			<description>${escape(post.description)}</description>
 			<dc:creator>${escape(authorOf(post).name)}</dc:creator>
-			<pubDate>${new Date(`${post.date}T00:00:00Z`).toUTCString()}</pubDate>
+			<pubDate>${new Date(`${post.date}T00:00:00Z`).toUTCString()}</pubDate>${categories}
 			${media}${alt}</media:content>
 		</item>`;
 		})

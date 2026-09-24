@@ -4,6 +4,7 @@
 	import Sparkles from 'lucide-svelte/icons/sparkles';
 	import Blocks from 'lucide-svelte/icons/blocks';
 	import Workflow from 'lucide-svelte/icons/workflow';
+	import PenLine from 'lucide-svelte/icons/pen-line';
 
 	// Only the sections below the bar. Adopters, press, supporters and
 	// infrastructure moved to /adopters, /library and /sponsor, and a chip
@@ -12,7 +13,8 @@
 		{ id: 'features', label: 'Features', icon: Sparkles },
 		{ id: 'how-it-works', label: 'How it works', icon: Workflow },
 		{ id: 'stats', label: 'Downloads', icon: Download },
-		{ id: 'integrations', label: 'Integrations', icon: Blocks }
+		{ id: 'integrations', label: 'Integrations', icon: Blocks },
+		{ id: 'blog', label: 'Blog', icon: PenLine }
 	];
 
 	let active = $state('');

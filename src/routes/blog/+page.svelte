@@ -4,6 +4,8 @@
 	import Check from 'lucide-svelte/icons/check';
 
 	import PostBanner from '$lib/components/PostBanner.svelte';
+	import PostCard from '$lib/components/PostCard.svelte';
+	import PostTags from '$lib/components/PostTags.svelte';
 	import report from '$lib/data/lint.json';
 	import { authorOf } from '$lib/posts';
 
@@ -99,6 +101,20 @@
 				href="/blog/rss.xml">RSS</a
 			>.
 		</p>
+
+		{#if data.tags.length > 0}
+			<nav aria-label="Tags" class="mt-6 flex flex-wrap gap-2">
+				{#each data.tags as tag (tag.slug)}
+					<a
+						href={`/blog/tags/${tag.slug}`}
+						class="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-sm text-muted-foreground ring-1 ring-inset ring-border transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+					>
+						{tag.label}
+						<span class="font-mono text-xs tabular-nums">{tag.count}</span>
+					</a>
+				{/each}
+			</nav>
+		{/if}
 	</header>
 
 	{#snippet lintline(slug: string)}
@@ -175,6 +191,7 @@
 						<p class="mt-4 max-w-xl text-pretty leading-7 text-muted-foreground">
 							{lead.description}
 						</p>
+						<PostTags post={lead} class="mt-5" />
 						<div class="mt-5">
 							{@render lintline(lead.slug)}
 						</div>
@@ -211,52 +228,7 @@
 			{#if rest.length > 0}
 				<div class="grid gap-6 md:grid-cols-2">
 					{#each rest as post (post.slug)}
-						<article
-							class="group relative overflow-hidden rounded-xl border border-border bg-card shadow-sm transition-all hover:-translate-y-0.5 hover:shadow-md"
-						>
-							<div class="border-b border-border">
-								<PostBanner
-									seed={post.slug}
-									image={post.image}
-									values={post.poster}
-									motif={post.motif}
-									alt={post.imageAlt}
-									class="h-32 w-full"
-								/>
-							</div>
-							<div class="p-6">
-								<p class="flex flex-wrap items-center gap-x-2 gap-y-2 text-sm text-muted-foreground">
-									<img
-										src={authorOf(post).avatar}
-										alt=""
-										width="20"
-										height="20"
-										class="h-5 w-5 rounded-full border border-border"
-									/>
-									<span class="text-foreground">{authorOf(post).name}</span>
-									<span class="text-muted-foreground/50">·</span>
-									<time datetime={post.date}>{fmt(post.date)}</time>
-									{#if post.draft}
-										<span
-											class="rounded-full border border-amber-500/40 px-2 py-0.5 text-xs font-medium text-amber-500"
-											>Draft</span
-										>
-									{/if}
-								</p>
-								<h2 class="mt-2 text-xl font-semibold tracking-tight">
-									<a
-										href={`/blog/${post.slug}`}
-										class="after:absolute after:inset-0 hover:underline"
-									>
-										{post.title}
-									</a>
-								</h2>
-								<p class="mt-3 text-sm leading-6 text-muted-foreground">{post.description}</p>
-								<div class="mt-4">
-									{@render lintline(post.slug)}
-								</div>
-							</div>
-						</article>
+						<PostCard {post} />
 					{/each}
 				</div>
 			{/if}

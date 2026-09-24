@@ -2,6 +2,7 @@
 title: 'Introducing Std: The standard library for Vale'
 description: 'General-purpose rules you extend to build your own style, extracted from the styles teams already run.'
 date: '2026-09-02'
+tags: ['packages']
 motif: 'tree'
 imageAlt: 'The Std directory tree, six rule families under one root, in a terminal window.'
 ---

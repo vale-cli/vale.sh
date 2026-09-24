@@ -2,6 +2,7 @@
 title: 'Vale and the OpenAPI Specification'
 description: 'A tutorial on linting OpenAPI Specification files: extract just the prose from a structured file, with errors reported at their exact location.'
 date: '2026-03-13'
+tags: ['tutorials', 'formats']
 motif: 'view'
 imageAlt: 'A YAML document with only its prose fields highlighted, one carrying an alert at its exact location.'
 ---

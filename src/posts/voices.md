@@ -2,6 +2,7 @@
 title: 'Introducing Voices: AI writing skills as Vale rules'
 description: 'The writing skill you would reach for, rewritten as Vale rules. Checked on every draft rather than remembered, and free until something breaks one.'
 date: '2026-09-02'
+tags: ['packages', 'agents']
 poster: [3777, 1535, 735, 0]
 imageAlt: 'A token meter showing two prompt-sized bars, one alert-sized bar, and a zero.'
 ---

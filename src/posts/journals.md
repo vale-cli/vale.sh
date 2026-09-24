@@ -2,6 +2,7 @@
 title: 'Linting a manuscript'
 description: 'Journals is a Vale package for scientific papers: the conventions every journal shares, the Nature and PLOS ONE author guidelines, and the CONSORT, STROBE, and PRISMA checklists, read section by section.'
 date: '2026-09-17'
+tags: ['packages', 'formats']
 motif: 'manuscript'
 imageAlt: 'A manuscript in a terminal window, its headings lit as sections, with one alert on a unit and one on the Methods heading.'
 ---

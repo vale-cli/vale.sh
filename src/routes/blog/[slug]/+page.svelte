@@ -4,14 +4,16 @@
 	import PostBanner from '$lib/components/PostBanner.svelte';
 	import PostDiscuss from '$lib/components/PostDiscuss.svelte';
 	import PostLintFooter from '$lib/components/PostLintFooter.svelte';
+	import PostTags from '$lib/components/PostTags.svelte';
 	import report from '$lib/data/lint.json';
-	import { authorOf } from '$lib/posts';
+	import { authorOf, tagsOf } from '$lib/posts';
 
 	let { data } = $props();
 
 	const url = `https://vale.sh/blog/${data.meta.slug}`;
 	const Body = $derived(data.component);
 	const author = $derived(authorOf(data.meta));
+	const tags = $derived(tagsOf(data.meta).map((tag) => tag.label));
 	const minutes = $derived(
 		(report.posts as Record<string, { minutes: number }>)[data.meta.slug]?.minutes
 	);
@@ -44,7 +46,8 @@
 		siteName: 'Vale',
 		article: {
 			publishedTime: `${data.meta.date}T00:00:00Z`,
-			authors: [author.url]
+			authors: [author.url],
+			tags
 		},
 		images: [{ url: image, width: 1200, height: 630, alt: imageAlt }]
 	}}
@@ -68,6 +71,7 @@
 		image,
 		url,
 		mainEntityOfPage: url,
+		keywords: tags.join(', '),
 		author: {
 			'@type': 'Person',
 			name: author.name,
@@ -124,6 +128,8 @@
 				</p>
 			</div>
 		</div>
+
+		<PostTags post={data.meta} class="mt-6" />
 	</header>
 
 	<Body />

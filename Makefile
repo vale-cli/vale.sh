@@ -1,5 +1,5 @@
 # The search index behind /library is published here, from this repository's
-# own src/lib/data/media.json, to the Algolia index the page queries.
+# own src/lib/data/media.json and blog posts, to the Algolia index the page queries.
 #
 # Publishing needs ALGOLIA_ADMIN_KEY; without it the step scrapes, reports what
 # it would send, and stops, so a local build needs no credential. See

@@ -4,7 +4,10 @@ go 1.23
 
 toolchain go1.24.7
 
-require github.com/advancedlogic/GoOse v0.0.0-20210820140952-9d5822d4a625
+require (
+	github.com/advancedlogic/GoOse v0.0.0-20210820140952-9d5822d4a625
+	gopkg.in/yaml.v3 v3.0.1
+)
 
 require (
 	github.com/PuerkitoBio/goquery v1.4.1 // indirect

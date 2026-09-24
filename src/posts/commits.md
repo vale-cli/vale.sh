@@ -2,6 +2,7 @@
 title: 'Linting commit messages'
 description: 'Commits is a Vale package for the log: nine conventions, the rule sets of commitlint, gitlint, committed, conform, and commitizen, spelling on the body, and a hook that runs in 12 ms.'
 date: '2026-09-10'
+tags: ['packages', 'formats']
 motif: 'commit'
 imageAlt: 'A commit message with its subject, body, and trailers each highlighted as a separate scope, one carrying an alert at its exact column.'
 ---
