@@ -99,6 +99,8 @@ BasedOnStyles = Vale
 
 ![How embedded markup is linted: tree-sitter finds each comment in the source file, the per-line decoration is stripped, the remaining body is parsed as Markdown, and every alert is mapped back to its original line and column in the source.](../.gitbook/assets/embedded.svg)
 
+A [View](../topics/views.md) does the same per query: a scope's `type` names the markup for the comments that query finds, so a Python docstring can be read as reStructuredText while the file's `#` comments stay plain text.
+
 Once a markup format has been assigned, you can make use of all the supported features of that format (such as ignore patterns and comment-based configuration) in your source code comments.
 
 This includes [`TokenIgnores`](../keys/tokenignores.md) and [`BlockIgnores`](../keys/blockignores.md), which are otherwise unavailable in source code: they work by wrapping a match in the format's inline or block code delimiter, so they need a markup format to wrap it with. Associating one makes them available.
@@ -141,3 +143,22 @@ The fenced block is treated as code and left alone, exactly as it would be in a 
 {% hint style="info" %}
 An asterisk is only treated as decoration when whitespace or the end of the line follows it. A line beginning `*emphasis*` or `**bold**` keeps its markup.
 {% endhint %}
+
+### [Documentation conventions](code.md#documentation-conventions)
+
+A documentation comment has a convention of its own on top of the language's comment syntax, and the parts of it that name code are not linted:
+
+| Language   | Not linted                                                                                                                  |
+| ---------- | --------------------------------------------------------------------------------------------------------------------------- |
+| Go         | The name a doc comment opens with (`// Println formats ...`, `// Package fmt ...`), and links in brackets (`[Name]`, `[pkg.Name]`). |
+| Rust       | Intra-doc links (`` [`Type`] ``, `[module::item]`).                                                                          |
+| Kotlin     | Links (`[name]`, `[text][name]`), and the symbol a block tag names (`@param name`, `@throws Type`).                          |
+| Java       | Inline tags (`{@code ...}`, `{@link ...}`), and the symbol a block tag names (`@param name`, `@throws Type`).                 |
+| JavaScript | Inline tags (`{@link ...}`), a block tag with its type and name (`@param {string} name`, `@returns {Promise}`), and the whole of an `@example` block. |
+| Python     | The field names of a docstring's field list (`:param name:`, `:raises Type:`, `:returns:`).                                 |
+
+The description after a tag is prose and is linted as usual.
+
+### [Directives](code.md#directives)
+
+A comment addressed to a tool rather than a reader is not read at all: a Go build constraint or `//nolint` line, a Python `# noqa` or `# type:` comment, an `eslint` or `@ts-` comment in JavaScript, `NOPMD` and `CHECKSTYLE` in Java, `ktlint` in Kotlin, `NOLINT` and `clang-format` in C and C++, and `rubocop:` and `frozen_string_literal:` in Ruby.

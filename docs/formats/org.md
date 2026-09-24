@@ -10,6 +10,9 @@ By default, Vale ignores:
 * [Literal examples](https://orgmode.org/org.html#Literal-Examples).
 * [Code and verbatim strings](https://orgmode.org/org.html#Emphasis-and-Monospace-1).
 * URLs: See [URL handling](https://github.com/vale-cli/vale/issues/320) for more information.
+* Keywords such as `#+OPTIONS:` and `#+PROPERTY:`, and the tags at the end of a headline.
+
+The `#+TITLE:`, `#+SUBTITLE:`, `#+AUTHOR:`, and `#+DESCRIPTION:` keywords hold prose and are linted: the title as a heading, the rest as paragraphs. A footnote's definition is linted where it is written, so an alert in one points at that line.
 
 ## [Comments](org.md#comments)
 
