@@ -26,6 +26,7 @@
 		// 'savings': cumulative token cost, resident lines against the rules band.
 		// 'commit': a commit message read as subject, body, and trailers.
 		// 'manuscript': a paper's headings as the sections a rule is scoped to.
+		// 'compass': the four kinds of documentation on their two axes.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -170,6 +171,15 @@
 		{ text: 'We analyzed 60 participants per group.', part: 'prose' }
 	];
 
+	// The 'compass' motif: Diátaxis's two-by-two, with one alert in each
+	// cell -- a page of each kind, caught slipping into another.
+	const compassCells = [
+		{ label: 'Tutorial', tone: 'bg-sky-500/15 text-sky-700 dark:text-sky-300', alert: '5:60' },
+		{ label: 'How-to', tone: 'bg-lime-500/15 text-lime-700 dark:text-lime-300', alert: '3:15' },
+		{ label: 'Explanation', tone: 'bg-violet-500/15 text-violet-700 dark:text-violet-300', alert: '7:4' },
+		{ label: 'Reference', tone: 'bg-amber-500/15 text-amber-700 dark:text-amber-300', alert: '5:1' }
+	];
+
 	// The 'savings' motif: line endpoints as percentages of the tallest line,
 	// from the measured per-request costs (skill 3,777 / briefs 1,535 / a
 	// full alert report 735). Lines scale to the box; labels stay HTML.
@@ -199,7 +209,9 @@
 					? 'vale --path=COMMIT_EDITMSG'
 					: motif === 'manuscript'
 						? 'vale trial.md'
-						: `vale ${seed}.md`
+						: motif === 'compass'
+							? 'vale docs/'
+							: `vale ${seed}.md`
 	);
 </script>
 
@@ -233,6 +245,18 @@
 									<span class="text-rose-400">{line.alert}</span>
 								</span>
 							{/if}
+						</div>
+					{/each}
+				</div>
+			{:else if motif === 'compass'}
+				<div class="grid min-h-0 flex-1 grid-cols-2 grid-rows-2 gap-1.5 p-3">
+					{#each compassCells as cell (cell.label)}
+						<div class="flex flex-col justify-between rounded-md px-2.5 py-2 {cell.tone}">
+							<span class="text-[10px] font-semibold sm:text-[11px]">{cell.label}</span>
+							<span class="flex items-center gap-1 font-mono text-[10px]">
+								<span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+								<span class="text-rose-400">{cell.alert}</span>
+							</span>
 						</div>
 					{/each}
 				</div>

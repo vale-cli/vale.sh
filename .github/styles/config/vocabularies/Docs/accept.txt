@@ -89,3 +89,7 @@ unescaped
 unindented
 validator
 winget
+Diataxis
+Canonical
+Daniele
+Procida

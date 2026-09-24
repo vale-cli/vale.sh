@@ -1,6 +1,6 @@
 {
-	"vale": "3.22.0",
-	"generated": "2026-09-18",
+	"vale": "master",
+	"generated": "2026-09-24",
 	"posts": {
 		"commits": {
 			"errors": 0,
@@ -14,7 +14,21 @@
 			"smog": 9.5,
 			"complex": 5,
 			"minutes": 6,
-			"ms": 121
+			"ms": 143
+		},
+		"diataxis": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1115,
+			"sentences": 53,
+			"paragraphs": 17,
+			"grade": 8.9,
+			"ease": 68.8,
+			"smog": 11,
+			"complex": 8,
+			"minutes": 6,
+			"ms": 159
 		},
 		"journals": {
 			"errors": 0,
@@ -28,7 +42,7 @@
 			"smog": 11.1,
 			"complex": 10,
 			"minutes": 7,
-			"ms": 101
+			"ms": 134
 		},
 		"openapi": {
 			"errors": 0,
@@ -42,7 +56,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 71
+			"ms": 236
 		},
 		"std": {
 			"errors": 0,
@@ -56,7 +70,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 79
+			"ms": 133
 		},
 		"voices": {
 			"errors": 0,
@@ -70,7 +84,7 @@
 			"smog": 9.3,
 			"complex": 7,
 			"minutes": 9,
-			"ms": 76
+			"ms": 123
 		}
 	}
 }

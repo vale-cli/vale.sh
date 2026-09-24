@@ -6,6 +6,8 @@
 // reviewed in place before it ships.
 import type { Component } from 'svelte';
 
+import report from '$lib/data/lint.json';
+
 export type PostMeta = {
 	title: string;
 	description: string;
@@ -45,6 +47,16 @@ type PostModule = { default: Component; metadata: PostMeta };
 
 const modules = import.meta.glob<PostModule>('/src/posts/*.md', { eager: true });
 
+// Every published post ships with Vale's report on it, from
+// src/lib/data/lint.json. A post the report doesn't know is a post that was
+// never run through script/lint-posts.mjs, and the build says so rather than
+// render it without its footer.
+function requireReport(slug: string) {
+	if (!(slug in report.posts)) {
+		throw new Error(`src/posts/${slug}.md has no entry in src/lib/data/lint.json; run node script/lint-posts.mjs`);
+	}
+}
+
 export function listPosts(opts: { drafts?: boolean } = {}): Post[] {
 	const posts: Post[] = [];
 	for (const [path, mod] of Object.entries(modules)) {
@@ -52,6 +64,9 @@ export function listPosts(opts: { drafts?: boolean } = {}): Post[] {
 		const meta = mod.metadata;
 		if (meta.draft && !opts.drafts) {
 			continue;
+		}
+		if (!meta.draft) {
+			requireReport(slug);
 		}
 		posts.push({ slug, ...meta });
 	}
@@ -62,6 +77,9 @@ export function getPost(slug: string): { meta: Post; component: Component } | un
 	const mod = modules[`/src/posts/${slug}.md`];
 	if (!mod) {
 		return undefined;
+	}
+	if (!mod.metadata.draft) {
+		requireReport(slug);
 	}
 	return { meta: { slug, ...mod.metadata }, component: mod.default };
 }
