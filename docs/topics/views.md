@@ -104,6 +104,8 @@ scopes:
 
 Each capture in a query is one value. Its scope is `text.comment`, then the query's `name`, then `.line` or `.block` by whether the text spans lines, so the docstrings above answer to `scope: text.comment.docstring` and a plain `scope: comment` reaches both queries. Comment delimiters and per-line decoration are stripped before linting, and `#offset!` trims a capture by rows and columns from each end, which is how the docstring loses its quotes. A capture whose name starts with `_` is there for a predicate to test and is not linted, and one named `prose` is taken as bare content with nothing to strip.
 
+A YAML file is otherwise read as data, whole or through a `dasel` View. Naming it in a `tree-sitter` View reads it as code instead, so a `(comment) @comment` query lints its comments and nothing else, which is how the comments in a Helm chart's `values.yaml` or a CI workflow are checked without the values.
+
 ## [Text](views.md#text)
 
 A `textfsm` View applies to any file the section matches, and reads it through a template in the form [TextFSM](https://github.com/google/textfsm/wiki/TextFSM) defined: named values, then a state machine of regular expressions in the same [dialect](../guides/regex.md) every rule uses. Each scope's `expr` names a value, and what the template captured for it becomes the scope's text, placed at the line and column it came from.
