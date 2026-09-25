@@ -25,5 +25,3 @@ at that moment, so fixes released since then never reach it. A configuration
 pinned to an old revision can fail on features the docs describe — a `Vocab`
 that Vale reports as missing, for one — while the same setup works on a current
 release.
-
-https://github.com/vale-cli/vale-action https://plugins.jetbrains.com/plugin/19613-vale-cli/docs
