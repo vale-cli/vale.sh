@@ -1,0 +1,1015 @@
+{
+	"generated": "2026-09-25T01:52:39Z",
+	"versions": {
+		"codespell": "2.4.3",
+		"codespell-tuned": "2.4.3",
+		"cspell": "10.0.1",
+		"cspell-tuned": "10.0.1",
+		"textlint": "v15.7.1",
+		"typos": "typos-cli 1.50.2",
+		"typos-tuned": "typos-cli 1.50.2",
+		"vale": "vale version master"
+	},
+	"rows": [
+		{
+			"format": "md",
+			"label": "Markdown",
+			"family": "prose",
+			"expected": 4154,
+			"tools": {
+				"codespell": {
+					"found": 3988,
+					"leaked": 3652,
+					"seconds": 0.138,
+					"mb": 39,
+					"tuned": {
+						"found": 3988,
+						"leaked": 1826,
+						"seconds": 0.19,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 4154,
+					"leaked": 2989,
+					"seconds": 0.848,
+					"mb": 216,
+					"tuned": {
+						"found": 4152,
+						"leaked": 332,
+						"seconds": 0.897,
+						"mb": 212
+					}
+				},
+				"textlint": {
+					"found": 3986,
+					"leaked": 166,
+					"seconds": 15.836,
+					"mb": 233
+				},
+				"typos": {
+					"found": 4154,
+					"leaked": 2989,
+					"seconds": 0.091,
+					"mb": 81,
+					"tuned": {
+						"found": 4152,
+						"leaked": 332,
+						"seconds": 0.103,
+						"mb": 87
+					}
+				},
+				"vale": {
+					"found": 4154,
+					"leaked": 0,
+					"seconds": 0.166,
+					"mb": 55
+				}
+			}
+		},
+		{
+			"format": "adoc",
+			"label": "AsciiDoc",
+			"family": "prose",
+			"expected": 4653,
+			"tools": {
+				"codespell": {
+					"found": 4498,
+					"leaked": 3100,
+					"seconds": 0.122,
+					"mb": 39,
+					"tuned": {
+						"found": 4343,
+						"leaked": 2325,
+						"seconds": 0.165,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 4653,
+					"leaked": 2945,
+					"seconds": 0.917,
+					"mb": 220,
+					"tuned": {
+						"found": 4343,
+						"leaked": 930,
+						"seconds": 0.794,
+						"mb": 215
+					}
+				},
+				"textlint": {
+					"found": 3101,
+					"leaked": 1085,
+					"seconds": 3.686,
+					"mb": 216
+				},
+				"typos": {
+					"found": 4343,
+					"leaked": 2635,
+					"seconds": 0.092,
+					"mb": 86,
+					"tuned": {
+						"found": 4033,
+						"leaked": 620,
+						"seconds": 0.184,
+						"mb": 95
+					}
+				},
+				"vale": {
+					"found": 4653,
+					"leaked": 0,
+					"seconds": 0.456,
+					"mb": 61
+				}
+			}
+		},
+		{
+			"format": "rst",
+			"label": "reStructuredText",
+			"family": "prose",
+			"expected": 3615,
+			"tools": {
+				"codespell": {
+					"found": 3615,
+					"leaked": 3097,
+					"seconds": 0.16,
+					"mb": 39,
+					"tuned": {
+						"found": 3099,
+						"leaked": 1893,
+						"seconds": 0.19,
+						"mb": 40
+					}
+				},
+				"cspell": {
+					"found": 3615,
+					"leaked": 2925,
+					"seconds": 0.879,
+					"mb": 209,
+					"tuned": {
+						"found": 3099,
+						"leaked": 1721,
+						"seconds": 1.253,
+						"mb": 205
+					}
+				},
+				"typos": {
+					"found": 3615,
+					"leaked": 2753,
+					"seconds": 0.091,
+					"mb": 88,
+					"tuned": {
+						"found": 3099,
+						"leaked": 1549,
+						"seconds": 0.119,
+						"mb": 91
+					}
+				},
+				"vale": {
+					"found": 3615,
+					"leaked": 0,
+					"seconds": 1.313,
+					"mb": 54
+				}
+			}
+		},
+		{
+			"format": "html",
+			"label": "HTML",
+			"family": "prose",
+			"expected": 2758,
+			"tools": {
+				"codespell": {
+					"found": 2758,
+					"leaked": 3186,
+					"seconds": 0.126,
+					"mb": 39,
+					"tuned": {
+						"found": 2545,
+						"leaked": 1701,
+						"seconds": 0.15,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 2758,
+					"leaked": 2761,
+					"seconds": 0.98,
+					"mb": 230,
+					"tuned": {
+						"found": 2545,
+						"leaked": 0,
+						"seconds": 0.913,
+						"mb": 231
+					}
+				},
+				"typos": {
+					"found": 2758,
+					"leaked": 2973,
+					"seconds": 0.091,
+					"mb": 87,
+					"tuned": {
+						"found": 2545,
+						"leaked": 0,
+						"seconds": 0.115,
+						"mb": 90
+					}
+				},
+				"vale": {
+					"found": 2758,
+					"leaked": 0,
+					"seconds": 0.087,
+					"mb": 48
+				}
+			}
+		},
+		{
+			"format": "org",
+			"label": "Org",
+			"family": "prose",
+			"expected": 3305,
+			"tools": {
+				"codespell": {
+					"found": 3305,
+					"leaked": 3812,
+					"seconds": 0.121,
+					"mb": 39,
+					"tuned": {
+						"found": 3305,
+						"leaked": 2796,
+						"seconds": 0.162,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 3051,
+					"leaked": 3304,
+					"seconds": 0.817,
+					"mb": 201,
+					"tuned": {
+						"found": 3051,
+						"leaked": 1018,
+						"seconds": 0.819,
+						"mb": 201
+					}
+				},
+				"typos": {
+					"found": 3051,
+					"leaked": 2796,
+					"seconds": 0.103,
+					"mb": 91,
+					"tuned": {
+						"found": 3051,
+						"leaked": 1018,
+						"seconds": 0.176,
+						"mb": 90
+					}
+				},
+				"vale": {
+					"found": 3305,
+					"leaked": 0,
+					"seconds": 0.22,
+					"mb": 61
+				}
+			}
+		},
+		{
+			"format": "txt",
+			"label": "Plain text",
+			"family": "prose",
+			"expected": 3938,
+			"tools": {
+				"codespell": {
+					"found": 3938,
+					"leaked": 1968,
+					"seconds": 0.133,
+					"mb": 39,
+					"tuned": {
+						"found": 3938,
+						"leaked": 1968,
+						"seconds": 0.158,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 3938,
+					"leaked": 984,
+					"seconds": 0.794,
+					"mb": 208,
+					"tuned": {
+						"found": 3938,
+						"leaked": 984,
+						"seconds": 1.307,
+						"mb": 211
+					}
+				},
+				"typos": {
+					"found": 3938,
+					"leaked": 492,
+					"seconds": 0.091,
+					"mb": 86,
+					"tuned": {
+						"found": 3938,
+						"leaked": 492,
+						"seconds": 0.114,
+						"mb": 92
+					}
+				},
+				"vale": {
+					"found": 3938,
+					"leaked": 0,
+					"seconds": 0.089,
+					"mb": 45
+				}
+			}
+		},
+		{
+			"format": "mdx",
+			"label": "MDX",
+			"family": "prose",
+			"expected": 3854,
+			"tools": {
+				"codespell": {
+					"found": 3854,
+					"leaked": 3854,
+					"seconds": 0.125,
+					"mb": 39,
+					"tuned": {
+						"found": 3854,
+						"leaked": 2570,
+						"seconds": 0.163,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 3854,
+					"leaked": 3429,
+					"seconds": 0.868,
+					"mb": 224,
+					"tuned": {
+						"found": 3853,
+						"leaked": 1288,
+						"seconds": 0.84,
+						"mb": 231
+					}
+				},
+				"typos": {
+					"found": 3854,
+					"leaked": 3428,
+					"seconds": 0.093,
+					"mb": 89,
+					"tuned": {
+						"found": 3853,
+						"leaked": 1287,
+						"seconds": 0.111,
+						"mb": 88
+					}
+				},
+				"vale": {
+					"found": 3854,
+					"leaked": 0,
+					"seconds": 0.192,
+					"mb": 55
+				}
+			}
+		},
+		{
+			"format": "myst",
+			"label": "MyST",
+			"family": "prose",
+			"expected": 3642,
+			"tools": {
+				"codespell": {
+					"found": 3642,
+					"leaked": 4370,
+					"seconds": 0.125,
+					"mb": 39,
+					"tuned": {
+						"found": 3278,
+						"leaked": 4006,
+						"seconds": 0.158,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 3642,
+					"leaked": 4734,
+					"seconds": 0.855,
+					"mb": 201,
+					"tuned": {
+						"found": 2549,
+						"leaked": 2184,
+						"seconds": 0.781,
+						"mb": 211
+					}
+				},
+				"typos": {
+					"found": 3642,
+					"leaked": 4734,
+					"seconds": 0.093,
+					"mb": 85,
+					"tuned": {
+						"found": 2549,
+						"leaked": 2184,
+						"seconds": 0.162,
+						"mb": 92
+					}
+				},
+				"vale": {
+					"found": 3642,
+					"leaked": 0,
+					"seconds": 0.268,
+					"mb": 57
+				}
+			}
+		},
+		{
+			"format": "qmd",
+			"label": "Quarto",
+			"family": "prose",
+			"expected": 4021,
+			"tools": {
+				"codespell": {
+					"found": 4021,
+					"leaked": 3619,
+					"seconds": 0.127,
+					"mb": 40,
+					"tuned": {
+						"found": 4021,
+						"leaked": 2413,
+						"seconds": 0.188,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 4021,
+					"leaked": 4423,
+					"seconds": 0.772,
+					"mb": 201,
+					"tuned": {
+						"found": 4020,
+						"leaked": 1608,
+						"seconds": 1.438,
+						"mb": 212
+					}
+				},
+				"typos": {
+					"found": 4021,
+					"leaked": 4423,
+					"seconds": 0.093,
+					"mb": 90,
+					"tuned": {
+						"found": 4020,
+						"leaked": 1608,
+						"seconds": 0.134,
+						"mb": 87
+					}
+				},
+				"vale": {
+					"found": 4021,
+					"leaked": 0,
+					"seconds": 0.146,
+					"mb": 56
+				}
+			}
+		},
+		{
+			"format": "typ",
+			"label": "Typst",
+			"family": "prose",
+			"expected": 4382,
+			"tools": {
+				"codespell": {
+					"found": 4045,
+					"leaked": 3036,
+					"seconds": 0.154,
+					"mb": 39,
+					"tuned": {
+						"found": 4045,
+						"leaked": 2362,
+						"seconds": 0.16,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 4382,
+					"leaked": 3373,
+					"seconds": 0.755,
+					"mb": 201,
+					"tuned": {
+						"found": 4382,
+						"leaked": 1685,
+						"seconds": 1.808,
+						"mb": 209
+					}
+				},
+				"typos": {
+					"found": 4382,
+					"leaked": 3373,
+					"seconds": 0.092,
+					"mb": 84,
+					"tuned": {
+						"found": 4382,
+						"leaked": 1685,
+						"seconds": 0.145,
+						"mb": 89
+					}
+				},
+				"vale": {
+					"found": 4382,
+					"leaked": 0,
+					"seconds": 0.295,
+					"mb": 51
+				}
+			}
+		},
+		{
+			"format": "xml",
+			"label": "XML",
+			"family": "prose",
+			"expected": 2391,
+			"tools": {
+				"codespell": {
+					"found": 2391,
+					"leaked": 2631,
+					"seconds": 0.125,
+					"mb": 39,
+					"tuned": {
+						"found": 2152,
+						"leaked": 1195,
+						"seconds": 0.147,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 2391,
+					"leaked": 2632,
+					"seconds": 0.768,
+					"mb": 202,
+					"tuned": {
+						"found": 2152,
+						"leaked": 478,
+						"seconds": 0.957,
+						"mb": 202
+					}
+				},
+				"typos": {
+					"found": 2391,
+					"leaked": 2393,
+					"seconds": 0.102,
+					"mb": 89,
+					"tuned": {
+						"found": 2152,
+						"leaked": 478,
+						"seconds": 0.109,
+						"mb": 89
+					}
+				},
+				"vale": {
+					"found": 2391,
+					"leaked": 0,
+					"seconds": 0.17,
+					"mb": 48
+				}
+			}
+		},
+		{
+			"format": "dita",
+			"label": "DITA",
+			"family": "prose",
+			"expected": 2441,
+			"tools": {
+				"codespell": {
+					"found": 2441,
+					"leaked": 2711,
+					"seconds": 0.121,
+					"mb": 39,
+					"tuned": {
+						"found": 2441,
+						"leaked": 1626,
+						"seconds": 0.147,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 2441,
+					"leaked": 2711,
+					"seconds": 0.871,
+					"mb": 205,
+					"tuned": {
+						"found": 2441,
+						"leaked": 1626,
+						"seconds": 0.745,
+						"mb": 210
+					}
+				},
+				"typos": {
+					"found": 2441,
+					"leaked": 2169,
+					"seconds": 0.09,
+					"mb": 86,
+					"tuned": {
+						"found": 2441,
+						"leaked": 1355,
+						"seconds": 0.116,
+						"mb": 90
+					}
+				},
+				"vale": {
+					"found": 2441,
+					"leaked": 0,
+					"seconds": 4.545,
+					"mb": 332
+				}
+			}
+		},
+		{
+			"format": "qdoc",
+			"label": "QDoc",
+			"family": "prose",
+			"expected": 3332,
+			"tools": {
+				"codespell": {
+					"found": 3332,
+					"leaked": 3701,
+					"seconds": 0.126,
+					"mb": 39,
+					"tuned": {
+						"found": 3332,
+						"leaked": 2591,
+						"seconds": 0.152,
+						"mb": 39
+					}
+				},
+				"cspell": {
+					"found": 3332,
+					"leaked": 3331,
+					"seconds": 0.812,
+					"mb": 207,
+					"tuned": {
+						"found": 3332,
+						"leaked": 1481,
+						"seconds": 1.126,
+						"mb": 203
+					}
+				},
+				"typos": {
+					"found": 3332,
+					"leaked": 3331,
+					"seconds": 0.092,
+					"mb": 89,
+					"tuned": {
+						"found": 3332,
+						"leaked": 1481,
+						"seconds": 0.111,
+						"mb": 90
+					}
+				},
+				"vale": {
+					"found": 3332,
+					"leaked": 0,
+					"seconds": 0.129,
+					"mb": 52
+				}
+			}
+		},
+		{
+			"format": "ipynb",
+			"label": "Jupyter",
+			"family": "prose",
+			"expected": 2062,
+			"tools": {
+				"codespell": {
+					"found": 2062,
+					"leaked": 2886,
+					"seconds": 0.126,
+					"mb": 39,
+					"tuned": {
+						"found": 2062,
+						"leaked": 2474,
+						"seconds": 0.16,
+						"mb": 40
+					}
+				},
+				"cspell": {
+					"found": 2062,
+					"leaked": 2474,
+					"seconds": 0.943,
+					"mb": 217,
+					"tuned": {
+						"found": 2062,
+						"leaked": 1238,
+						"seconds": 1.159,
+						"mb": 214
+					}
+				},
+				"typos": {
+					"found": 2062,
+					"leaked": 2474,
+					"seconds": 0.088,
+					"mb": 82,
+					"tuned": {
+						"found": 2062,
+						"leaked": 1238,
+						"seconds": 0.103,
+						"mb": 87
+					}
+				},
+				"vale": {
+					"found": 2062,
+					"leaked": 0,
+					"seconds": 0.192,
+					"mb": 63
+				}
+			}
+		},
+		{
+			"format": "js",
+			"label": "JavaScript",
+			"family": "source",
+			"expected": 2620,
+			"tools": {
+				"codespell": {
+					"found": 2620,
+					"leaked": 7551,
+					"seconds": 0.127,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2617,
+					"leaked": 7383,
+					"seconds": 0.848,
+					"mb": 219
+				},
+				"typos": {
+					"found": 2620,
+					"leaked": 7243,
+					"seconds": 0.091,
+					"mb": 84
+				},
+				"vale": {
+					"found": 2620,
+					"leaked": 0,
+					"seconds": 0.115,
+					"mb": 51
+				}
+			}
+		},
+		{
+			"format": "go",
+			"label": "Go",
+			"family": "source",
+			"expected": 2953,
+			"tools": {
+				"codespell": {
+					"found": 2953,
+					"leaked": 5579,
+					"seconds": 0.153,
+					"mb": 40
+				},
+				"cspell": {
+					"found": 2953,
+					"leaked": 5579,
+					"seconds": 0.974,
+					"mb": 218
+				},
+				"typos": {
+					"found": 2953,
+					"leaked": 5579,
+					"seconds": 0.091,
+					"mb": 88
+				},
+				"vale": {
+					"found": 2953,
+					"leaked": 0,
+					"seconds": 0.137,
+					"mb": 67
+				}
+			}
+		},
+		{
+			"format": "py",
+			"label": "Python",
+			"family": "source",
+			"expected": 2576,
+			"tools": {
+				"codespell": {
+					"found": 2576,
+					"leaked": 7439,
+					"seconds": 0.122,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2503,
+					"leaked": 7497,
+					"seconds": 0.926,
+					"mb": 228
+				},
+				"typos": {
+					"found": 2576,
+					"leaked": 7725,
+					"seconds": 0.101,
+					"mb": 92
+				},
+				"vale": {
+					"found": 2576,
+					"leaked": 0,
+					"seconds": 0.777,
+					"mb": 61
+				}
+			}
+		},
+		{
+			"format": "rs",
+			"label": "Rust",
+			"family": "source",
+			"expected": 3152,
+			"tools": {
+				"codespell": {
+					"found": 3152,
+					"leaked": 5673,
+					"seconds": 0.171,
+					"mb": 40
+				},
+				"cspell": {
+					"found": 3152,
+					"leaked": 5358,
+					"seconds": 0.759,
+					"mb": 202
+				},
+				"typos": {
+					"found": 3152,
+					"leaked": 5358,
+					"seconds": 0.091,
+					"mb": 86
+				},
+				"vale": {
+					"found": 3152,
+					"leaked": 0,
+					"seconds": 0.145,
+					"mb": 67
+				}
+			}
+		},
+		{
+			"format": "java",
+			"label": "Java",
+			"family": "source",
+			"expected": 2872,
+			"tools": {
+				"codespell": {
+					"found": 2872,
+					"leaked": 5171,
+					"seconds": 0.148,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2872,
+					"leaked": 4883,
+					"seconds": 1.189,
+					"mb": 242
+				},
+				"typos": {
+					"found": 2872,
+					"leaked": 4884,
+					"seconds": 0.095,
+					"mb": 89
+				},
+				"vale": {
+					"found": 2872,
+					"leaked": 0,
+					"seconds": 0.11,
+					"mb": 54
+				}
+			}
+		},
+		{
+			"format": "kt",
+			"label": "Kotlin",
+			"family": "source",
+			"expected": 2756,
+			"tools": {
+				"codespell": {
+					"found": 2756,
+					"leaked": 6738,
+					"seconds": 0.158,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2756,
+					"leaked": 6432,
+					"seconds": 1.013,
+					"mb": 234
+				},
+				"typos": {
+					"found": 2756,
+					"leaked": 6432,
+					"seconds": 0.089,
+					"mb": 89
+				},
+				"vale": {
+					"found": 2756,
+					"leaked": 0,
+					"seconds": 0.177,
+					"mb": 72
+				}
+			}
+		},
+		{
+			"format": "yml",
+			"label": "YAML",
+			"family": "data",
+			"expected": 2230,
+			"tools": {
+				"codespell": {
+					"found": 2230,
+					"leaked": 2785,
+					"seconds": 0.134,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2230,
+					"leaked": 2786,
+					"seconds": 0.776,
+					"mb": 207
+				},
+				"typos": {
+					"found": 2230,
+					"leaked": 2786,
+					"seconds": 0.099,
+					"mb": 88
+				},
+				"vale": {
+					"found": 2230,
+					"leaked": 0,
+					"seconds": 0.25,
+					"mb": 65
+				}
+			}
+		},
+		{
+			"format": "json",
+			"label": "JSON",
+			"family": "data",
+			"expected": 1655,
+			"tools": {
+				"codespell": {
+					"found": 1655,
+					"leaked": 4135,
+					"seconds": 0.125,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 1655,
+					"leaked": 4136,
+					"seconds": 1.051,
+					"mb": 219
+				},
+				"typos": {
+					"found": 1655,
+					"leaked": 4136,
+					"seconds": 0.089,
+					"mb": 89
+				},
+				"vale": {
+					"found": 1655,
+					"leaked": 0,
+					"seconds": 0.153,
+					"mb": 62
+				}
+			}
+		},
+		{
+			"format": "toml",
+			"label": "TOML",
+			"family": "data",
+			"expected": 2225,
+			"tools": {
+				"codespell": {
+					"found": 2225,
+					"leaked": 2964,
+					"seconds": 0.136,
+					"mb": 39
+				},
+				"cspell": {
+					"found": 2225,
+					"leaked": 3706,
+					"seconds": 0.785,
+					"mb": 200
+				},
+				"typos": {
+					"found": 2225,
+					"leaked": 2965,
+					"seconds": 0.091,
+					"mb": 89
+				},
+				"vale": {
+					"found": 2225,
+					"leaked": 0,
+					"seconds": 0.496,
+					"mb": 65
+				}
+			}
+		}
+	]
+}

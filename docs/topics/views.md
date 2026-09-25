@@ -79,9 +79,11 @@ scopes:
 
 For JSON and YAML, each value is placed at the line and column the parser read it from, so an alert points into the source file, and a folded YAML block is read with its line breaks kept so positions stay line for line. TOML gives no positions, and a value is found by searching the text for it.
 
+A YAML or TOML file's comments are linted as well, whatever the View selects: a comment is prose, and a selector cannot reach one. They carry the scopes a source file's comments do, `text.comment.line` and `text.comment.block`, so `IgnoredScopes = comment` leaves them out.
+
 ## [Code](views.md#code)
 
-Vale reads source code by its comments. A `tree-sitter` View replaces that with queries of your own, in tree-sitter's [query language](https://tree-sitter.github.io/tree-sitter/using-parsers/queries/index.html), run against the file's syntax tree. It applies to the languages Vale has a grammar for: C, C++, CSS, Elixir, Go, Haskell, Java, JavaScript, Julia, Kotlin, Lua, PHP, Protocol Buffers, Python, QML, R, Ruby, Rust, TypeScript, and YAML.
+Vale reads source code by its comments. A `tree-sitter` View replaces that with queries of your own, in tree-sitter's [query language](https://tree-sitter.github.io/tree-sitter/using-parsers/queries/index.html), run against the file's syntax tree. It applies to the languages Vale has a grammar for: C, C++, CSS, Elixir, Go, Haskell, Java, JavaScript, Julia, Kotlin, Lua, PHP, Protocol Buffers, Python, QML, R, Ruby, Rust, TOML, TypeScript, and YAML.
 
 ```python
 def hello(name: str) -> str:

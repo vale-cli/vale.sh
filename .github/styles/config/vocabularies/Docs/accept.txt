@@ -93,3 +93,10 @@ Diataxis
 Canonical
 Daniele
 Procida
+cspell
+codespell
+textlint
+textbench
+Javadoc
+xsltproc
+typst2vast

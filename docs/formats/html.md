@@ -4,7 +4,9 @@ Learn how Vale handles HTML content.
 
 HTML5 support is built in. The supported extensions are `.html`, `.htm`, `.shtml`, and `.xhtml`.
 
-By default, Vale skips the `script`, `style`, `pre`, `figure`, `noscript`, and `iframe` elements, everything inside them included, and the inline `code`, `tt`, and `kbd` elements. An element carrying the class `pre`, `code`, or `problematic` is skipped too. URLs are ignored as well (see [URL handling](https://github.com/vale-cli/vale/issues/320) for more information).
+By default, Vale skips the `script`, `style`, `pre`, `noscript`, and `iframe` elements, everything inside them included, and the inline `code`, `tt`, `kbd`, and `samp` elements. An element carrying the class `pre`, `code`, or `problematic` is skipped too. URLs are ignored as well (see [URL handling](https://github.com/vale-cli/vale/issues/320) for more information).
+
+Two attributes are prose and are linted: an image's `alt` text, as `text.attr.alt`, and the page's description -- `<meta name="description">` or `og:description` -- as `text.attr.description`. Naming `alt` or `description` in `SkippedScopes` leaves one out.
 
 The block list is replaced by [`SkippedScopes`](../keys/skippedscopes.md), the inline list by [`IgnoredScopes`](../keys/ignoredscopes.md), and the classes are added to by [`IgnoredClasses`](../keys/ignoredclasses.md).
 

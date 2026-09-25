@@ -1,0 +1,8921 @@
+[
+ {
+  "id": "md",
+  "family": "prose",
+  "label": "Markdown",
+  "lang": "markdown",
+  "file": "guide.md",
+  "lines": [
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [
+    {
+     "text": "title: Reference for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": " subsystem"
+    }
+   ],
+   [
+    {
+     "text": "description: How the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": " cache behaves on restart"
+    }
+   ],
+   [
+    {
+     "text": "slug: "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": "-reference"
+    }
+   ],
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "A "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "setext heading"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": "======================================"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The pages below describe how the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "setext heading"
+    },
+    {
+     "text": " cache behaves when a node"
+    }
+   ],
+   [
+    {
+     "text": "rejoins the cluster after a restart."
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "text": "## Section 0: the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "atx heading"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Call `"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code span"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code span"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [
+    {
+     "text": "The `"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code span"
+    },
+    {
+     "text": "` and ``"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code span"
+    },
+    {
+     "text": "`` helpers do the same thing."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "```go"
+    }
+   ],
+   [
+    {
+     "text": "// "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced code block"
+    },
+    {
+     "text": " configures the client."
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced code block"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\treturn "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced code block"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   [
+    {
+     "text": "```"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "adoc",
+  "family": "prose",
+  "label": "AsciiDoc",
+  "lang": "asciidoc",
+  "file": "guide.adoc",
+  "lines": [
+   [
+    {
+     "text": "= A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "document header"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": ":toc:"
+    }
+   ],
+   [
+    {
+     "text": ":sectnums:"
+    }
+   ],
+   [
+    {
+     "text": ":product: "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "document header"
+    }
+   ],
+   [
+    {
+     "text": ":version: 4.2"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The pages below describe how the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "document header"
+    },
+    {
+     "text": " cache behaves when a node"
+    }
+   ],
+   [
+    {
+     "text": "rejoins the cluster after a restart."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "== Section 0: the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "section heading"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The {product} release ships with a "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute substitution"
+    },
+    {
+     "text": " default."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Call `"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The +"
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline passthrough"
+    },
+    {
+     "text": "+ form is literal, and +++"
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline passthrough"
+    },
+    {
+     "text": "+++ is passed through."
+    }
+   ],
+   [
+    {
+     "text": "Use pass:["
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline passthrough"
+    },
+    {
+     "text": "] to skip substitution entirely."
+    }
+   ],
+   [],
+   [
+    {
+     "text": ".Recommended "
+    },
+    {
+     "text": "optionl",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block title"
+    },
+    {
+     "text": " configuration"
+    }
+   ],
+   [
+    {
+     "text": "[source,go]"
+    }
+   ],
+   [
+    {
+     "text": "----"
+    }
+   ],
+   [
+    {
+     "text": "// "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block title"
+    },
+    {
+     "text": " configures the client."
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block title"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\treturn "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block title"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   [
+    {
+     "text": "----"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "rst",
+  "family": "prose",
+  "label": "reStructuredText",
+  "lang": "rst",
+  "file": "guide.rst",
+  "lines": [
+   [
+    {
+     "text": "======================================"
+    }
+   ],
+   [
+    {
+     "text": "A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title with overline"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": "======================================"
+    }
+   ],
+   [],
+   [
+    {
+     "text": ":Author: "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "field list"
+    }
+   ],
+   [
+    {
+     "text": ":Version: 4.2"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The pages below describe how the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "field list"
+    },
+    {
+     "text": " cache behaves when a node"
+    }
+   ],
+   [
+    {
+     "text": "rejoins the cluster after a restart."
+    }
+   ],
+   [],
+   [
+    {
+     "text": ".. |"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "substitution definition"
+    },
+    {
+     "text": "| replace:: the storage service"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Section 0: the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "section underline"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [
+    {
+     "text": "------------------------------------"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Call ``"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline literal"
+    },
+    {
+     "text": "(ctx)`` before reading, or the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline literal"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The :code:`"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code role"
+    },
+    {
+     "text": "` helper and the :file:`"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code role"
+    },
+    {
+     "text": ".toml` path are not prose."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "literal block"
+    },
+    {
+     "text": " command prints its settings::"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    $ tool run --mode="
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "literal block"
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "literal block"
+    },
+    {
+     "text": ": ready"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "html",
+  "family": "prose",
+  "label": "HTML",
+  "lang": "html",
+  "file": "guide.html",
+  "lines": [
+   [
+    {
+     "text": "<!DOCTYPE html>"
+    }
+   ],
+   [
+    {
+     "text": "<html lang=\"en\">"
+    }
+   ],
+   [
+    {
+     "text": "<head>"
+    }
+   ],
+   [
+    {
+     "text": "  <meta charset=\"utf-8\">"
+    }
+   ],
+   [
+    {
+     "text": "  <meta name=\"description\" content=\"How the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "head"
+    },
+    {
+     "text": " cache behaves on restart\">"
+    }
+   ],
+   [
+    {
+     "text": "  <title>A "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "head"
+    },
+    {
+     "text": " guide to the storage layer</title>"
+    }
+   ],
+   [
+    {
+     "text": "  <link rel=\"stylesheet\" href=\"/"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "head"
+    },
+    {
+     "text": "/site.css\">"
+    }
+   ],
+   [
+    {
+     "text": "  <style>."
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "style element"
+    },
+    {
+     "text": " { color: red; } /* "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "style element"
+    },
+    {
+     "text": " */</style>"
+    }
+   ],
+   [
+    {
+     "text": "  <script>window."
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "script element"
+    },
+    {
+     "text": " = \""
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "script element"
+    },
+    {
+     "text": "\"; // "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "script element"
+    },
+    {
+     "text": "</script>"
+    }
+   ],
+   [
+    {
+     "text": "</head>"
+    }
+   ],
+   [
+    {
+     "text": "<body>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<h2 id=\""
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": "-0\">Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " protocol</h2>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<p>Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry.</p>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<p>Call <code>"
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code element"
+    },
+    {
+     "text": "(ctx)</code> before reading, or the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code element"
+    },
+    {
+     "text": " field stays empty.</p>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<pre><code class=\"language-go\">// "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "pre element"
+    },
+    {
+     "text": " configures the client."
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "pre element"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "    return "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "pre element"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}</code></pre>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<p>See the <a href=\"https://example.com/"
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "anchor"
+    },
+    {
+     "text": "\" title=\""
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "anchor"
+    },
+    {
+     "text": "\">"
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "anchor"
+    },
+    {
+     "text": " reference</a> for the full list.</p>"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "org",
+  "family": "prose",
+  "label": "Org",
+  "lang": "plaintext",
+  "file": "guide.org",
+  "lines": [
+   [
+    {
+     "text": "#+TITLE: A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "keywords"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": "#+AUTHOR: "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "keywords"
+    }
+   ],
+   [
+    {
+     "text": "#+OPTIONS: toc:nil "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "keywords"
+    },
+    {
+     "text": ":t"
+    }
+   ],
+   [
+    {
+     "text": "#+PROPERTY: header-args :tangle "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "keywords"
+    },
+    {
+     "text": ".go"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The pages below describe how the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "keywords"
+    },
+    {
+     "text": " cache behaves when a node"
+    }
+   ],
+   [
+    {
+     "text": "rejoins the cluster after a restart."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "* Section 0: the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "headline with tags"
+    },
+    {
+     "text": " protocol :"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "headline with tags"
+    },
+    {
+     "text": ":"
+    }
+   ],
+   [
+    {
+     "text": ":PROPERTIES:"
+    }
+   ],
+   [
+    {
+     "text": ":CUSTOM_ID: "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "property drawer"
+    }
+   ],
+   [
+    {
+     "text": ":END:"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Call ="
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code and verbatim"
+    },
+    {
+     "text": "(ctx)= before reading, or the ~"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code and verbatim"
+    },
+    {
+     "text": "~ field stays empty."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "#+BEGIN_SRC go"
+    }
+   ],
+   [
+    {
+     "text": "// "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "source block"
+    },
+    {
+     "text": " configures the client."
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "source block"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\treturn "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "source block"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   [
+    {
+     "text": "#+END_SRC"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "txt",
+  "family": "prose",
+  "label": "Plain text",
+  "lang": "plaintext",
+  "file": "guide.txt",
+  "lines": [
+   [
+    {
+     "text": "A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title line"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The pages below describe how the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title line"
+    },
+    {
+     "text": " cache behaves when a node"
+    }
+   ],
+   [
+    {
+     "text": "rejoins the cluster after a restart."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading line"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it. A token that has expired is refused, and the caller"
+    }
+   ],
+   [
+    {
+     "text": "receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "See https://example.com/"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url"
+    },
+    {
+     "text": "/reference for the full list."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The settings are read from /etc/"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "codespell",
+      "cspell"
+     ],
+     "what": "file path"
+    },
+    {
+     "text": "/config.toml at startup."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Report problems to "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "email address"
+    },
+    {
+     "text": "@example.com with the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "email address"
+    },
+    {
+     "text": " log attached."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    $ tool run --mode="
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "command after a prompt"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The log reads \""
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "quoted text"
+    },
+    {
+     "text": ": ready\" once the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "quoted text"
+    },
+    {
+     "text": " probe passes."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "- A "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " entry is written on every commit."
+    }
+   ],
+   [
+    {
+     "text": "- A "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " entry is kept for thirty days."
+    }
+   ],
+   [],
+   []
+  ]
+ },
+ {
+  "id": "mdx",
+  "family": "prose",
+  "label": "MDX",
+  "lang": "mdx",
+  "file": "guide.mdx",
+  "lines": [
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [
+    {
+     "text": "title: Reference for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": " subsystem"
+    }
+   ],
+   [
+    {
+     "text": "slug: "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": "-reference"
+    }
+   ],
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": " from '../components/"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": "';"
+    }
+   ],
+   [
+    {
+     "text": "import { Note, Steps } from '@site/src/components';"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "export const meta = {"
+    }
+   ],
+   [
+    {
+     "text": "  "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "export statement"
+    },
+    {
+     "text": ": '"
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "export statement"
+    },
+    {
+     "text": "',"
+    }
+   ],
+   [
+    {
+     "text": "};"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "# A "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "## Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it, and the caller receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<Chart data={"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsx element with attributes"
+    },
+    {
+     "text": "} title=\""
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsx element with attributes"
+    },
+    {
+     "text": "\" />"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "<Note>"
+    }
+   ],
+   [
+    {
+     "text": "  The "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsx children"
+    },
+    {
+     "text": " limit applies per connection, not per request."
+    }
+   ],
+   [
+    {
+     "text": "</Note>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The default is {"
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline expression"
+    },
+    {
+     "text": ".limit} and the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline expression"
+    },
+    {
+     "text": " value is read once."
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "myst",
+  "family": "prose",
+  "label": "MyST",
+  "lang": "markdown",
+  "file": "guide.myst",
+  "lines": [
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [
+    {
+     "text": "title: Reference for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": " subsystem"
+    }
+   ],
+   [
+    {
+     "text": "myst:"
+    }
+   ],
+   [
+    {
+     "text": "  substitutions:"
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": ": \""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": "\""
+    }
+   ],
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "# A "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "("
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "target"
+    },
+    {
+     "text": "-label)="
+    }
+   ],
+   [
+    {
+     "text": "## Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it, and the caller receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "See {ref}`"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "role"
+    },
+    {
+     "text": "-label` and the {term}`"
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "role"
+    },
+    {
+     "text": "` entry for the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "role"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "% "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": ": revisit once the "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " work lands"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "```{note}"
+    }
+   ],
+   [
+    {
+     "text": ":class: "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prose directive with options"
+    }
+   ],
+   [
+    {
+     "text": "The "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prose directive with options"
+    },
+    {
+     "text": " limit applies per connection, not per request."
+    }
+   ],
+   [
+    {
+     "text": "```"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "```{code-block} python"
+    }
+   ],
+   [
+    {
+     "text": ":caption: "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code directive"
+    }
+   ],
+   [
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code directive"
+    },
+    {
+     "text": " = read("
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code directive"
+    },
+    {
+     "text": ")"
+    }
+   ],
+   [
+    {
+     "text": "```"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "qmd",
+  "family": "prose",
+  "label": "Quarto",
+  "lang": "markdown",
+  "file": "guide.qmd",
+  "lines": [
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [
+    {
+     "text": "title: \"Reference for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": " subsystem\""
+    }
+   ],
+   [
+    {
+     "text": "format: html"
+    }
+   ],
+   [
+    {
+     "text": "bibliography: "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "front matter"
+    },
+    {
+     "text": ".bib"
+    }
+   ],
+   [
+    {
+     "text": "---"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "## Section 0: the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading with attribute"
+    },
+    {
+     "text": " protocol {#sec-"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "heading with attribute"
+    },
+    {
+     "text": "}"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it, and the caller receives a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "```{r}"
+    }
+   ],
+   [
+    {
+     "text": "#| label: fig-"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "code cell"
+    }
+   ],
+   [
+    {
+     "text": "#| fig-cap: \"The "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code cell"
+    },
+    {
+     "text": " over time\""
+    }
+   ],
+   [
+    {
+     "text": "plot("
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code cell"
+    },
+    {
+     "text": ")"
+    }
+   ],
+   [
+    {
+     "text": "```"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The mean is `r mean("
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline expression"
+    },
+    {
+     "text": ")` and the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline expression"
+    },
+    {
+     "text": " value is read once."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "::: {.callout-note}"
+    }
+   ],
+   [
+    {
+     "text": "The "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced div"
+    },
+    {
+     "text": " limit applies per connection, not per request."
+    }
+   ],
+   [
+    {
+     "text": ":::"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "{{< video https://example.com/"
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "shortcode"
+    },
+    {
+     "text": " >}}"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "This is ["
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "span attribute"
+    },
+    {
+     "text": " text]{.underline} and this is ["
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "span attribute"
+    },
+    {
+     "text": " text]{."
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "span attribute"
+    },
+    {
+     "text": "}."
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "typ",
+  "family": "prose",
+  "label": "Typst",
+  "lang": "typst",
+  "file": "guide.typ",
+  "lines": [
+   [
+    {
+     "text": "#set page(paper: \""
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "set rule"
+    },
+    {
+     "text": "\")"
+    }
+   ],
+   [
+    {
+     "text": "#set text(font: \""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "set rule"
+    },
+    {
+     "text": "\")"
+    }
+   ],
+   [
+    {
+     "text": "#let "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "let binding"
+    },
+    {
+     "text": " = 4096"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "= A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "== Section 0: the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "heading with label"
+    },
+    {
+     "text": " protocol <"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "heading with label"
+    },
+    {
+     "text": "-label>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Each request carries a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "forwarding it, and the caller receives a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "See @"
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "reference"
+    },
+    {
+     "text": "-label for the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "reference"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "See the #link(\"https://example.com/"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "link function"
+    },
+    {
+     "text": "\")["
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "link function"
+    },
+    {
+     "text": " reference] for the full list."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Call `"
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw span"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw span"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "```go"
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw block"
+    },
+    {
+     "text": "(ctx context.Context) error { return nil }"
+    }
+   ],
+   [
+    {
+     "text": "```"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "The bound is $"
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "math"
+    },
+    {
+     "text": "^2$ and the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "math"
+    },
+    {
+     "text": " term is dropped."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "// "
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "line comment"
+    },
+    {
+     "text": ": revisit once the "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "line comment"
+    },
+    {
+     "text": " work lands"
+    }
+   ],
+   [
+    {
+     "text": "/* "
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment"
+    },
+    {
+     "text": " is kept for the older callers */"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "xml",
+  "family": "prose",
+  "label": "XML",
+  "lang": "xml",
+  "file": "guide.xml",
+  "lines": [
+   [
+    {
+     "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    }
+   ],
+   [
+    {
+     "text": "<?"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "prolog"
+    },
+    {
+     "text": "-processor mode=\""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prolog"
+    },
+    {
+     "text": "\"?>"
+    }
+   ],
+   [
+    {
+     "text": "<document id=\""
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prolog"
+    },
+    {
+     "text": "\">"
+    }
+   ],
+   [
+    {
+     "text": "  <title>A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title"
+    },
+    {
+     "text": " guide to the storage layer</title>"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "  <section id=\""
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "section title"
+    },
+    {
+     "text": "-0\">"
+    }
+   ],
+   [
+    {
+     "text": "    <title>Section 0: the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "section title"
+    },
+    {
+     "text": " protocol</title>"
+    }
+   ],
+   [
+    {
+     "text": "    <para>Each request carries a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "    forwarding it, and the caller receives a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response.</para>"
+    }
+   ],
+   [
+    {
+     "text": "    <para>Call <code>"
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code element"
+    },
+    {
+     "text": "(ctx)</code> before reading, or the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code element"
+    },
+    {
+     "text": " field stays empty.</para>"
+    }
+   ],
+   [
+    {
+     "text": "    <programlisting language=\"go\">"
+    }
+   ],
+   [
+    {
+     "text": "func "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "program listing"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\treturn "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "program listing"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   [
+    {
+     "text": "    </programlisting>"
+    }
+   ],
+   [
+    {
+     "text": "    <programlisting><![CDATA["
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "cdata section"
+    },
+    {
+     "text": " < "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "cdata section"
+    },
+    {
+     "text": " && ready]]></programlisting>"
+    }
+   ],
+   [
+    {
+     "text": "    <para>See the <link href=\"https://example.com/"
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "link"
+    },
+    {
+     "text": "\">"
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "link"
+    },
+    {
+     "text": " reference</link> for the full list.</para>"
+    }
+   ],
+   [
+    {
+     "text": "    <!-- "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": ": revisit once the "
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " work lands -->"
+    }
+   ],
+   [
+    {
+     "text": "    <itemizedlist>"
+    }
+   ],
+   [
+    {
+     "text": "      <listitem><para>A "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " entry is written on every commit.</para></listitem>"
+    }
+   ],
+   [
+    {
+     "text": "      <listitem><para>The <code>"
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": "</code> counter is reset nightly.</para></listitem>"
+    }
+   ],
+   [
+    {
+     "text": "    </itemizedlist>"
+    }
+   ],
+   [
+    {
+     "text": "    <note><para>The "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "note"
+    },
+    {
+     "text": " limit applies per connection, not per request.</para></note>"
+    }
+   ],
+   [
+    {
+     "text": "    <figure>"
+    }
+   ],
+   [
+    {
+     "text": "      <title>The "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "figure with alt"
+    },
+    {
+     "text": " pipeline</title>"
+    }
+   ],
+   [
+    {
+     "text": "      <image href=\"images/"
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "codespell",
+      "cspell"
+     ],
+     "what": "figure with alt"
+    },
+    {
+     "text": ".png\" alt=\"Diagram of the "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "figure with alt"
+    },
+    {
+     "text": " pipeline\"/>"
+    }
+   ],
+   [
+    {
+     "text": "    </figure>"
+    }
+   ],
+   [
+    {
+     "text": "    <term><code>"
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "definition list"
+    },
+    {
+     "text": "</code></term>"
+    }
+   ],
+   [
+    {
+     "text": "    <definition>The "
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "definition list"
+    },
+    {
+     "text": " identifier.</definition>"
+    }
+   ],
+   [
+    {
+     "text": "  </section>"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "dita",
+  "family": "prose",
+  "label": "DITA",
+  "lang": "xml",
+  "file": "guide.dita",
+  "lines": [
+   [
+    {
+     "text": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>"
+    }
+   ],
+   [
+    {
+     "text": "<!DOCTYPE topic PUBLIC \"-//OASIS//DTD DITA Topic//EN\" \"topic.dtd\">"
+    }
+   ],
+   [
+    {
+     "text": "<topic id=\""
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prolog"
+    },
+    {
+     "text": "\">"
+    }
+   ],
+   [
+    {
+     "text": "  <title>A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title"
+    },
+    {
+     "text": " guide to the storage layer</title>"
+    }
+   ],
+   [
+    {
+     "text": "  <shortdesc>How the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "short description"
+    },
+    {
+     "text": " cache behaves when a node rejoins the cluster.</shortdesc>"
+    }
+   ],
+   [
+    {
+     "text": "  <body>"
+    }
+   ],
+   [
+    {
+     "text": "    <section id=\""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "section title"
+    },
+    {
+     "text": "-0\">"
+    }
+   ],
+   [
+    {
+     "text": "      <title>Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "section title"
+    },
+    {
+     "text": " protocol</title>"
+    }
+   ],
+   [
+    {
+     "text": "      <p>Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "      forwarding it, and the caller receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response.</p>"
+    }
+   ],
+   [
+    {
+     "text": "      <p>Call <codeph>"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code phrase"
+    },
+    {
+     "text": "(ctx)</codeph> before reading, or the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code phrase"
+    },
+    {
+     "text": " field stays empty.</p>"
+    }
+   ],
+   [
+    {
+     "text": "      <codeblock>func "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code block"
+    },
+    {
+     "text": "(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\treturn "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code block"
+    },
+    {
+     "text": ".Do(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "}</codeblock>"
+    }
+   ],
+   [
+    {
+     "text": "      <p>See the <xref href=\"https://example.com/"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "cross reference"
+    },
+    {
+     "text": "\" format=\"html\" scope=\"external\">"
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "cross reference"
+    },
+    {
+     "text": " reference</xref> for the full list.</p>"
+    }
+   ],
+   [
+    {
+     "text": "      <!-- "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": ": revisit once the "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " work lands -->"
+    }
+   ],
+   [
+    {
+     "text": "      <ul>"
+    }
+   ],
+   [
+    {
+     "text": "        <li>A "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " entry is written on every commit.</li>"
+    }
+   ],
+   [
+    {
+     "text": "        <li>The <codeph>"
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": "</codeph> counter is reset nightly.</li>"
+    }
+   ],
+   [
+    {
+     "text": "      </ul>"
+    }
+   ],
+   [
+    {
+     "text": "      <note type=\"important\">The "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "note"
+    },
+    {
+     "text": " limit applies per connection, not per request.</note>"
+    }
+   ],
+   [
+    {
+     "text": "      <image href=\"images/"
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "codespell",
+      "cspell"
+     ],
+     "what": "image with alt"
+    },
+    {
+     "text": ".png\"><alt>Diagram of the "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "image with alt"
+    },
+    {
+     "text": " pipeline</alt></image>"
+    }
+   ],
+   [
+    {
+     "text": "      <p>Type <userinput>"
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "user input and filepath"
+    },
+    {
+     "text": " --start</userinput> and check <filepath>/var/lib/"
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "codespell",
+      "cspell"
+     ],
+     "what": "user input and filepath"
+    },
+    {
+     "text": "</filepath> for the "
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "user input and filepath"
+    },
+    {
+     "text": " log.</p>"
+    }
+   ],
+   [
+    {
+     "text": "    </section>"
+    }
+   ],
+   [
+    {
+     "text": "  </body>"
+    }
+   ],
+   [
+    {
+     "text": "</topic>"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "qdoc",
+  "family": "prose",
+  "label": "QDoc",
+  "lang": "cpp",
+  "file": "guide.qdoc",
+  "lines": [
+   [
+    {
+     "text": "/*!"
+    }
+   ],
+   [
+    {
+     "text": "    \\page "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "page command"
+    },
+    {
+     "text": ".html"
+    }
+   ],
+   [
+    {
+     "text": "    \\title A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "title"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": "    \\brief How the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "brief"
+    },
+    {
+     "text": " cache behaves when a node rejoins the cluster."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    \\section1 Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "section heading"
+    },
+    {
+     "text": " protocol"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " token that the gateway validates before"
+    }
+   ],
+   [
+    {
+     "text": "    forwarding it, and the caller receives a "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "paragraph"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    Call \\c "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code command"
+    },
+    {
+     "text": " before reading, or the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code command"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [
+    {
+     "text": "    The \\a "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inline code command"
+    },
+    {
+     "text": " argument is read once."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    \\code"
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code block"
+    },
+    {
+     "text": "(ctx);"
+    }
+   ],
+   [
+    {
+     "text": "    return "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code block"
+    },
+    {
+     "text": ".value();"
+    }
+   ],
+   [
+    {
+     "text": "    \\endcode"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    See the \\l {https://example.com/"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "link with target"
+    },
+    {
+     "text": "} {"
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "link with target"
+    },
+    {
+     "text": " reference} for the full list."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    \\sa "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "see also"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    \\omit "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "omitted text"
+    },
+    {
+     "text": " is kept for the older callers \\endomit"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    \\list"
+    }
+   ],
+   [
+    {
+     "text": "    \\li A "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " entry is written on every commit."
+    }
+   ],
+   [
+    {
+     "text": "    \\li The \\c "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list"
+    },
+    {
+     "text": " counter is reset nightly."
+    }
+   ],
+   [
+    {
+     "text": "    \\endlist"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "ipynb",
+  "family": "prose",
+  "label": "Jupyter",
+  "lang": "json",
+  "file": "guide.ipynb",
+  "lines": [
+   [
+    {
+     "text": "{"
+    }
+   ],
+   [
+    {
+     "text": " \"cells\": ["
+    }
+   ],
+   [
+    {
+     "text": "  {"
+    }
+   ],
+   [
+    {
+     "text": "   \"cell_type\": \"markdown\","
+    }
+   ],
+   [
+    {
+     "text": "   \"metadata\": {},"
+    }
+   ],
+   [
+    {
+     "text": "   \"source\": ["
+    }
+   ],
+   [
+    {
+     "text": "    \"# A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "markdown cell"
+    },
+    {
+     "text": " guide to the storage layer\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"The pages below describe how the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "markdown cell"
+    },
+    {
+     "text": " cache behaves on restart.\""
+    }
+   ],
+   [
+    {
+     "text": "   ]"
+    }
+   ],
+   [
+    {
+     "text": "  },"
+    }
+   ],
+   [
+    {
+     "text": "  {"
+    }
+   ],
+   [
+    {
+     "text": "   \"cell_type\": \"markdown\","
+    }
+   ],
+   [
+    {
+     "text": "   \"metadata\": {},"
+    }
+   ],
+   [
+    {
+     "text": "   \"source\": ["
+    }
+   ],
+   [
+    {
+     "text": "    \"## Section 0: the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "markdown cell"
+    },
+    {
+     "text": " protocol\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"Each request carries a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "markdown cell"
+    },
+    {
+     "text": " token that the gateway validates.\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"Call `"
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code span in a markdown cell"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code span in a markdown cell"
+    },
+    {
+     "text": " field stays empty.\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"```python\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced block in a markdown cell"
+    },
+    {
+     "text": " = read("
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "fenced block in a markdown cell"
+    },
+    {
+     "text": ")\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"```\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"\\n\","
+    }
+   ],
+   [
+    {
+     "text": "    \"See the ["
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "link in a markdown cell"
+    },
+    {
+     "text": " reference](https://example.com/"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "link in a markdown cell"
+    },
+    {
+     "text": ") for the full list.\""
+    }
+   ],
+   [
+    {
+     "text": "   ]"
+    }
+   ],
+   [
+    {
+     "text": "  },"
+    }
+   ],
+   [
+    {
+     "text": "  {"
+    }
+   ],
+   [
+    {
+     "text": "   \"cell_type\": \"code\","
+    }
+   ],
+   [
+    {
+     "text": "   \"execution_count\": 1,"
+    }
+   ],
+   [
+    {
+     "text": "   \"metadata\": {},"
+    }
+   ],
+   [
+    {
+     "text": "   \"outputs\": ["
+    }
+   ],
+   [
+    {
+     "text": "    {\"name\": \"stdout\", \"output_type\": \"stream\", \"text\": [\""
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "code cell"
+    },
+    {
+     "text": ": ready\\n\"]}"
+    }
+   ],
+   [
+    {
+     "text": "   ],"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "js",
+  "family": "source",
+  "label": "JavaScript",
+  "lang": "javascript",
+  "file": "cache.js",
+  "lines": [
+   [
+    {
+     "text": "#!/usr/bin/env node"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "// Client for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "file header comment"
+    },
+    {
+     "text": " service. Handles retries and the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "file header comment"
+    },
+    {
+     "text": " cache."
+    }
+   ],
+   [
+    {
+     "text": "// @ts-check"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import { "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": " } from './"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "codespell",
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": "/client.js';"
+    }
+   ],
+   [
+    {
+     "text": "import "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": " from 'node:"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "import statement"
+    },
+    {
+     "text": "';"
+    }
+   ],
+   [],
+   [],
+   [
+    {
+     "text": "// Section 0 describes the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "line comment"
+    },
+    {
+     "text": " protocol and when it applies."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "const "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing line comment"
+    },
+    {
+     "text": " = 0; // The "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing line comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/* The "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment, one line"
+    },
+    {
+     "text": " token is validated before the request is forwarded. */"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/*"
+    }
+   ],
+   [
+    {
+     "text": " * A token that has expired is refused, and the caller receives a"
+    }
+   ],
+   [
+    {
+     "text": " * "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment, aligned"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [
+    {
+     "text": " */"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/* The "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment, unnestable"
+    },
+    {
+     "text": " handler /* is still the same comment as "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment, unnestable"
+    },
+    {
+     "text": " here. */"
+    }
+   ],
+   [
+    {
+     "text": "const "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment, unnestable"
+    },
+    {
+     "text": " = true;"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/**"
+    }
+   ],
+   [
+    {
+     "text": " * Reads the "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " record and returns it."
+    }
+   ],
+   [
+    {
+     "text": " *"
+    }
+   ],
+   [
+    {
+     "text": " * @param {string} "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " - The "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " identifier to look up."
+    }
+   ],
+   [
+    {
+     "text": " * @param {object} ["
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": "] - Options controlling the "
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " retry."
+    }
+   ],
+   [
+    {
+     "text": " * @returns {Promise<object>} The "
+    },
+    {
+     "text": "optionl",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " payload, once resolved."
+    }
+   ],
+   [
+    {
+     "text": " * @throws {RangeError} When the "
+    },
+    {
+     "text": "jounal",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": " bound is exceeded."
+    }
+   ],
+   [
+    {
+     "text": " */"
+    }
+   ],
+   [
+    {
+     "text": "async function "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": "("
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": ", "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "jsdoc"
+    },
+    {
+     "text": ") {"
+    }
+   ],
+   [
+    {
+     "text": "  return null;"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "go",
+  "family": "source",
+  "label": "Go",
+  "lang": "go",
+  "file": "cache.go",
+  "lines": [
+   [
+    {
+     "text": "//go:build linux || "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "build constraint"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "// Package "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "package comment"
+    },
+    {
+     "text": " handles the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "package comment"
+    },
+    {
+     "text": " cache and its retries."
+    }
+   ],
+   [
+    {
+     "text": "package "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "package comment"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import ("
+    }
+   ],
+   [
+    {
+     "text": "\t\"context\""
+    }
+   ],
+   [
+    {
+     "text": "\t\"fmt\""
+    }
+   ],
+   [
+    {
+     "text": ")"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "// Section0 reads the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment"
+    },
+    {
+     "text": " record and returns it. A token that has"
+    }
+   ],
+   [
+    {
+     "text": "// expired is refused, and the caller receives a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment"
+    },
+    {
+     "text": " response."
+    }
+   ],
+   [
+    {
+     "text": "//"
+    }
+   ],
+   [
+    {
+     "text": "//\t"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment code block"
+    },
+    {
+     "text": " := Section0(ctx)"
+    }
+   ],
+   [
+    {
+     "text": "//\tfmt.Println("
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment code block"
+    },
+    {
+     "text": ")"
+    }
+   ],
+   [
+    {
+     "text": "//"
+    }
+   ],
+   [
+    {
+     "text": "// See ["
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment link"
+    },
+    {
+     "text": "] and [fmt.Errorf] for the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment link"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [
+    {
+     "text": "//"
+    }
+   ],
+   [
+    {
+     "text": "// Deprecated: use the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "deprecation paragraph"
+    },
+    {
+     "text": " variant instead."
+    }
+   ],
+   [
+    {
+     "text": "func Section0(ctx context.Context) error {"
+    }
+   ],
+   [
+    {
+     "text": "\t"
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " := 0 // The "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [
+    {
+     "text": "\t"
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " := \"a "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " value read from disk\""
+    }
+   ],
+   [
+    {
+     "text": "\t"
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string literal"
+    },
+    {
+     "text": " := `a "
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string literal"
+    },
+    {
+     "text": " value // with a marker that is not a comment`"
+    }
+   ],
+   [
+    {
+     "text": "\t"
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " := \"not // a comment "
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " at all\""
+    }
+   ],
+   [
+    {
+     "text": "\t// See https://example.com/"
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " for the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " reference."
+    }
+   ],
+   [
+    {
+     "text": "\treturn fmt.Errorf(\""
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "nolint directive"
+    },
+    {
+     "text": ": %w\", ctx.Err()) //nolint:"
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "nolint directive"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "py",
+  "family": "source",
+  "label": "Python",
+  "lang": "python",
+  "file": "cache.py",
+  "lines": [
+   [
+    {
+     "text": "#!/usr/bin/env python3"
+    }
+   ],
+   [
+    {
+     "text": "# -*- coding: utf-8 -*-"
+    }
+   ],
+   [
+    {
+     "text": "\"\"\"Client for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "module docstring"
+    },
+    {
+     "text": " service."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "Handles retries and the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "module docstring"
+    },
+    {
+     "text": " cache."
+    }
+   ],
+   [
+    {
+     "text": "\"\"\""
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "module docstring"
+    }
+   ],
+   [
+    {
+     "text": "from "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "module docstring"
+    },
+    {
+     "text": " import "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "module docstring"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "# Section 0 describes the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " protocol and when it applies."
+    }
+   ],
+   [
+    {
+     "text": "@"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "decorator"
+    },
+    {
+     "text": "("
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "decorator"
+    },
+    {
+     "text": "=True)"
+    }
+   ],
+   [
+    {
+     "text": "def section_0("
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "decorator"
+    },
+    {
+     "text": ": str, "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "decorator"
+    },
+    {
+     "text": ": int = 0) -> dict:"
+    }
+   ],
+   [
+    {
+     "text": "    \"\"\"Read the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring"
+    },
+    {
+     "text": " record and return it."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    A token that has expired is refused, and the caller receives a"
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    Call ``"
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring inline literal"
+    },
+    {
+     "text": "(ctx)`` before reading, or the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring inline literal"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    :param "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": ": The "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": " identifier to look up."
+    }
+   ],
+   [
+    {
+     "text": "    :param "
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": ": Options controlling the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": " retry."
+    }
+   ],
+   [
+    {
+     "text": "    :raises "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": ": When the "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "docstring field"
+    },
+    {
+     "text": " bound is exceeded."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    >>> section_0(\""
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doctest"
+    },
+    {
+     "text": "\")"
+    }
+   ],
+   [
+    {
+     "text": "    {'"
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "doctest"
+    },
+    {
+     "text": "': True}"
+    }
+   ],
+   [
+    {
+     "text": "    \"\"\""
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " = 0  # The "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " = \"a "
+    },
+    {
+     "text": "rootns",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " value read from disk\""
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "kvstore",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " = '"
+    },
+    {
+     "text": "chunker",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": "'"
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "lexerx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "f-string"
+    },
+    {
+     "text": " = f\"prefix {"
+    },
+    {
+     "text": "tokbuf",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "f-string"
+    },
+    {
+     "text": "} "
+    },
+    {
+     "text": "srvopts",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "f-string"
+    },
+    {
+     "text": " suffix\""
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "fdcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " = \"not # a comment "
+    },
+    {
+     "text": "memq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " at all\""
+    }
+   ],
+   [
+    {
+     "text": "    "
+    },
+    {
+     "text": "waitgrp",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "triple-quoted string that is not a docstring"
+    },
+    {
+     "text": " = \"\"\"a "
+    },
+    {
+     "text": "ringbuf",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "triple-quoted string that is not a docstring"
+    },
+    {
+     "text": " value"
+    }
+   ],
+   [
+    {
+     "text": "    spanning lines\"\"\""
+    }
+   ]
+  ]
+ },
+ {
+  "id": "rs",
+  "family": "source",
+  "label": "Rust",
+  "lang": "rust",
+  "file": "cache.rs",
+  "lines": [
+   [
+    {
+     "text": "//! Client for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inner doc comment"
+    },
+    {
+     "text": " service."
+    }
+   ],
+   [
+    {
+     "text": "//!"
+    }
+   ],
+   [
+    {
+     "text": "//! Handles retries and the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "inner doc comment"
+    },
+    {
+     "text": " cache."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "#![allow("
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute"
+    },
+    {
+     "text": ")]"
+    }
+   ],
+   [
+    {
+     "text": "use std::"
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute"
+    },
+    {
+     "text": "::"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute"
+    },
+    {
+     "text": ";"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/// Reads the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "outer doc comment"
+    },
+    {
+     "text": " record and returns it."
+    }
+   ],
+   [
+    {
+     "text": "///"
+    }
+   ],
+   [
+    {
+     "text": "/// A token that has expired is refused, and the caller receives a"
+    }
+   ],
+   [
+    {
+     "text": "/// "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "outer doc comment"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [
+    {
+     "text": "///"
+    }
+   ],
+   [
+    {
+     "text": "/// Call `"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment code span"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment code span"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [
+    {
+     "text": "///"
+    }
+   ],
+   [
+    {
+     "text": "/// # "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment heading"
+    }
+   ],
+   [
+    {
+     "text": "///"
+    }
+   ],
+   [
+    {
+     "text": "/// ```"
+    }
+   ],
+   [
+    {
+     "text": "/// let "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment fenced block"
+    },
+    {
+     "text": " = section_0("
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment fenced block"
+    },
+    {
+     "text": ");"
+    }
+   ],
+   [
+    {
+     "text": "/// assert!("
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "doc comment fenced block"
+    },
+    {
+     "text": ".is_ok());"
+    }
+   ],
+   [
+    {
+     "text": "/// ```"
+    }
+   ],
+   [
+    {
+     "text": "///"
+    }
+   ],
+   [
+    {
+     "text": "/// See [`"
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "intra-doc link"
+    },
+    {
+     "text": "`] and ["
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "intra-doc link"
+    },
+    {
+     "text": "] for the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "intra-doc link"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [
+    {
+     "text": "#[cfg(feature = \""
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute on an item"
+    },
+    {
+     "text": "\")]"
+    }
+   ],
+   [
+    {
+     "text": "pub fn section_0("
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute on an item"
+    },
+    {
+     "text": ": &str) -> Result<(), "
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "attribute on an item"
+    },
+    {
+     "text": "> {"
+    }
+   ],
+   [
+    {
+     "text": "    let "
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " = 0; // The "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [
+    {
+     "text": "    let "
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " = \"a "
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " value read from disk\";"
+    }
+   ],
+   [
+    {
+     "text": "    let "
+    },
+    {
+     "text": "rootns",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string literal"
+    },
+    {
+     "text": " = r#\"a "
+    },
+    {
+     "text": "kvstore",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string literal"
+    },
+    {
+     "text": " value // with \"quotes\" and no comment\"#;"
+    }
+   ],
+   [
+    {
+     "text": "    let "
+    },
+    {
+     "text": "chunker",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " = \"not // a comment "
+    },
+    {
+     "text": "lexerx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " at all\";"
+    }
+   ],
+   [
+    {
+     "text": "    /* The "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "nested block comment"
+    },
+    {
+     "text": " handler /* is nested, and "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "nested block comment"
+    },
+    {
+     "text": " is still comment */ here. */"
+    }
+   ],
+   [
+    {
+     "text": "    // See https://example.com/"
+    },
+    {
+     "text": "tokbuf",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " for the "
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " reference."
+    }
+   ],
+   [
+    {
+     "text": "    Ok(())"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "java",
+  "family": "source",
+  "label": "Java",
+  "lang": "java",
+  "file": "Cache.java",
+  "lines": [
+   [
+    {
+     "text": "package com.example."
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [],
+     "what": ""
+    },
+    {
+     "text": ";"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import java.util."
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [],
+     "what": ""
+    },
+    {
+     "text": ";"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/**"
+    }
+   ],
+   [
+    {
+     "text": " * Client for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "class javadoc"
+    },
+    {
+     "text": " service. Handles retries and the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "class javadoc"
+    },
+    {
+     "text": " cache."
+    }
+   ],
+   [
+    {
+     "text": " */"
+    }
+   ],
+   [
+    {
+     "text": "@"
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": "(\""
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": "\")"
+    }
+   ],
+   [
+    {
+     "text": "public class "
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": " {"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    /**"
+    }
+   ],
+   [
+    {
+     "text": "     * Reads the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "method javadoc"
+    },
+    {
+     "text": " record and returns it."
+    }
+   ],
+   [
+    {
+     "text": "     *"
+    }
+   ],
+   [
+    {
+     "text": "     * <p>Call {@code "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc code tag"
+    },
+    {
+     "text": "(ctx)} before reading, or the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc code tag"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [
+    {
+     "text": "     * <pre>{@code"
+    }
+   ],
+   [
+    {
+     "text": "     * "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc pre block"
+    },
+    {
+     "text": " r = section0("
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc pre block"
+    },
+    {
+     "text": ");"
+    }
+   ],
+   [
+    {
+     "text": "     * }</pre>"
+    }
+   ],
+   [
+    {
+     "text": "     * See {@link "
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc link tag"
+    },
+    {
+     "text": "} and {@link #"
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc link tag"
+    },
+    {
+     "text": "()} for the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc link tag"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [
+    {
+     "text": "     *"
+    }
+   ],
+   [
+    {
+     "text": "     * @param "
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " identifier to look up"
+    }
+   ],
+   [
+    {
+     "text": "     * @return the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " payload, once resolved"
+    }
+   ],
+   [
+    {
+     "text": "     * @throws "
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " when the "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " bound is exceeded"
+    }
+   ],
+   [
+    {
+     "text": "     */"
+    }
+   ],
+   [
+    {
+     "text": "    @Override"
+    }
+   ],
+   [
+    {
+     "text": "    public "
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": " section0(String "
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "javadoc block tag"
+    },
+    {
+     "text": ") {"
+    }
+   ],
+   [
+    {
+     "text": "        int "
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " = 0; // The "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [
+    {
+     "text": "        String "
+    },
+    {
+     "text": "rootns",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " = \"a "
+    },
+    {
+     "text": "kvstore",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " value read from disk\";"
+    }
+   ],
+   [
+    {
+     "text": "        String "
+    },
+    {
+     "text": "chunker",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "text block"
+    },
+    {
+     "text": " = \"\"\""
+    }
+   ],
+   [
+    {
+     "text": "            a "
+    },
+    {
+     "text": "lexerx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "text block"
+    },
+    {
+     "text": " value // with a marker"
+    }
+   ],
+   [
+    {
+     "text": "            \"\"\";"
+    }
+   ],
+   [
+    {
+     "text": "        String "
+    },
+    {
+     "text": "tokbuf",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " = \"not // a comment "
+    },
+    {
+     "text": "srvopts",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " at all\";"
+    }
+   ],
+   [
+    {
+     "text": "        /* The "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment"
+    },
+    {
+     "text": " token is validated before the request is forwarded. */"
+    }
+   ],
+   [
+    {
+     "text": "        // See https://example.com/"
+    },
+    {
+     "text": "fdcache",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " for the "
+    },
+    {
+     "text": "importent",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " reference."
+    }
+   ],
+   [
+    {
+     "text": "        return null;"
+    }
+   ]
+  ]
+ },
+ {
+  "id": "kt",
+  "family": "source",
+  "label": "Kotlin",
+  "lang": "kotlin",
+  "file": "Cache.kt",
+  "lines": [
+   [
+    {
+     "text": "package com.example."
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [],
+     "what": ""
+    }
+   ],
+   [],
+   [
+    {
+     "text": "import kotlin."
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [],
+     "what": ""
+    },
+    {
+     "text": "."
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [],
+     "what": ""
+    }
+   ],
+   [],
+   [
+    {
+     "text": "/**"
+    }
+   ],
+   [
+    {
+     "text": " * Client for the "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "class kdoc"
+    },
+    {
+     "text": " service. Handles retries and the "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "class kdoc"
+    },
+    {
+     "text": " cache."
+    }
+   ],
+   [
+    {
+     "text": " */"
+    }
+   ],
+   [
+    {
+     "text": "@"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": "(\""
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": "\")"
+    }
+   ],
+   [
+    {
+     "text": "class "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "annotation"
+    },
+    {
+     "text": " {"
+    }
+   ],
+   [],
+   [
+    {
+     "text": "    /**"
+    }
+   ],
+   [
+    {
+     "text": "     * Reads the "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "function kdoc"
+    },
+    {
+     "text": " record and returns it."
+    }
+   ],
+   [
+    {
+     "text": "     *"
+    }
+   ],
+   [
+    {
+     "text": "     * Call `"
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc code span"
+    },
+    {
+     "text": "(ctx)` before reading, or the "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc code span"
+    },
+    {
+     "text": " field stays empty."
+    }
+   ],
+   [
+    {
+     "text": "     *"
+    }
+   ],
+   [
+    {
+     "text": "     * ```"
+    }
+   ],
+   [
+    {
+     "text": "     * val "
+    },
+    {
+     "text": "syncq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc fenced block"
+    },
+    {
+     "text": " = section0("
+    },
+    {
+     "text": "bufpool",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc fenced block"
+    },
+    {
+     "text": ")"
+    }
+   ],
+   [
+    {
+     "text": "     * ```"
+    }
+   ],
+   [
+    {
+     "text": "     *"
+    }
+   ],
+   [
+    {
+     "text": "     * See ["
+    },
+    {
+     "text": "ioctlx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc link"
+    },
+    {
+     "text": "] and ["
+    },
+    {
+     "text": "fmtwrap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc link"
+    },
+    {
+     "text": "."
+    },
+    {
+     "text": "hexdump",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc link"
+    },
+    {
+     "text": "] for the "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc link"
+    },
+    {
+     "text": " details."
+    }
+   ],
+   [
+    {
+     "text": "     * @param "
+    },
+    {
+     "text": "tmpdirx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc block tag"
+    },
+    {
+     "text": " the "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc block tag"
+    },
+    {
+     "text": " identifier to look up"
+    }
+   ],
+   [
+    {
+     "text": "     * @return the "
+    },
+    {
+     "text": "storag",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc block tag"
+    },
+    {
+     "text": " payload, once resolved"
+    }
+   ],
+   [
+    {
+     "text": "     */"
+    }
+   ],
+   [
+    {
+     "text": "    fun section0("
+    },
+    {
+     "text": "envmap",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc block tag"
+    },
+    {
+     "text": ": String): "
+    },
+    {
+     "text": "argsv",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "kdoc block tag"
+    },
+    {
+     "text": "? {"
+    }
+   ],
+   [
+    {
+     "text": "        val "
+    },
+    {
+     "text": "rootns",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " = 0 // The "
+    },
+    {
+     "text": "sesion",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " limit applies per connection."
+    }
+   ],
+   [
+    {
+     "text": "        val "
+    },
+    {
+     "text": "kvstore",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " = \"a "
+    },
+    {
+     "text": "chunker",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string literal"
+    },
+    {
+     "text": " value read from disk\""
+    }
+   ],
+   [
+    {
+     "text": "        val "
+    },
+    {
+     "text": "lexerx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string template"
+    },
+    {
+     "text": " = \"prefix $"
+    },
+    {
+     "text": "tokbuf",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string template"
+    },
+    {
+     "text": " ${"
+    },
+    {
+     "text": "srvopts",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string template"
+    },
+    {
+     "text": "."
+    },
+    {
+     "text": "fdcache",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string template"
+    },
+    {
+     "text": "} suffix\""
+    }
+   ],
+   [
+    {
+     "text": "        val "
+    },
+    {
+     "text": "memq",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string"
+    },
+    {
+     "text": " = \"\"\"a "
+    },
+    {
+     "text": "waitgrp",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "raw string"
+    },
+    {
+     "text": " value // with a marker\"\"\""
+    }
+   ],
+   [
+    {
+     "text": "        val "
+    },
+    {
+     "text": "ringbuf",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " = \"not // a comment "
+    },
+    {
+     "text": "txqueue",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "string holding a comment marker"
+    },
+    {
+     "text": " at all\""
+    }
+   ],
+   [
+    {
+     "text": "        /* The "
+    },
+    {
+     "text": "feild",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block comment"
+    },
+    {
+     "text": " token is validated before the request is forwarded. */"
+    }
+   ],
+   [
+    {
+     "text": "        // See https://example.com/"
+    },
+    {
+     "text": "peerid",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " for the "
+    },
+    {
+     "text": "pipline",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "url in a comment"
+    },
+    {
+     "text": " reference."
+    }
+   ],
+   [
+    {
+     "text": "        return null"
+    }
+   ],
+   [
+    {
+     "text": "    }"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "yml",
+  "family": "data",
+  "label": "YAML",
+  "lang": "yaml",
+  "file": "items.yml",
+  "lines": [
+   [
+    {
+     "text": "title: A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "top-level prose value"
+    },
+    {
+     "text": " guide to the storage layer"
+    }
+   ],
+   [
+    {
+     "text": "slug: "
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "top-level identifier value"
+    },
+    {
+     "text": "-guide"
+    }
+   ],
+   [
+    {
+     "text": "version: 4.2"
+    }
+   ],
+   [
+    {
+     "text": "# The "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " items below are read once at startup."
+    }
+   ],
+   [
+    {
+     "text": "items:"
+    }
+   ],
+   [
+    {
+     "text": "  - id: "
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "list item identifier"
+    },
+    {
+     "text": "-0"
+    }
+   ],
+   [
+    {
+     "text": "    name: "
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "list item identifier"
+    }
+   ],
+   [
+    {
+     "text": "    description: \"Each request carries a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "quoted prose value"
+    },
+    {
+     "text": " token that the gateway validates.\""
+    }
+   ],
+   [
+    {
+     "text": "    notes: |"
+    }
+   ],
+   [
+    {
+     "text": "      A token that has expired is refused, and the caller receives"
+    }
+   ],
+   [
+    {
+     "text": "      a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "block scalar"
+    },
+    {
+     "text": " response describing what to retry."
+    }
+   ],
+   [
+    {
+     "text": "    summary: >"
+    }
+   ],
+   [
+    {
+     "text": "      The "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "folded scalar"
+    },
+    {
+     "text": " limit applies per connection,"
+    }
+   ],
+   [
+    {
+     "text": "      not per request."
+    }
+   ],
+   [
+    {
+     "text": "    url: https://example.com/"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url value"
+    },
+    {
+     "text": "/page-0"
+    }
+   ],
+   [
+    {
+     "text": "    tags: ["
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "flow sequence"
+    },
+    {
+     "text": ", "
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "flow sequence"
+    },
+    {
+     "text": "]"
+    }
+   ],
+   [
+    {
+     "text": "    defaults: &defaults0"
+    }
+   ],
+   [
+    {
+     "text": "      "
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "anchor and alias"
+    },
+    {
+     "text": ": true"
+    }
+   ],
+   [
+    {
+     "text": "    override: *defaults0"
+    }
+   ],
+   [
+    {
+     "text": "    enabled: true  # The "
+    },
+    {
+     "text": "refrence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " flag is read once."
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "json",
+  "family": "data",
+  "label": "JSON",
+  "lang": "json",
+  "file": "items.json",
+  "lines": [
+   [
+    {
+     "text": "{"
+    }
+   ],
+   [
+    {
+     "text": "  \"title\": \"A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "top-level prose value"
+    },
+    {
+     "text": " guide to the storage layer\","
+    }
+   ],
+   [
+    {
+     "text": "  \"slug\": \""
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "top-level identifier value"
+    },
+    {
+     "text": "-guide\","
+    }
+   ],
+   [
+    {
+     "text": "  \"items\": ["
+    }
+   ],
+   [
+    {
+     "text": "    {"
+    }
+   ],
+   [
+    {
+     "text": "      \"id\": \""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "identifier value"
+    },
+    {
+     "text": "-0\","
+    }
+   ],
+   [
+    {
+     "text": "      \"name\": \""
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "identifier value"
+    },
+    {
+     "text": "\","
+    }
+   ],
+   [
+    {
+     "text": "      \"description\": \"Each request carries a "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prose value"
+    },
+    {
+     "text": " token that the gateway validates.\","
+    }
+   ],
+   [
+    {
+     "text": "      \"notes\": \"A token that has expired is refused.\\nThe caller receives a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prose value with escapes"
+    },
+    {
+     "text": " response.\","
+    }
+   ],
+   [
+    {
+     "text": "      \"url\": \"https://example.com/"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url value"
+    },
+    {
+     "text": "/page-0\","
+    }
+   ],
+   [
+    {
+     "text": "      \"tags\": [\""
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "array of identifiers"
+    },
+    {
+     "text": "\", \""
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "array of identifiers"
+    },
+    {
+     "text": "\"],"
+    }
+   ],
+   [
+    {
+     "text": "      \""
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "key that looks like a word"
+    },
+    {
+     "text": "\": true"
+    }
+   ],
+   [
+    {
+     "text": "    }"
+    }
+   ],
+   [
+    {
+     "text": "  ]"
+    }
+   ],
+   [
+    {
+     "text": "}"
+    }
+   ],
+   []
+  ]
+ },
+ {
+  "id": "toml",
+  "family": "data",
+  "label": "TOML",
+  "lang": "toml",
+  "file": "items.toml",
+  "lines": [
+   [
+    {
+     "text": "title = \"A "
+    },
+    {
+     "text": "recieve",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "top-level prose value"
+    },
+    {
+     "text": " guide to the storage layer\""
+    }
+   ],
+   [
+    {
+     "text": "slug = \""
+    },
+    {
+     "text": "readctx",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "top-level identifier value"
+    },
+    {
+     "text": "-guide\""
+    }
+   ],
+   [
+    {
+     "text": "# The "
+    },
+    {
+     "text": "seperate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "comment"
+    },
+    {
+     "text": " items below are read once at startup."
+    }
+   ],
+   [],
+   [
+    {
+     "text": "[[items]]"
+    }
+   ],
+   [
+    {
+     "text": "id = \""
+    },
+    {
+     "text": "loadcfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "cspell"
+     ],
+     "what": "identifier value"
+    },
+    {
+     "text": "-0\""
+    }
+   ],
+   [
+    {
+     "text": "name = \""
+    },
+    {
+     "text": "retrycn",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "identifier value"
+    },
+    {
+     "text": "\""
+    }
+   ],
+   [
+    {
+     "text": "description = \"Each request carries a "
+    },
+    {
+     "text": "occurence",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "prose value"
+    },
+    {
+     "text": " token that the gateway validates.\""
+    }
+   ],
+   [
+    {
+     "text": "notes = \"\"\""
+    }
+   ],
+   [
+    {
+     "text": "A token that has expired is refused, and the caller receives"
+    }
+   ],
+   [
+    {
+     "text": "a "
+    },
+    {
+     "text": "definately",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "multi-line string"
+    },
+    {
+     "text": " response describing what to retry.\"\"\""
+    }
+   ],
+   [
+    {
+     "text": "path = 'C:\\"
+    },
+    {
+     "text": "itmcache",
+     "kind": "code",
+     "by": [
+      "cspell"
+     ],
+     "what": "literal string"
+    },
+    {
+     "text": "\\config.toml'"
+    }
+   ],
+   [
+    {
+     "text": "url = \"https://example.com/"
+    },
+    {
+     "text": "storagref",
+     "kind": "code",
+     "by": [
+      "codespell"
+     ],
+     "what": "url value"
+    },
+    {
+     "text": "/page-0\""
+    }
+   ],
+   [
+    {
+     "text": "tags = [\""
+    },
+    {
+     "text": "pipev2",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "array of identifiers"
+    },
+    {
+     "text": "\", \""
+    },
+    {
+     "text": "nodecfg",
+     "kind": "code",
+     "by": [
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "array of identifiers"
+    },
+    {
+     "text": "\"]"
+    }
+   ],
+   [
+    {
+     "text": "enabled = true  # The "
+    },
+    {
+     "text": "accomodate",
+     "kind": "prose",
+     "by": [
+      "vale",
+      "typos",
+      "codespell",
+      "cspell"
+     ],
+     "what": "trailing comment"
+    },
+    {
+     "text": " flag is read once."
+    }
+   ],
+   [],
+   []
+  ]
+ }
+]

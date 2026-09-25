@@ -27,6 +27,7 @@
 		// 'commit': a commit message read as subject, body, and trailers.
 		// 'manuscript': a paper's headings as the sections a rule is scoped to.
 		// 'compass': the four kinds of documentation on their two axes.
+		// 'spelling': three markup files, prose lit and code dark, one alert each.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -176,7 +177,11 @@
 	const compassCells = [
 		{ label: 'Tutorial', tone: 'bg-sky-500/15 text-sky-700 dark:text-sky-300', alert: '5:60' },
 		{ label: 'How-to', tone: 'bg-lime-500/15 text-lime-700 dark:text-lime-300', alert: '3:15' },
-		{ label: 'Explanation', tone: 'bg-violet-500/15 text-violet-700 dark:text-violet-300', alert: '7:4' },
+		{
+			label: 'Explanation',
+			tone: 'bg-violet-500/15 text-violet-700 dark:text-violet-300',
+			alert: '7:4'
+		},
 		{ label: 'Reference', tone: 'bg-amber-500/15 text-amber-700 dark:text-amber-300', alert: '5:1' }
 	];
 
@@ -200,6 +205,49 @@
 		}
 	];
 
+	// The 'spelling' motif: a Markdown page, a reStructuredText page, and an
+	// HTML page sketched as bars. Prose is lit and everything else is dark,
+	// and each file carries one alert, in its prose: the argument of the
+	// post in three columns. Widths are hand-set to read as the documents.
+	type SpellingLine = { indent: number; w: number; prose?: boolean; alert?: string };
+	type SpellingFile = { name: string; lines: SpellingLine[] };
+
+	const spellingFiles: SpellingFile[] = [
+		{
+			name: 'guide.md',
+			lines: [
+				{ indent: 0, w: 56, prose: true },
+				{ indent: 0, w: 88, prose: true, alert: '3:15' },
+				{ indent: 0, w: 72, prose: true },
+				{ indent: 1, w: 64 },
+				{ indent: 1, w: 48 },
+				{ indent: 0, w: 80, prose: true }
+			]
+		},
+		{
+			name: 'guide.rst',
+			lines: [
+				{ indent: 0, w: 60, prose: true },
+				{ indent: 0, w: 60 },
+				{ indent: 0, w: 84, prose: true, alert: '4:12' },
+				{ indent: 1, w: 72 },
+				{ indent: 1, w: 52 },
+				{ indent: 0, w: 76, prose: true }
+			]
+		},
+		{
+			name: 'guide.html',
+			lines: [
+				{ indent: 0, w: 40 },
+				{ indent: 1, w: 76, prose: true },
+				{ indent: 1, w: 88, prose: true, alert: '3:31' },
+				{ indent: 1, w: 44 },
+				{ indent: 2, w: 56 },
+				{ indent: 0, w: 36 }
+			]
+		}
+	];
+
 	const title = $derived(
 		motif === 'view'
 			? 'vale API.yml'
@@ -211,7 +259,9 @@
 						? 'vale trial.md'
 						: motif === 'compass'
 							? 'vale docs/'
-							: `vale ${seed}.md`
+							: motif === 'spelling'
+								? 'vale docs/'
+								: `vale ${seed}.md`
 	);
 </script>
 
@@ -245,6 +295,30 @@
 									<span class="text-rose-400">{line.alert}</span>
 								</span>
 							{/if}
+						</div>
+					{/each}
+				</div>
+			{:else if motif === 'spelling'}
+				<div class="grid min-h-0 flex-1 grid-cols-3 gap-3 px-4 py-3">
+					{#each spellingFiles as file (file.name)}
+						<div class="flex min-w-0 flex-col justify-evenly gap-1">
+							<span class="truncate font-mono text-[9px] text-muted-foreground">{file.name}</span>
+							{#each file.lines as line, i (i)}
+								<div class="flex items-center gap-1.5" style="padding-left: {line.indent * 10}px">
+									<span
+										class="h-2 shrink-0 rounded-[2px] {line.prose
+											? 'bg-lime-500'
+											: 'bg-foreground/15'}"
+										style="width: {line.w}%"
+									></span>
+									{#if line.alert}
+										<span class="flex shrink-0 items-center gap-1 font-mono text-[9px]">
+											<span class="h-1.5 w-1.5 rounded-full bg-rose-400"></span>
+											<span class="text-rose-400">{line.alert}</span>
+										</span>
+									{/if}
+								</div>
+							{/each}
 						</div>
 					{/each}
 				</div>

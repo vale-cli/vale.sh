@@ -1,0 +1,313 @@
+{
+	"files": 20,
+	"rows": {
+		"md": {
+			"vale": {
+				"seconds": 0.513,
+				"user": 2.3,
+				"mb": 136
+			},
+			"typos": {
+				"seconds": 0.115,
+				"user": 0.3,
+				"mb": 71
+			},
+			"codespell": {
+				"seconds": 0.571,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.596,
+				"user": 2,
+				"mb": 238
+			}
+		},
+		"adoc": {
+			"vale": {
+				"seconds": 1.479,
+				"user": 6.7,
+				"mb": 135
+			},
+			"typos": {
+				"seconds": 0.125,
+				"user": 0.3,
+				"mb": 69
+			},
+			"codespell": {
+				"seconds": 0.56,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.511,
+				"user": 2,
+				"mb": 249
+			}
+		},
+		"rst": {
+			"vale": {
+				"seconds": 8.009,
+				"user": 31.6,
+				"mb": 101
+			},
+			"typos": {
+				"seconds": 0.136,
+				"user": 0.4,
+				"mb": 72
+			},
+			"codespell": {
+				"seconds": 0.627,
+				"user": 0.6,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.674,
+				"user": 2.2,
+				"mb": 203
+			}
+		},
+		"html": {
+			"vale": {
+				"seconds": 0.422,
+				"user": 1.7,
+				"mb": 121
+			},
+			"typos": {
+				"seconds": 0.13,
+				"user": 0.4,
+				"mb": 69
+			},
+			"codespell": {
+				"seconds": 0.519,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.354,
+				"user": 1.8,
+				"mb": 262
+			}
+		},
+		"org": {
+			"vale": {
+				"seconds": 0.76,
+				"user": 3.8,
+				"mb": 151
+			},
+			"typos": {
+				"seconds": 0.129,
+				"user": 0.4,
+				"mb": 72
+			},
+			"codespell": {
+				"seconds": 0.607,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.374,
+				"user": 1.8,
+				"mb": 230
+			}
+		},
+		"txt": {
+			"vale": {
+				"seconds": 0.174,
+				"user": 0.6,
+				"mb": 98
+			},
+			"typos": {
+				"seconds": 0.123,
+				"user": 0.3,
+				"mb": 75
+			},
+			"codespell": {
+				"seconds": 0.673,
+				"user": 0.6,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.285,
+				"user": 1.7,
+				"mb": 225
+			}
+		},
+		"mdx": {
+			"vale": {
+				"seconds": 0.582,
+				"user": 2.7,
+				"mb": 141
+			},
+			"typos": {
+				"seconds": 0.123,
+				"user": 0.4,
+				"mb": 69
+			},
+			"codespell": {
+				"seconds": 0.526,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.436,
+				"user": 1.9,
+				"mb": 249
+			}
+		},
+		"myst": {
+			"vale": {
+				"seconds": 0.796,
+				"user": 3.7,
+				"mb": 137
+			},
+			"typos": {
+				"seconds": 0.135,
+				"user": 0.4,
+				"mb": 70
+			},
+			"codespell": {
+				"seconds": 0.547,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.367,
+				"user": 1.8,
+				"mb": 227
+			}
+		},
+		"qmd": {
+			"vale": {
+				"seconds": 0.523,
+				"user": 2.5,
+				"mb": 140
+			},
+			"typos": {
+				"seconds": 0.133,
+				"user": 0.4,
+				"mb": 72
+			},
+			"codespell": {
+				"seconds": 0.616,
+				"user": 0.6,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.727,
+				"user": 2.2,
+				"mb": 227
+			}
+		},
+		"typ": {
+			"vale": {
+				"seconds": 0.8,
+				"user": 3.2,
+				"mb": 115
+			},
+			"typos": {
+				"seconds": 0.226,
+				"user": 0.4,
+				"mb": 74
+			},
+			"codespell": {
+				"seconds": 0.647,
+				"user": 0.6,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.723,
+				"user": 2.2,
+				"mb": 212
+			}
+		},
+		"xml": {
+			"vale": {
+				"seconds": 0.75,
+				"user": 1.8,
+				"mb": 101
+			},
+			"typos": {
+				"seconds": 0.134,
+				"user": 0.4,
+				"mb": 69
+			},
+			"codespell": {
+				"seconds": 0.481,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.246,
+				"user": 1.7,
+				"mb": 231
+			}
+		},
+		"dita": {
+			"vale": {
+				"seconds": 14.893,
+				"user": 30.7,
+				"mb": 486
+			},
+			"typos": {
+				"seconds": 0.127,
+				"user": 0.4,
+				"mb": 70
+			},
+			"codespell": {
+				"seconds": 0.478,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.272,
+				"user": 1.7,
+				"mb": 226
+			}
+		},
+		"qdoc": {
+			"vale": {
+				"seconds": 0.492,
+				"user": 2.3,
+				"mb": 127
+			},
+			"typos": {
+				"seconds": 0.116,
+				"user": 0.3,
+				"mb": 67
+			},
+			"codespell": {
+				"seconds": 0.521,
+				"user": 0.5,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.393,
+				"user": 1.9,
+				"mb": 230
+			}
+		},
+		"ipynb": {
+			"vale": {
+				"seconds": 0.889,
+				"user": 4.6,
+				"mb": 142
+			},
+			"typos": {
+				"seconds": 0.192,
+				"user": 0.3,
+				"mb": 75
+			},
+			"codespell": {
+				"seconds": 0.631,
+				"user": 0.6,
+				"mb": 39
+			},
+			"cspell": {
+				"seconds": 1.411,
+				"user": 1.9,
+				"mb": 236
+			}
+		}
+	}
+}
