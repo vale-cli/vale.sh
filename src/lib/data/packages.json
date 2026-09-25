@@ -7904,6 +7904,481 @@
     "valeVersion": ">=3.22.0"
   },
   {
+    "name": "A11y",
+    "description": "Accessible writing: alt text, link text, heading structure, table headers, instructions that rely on color or position, a reading grade per paragraph, and an inclusive-language word list, from the parts of WCAG 2.2 that live in the text.",
+    "homepage": "https://github.com/jdkato/a11y",
+    "url": "https://github.com/jdkato/a11y/releases/latest/download/A11y.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/a11y",
+    "repo": "jdkato/a11y",
+    "rules": [
+      {
+        "name": "Ableist",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "AltEmpty",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw.md",
+        "message": "An image with no alt text. Describe what it shows, or, if it's decorative, write it as an HTML img with alt=\"\".",
+        "link": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
+      },
+      {
+        "name": "AltFileName",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "alt",
+        "message": "Alt text '%s' is a file name. Describe the image.",
+        "link": "https://webaim.org/techniques/alttext/"
+      },
+      {
+        "name": "AltLength",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "alt",
+        "message": "Alt text of %s characters. Keep it under 125, and put the detail in the body or a caption.",
+        "link": "https://www.w3.org/WAI/tutorials/images/complex/"
+      },
+      {
+        "name": "AltMissing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "An img without an alt attribute. Describe it, or mark it decorative with alt=\"\".",
+        "link": "https://www.w3.org/WAI/tutorials/images/decision-tree/"
+      },
+      {
+        "name": "AltPlaceholder",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "alt",
+        "message": "Alt text '%s' describes nothing. Say what the image shows.",
+        "link": "https://webaim.org/techniques/alttext/"
+      },
+      {
+        "name": "AltRedundant",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "alt",
+        "message": "Alt text opens with '%s'. A screen reader already says it's an image; start with what it shows.",
+        "link": "https://webaim.org/techniques/alttext/"
+      },
+      {
+        "name": "Gendered",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Grade",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "paragraph",
+        "message": "This paragraph reads at grade %s. The reading-level target is about grade 9; shorter sentences and plainer words bring it down.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/reading-level"
+      },
+      {
+        "name": "HeadingLength",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "%d words in a heading. Keep it short enough to skim.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/headings-and-labels"
+      },
+      {
+        "name": "HeadingMultiple",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "%s top-level headings. A page has one; the rest are sections.",
+        "link": "https://www.w3.org/WAI/tutorials/page-structure/headings/"
+      },
+      {
+        "name": "HeadingSkip",
+        "extends": "existence",
+        "level": "error",
+        "scope": "doc(section:has(> h1) > section:has(> h3)), doc(section:has(> h1) > section:has(> h4)), doc(section:has(> h1) > section:has(> h5)), doc(section:has(> h1) > section:has(> h6)), doc(section:has(> h2) > section:has(> h4)), doc(section:has(> h2) > section:has(> h5)), doc(section:has(> h2) > section:has(> h6)), doc(section:has(> h3) > section:has(> h5)), doc(section:has(> h3) > section:has(> h6)), doc(section:has(> h4) > section:has(> h6))",
+        "message": "This heading skips a level. Screen reader users navigate by heading level; use the next one down.",
+        "link": "https://www.w3.org/WAI/tutorials/page-structure/headings/"
+      },
+      {
+        "name": "LinkGeneric",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "link",
+        "message": "'%s' says nothing about where the link goes. Name the page or the action.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context"
+      },
+      {
+        "name": "LinkURL",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "A URL as link text. A screen reader spells it out; name the page instead.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/link-purpose-in-context"
+      },
+      {
+        "name": "Loaded",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider '%s' instead of '%s'.",
+        "link": ""
+      },
+      {
+        "name": "Sensory",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' points by color, shape, or position. Name the control, or add a label.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/sensory-characteristics"
+      },
+      {
+        "name": "Sentence",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "sentence",
+        "message": "%d words in one sentence. Split it.",
+        "link": "https://www.w3.org/WAI/WCAG22/Understanding/reading-level"
+      },
+      {
+        "name": "Shouting",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is in all caps. Use emphasis markup, which a screen reader can announce.",
+        "link": ""
+      },
+      {
+        "name": "TableHeader",
+        "extends": "existence",
+        "level": "error",
+        "scope": "doc(table:not(:has(th)))",
+        "message": "A table without a header row. A screen reader announces the header with each cell; give the first row th cells.",
+        "link": "https://www.w3.org/WAI/tutorials/tables/"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.23.0"
+  },
+  {
+    "name": "Comments",
+    "description": "The comments in code: Go doc comments, Javadoc, and KDoc conventions, plus owned TODOs and no commented-out code in any language Vale extracts comments from.",
+    "homepage": "https://github.com/jdkato/comments",
+    "url": "https://github.com/jdkato/comments/releases/latest/download/Comments.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/comments",
+    "repo": "jdkato/comments",
+    "rules": [
+      {
+        "name": "Code",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "comment",
+        "message": "Commented-out code. Delete it; version control remembers.",
+        "link": ""
+      },
+      {
+        "name": "Deprecated",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.go",
+        "message": "Mark deprecation with a 'Deprecated: ' paragraph, which the tools read.",
+        "link": "https://go.dev/wiki/Deprecated"
+      },
+      {
+        "name": "EmptyTag",
+        "extends": "existence",
+        "level": "error",
+        "scope": "comment.block.java",
+        "message": "'%s' says nothing. Describe it, or drop the tag.",
+        "link": "https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html"
+      },
+      {
+        "name": "EmptyTag",
+        "extends": "existence",
+        "level": "error",
+        "scope": "comment.block.kt",
+        "message": "'%s' says nothing. Describe it, or drop the tag.",
+        "link": "https://kotlinlang.org/docs/kotlin-doc.html"
+      },
+      {
+        "name": "Markers",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "comment",
+        "message": "Use 'TODO(name):' instead of '%s', so the note is collected with the rest.",
+        "link": ""
+      },
+      {
+        "name": "Package",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.go",
+        "message": "A package comment reads 'Package name ...'.",
+        "link": "https://go.dev/doc/comment#package"
+      },
+      {
+        "name": "Sentence",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.go",
+        "message": "A doc comment is a complete sentence: end it with a period.",
+        "link": "https://go.dev/doc/comment"
+      },
+      {
+        "name": "Summary",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.block.java",
+        "message": "The first sentence is the summary the tools show; end it with a period.",
+        "link": "https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html"
+      },
+      {
+        "name": "Summary",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.block.kt",
+        "message": "The first sentence is the summary the tools show; end it with a period.",
+        "link": "https://kotlinlang.org/docs/kotlin-doc.html"
+      },
+      {
+        "name": "TagOrder",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.block.java",
+        "message": "Order the tags @param, @return, then @throws.",
+        "link": "https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html"
+      },
+      {
+        "name": "This",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.block.java",
+        "message": "Say what it does, not '%s'.",
+        "link": "https://www.oracle.com/technical-resources/articles/java/javadoc-tool.html"
+      },
+      {
+        "name": "This",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.go",
+        "message": "Start with the name it documents, not '%s'.",
+        "link": "https://go.dev/doc/comment#func"
+      },
+      {
+        "name": "This",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment.block.kt",
+        "message": "Say what it does, not '%s'.",
+        "link": "https://kotlinlang.org/docs/kotlin-doc.html"
+      },
+      {
+        "name": "Todo",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "comment",
+        "message": "'%s' names no owner. Write TODO(name): or TODO(#issue): so it can be followed up.",
+        "link": "https://google.github.io/styleguide/go/best-practices#todos"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.23.0"
+  },
+  {
+    "name": "Diataxis",
+    "description": "The four kinds of documentation in Diátaxis, each checked against its job: tutorials that walk, how-to guides that reach a goal, reference that describes, explanation that answers why.",
+    "homepage": "https://github.com/jdkato/diataxis",
+    "url": "https://github.com/jdkato/diataxis/releases/latest/download/Diataxis.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/diataxis",
+    "repo": "jdkato/diataxis",
+    "rules": [
+      {
+        "name": "Examples",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Reference provides examples. There is no code block on this page.",
+        "link": "https://diataxis.fr/reference/#provide-examples"
+      },
+      {
+        "name": "Expectations",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "summary",
+        "message": "Tell the learner what they will see at some point: 'You will see ...', 'Notice that ...'.",
+        "link": "https://diataxis.fr/tutorials/#the-language-of-tutorials"
+      },
+      {
+        "name": "Explanation",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' opens an explanation. Keep it to the step; link to the explanation instead.",
+        "link": "https://diataxis.fr/tutorials/#the-language-of-tutorials"
+      },
+      {
+        "name": "Explanation",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' opens an explanation. Keep the guide to the steps; link to the explanation.",
+        "link": "https://diataxis.fr/how-to-guides/#the-language-of-how-to-guides"
+      },
+      {
+        "name": "Imperative",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "list",
+        "message": "'%s' softens an instruction. Write the step as a command.",
+        "link": "https://diataxis.fr/how-to-guides/#the-language-of-how-to-guides"
+      },
+      {
+        "name": "Instruction",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "list",
+        "message": "'%s' is an instruction. Explanation discusses; put the steps in a how-to guide.",
+        "link": "https://diataxis.fr/explanation/#the-language-of-explanation"
+      },
+      {
+        "name": "Instruction",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%s' instructs or advises. Reference describes; put the guidance in a how-to guide.",
+        "link": "https://diataxis.fr/reference/#the-language-of-reference"
+      },
+      {
+        "name": "Opening",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "text & doc(h1 + p)",
+        "message": "Open by saying what the learner will build or be able to do by the end.",
+        "link": "https://diataxis.fr/tutorials/"
+      },
+      {
+        "name": "Opening",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "text & doc(h1 + p)",
+        "message": "Open by saying what the guide shows the reader how to do.",
+        "link": "https://diataxis.fr/how-to-guides/#the-language-of-how-to-guides"
+      },
+      {
+        "name": "Opinion",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is an opinion. Reference states what is.",
+        "link": "https://diataxis.fr/reference/#the-language-of-reference"
+      },
+      {
+        "name": "Options",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' offers a choice. A tutorial takes one path; alternatives belong in a how-to guide.",
+        "link": "https://diataxis.fr/tutorials/#the-language-of-tutorials"
+      },
+      {
+        "name": "Reference",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%d tables. Explanation gives the shape; the full listing is reference, so link to it.",
+        "link": "https://diataxis.fr/explanation/#the-language-of-explanation"
+      },
+      {
+        "name": "Reference",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%d table rows. Refer to the reference for the full list of options rather than carrying it here.",
+        "link": "https://diataxis.fr/how-to-guides/#the-language-of-how-to-guides"
+      },
+      {
+        "name": "Steps",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "doc(ol)",
+        "message": "A tutorial walks the learner through numbered steps; there is no numbered list here.",
+        "link": "https://diataxis.fr/tutorials/"
+      },
+      {
+        "name": "Steps",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "doc(ol)",
+        "message": "A how-to guide is a sequence of steps; there is no numbered list here.",
+        "link": "https://diataxis.fr/how-to-guides/"
+      },
+      {
+        "name": "Teaching",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' is teaching. A how-to guide assumes the reader knows the basics; a tutorial teaches them.",
+        "link": "https://diataxis.fr/how-to-guides/#how-to-guides-are-not-tutorials"
+      },
+      {
+        "name": "Title",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "heading.h1",
+        "message": "Name the guide for its goal: 'How to ...' or a verb phrase such as 'Deploying to ...'.",
+        "link": "https://diataxis.fr/how-to-guides/#the-language-of-how-to-guides"
+      },
+      {
+        "name": "Walkthrough",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' narrates. Reference states; a tutorial walks.",
+        "link": "https://diataxis.fr/reference/#the-language-of-reference"
+      },
+      {
+        "name": "We",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "summary",
+        "message": "A tutorial says 'we': the tutor is beside the learner. Nothing here does.",
+        "link": "https://diataxis.fr/tutorials/#the-language-of-tutorials"
+      },
+      {
+        "name": "Why",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "summary",
+        "message": "Explanation answers why. Nothing here says because, the reason, or in order to.",
+        "link": "https://diataxis.fr/explanation/#the-language-of-explanation"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.23.0"
+  },
+  {
     "name": "MDX",
     "description": "Adds support for MDX comments and other non-standard markup.",
     "homepage": "https://github.com/vale-cli/MDX",
@@ -8471,16 +8946,16 @@
   },
   {
     "name": "Readability",
-    "description": "Vale-compatible implementations of many popular readability metrics.",
-    "homepage": "https://github.com/vale-cli/Readability",
-    "url": "https://github.com/vale-cli/Readability/releases/latest/download/Readability.zip",
+    "description": "Readability scores: Automated Readability Index, Coleman-Liau, Flesch-Kincaid, Flesch reading ease, Gunning fog, LIX, and SMOG, with a rule that names the polysyllables behind them.",
+    "homepage": "https://github.com/vale-cli/readability",
+    "url": "https://github.com/vale-cli/readability/releases/latest/download/Readability.zip",
     "logo": "https://github.com/vale-cli.png",
     "tags": [
       "style"
     ],
     "host": "github",
-    "site": "vale-cli/Readability",
-    "repo": "vale-cli/Readability",
+    "site": "vale-cli/readability",
+    "repo": "vale-cli/readability",
     "stars": 29,
     "downloads": 226000,
     "version": "v0.1.1",
@@ -8533,6 +9008,14 @@
         "scope": "text",
         "message": "Try to keep the LIX score (%s) below 35.",
         "link": "https://en.wikipedia.org/wiki/Lix_(readability_test)"
+      },
+      {
+        "name": "Polysyllables",
+        "extends": "script",
+        "level": "suggestion",
+        "scope": "paragraph",
+        "message": "'%s' has three or more syllables. It counts toward the SMOG and Gunning fog scores.",
+        "link": "https://en.wikipedia.org/wiki/SMOG"
       },
       {
         "name": "SMOG",
