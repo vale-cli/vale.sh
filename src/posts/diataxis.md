@@ -1,5 +1,5 @@
 ---
-title: 'Which kind of page is this?'
+title: 'Linting the four kinds of documentation'
 description: 'Diataxis is a Vale package for the four kinds of documentation in Diátaxis: tutorials, how-to guides, reference, and explanation, each checked against the job it claims to do.'
 date: '2026-09-24'
 tags: ['packages']
