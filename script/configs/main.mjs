@@ -121,10 +121,25 @@ function parse(text) {
 	};
 }
 
+/**
+ * The root `.vale.ini` of an adopter's `repo`, for entries whose url is a
+ * write-up: GitHub through its raw host, GitLab (any host) through its API,
+ * which serves public files without a token.
+ */
+function rawFromRepo(repo) {
+	const [host, ...rest] = repo.split('/');
+	const path = rest.join('/');
+	if (host === 'github.com') return `https://raw.githubusercontent.com/${path}/HEAD/.vale.ini`;
+	return `https://${host}/api/v4/projects/${encodeURIComponent(path)}/repository/files/${encodeURIComponent('.vale.ini')}/raw?ref=HEAD`;
+}
+
 const adopters = JSON.parse(await readFile(ADOPTERS, 'utf8'));
 const targets = adopters
-	.map((a) => ({ ...a, raw: toRaw(a.url) }))
-	.filter((a) => a.raw && /\.vale\.ini$/i.test(a.url));
+	.map((a) => ({
+		...a,
+		raw: /\.vale\.ini$/i.test(a.url) ? toRaw(a.url) : a.repo ? rawFromRepo(a.repo) : null
+	}))
+	.filter((a) => a.raw);
 
 console.log(`${targets.length} of ${adopters.length} adopters link at a .vale.ini`);
 

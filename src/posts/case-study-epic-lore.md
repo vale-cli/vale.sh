@@ -2,9 +2,11 @@
 title: 'How Epic Games keeps Lore from sounding like Git'
 description: "Lore is Epic's open source version control system, and its docs run a 62-rule Vale style whose job is to make a new product speak its own language. The config, the rules, and the script that runs them."
 date: '2026-09-28'
-draft: true
+draft: false
 tags: ['case-studies', 'adopters']
 brand: 'Epic Games'
+figure: '62 rules'
+figureLabel: 'in a house style built to keep Git and Perforce out'
 image: '/blog/brand/case-study-epic-lore.png'
 imageAlt: 'A Vale rule that replaces the Git term "working copy" with the Lore term "working tree".'
 ---

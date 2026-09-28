@@ -26,6 +26,10 @@ export type PostMeta = {
 	// An adopter's name, for a case study: script/build-og-brand.mjs renders
 	// a card with that team's mark, and `image` points at it.
 	brand?: string;
+	// A case study's headline number and what it counts, for the adopters
+	// hero: figure "62 rules", figureLabel "in the Lore style".
+	figure?: string;
+	figureLabel?: string;
 	// An AUTHORS key. Posts without one belong to the site's author.
 	author?: string;
 	// TAGS keys. A tag the vocabulary doesn't know fails the build.

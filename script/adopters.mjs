@@ -38,7 +38,20 @@ const CATEGORIES = [
 
 const PRESS_TYPES = ['book', 'paper', 'talk', 'article', 'video', 'newsletter'];
 
-const ADOPTER_FIELDS = ['name', 'category', 'context', 'url', 'icon', 'github', 'avatar', 'logo'];
+const ADOPTER_FIELDS = [
+	'name',
+	'category',
+	'context',
+	'url',
+	'icon',
+	'github',
+	'avatar',
+	'logo',
+	'repo'
+];
+// host/owner/name (or a deeper GitLab group path), no scheme, no trailing path.
+const REPO =
+	/^(github\.com|gitlab\.com|gitlab\.wikimedia\.org)\/[A-Za-z0-9_.-]+(\/[A-Za-z0-9_.-]+)+$/;
 const PRESS_FIELDS = ['type', 'title', 'subtitle', 'outlet', 'author', 'year', 'url'];
 const STORY_FIELDS = ['name', 'figure', 'label', 'detail', 'url'];
 const EVENT_FIELDS = ['title', 'host', 'date', 'endDate', 'time', 'location', 'url'];
@@ -79,6 +92,12 @@ for (const [i, a] of adopters.entries()) {
 		fail(where, 'context should be a complete sentence ending in punctuation');
 	}
 	if (a.url && !a.url.startsWith('https://')) fail(where, 'url must be https');
+	if (a.repo !== undefined && !REPO.test(a.repo)) {
+		fail(
+			where,
+			`repo "${a.repo}" should be host/owner/name, like github.com/DataDog/documentation`
+		);
+	}
 
 	if (a.name) {
 		if (seenNames.has(a.name))

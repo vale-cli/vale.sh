@@ -4,9 +4,11 @@
 	/*
 		What the repos do, counted by script/adopters-stats.mjs rather than
 		claimed: CI configs read for the word "vale", configs read for the
-		styles they base on, agent instruction files read for the name. Each
-		figure names its denominator, because they differ -- repos on GitHub,
-		configs that could be opened, and all the repos checked.
+		styles they base on, and agent instruction files read for the name.
+		Each ratio names its denominator, because they differ -- repos on
+		GitHub, configs that could be opened, and all the repos checked. The
+		last tile reaches past the list: downloads of the month's releases,
+		the one counter every CI install passes through.
 	*/
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 0 });
 
@@ -15,6 +17,10 @@
 	const agents = Object.values(stats.perAdopter).filter(
 		(a) => (a as { integrations?: { agents?: string[] } | null }).integrations?.agents?.length
 	).length;
+
+	// The stats file is rewritten in place by the script, so a block can be
+	// missing for a moment while the dev server reloads it.
+	const downloads = stats.activity?.downloads ?? ({} as Partial<typeof stats.activity.downloads>);
 
 	const kpis = [
 		{
@@ -36,9 +42,9 @@
 			gloss: `of ${stats.checked} repos checked: an AGENTS.md, CLAUDE.md, Cursor rules, or Copilot instructions file that names Vale`
 		},
 		{
-			value: stats.stars,
-			label: 'GitHub stars, combined',
-			gloss: `across the ${stats.checked} repos checked, as of ${stats.generated}`
+			value: downloads.total ?? 0,
+			label: 'downloads in the last 30 days',
+			gloss: `of the ${downloads.releases ?? 0} Vale releases published since ${downloads.since}, counted by GitHub; the official Action and the pip and npm packages all fetch the binary there, so every fresh CI install lands here`
 		}
 	];
 </script>
@@ -46,7 +52,7 @@
 <!--
 	A stat tile each: value, label, and the line that says how it was counted.
 	Three are ratios, so each carries a meter against its own denominator;
-	the star total stands alone.
+	the download count stands alone.
 -->
 <dl class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
 	{#each kpis as kpi (kpi.label)}
@@ -78,3 +84,7 @@
 		</div>
 	{/each}
 </dl>
+<!-- Every figure above and the curve are counted by a scheduled workflow, and this is when. -->
+<p class="mt-3 text-right text-xs text-muted-foreground">
+	Counted on {stats.generated}, refreshed weekly.
+</p>

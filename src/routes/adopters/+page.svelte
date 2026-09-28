@@ -7,17 +7,13 @@
 	import AdopterExplorer from '$lib/components/landing/AdopterExplorer.svelte';
 	import Header from '$lib/components/adopters/Header.svelte';
 	import Figures from '$lib/components/adopters/Figures.svelte';
+	import AdoptionCurve from '$lib/components/adopters/AdoptionCurve.svelte';
 	import SectorBands from '$lib/components/adopters/SectorBands.svelte';
 	import AddYourTeam from '$lib/components/adopters/AddYourTeam.svelte';
 
 	let { data }: { data: PageData } = $props();
 
 	const total = adopters.length;
-
-	// A link straight at a config file, as opposed to a repo or a write-up.
-	const configs = adopters.filter((a) =>
-		/^https:\/\/github\.com\/.+\/blob\/.+vale\.ini$/.test(a.url)
-	).length;
 
 	// Owned here so the sector bands and the directory's chips move together.
 	let category = $state('All');
@@ -53,15 +49,18 @@
 	src/lib/components/adopters, and only the sector filter is shared, so the
 	bands' "Browse" links and the directory's chips move together.
 -->
-<Header {total} sectors={sectors.length} {configs} posts={data.posts} />
+<Header {total} sectors={sectors.length} posts={data.posts} />
 
 <Section id="sectors" eyebrow="Sectors" title="Where the writing gets checked" lede={sectorsLede}>
-	<Figures />
+	<AdoptionCurve />
+	<div class="mt-3">
+		<Figures />
+	</div>
 	<div class="mt-12">
-		<SectorBands bind:category />
+		<SectorBands bind:category posts={data.posts} />
 	</div>
 </Section>
 
-<AdopterExplorer bind:activeCategory={category} />
+<AdopterExplorer bind:activeCategory={category} studied={data.studied} />
 
 <AddYourTeam />

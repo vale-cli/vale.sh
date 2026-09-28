@@ -1,0 +1,42 @@
+name: Refresh adopter stats
+
+# Every figure on /adopters is counted from public sources, so it goes stale
+# unless the scripts run. This recounts weekly and opens a pull request with
+# the new data files and social card; nothing lands without a review.
+on:
+  schedule:
+    - cron: '0 6 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  refresh:
+    name: runner / stats
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: make configs
+      - run: make stats
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: make og-adopters
+      - run: npx prettier --write src/lib/data/config-stats.json src/lib/data/adopter-stats.json
+      - uses: peter-evans/create-pull-request@v7
+        with:
+          branch: stats/refresh
+          title: 'data: refresh adopter stats'
+          commit-message: 'data: refresh adopter stats'
+          body: |
+            Weekly recount of the figures on /adopters: sampled configs, CI use, workflow runs, downloads, adoption dates, and the social card.
+          add-paths: |
+            src/lib/data/config-stats.json
+            src/lib/data/adopter-stats.json
+            static/media/adopters-og.png
+          delete-branch: true

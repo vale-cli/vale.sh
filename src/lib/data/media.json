@@ -348,5 +348,55 @@
 		"description": "Check out how this developer used human language linter tool Vale to construct tests that check work for not only spelling and grammar, but usage and style, too.",
 		"image": "https://dz2cdn1.dzone.com/storage/article-thumb/9971378-thumb.jpg",
 		"site": "dzone.com"
+	},
+	{
+		"title": "Linting Technical Docs for AI Readability Using Vale",
+		"url": "https://hackernoon.com/linting-technical-docs-for-ai-readability-using-vale",
+		"author": "Harshit Satyaseel",
+		"year": 2026,
+		"type": "post",
+		"description": "",
+		"image": "",
+		"site": ""
+	},
+	{
+		"title": "Automated Linting and Consistency Checking",
+		"url": "https://stevearrants.substack.com/p/automated-linting-and-consistency",
+		"author": "Steve Arrants",
+		"year": 2026,
+		"type": "post",
+		"description": "",
+		"image": "",
+		"site": ""
+	},
+	{
+		"title": "Linting my blog posts with Vale",
+		"url": "https://brandonrozek.com/blog/vale-linter-human-prose/",
+		"author": "Brandon Rozek",
+		"year": 2024,
+		"type": "post",
+		"description": "",
+		"image": "",
+		"site": ""
+	},
+	{
+		"title": "How to introduce prose linters at your workplace",
+		"url": "https://passo.uno/prose-linters-implement-workplace-howto/",
+		"author": "Fabrizio Ferri Benedetti",
+		"year": 2022,
+		"type": "post",
+		"description": "",
+		"image": "",
+		"site": ""
+	},
+	{
+		"title": "How to Lint Code and Prose in Documentation",
+		"url": "https://dev.to/shahednasser/how-to-lint-code-and-prose-in-documentation-3mjd",
+		"author": "Shahed Nasser",
+		"year": 2022,
+		"type": "post",
+		"description": "",
+		"image": "",
+		"site": ""
 	}
 ]

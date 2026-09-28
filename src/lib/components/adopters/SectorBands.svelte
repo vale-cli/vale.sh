@@ -16,22 +16,42 @@
 		avatar?: string;
 	};
 
+	type Study = {
+		slug: string;
+		title: string;
+		figure: string | null;
+		figureLabel: string;
+		draft: boolean;
+		brand: string | null;
+	};
+
 	/*
 		The sector a "Browse" link hands to the directory. Bindable, so the
 		page can pass the same state to the explorer and the two move together.
+		The studies arrive from the route's load, and each is shelved in the
+		band of the team it is about.
 	*/
-	let { category = $bindable('All') }: { category?: string } = $props();
+	let { category = $bindable('All'), posts = [] }: { category?: string; posts?: Study[] } =
+		$props();
 
 	const all = adopters as Adopter[];
+	const byName = new Map(all.map((a) => [a.name, a]));
 
-	// One band per sector, with its whole roster in alphabetical order and
-	// the sector's own counts from script/adopters-stats.mjs.
-	const bands = sectors.map((s) => ({
-		...s,
-		id: `sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
-		members: all.filter((a) => a.category === s.name).sort((a, b) => a.name.localeCompare(b.name)),
-		ci: stats.bySector[s.name as keyof typeof stats.bySector]
-	}));
+	// One band per sector, with its whole roster in alphabetical order, the
+	// sector's own counts from script/adopters-stats.mjs, and its studies.
+	const bands = $derived(
+		sectors.map((s) => ({
+			...s,
+			id: `sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+			members: all
+				.filter((a) => a.category === s.name)
+				.sort((a, b) => a.name.localeCompare(b.name)),
+			ci: stats.bySector[s.name as keyof typeof stats.bySector],
+			studies: posts
+				.filter((p) => p.brand && byName.get(p.brand)?.category === s.name)
+				.map((p) => ({ ...p, team: byName.get(p.brand as string) as Adopter }))
+		}))
+	);
 </script>
 
 <!--
@@ -92,6 +112,48 @@
 							{band.ci.ci} of {band.ci.checked} repos run it in CI
 							{#if band.ci.house}· {band.ci.house} with house rules{/if}
 						</p>
+					{/if}
+					{#if band.studies.length}
+						<!--
+							The sector's shelf: one line per study, the team's mark, the
+							title, and the study's one number. It grows with the series and
+							sits beside the teams it is about.
+						-->
+						<ul class="mt-4 space-y-1.5" aria-label="{band.name} case studies">
+							{#each band.studies as study (study.slug)}
+								<li>
+									<a
+										href="/blog/{study.slug}"
+										class="group/study flex items-start gap-2.5 rounded-md text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+									>
+										<BrandIcon
+											name={study.team.name}
+											slug={study.team.icon}
+											avatar={study.team.avatar}
+											size="h-5 w-5"
+											class="mt-0.5 shrink-0"
+										/>
+										<span class="min-w-0">
+											<span
+												class="font-medium leading-5 text-foreground group-hover/study:text-lime-600 dark:group-hover/study:text-lime-400"
+												>{study.title}</span
+											>
+											{#if study.draft}
+												<span
+													class="ml-1 rounded-full border border-amber-500/50 px-1.5 py-px align-middle text-[10px] font-medium text-amber-600 dark:text-amber-400"
+													>Draft</span
+												>
+											{/if}
+											{#if study.figure}
+												<span class="block font-mono text-xs text-muted-foreground"
+													>{study.figure} {study.figureLabel}</span
+												>
+											{/if}
+										</span>
+									</a>
+								</li>
+							{/each}
+						</ul>
 					{/if}
 					<a
 						href="#adopters"

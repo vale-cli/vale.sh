@@ -116,5 +116,21 @@
 		"title": "Featured in four issues of Golang Weekly",
 		"outlet": "Golang Weekly",
 		"url": "https://golangweekly.com/issues/394"
+	},
+	{
+		"type": "talk",
+		"title": "The Most Human Documentation",
+		"outlet": "Write the Docs Portland",
+		"author": "Christian Miles",
+		"year": 2026,
+		"url": "https://www.writethedocs.org/conf/portland/2026/speakers/"
+	},
+	{
+		"type": "article",
+		"title": "Linting Technical Docs for AI Readability Using Vale",
+		"outlet": "HackerNoon",
+		"author": "Harshit Satyaseel",
+		"year": 2026,
+		"url": "https://hackernoon.com/linting-technical-docs-for-ai-readability-using-vale"
 	}
 ]

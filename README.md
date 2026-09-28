@@ -33,8 +33,8 @@ pnpm run dev -- --open
 | `pnpm run dev`      | Development server                                             |
 | `pnpm run build`    | Production build                                               |
 | `pnpm run validate` | Check `adopters.json`, `press.json`, and `events.json`         |
-| `make configs`      | Re-read the adopters' public configs into `config-stats.json`  |
-| `make stats`        | Count CI use, house rules, and stars into `adopter-stats.json` |
+| `make configs`      | Re-read the adopters' public `.vale.ini` files into `config-stats.json` |
+| `make stats`        | Count CI use, house rules, CI runs, and downloads into `adopter-stats.json` (a weekly workflow runs this and opens a pull request) |
 | `make og-adopters`  | Re-render the `/adopters` social card from the data            |
 | `pnpm run check`    | Type-check with `svelte-check`                                 |
 | `pnpm run lint`     | Prettier and ESLint                                            |
@@ -85,20 +85,21 @@ write-up. Entries without one get removed.
 }
 ```
 
-| Field      | Required | Notes                                                                     |
-| ---------- | -------- | ------------------------------------------------------------------------- |
-| `name`     | yes      | How your team is normally written.                                        |
-| `category` | yes      | One of the nine sectors below.                                            |
-| `context`  | yes      | One sentence, ending in a period, on what Vale does for you.              |
-| `url`      | yes      | `https://` link to the public proof.                                      |
-| `icon`     | no       | A [Simple Icons](https://simpleicons.org) slug, e.g. `elastic`, `gitlab`. |
-| `github`   | no       | GitHub org login, e.g. `aiven`. Used when there's no icon.                |
+| Field      | Required | Notes                                                                                                                       |
+| ---------- | -------- | --------------------------------------------------------------------------------------------------------------------------- |
+| `name`     | yes      | How your team is normally written.                                                                                          |
+| `category` | yes      | One of the nine sectors below.                                                                                              |
+| `context`  | yes      | One sentence, ending in a period, on what Vale does for you.                                                                |
+| `url`      | yes      | `https://` link to the public proof.                                                                                        |
+| `icon`     | no       | A [Simple Icons](https://simpleicons.org) slug, e.g. `elastic`, `gitlab`.                                                   |
+| `github`   | no       | GitHub org login, e.g. `aiven`. Used when there's no icon.                                                                  |
+| `repo`     | no       | Where the config lives when `url` is a write-up: `github.com/owner/name` or a `gitlab.com` path. The stats scripts read it. |
 
 Sectors: `AI & machine learning`, `Cloud & infrastructure`,
 `Data & observability`, `Developer tools`, `Enterprise software`,
 `Hardware & semiconductors`, `Open source & communities`,
 `Academia & public sector`, `Web3 & blockchain`. Pick the one a reader would
-file the team under, not the one the linted repo happens to be about.
+file the team under, not the one the linted repository happens to be about.
 
 Set **either** `icon` or `github`, not both. Simple Icons doesn't carry every
 brand — Microsoft and AWS, for example — so `github` falls back to your org's

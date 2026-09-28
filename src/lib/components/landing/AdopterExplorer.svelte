@@ -30,7 +30,14 @@
 		on every sector, a few teams each, because the preview cap below keeps
 		that from being a wall and the overview has already shown the shape.
 	*/
-	let { activeCategory = $bindable('All') }: { activeCategory?: string } = $props();
+	let {
+		activeCategory = $bindable('All'),
+		studied = {}
+	}: {
+		activeCategory?: string;
+		/** Adopter name -> post slug, for the teams with a case study. */
+		studied?: Record<string, string>;
+	} = $props();
 
 	let query = $state('');
 	let input: HTMLInputElement | undefined = $state();
@@ -45,10 +52,17 @@
 	const toggleFacet = (id: string) => {
 		facets = facets.includes(id) ? facets.filter((f) => f !== id) : [...facets, id];
 	};
+	// One facet the data script does not know: whether a post reads the team's
+	// setup end to end. It comes from the route, so it is tested here.
+	const STUDIED = 'studied';
 	const matchesFacets = (name: string, ids: string[]) => {
 		const has = usageOf(name);
-		return ids.every((id) => has.has(id));
+		return ids.every((id) => (id === STUDIED ? name in studied : has.has(id)));
 	};
+	const groups = $derived([
+		{ name: 'Read', facets: [{ id: STUDIED, label: 'Case study' }] },
+		...usageGroups
+	]);
 
 	// The order sectors.ts gives them, so the chips match the overview tiles.
 	const categories = $derived(['All', ...sectors.map((s) => s.name)]);
@@ -95,34 +109,36 @@
 		'rst',
 		'adoc'
 	];
+	// The integration facets get the accent; the rest stay neutral, so a
+	// glance separates "how it runs" from "what it runs".
+	const ACCENTED = new Set(['valeaction', 'action', 'gitlabci', 'precommit', 'agents']);
 	const tagsFor = (name: string) => {
 		const has = usageOf(name);
 		return TAGS.filter((id) => has.has(id))
 			.slice(0, 3)
-			.map((id) => facetLabel.get(id) ?? id);
+			.map((id) => ({ id, label: facetLabel.get(id) ?? id, accent: ACCENTED.has(id) }));
 	};
 
 	/*
-		A hundred and fifty cards in one alphabetical run is a wall. Grouping
-		them by sector gives the eye somewhere to stop, and only a few of each
-		show until someone asks for the rest -- capped per sector rather than
-		overall, so every sector still appears on arrival. Filtering or searching
-		is already a deliberate act, so those show everything they match.
+		The sector bands above have already shown every team, so the directory
+		opens on its controls alone: search, sectors, and facets. Cards appear
+		once someone picks a sector, turns on a chip, types, or asks for the
+		whole list. Grouped by sector when they do, so the eye has somewhere to
+		stop in a long run.
 
 		Headings and cards share a single keyed list rather than sitting in one
 		list per category, so `animate:flip` can move every surviving element to
 		its new place when the filter changes. Separate lists would unmount the
 		cards instead, and the reshape would be a blink.
 	*/
-	const PREVIEW_PER_CATEGORY = 4;
-
 	let expanded = $state(false);
 
-	const previewing = $derived(
+	const idle = $derived(
 		!expanded && activeCategory === 'All' && !query.trim() && facets.length === 0
 	);
 
 	const rows = $derived.by(() => {
+		if (idle) return [];
 		const shown = activeCategory === 'All' ? categories.slice(1) : [activeCategory];
 		const out: Array<
 			| { kind: 'heading'; key: string; category: string; count: number }
@@ -133,15 +149,10 @@
 			const items = results.filter((a) => a.category === category);
 			if (!items.length) continue;
 			out.push({ kind: 'heading', key: `heading:${category}`, category, count: items.length });
-			const visible = previewing ? items.slice(0, PREVIEW_PER_CATEGORY) : items;
-			for (const adopter of visible) out.push({ kind: 'item', key: adopter.name, adopter });
+			for (const adopter of items) out.push({ kind: 'item', key: adopter.name, adopter });
 		}
 		return out;
 	});
-
-	const hidden = $derived(
-		previewing ? results.length - rows.filter((r) => r.kind === 'item').length : 0
-	);
 
 	// "/" focuses the search box, Escape clears it — same shortcut the docs search uses.
 	function onKeydown(event: KeyboardEvent) {
@@ -208,7 +219,11 @@
 		{#each categories as category}
 			<button
 				type="button"
-				onclick={() => (activeCategory = category)}
+				onclick={() => {
+					activeCategory = category;
+					// "All" asked for on purpose means the whole list, not the idle state.
+					if (category === 'All') expanded = true;
+				}}
 				aria-pressed={activeCategory === category}
 				class="inline-flex items-center gap-1.5 rounded-full border px-3.5 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {activeCategory ===
 				category
@@ -228,7 +243,7 @@
 		it can be turned off.
 	-->
 	<div class="mx-auto mt-5 flex max-w-3xl flex-col gap-2">
-		{#each usageGroups as group (group.name)}
+		{#each groups as group (group.name)}
 			{@const visible = group.facets.filter((f) => facets.includes(f.id) || facetCount(f.id) > 0)}
 			{#if visible.length}
 				<div class="flex flex-wrap items-center justify-center gap-1.5">
@@ -261,7 +276,24 @@
 	</p>
 
 	<!-- Results -->
-	{#if results.length}
+	{#if idle}
+		<div
+			class="mt-8 flex flex-col items-center gap-3 rounded-xl border border-dashed border-border py-10 text-center"
+		>
+			<p class="text-sm text-muted-foreground">
+				Pick a sector or a chip, or search, to open the cards: each one carries the team's context
+				and links to the files in its repo.
+			</p>
+			<button
+				type="button"
+				onclick={() => (expanded = true)}
+				class="group inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+			>
+				Show all {all.length} teams
+				<ChevronDown class="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
+			</button>
+		</div>
+	{:else if results.length}
 		<ul class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each rows as row (row.key)}
 				<li
@@ -308,12 +340,28 @@
 								/>
 							</a>
 							<p class="mt-2 grow text-sm leading-6 text-muted-foreground">{user.context}</p>
-							{#if tagsFor(user.name).length}
-								<p
-									class="mt-3 font-mono text-[10px] uppercase tracking-[0.12em] text-muted-foreground"
+							{#if studied[user.name]}
+								<a
+									href="/blog/{studied[user.name]}"
+									class="mt-3 inline-flex items-center gap-1 self-start text-sm font-medium text-lime-600 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:text-lime-400"
 								>
-									{tagsFor(user.name).join(' · ')}
-								</p>
+									Read how they use it
+									<ArrowUpRight class="h-3.5 w-3.5" />
+								</a>
+							{/if}
+							{#if tagsFor(user.name).length}
+								<!-- Badges rather than a line of text, so the facets scan across a grid. -->
+								<ul class="mt-3 flex flex-wrap gap-1.5" aria-label="How {user.name} uses Vale">
+									{#each tagsFor(user.name) as tag (tag.id)}
+										<li
+											class="rounded-md border px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.1em] {tag.accent
+												? 'border-lime-500/40 bg-lime-500/10 text-lime-700 dark:text-lime-300'
+												: 'border-border bg-muted/60 text-muted-foreground'}"
+										>
+											{tag.label}
+										</li>
+									{/each}
+								</ul>
 							{/if}
 							{#if links.length}
 								<ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Files in the repo">
@@ -337,19 +385,6 @@
 				</li>
 			{/each}
 		</ul>
-
-		{#if hidden > 0}
-			<div class="mt-8 flex justify-center">
-				<button
-					type="button"
-					onclick={() => (expanded = true)}
-					class="group inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
-				>
-					Show {hidden} more
-					<ChevronDown class="h-4 w-4 transition-transform group-hover:translate-y-0.5" />
-				</button>
-			</div>
-		{/if}
 	{:else}
 		<div class="mt-10 rounded-xl border border-dashed border-border py-12 text-center">
 			<p class="text-sm text-muted-foreground">

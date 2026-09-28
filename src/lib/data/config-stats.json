@@ -1,15 +1,15 @@
 {
-	"sampleSize": 122,
-	"adopterCount": 168,
+	"sampleSize": 133,
+	"adopterCount": 167,
 	"styles": {
-		"write-good": 19,
-		"Google": 18,
+		"Google": 20,
+		"write-good": 20,
 		"Microsoft": 16,
 		"proselint": 13,
-		"alex": 6,
+		"alex": 7,
+		"RedHat": 4,
 		"AsciiDoc": 3,
 		"docs": 3,
-		"RedHat": 3,
 		"ai-tells": 2,
 		"base": 2,
 		"Readability": 2,
@@ -33,6 +33,7 @@
 		"custom": 1,
 		"CustomStyles": 1,
 		"Dagster": 1,
+		"Datadog": 1,
 		"DeadlineSamples": 1,
 		"DetSys": 1,
 		"DevDocs": 1,
@@ -41,12 +42,18 @@
 		"Espressif-latest": 1,
 		"examples": 1,
 		"expo-docs": 1,
+		"FernStyles": 1,
 		"FluentBit": 1,
 		"Fly": 1,
 		"foreman-documentation": 1,
 		"FreeBSD": 1,
 		"from-microsoft": 1,
 		"from-write-good": 1,
+		"gitlab_base": 1,
+		"gitlab_docs": 1,
+		"gitlab_release_index": 1,
+		"gitlab_release_notes": 1,
+		"Grafana": 1,
 		"Graphile": 1,
 		"Homebrew": 1,
 		"IBMQuantum": 1,
@@ -70,6 +77,7 @@
 		"Mesa": 1,
 		"messaging": 1,
 		"Metalbear": 1,
+		"Mintlify": 1,
 		"Mistral": 1,
 		"MUI": 1,
 		"n8n-styles": 1,
@@ -89,6 +97,9 @@
 		"PingCAP": 1,
 		"Platform": 1,
 		"Polkadot": 1,
+		"PostHogBase": 1,
+		"PostHogDocs": 1,
+		"PostHogEditorial": 1,
 		"PowerShell-Docs": 1,
 		"PSDK": 1,
 		"Pulumi": 1,
@@ -98,6 +109,7 @@
 		"riscv": 1,
 		"RLlib": 1,
 		"rOpenSci": 1,
+		"RSP": 1,
 		"Rules": 1,
 		"SAP": 1,
 		"Semmle": 1,
@@ -105,6 +117,7 @@
 		"smart-marks": 1,
 		"SmartWallets": 1,
 		"Speciesism": 1,
+		"spectrocloud-docs-internal": 1,
 		"Spryker": 1,
 		"Std": 1,
 		"Style": 1,
@@ -119,16 +132,17 @@
 		"Tyk": 1,
 		"UmbracoDocs": 1,
 		"vale": 1,
+		"Wikimedia": 1,
 		"WSO2-IAM": 1,
 		"Yugabyte": 1
 	},
 	"packages": {
-		"Google": 15,
-		"write-good": 15,
+		"Google": 17,
+		"write-good": 16,
 		"Microsoft": 11,
 		"proselint": 10,
-		"alex": 5,
-		"RedHat": 4,
+		"alex": 6,
+		"RedHat": 5,
 		"AsciiDoc": 3,
 		"ai-tells": 2,
 		"MDX": 2,
@@ -144,21 +158,26 @@
 		"OpenShiftAsciiDoc": 1,
 		"PowerShell-Docs": 1,
 		"riscv": 1,
+		"spectrocloud-docs-internal": 1,
 		"Spryker": 1,
 		"Std": 1,
 		"tech-writing-style-guide": 1,
 		"vale": 1
 	},
 	"formats": {
-		"md": 94,
-		"mdx": 26,
-		"rst": 14,
-		"adoc": 7,
+		"md": 103,
+		"mdx": 29,
+		"rst": 16,
+		"adoc": 8,
+		"html": 3,
+		"ini": 3,
 		"docs": 2,
-		"html": 2,
-		"ini": 2,
 		"qmd": 2,
 		"txt": 2,
+		"api": 1,
+		"blog": 1,
+		"cli": 1,
+		"color": 1,
 		"csv": 1,
 		"en": 1,
 		"erb": 1,
@@ -172,25 +191,26 @@
 		"readme": 1,
 		"rmd": 1,
 		"rs": 1,
+		"tree": 1,
 		"zh": 1
 	},
 	"minAlertLevels": {
-		"suggestion": 70,
-		"warning": 29,
-		"error": 12,
+		"suggestion": 77,
+		"warning": 31,
+		"error": 13,
 		"suggestions": 1
 	},
 	"keys": {
-		"BasedOnStyles": 120,
-		"StylesPath": 119,
-		"MinAlertLevel": 112,
-		"Vocab": 69,
-		"Packages": 47,
-		"TokenIgnores": 41,
-		"BlockIgnores": 27,
-		"IgnoredScopes": 26,
-		"SkippedScopes": 20,
-		"CommentDelimiters": 6,
+		"BasedOnStyles": 131,
+		"StylesPath": 129,
+		"MinAlertLevel": 122,
+		"Vocab": 76,
+		"Packages": 50,
+		"TokenIgnores": 49,
+		"IgnoredScopes": 31,
+		"BlockIgnores": 30,
+		"SkippedScopes": 23,
+		"CommentDelimiters": 7,
 		"IgnoredClasses": 4,
 		"WordTemplate": 3,
 		"Checks": 1,
@@ -204,7 +224,7 @@
 		"Vale": 1,
 		"View": 1
 	},
-	"pathScoped": 40,
+	"pathScoped": 45,
 	"pairedWith": {
 		"Aiven": {},
 		"SmartWallets": {},
@@ -212,8 +232,9 @@
 			"Google": 1
 		},
 		"Google": {
-			"write-good": 6,
+			"write-good": 7,
 			"ADI": 1,
+			"alex": 1,
 			"commercetools": 1,
 			"CustomStyles": 1,
 			"Fly": 1,
@@ -228,6 +249,8 @@
 			"Pulumi": 1,
 			"Ray": 1,
 			"RLlib": 1,
+			"RSP": 1,
+			"spectrocloud-docs-internal": 1,
 			"Spryker": 1,
 			"terms": 1
 		},
@@ -242,10 +265,10 @@
 			"write-good": 1
 		},
 		"write-good": {
+			"Google": 7,
 			"proselint": 7,
-			"Google": 6,
 			"Microsoft": 5,
-			"alex": 3,
+			"alex": 4,
 			"ai-tells": 2,
 			"Readability": 2,
 			"ai-tells-overrides": 1,
@@ -264,6 +287,7 @@
 			"Pulumi": 1,
 			"rOpenSci": 1,
 			"signs-of-ai-writing": 1,
+			"spectrocloud-docs-internal": 1,
 			"ttd-light": 1,
 			"Tyk": 1,
 			"vale": 1
@@ -300,12 +324,14 @@
 		},
 		"alex": {
 			"proselint": 4,
-			"write-good": 3,
+			"write-good": 4,
 			"Microsoft": 2,
+			"Google": 1,
 			"Joblint": 1,
 			"OutSystems": 1,
 			"Readability": 1,
-			"rOpenSci": 1
+			"rOpenSci": 1,
+			"spectrocloud-docs-internal": 1
 		},
 		"ai-tells": {
 			"write-good": 2,
@@ -340,6 +366,7 @@
 		"Terms": {
 			"Dagster": 1
 		},
+		"Datadog": {},
 		"custom": {},
 		"DetSys": {},
 		"Docker": {},
@@ -347,6 +374,7 @@
 		"Lore": {},
 		"Espressif-latest": {},
 		"expo-docs": {},
+		"FernStyles": {},
 		"FluentBit": {},
 		"Fly": {
 			"Google": 1,
@@ -371,7 +399,28 @@
 		},
 		"FreeBSD": {},
 		"Semmle": {},
+		"gitlab_base": {
+			"gitlab_docs": 1,
+			"gitlab_release_index": 1,
+			"gitlab_release_notes": 1
+		},
+		"gitlab_docs": {
+			"gitlab_base": 1,
+			"gitlab_release_index": 1,
+			"gitlab_release_notes": 1
+		},
+		"gitlab_release_notes": {
+			"gitlab_base": 1,
+			"gitlab_docs": 1,
+			"gitlab_release_index": 1
+		},
+		"gitlab_release_index": {
+			"gitlab_base": 1,
+			"gitlab_docs": 1,
+			"gitlab_release_notes": 1
+		},
 		"tech-writing-style-guide": {},
+		"Grafana": {},
 		"Graphile": {
 			"Microsoft": 1
 		},
@@ -437,6 +486,7 @@
 		"Mesa": {
 			"Google": 1
 		},
+		"Mintlify": {},
 		"Metalbear": {
 			"Google": 1,
 			"write-good": 1
@@ -502,6 +552,18 @@
 		"Polkadot": {
 			"Google": 1
 		},
+		"PostHogBase": {
+			"PostHogDocs": 1,
+			"PostHogEditorial": 1
+		},
+		"PostHogDocs": {
+			"PostHogBase": 1,
+			"PostHogEditorial": 1
+		},
+		"PostHogEditorial": {
+			"PostHogBase": 1,
+			"PostHogDocs": 1
+		},
 		"PowerShell-Docs": {},
 		"CustomStyles": {
 			"Google": 1
@@ -542,8 +604,16 @@
 			"proselint": 1,
 			"write-good": 1
 		},
+		"RSP": {
+			"Google": 1
+		},
 		"SAP": {},
 		"DevDocs": {},
+		"spectrocloud-docs-internal": {
+			"alex": 1,
+			"Google": 1,
+			"write-good": 1
+		},
 		"Spryker": {
 			"Google": 1,
 			"terms": 1
@@ -584,6 +654,7 @@
 		"Speciesism": {
 			"proselint": 1
 		},
+		"Wikimedia": {},
 		"Openverse": {
 			"proselint": 1
 		},
@@ -766,7 +837,7 @@
 			"name": "Coder",
 			"url": "https://github.com/coder/coder/blob/HEAD/.vale.ini",
 			"styles": ["Coder"],
-			"formats": ["md"],
+			"formats": ["md", "api", "cli"],
 			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles"],
 			"minAlertLevel": "suggestion"
 		},
@@ -808,6 +879,21 @@
 			"styles": ["Dagster", "Terms"],
 			"formats": ["md", "mdx", "rst"],
 			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Datadog",
+			"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/",
+			"styles": ["Datadog"],
+			"formats": ["md", "html"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
@@ -917,6 +1003,14 @@
 			"minAlertLevel": "warning"
 		},
 		{
+			"name": "Fern",
+			"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
+			"styles": ["FernStyles"],
+			"formats": ["md", "mdx"],
+			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "Fluent Bit",
 			"url": "https://github.com/fluent/fluent-bit-docs/blob/HEAD/.vale.ini",
 			"styles": ["FluentBit"],
@@ -980,12 +1074,28 @@
 			"minAlertLevel": "suggestions"
 		},
 		{
+			"name": "GitLab",
+			"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
+			"styles": ["gitlab_base", "gitlab_docs", "gitlab_release_notes", "gitlab_release_index"],
+			"formats": ["md"],
+			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles", "TokenIgnores"],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "GOV.UK One Login",
 			"url": "https://github.com/govuk-one-login/tech-docs/blob/HEAD/.vale.ini",
 			"styles": ["tech-writing-style-guide"],
 			"formats": ["md", "org", "txt", "erb", "html"],
 			"keys": ["StylesPath", "Packages", "MinAlertLevel", "BasedOnStyles"],
 			"minAlertLevel": "error"
+		},
+		{
+			"name": "Grafana Labs",
+			"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
+			"styles": ["Grafana"],
+			"formats": ["md"],
+			"keys": ["MinAlertLevel", "BasedOnStyles", "TokenIgnores"],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Graphile",
@@ -1204,6 +1314,24 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Mintlify",
+			"url": "https://www.mintlify.com/docs/deploy/ci",
+			"styles": ["Mintlify"],
+			"formats": ["mdx", "color", "tree"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores",
+				"CommentDelimiters"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "mirrord",
 			"url": "https://github.com/metalbear-co/mirrord/blob/HEAD/.vale.ini",
 			"styles": ["write-good", "Google", "Metalbear"],
@@ -1339,6 +1467,14 @@
 			"formats": ["md", "mdx"],
 			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "NVIDIA",
+			"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html#checks",
+			"styles": [],
+			"formats": ["md", "rst"],
+			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"minAlertLevel": "error"
 		},
 		{
 			"name": "Open Policy Agent",
@@ -1484,6 +1620,23 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "PostHog",
+			"url": "https://posthog.com/handbook/wizard-and-docs/vale",
+			"styles": ["PostHogBase", "PostHogDocs", "PostHogEditorial"],
+			"formats": ["md", "mdx", "blog"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "PowerShell Docs",
 			"url": "https://github.com/MicrosoftDocs/PowerShell-Docs/blob/HEAD/.vale.ini",
 			"styles": ["PowerShell-Docs"],
@@ -1594,6 +1747,22 @@
 			"minAlertLevel": null
 		},
 		{
+			"name": "Red Hat",
+			"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
+			"styles": ["RedHat"],
+			"formats": ["adoc", "md", "ini"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Redocly",
 			"url": "https://github.com/Redocly/redoc/blob/HEAD/.vale.ini",
 			"styles": ["Rules"],
@@ -1635,6 +1804,14 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Rubin Observatory",
+			"url": "https://rsp.lsst.io/contributing/vale.html",
+			"styles": ["Google", "RSP"],
+			"formats": ["rst", "md"],
+			"keys": ["StylesPath", "Packages", "Vocab", "BasedOnStyles"],
+			"minAlertLevel": null
+		},
+		{
 			"name": "Safe",
 			"url": "https://github.com/safe-global/safe-docs/blob/HEAD/.vale.ini",
 			"styles": ["Microsoft", "write-good"],
@@ -1664,6 +1841,22 @@
 			"styles": ["DevDocs"],
 			"formats": ["md"],
 			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles"],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Spectro Cloud",
+			"url": "https://www.spectrocloud.com/blog/how-we-use-vale-to-enforce-better-writing-in-docs-and-beyond",
+			"styles": ["Google", "write-good", "alex", "spectrocloud-docs-internal"],
+			"formats": ["md"],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
@@ -1810,6 +2003,14 @@
 			"formats": ["md", "mdx"],
 			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
 			"minAlertLevel": "warning"
+		},
+		{
+			"name": "Wikimedia",
+			"url": "https://www.mediawiki.org/wiki/Documentation/Tools/Linting",
+			"styles": ["Wikimedia"],
+			"formats": [],
+			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "WordPress",

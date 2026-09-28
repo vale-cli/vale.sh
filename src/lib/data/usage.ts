@@ -154,7 +154,12 @@ export function linksOf(name: string): FileLink[] {
 	const u = records[name];
 	const i = u?.integrations;
 	if (!u?.repo || !i) return [];
-	const blob = (path: string) => `https://github.com/${u.repo}/blob/HEAD/${path}`;
+	// A GitHub repo is `owner/name`; a GitLab one carries its host.
+	const onGitLab = /^gitlab\./.test(u.repo);
+	const blob = (path: string) =>
+		onGitLab
+			? `https://${u.repo}/-/blob/HEAD/${path}`
+			: `https://github.com/${u.repo}/blob/HEAD/${path}`;
 	const base = (path: string) => path.split('/').pop() ?? path;
 	const out: FileLink[] = [];
 	for (const p of i.actions.slice(0, 2)) out.push({ label: base(p), url: blob(p) });

@@ -3,7 +3,7 @@
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 
 	// The README section that spells out the JSON entry and its fields.
-	const HOW_TO = 'https://github.com/errata-ai/vale.sh#add-your-team-to-the-home-page';
+	const HOW_TO = 'https://github.com/vale-cli/vale.sh#add-your-team-to-the-home-page';
 </script>
 
 <Section

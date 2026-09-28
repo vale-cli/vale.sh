@@ -237,7 +237,8 @@
 		"context": "Publishes datadog-vale and shifted docs quality left with it.",
 		"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/",
 		"icon": "datadog",
-		"logo": "/users/Datadog.svg"
+		"logo": "/users/Datadog.svg",
+		"repo": "github.com/DataDog/documentation"
 	},
 	{
 		"name": "dbt Labs",
@@ -345,7 +346,8 @@
 		"context": "Recommends Vale for linting docs and improving writing quality.",
 		"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
 		"github": "fern-api",
-		"avatar": "/users/avatars/fern-api.png"
+		"avatar": "/users/avatars/fern-api.png",
+		"repo": "github.com/fern-api/fern"
 	},
 	{
 		"name": "Fluent Bit",
@@ -405,7 +407,8 @@
 		"context": "A required check in GitLab's documentation testing pipeline.",
 		"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
 		"icon": "gitlab",
-		"logo": "/users/GitLab.svg"
+		"logo": "/users/GitLab.svg",
+		"repo": "gitlab.com/gitlab-org/gitlab"
 	},
 	{
 		"name": "GOV.UK",
@@ -429,7 +432,8 @@
 		"context": "Powers the prose linting rules in the Grafana Writers' Toolkit.",
 		"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
 		"icon": "grafana",
-		"logo": "/users/Grafana Labs.svg"
+		"logo": "/users/Grafana Labs.svg",
+		"repo": "github.com/grafana/grafana"
 	},
 	{
 		"name": "Graphile",
@@ -610,13 +614,6 @@
 		"avatar": "/users/avatars/medusajs.png"
 	},
 	{
-		"name": "Meilisearch",
-		"category": "Data & observability",
-		"context": "Prose linting for the open-source search engine's docs.",
-		"url": "https://blog.meilisearch.com/prose-linting-with-vale/",
-		"icon": "meilisearch"
-	},
-	{
 		"name": "Mendix",
 		"category": "Enterprise software",
 		"context": "Lints its docs with Microsoft's style and a Mendix style.",
@@ -654,7 +651,8 @@
 		"category": "Developer tools",
 		"context": "Runs Vale as a built-in CI check and reports the results on pull requests.",
 		"url": "https://www.mintlify.com/docs/deploy/ci",
-		"icon": "mintlify"
+		"icon": "mintlify",
+		"repo": "github.com/mintlify/docs"
 	},
 	{
 		"name": "mirrord",
@@ -780,7 +778,8 @@
 		"category": "AI & machine learning",
 		"context": "All NeMo Agent Toolkit documentation is checked with Vale before it merges.",
 		"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html#checks",
-		"icon": "nvidia"
+		"icon": "nvidia",
+		"repo": "github.com/NVIDIA/NeMo-Agent-Toolkit"
 	},
 	{
 		"name": "Open Policy Agent",
@@ -887,7 +886,8 @@
 		"category": "Data & observability",
 		"context": "Documents Vale and prose linting in the public company handbook.",
 		"url": "https://posthog.com/handbook/wizard-and-docs/vale",
-		"icon": "posthog"
+		"icon": "posthog",
+		"repo": "github.com/PostHog/posthog.com"
 	},
 	{
 		"name": "Postman",
@@ -1001,7 +1001,8 @@
 		"context": "Maintains \"Vale at Red Hat\", a public style package and onboarding guide.",
 		"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
 		"icon": "redhat",
-		"logo": "/users/Red Hat.svg"
+		"logo": "/users/Red Hat.svg",
+		"repo": "github.com/redhat-documentation/vale-at-red-hat"
 	},
 	{
 		"name": "Redocly",
@@ -1039,7 +1040,8 @@
 		"context": "Lints the Rubin Science Platform docs against the Google style package plus house RSP rules, advisory on every pull request.",
 		"url": "https://rsp.lsst.io/contributing/vale.html",
 		"github": "lsst",
-		"avatar": "/users/avatars/lsst.png"
+		"avatar": "/users/avatars/lsst.png",
+		"repo": "github.com/lsst/rsp_lsst_io"
 	},
 	{
 		"name": "Safe",
@@ -1085,7 +1087,8 @@
 		"url": "https://www.spectrocloud.com/blog/how-we-use-vale-to-enforce-better-writing-in-docs-and-beyond",
 		"github": "spectrocloud",
 		"avatar": "/users/avatars/spectrocloud.png",
-		"logo": "/users/Spectro Cloud.svg"
+		"logo": "/users/Spectro Cloud.svg",
+		"repo": "github.com/spectrocloud/librarium"
 	},
 	{
 		"name": "Splunk",
@@ -1249,7 +1252,8 @@
 		"context": "Runs three tools on one rule set: a local linter, a GitLab CI template, and a Toolforge app that lints live wiki pages.",
 		"url": "https://www.mediawiki.org/wiki/Documentation/Tools/Linting",
 		"github": "wikimedia",
-		"avatar": "/users/avatars/wikimedia.png"
+		"avatar": "/users/avatars/wikimedia.png",
+		"repo": "gitlab.wikimedia.org/repos/technical-documentation/documentation-linting/linter-quickstart"
 	},
 	{
 		"name": "WordPress",

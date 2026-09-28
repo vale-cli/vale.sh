@@ -2,9 +2,11 @@
 title: 'How GOV.UK turned its style guide into a build step'
 description: "The UK government's plain-English rules, packaged as a Vale style, run by ten GOV.UK One Login repositories, and wired into an Android app's Gradle build so the source comments are checked too."
 date: '2026-09-28'
-draft: true
+draft: false
 tags: ['case-studies', 'adopters']
 brand: 'GOV.UK'
+figure: '10 repositories'
+figureLabel: 'run the GOV.UK package, one of them from an Android build'
 image: '/blog/brand/case-study-gov-uk.png'
 imageAlt: "The GOV.UK crest over the public sector's orbit pattern."
 ---
