@@ -4,6 +4,7 @@ import (
 	"os"
 	"path/filepath"
 	"reflect"
+	"regexp"
 	"strings"
 	"testing"
 )
@@ -117,5 +118,24 @@ func TestPostsInRepo(t *testing.T) {
 		if len(rec.Text) > maxRecord {
 			t.Errorf("%s: text is %d bytes", rec.URL, len(rec.Text))
 		}
+	}
+}
+
+// The tag map is a copy of TAGS in src/lib/posts.ts, and a tag added there
+// alone breaks the build at index time, so the two are held together here.
+func TestTagLabelsMatchPostsTS(t *testing.T) {
+	src, err := os.ReadFile(filepath.Join("..", "..", "src", "lib", "posts.ts"))
+	if err != nil {
+		t.Fatal(err)
+	}
+	want := map[string]string{}
+	for _, m := range regexp.MustCompile(`slug: '([^']+)',\s*label: '([^']+)'`).FindAllStringSubmatch(string(src), -1) {
+		want[m[1]] = m[2]
+	}
+	if len(want) == 0 {
+		t.Fatal("no tags found in posts.ts; the pattern needs updating")
+	}
+	if !reflect.DeepEqual(tagLabels, want) {
+		t.Errorf("tagLabels = %v, posts.ts has %v", tagLabels, want)
 	}
 }

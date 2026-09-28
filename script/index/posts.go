@@ -27,10 +27,12 @@ var authors = map[string]string{
 // Mirrors TAGS in src/lib/posts.ts: a tag's label is what the index stores,
 // since that is the word someone searches for.
 var tagLabels = map[string]string{
-	"packages":  "Packages",
-	"agents":    "Agents",
-	"tutorials": "Tutorials",
-	"formats":   "Formats",
+	"packages":     "Packages",
+	"agents":       "Agents",
+	"tutorials":    "Tutorials",
+	"formats":      "Formats",
+	"adopters":     "Adopters",
+	"case-studies": "Case studies",
 }
 
 // Frontmatter is the subset of a post's frontmatter the index needs.
