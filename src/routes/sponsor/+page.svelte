@@ -6,6 +6,10 @@
 	import Backers from '$lib/components/landing/Backers.svelte';
 	import Thanks from '$lib/components/landing/Thanks.svelte';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
+	import Tiers from '$lib/components/sponsor/Tiers.svelte';
+	import Paying from '$lib/components/sponsor/Paying.svelte';
+	import Faq from '$lib/components/sponsor/Faq.svelte';
+	import adopters from '$lib/data/adopters.json';
 	import { Icons } from '$lib/components/icons';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import CircleDollarSign from 'lucide-svelte/icons/circle-dollar-sign';
@@ -16,7 +20,10 @@
 	let { data }: { data: PageData } = $props();
 
 	const description =
-		'Who funds Vale, who has recognized it, and who donates the infrastructure it runs on.';
+		'Sponsor Vale as a Backer, a Sponsor at $1,000, or a Partner at $5,000, and see who funds it, who has recognized it, and who donates its infrastructure.';
+
+	// Who depends on it, counted from the adopters list rather than typed.
+	const teams = adopters.length;
 
 	// Verbatim from the close of each spotlight page, so a reader arriving from
 	// one meets the same three facts rather than a differently-worded set.
@@ -72,6 +79,13 @@
 			Vale is free and MIT-licensed, and stays that way because companies sponsor the work,
 			foundations fund it, and providers donate the infrastructure it runs on.
 		</p>
+		<p class="mt-3 text-sm text-muted-foreground">
+			Used by <a
+				href="/adopters"
+				class="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-lime-500"
+				>{teams} teams</a
+			>, including Amazon Web Services, NVIDIA, Datadog, and GOV.UK.
+		</p>
 
 		<!--
 			Two ways to give the same thing, so neither is the primary action: same
@@ -119,12 +133,16 @@
 </section>
 
 <!--
-	Who pays for Vale, in descending order of how much the reader is being asked
-	to care: the spotlight sponsors, then everyone else funding it, then the
-	donated infrastructure. Grants & Awards is last -- it's the page's credential,
-	not its ask.
+	The ask first: the levels and how a company pays. Then
+	who pays for Vale, in descending order of how much the reader is being
+	asked to care: the spotlight sponsors, everyone else funding it, and the
+	donated infrastructure. Grants & Awards is the page's credential, and the
+	FAQ closes on the questions a budget request raises.
 -->
+<Tiers />
+<Paying />
 <SponsorSpotlight more={false} />
 <Backers backers={data.backers} funding={data.stats.funding} />
 <Thanks />
 <Recognition />
+<Faq />
