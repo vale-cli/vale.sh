@@ -40,6 +40,16 @@
 		"site": "docsio.co"
 	},
 	{
+		"title": "Your voice as a linter",
+		"url": "https://tone-of-voice-generator.com/brand-voice-as-a-linter",
+		"author": "Best Served Cold",
+		"year": 2026,
+		"type": "post",
+		"description": "Turns a brand's tone-of-voice guide into Vale rules: which of Vale's checks each voice rule maps onto, what can't be linted, and why the false-positive rate decides whether a team keeps using it.",
+		"image": "https://tone-of-voice-generator.com/og/default.png",
+		"site": "Tone of voice generator"
+	},
+	{
 		"title": "Upgrade your Docs-As-Code Foo with the Vale Text Linter",
 		"url": "https://2025.everythingopen.au/schedule/presentation/63/",
 		"author": "Alec Clews",
