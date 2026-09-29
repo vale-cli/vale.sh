@@ -83,7 +83,7 @@ export const tiers: Tier[] = [
 			'Everything in Sponsor',
 			"A private channel on the Vale Discord for your team's questions and requests, open for a year",
 			'Your requests triaged first',
-			'A case study of your setup, reviewed by you before it is published'
+			'A year of Vale CMS Site for everyone at your domain'
 		],
 		links: [{ label: 'Become a Partner', href: contact.href }],
 		limit: 'Limited to six Partners'
@@ -117,9 +117,9 @@ export const partner = [
 		detail: 'A real bug becomes a public issue, and the fix ships to everyone.'
 	},
 	{
-		term: 'The case study',
+		term: 'Vale CMS',
 		detail:
-			'A walkthrough of your public config in the case-study series, sent to you for review before it is published.'
+			'A year of the Site plan: the full editor for every address at your domain, and the MCP server for the accounts your CI and agents run as.'
 	}
 ];
 
