@@ -1,13 +1,21 @@
 <script lang="ts">
 	import adopters from '$lib/data/adopters.json';
 	import stats from '$lib/data/adopter-stats.json';
-	import stories from '$lib/data/stories.json';
 	import { sectors } from '$lib/data/sectors';
 	import BrandIcon from './BrandIcon.svelte';
 	import Section from './Section.svelte';
 	import InlineCode from '$lib/components/features/InlineCode.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
+	import { fade } from 'svelte/transition';
+	import ChevronLeft from 'lucide-svelte/icons/chevron-left';
+	import ChevronRight from 'lucide-svelte/icons/chevron-right';
+	import Pause from 'lucide-svelte/icons/pause';
+	import Play from 'lucide-svelte/icons/play';
+
+	// The carousel's round buttons: a 36px target, outlined like the chips.
+	const control =
+		'inline-flex h-9 w-9 items-center justify-center rounded-full border border-border text-muted-foreground transition-colors hover:bg-muted/60 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500';
 
 	let { editorial = false }: { editorial?: boolean } = $props();
 
@@ -47,11 +55,9 @@
 	}
 
 	/*
-		The biggest names, gated by proof: each mark has to land on a real
-		config or a CI job, since a visitor who clicks and finds a thin page
-		stops believing the rest. A team with a story card above is skipped
-		here, so no name appears twice; the list runs longer than twelve so
-		the row stays full whichever teams the cards take.
+		The biggest names, gated by proof: each has to land on a real config
+		or a CI job, since a visitor who clicks and finds a thin page stops
+		believing the rest. Within its sector, a name here leads the rotation.
 	*/
 	const FEATURED = [
 		'Amazon Web Services',
@@ -75,34 +81,92 @@
 
 	const byName = new Map(all.map((a) => [a.name, a]));
 
+	type Record = { stars?: number | null; pushed?: string | null };
+	const records = stats.perAdopter as unknown as { [name: string]: Record };
+	const generated = Date.parse(stats.generated);
+
 	/*
-		Four teams, one figure each, read from the team's own page: the number
-		leads, the way a customer page leads with "350 million daily users"
-		rather than a logo. Resolved against the data so the mark and sector
-		come from the adopter entry, and validated in script/adopters.mjs.
+		Up to twelve marks per sector: the hand-picked names first, then the
+		rest by stars. A repo with no push in a year sits out, so the band
+		shows teams that are running Vale now; no date is shown.
 	*/
-	const featuredStories = stories.flatMap((st) => {
-		const adopter = byName.get(st.name);
-		return adopter ? [{ ...st, adopter }] : [];
+	const PER_SECTOR = 12;
+	const active = (name: string) => {
+		const pushed = records[name]?.pushed;
+		return !pushed || generated - Date.parse(pushed) < 365 * 86_400_000;
+	};
+	const rank = (a: Adopter) => {
+		const i = FEATURED.indexOf(a.name);
+		return i === -1 ? FEATURED.length : i;
+	};
+	const toMark = (adopter: Adopter) => ({
+		...adopter,
+		receipt: receipt(adopter.url),
+		// BrandIcon resolves a Simple Icons glyph, then the avatar, then a
+		// monogram. Most entries name their glyph; fall back to the key the
+		// name implies for the ones that don't.
+		slug: adopter.icon ?? adopter.name.toLowerCase().replace(/[^a-z0-9]/g, '')
 	});
 
-	const storied = new Set(stories.map((st) => st.name));
-	const marks = FEATURED.filter((name) => !storied.has(name))
-		.slice(0, 12)
-		.flatMap((name) => {
-			const adopter = byName.get(name);
-			if (!adopter) return [];
-			return [
-				{
-					...adopter,
-					receipt: receipt(adopter.url),
-					// BrandIcon resolves a Simple Icons glyph, then the avatar, then a
-					// monogram. Most entries name their glyph; fall back to the key the
-					// name implies for the ones that don't.
-					slug: adopter.icon ?? name.toLowerCase().replace(/[^a-z0-9]/g, '')
-				}
-			];
-		});
+	const rotation = sectors.map((s) => {
+		const members = all.filter((a) => a.category === s.name);
+		return {
+			name: s.name,
+			count: members.length,
+			href: `/adopters#sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
+			marks: members
+				.filter((a) => active(a.name))
+				.sort(
+					(a, b) =>
+						rank(a) - rank(b) ||
+						(records[b.name]?.stars ?? 0) - (records[a.name]?.stars ?? 0) ||
+						a.name.localeCompare(b.name)
+				)
+				.slice(0, PER_SECTOR)
+				.map(toMark)
+		};
+	});
+
+	/*
+		The sectors take turns, as a carousel with its own controls: previous,
+		next, and pause. A moving set of links is a moving target, so the turn
+		waits while a pointer or keyboard focus is on the band, and stops once
+		a reader steps through or picks a sector themselves; play resumes it.
+		A reader who asked the system for reduced motion starts paused.
+	*/
+	const TURN_MS = 10000;
+	let current = $state(0);
+	let hovering = $state(false);
+	let focused = $state(false);
+	let paused = $state(false);
+	let still = $state(false);
+	const shown = $derived(rotation[current]);
+	const running = $derived(!paused && !hovering && !focused);
+
+	$effect(() => {
+		const query = window.matchMedia('(prefers-reduced-motion: reduce)');
+		still = query.matches;
+		if (still) paused = true;
+		const onChange = () => {
+			still = query.matches;
+			if (still) paused = true;
+		};
+		query.addEventListener('change', onChange);
+		return () => query.removeEventListener('change', onChange);
+	});
+
+	// One turn per sector shown, so stepping by hand restarts the clock.
+	$effect(() => {
+		void current;
+		if (!running) return;
+		const timer = setTimeout(() => (current = (current + 1) % rotation.length), TURN_MS);
+		return () => clearTimeout(timer);
+	});
+
+	const go = (i: number) => {
+		current = (i + rotation.length) % rotation.length;
+		paused = true;
+	};
 
 	/*
 		Three counted figures under the marks, from script/adopters-stats.mjs:
@@ -124,13 +188,6 @@
 		}
 	];
 
-	// The nine sectors, each a jump to its band on /adopters.
-	const chips = sectors.map((s) => ({
-		name: s.name,
-		count: all.filter((a) => a.category === s.name).length,
-		href: `/adopters#sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
-	}));
-
 	const total = all.length;
 </script>
 
@@ -148,79 +205,134 @@
 	lede={configsLede}
 >
 	<!--
-		Four stories with a figure each, then twelve bare marks, large, named
-		beneath. The mark's tooltip is the receipt:
-		the repository and path, or the host, plus the team's own line. Nothing
-		scrolls; these are links and a moving row makes them a moving target.
+		One sector at a time. The chips are the controls and double as the
+		progress: the lit one is on screen. The marks crossfade in place, in a
+		box held at two rows so the section below doesn't jump between turns.
 	-->
-	<ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-		{#each featuredStories as story (story.name)}
-			<li>
-				<a
-					href={story.url}
-					target="_blank"
-					rel="noreferrer"
-					class="group flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+	<div
+		role="region"
+		aria-roledescription="carousel"
+		aria-label="Teams by sector"
+		onpointerenter={() => (hovering = true)}
+		onpointerleave={() => (hovering = false)}
+		onfocusin={() => (focused = true)}
+		onfocusout={() => (focused = false)}
+	>
+		<div class="flex flex-wrap gap-2" role="group" aria-label="Choose a sector">
+			{#each rotation as sector, i (sector.name)}
+				<button
+					type="button"
+					onclick={() => go(i)}
+					aria-pressed={i === current}
+					class="inline-flex items-center gap-1.5 rounded-full border px-3 py-1.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 {i ===
+					current
+						? 'border-lime-500/50 bg-lime-500/10 font-medium text-foreground'
+						: 'border-border text-muted-foreground hover:bg-muted/60 hover:text-foreground'}"
 				>
-					<span class="flex items-center gap-2.5">
-						<BrandIcon
-							name={story.adopter.name}
-							slug={story.adopter.icon}
-							avatar={story.adopter.avatar}
-							size="h-6 w-6"
-						/>
-						<span class="text-sm font-medium text-foreground">{story.adopter.name}</span>
-					</span>
-					<span class="mt-5 text-4xl font-semibold tracking-tight text-foreground"
-						>{story.figure}</span
-					>
-					<span class="mt-1 text-sm font-medium text-foreground">{story.label}</span>
-					<span class="mt-2 grow text-sm leading-6 text-muted-foreground">{story.detail}</span>
-					<span
-						class="mt-4 inline-flex items-center gap-1 text-sm font-medium text-lime-600 dark:text-lime-400"
-					>
-						Read the source
-						<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-					</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-
-	<Tooltip.Provider delayDuration={150}>
-		<ul class="mt-12 grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-6">
-			{#each marks as mark (mark.name)}
-				<li>
-					<Tooltip.Root>
-						<Tooltip.Trigger>
-							{#snippet child({ props })}
-								<a
-									{...props}
-									href={mark.url}
-									target="_blank"
-									rel="noreferrer"
-									class="group flex flex-col items-center gap-3 rounded-lg px-2 py-3 text-center transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
-								>
-									<BrandIcon
-										name={mark.name}
-										slug={mark.slug}
-										avatar={mark.avatar}
-										size="h-12 w-12"
-									/>
-									<span class="text-sm font-medium tracking-tight text-foreground">{mark.name}</span
-									>
-								</a>
-							{/snippet}
-						</Tooltip.Trigger>
-						<Tooltip.Content side="top" class="max-w-xs text-pretty">
-							<span class="block font-mono text-[11px] opacity-80">{mark.receipt}</span>
-							<span class="mt-1 block">{mark.context}</span>
-						</Tooltip.Content>
-					</Tooltip.Root>
-				</li>
+					{sector.name}
+					<span class="font-mono text-xs text-muted-foreground">{sector.count}</span>
+				</button>
 			{/each}
-		</ul>
-	</Tooltip.Provider>
+		</div>
+
+		<p class="sr-only" aria-live="polite">{shown.name}</p>
+
+		<Tooltip.Provider delayDuration={150}>
+			<div class="relative mt-8 grid min-h-[16rem] sm:min-h-[15rem] lg:min-h-[14rem]">
+				{#key shown.name}
+					<ul
+						class="col-start-1 row-start-1 grid grid-cols-3 content-start gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-6"
+						in:fade={{ duration: still ? 0 : 280, delay: still ? 0 : 120 }}
+						out:fade={{ duration: still ? 0 : 160 }}
+						aria-label="{shown.name} teams"
+					>
+						{#each shown.marks as mark (mark.name)}
+							<li>
+								<Tooltip.Root>
+									<Tooltip.Trigger>
+										{#snippet child({ props })}
+											<a
+												{...props}
+												href={mark.url}
+												target="_blank"
+												rel="noreferrer"
+												class="group flex flex-col items-center gap-3 rounded-lg px-2 py-3 text-center transition-transform duration-200 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+											>
+												<BrandIcon
+													name={mark.name}
+													slug={mark.slug}
+													avatar={mark.avatar}
+													size="h-12 w-12"
+												/>
+												<span class="text-sm font-medium tracking-tight text-foreground"
+													>{mark.name}</span
+												>
+											</a>
+										{/snippet}
+									</Tooltip.Trigger>
+									<Tooltip.Content side="top" class="max-w-xs text-pretty">
+										<span class="block font-mono text-[11px] opacity-80">{mark.receipt}</span>
+										<span class="mt-1 block">{mark.context}</span>
+									</Tooltip.Content>
+								</Tooltip.Root>
+							</li>
+						{/each}
+					</ul>
+				{/key}
+			</div>
+		</Tooltip.Provider>
+
+		<!--
+			The controls: previous, pause or play, next, and where the reader is.
+			The hairline under them fills over one turn while the carousel runs,
+			and empties whenever it stops, restarting with the turn's clock.
+		-->
+		<div class="mt-6 flex flex-wrap items-center justify-between gap-x-6 gap-y-3">
+			<div class="flex items-center gap-2">
+				<button
+					type="button"
+					onclick={() => go(current - 1)}
+					aria-label="Previous sector"
+					class={control}
+				>
+					<ChevronLeft class="h-4 w-4" />
+				</button>
+				<button
+					type="button"
+					onclick={() => (paused = !paused)}
+					aria-label={paused ? 'Play the carousel' : 'Pause the carousel'}
+					class={control}
+				>
+					{#if paused}<Play class="h-4 w-4" />{:else}<Pause class="h-4 w-4" />{/if}
+				</button>
+				<button
+					type="button"
+					onclick={() => go(current + 1)}
+					aria-label="Next sector"
+					class={control}
+				>
+					<ChevronRight class="h-4 w-4" />
+				</button>
+				<span class="ml-2 font-mono text-xs tabular-nums text-muted-foreground">
+					{current + 1} / {rotation.length}
+				</span>
+			</div>
+			<a
+				href={shown.href}
+				class="group inline-flex items-center gap-1 text-sm font-medium text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:text-lime-400"
+			>
+				All {shown.count} in {shown.name}
+				<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+			</a>
+		</div>
+		<div class="mt-3 h-px overflow-hidden bg-border" aria-hidden="true">
+			{#key `${current}:${running}`}
+				{#if running}
+					<div class="turn h-full bg-lime-600" style="animation-duration: {TURN_MS}ms"></div>
+				{/if}
+			{/key}
+		</div>
+	</div>
 
 	<dl class="mt-12 grid gap-3 sm:grid-cols-3">
 		{#each figures as f (f.label)}
@@ -232,21 +344,6 @@
 		{/each}
 	</dl>
 
-	<!-- The split by sector, each chip landing on that sector's roster. -->
-	<ul class="mt-6 flex flex-wrap gap-2" aria-label="Adopters by sector">
-		{#each chips as chip (chip.name)}
-			<li>
-				<a
-					href={chip.href}
-					class="inline-flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 text-sm text-muted-foreground transition-colors hover:border-lime-500/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
-				>
-					{chip.name}
-					<span class="font-mono text-xs">{chip.count}</span>
-				</a>
-			</li>
-		{/each}
-	</ul>
-
 	<div class="mt-8 flex {editorial ? 'justify-start' : 'justify-center'}">
 		<a
 			href="/adopters"
@@ -257,3 +354,22 @@
 		</a>
 	</div>
 </Section>
+
+<style>
+	/* One turn of the carousel, as a hairline filling left to right. */
+	.turn {
+		width: 100%;
+		transform-origin: left;
+		animation-name: turn;
+		animation-timing-function: linear;
+		animation-fill-mode: both;
+	}
+	@keyframes turn {
+		from {
+			transform: scaleX(0);
+		}
+		to {
+			transform: scaleX(1);
+		}
+	}
+</style>

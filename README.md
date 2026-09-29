@@ -28,16 +28,16 @@ pnpm install
 pnpm run dev -- --open
 ```
 
-| Command             | What it does                                                   |
-| ------------------- | -------------------------------------------------------------- |
-| `pnpm run dev`      | Development server                                             |
-| `pnpm run build`    | Production build                                               |
-| `pnpm run validate` | Check `adopters.json`, `press.json`, and `events.json`         |
-| `make configs`      | Re-read the adopters' public `.vale.ini` files into `config-stats.json` |
+| Command             | What it does                                                                                                                       |
+| ------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `pnpm run dev`      | Development server                                                                                                                 |
+| `pnpm run build`    | Production build                                                                                                                   |
+| `pnpm run validate` | Check `adopters.json`, `press.json`, and `events.json`                                                                             |
+| `make configs`      | Re-read the adopters' public `.vale.ini` files into `config-stats.json`                                                            |
 | `make stats`        | Count CI use, house rules, CI runs, and downloads into `adopter-stats.json` (a weekly workflow runs this and opens a pull request) |
-| `make og-adopters`  | Re-render the `/adopters` social card from the data            |
-| `pnpm run check`    | Type-check with `svelte-check`                                 |
-| `pnpm run lint`     | Prettier and ESLint                                            |
+| `make og-adopters`  | Re-render the `/adopters` social card from the data                                                                                |
+| `pnpm run check`    | Type-check with `svelte-check`                                                                                                     |
+| `pnpm run lint`     | Prettier and ESLint                                                                                                                |
 
 Home page numbers — downloads, stars, backers — are read from the GitHub, Docker
 Hub, PyPI, conda-forge, Homebrew, Chocolatey, and Open Collective APIs at **build
@@ -110,26 +110,6 @@ avatar. With neither, the card shows a two-letter monogram.
 > **Don't commit images.** The avatar PNGs under `static/users/avatars` are
 > fetched from the `github` field by a maintainer running
 > `node script/adopters.mjs --sync`.
-
-### Feature a figure
-
-The four cards above the marks on the home page each carry one number from a
-team's own page. Add an entry to
-[`src/lib/data/stories.json`](src/lib/data/stories.json):
-
-```json
-{
-	"name": "Datadog",
-	"figure": "20,000",
-	"label": "docs pull requests merged in 2023",
-	"detail": "From 1,400 contributors, with an on-call writer reviewing over 40 a day.",
-	"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/"
-}
-```
-
-`name` must match an adopter, `figure` is a bare number such as `20,000` or
-`200+`, and `url` is the page that states it. The home page shows them all,
-so keep the list to four.
 
 ### Add a post, talk, or video
 

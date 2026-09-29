@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 /**
- * Validates src/lib/data/adopters.json, stories.json, press.json, and
- * events.json, and syncs the GitHub org avatars the adopters reference.
+ * Validates src/lib/data/adopters.json, press.json, and events.json, and
+ * syncs the GitHub org avatars the adopters reference.
  *
  *   node script/adopters.mjs          # validate only
  *   node script/adopters.mjs --sync   # validate, then download missing avatars
@@ -20,7 +20,6 @@ const SYNC = process.argv.includes('--sync');
 const ADOPTERS = 'src/lib/data/adopters.json';
 const PRESS = 'src/lib/data/press.json';
 const EVENTS = 'src/lib/data/events.json';
-const STORIES = 'src/lib/data/stories.json';
 const AVATAR_DIR = 'static/users/avatars';
 const LOGO_DIR = 'static/users';
 
@@ -53,7 +52,6 @@ const ADOPTER_FIELDS = [
 const REPO =
 	/^(github\.com|gitlab\.com|gitlab\.wikimedia\.org)\/[A-Za-z0-9_.-]+(\/[A-Za-z0-9_.-]+)+$/;
 const PRESS_FIELDS = ['type', 'title', 'subtitle', 'outlet', 'author', 'year', 'url'];
-const STORY_FIELDS = ['name', 'figure', 'label', 'detail', 'url'];
 const EVENT_FIELDS = ['title', 'host', 'date', 'endDate', 'time', 'location', 'url'];
 
 const errors = [];
@@ -137,32 +135,6 @@ const sectorsSrc = readFileSync(SECTORS, 'utf8');
 const sectorNames = Array.from(sectorsSrc.matchAll(/^\t\tname: '([^']+)'/gm), (m) => m[1]);
 if (sectorNames.join('|') !== CATEGORIES.join('|')) {
 	fail(SECTORS, `sector names differ from CATEGORIES: ${sectorNames.join(', ')}`);
-}
-
-// ----------------------------------------------------------------- stories
-
-/*
-	The figures on the landing page's adopter band. Each names an adopter,
-	carries one number read from that team's own page, and links to it, so a
-	reader can check the figure where it was said.
-*/
-const stories = read(STORIES);
-for (const [i, st] of stories.entries()) {
-	const where = `stories[${i}] ${st.name ?? '(unnamed)'}`;
-	for (const field of STORY_FIELDS) {
-		if (typeof st[field] !== 'string' || !st[field].trim()) fail(where, `missing "${field}"`);
-	}
-	for (const key of Object.keys(st)) {
-		if (!STORY_FIELDS.includes(key)) fail(where, `unknown field "${key}"`);
-	}
-	if (st.name && !seenNames.has(st.name)) fail(where, `"${st.name}" is not in ${ADOPTERS}`);
-	if (st.figure && !/^[0-9][0-9,.]*\+?$/.test(st.figure)) {
-		fail(where, `figure "${st.figure}" should be a number, like 20,000 or 200+`);
-	}
-	if (st.detail && !/[.!?]$/.test(st.detail.trim())) {
-		fail(where, 'detail should be a complete sentence ending in punctuation');
-	}
-	if (st.url && !st.url.startsWith('https://')) fail(where, 'url must be https');
 }
 
 // ------------------------------------------------------------------- press
@@ -265,5 +237,5 @@ if (errors.length) {
 	process.exit(1);
 }
 console.log(
-	`\n✓ ${adopters.length} adopters, ${stories.length} stories, ${press.length} press entries, ${events.length} events — all valid`
+	`\n✓ ${adopters.length} adopters, ${press.length} press entries, ${events.length} events — all valid`
 );
