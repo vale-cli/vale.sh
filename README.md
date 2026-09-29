@@ -133,30 +133,52 @@ so keep the list to four.
 
 ### Add a post, talk, or video
 
-Add an entry to [`src/lib/data/press.json`](src/lib/data/press.json):
+Add an entry to [`src/lib/data/media.json`](src/lib/data/media.json). It
+shows in the [library](https://vale.sh/library):
 
 ```json
 {
-	"type": "article",
 	"title": "Prose linting with Vale",
-	"outlet": "Meilisearch",
+	"url": "https://blog.meilisearch.com/prose-linting-with-vale/",
 	"author": "Maryam Sulemani",
 	"year": 2023,
-	"url": "https://blog.meilisearch.com/prose-linting-with-vale/"
+	"type": "post",
+	"description": "One or two sentences on what it covers.",
+	"image": "",
+	"site": "Meilisearch"
 }
 ```
 
-| Field      | Required | Notes                                                         |
-| ---------- | -------- | ------------------------------------------------------------- |
-| `type`     | yes      | `book`, `paper`, `talk`, `article`, `video`, or `newsletter`. |
-| `title`    | yes      | The title as published.                                       |
-| `outlet`   | yes      | Publication, company, or conference.                          |
-| `url`      | yes      | `https://` link.                                              |
-| `author`   | no       | Byline, if there is one.                                      |
-| `year`     | no       | Integer.                                                      |
-| `subtitle` | no       | Books only.                                                   |
+`type` is `post`, `talk`, or `video`. `image` can stay empty; `make media`
+fills it and the description from the page's OpenGraph tags.
 
-A link can appear **once** on the page. If your company blog post is already an
+### Add a book, paper, or newsletter feature
+
+Published work and newsletter coverage go in [`src/lib/data/press.json`](src/lib/data/press.json),
+which the press page and the "In print" section show:
+
+```json
+{
+	"type": "paper",
+	"title": "Linting Style and Substance in READMEs",
+	"outlet": "arXiv",
+	"author": "Hima Mynampaty et al.",
+	"year": 2026,
+	"url": "https://arxiv.org/abs/2603.00331"
+}
+```
+
+| Field      | Required | Notes                                   |
+| ---------- | -------- | --------------------------------------- |
+| `type`     | yes      | `book`, `paper`, or `newsletter`.       |
+| `title`    | yes      | The title as published.                 |
+| `outlet`   | yes      | Publisher, journal, or preprint server. |
+| `url`      | yes      | `https://` link.                        |
+| `author`   | no       | Byline.                                 |
+| `year`     | no       | Integer.                                |
+| `subtitle` | no       | Books only.                             |
+
+A link can appear **once** on the site. If your company blog post is already an
 adopter's `url`, don't add it here too — the validator rejects it.
 
 ### Add an upcoming event

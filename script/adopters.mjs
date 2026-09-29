@@ -36,7 +36,8 @@ const CATEGORIES = [
 	'Web3 & blockchain'
 ];
 
-const PRESS_TYPES = ['book', 'paper', 'talk', 'article', 'video', 'newsletter'];
+// Published work and coverage; posts, talks, and videos go in media.json.
+const PRESS_TYPES = ['book', 'paper', 'newsletter'];
 
 const ADOPTER_FIELDS = [
 	'name',

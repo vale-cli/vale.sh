@@ -20,8 +20,8 @@
 	// A preview, not an index — /library is the searchable archive.
 	const PREVIEW = 6;
 
-	// The book gets its own card; the rest are a uniform list, newest first.
-	// Undated entries sort to the end so they don't crowd out recent coverage.
+	// The book gets its own card; papers and newsletter features are a list
+	// under it, newest first.
 	const book = all.find((i) => i.type === 'book');
 	const rest = all.filter((i) => i.type !== 'book').sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
 	const preview = rest.slice(0, PREVIEW);
@@ -36,7 +36,12 @@
 	};
 </script>
 
-<Section id="press" eyebrow="Press & media" title="Books, talks, and write-ups">
+<Section
+	id="press"
+	eyebrow="In print"
+	title="The book, the research, and the coverage"
+	lede="Published work about Vale. Posts, talks, and videos are in the library."
+>
 	{#if book}
 		<a
 			href={book.url}

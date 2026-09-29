@@ -14,7 +14,7 @@
 	let { data }: { data: PageData } = $props();
 
 	const description =
-		'Press resources for Vale: a boilerplate, project facts, the terms to use and the claims to avoid, recent coverage, and a link to the brand assets.';
+		'Press resources for Vale: a boilerplate, project facts, the terms to use and the claims to avoid, the book, research, and coverage about it, and a link to the brand assets.';
 
 	// Lifted as-is into a talk or an article, so it stays short and factual.
 	const boilerplate =
@@ -95,7 +95,8 @@
 		{ term: 'Action', def: 'A fix a rule can propose, which editors apply.' }
 	];
 
-	// Recent coverage, newest first. The library is the full archive.
+	// Published work: the book, then papers and newsletter features, newest
+	// first. Posts and talks are in the library.
 	type Item = {
 		type: string;
 		title: string;
@@ -408,7 +409,9 @@
 			</div>
 			<p class="mt-3 text-xs text-muted-foreground">Numbers updated {data.stats.updated}.</p>
 
-			<ul class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3">
+			<ul
+				class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-border/60 bg-border/60 sm:grid-cols-2 lg:grid-cols-3"
+			>
 				{#each repos as repo (repo.name)}
 					<li class="bg-card">
 						<a
@@ -532,9 +535,10 @@
 
 	<section class="border-b border-border/60 py-14 sm:py-16">
 		<div class="mx-auto max-w-5xl px-6 lg:px-8">
-			<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Coverage</h2>
+			<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">In print</h2>
 			<p class="mt-4 max-w-2xl text-pretty leading-7 text-muted-foreground">
-				Recent writing and talks about Vale. The library holds all of it, searchable.
+				The book, the research, and newsletter coverage of Vale. Posts, talks, and videos are in the
+				library, searchable.
 			</p>
 			{#if book}
 				<a
@@ -606,12 +610,12 @@
 					<h3 class="text-base font-semibold text-foreground">Written or spoken about Vale?</h3>
 					<p class="mt-1.5 text-sm leading-6 text-muted-foreground">
 						Add it to the library. It is one entry in a JSON file, by pull request, and the README
-						shows the fields. Posts, talks, videos, papers, and newsletters all count.
+						shows the fields. Posts, talks, and videos all count.
 					</p>
 				</div>
 				<div class="flex shrink-0 flex-wrap gap-2">
 					<a
-						href="https://github.com/vale-cli/vale.sh/edit/svelte/src/lib/data/press.json"
+						href="https://github.com/vale-cli/vale.sh/edit/svelte/src/lib/data/media.json"
 						target="_blank"
 						rel="noreferrer"
 						class="inline-flex h-9 items-center gap-2 rounded-lg bg-primary px-4 text-sm font-medium text-primary-foreground shadow-sm transition-colors hover:bg-primary/90"
