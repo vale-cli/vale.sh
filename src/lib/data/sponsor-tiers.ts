@@ -64,6 +64,9 @@ export const tiers: Tier[] = [
 		features: [
 			'A Sponsor Spotlight card on vale.sh',
 			'A story page about how your team uses Vale',
+			'A Vale release sponsored by your team, named in its release notes',
+			'A thank-you message on the Vale Discord',
+			'A thank-you post in the testthedocs Slack, about 1,200 members',
 			'Listed on this page with your total'
 		],
 		links: [{ label: 'Become a Sponsor', href: checkout.sponsor }],
