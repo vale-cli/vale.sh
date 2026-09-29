@@ -515,6 +515,14 @@
 		"avatar": "/users/avatars/ipfs.png"
 	},
 	{
+		"name": "Jenkins Templating Engine",
+		"category": "Developer tools",
+		"context": "Lints its contributor docs with Vale, with a contributing page on running it.",
+		"url": "https://jenkinsci.github.io/templating-engine-plugin/2.5/contributing/docs/vale/",
+		"icon": "jenkins",
+		"repo": "github.com/jenkinsci/templating-engine-plugin"
+	},
+	{
 		"name": "JuMP",
 		"category": "Academia & public sector",
 		"context": "Lints its mathematical-optimization docs with Google's style across three repos.",

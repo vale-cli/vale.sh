@@ -10,11 +10,59 @@
 	},
 	{
 		"type": "paper",
+		"title": "\"A Second Set of Eyes\": The Process and Challenges of Software Documentation Review",
+		"outlet": "ACM GROUP 2027",
+		"author": "Avinash Bhat et al.",
+		"year": 2026,
+		"url": "https://arxiv.org/abs/2608.26232"
+	},
+	{
+		"type": "paper",
+		"title": "LLMoxie: Exploring Agentic AI for Scientific Software Development",
+		"outlet": "ACM SIGKDD 2026 SciSoc Workshop",
+		"author": "Landung Setiawan et al.",
+		"year": 2026,
+		"url": "https://arxiv.org/abs/2607.02703"
+	},
+	{
+		"type": "paper",
+		"title": "Composition Pedagogy as AI-Native Coding: From Design Kit to Scholarly Framework",
+		"outlet": "World Journal of Arts Education and Literature",
+		"author": "Daniel Plate and James Hutson",
+		"year": 2025,
+		"url": "https://doi.org/10.65336/wjael.2025.21101"
+	},
+	{
+		"type": "paper",
 		"title": "Linting Style and Substance in READMEs",
 		"outlet": "arXiv",
 		"author": "Hima Mynampaty et al.",
 		"year": 2026,
 		"url": "https://arxiv.org/abs/2603.00331"
+	},
+	{
+		"type": "article",
+		"title": "Linting-Stack für Node-Projekte: Code-Qualität, Formatierung und Prosa-Linting",
+		"outlet": "heise online",
+		"author": "David König",
+		"year": 2025,
+		"url": "https://www.heise.de/hintergrund/Linting-Stack-fuer-Node-Projekte-Code-Qualitaet-Formatierung-und-Prosa-Linting-11110378.html"
+	},
+	{
+		"type": "article",
+		"title": "Prose Police",
+		"outlet": "Linux Magazine #283",
+		"author": "Koen Vervloesem",
+		"year": 2024,
+		"url": "https://www.linux-magazine.com/Issues/2024/283/Vale-Style"
+	},
+	{
+		"type": "article",
+		"title": "Vale: enforcing style guidelines for text",
+		"outlet": "LWN.net",
+		"author": "Koen Vervloesem",
+		"year": 2024,
+		"url": "https://lwn.net/Articles/964075/"
 	},
 	{
 		"type": "newsletter",

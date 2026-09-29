@@ -20,7 +20,7 @@
 	// A preview, not an index — /library is the searchable archive.
 	const PREVIEW = 6;
 
-	// The book gets its own card; papers and newsletter features are a list
+	// The book gets its own card; papers, articles, and newsletter features are a list
 	// under it, newest first.
 	const book = all.find((i) => i.type === 'book');
 	const rest = all.filter((i) => i.type !== 'book').sort((a, b) => (b.year ?? 0) - (a.year ?? 0));

@@ -37,7 +37,7 @@ const CATEGORIES = [
 ];
 
 // Published work and coverage; posts, talks, and videos go in media.json.
-const PRESS_TYPES = ['book', 'paper', 'newsletter'];
+const PRESS_TYPES = ['book', 'paper', 'article', 'newsletter'];
 
 const ADOPTER_FIELDS = [
 	'name',

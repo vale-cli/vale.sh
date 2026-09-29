@@ -152,9 +152,9 @@ shows in the [library](https://vale.sh/library):
 `type` is `post`, `talk`, or `video`. `image` can stay empty; `make media`
 fills it and the description from the page's OpenGraph tags.
 
-### Add a book, paper, or newsletter feature
+### Add a book, paper, article, or newsletter feature
 
-Published work and newsletter coverage go in [`src/lib/data/press.json`](src/lib/data/press.json),
+Published work and coverage in magazines and newsletters go in [`src/lib/data/press.json`](src/lib/data/press.json),
 which the press page and the "In print" section show:
 
 ```json
@@ -168,15 +168,15 @@ which the press page and the "In print" section show:
 }
 ```
 
-| Field      | Required | Notes                                   |
-| ---------- | -------- | --------------------------------------- |
-| `type`     | yes      | `book`, `paper`, or `newsletter`.       |
-| `title`    | yes      | The title as published.                 |
-| `outlet`   | yes      | Publisher, journal, or preprint server. |
-| `url`      | yes      | `https://` link.                        |
-| `author`   | no       | Byline.                                 |
-| `year`     | no       | Integer.                                |
-| `subtitle` | no       | Books only.                             |
+| Field      | Required | Notes                                                                                                   |
+| ---------- | -------- | ------------------------------------------------------------------------------------------------------- |
+| `type`     | yes      | `book`, `paper`, `article` (a magazine or news feature; blog posts go in the library), or `newsletter`. |
+| `title`    | yes      | The title as published.                                                                                 |
+| `outlet`   | yes      | Publisher, journal, or preprint server.                                                                 |
+| `url`      | yes      | `https://` link.                                                                                        |
+| `author`   | no       | Byline.                                                                                                 |
+| `year`     | no       | Integer.                                                                                                |
+| `subtitle` | no       | Books only.                                                                                             |
 
 A link can appear **once** on the site. If your company blog post is already an
 adopter's `url`, don't add it here too — the validator rejects it.

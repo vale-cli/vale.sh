@@ -95,7 +95,7 @@
 		{ term: 'Action', def: 'A fix a rule can propose, which editors apply.' }
 	];
 
-	// Published work: the book, then papers and newsletter features, newest
+	// Published work: the book, then papers, articles, and newsletter features, newest
 	// first. Posts and talks are in the library.
 	type Item = {
 		type: string;
@@ -537,8 +537,8 @@
 		<div class="mx-auto max-w-5xl px-6 lg:px-8">
 			<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">In print</h2>
 			<p class="mt-4 max-w-2xl text-pretty leading-7 text-muted-foreground">
-				The book, the research, and newsletter coverage of Vale. Posts, talks, and videos are in the
-				library, searchable.
+				The book, the research, and magazine and newsletter coverage of Vale. Posts, talks, and
+				videos are in the library, searchable.
 			</p>
 			{#if book}
 				<a
