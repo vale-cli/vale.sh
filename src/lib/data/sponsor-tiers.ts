@@ -16,9 +16,11 @@ export const contact = {
 	label: 'Contact us'
 };
 
-// The general contribute page. Point each tier at its own Open Collective
-// tier URL once the tiers exist there.
-const contribute = 'https://opencollective.com/vale/contribute';
+// Each level's own checkout on Open Collective.
+const checkout = {
+	backer: 'https://opencollective.com/vale/contribute/backer-106190/checkout',
+	sponsor: 'https://opencollective.com/vale/contribute/sponsor-106191/checkout'
+};
 
 export type TierLink = { label: string; href: string };
 
@@ -49,7 +51,7 @@ export const tiers: Tier[] = [
 		features: ['Listed on this page with your total'],
 		links: [
 			{ label: 'GitHub Sponsors', href: siteConfig.links.sponsors },
-			{ label: 'Open Collective', href: siteConfig.links.openCollective }
+			{ label: 'Open Collective', href: checkout.backer }
 		]
 	},
 	{
@@ -64,7 +66,7 @@ export const tiers: Tier[] = [
 			'A story page about how your team uses Vale',
 			'Listed on this page with your total'
 		],
-		links: [{ label: 'Become a Sponsor', href: contribute }],
+		links: [{ label: 'Become a Sponsor', href: checkout.sponsor }],
 		badge: 'Most common'
 	},
 	{
