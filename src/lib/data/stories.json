@@ -1,0 +1,30 @@
+[
+	{
+		"name": "Datadog",
+		"figure": "20,000",
+		"label": "docs pull requests merged in 2023",
+		"detail": "From 1,400 contributors, with an on-call writer reviewing over 40 a day. Vale runs before they look.",
+		"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/"
+	},
+	{
+		"name": "GitLab",
+		"figure": "69",
+		"label": "Vale rules in the docs pipeline",
+		"detail": "Two styles, gitlab_base and gitlab_docs, run on every merge request; error-level rules fail the job.",
+		"url": "https://docs.gitlab.com/development/documentation/testing/vale/"
+	},
+	{
+		"name": "Grafana Labs",
+		"figure": "106",
+		"label": "style-guide rules, as Vale checks",
+		"detail": "The Writers' Toolkit lists every rule by name, from em dashes to \"please\", each with the fix.",
+		"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/"
+	},
+	{
+		"name": "Red Hat",
+		"figure": "37",
+		"label": "rules in the RedHat style",
+		"detail": "Language rules for open source docs, mandatory for Red Hat products, and published as a package anyone can sync.",
+		"url": "https://redhat-documentation.github.io/vale-at-red-hat/"
+	}
+]

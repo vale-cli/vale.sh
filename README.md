@@ -111,6 +111,26 @@ avatar. With neither, the card shows a two-letter monogram.
 > fetched from the `github` field by a maintainer running
 > `node script/adopters.mjs --sync`.
 
+### Feature a figure
+
+The four cards above the marks on the home page each carry one number from a
+team's own page. Add an entry to
+[`src/lib/data/stories.json`](src/lib/data/stories.json):
+
+```json
+{
+	"name": "Datadog",
+	"figure": "20,000",
+	"label": "docs pull requests merged in 2023",
+	"detail": "From 1,400 contributors, with an on-call writer reviewing over 40 a day.",
+	"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/"
+}
+```
+
+`name` must match an adopter, `figure` is a bare number such as `20,000` or
+`200+`, and `url` is the page that states it. The home page shows them all,
+so keep the list to four.
+
 ### Add a post, talk, or video
 
 Add an entry to [`src/lib/data/press.json`](src/lib/data/press.json):
