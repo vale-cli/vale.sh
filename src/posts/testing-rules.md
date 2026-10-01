@@ -2,7 +2,7 @@
 title: 'Testing your rules with vale test'
 description: 'Keep test cases beside your rules, script rules included, and run them in CI. A rule that matches nothing no longer fails in silence.'
 date: '2026-10-01'
-draft: true
+draft: false
 tags: ['tutorials']
 motif: 'test'
 imageAlt: 'A failing vale test case: the expected alert at line 9 against the actual one at line 7.'

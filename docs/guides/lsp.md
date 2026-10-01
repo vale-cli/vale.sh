@@ -27,6 +27,7 @@ The server reads its settings from the `initializationOptions` your client sends
 | `syncOnStartup`  | `boolean` | `false` | Run [`vale sync`](../topics/cli.md) when the server starts.                                                                |
 | `filter`         | `string`  | `""`    | An [output filter](../topics/cli.md) to apply, e.g. `.Level in ['warning', 'error']`.                                       |
 | `configPath`     | `string`  | `""`    | An absolute path to a `.vale.ini`. Usually best left empty so Vale's own [search process](../topics/.vale.ini.md) applies. |
+| `noGlobal`       | `boolean` | `false` | Leave out your user-level `.vale.ini`, which Vale otherwise merges into every project's configuration, `configPath` or not. Passes `--no-global` to every Vale call. |
 | `valeBinaryPath` | `string`  | `""`    | An absolute path to the `vale` binary to use. Set this when you need your own installation rather than a managed or `$PATH` copy. |
 | `lintOnChange`   | `boolean` | `true`  | Report diagnostics as you type. When false, they're only updated when you save.                                             |
 | `debounceMs`     | `number`  | `300`   | How long typing has to settle before `lintOnChange` runs Vale.                                                              |
