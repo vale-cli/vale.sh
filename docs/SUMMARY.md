@@ -8,6 +8,7 @@
 * [.vale.ini](topics/.vale.ini.md)
 * [CLI](topics/cli.md)
 * [Styles](topics/styles.md)
+* [Testing](topics/testing.md)
 * [Scopes](topics/scopes.md)
 * [URLs](topics/urls.md)
 * [Actions](topics/actions.md)
