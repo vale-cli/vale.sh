@@ -28,7 +28,7 @@
 			icon: HeartHandshake,
 			eyebrow: 'Appwrite OSS Fund',
 			title: 'OSS Fund recipient',
-			context: 'Alongside Algolia, MongoDB, Fastly, and DigitalOcean.',
+			context: 'Alongside Algolia, MongoDB, and Fastly.',
 			url: 'https://dev.to/appwrite/appwrite-oss-fund-sponsors-vale-4oig'
 		}
 	];

@@ -6,8 +6,7 @@
 	// Hosting providers, kept separate from the grants and sponsors above.
 	//
 	// Each card carries the provider's own brand color. `fg` is set per brand
-	// rather than computed — GitBook's pale blue needs a dark glyph, DigitalOcean's
-	// blue a white one.
+	// rather than computed — GitBook's pale blue needs a dark glyph.
 	const providers = [
 		{
 			name: 'GitBook',
@@ -18,22 +17,12 @@
 			home: 'https://www.gitbook.com',
 			program: 'Community plan',
 			programUrl: 'https://gitbook.com/docs/account-management/plans/community'
-		},
-		{
-			name: 'DigitalOcean',
-			icon: 'digitalocean',
-			brand: '#0080FF',
-			fg: '#FFFFFF',
-			powers: 'Vale Studio',
-			home: 'https://www.digitalocean.com',
-			program: 'Open-source credits',
-			programUrl: 'https://www.digitalocean.com/open-source'
 		}
 	];
 </script>
 
 <Section id="thanks" eyebrow="Infrastructure" title="Special thanks to">
-	<div class="mx-auto grid max-w-3xl gap-4 sm:grid-cols-2">
+	<div class="mx-auto grid max-w-md gap-4">
 		{#each providers as provider}
 			<!-- A div, not an anchor: the card holds two separate links. -->
 			<div
