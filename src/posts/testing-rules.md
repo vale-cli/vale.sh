@@ -4,7 +4,8 @@ description: 'Keep test cases beside your rules, script rules included, and run 
 date: '2026-10-01'
 draft: true
 tags: ['tutorials']
-imageAlt: 'A terminal window of placeholder prose with a few spans highlighted.'
+motif: 'test'
+imageAlt: 'A failing vale test case: the expected alert at line 9 against the actual one at line 7.'
 ---
 
 A Vale rule is a small program, and it fails in an unusual way: when it matches nothing, it loads, runs, and reports success. While writing [Voices](/blog/voices), I found three rules that had never fired. One used a `raw` list that joins its entries instead of alternating them, one had a formula that named a variable that didn't exist, and one had tokens written in the infinitive that never matched the past tense. Every run was clean, because none of them could find anything.
@@ -15,7 +16,7 @@ Vale v3.24.0 adds `vale test`, which runs test cases you keep beside your rules.
 
 ## Cases beside the rule
 
-A rule can carry its own cases under `tests`. Each case is a short document and the alerts linting it should produce:
+A rule can carry its own cases under `tests`. Each case has a `name`, an `input` document, and the alerts linting it should produce:
 
 ```yaml
 # styles/House/Hedging.yml
@@ -39,7 +40,7 @@ tests:
 
 ```console
 $ vale test
- SUCCESS  2 files — 4 passed, 0 failed
+ SUCCESS  1 file — 2 passed, 0 failed
 ```
 
 When a case fails, `vale test` shows what it expected against what came back:
@@ -55,13 +56,71 @@ When a case fails, `vale test` shows what it expected against what came back:
     - expected   + actual
 ```
 
-`want` pins the exact output, and an empty one asserts that there are no alerts. When the message or column doesn't matter, `contains` checks for an excerpt and `absent` checks that something isn't there. Cases can also live in a separate file ending in `.test.yml`, as a list.
+## Three ways to assert
+
+`want` pins the exact output, one `line:column:Check:message` per line, and an empty `want` asserts that there are no alerts at all. That's often more than you mean to pin, though: a case about which text a rule matches shouldn't break when you reword its message. `contains` checks for an excerpt of the output, or a list of them, and `absent` checks that something isn't there. A case needs at least one of the three; one that asserts nothing would pass whatever the rule does, so `vale test` refuses to run it.
+
+Cases can also live in a separate file ending in `.test.yml`, as a list. This one uses the rest of the keys:
+
+````yaml
+# styles/House/Hedging.test.yml
+- name: flags every hedge in a sentence
+  about: Both tokens, so neither one can be dropped from the list unnoticed.
+  rule: Hedging.yml
+  input: Perhaps it seems fine.
+  contains:
+    - "'Perhaps'"
+    - "'it seems'"
+
+- name: reStructuredText
+  rule: Hedging.yml
+  format: rst
+  input: |
+    Perhaps
+    =======
+  contains: House.Hedging
+
+- name: code is never prose
+  about: Run through the project's .vale.ini, as a real document would be.
+  input: |
+    ```
+    perhaps
+    ```
+  absent: House.Hedging
+````
+
+`about` is a note for whoever reads the case next: why it exists, or the issue it came from. It's never checked. `format` reads the input as another format, here reStructuredText, which is parsed the way a `.rst` file would be. That means it needs `rst2html`, just as a lint run does.
 
 ## One rule, or the whole project
 
-A case under a rule's `tests` is _isolated_: it runs that rule and nothing else, not the rest of the style and not your `.vale.ini`. It answers the question "what does this rule match?"
+A case under a rule's `tests` is _isolated_: it runs that rule and nothing else, not the rest of the style and not your `.vale.ini`. A `.test.yml` case is isolated when it names a `rule`, a path relative to the test file. An isolated case answers the question "what does this rule match?"
 
-A case in a `.test.yml` that doesn't name a rule runs through your project's configuration instead, with its sections, scopes, and `MinAlertLevel`. That answers a different question: "does this rule reach real documents?" A rule can pass every isolated case and still never run, because a section turns it off or a `SkippedScopes` entry hides the text it's looking for. You want both kinds.
+A `.test.yml` case that doesn't name a rule, like the last one above, runs through your project's configuration instead, with its sections, scopes, and `MinAlertLevel`. That answers a different question: "does this rule reach real documents?" A rule can pass every isolated case and still never run, because a section turns it off or a `SkippedScopes` entry hides the text it's looking for. You want both kinds.
+
+## Rules scoped to a View
+
+The last key is `view`. A [View](https://docs.vale.sh/topics/views) names the pieces of a file that has no markup, such as the subject and body of a commit message, and a rule can be scoped to one of them. An isolated case loads nothing from the project, including its Views, so a rule scoped to `subject` would see nothing. `view` names the View to read the input through:
+
+```yaml
+# styles/House/SubjectPeriod.yml
+extends: existence
+message: "A subject doesn't end with a period."
+level: error
+scope: subject
+nonword: true
+raw:
+  - '\.$'
+tests:
+  - name: fires on the subject
+    format: COMMIT_EDITMSG
+    view: Commit
+    input: |
+      Fix the thing.
+
+      The body can end with a period.
+    want: |
+      1:14:House.SubjectPeriod:A subject doesn't end with a period.
+```
 
 ## Testing script rules
 
@@ -122,7 +181,7 @@ $ vale test --coverage
 
     House.Silent
 
-  ERROR   2 files — 4 passed, 0 failed, 1 uncovered
+  ERROR   2 files — 5 passed, 0 failed, 1 uncovered
 ```
 
 ## Packages that build on packages
@@ -139,4 +198,4 @@ The styles I maintain now carry about 1,280 cases between them: Std, Voices, Jou
 - run: vale test --coverage styles
 ```
 
-The [Testing](https://docs.vale.sh/topics/testing) page has the full list of case keys, including `format`, for linting a case as reStructuredText or AsciiDoc, and `view`, for a rule scoped to part of a [View](https://docs.vale.sh/topics/views).
+The [Testing](https://docs.vale.sh/topics/testing) page has the reference for every key and exit code.

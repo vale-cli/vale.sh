@@ -163,6 +163,37 @@ function commit() {
 	return out;
 }
 
+function testRun() {
+	// A failing `vale test` case: the expected alert against the actual one, a
+	// column apart, from the post's own script example. Mirrors PostBanner.
+	// Each line is [text, color] runs, colored the way the terminal shows them.
+	const lines = [
+		[
+			['✗ ', C.rose],
+			['flags the fourth paragraph of a section', C.fg],
+			[' — output does not match', C.muted]
+		],
+		[['  from  styles/House/Sections.yml', C.muted]],
+		[],
+		[['    - 9:1:House.Sections:Consider inserting a new section…', C.rose]],
+		[['    + 7:1:House.Sections:Consider inserting a new section…', C.lime]],
+		[],
+		[
+			['  ERROR', C.rose],
+			['  1 file — 1 passed, 1 failed', C.fg]
+		]
+	];
+	const rowH = PANE.h / lines.length;
+	let out = '';
+	lines.forEach((runs, i) => {
+		if (runs.length === 0) return;
+		const y = PANE.y + i * rowH + rowH / 2 + 8;
+		const spans = runs.map(([t, c]) => `<tspan fill="${c}">${esc(t)}</tspan>`).join('');
+		out += `<text x="${PANE.x}" y="${y}" font-family="${MONO}" font-size="22" xml:space="preserve">${spans}</text>`;
+	});
+	return out;
+}
+
 function manuscript() {
 	// A paper as the section rules read it: headings lit as the sections a
 	// rule is scoped to, prose muted, one alert on a unit and one on a
@@ -272,7 +303,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 					? 'vale --path=COMMIT_EDITMSG'
 					: meta.motif === 'manuscript'
 						? 'vale trial.md'
-						: `vale ${slug}.md`;
+						: meta.motif === 'test'
+							? 'vale test'
+							: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -286,7 +319,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 							? commit()
 							: meta.motif === 'manuscript'
 								? manuscript()
-								: sketch(slug);
+								: meta.motif === 'test'
+									? testRun()
+									: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines

@@ -10,7 +10,7 @@ A rule is a small program, and a rule that matches nothing fails silently: it lo
 
 ```console
 $ vale test
- SUCCESS  2 files — 4 passed, 0 failed
+ SUCCESS  2 files — 5 passed, 0 failed
 ```
 
 ## [Writing cases](testing.md#writing-cases)
@@ -41,19 +41,29 @@ Or a file ending in `.test.yml` holds a list of them:
 
 ````yaml
 # styles/House/Hedging.test.yml
-- name: in a project run, a fence stays silent
+- name: flags every hedge in a sentence
+  about: Both tokens, so neither one can be dropped from the list unnoticed.
+  rule: Hedging.yml
+  input: Perhaps it seems fine.
+  contains:
+    - "'Perhaps'"
+    - "'it seems'"
+
+- name: reStructuredText
+  rule: Hedging.yml
+  format: rst
+  input: |
+    Perhaps
+    =======
+  contains: House.Hedging
+
+- name: code is never prose
+  about: Run through the project's .vale.ini, as a real document would be.
   input: |
     ```
     perhaps
     ```
   absent: House.Hedging
-- name: reStructuredText
-  rule: Hedging.yml
-  format: rst
-  input: It seems fine.
-  contains:
-    - House.Hedging
-    - "'It seems'"
 ````
 
 | Key        | Description                                                                                                                    |
@@ -68,7 +78,36 @@ Or a file ending in `.test.yml` holds a list of them:
 | `contains` | Text, or a list of texts, that the alerts must include.                                                                        |
 | `absent`   | Text, or a list of texts, that the alerts must not include.                                                                    |
 
-Every case needs at least one of `want`, `contains`, or `absent`. A case that asserts nothing passes whatever the rule does, so Vale refuses to run it.
+Every case needs at least one of `want`, `contains`, or `absent`. A case that asserts nothing passes whatever the rule does, so Vale refuses to run it. Use `want` when the exact output matters, `contains` when only some of it does, such as which rule fired or which text it matched, and `absent` to pin down what a rule must leave alone. `about` is for the reader: why the case exists, or the issue it came from.
+
+### [Formats](testing.md#formats)
+
+A case is read as Markdown unless its `format` names another extension, and it's parsed the way a file of that format would be. A reStructuredText or AsciiDoc case needs the same tools a lint run of that format does, `rst2html` or `asciidoctor`. Any extension works, including one a [View](views.md) is attached to, such as `COMMIT_EDITMSG`.
+
+### [Views](testing.md#views)
+
+A rule scoped to one of a View's pieces, such as `subject`, sees nothing in an isolated case, since an isolated case loads nothing from the project, including its Views. `view` names the View to read `input` through, from `config/views` on the `StylesPath`:
+
+```yaml
+# styles/House/SubjectPeriod.yml
+extends: existence
+message: "A subject doesn't end with a period."
+level: error
+scope: subject
+nonword: true
+raw:
+  - '\.$'
+tests:
+  - name: fires on the subject
+    format: COMMIT_EDITMSG
+    view: Commit
+    input: |
+      Fix the thing.
+
+      The body can end with a period.
+    want: |
+      1:14:House.SubjectPeriod:A subject doesn't end with a period.
+```
 
 ## [Isolated and project cases](testing.md#isolated-and-project-cases)
 
@@ -101,7 +140,7 @@ $ vale test
 
     - expected   + actual
 
-  ERROR   2 files — 3 passed, 1 failed
+  ERROR   2 files — 4 passed, 1 failed
 ```
 
 `--output=JSON` prints the same results as JSON, with each failure's `reason`, `got`, and `want`.
@@ -117,7 +156,7 @@ $ vale test --coverage
 
     House.Silent
 
-  ERROR   2 files — 4 passed, 0 failed, 1 uncovered
+  ERROR   2 files — 5 passed, 0 failed, 1 uncovered
 ```
 
 ## [Script rules](testing.md#script-rules)

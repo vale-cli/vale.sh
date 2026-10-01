@@ -28,6 +28,7 @@
 		// 'manuscript': a paper's headings as the sections a rule is scoped to.
 		// 'compass': the four kinds of documentation on their two axes.
 		// 'spelling': three markup files, prose lit and code dark, one alert each.
+		// 'test': a failing `vale test` case, expected against actual.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -156,6 +157,35 @@
 		{ text: 'Signed-off-by: Jane Doe <jane@example.com>', part: 'named' }
 	];
 
+	// The 'test' motif: a failing `vale test` case, from the post's script
+	// example. Each line is runs of text colored the way the terminal shows
+	// them; the card in script/build-og.mjs draws the same lines.
+	type TestRun = { text: string; tone: 'fail' | 'name' | 'muted' | 'got' };
+
+	const testLines: TestRun[][] = [
+		[
+			{ text: '✗ ', tone: 'fail' },
+			{ text: 'flags the fourth paragraph of a section', tone: 'name' },
+			{ text: ' — output does not match', tone: 'muted' }
+		],
+		[{ text: '  from  styles/House/Sections.yml', tone: 'muted' }],
+		[],
+		[{ text: '    - 9:1:House.Sections:Consider inserting a new section…', tone: 'fail' }],
+		[{ text: '    + 7:1:House.Sections:Consider inserting a new section…', tone: 'got' }],
+		[],
+		[
+			{ text: '  ERROR', tone: 'fail' },
+			{ text: '  1 file — 1 passed, 1 failed', tone: 'name' }
+		]
+	];
+
+	const toneClass = {
+		fail: 'text-rose-500 dark:text-rose-400',
+		name: 'text-foreground',
+		muted: 'text-muted-foreground',
+		got: 'text-lime-600 dark:text-lime-400'
+	};
+
 	// The 'manuscript' motif: a paper as the section rules read it. Real
 	// text, because the headings are the point: each opens a section a rule
 	// can be scoped to, and two alerts sit where a checklist item is missing
@@ -261,7 +291,9 @@
 							? 'vale docs/'
 							: motif === 'spelling'
 								? 'vale docs/'
-								: `vale ${seed}.md`
+								: motif === 'test'
+									? 'vale test'
+									: `vale ${seed}.md`
 	);
 </script>
 
@@ -365,6 +397,17 @@
 									<span class="text-rose-400">{line.alert}</span>
 								</span>
 							{/if}
+						</div>
+					{/each}
+				</div>
+			{:else if motif === 'test'}
+				<div
+					class="flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-2 font-mono text-[10px] leading-[1.6] sm:text-[11px]"
+				>
+					{#each testLines as runs, i (i)}
+						<div class="truncate whitespace-pre">
+							{#each runs as run, j (j)}<span class={toneClass[run.tone]}>{run.text}</span
+								>{:else}{' '}{/each}
 						</div>
 					{/each}
 				</div>

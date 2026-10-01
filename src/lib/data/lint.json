@@ -132,15 +132,15 @@
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 568,
-			"sentences": 34,
-			"paragraphs": 15,
-			"grade": 6.9,
-			"ease": 75.3,
-			"smog": 8.8,
+			"words": 743,
+			"sentences": 46,
+			"paragraphs": 18,
+			"grade": 6.4,
+			"ease": 78.2,
+			"smog": 8.6,
 			"complex": 5,
-			"minutes": 3,
-			"ms": 110
+			"minutes": 4,
+			"ms": 101
 		}
 	}
 }
