@@ -95,8 +95,10 @@ write-good.Weasel = warning
 
 [*.py]
 # No styles, and no inherited Weasel setting either.
-BasedOnStyles =
+BasedOnStyles = NONE
 ```
+
+`NONE` is the spelled-out form of an empty value, and requires Vale v3.24.0 or later; `BasedOnStyles =` with nothing after it does the same. A file left with no rule to run isn't read at all.
 
 A rule named in that section still runs. To drop one inherited setting rather than all of them, set it to `UNSET`: the rule follows `BasedOnStyles` again, as if the earlier line had not been written.
 

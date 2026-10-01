@@ -127,6 +127,20 @@
 			"complex": 7,
 			"minutes": 9,
 			"ms": 137
+		},
+		"testing-rules": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 568,
+			"sentences": 34,
+			"paragraphs": 15,
+			"grade": 6.9,
+			"ease": 75.3,
+			"smog": 8.8,
+			"complex": 5,
+			"minutes": 3,
+			"ms": 110
 		}
 	}
 }

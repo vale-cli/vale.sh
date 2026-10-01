@@ -89,3 +89,7 @@ Six.
 ```bash
 test.md:9:1:style.Sections:Consider inserting a new section heading at this point.
 ```
+
+## [Testing](script.md#testing)
+
+A script is easiest to change safely with cases beside it. List them under the rule's `tests` and run [`vale test`](../topics/testing.md): each case lints its input with the real script, from `config/scripts` or inline, and compares the alerts. See [Script rules](../topics/testing.md#script-rules).
