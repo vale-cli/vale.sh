@@ -80,6 +80,22 @@ Or a file ending in `.test.yml` holds a list of them:
 
 Every case needs at least one of `want`, `contains`, or `absent`. A case that asserts nothing passes whatever the rule does, so Vale refuses to run it. Use `want` when the exact output matters, `contains` when only some of it does, such as which rule fired or which text it matched, and `absent` to pin down what a rule must leave alone. `about` is for the reader: why the case exists, or the issue it came from.
 
+### [The input](testing.md#the-input)
+
+`input` is the document itself, written in the case rather than read from a file. A multi-line document goes in a YAML block, `|`, which keeps its line breaks; the alerts' lines and columns count from its first line:
+
+```yaml
+- name: lines count from the input
+  input: |
+    # A heading
+
+    This is perhaps it.
+  want: |
+    3:9:House.Hedging:Consider removing 'perhaps'.
+```
+
+A one-line `input` can be written plainly, but quote it if it contains `: ` or starts with a character YAML reads as syntax, such as `#`, `-`, or `[`: `input: 'Note: this is perhaps it.'`
+
 ### [Formats](testing.md#formats)
 
 A case is read as Markdown unless its `format` names another extension, and it's parsed the way a file of that format would be. A reStructuredText or AsciiDoc case needs the same tools a lint run of that format does, `rst2html` or `asciidoctor`. Any extension works, including one a [View](views.md) is attached to, such as `COMMIT_EDITMSG`.

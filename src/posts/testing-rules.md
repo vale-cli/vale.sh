@@ -56,6 +56,8 @@ When a case fails, `vale test` shows what it expected against what came back:
     - expected   + actual
 ```
 
+The `input` is the document itself, written in the case. A YAML block, `|`, keeps its line breaks, and the line and column in `want` count from its first line. Quote a one-line input that contains `: `, or YAML will read it as a key.
+
 ## Three ways to assert
 
 `want` pins the exact output, one `line:column:Check:message` per line, and an empty `want` asserts that there are no alerts at all. That's often more than you mean to pin, though: a case about which text a rule matches shouldn't break when you reword its message. `contains` checks for an excerpt of the output, or a list of them, and `absent` checks that something isn't there. A case needs at least one of the three; one that asserts nothing would pass whatever the rule does, so `vale test` refuses to run it.
