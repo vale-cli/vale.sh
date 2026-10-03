@@ -48,12 +48,6 @@ tokens:
   - '([A-Z]\w+)([A-Z]\w+)''s'
 ```
 
-## [Vale Studio](regex.md#vale-studio)
-
-[Vale Studio](https://studio.vale.sh/) provides a rule editor that integrates with [regex101](https://regex101.com/) to allow you to inspect the compiled regex pattern and test it against sample text. This can be a helpful way to debug your regex patterns.
-
-![Vale Studio](../.gitbook/assets/studio.png)
-
 ## [Common Issues](regex.md#common-issues)
 
 <details>

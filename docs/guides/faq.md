@@ -239,8 +239,6 @@ The user-level file is `%LOCALAPPDATA%\vale\.vale.ini`, and `vale ls-dirs` print
 
 It depends on the rule's `extends` value and its `scope`. The matching process for `existence` is described on its [reference page](../checks/existence.md), and by default a rule sees text with markup syntax removed.
 
-[Vale Studio](https://studio.vale.sh) shows the final regex a rule compiles to, which is usually the fastest way to understand a surprising match.
-
 ## Writing rules
 
 ### How do I disable a single rule?

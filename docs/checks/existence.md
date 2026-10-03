@@ -36,10 +36,6 @@ These tokens can be anything from simple phrases (as in the above example) to re
 
 ### [tokens](existence.md#tokens)
 
-{% hint style="info" %}
-See [Vale Studio](https://studio.vale.sh/) for a live editor that can help you write and test your rules, including generating the compiled regular expression.
-{% endhint %}
-
 The most common entry point for this extension point is the `tokens` key, which is a list of strings or regular expressions to be transformed into a word-bounded, non-capturing group:
 
 ```yaml

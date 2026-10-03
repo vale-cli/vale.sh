@@ -2,7 +2,6 @@
 	import { siteConfig } from '$lib/config/site.js';
 	import { Icons } from '$lib/components/icons';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
-	import PenTool from 'lucide-svelte/icons/pen-tool';
 	import PackageSearch from 'lucide-svelte/icons/package-search';
 	import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
@@ -14,8 +13,7 @@
 		trying to do, so docs.vale.sh and /library sit together under Resources
 		even though one is a different host.
 	*/
-	const tools = [
-		{ label: 'Vale Studio', href: 'https://studio.vale.sh', icon: PenTool, external: true },
+	const tools: { label: string; href: string; icon: typeof PackageSearch; external?: boolean }[] = [
 		{ label: 'Style Explorer', href: '/explorer', icon: PackageSearch },
 		{ label: 'Config Generator', href: '/generator', icon: WandSparkles },
 		{ label: 'Agent Skills', href: '/skills', icon: Sparkles }

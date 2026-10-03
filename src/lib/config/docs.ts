@@ -1,6 +1,5 @@
 import type { NavItem } from '$lib/types/nav';
 import BookOpen from 'lucide-svelte/icons/book-open';
-import AppWindow from 'lucide-svelte/icons/app-window';
 import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
 import Package from 'lucide-svelte/icons/package';
 import Library from 'lucide-svelte/icons/library';
@@ -21,12 +20,6 @@ export const docsConfig: DocsConfig = {
 			href: 'https://docs.vale.sh',
 			external: true,
 			icon: BookOpen
-		},
-		{
-			title: 'Studio',
-			href: 'https://studio.vale.sh',
-			external: true,
-			icon: AppWindow
 		},
 		{
 			title: 'Generator',
