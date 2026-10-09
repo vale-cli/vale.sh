@@ -1659,8 +1659,8 @@ packages:
     resolution: {integrity: sha512-0je+qPKHEMohvfRTCEo3CrPG6cAzAYgmzKyxRiYSSDkS6eGJdyVJm7WaYA5ECaAD9wLB2T4EEeymA5aFVcYXCA==}
     engines: {node: '>=6'}
 
-  devalue@5.9.2:
-    resolution: {integrity: sha512-po4PAY5c53tw5XMocSnf8A/5OHhbbUftpr93aEN6BBoAdntUmK7vu7wOATqvt7cXO7m1Cl4gMVn6p7n6n4mj0w==}
+  devalue@5.9.4:
+    resolution: {integrity: sha512-sPAT4pztbu6586/hrhOnMKS17IJrvg12mXiSPSS3W5qDeN2RGgvZ0diZCm31dBbnevfVmujNO3IM2wrS4Y2Rhg==}
 
   devlop@1.1.0:
     resolution: {integrity: sha512-RWmIqhcFf1lRYBvNmr7qTNuyCt/7/ns2jbpp1+PalgE/rDQcBT0fioSMUpJ93irlUhC5hrg4cYqe6U+0ImW0rA==}
@@ -3909,7 +3909,7 @@ snapshots:
       '@sveltejs/vite-plugin-svelte': 4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21)
       '@types/cookie': 0.6.0
       cookie: 0.6.0
-      devalue: 5.9.2
+      devalue: 5.9.4
       esm-env: 1.2.1
       import-meta-resolve: 4.1.0
       kleur: 4.1.5
@@ -4326,7 +4326,7 @@ snapshots:
 
   dequal@2.0.3: {}
 
-  devalue@5.9.2: {}
+  devalue@5.9.4: {}
 
   devlop@1.1.0:
     dependencies:
@@ -5549,7 +5549,7 @@ snapshots:
   sveltekit-superforms@2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2):
     dependencies:
       '@sveltejs/kit': 2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)
-      devalue: 5.9.2
+      devalue: 5.9.4
       memoize-weak: 1.0.2
       svelte: 5.16.6
       ts-deepmerge: 7.0.2
