@@ -276,7 +276,8 @@
 		"category": "Developer tools",
 		"context": "Lints its docs with a custom style based on the Google package and the Moose house voice.",
 		"url": "https://github.com/doc-detective/doc-detective/blob/main/docs/.vale.ini",
-		"github": "doc-detective"
+		"github": "doc-detective",
+		"avatar": "/users/avatars/doc-detective.png"
 	},
 	{
 		"name": "Docker",
