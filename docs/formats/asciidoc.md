@@ -35,6 +35,8 @@ BasedOnStyles = Vale
 
 By default, Vale switches off the attributes that generate text of their own—section numbers (`sectnums`), the table of contents (`toc`), and caption labels such as the "Table 1." prefixed to a block title (`table-caption`, `figure-caption`, `example-caption`, `listing-caption`). Generated text appears nowhere in the source, so a rule matching it would report an unrelated line. It also sets `attribute-missing=drop`, so a reference to an undefined attribute disappears rather than being linted as text, and renders the document title. An attribute set in the `[asciidoctor]` section overrides these defaults.
 
+A cross-reference without text of its own, `<<setup>>` or `xref:ch2.adoc#setup[]`, is treated the same way (Vale v3.25.0 or later). Asciidoctor would otherwise invent text for it: the target's title when it resolves, and `[setup]` or the file path when it doesn't, which is what every reference into another chapter of a book gets when a chapter is linted on its own. Vale renders the link empty, so only text the author wrote, `xref:setup[the setup steps]`, is linted. To lint a book, lint its chapter files; `include::` is not followed.
+
 ## [Comments](asciidoc.md#comments)
 
 Vale supports comment-based configuration in AsciiDoc files:

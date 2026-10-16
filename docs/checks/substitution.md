@@ -4,6 +4,7 @@ Learn about the substitution extension point.
 
 | Name         | Type    | Description                                                               |
 | ------------ | ------- | ------------------------------------------------------------------------- |
+| `affix`      | `string`| Names an affix file, so a `word/FLAGS` key matches every form its flags name. See [Affix flags](existence.md#affix-flags). |
 | `ignorecase` | `bool`  | Makes all matches case-insensitive.                                       |
 | `matchcase`  | `bool`  | Adapts the replacement to the case of the matched text, so a rule written as `A-OK` still suggests `a-ok` for `a ok`. |
 | `nonword`    | `bool`  | Removes the default word boundaries (`\b`).                               |
@@ -59,6 +60,22 @@ swap:
 
 ```bash
 test.md:1:13:style.Paths:Consider using 'in the config directory' instead of 'within the config directory'
+```
+
+## Affix flags
+
+{% hint style="info" %}
+Requires Vale v3.25.0 or later.
+{% endhint %}
+
+With [`affix`](existence.md#affix-flags) set, a key written as `word/FLAGS` matches every form its flags name. The value is the replacement for all of them, as written:
+
+```yaml
+extends: substitution
+message: Use '%s' instead of '%s'.
+affix: en_US-web
+swap:
+  utilize/DGS: use   # utilize, utilized, utilizes, utilizing
 ```
 
 ## Multiple suggestions

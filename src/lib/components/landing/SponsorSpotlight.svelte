@@ -2,6 +2,8 @@
 	import BrandIcon from './BrandIcon.svelte';
 	import Section from './Section.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
+	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import Landmark from 'lucide-svelte/icons/landmark';
 	import { sponsors as allSponsors, type Sponsor } from '$lib/data/sponsors';
 
 	// Kept separate from the adopter band on purpose: that band claims a
@@ -83,6 +85,27 @@
 		</div>
 
 		{#if more}
+			<!-- The grant, here too: /sponsor carries it under Grants & Awards. -->
+			<a
+				href="https://floss.fund/blog/second-tranche-2025-anniversary/"
+				target="_blank"
+				rel="noreferrer"
+				class="group mt-5 flex items-center gap-4 rounded-2xl border border-border bg-card p-5 shadow-sm transition-colors hover:border-lime-500/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 sm:p-6"
+			>
+				<span
+					class="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-lime-500/10 text-lime-600 dark:text-lime-400"
+				>
+					<Landmark class="h-5 w-5" />
+				</span>
+				<span class="flex-1 text-pretty text-sm leading-6 text-muted-foreground">
+					<span class="font-medium text-foreground">Funded by FLOSS/fund.</span>
+					A $10,000 grant in the second 2025 tranche, alongside FFmpeg, Zig, Wireshark, and Blender.
+				</span>
+				<ArrowUpRight
+					class="h-4 w-4 shrink-0 text-muted-foreground/50 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400"
+				/>
+			</a>
+
 			<div class="mt-8 flex {editorial ? 'justify-start' : 'justify-center'}">
 				<a
 					href="/sponsor"

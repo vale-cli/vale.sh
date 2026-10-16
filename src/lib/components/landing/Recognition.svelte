@@ -9,6 +9,15 @@
 	// as well, which put "here is who recognized Vale" and "here is how to pay
 	// for it" in one row of identical cards; the header and the backer wall each
 	// make the ask better than a card could.
+	// The largest grant leads; the rest follow in a row beneath it.
+	const featured = {
+		eyebrow: 'FLOSS/fund · 2025',
+		title: '$10,000 grant',
+		context:
+			'One of 29 projects in the second 2025 tranche, alongside FFmpeg, Zig, Wireshark, and Blender.',
+		url: 'https://floss.fund/blog/second-tranche-2025-anniversary/'
+	};
+
 	const highlights = [
 		{
 			icon: Award,
@@ -16,13 +25,6 @@
 			title: 'Open Source Peer Bonus',
 			context: 'Peer Bonus award, 2023.',
 			url: 'https://opensource.googleblog.com/2023/05/google-open-source-peer-bonus-program-announces-first-group-of-winners-2023.html'
-		},
-		{
-			icon: Landmark,
-			eyebrow: 'FLOSS.fund',
-			title: '$10,000 grant',
-			context: 'Second tranche, alongside FFmpeg, Zig, Wireshark, and Blender.',
-			url: 'https://floss.fund/blog/second-tranche-2025-anniversary/'
 		},
 		{
 			icon: HeartHandshake,
@@ -40,8 +42,36 @@
 	title="Grants &amp; Awards"
 	lede="Programs that have funded the project or named it as work worth funding."
 >
-	<!-- Three items, so three columns from `md` up rather than a 2 + 1 orphan. -->
-	<div class="grid gap-5 md:grid-cols-3">
+	<a
+		href={featured.url}
+		target="_blank"
+		rel="noreferrer"
+		class="group relative mb-5 flex flex-col gap-6 overflow-hidden rounded-2xl border border-lime-500/40 bg-card p-7 shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/70 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 sm:flex-row sm:items-center sm:p-8"
+	>
+		<span
+			aria-hidden="true"
+			class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-lime-500/70 to-transparent"
+		></span>
+		<span
+			class="inline-flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-lime-500/10 text-lime-600 dark:text-lime-400"
+		>
+			<Landmark class="h-7 w-7" />
+		</span>
+		<span class="flex-1">
+			<span class="block text-sm font-medium text-muted-foreground">{featured.eyebrow}</span>
+			<span class="mt-1 block text-2xl font-semibold tracking-tight sm:text-3xl"
+				>{featured.title}</span
+			>
+			<span class="mt-2 block max-w-2xl text-pretty text-sm leading-6 text-muted-foreground"
+				>{featured.context}</span
+			>
+		</span>
+		<ArrowUpRight
+			class="h-5 w-5 shrink-0 self-start text-muted-foreground/50 transition-colors group-hover:text-lime-600 dark:group-hover:text-lime-400 sm:self-center"
+		/>
+	</a>
+
+	<div class="grid gap-5 md:grid-cols-2">
 		{#each highlights as item}
 			{@const Icon = item.icon}
 			<a

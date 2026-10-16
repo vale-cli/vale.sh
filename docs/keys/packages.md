@@ -116,6 +116,39 @@ BasedOnStyles = MyStyle
 
 On sync, `styles/` is merged into the project's `StylesPath` and the `.vale.ini` goes to `.vale-config/`.
 
+### [A vocabulary](packages.md#a-vocabulary)
+
+{% hint style="info" %}
+Requires Vale v3.25.0 or later.
+{% endhint %}
+
+A package can carry a [vocabulary](vocabularies.md) and turn it on for every file by naming it in `[*]`:
+
+```
+MyTerms/
+├── .vale.ini
+└── styles/
+    └── config/
+        └── vocabularies/
+            └── MyTerms/
+                └── vocab.yml
+```
+
+```ini
+# MyTerms/.vale.ini
+[*]
+Vocab = MyTerms
+```
+
+Its terms add to the project's own vocabularies, and its rules, `Vale.MyTerms.Terms` and `Vale.MyTerms.Avoid`, are on for every file. A project can switch them off by name, or drop the vocabulary with `Vocab = NONE` in its own `[*]`:
+
+```ini
+[*]
+BasedOnStyles = Vale
+# Accept the package's terms, but don't enforce their case:
+Vale.MyTerms.Terms = NO
+```
+
 ## [Pinning a version](packages.md#pinning-a-version)
 
 Naming a package installs its latest release, so the rules it brings change as the package is updated. To hold a package at a known version, give the release URL in place of the name:

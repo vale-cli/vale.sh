@@ -4,6 +4,7 @@ Learn about the existence extension point.
 
 | Name         | Type    | Description                                                                                          |
 | ------------ | ------- | ---------------------------------------------------------------------------------------------------- |
+| `affix`      | `string`| Names an affix file, so a `word/FLAGS` token matches every form its flags name. See [Affix flags](#affix-flags). |
 | `append`     | `bool`  | Adds `raw` to the end of `tokens`, assuming both are defined.                                        |
 | `ignorecase` | `bool`  | Makes all matches case-insensitive.                                                                  |
 | `nonword`    | `bool`  | Removes the default word boundaries (`\b`).                                                          |
@@ -69,3 +70,26 @@ This allows you to write more complex patterns without having to worry about any
 ### [message](existence.md#message)
 
 The `message` key is a string that will be used to generate the final message when a match is found. The (optional) `%s` placeholder will be replaced with the matched text. A rule with an [action](../topics/actions.md) may use a second `%s`, which is the fix.
+
+## Affix flags
+
+{% hint style="info" %}
+Requires Vale v3.25.0 or later.
+{% endhint %}
+
+With `affix` set, a token written as `word/FLAGS` matches every form the Hunspell [affix flags](../guides/hunspell.md) name, instead of a hand-written pattern:
+
+```yaml
+extends: existence
+message: Avoid '%s'.
+affix: en_US-web
+tokens:
+  - leverage/DGS        # leverage, leveraged, leverages, leveraging
+  - jump/DGS the gun    # jump the gun, jumped the gun, ...
+```
+
+In a phrase, each word with flags expands on its own, and the rest of the token is a pattern as usual. A `\b` on either side of a flagged word stays a word boundary.
+
+`en_US-web` is the affix file of Vale's built-in dictionary. Any other name is looked up as a `.aff` file in `<StylesPath>/config/dictionaries/`, then in `$DICPATH`, as a spelling rule's [dictionaries](spelling.md) are.
+
+In a rule that sets `affix`, an unescaped `/` in a space-separated word of a token separates the word from its flags, and the word must be plain text. Write a literal slash as `\/`: `and\/or`. A token without a slash is a pattern as usual.

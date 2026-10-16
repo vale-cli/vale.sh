@@ -20,7 +20,7 @@ Vocab = Some-Name
 BasedOnStyles = Vale, MyStyle
 ```
 
-Each `Vocab` is a single folder (stored at `<StylesPath>/config/vocabularies/<name>/`) consisting of two plain-text files—`accept.txt` and `reject.txt`—that contain one regular expression per line.
+Each `Vocab` is a single folder (stored at `<StylesPath>/config/vocabularies/<name>/`) holding two plain-text files—`accept.txt` and `reject.txt`—that contain one regular expression per line, a [`vocab.yml`](#yaml-format) file, or both.
 
 The effects of using a custom `Vocab` are as follows:
 
@@ -83,6 +83,10 @@ Vocab = API
 
 Under `api/`, the accepted terms of `API` are added to those of `Product`; elsewhere only `Product` applies. Several matching sections add up. A section's vocabulary gets rules of its own, `Vale.API.Terms` and `Vale.API.Avoid`, which run only on that section's files and can be switched off by name like any other rule.
 
+A vocabulary named in `[*]` applies to every file, with rules of its own that are on everywhere; this is how a [package](packages.md#a-vocabulary) turns on the vocabulary it carries.
+
+`Vocab = NONE` clears the vocabularies named before it at the same level: at the top of the file, the top-level ones from earlier configuration layers, such as a package's; in a section, that section's.
+
 ## File format
 
 Both `accept.txt` and `reject.txt` are plain-text files that take one entry per line:
@@ -98,6 +102,58 @@ The entries are evaluated as case-sensitive (except for rules extending `spellin
 A line beginning with `#` and a space is a comment and is ignored; `#tag` on its own is an entry.
 
 An alert from `Vale.Terms` offers the entry's spelling as a [fix](../topics/actions.md) when it is plain text, and the terms are candidates when a `spelling` rule [suggests](../fixes/suggest.md#spellings) a correction, ahead of the dictionary's own words.
+
+## YAML format
+
+{% hint style="info" %}
+Requires Vale v3.25.0 or later.
+{% endhint %}
+
+A vocabulary can also be a `vocab.yml` file (or `vocab.yaml`) in the same folder. Vale reads it alongside any `accept.txt` and `reject.txt` there.
+
+```yaml
+accept:
+  - LaTeX                       # matched exactly as written
+  - Node.js
+  - failover: {flags: S}        # failover, failovers
+  - config: {ignorecase: true}  # any case, with no Vale.Terms alert
+  - '[Pp]ython': {regex: true}  # a regular expression
+
+reject:
+  - k8s
+  - master: {ignorecase: true}
+```
+
+Each entry is a term, matched exactly as written: `C++` and `CI/CD` are text, not patterns. To change how a term is matched, map it to options:
+
+| Option | Effect |
+| --- | --- |
+| `flags` | Hunspell [affix flags](../guides/hunspell.md), expanded with the default dictionary's affix file into every form they name. `failover: {flags: S}` covers `failover` and `failovers`; `rebase: {flags: DG}` covers `rebase`, `rebased`, and `rebasing`. |
+| `ignorecase` | Matches the term in any case. On an accepted term, `Vale.Terms` doesn't report a difference in case. |
+| `regex` | Reads the term as a regular expression, as in `accept.txt`. It can't be combined with `flags`. |
+
+Options can also be written as a block:
+
+```yaml
+accept:
+  - failover:
+      flags: S
+      ignorecase: true
+```
+
+By default, `flags` uses the affix file of Vale's built-in `en_US` dictionary. To use another, such as one for a different language, name it with `affix`:
+
+```yaml
+affix: de_DE
+accept:
+  - Schnittstelle: {flags: N}
+```
+
+Vale looks for `de_DE.aff` in `<StylesPath>/config/dictionaries/`, then in `$DICPATH`, as it does for a spelling rule's [dictionaries](../checks/spelling.md). The `affix` applies to every entry in the file.
+
+Comments are ordinary YAML comments. An unknown option, an invalid pattern, a flag the affix file doesn't define, or an `affix` that can't be found stops the run with an error at that line.
+
+A vocabulary says which terms exist and which to avoid; it doesn't say what to write instead. To suggest a replacement for a term, use a [substitution](../checks/substitution.md) rule.
 
 ## Case sensitivity
 
@@ -130,6 +186,20 @@ Vale.Terms = NO
 ```
 
 This will provide a more traditional spell-checking experience.
+
+## Dictionaries and vocabularies
+
+A [dictionary](../checks/spelling.md#dictionaries) and a vocabulary answer different questions:
+
+| | Dictionary | Vocabulary |
+| --- | --- | --- |
+| Answers | Is this a word? | How do we write it here? |
+| Case | Permissive: a lower-case entry also accepts its capitalized and all-caps forms. | Exact: `Vale.Terms` reports any other case, with a fix. |
+| Rejects terms | No | Yes, with `Vale.Avoid` |
+| Read by | `spelling` rules | Every rule in `BasedOnStyles`, as exceptions |
+| Maintained by | Vale, or the dictionary's publisher | Your project |
+
+Put ordinary words, including technical ones like `failover` or `namespace`, in a dictionary or let the built-in one cover them. Put names and terms with a required spelling, like `PostgreSQL` or your product's name, in a vocabulary: it accepts them, enforces their case, and offers the fix.
 
 ## Relation to ignore files
 

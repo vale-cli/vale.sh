@@ -133,4 +133,4 @@ Errors in Vale's own configuration are printed to standard error, and follow `--
 | ---- | ------------------------------------------------------------------------------------------------------------------ |
 | `0`  | The run completed and found no alert at the `error` level. Warnings and suggestions do not change the code.        |
 | `1`  | The run completed and found at least one `error`. `--no-exit` turns this into `0`, for a CI job that reports only. |
-| `2`  | Vale itself could not run: a missing configuration, a rule that failed to load, an argument that is not a path.    |
+| `2`  | Vale itself could not run: a missing configuration, a rule that failed to load, an argument that is not a path. Or a document couldn't be read, such as one with broken front matter: it's reported after the alerts, and every other document is still linted. `--no-exit` doesn't change this code. |

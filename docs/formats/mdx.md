@@ -20,6 +20,10 @@ MDX removed indented code blocks from the grammar, so indentation is never code.
 
 An expression is only a block of its own when it stands alone on its line. Followed by prose, `{/* note */}Some text.`, the line is a paragraph holding an inline expression, and the prose is linted.
 
+Inside an expression, the text of a JSX element is read as text: an apostrophe or a bracket in `title={<>Don't (yet)</>}` means nothing. Inside a tag's attributes, an escaped quote (`'the cluster\'s version'`) is part of its string.
+
+A tag or an expression left open to the end of the file, such as a `{` with no `}`, is invalid MDX, which the MDX compiler rejects. Vale reports it as an error at the line where the block opens (Vale v3.25.0 or later), since everything after it would otherwise be read as code and never checked. Other files in the run are still linted, and the run exits with code `2`; see [exit codes](../topics/cli.md#exit-codes).
+
 ## [JSX children](mdx.md#jsx-children)
 
 {% hint style="info" %}

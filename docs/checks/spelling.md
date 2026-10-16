@@ -81,13 +81,33 @@ filters:
   - '[pP]y.*\b'
 ```
 
+## [Casing and code](spelling.md#casing-and-code)
+
+{% hint style="info" %}
+Requires Vale v3.25.0 or later.
+{% endhint %}
+
+Two kinds of misspelling get a more specific message, and a fix:
+
+* A word the dictionary spells with capitals inside it is reported as a casing mistake, with the dictionary's spelling as its fix: `github` is reported as `Use 'GitHub' instead of 'github'.`, and `json` as `Use 'JSON' instead of 'json'.` This applies to a word of three or more letters with at most one capital. A name the dictionary only capitalizes, such as `Kubernetes`, is reported as a misspelling, because the check can't tell it from a word in another language; to enforce its case, add it to a [vocabulary](../keys/vocabularies.md).
+* Without `split`, a `snake_case` word, or a `camelCase` one that starts with two or more lower-case letters, is reported as looking like code, with the format's inline code as its fix. `apiVersion` and `created_at` are; `vSphere` and `iPhone` aren't.
+
+| Format | Fix |
+| --- | --- |
+| Markdown, MDX, MyST, Quarto, notebooks, AsciiDoc, Typst | `` `created_at` `` |
+| reStructuredText | ` ``created_at`` ` |
+| Org | `~created_at~` |
+| HTML | `<code>created_at</code>` |
+
+In other formats, such as plain text, the word is reported as a misspelling. Both apply to every `spelling` rule, and replace its `message` for these alerts.
+
 ## [Identifiers](spelling.md#identifiers)
 
 {% hint style="info" %}
 Requires Vale v3.22.0 or later.
 {% endhint %}
 
-An identifier is neither a word nor a typo. Without `split`, the built-in filters skip a `PascalCase` or hyphenated token and check a `camelCase` or `snake_case` one whole, so a typo inside `RecieveMessage` passes and a correct `receiveMessage` is reported. With `split: true`, an identifier is taken apart at an underscore, a hyphen, a digit, and a change of case, and each part is checked and reported at its own position:
+An identifier is neither a word nor a typo. Without `split`, the built-in filters skip a `PascalCase` or hyphenated token and check a `camelCase` or `snake_case` one whole, so a typo inside `RecieveMessage` passes and a correct `receiveMessage` is reported as [code](#casing-and-code). With `split: true`, an identifier is taken apart at an underscore, a hyphen, a digit, and a change of case, and each part is checked and reported at its own position:
 
 ```yaml
 extends: spelling
