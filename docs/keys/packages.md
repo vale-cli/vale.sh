@@ -131,7 +131,7 @@ MyTerms/
     └── config/
         └── vocabularies/
             └── MyTerms/
-                └── vocab.yml
+                └── accept.txt
 ```
 
 ```ini

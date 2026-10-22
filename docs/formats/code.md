@@ -34,6 +34,8 @@ Vale lints the comments in source code, found with a [tree-sitter](https://tree-
 | Swift      | `.swift`                             | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 | TypeScript | `.ts`, `.tsx`, `.mts`, `.cts`        | <p><code>//</code> (<code>text.comment.line.ext</code>),<br><code>/*...*/</code> (<code>text.comment.line.ext</code>),<br><code>/*</code> (<code>text.comment.block.ext</code>)</p>                                                         |
 
+A `.tsx` file is parsed with the TSX grammar, so a [View](../topics/views.md) can query its JSX nodes, such as `jsx_text`. Its comments are read as TypeScript's.
+
 A URL in a comment is skipped, as one in markup is; see [URLs](../topics/urls.md).
 
 ## [Documentation attributes](code.md#documentation-attributes)

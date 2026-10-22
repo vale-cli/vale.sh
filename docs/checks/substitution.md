@@ -40,6 +40,8 @@ swap:
   abundance: plenty
 ```
 
+A space between words in a key matches a line break too, so a phrase is found however the paragraph was wrapped, and the alert's message shows it on one line.
+
 ## Regex keys
 
 The keys may also be regular expressions:

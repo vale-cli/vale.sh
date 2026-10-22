@@ -48,10 +48,12 @@ tokens:
 Which, after compilation, becomes:
 
 ```regex
-(?i)(?m)\b(?:appears to be|arguably)\b
+(?i)(?m)\b(?:appears\s+to\s+be|arguably)\b
 ```
 
 This is a convenience feature to avoid having to write the same boilerplate for every token in a rule.
+
+A space between words matches a line break too, so a phrase is found however the paragraph was wrapped, and the alert's message shows it on one line. A space inside a character class, after a backslash, or ahead of a quantifier such as `{2,}` keeps its meaning.
 
 ### [raw](existence.md#raw)
 
