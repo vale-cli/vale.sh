@@ -9,7 +9,7 @@ To get started, here’s an example configuration that incorporates running `val
 ```yaml
 repos:
   - repo: https://github.com/vale-cli/vale
-    rev: v3.25.0
+    rev: v3.25.1
     hooks:
       - id: vale
         name: vale sync
