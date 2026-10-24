@@ -21,4 +21,6 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 ```
 {% endcode %}
 
+A stylesheet is configuration that runs as a program, so Vale runs `xsltproc` with `--nonet`, `--nowrite`, and `--nomkdir`: the stylesheet can't fetch over the network, write a file, or create a directory, as a document under the AsciiDoc converter's safe mode can't include a file from outside the project. A stylesheet that tries is refused, and the run reports it as an error for that file.
+
 Once converted, Vale will follow the same rules as it does for [HTML](html.md).

@@ -15,6 +15,7 @@
 * [Filters](topics/filters.md)
 * [Templates](topics/templates.md)
 * [Views](topics/views.md)
+* [WebAssembly](topics/wasm.md)
 
 ## Keys
 
