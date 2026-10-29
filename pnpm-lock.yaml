@@ -15,19 +15,19 @@ importers:
     dependencies:
       '@algolia/autocomplete-js':
         specifier: ^1.17.7
-        version: 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
+        version: 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
       '@docsearch/css':
         specifier: '3'
         version: 3.8.2
       '@docsearch/js':
         specifier: '3'
-        version: 3.8.2(@algolia/client-search@5.19.0)(search-insights@2.17.3)
+        version: 3.8.2(@algolia/client-search@5.18.0)(search-insights@2.17.3)
       '@rehype-pretty/transformers':
         specifier: ^0.13.2
         version: 0.13.2
       '@sveltejs/adapter-netlify':
         specifier: ^4.3.6
-        version: 4.4.0(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))
+        version: 4.4.0(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))
       algoliasearch:
         specifier: 5.18.0
         version: 5.18.0
@@ -82,10 +82,10 @@ importers:
         version: 2.6.2
       '@sveltejs/adapter-auto':
         specifier: ^3.0.0
-        version: 3.3.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))
+        version: 3.3.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))
       '@sveltejs/kit':
-        specifier: ^2.8.3
-        version: 2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)
+        specifier: ^3.0.0
+        version: 3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21)
       '@sveltejs/vite-plugin-svelte':
         specifier: ^4.0.0
         version: 4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21)
@@ -133,7 +133,7 @@ importers:
         version: 0.8.3
       formsnap:
         specifier: 2.0.0-next.1
-        version: 2.0.0-next.1(svelte@5.16.6)(sveltekit-superforms@2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2))
+        version: 2.0.0-next.1(svelte@5.16.6)(sveltekit-superforms@2.22.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2))
       globals:
         specifier: ^15.0.0
         version: 15.14.0
@@ -184,7 +184,7 @@ importers:
         version: 2.0.1(svelte@5.16.6)
       sveltekit-superforms:
         specifier: ^2.20.1
-        version: 2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)
+        version: 2.22.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)
       tailwind-merge:
         specifier: ^2.5.4
         version: 2.6.0
@@ -279,10 +279,6 @@ packages:
     resolution: {integrity: sha512-X1WMSC+1ve2qlMsemyTF5bIjwipOT+m99Ng1Tyl36ZjQKTa54oajBKE0BrmM8LD8jGdtukAgkUhFoYOaRbMcmQ==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/client-common@5.19.0':
-    resolution: {integrity: sha512-2ERRbICHXvtj5kfFpY5r8qu9pJII/NAHsdgUXnUitQFwPdPL7wXiupcvZJC7DSntOnE8AE0lM7oDsPhrJfj5nQ==}
-    engines: {node: '>= 14.0.0'}
-
   '@algolia/client-insights@5.18.0':
     resolution: {integrity: sha512-FAJRNANUOSs/FgYOJ/Njqp+YTe4TMz2GkeZtfsw1TMiA5mVNRS/nnMpxas9771aJz7KTEWvK9GwqPs0K6RMYWg==}
     engines: {node: '>= 14.0.0'}
@@ -297,10 +293,6 @@ packages:
 
   '@algolia/client-search@5.18.0':
     resolution: {integrity: sha512-qI3LcFsVgtvpsBGR7aNSJYxhsR+Zl46+958ODzg8aCxIcdxiK7QEVLMJMZAR57jGqW0Lg/vrjtuLFDMfSE53qA==}
-    engines: {node: '>= 14.0.0'}
-
-  '@algolia/client-search@5.19.0':
-    resolution: {integrity: sha512-Ctg3xXD/1VtcwmkulR5+cKGOMj4r0wC49Y/KZdGQcqpydKn+e86F6l3tb3utLJQVq4lpEJud6kdRykFgcNsp8Q==}
     engines: {node: '>= 14.0.0'}
 
   '@algolia/ingestion@1.18.0':
@@ -319,24 +311,12 @@ packages:
     resolution: {integrity: sha512-1XFjW0C3pV0dS/9zXbV44cKI+QM4ZIz9cpatXpsjRlq6SUCpLID3DZHsXyE6sTb8IhyPaUjk78GEJT8/3hviqg==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-browser-xhr@5.19.0':
-    resolution: {integrity: sha512-GfnhnQBT23mW/VMNs7m1qyEyZzhZz093aY2x8p0era96MMyNv8+FxGek5pjVX0b57tmSCZPf4EqNCpkGcGsmbw==}
-    engines: {node: '>= 14.0.0'}
-
   '@algolia/requester-fetch@5.18.0':
     resolution: {integrity: sha512-0uodeNdAHz1YbzJh6C5xeQ4T6x5WGiUxUq3GOaT/R4njh5t78dq+Rb187elr7KtnjUmETVVuCvmEYaThfTHzNg==}
     engines: {node: '>= 14.0.0'}
 
-  '@algolia/requester-fetch@5.19.0':
-    resolution: {integrity: sha512-oyTt8ZJ4T4fYvW5avAnuEc6Laedcme9fAFryMD9ndUTIUe/P0kn3BuGcCLFjN3FDmdrETHSFkgPPf1hGy3sLCw==}
-    engines: {node: '>= 14.0.0'}
-
   '@algolia/requester-node-http@5.18.0':
     resolution: {integrity: sha512-tZCqDrqJ2YE2I5ukCQrYN8oiF6u3JIdCxrtKq+eniuLkjkO78TKRnXrVcKZTmfFJyyDK8q47SfDcHzAA3nHi6w==}
-    engines: {node: '>= 14.0.0'}
-
-  '@algolia/requester-node-http@5.19.0':
-    resolution: {integrity: sha512-p6t8ue0XZNjcRiqNkb5QAM0qQRAKsCiebZ6n9JjWA+p8fWf8BvnhO55y2fO28g3GW0Imj7PrAuyBuxq8aDVQwQ==}
     engines: {node: '>= 14.0.0'}
 
   '@alloc/quick-lru@5.2.0':
@@ -973,6 +953,9 @@ packages:
   '@jridgewell/sourcemap-codec@1.5.0':
     resolution: {integrity: sha512-gv3ZRaISU3fjPAgNsriBRqGWQL6quFx04YMPW/zD8XMLsU32mhCCbfbO6KZFLjvYpCZ8zyDEgqsgf+PwPaM7GQ==}
 
+  '@jridgewell/sourcemap-codec@1.6.0':
+    resolution: {integrity: sha512-T7jf+5zgsZHwNJ4lvQ7/aezbyk0nNX+zJVWpmHA7VYsEx7a7qr5Rg5IbtJFqkgze5Y2sruq1RUY8Q837Od7iFw==}
+
   '@jridgewell/trace-mapping@0.3.25':
     resolution: {integrity: sha512-vNk6aEwybGtawWmy/PzwnGDOjCkLWSD2wqvjGGAgOAwCGWySYXfYoxt00IJkTF+8Lb57DwOb3Aa0o9CApepiYQ==}
 
@@ -1122,6 +1105,9 @@ packages:
   '@resvg/resvg-js@2.6.2':
     resolution: {integrity: sha512-xBaJish5OeGmniDj9cW5PRa/PtmuVU3ziqrbr5xJj901ZDN4TosrVaNZpEiLZAxdfnhAe7uQ7QFWfjPe9d9K2Q==}
     engines: {node: '>= 10'}
+
+  '@rolldown/pluginutils@1.0.1':
+    resolution: {integrity: sha512-2j9bGt5Jh8hj+vPtgzPtl72j0yRxHAyumoo6TNfAjsLB04UtpSvPbPcDcBMxz7n+9CYB0c1GxQFxYRg2jimqGw==}
 
   '@rollup/rollup-android-arm-eabi@4.52.5':
     resolution: {integrity: sha512-8c1vW4ocv3UOMp9K+gToY5zL2XiiVw3k7f1ksf4yO1FlDFQ1C2u72iACFnSOceJFsWskc2WZNqeRhFRPzv+wtQ==}
@@ -1277,6 +1263,9 @@ packages:
   '@sinclair/typebox@0.34.13':
     resolution: {integrity: sha512-ceVKqyCEgC355Kw0s/0tyfY9MzMQINSykJ/pG2w6YnaZyrcjV48svZpr8lVZrYgWjzOmrIPBhQRAtr/7eJpA5g==}
 
+  '@standard-schema/spec@1.1.0':
+    resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
   '@sveltejs/adapter-auto@3.3.1':
     resolution: {integrity: sha512-5Sc7WAxYdL6q9j/+D0jJKjGREGlfIevDyHSQ2eNETHcB1TKlQWHcAo8AS8H1QdjNvSXpvOwNjykDUHPEAyGgdQ==}
     peerDependencies:
@@ -1287,14 +1276,21 @@ packages:
     peerDependencies:
       '@sveltejs/kit': ^2.4.0
 
-  '@sveltejs/kit@2.15.2':
-    resolution: {integrity: sha512-p208T1kdM6zd8k4YXIUM60pLWQ8dZqehXSiqn4NulXHyHibX53uIAL2xtNL8GjxX2IVPqPRT978MwVYhCKExdQ==}
-    engines: {node: '>=18.13'}
+  '@sveltejs/kit@3.1.0':
+    resolution: {integrity: sha512-JTWlq2HQlkqx6vIoxhC0R6sc4WVqbQoRyEmr5YlqKmiYbzY1U3awtSWTmjMLlS056a49AmkQR6rnNANXIE8B0Q==}
+    engines: {node: '>=22.17'}
     hasBin: true
     peerDependencies:
-      '@sveltejs/vite-plugin-svelte': ^3.0.0 || ^4.0.0-next.1 || ^5.0.0
-      svelte: ^4.0.0 || ^5.0.0-next.0
-      vite: ^5.0.3 || ^6.0.0
+      '@opentelemetry/api': ^1.0.0
+      '@sveltejs/vite-plugin-svelte': ^7.0.0
+      svelte: ^5.57.1
+      typescript: ^6.0.0
+      vite: ^8.0.12
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      typescript:
+        optional: true
 
   '@sveltejs/vite-plugin-svelte-inspector@3.0.1':
     resolution: {integrity: sha512-2CKypmj1sM4GE7HjllT7UKmo4Q6L5xFRd7VMGEWhYnZ+wc6AUVU01IBd7yUi6WnFndEwWoMNOd6e8UjoN0nbvQ==}
@@ -1333,9 +1329,6 @@ packages:
     resolution: {integrity: sha512-0wDLwCVF5V3x3b1SGXPCDcdsbDHMBe+lkFzBRaHeLvNi+nrrnZ1lA18u+OTWO8iSWU2GxUOCvlXtDuqftc1oiA==}
     peerDependencies:
       tailwindcss: '>=3.0.0 || insiders || >=4.0.0-alpha.20 || >=4.0.0-beta.1'
-
-  '@types/cookie@0.6.0':
-    resolution: {integrity: sha512-4Kh9a6B2bQciAhf7FSuMRRkUWecJgJu9nPnx3yzpsfXX/c50REIqpHY4C82bXP90qrLtXtkDxTZosYO3UpOwlA==}
 
   '@types/debug@4.1.12':
     resolution: {integrity: sha512-vIChWdVG3LG1SMxEvI/AK+FWJthlrqlTu7fbrlywTkkaONwk/UAGaULXRlf8vkzFBLVm0zkMdCquhL5aOjhXPQ==}
@@ -1617,9 +1610,9 @@ packages:
   config-ini-parser@1.6.1:
     resolution: {integrity: sha512-6YBVmXlWiUKDhjn+S/1ju2+8j8Qnj1PqR8yE5DmLrQRtBOc9kgMLyutFl2so1FNVHevR/A4nY7z9EWw8s6g/Cw==}
 
-  cookie@0.6.0:
-    resolution: {integrity: sha512-U71cyTamuh1CRNCfpGY6to28lxvNwPG4Guz/EVjgf3Jmzv0vlDp1atT9eS5dDjMYHucpHbWns6Lwf3BKz6svdw==}
-    engines: {node: '>= 0.6'}
+  cookie@2.0.1:
+    resolution: {integrity: sha512-yuToqVvRrj6pfDXREyQAAv8SkAEk/8GS3jQRTiUMm66TVtBYmqQeoEjL2Lmq8Rpo6271vH76InTChTitEAm65w==}
+    engines: {node: '>=22'}
 
   crelt@1.0.6:
     resolution: {integrity: sha512-VQ2MBenTq1fWZUH9DJNGti7kKv6EeAuYr3cLwxUWhIu1baTaXh4Ib5W2CqHVqib4/MqbYGJqiL3Zb8GJZr3l4g==}
@@ -1787,6 +1780,9 @@ packages:
   esm-env@1.2.1:
     resolution: {integrity: sha512-U9JedYYjCnadUlXk7e1Kr+aENQhtUaoaV9+gZm1T8LC/YBAPJx3NSPIAurFOC0U5vrdSevnUJS2/wUVxGwPhng==}
 
+  esm-env@1.2.2:
+    resolution: {integrity: sha512-Epxrv+Nr/CaL4ZcFGPJIYLWFom+YeV1DqMLHJoEd9SYRxNbaFruBwfEX/kkHUJf55j2+TUbmDcmuilbP1TmXHA==}
+
   espree@10.3.0:
     resolution: {integrity: sha512-0QYC8b24HWY8zjRnDTL6RiHfDbAWn63qb4LMj1Z4b076A4une81+z03Kg7l7mn/48PUTqoLptSXez8oknU8Clg==}
     engines: {node: ^18.18.0 || ^20.9.0 || >=21.1.0}
@@ -1912,12 +1908,6 @@ packages:
   globals@15.14.0:
     resolution: {integrity: sha512-OkToC372DtlQeje9/zHIo5CT8lRP/FUgEOKBEhU4e0abL7J7CD24fD9ohiLN5hagG/kWCYj4K5oaxxtj2Z0Dig==}
     engines: {node: '>=18'}
-
-  globalyzer@0.1.0:
-    resolution: {integrity: sha512-40oNTM9UfG6aBmuKxk/giHn5nQ8RVz/SS4Ir6zgzOv9/qC3kKZ9v4etGTcJbEl/NyVQH7FGU7d+X1egr57Md2Q==}
-
-  globrex@0.1.2:
-    resolution: {integrity: sha512-uHJgbwAMwNFf5mLst7IWLNg14x1CkeqglJb/K3doi4dw6q2IvAAmM/Y81kevy83wP+Sst+nutFTYOGg3d1lsxg==}
 
   graphemer@1.4.0:
     resolution: {integrity: sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==}
@@ -2098,6 +2088,9 @@ packages:
   magic-string@0.30.17:
     resolution: {integrity: sha512-sNPKHvyjVf7gyjwS4xGTaW/mCnF8wnjtifKBEhxfZ7E/S8tQ0rssrwGNn6q8JH/ohItJfSQp9mBtQYuTlH5QnA==}
 
+  magic-string@1.4.5:
+    resolution: {integrity: sha512-oLLC2+YvQUfAa+vxoufE/yc1icb87M9iXIRqAoR/2EhE/8cb3SF/+Gi0c2By1B+5Vz2e2vQtUvHiu1+63Znh+w==}
+
   mdast-util-to-hast@13.2.0:
     resolution: {integrity: sha512-QGYKEuUsYT9ykKBCMOEDLsU5JRObWQusAolFMeko/tYPufNkRffBAQjIE+99jbA87xv6FgmjLtwjh9wBWajwAA==}
 
@@ -2224,6 +2217,10 @@ packages:
 
   mrmime@2.0.0:
     resolution: {integrity: sha512-eu38+hdgojoyq63s+yTpN4XMBdt5l8HhMhc4VKLO9KM5caLIBvUm4thi7fFaxyTmCKeNnXZ5pAlBwCUnhA09uw==}
+    engines: {node: '>=10'}
+
+  mrmime@2.0.1:
+    resolution: {integrity: sha512-Y3wQdFg2Va6etvQ5I82yUhGdsKrcYox6p7FfL1LbK2J4V01F9TGlepTIhnK24t7koZibmg82KGglhA1XK5IsLQ==}
     engines: {node: '>=10'}
 
   ms@2.1.3:
@@ -2602,8 +2599,8 @@ packages:
     resolution: {integrity: sha512-slZF8iKxkv7Lb9SF3L1AcIl5iYLNvDrKKm8yV69cG66XvxJ12SX+bYTgxRwCY4bXSmklGXoXaKEyVmEypOCeqw==}
     engines: {node: '>=0.12.18'}
 
-  sirv@3.0.0:
-    resolution: {integrity: sha512-BPwJGUeDaDCHihkORDchNyyTvWFhcusy1XMmhEVTQTwGeybFbp8YEmB+njbPnth1FibULBSBVwCQni25XlCUDg==}
+  sirv@3.0.2:
+    resolution: {integrity: sha512-2wcC/oGxHis/BoHkkPwldgiPSYcpZK3JU28WoMVv55yHJgcZ8rlXvuG9iZggz+sU1d4bRgIGASwyWqjxu3FM0g==}
     engines: {node: '>=18'}
 
   source-map-js@1.2.1:
@@ -2756,9 +2753,6 @@ packages:
 
   tiny-case@1.0.3:
     resolution: {integrity: sha512-Eet/eeMhkO6TX8mnUteS9zgPbUMQa4I6Kkp5ORiBD5476/m+PIRiumP5tmh5ioJpH7k51Kehawy2UDfsnxxY8Q==}
-
-  tiny-glob@0.2.9:
-    resolution: {integrity: sha512-g/55ssRPUjShh+xkfx9UPDXqhckHEsHr4Vd9zX55oSdGZc/MD0m3sferOkwWtp98bv+kcVfEHtRJgBVJzelrzg==}
 
   to-regex-range@5.0.1:
     resolution: {integrity: sha512-65P7iz6X5yEr1cwcgvQxbbIw7Uk3gOy5dIdtZ4rDveLqhrdJP+Li/Hx6tyK0NEb+2GCyneCMJiGqrADCSNk8sQ==}
@@ -2984,72 +2978,72 @@ packages:
 
 snapshots:
 
-  '@algolia/autocomplete-core@1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
+  '@algolia/autocomplete-core@1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
-      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
+      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
 
-  '@algolia/autocomplete-core@1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
+  '@algolia/autocomplete-core@1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-plugin-algolia-insights': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
-      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-plugin-algolia-insights': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
+      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
       - search-insights
 
-  '@algolia/autocomplete-js@1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
+  '@algolia/autocomplete-js@1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-core': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
-      '@algolia/autocomplete-preset-algolia': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
-      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
-      '@algolia/client-search': 5.19.0
+      '@algolia/autocomplete-core': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
+      '@algolia/autocomplete-preset-algolia': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
+      '@algolia/client-search': 5.18.0
       algoliasearch: 5.18.0
       htm: 3.1.1
       preact: 10.25.4
     transitivePeerDependencies:
       - search-insights
 
-  '@algolia/autocomplete-plugin-algolia-insights@1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
+  '@algolia/autocomplete-plugin-algolia-insights@1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
       search-insights: 2.17.3
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@algolia/autocomplete-plugin-algolia-insights@1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
+  '@algolia/autocomplete-plugin-algolia-insights@1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
       search-insights: 2.17.3
     transitivePeerDependencies:
       - '@algolia/client-search'
       - algoliasearch
 
-  '@algolia/autocomplete-preset-algolia@1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)':
+  '@algolia/autocomplete-preset-algolia@1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
-      '@algolia/client-search': 5.19.0
+      '@algolia/autocomplete-shared': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
+      '@algolia/client-search': 5.18.0
       algoliasearch: 5.18.0
 
-  '@algolia/autocomplete-preset-algolia@1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)':
+  '@algolia/autocomplete-preset-algolia@1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)':
     dependencies:
-      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
-      '@algolia/client-search': 5.19.0
+      '@algolia/autocomplete-shared': 1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
+      '@algolia/client-search': 5.18.0
       algoliasearch: 5.18.0
 
-  '@algolia/autocomplete-shared@1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)':
+  '@algolia/autocomplete-shared@1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)':
     dependencies:
-      '@algolia/client-search': 5.19.0
+      '@algolia/client-search': 5.18.0
       algoliasearch: 5.18.0
 
-  '@algolia/autocomplete-shared@1.17.9(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)':
+  '@algolia/autocomplete-shared@1.17.9(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)':
     dependencies:
-      '@algolia/client-search': 5.19.0
+      '@algolia/client-search': 5.18.0
       algoliasearch: 5.18.0
 
   '@algolia/client-abtesting@5.18.0':
@@ -3067,8 +3061,6 @@ snapshots:
       '@algolia/requester-node-http': 5.18.0
 
   '@algolia/client-common@5.18.0': {}
-
-  '@algolia/client-common@5.19.0': {}
 
   '@algolia/client-insights@5.18.0':
     dependencies:
@@ -3098,13 +3090,6 @@ snapshots:
       '@algolia/requester-fetch': 5.18.0
       '@algolia/requester-node-http': 5.18.0
 
-  '@algolia/client-search@5.19.0':
-    dependencies:
-      '@algolia/client-common': 5.19.0
-      '@algolia/requester-browser-xhr': 5.19.0
-      '@algolia/requester-fetch': 5.19.0
-      '@algolia/requester-node-http': 5.19.0
-
   '@algolia/ingestion@1.18.0':
     dependencies:
       '@algolia/client-common': 5.18.0
@@ -3130,25 +3115,13 @@ snapshots:
     dependencies:
       '@algolia/client-common': 5.18.0
 
-  '@algolia/requester-browser-xhr@5.19.0':
-    dependencies:
-      '@algolia/client-common': 5.19.0
-
   '@algolia/requester-fetch@5.18.0':
     dependencies:
       '@algolia/client-common': 5.18.0
 
-  '@algolia/requester-fetch@5.19.0':
-    dependencies:
-      '@algolia/client-common': 5.19.0
-
   '@algolia/requester-node-http@5.18.0':
     dependencies:
       '@algolia/client-common': 5.18.0
-
-  '@algolia/requester-node-http@5.19.0':
-    dependencies:
-      '@algolia/client-common': 5.19.0
 
   '@alloc/quick-lru@5.2.0': {}
 
@@ -3292,9 +3265,9 @@ snapshots:
 
   '@docsearch/css@3.8.2': {}
 
-  '@docsearch/js@3.8.2(@algolia/client-search@5.19.0)(search-insights@2.17.3)':
+  '@docsearch/js@3.8.2(@algolia/client-search@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@docsearch/react': 3.8.2(@algolia/client-search@5.19.0)(search-insights@2.17.3)
+      '@docsearch/react': 3.8.2(@algolia/client-search@5.18.0)(search-insights@2.17.3)
       preact: 10.25.4
     transitivePeerDependencies:
       - '@algolia/client-search'
@@ -3303,10 +3276,10 @@ snapshots:
       - react-dom
       - search-insights
 
-  '@docsearch/react@3.8.2(@algolia/client-search@5.19.0)(search-insights@2.17.3)':
+  '@docsearch/react@3.8.2(@algolia/client-search@5.18.0)(search-insights@2.17.3)':
     dependencies:
-      '@algolia/autocomplete-core': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
-      '@algolia/autocomplete-preset-algolia': 1.17.7(@algolia/client-search@5.19.0)(algoliasearch@5.18.0)
+      '@algolia/autocomplete-core': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)(search-insights@2.17.3)
+      '@algolia/autocomplete-preset-algolia': 1.17.7(@algolia/client-search@5.18.0)(algoliasearch@5.18.0)
       '@docsearch/css': 3.8.2
       algoliasearch: 5.18.0
     optionalDependencies:
@@ -3651,6 +3624,8 @@ snapshots:
 
   '@jridgewell/sourcemap-codec@1.5.0': {}
 
+  '@jridgewell/sourcemap-codec@1.6.0': {}
+
   '@jridgewell/trace-mapping@0.3.25':
     dependencies:
       '@jridgewell/resolve-uri': 3.1.2
@@ -3780,6 +3755,8 @@ snapshots:
       '@resvg/resvg-js-win32-ia32-msvc': 2.6.2
       '@resvg/resvg-js-win32-x64-msvc': 2.6.2
 
+  '@rolldown/pluginutils@1.0.1': {}
+
   '@rollup/rollup-android-arm-eabi@4.52.5':
     optional: true
 
@@ -3895,35 +3872,35 @@ snapshots:
   '@sinclair/typebox@0.34.13':
     optional: true
 
-  '@sveltejs/adapter-auto@3.3.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))':
+  '@standard-schema/spec@1.1.0': {}
+
+  '@sveltejs/adapter-auto@3.3.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))':
     dependencies:
-      '@sveltejs/kit': 2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)
+      '@sveltejs/kit': 3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21)
       import-meta-resolve: 4.1.0
 
-  '@sveltejs/adapter-netlify@4.4.0(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))':
+  '@sveltejs/adapter-netlify@4.4.0(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))':
     dependencies:
       '@iarna/toml': 2.2.5
-      '@sveltejs/kit': 2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)
+      '@sveltejs/kit': 3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21)
       esbuild: 0.24.2
       set-cookie-parser: 2.7.1
 
-  '@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)':
+  '@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21)':
     dependencies:
+      '@rolldown/pluginutils': 1.0.1
+      '@standard-schema/spec': 1.1.0
       '@sveltejs/vite-plugin-svelte': 4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21)
-      '@types/cookie': 0.6.0
-      cookie: 0.6.0
+      cookie: 2.0.1
       devalue: 5.9.4
-      esm-env: 1.2.1
-      import-meta-resolve: 4.1.0
-      kleur: 4.1.5
-      magic-string: 0.30.17
-      mrmime: 2.0.0
-      sade: 1.8.1
-      set-cookie-parser: 2.7.1
-      sirv: 3.0.0
+      esm-env: 1.2.2
+      magic-string: 1.4.5
+      mrmime: 2.0.1
+      sirv: 3.0.2
       svelte: 5.16.6
-      tiny-glob: 0.2.9
       vite: 5.4.21
+    optionalDependencies:
+      typescript: 5.7.2
 
   '@sveltejs/vite-plugin-svelte-inspector@3.0.1(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21)':
     dependencies:
@@ -3971,8 +3948,6 @@ snapshots:
       lodash.merge: 4.6.2
       postcss-selector-parser: 6.0.10
       tailwindcss: 3.4.17
-
-  '@types/cookie@0.6.0': {}
 
   '@types/debug@4.1.12':
     dependencies:
@@ -4298,7 +4273,7 @@ snapshots:
 
   config-ini-parser@1.6.1: {}
 
-  cookie@0.6.0: {}
+  cookie@2.0.1: {}
 
   crelt@1.0.6: {}
 
@@ -4548,6 +4523,8 @@ snapshots:
 
   esm-env@1.2.1: {}
 
+  esm-env@1.2.2: {}
+
   espree@10.3.0:
     dependencies:
       acorn: 8.14.0
@@ -4630,11 +4607,11 @@ snapshots:
       cross-spawn: 7.0.6
       signal-exit: 4.1.0
 
-  formsnap@2.0.0-next.1(svelte@5.16.6)(sveltekit-superforms@2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)):
+  formsnap@2.0.0-next.1(svelte@5.16.6)(sveltekit-superforms@2.22.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)):
     dependencies:
       svelte: 5.16.6
       svelte-toolbelt: 0.4.6(svelte@5.16.6)
-      sveltekit-superforms: 2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)
+      sveltekit-superforms: 2.22.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2)
 
   fraction.js@4.3.7: {}
 
@@ -4665,10 +4642,6 @@ snapshots:
   globals@14.0.0: {}
 
   globals@15.14.0: {}
-
-  globalyzer@0.1.0: {}
-
-  globrex@0.1.2: {}
 
   graphemer@1.4.0: {}
 
@@ -4859,6 +4832,10 @@ snapshots:
   magic-string@0.30.17:
     dependencies:
       '@jridgewell/sourcemap-codec': 1.5.0
+
+  magic-string@1.4.5:
+    dependencies:
+      '@jridgewell/sourcemap-codec': 1.6.0
 
   mdast-util-to-hast@13.2.0:
     dependencies:
@@ -5092,6 +5069,8 @@ snapshots:
   mri@1.2.0: {}
 
   mrmime@2.0.0: {}
+
+  mrmime@2.0.1: {}
 
   ms@2.1.3: {}
 
@@ -5413,7 +5392,7 @@ snapshots:
 
   simple-icons@16.27.1: {}
 
-  sirv@3.0.0:
+  sirv@3.0.2:
     dependencies:
       '@polka/url': 1.0.0-next.28
       mrmime: 2.0.0
@@ -5549,9 +5528,9 @@ snapshots:
       magic-string: 0.30.17
       zimmerframe: 1.1.2
 
-  sveltekit-superforms@2.22.1(@sveltejs/kit@2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2):
+  sveltekit-superforms@2.22.1(@sveltejs/kit@3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21))(@types/json-schema@7.0.15)(svelte@5.16.6)(typescript@5.7.2):
     dependencies:
-      '@sveltejs/kit': 2.15.2(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(vite@5.4.21)
+      '@sveltejs/kit': 3.1.0(@sveltejs/vite-plugin-svelte@4.0.4(supports-color@7.2.0)(svelte@5.16.6)(vite@5.4.21))(svelte@5.16.6)(typescript@5.7.2)(vite@5.4.21)
       devalue: 5.9.4
       memoize-weak: 1.0.2
       svelte: 5.16.6
@@ -5630,11 +5609,6 @@ snapshots:
 
   tiny-case@1.0.3:
     optional: true
-
-  tiny-glob@0.2.9:
-    dependencies:
-      globalyzer: 0.1.0
-      globrex: 0.1.2
 
   to-regex-range@5.0.1:
     dependencies:
