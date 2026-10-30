@@ -1,17 +1,18 @@
 {
 	"sampleSize": 133,
-	"adopterCount": 167,
+	"adopterCount": 170,
 	"styles": {
-		"Google": 20,
+		"Google": 21,
 		"write-good": 20,
-		"Microsoft": 16,
+		"Microsoft": 17,
 		"proselint": 13,
-		"alex": 7,
+		"alex": 8,
 		"RedHat": 4,
 		"AsciiDoc": 3,
 		"docs": 3,
 		"ai-tells": 2,
 		"base": 2,
+		"Joblint": 2,
 		"Readability": 2,
 		"3rd-party-products": 1,
 		"ADI": 1,
@@ -28,6 +29,7 @@
 		"Coder": 1,
 		"commercetools": 1,
 		"common": 1,
+		"Core": 1,
 		"CrateDB": 1,
 		"crucible": 1,
 		"custom": 1,
@@ -37,6 +39,8 @@
 		"DeadlineSamples": 1,
 		"DetSys": 1,
 		"DevDocs": 1,
+		"Direct": 1,
+		"DocDetective": 1,
 		"Docker": 1,
 		"DocsGPT": 1,
 		"Espressif-latest": 1,
@@ -61,7 +65,7 @@
 		"InfluxDataDocs": 1,
 		"Infrahub": 1,
 		"IPA": 1,
-		"Joblint": 1,
+		"JTE": 1,
 		"Kedro": 1,
 		"KubeRay": 1,
 		"LangChain": 1,
@@ -79,6 +83,7 @@
 		"Metalbear": 1,
 		"Mintlify": 1,
 		"Mistral": 1,
+		"Moose": 1,
 		"MUI": 1,
 		"n8n-styles": 1,
 		"Neo4j": 1,
@@ -93,7 +98,6 @@
 		"OpenShiftAsciiDoc": 1,
 		"Openverse": 1,
 		"OutSystems": 1,
-		"package-guide-test": 1,
 		"PingCAP": 1,
 		"Platform": 1,
 		"Polkadot": 1,
@@ -110,7 +114,6 @@
 		"RLlib": 1,
 		"rOpenSci": 1,
 		"RSP": 1,
-		"Rules": 1,
 		"SAP": 1,
 		"Semmle": 1,
 		"signs-of-ai-writing": 1,
@@ -128,24 +131,27 @@
 		"Temporal": 1,
 		"terms": 1,
 		"Terms": 1,
+		"Train": 1,
 		"ttd-light": 1,
 		"Tyk": 1,
 		"UmbracoDocs": 1,
 		"vale": 1,
+		"Voices": 1,
 		"Wikimedia": 1,
 		"WSO2-IAM": 1,
 		"Yugabyte": 1
 	},
 	"packages": {
-		"Google": 17,
+		"Google": 18,
 		"write-good": 16,
 		"Microsoft": 11,
 		"proselint": 10,
-		"alex": 6,
+		"alex": 7,
 		"RedHat": 5,
 		"AsciiDoc": 3,
+		"MDX": 3,
 		"ai-tells": 2,
-		"MDX": 2,
+		"Joblint": 2,
 		"Readability": 2,
 		"ApifyStyleGuide": 1,
 		"AsciiDocDITA": 1,
@@ -153,7 +159,7 @@
 		"Docker": 1,
 		"Espressif-latest": 1,
 		"Hugo": 1,
-		"Joblint": 1,
+		"Moose": 1,
 		"nf-core": 1,
 		"OpenShiftAsciiDoc": 1,
 		"PowerShell-Docs": 1,
@@ -166,12 +172,12 @@
 	},
 	"formats": {
 		"md": 103,
-		"mdx": 29,
+		"mdx": 30,
 		"rst": 16,
 		"adoc": 8,
 		"html": 3,
-		"ini": 3,
 		"docs": 2,
+		"ini": 2,
 		"qmd": 2,
 		"txt": 2,
 		"api": 1,
@@ -205,11 +211,11 @@
 		"StylesPath": 129,
 		"MinAlertLevel": 122,
 		"Vocab": 76,
-		"Packages": 50,
-		"TokenIgnores": 49,
+		"Packages": 51,
+		"TokenIgnores": 48,
+		"BlockIgnores": 31,
 		"IgnoredScopes": 31,
-		"BlockIgnores": 30,
-		"SkippedScopes": 23,
+		"SkippedScopes": 22,
 		"CommentDelimiters": 7,
 		"IgnoredClasses": 4,
 		"WordTemplate": 3,
@@ -224,7 +230,7 @@
 		"Vale": 1,
 		"View": 1
 	},
-	"pathScoped": 45,
+	"pathScoped": 48,
 	"pairedWith": {
 		"Aiven": {},
 		"SmartWallets": {},
@@ -233,16 +239,21 @@
 		},
 		"Google": {
 			"write-good": 7,
+			"alex": 2,
 			"ADI": 1,
-			"alex": 1,
 			"commercetools": 1,
+			"Core": 1,
 			"CustomStyles": 1,
+			"Direct": 1,
+			"DocDetective": 1,
 			"Fly": 1,
 			"InfluxDataDocs": 1,
+			"Joblint": 1,
 			"KubeRay": 1,
 			"Mautic": 1,
 			"Mesa": 1,
 			"Metalbear": 1,
+			"Moose": 1,
 			"Novu": 1,
 			"Polkadot": 1,
 			"proselint": 1,
@@ -252,7 +263,9 @@
 			"RSP": 1,
 			"spectrocloud-docs-internal": 1,
 			"Spryker": 1,
-			"terms": 1
+			"terms": 1,
+			"Train": 1,
+			"Voices": 1
 		},
 		"Apify": {
 			"ApifyDocs": 1,
@@ -300,6 +313,7 @@
 			"ApifyDocs": 1,
 			"Graphile": 1,
 			"IPA": 1,
+			"JTE": 1,
 			"Mendix": 1,
 			"Mistral": 1,
 			"Rackspace": 1,
@@ -325,13 +339,17 @@
 		"alex": {
 			"proselint": 4,
 			"write-good": 4,
+			"Google": 2,
+			"Joblint": 2,
 			"Microsoft": 2,
-			"Google": 1,
-			"Joblint": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Moose": 1,
 			"OutSystems": 1,
 			"Readability": 1,
 			"rOpenSci": 1,
-			"spectrocloud-docs-internal": 1
+			"spectrocloud-docs-internal": 1,
+			"Voices": 1
 		},
 		"ai-tells": {
 			"write-good": 2,
@@ -369,6 +387,49 @@
 		"Datadog": {},
 		"custom": {},
 		"DetSys": {},
+		"Joblint": {
+			"alex": 2,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Moose": 1,
+			"proselint": 1,
+			"Readability": 1,
+			"Voices": 1,
+			"write-good": 1
+		},
+		"DocDetective": {
+			"alex": 1,
+			"Direct": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1,
+			"Voices": 1
+		},
+		"Voices": {
+			"alex": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1
+		},
+		"Direct": {
+			"alex": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1,
+			"Voices": 1
+		},
+		"Moose": {
+			"alex": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Voices": 1
+		},
 		"Docker": {},
 		"DocsGPT": {},
 		"Lore": {},
@@ -437,6 +498,9 @@
 		"docs": {
 			"base": 1,
 			"write-good": 1
+		},
+		"JTE": {
+			"Microsoft": 1
 		},
 		"Kedro": {},
 		"base": {
@@ -527,12 +591,6 @@
 			"alex": 1,
 			"Joblint": 1
 		},
-		"Joblint": {
-			"alex": 1,
-			"proselint": 1,
-			"Readability": 1,
-			"write-good": 1
-		},
 		"Novu": {
 			"Google": 1,
 			"write-good": 1
@@ -573,7 +631,6 @@
 			"Google": 1,
 			"write-good": 1
 		},
-		"package-guide-test": {},
 		"IBMQuantum": {},
 		"Quarkus": {},
 		"Rackspace": {
@@ -581,21 +638,40 @@
 		},
 		"common": {},
 		"KubeRay": {
+			"Core": 1,
 			"Google": 1,
+			"Ray": 1,
+			"RLlib": 1,
+			"Train": 1
+		},
+		"Ray": {
+			"Core": 1,
+			"Google": 1,
+			"KubeRay": 1,
+			"RLlib": 1,
+			"Train": 1
+		},
+		"RLlib": {
+			"Core": 1,
+			"Google": 1,
+			"KubeRay": 1,
+			"Ray": 1,
+			"Train": 1
+		},
+		"Core": {
+			"Google": 1,
+			"KubeRay": 1,
+			"Ray": 1,
+			"RLlib": 1,
+			"Train": 1
+		},
+		"Train": {
+			"Core": 1,
+			"Google": 1,
+			"KubeRay": 1,
 			"Ray": 1,
 			"RLlib": 1
 		},
-		"Ray": {
-			"Google": 1,
-			"KubeRay": 1,
-			"RLlib": 1
-		},
-		"RLlib": {
-			"Google": 1,
-			"KubeRay": 1,
-			"Ray": 1
-		},
-		"Rules": {},
 		"riscv": {
 			"AsciiDoc": 1
 		},
@@ -931,6 +1007,14 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Doc Detective",
+			"url": "https://github.com/doc-detective/doc-detective/blob/main/docs/.vale.ini",
+			"styles": ["Google", "alex", "Joblint", "DocDetective", "Voices", "Direct", "Moose"],
+			"formats": ["md", "mdx"],
+			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Docker",
 			"url": "https://github.com/docker/docs/blob/main/.vale.ini",
 			"styles": ["Docker"],
@@ -1022,7 +1106,7 @@
 			"name": "Fly.io",
 			"url": "https://github.com/superfly/docs/blob/HEAD/.vale.ini",
 			"styles": ["Fly", "Google", "proselint", "write-good"],
-			"formats": ["md"],
+			"formats": ["md", "mdx"],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1143,7 +1227,15 @@
 			"url": "https://github.com/influxdata/docs-v2/blob/HEAD/.vale.ini",
 			"styles": ["InfluxDataDocs", "Google", "write-good"],
 			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles", "TokenIgnores"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
@@ -1169,6 +1261,14 @@
 			"formats": ["md"],
 			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles"],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Jenkins Templating Engine",
+			"url": "https://jenkinsci.github.io/templating-engine-plugin/2.5/contributing/docs/vale/",
+			"styles": ["Microsoft", "JTE"],
+			"formats": ["md"],
+			"keys": ["StylesPath", "Vocab", "BasedOnStyles", "BlockIgnores"],
+			"minAlertLevel": null
 		},
 		{
 			"name": "JuMP",
@@ -1676,14 +1776,6 @@
 			"minAlertLevel": "warning"
 		},
 		{
-			"name": "pyOpenSci",
-			"url": "https://github.com/pyOpenSci/python-package-guide/blob/HEAD/.vale.ini",
-			"styles": ["package-guide-test"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "BasedOnStyles"],
-			"minAlertLevel": null
-		},
-		{
 			"name": "Qiskit",
 			"url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/HEAD/docs/.vale.ini",
 			"styles": ["IBMQuantum"],
@@ -1725,7 +1817,7 @@
 		{
 			"name": "Ray",
 			"url": "https://github.com/ray-project/ray/blob/HEAD/.vale.ini",
-			"styles": ["Google", "KubeRay", "Ray", "RLlib"],
+			"styles": ["Google", "KubeRay", "Ray", "RLlib", "Core", "Train"],
 			"formats": ["rst", "md"],
 			"keys": [
 				"StylesPath",
@@ -1757,22 +1849,6 @@
 				"IgnoredScopes",
 				"SkippedScopes",
 				"Packages",
-				"BasedOnStyles",
-				"TokenIgnores"
-			],
-			"minAlertLevel": "suggestion"
-		},
-		{
-			"name": "Redocly",
-			"url": "https://github.com/Redocly/redoc/blob/HEAD/.vale.ini",
-			"styles": ["Rules"],
-			"formats": ["md", "mdx", "ini"],
-			"keys": [
-				"StylesPath",
-				"Vocab",
-				"MinAlertLevel",
-				"IgnoredScopes",
-				"SkippedScopes",
 				"BasedOnStyles",
 				"TokenIgnores"
 			],
