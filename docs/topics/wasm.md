@@ -42,6 +42,7 @@ Every function returns an object. A failure is `{ error: string }`; the shapes b
 | `ValeLintBuilt(text, format, html, ini)` | `{ result: string }` | Lints `text` from `html`, the host's own conversion of it; see [Converted formats](wasm.md#converted-formats).                                                   |
 | `ValeConverterOptions(format, ini)`   | object                | What to give the converter for `format` so its HTML is what Vale would have produced; see below.                                                                  |
 | `ValeTransform(text, format, ini)`    | `{ result: string }`  | Applies the configuration's `BlockIgnores` and `TokenIgnores` to `text` and returns what is left to lint.                                                          |
+| `ValeResolveConfig(ini)`              | `{ result: string }`  | Resolves the configuration without linting anything; see [Resolving a configuration](wasm.md#resolving-a-configuration).                                         |
 | `ValeAddFile(path, contents)`         | `{ ok: true }`        | Writes one file into the in-memory filesystem. `contents` is a string or a `Uint8Array`.                                                                           |
 | `ValeAddPackage(prefix, zipBytes)`    | `{ ok: true }`        | Extracts a ZIP archive under `prefix`, each entry at its own path.                                                                                                 |
 | `ValeResetFS()`                       | `{ ok: true }`        | Empties the in-memory filesystem.                                                                                                                                 |
@@ -68,6 +69,32 @@ const { result, error } = ValeLint(text, "md", ini);
 ```
 
 The built-in `Vale` style and its `en_US` dictionary are inside the module, so a configuration with no `StylesPath` lints with them alone. There is no user-level configuration: the INI passed is the whole configuration.
+
+## [Resolving a configuration](wasm.md#resolving-a-configuration)
+
+`ValeResolveConfig` reports what a configuration comes to, for a host that shows one rather than runs it. `result` is JSON:
+
+```json
+{
+  "stylesPath": "/styles",
+  "global": { "minAlertLevel": "warning", "vocab": [], "basedOnStyles": [] },
+  "sections": [
+    {
+      "glob": "*.md",
+      "styles": ["House"],
+      "rules": [
+        { "ref": "House.Hedging", "state": "override", "level": "suggestion" },
+        { "ref": "House.Passive", "state": "disabled" }
+      ],
+      "active": 0,
+      "overridden": 1,
+      "disabled": 1
+    }
+  ]
+}
+```
+
+Each rule a section's styles bring is `active`, `disabled`, or `override` with the `level` it was set to. A rule that is switched off is still listed, read from the files on the `StylesPath`. A configuration that fails to load returns its message in `result`'s `error` field.
 
 ## [Formats](wasm.md#formats)
 
