@@ -1,116 +1,150 @@
 {
-	"generated": "2026-09-28",
-	"actionDependents": 4194,
-	"dockerPulls": 2283187,
+	"generated": "2026-10-31",
+	"actionDependents": 4283,
+	"dockerPulls": 2353061,
 	"activity": {
 		"downloads": {
-			"since": "2026-08-29",
-			"total": 298799,
-			"releases": 4
+			"since": "2026-10-01",
+			"total": 431125,
+			"releases": 3
 		},
-		"pip30": 298303,
-		"npm30": 192199,
-		"brew30": 4713,
-		"vscode": 91779
+		"pip30": 294511,
+		"npm30": 270855,
+		"brew30": 6498,
+		"vscode": 92682
 	},
-	"publicConfigs": 3808,
+	"publicConfigs": 4200,
 	"runs": {
-		"since": "2026-08-29",
-		"total": 74518,
-		"repos": 106,
+		"since": "2026-10-01",
+		"total": 92205,
+		"repos": 131,
 		"floor": false
 	},
-	"teams": 167,
-	"checked": 156,
-	"unchecked": 11,
-	"ci": 111,
-	"preCommit": 5,
-	"stars": 934371,
-	"active30": 136,
-	"active90": 141,
-	"touched90": 39,
-	"touchable": 142,
+	"teams": 208,
+	"checked": 194,
+	"unchecked": 14,
+	"ci": 136,
+	"preCommit": 4,
+	"stars": 973693,
+	"active30": 169,
+	"active90": 176,
+	"touched90": 47,
+	"touchable": 180,
 	"configs": {
-		"sampled": 133,
-		"house": 105,
-		"registryOnly": 20,
-		"vocab": 76
+		"sampled": 169,
+		"house": 126,
+		"registryOnly": 32,
+		"vocab": 102
 	},
 	"bySector": {
 		"Data & observability": {
-			"teams": 29,
-			"checked": 28,
-			"ci": 20,
-			"house": 18,
-			"stars": 191992,
-			"active30": 23
+			"teams": 32,
+			"checked": 31,
+			"ci": 21,
+			"house": 19,
+			"stars": 193431,
+			"active30": 25
 		},
 		"Web3 & blockchain": {
-			"teams": 8,
-			"checked": 7,
+			"teams": 9,
+			"checked": 8,
 			"ci": 5,
-			"house": 3,
-			"stars": 8725,
-			"active30": 7
+			"house": 4,
+			"stars": 8894,
+			"active30": 6
 		},
 		"Cloud & infrastructure": {
-			"teams": 23,
-			"checked": 22,
-			"ci": 18,
-			"house": 19,
-			"stars": 101511,
-			"active30": 19
+			"teams": 31,
+			"checked": 30,
+			"ci": 26,
+			"house": 26,
+			"stars": 109698,
+			"active30": 26
 		},
 		"Hardware & semiconductors": {
 			"teams": 8,
 			"checked": 8,
 			"ci": 6,
 			"house": 5,
-			"stars": 21880,
-			"active30": 7
-		},
-		"Developer tools": {
-			"teams": 36,
-			"checked": 34,
-			"ci": 20,
-			"house": 22,
-			"stars": 308989,
-			"active30": 32
-		},
-		"Enterprise software": {
-			"teams": 12,
-			"checked": 10,
-			"ci": 7,
-			"house": 8,
-			"stars": 664,
+			"stars": 22200,
 			"active30": 8
 		},
-		"Open source & communities": {
-			"teams": 25,
-			"checked": 22,
-			"ci": 18,
-			"house": 12,
-			"stars": 188019,
-			"active30": 16
+		"Developer tools": {
+			"teams": 47,
+			"checked": 44,
+			"ci": 27,
+			"house": 28,
+			"stars": 314651,
+			"active30": 40
 		},
 		"Academia & public sector": {
-			"teams": 18,
-			"checked": 17,
-			"ci": 13,
-			"house": 12,
-			"stars": 7211,
-			"active30": 16
+			"teams": 25,
+			"checked": 23,
+			"ci": 15,
+			"house": 13,
+			"stars": 7588,
+			"active30": 20
+		},
+		"Enterprise software": {
+			"teams": 15,
+			"checked": 13,
+			"ci": 9,
+			"house": 10,
+			"stars": 687,
+			"active30": 11
+		},
+		"Open source & communities": {
+			"teams": 32,
+			"checked": 29,
+			"ci": 22,
+			"house": 15,
+			"stars": 198201,
+			"active30": 25
 		},
 		"AI & machine learning": {
-			"teams": 8,
+			"teams": 9,
 			"checked": 8,
-			"ci": 4,
+			"ci": 5,
 			"house": 6,
-			"stars": 105380,
+			"stars": 118343,
 			"active30": 8
 		}
 	},
 	"perAdopter": {
+		"Actian": {
+			"proof": "config",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "ActianCorp/vectorai-db-docs",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 2,
+			"pushed": "2026-10-28",
+			"touched": "2026-04-17",
+			"since": "2026-04-17",
+			"runs30": null,
+			"house": false
+		},
 		"Airbyte": {
 			"proof": "package",
 			"styles": null,
@@ -119,7 +153,9 @@
 			"level": null,
 			"repo": "airbytehq/airbyte",
 			"integrations": {
-				"actions": [".github/workflows/reviewdog.yml"],
+				"actions": [
+					".github/workflows/reviewdog.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -133,22 +169,28 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 22145,
-			"pushed": "2026-09-28",
+			"stars": 22290,
+			"pushed": "2026-10-31",
 			"touched": null,
 			"since": "2025-03-03",
-			"runs30": 3563,
+			"runs30": 5253,
 			"house": null
 		},
 		"Aiven": {
 			"proof": "config",
-			"styles": ["Aiven"],
-			"formats": ["rst"],
+			"styles": [
+				"Aiven"
+			],
+			"formats": [
+				"rst"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "aiven/devportal",
 			"integrations": {
-				"actions": [".github/workflows/lint.yaml"],
+				"actions": [
+					".github/workflows/lint.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -156,7 +198,9 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
@@ -171,13 +215,19 @@
 		},
 		"Alchemy": {
 			"proof": "config",
-			"styles": ["SmartWallets"],
-			"formats": ["mdx"],
+			"styles": [
+				"SmartWallets"
+			],
+			"formats": [
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "alchemyplatform/aa-sdk",
 			"integrations": {
-				"actions": [".github/workflows/on-pull-request.yml"],
+				"actions": [
+					".github/workflows/on-pull-request.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -185,17 +235,19 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 321,
-			"pushed": "2026-09-23",
+			"stars": 323,
+			"pushed": "2026-10-05",
 			"touched": "2025-09-11",
 			"since": "2025-09-11",
-			"runs30": 17,
+			"runs30": 4,
 			"house": true
 		},
 		"Amazon Web Services": {
@@ -223,7 +275,9 @@
 			"level": null,
 			"repo": "ROCm/rocm-docs-style",
 			"integrations": {
-				"actions": [".github/workflows/self-check.yml"],
+				"actions": [
+					".github/workflows/self-check.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -238,21 +292,29 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 0,
-			"pushed": "2026-09-10",
+			"pushed": "2026-10-30",
 			"touched": null,
 			"since": "2026-07-29",
-			"runs30": 5,
+			"runs30": 11,
 			"house": null
 		},
 		"Analog Devices": {
 			"proof": "config",
-			"styles": ["ADI", "Google"],
-			"formats": ["rst", "md"],
+			"styles": [
+				"ADI",
+				"Google"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "analogdevicesinc/libiio",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -262,84 +324,150 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 638,
-			"pushed": "2026-09-28",
+			"stars": 653,
+			"pushed": "2026-10-30",
 			"touched": "2026-06-03",
 			"since": "2026-06-03",
-			"runs30": 208,
+			"runs30": 109,
 			"house": true
 		},
 		"Ansys": {
 			"proof": "config",
-			"styles": ["Google"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "ansys/pymapdl",
 			"integrations": {
-				"actions": [".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/ci.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 519,
-			"pushed": "2026-09-28",
+			"stars": 526,
+			"pushed": "2026-10-31",
 			"touched": "2026-01-07",
 			"since": "2022-11-28",
-			"runs30": 252,
+			"runs30": 278,
 			"house": false
 		},
 		"Apify": {
 			"proof": "config",
-			"styles": ["Apify", "ApifyDocs", "write-good", "Microsoft"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Apify",
+				"ApifyDocs",
+				"write-good",
+				"Microsoft"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "apify/apify-docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yaml"],
+				"actions": [
+					".github/workflows/vale.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 79,
-			"pushed": "2026-09-28",
+			"stars": 87,
+			"pushed": "2026-10-30",
 			"touched": "2026-09-28",
 			"since": "2025-01-13",
-			"runs30": 363,
+			"runs30": 507,
 			"house": true
+		},
+		"Appsmith": {
+			"proof": "config",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "error",
+			"repo": "appsmithorg/appsmith-docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/lint.yml"
+				],
+				"valeAction": true,
+				"reviewdog": true,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 98,
+			"pushed": "2026-10-30",
+			"touched": "2026-02-04",
+			"since": "2022-11-22",
+			"runs30": 26,
+			"house": false
 		},
 		"Atlantis": {
 			"proof": "config",
-			"styles": ["Atlantis"],
-			"formats": ["md"],
+			"styles": [
+				"Atlantis"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "runatlantis/atlantis",
 			"integrations": {
-				"actions": [".github/workflows/website.yml"],
+				"actions": [
+					".github/workflows/website.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -353,17 +481,24 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 9306,
-			"pushed": "2026-09-28",
+			"stars": 9339,
+			"pushed": "2026-10-30",
 			"touched": "2026-03-10",
 			"since": "2026-03-10",
-			"runs30": 526,
+			"runs30": 296,
 			"house": true
 		},
 		"Atuin": {
 			"proof": "config",
-			"styles": ["Microsoft", "proselint", "alex", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Microsoft",
+				"proselint",
+				"alex",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "atuinsh/atuin",
@@ -378,12 +513,14 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 31842,
-			"pushed": "2026-09-28",
+			"stars": 32163,
+			"pushed": "2026-10-31",
 			"touched": "2026-07-27",
 			"since": "2026-07-24",
 			"runs30": null,
@@ -412,7 +549,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 26,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-14",
 			"touched": null,
 			"since": "2026-01-14",
 			"runs30": null,
@@ -420,13 +557,21 @@
 		},
 		"AWS Deadline Cloud": {
 			"proof": "config",
-			"styles": ["write-good", "ai-tells", "DeadlineSamples"],
-			"formats": ["md"],
+			"styles": [
+				"write-good",
+				"ai-tells",
+				"DeadlineSamples"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "aws-deadline/deadline-cloud-samples",
 			"integrations": {
-				"actions": [".github/workflows/prose_lint.yml"],
+				"actions": [
+					".github/workflows/prose_lint.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -440,17 +585,90 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 42,
-			"pushed": "2026-09-25",
+			"stars": 44,
+			"pushed": "2026-10-30",
 			"touched": "2026-07-23",
 			"since": "2026-07-23",
-			"runs30": 57,
+			"runs30": 86,
 			"house": true
+		},
+		"Bazel Contrib": {
+			"proof": "config",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "bazel-contrib/bazel-lib",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 182,
+			"pushed": "2026-10-26",
+			"touched": "2024-09-02",
+			"since": "2024-09-02",
+			"runs30": null,
+			"house": false
+		},
+		"Broad Institute": {
+			"proof": "config",
+			"styles": [
+				"ai-tells"
+			],
+			"formats": [
+				"md",
+				"rs"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "broadinstitute/poasta",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"CLAUDE.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 71,
+			"pushed": "2026-10-22",
+			"touched": "2026-10-18",
+			"since": "2026-10-18",
+			"runs30": null,
+			"house": false
 		},
 		"Buildkite": {
 			"proof": "config",
-			"styles": ["Buildkite"],
-			"formats": ["md"],
+			"styles": [
+				"Buildkite"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "buildkite/docs",
@@ -462,15 +680,17 @@
 				"circle": null,
 				"buildkite": ".buildkite/pipeline.yml",
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 59,
-			"pushed": "2026-09-28",
+			"stars": 60,
+			"pushed": "2026-10-30",
 			"touched": "2026-02-19",
 			"since": "2022-05-31",
 			"runs30": null,
@@ -478,13 +698,19 @@
 		},
 		"Camunda": {
 			"proof": "config",
-			"styles": ["all"],
-			"formats": ["docs"],
+			"styles": [
+				"all"
+			],
+			"formats": [
+				"docs"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "camunda/camunda-docs",
 			"integrations": {
-				"actions": [".github/workflows/check-format.yaml"],
+				"actions": [
+					".github/workflows/check-format.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -498,11 +724,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 69,
-			"pushed": "2026-09-28",
-			"touched": "2026-06-05",
+			"stars": 72,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-26",
 			"since": "2023-10-03",
-			"runs30": 1765,
+			"runs30": 1910,
 			"house": true
 		},
 		"Canonical": {
@@ -513,7 +739,9 @@
 			"level": null,
 			"repo": "canonical/documentation-style-guide",
 			"integrations": {
-				"actions": [".github/workflows/pytest.yml"],
+				"actions": [
+					".github/workflows/pytest.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -528,10 +756,10 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 23,
-			"pushed": "2026-09-14",
+			"pushed": "2026-10-02",
 			"touched": null,
 			"since": "2024-04-09",
-			"runs30": 1,
+			"runs30": 3,
 			"house": null
 		},
 		"CircleCI": {
@@ -549,29 +777,39 @@
 				"circle": ".circleci/config.yml",
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 851,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-28",
+			"pushed": "2026-10-30",
+			"touched": "2026-10-20",
 			"since": "2026-04-22",
 			"runs30": null,
 			"house": null
 		},
 		"ClickHouse": {
 			"proof": "config",
-			"styles": ["ClickHouse"],
-			"formats": ["md"],
+			"styles": [
+				"ClickHouse"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "clickhouse/clickhouse-docs",
 			"integrations": {
-				"actions": [".github/workflows/vale-linter.yml"],
+				"actions": [
+					".github/workflows/vale-linter.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -579,7 +817,9 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
@@ -594,8 +834,12 @@
 		},
 		"CloudQuery": {
 			"proof": "config",
-			"styles": ["proselint"],
-			"formats": ["md"],
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "cloudquery/cloudquery",
@@ -614,8 +858,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 6530,
-			"pushed": "2026-09-28",
+			"stars": 6548,
+			"pushed": "2026-10-31",
 			"touched": "2022-10-04",
 			"since": "2022-08-25",
 			"runs30": null,
@@ -623,37 +867,49 @@
 		},
 		"CMU Software Engineering Institute": {
 			"proof": "config",
-			"styles": ["crucible"],
-			"formats": ["md"],
+			"styles": [
+				"crucible"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "cmu-sei/crucible",
 			"integrations": {
-				"actions": [".github/workflows/lint.yml"],
+				"actions": [
+					".github/workflows/lint.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 55,
-			"pushed": "2026-09-16",
+			"stars": 54,
+			"pushed": "2026-10-31",
 			"touched": "2026-07-13",
 			"since": "2025-02-13",
-			"runs30": 1,
+			"runs30": 53,
 			"house": true
 		},
 		"CockroachDB": {
 			"proof": "config",
-			"styles": ["CockroachDB"],
-			"formats": ["md"],
+			"styles": [
+				"CockroachDB"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "cockroachdb/docs",
@@ -673,7 +929,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 212,
-			"pushed": "2026-09-24",
+			"pushed": "2026-10-05",
 			"touched": "2023-07-12",
 			"since": "2018-05-29",
 			"runs30": null,
@@ -681,13 +937,20 @@
 		},
 		"Codacy": {
 			"proof": "config",
-			"styles": ["Microsoft", "alex"],
-			"formats": ["readme"],
+			"styles": [
+				"Microsoft",
+				"alex"
+			],
+			"formats": [
+				"readme"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "codacy/docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -702,45 +965,65 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 29,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-08-12",
 			"since": "2020-10-05",
-			"runs30": 82,
+			"runs30": 83,
 			"house": false
 		},
 		"Coder": {
 			"proof": "config",
-			"styles": ["Coder"],
-			"formats": ["md", "api", "cli"],
+			"styles": [
+				"Coder"
+			],
+			"formats": [
+				"md",
+				"api",
+				"cli"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "coder/coder",
 			"integrations": {
-				"actions": [".github/workflows/ci.yaml"],
+				"actions": [
+					".github/workflows/ci.yaml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md", "docs/AGENTS.md"],
-				"tasks": ["Makefile"],
+				"agents": [
+					"AGENTS.md",
+					"docs/AGENTS.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 16741,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-28",
+			"stars": 17239,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-27",
 			"since": "2026-06-22",
-			"runs30": 7867,
+			"runs30": 9632,
 			"house": true
 		},
 		"commercetools": {
 			"proof": "config",
-			"styles": ["write-good", "Google", "commercetools"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"write-good",
+				"Google",
+				"commercetools"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "commercetools/commercetools-docs-kit",
@@ -753,7 +1036,9 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
@@ -802,13 +1087,19 @@
 		},
 		"Cornell EmPRISE Lab": {
 			"proof": "config",
-			"styles": ["proselint"],
-			"formats": ["md"],
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "empriselab/mote",
 			"integrations": {
-				"actions": [".github/workflows/grammar-spelling.yaml"],
+				"actions": [
+					".github/workflows/grammar-spelling.yaml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -816,7 +1107,9 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Taskfile.yml"],
+				"tasks": [
+					"Taskfile.yml"
+				],
 				"vscode": null,
 				"contributing": []
 			},
@@ -837,7 +1130,9 @@
 			"level": null,
 			"repo": "couchbaselabs/docs-style-guide",
 			"integrations": {
-				"actions": [".github/workflows/test-vale-styles.yml"],
+				"actions": [
+					".github/workflows/test-vale-styles.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -860,13 +1155,19 @@
 		},
 		"CrateDB": {
 			"proof": "config",
-			"styles": ["CrateDB"],
-			"formats": ["rst"],
+			"styles": [
+				"CrateDB"
+			],
+			"formats": [
+				"rst"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "crate/crate",
 			"integrations": {
-				"actions": [".github/workflows/docs.yml"],
+				"actions": [
+					".github/workflows/docs.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -880,22 +1181,67 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 4441,
-			"pushed": "2026-09-28",
+			"stars": 4448,
+			"pushed": "2026-10-30",
 			"touched": "2023-12-08",
 			"since": "2022-01-24",
-			"runs30": 608,
+			"runs30": 700,
 			"house": true
+		},
+		"CryptPad": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"proselint",
+				"write-good",
+				"alex",
+				"Readability",
+				"Joblint"
+			],
+			"formats": [],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "cryptpad/onlyoffice-editor",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 25,
+			"pushed": "2026-10-26",
+			"touched": "2024-12-04",
+			"since": "2024-12-04",
+			"runs30": null,
+			"house": false
 		},
 		"D2iQ": {
 			"proof": "config",
-			"styles": ["write-good", "Microsoft", "ttd-light", "proselint"],
-			"formats": ["md"],
+			"styles": [
+				"write-good",
+				"Microsoft",
+				"ttd-light",
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "mesosphere/dcos-docs-site",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -903,9 +1249,13 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
@@ -918,8 +1268,15 @@
 		},
 		"Dagster": {
 			"proof": "config",
-			"styles": ["Dagster", "Terms"],
-			"formats": ["md", "mdx", "rst"],
+			"styles": [
+				"Dagster",
+				"Terms"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"rst"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "dagster-io/dagster",
@@ -938,8 +1295,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 16215,
-			"pushed": "2026-09-25",
+			"stars": 16356,
+			"pushed": "2026-10-30",
 			"touched": "2024-09-04",
 			"since": "2024-08-20",
 			"runs30": null,
@@ -947,57 +1304,77 @@
 		},
 		"Datadog": {
 			"proof": "writeup",
-			"styles": ["Datadog"],
-			"formats": ["md", "html"],
+			"styles": [
+				"Datadog"
+			],
+			"formats": [
+				"md",
+				"html"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "DataDog/documentation",
 			"integrations": {
-				"actions": [".github/workflows/blog_linker.yml", ".github/workflows/vale_linter.yml"],
+				"actions": [
+					".github/workflows/blog_linker.yml",
+					".github/workflows/vale_linter.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 619,
-			"pushed": "2026-09-28",
+			"stars": 622,
+			"pushed": "2026-10-30",
 			"touched": "2026-02-04",
 			"since": "2020-12-30",
-			"runs30": 2025,
+			"runs30": 2878,
 			"house": true
 		},
 		"dbt Labs": {
 			"proof": "config",
-			"styles": ["custom"],
-			"formats": ["md"],
+			"styles": [
+				"custom"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "dbt-labs/docs.getdbt.com",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 216,
-			"pushed": "2026-09-28",
+			"stars": 219,
+			"pushed": "2026-10-30",
 			"touched": "2026-09-08",
 			"since": "2024-06-06",
 			"runs30": 0,
@@ -1005,8 +1382,13 @@
 		},
 		"Determinate Systems": {
 			"proof": "config",
-			"styles": ["DetSys"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"DetSys"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "DeterminateSystems/zero-to-nix",
@@ -1025,10 +1407,44 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 1287,
-			"pushed": "2026-09-18",
+			"stars": 1293,
+			"pushed": "2026-10-29",
 			"touched": "2024-07-26",
 			"since": "2022-11-14",
+			"runs30": null,
+			"house": true
+		},
+		"Digital Asset": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"DigitalAsset"
+			],
+			"formats": [
+				"rst"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "digital-asset/canton",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 148,
+			"pushed": "2026-10-30",
+			"touched": "2026-02-02",
+			"since": "2026-02-02",
 			"runs30": null,
 			"house": true
 		},
@@ -1040,7 +1456,9 @@
 			"level": null,
 			"repo": "digitalocean/vale-package",
 			"integrations": {
-				"actions": [".github/workflows/vale-package-rel.yml"],
+				"actions": [
+					".github/workflows/vale-package-rel.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1058,13 +1476,15 @@
 			"pushed": "2026-09-03",
 			"touched": null,
 			"since": "2024-04-19",
-			"runs30": 2,
+			"runs30": 0,
 			"house": null
 		},
 		"Discord": {
 			"proof": "config",
 			"styles": [],
-			"formats": ["mdx"],
+			"formats": [
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "discord/discord-api-docs",
@@ -1083,69 +1503,133 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 6505,
-			"pushed": "2026-09-28",
+			"stars": 6524,
+			"pushed": "2026-10-31",
 			"touched": "2026-02-10",
 			"since": "2026-02-10",
 			"runs30": null,
 			"house": false
 		},
+		"Doc Detective": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"alex",
+				"Joblint",
+				"DocDetective",
+				"Voices",
+				"Direct",
+				"Moose"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "doc-detective/doc-detective",
+			"integrations": {
+				"actions": [
+					".github/workflows/claude-pr-review.yml",
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"docs/AGENTS.md",
+					"CLAUDE.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 137,
+			"pushed": "2026-10-31",
+			"touched": "2026-09-11",
+			"since": "2026-03-07",
+			"runs30": 615,
+			"house": true
+		},
 		"Docker": {
 			"proof": "config",
-			"styles": ["Docker"],
-			"formats": ["md"],
+			"styles": [
+				"Docker"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "docker/docs",
 			"integrations": {
-				"actions": [".github/workflows/build.yml"],
+				"actions": [
+					".github/workflows/build.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 4660,
-			"pushed": "2026-09-28",
+			"stars": 4680,
+			"pushed": "2026-10-31",
 			"touched": "2026-09-11",
 			"since": "2022-09-14",
-			"runs30": 649,
+			"runs30": 671,
 			"house": true
 		},
 		"DocsGPT": {
 			"proof": "config",
-			"styles": ["DocsGPT"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"DocsGPT"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "arc53/DocsGPT",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md",
+					"docs/AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 18293,
-			"pushed": "2026-09-28",
+			"stars": 18350,
+			"pushed": "2026-10-31",
 			"touched": "2026-04-11",
 			"since": "2025-10-31",
-			"runs30": 141,
+			"runs30": 332,
 			"house": true
 		},
 		"DuckDB": {
@@ -1156,25 +1640,29 @@
 			"level": "suggestion",
 			"repo": "duckdb/duckdb-web",
 			"integrations": {
-				"actions": [".github/workflows/lint.yml"],
+				"actions": [
+					".github/workflows/lint.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 302,
-			"pushed": "2026-09-28",
+			"stars": 311,
+			"pushed": "2026-10-31",
 			"touched": "2025-12-15",
 			"since": "2023-08-03",
-			"runs30": 256,
+			"runs30": 591,
 			"house": false
 		},
 		"Eclipse Che": {
@@ -1185,7 +1673,10 @@
 			"level": null,
 			"repo": "eclipse-che/che-docs-vale-style",
 			"integrations": {
-				"actions": [".github/workflows/.vale.ini", ".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/.vale.ini",
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1200,11 +1691,47 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 2,
-			"pushed": "2026-09-16",
+			"pushed": "2026-10-21",
 			"touched": null,
 			"since": "2022-09-12",
-			"runs30": 5,
+			"runs30": 2,
 			"house": null
+		},
+		"Edgeless Systems": {
+			"proof": "config",
+			"styles": [
+				"Microsoft",
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "edgelesssys/marblerun",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 281,
+			"pushed": "2026-10-28",
+			"touched": "2024-01-24",
+			"since": "2022-10-25",
+			"runs30": 3,
+			"house": false
 		},
 		"Elastic": {
 			"proof": "writeup",
@@ -1225,8 +1752,12 @@
 		},
 		"Epic Games": {
 			"proof": "config",
-			"styles": ["Lore"],
-			"formats": ["md"],
+			"styles": [
+				"Lore"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "EpicGames/lore",
@@ -1241,12 +1772,14 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 8835,
-			"pushed": "2026-09-28",
+			"stars": 9077,
+			"pushed": "2026-10-29",
 			"touched": "2026-06-05",
 			"since": "2026-05-29",
 			"runs30": null,
@@ -1254,8 +1787,13 @@
 		},
 		"Espressif": {
 			"proof": "config",
-			"styles": ["Espressif-latest"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"Espressif-latest"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "espressif/esp-idf",
@@ -1274,8 +1812,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 19110,
-			"pushed": "2026-09-28",
+			"stars": 19392,
+			"pushed": "2026-10-30",
 			"touched": "2023-10-10",
 			"since": "2023-10-10",
 			"runs30": null,
@@ -1283,31 +1821,41 @@
 		},
 		"Expo": {
 			"proof": "config",
-			"styles": ["expo-docs"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"expo-docs"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "expo/expo",
 			"integrations": {
-				"actions": [".github/workflows/docs-pr.yml", ".github/workflows/docs.yml"],
+				"actions": [
+					".github/workflows/docs-pr.yml",
+					".github/workflows/docs.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["docs/AGENTS.md"],
+				"agents": [
+					"docs/AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 52480,
-			"pushed": "2026-09-28",
+			"stars": 53247,
+			"pushed": "2026-10-31",
 			"touched": "2026-09-25",
 			"since": "2023-09-04",
-			"runs30": 1605,
+			"runs30": 2279,
 			"house": true
 		},
 		"Fedora Linux": {
@@ -1329,8 +1877,13 @@
 		},
 		"Fern": {
 			"proof": "writeup",
-			"styles": ["FernStyles"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"FernStyles"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "fern-api/fern",
@@ -1349,22 +1902,61 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 3791,
-			"pushed": "2026-09-28",
+			"stars": 3829,
+			"pushed": "2026-10-31",
 			"touched": "2024-03-26",
 			"since": "2024-03-26",
 			"runs30": null,
 			"house": true
 		},
+		"Flox": {
+			"proof": "config",
+			"styles": [],
+			"formats": [
+				"mdx"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "flox/docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/sync-man-pages.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 1,
+			"pushed": "2026-10-29",
+			"touched": "2026-05-12",
+			"since": "2026-05-12",
+			"runs30": 38,
+			"house": false
+		},
 		"Fluent Bit": {
 			"proof": "config",
-			"styles": ["FluentBit"],
-			"formats": ["md"],
+			"styles": [
+				"FluentBit"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "fluent/fluent-bit-docs",
 			"integrations": {
-				"actions": [".github/workflows/pr-lint.yaml"],
+				"actions": [
+					".github/workflows/pr-lint.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1374,26 +1966,35 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 150,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-28",
 			"touched": "2026-02-27",
 			"since": "2024-10-17",
-			"runs30": 95,
+			"runs30": 89,
 			"house": true
 		},
 		"Fly.io": {
 			"proof": "config",
-			"styles": ["Fly", "Google", "proselint", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Fly"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "superfly/docs",
 			"integrations": {
-				"actions": [".github/workflows/vale-docs-linter.yml"],
+				"actions": [
+					".github/workflows/vale-docs-linter.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -1408,10 +2009,10 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 128,
-			"pushed": "2026-09-25",
-			"touched": "2026-07-17",
+			"pushed": "2026-10-30",
+			"touched": "2026-10-22",
 			"since": "2023-09-08",
-			"runs30": 48,
+			"runs30": 177,
 			"house": true
 		},
 		"Flyway": {
@@ -1436,22 +2037,32 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 10111,
-			"pushed": "2026-09-24",
-			"touched": "2025-07-03",
+			"stars": 10181,
+			"pushed": "2026-10-30",
+			"touched": "2026-10-08",
 			"since": "2024-01-11",
 			"runs30": null,
 			"house": null
 		},
 		"Foreman": {
 			"proof": "config",
-			"styles": ["RedHat", "AsciiDoc", "foreman-documentation"],
-			"formats": ["adoc", "ini"],
+			"styles": [
+				"RedHat",
+				"AsciiDoc",
+				"foreman-documentation"
+			],
+			"formats": [
+				"adoc",
+				"ini"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "theforeman/foreman-documentation",
 			"integrations": {
-				"actions": [".github/workflows/unused.yml", ".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/unused.yml",
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1461,15 +2072,17 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 26,
-			"pushed": "2026-09-28",
+			"stars": 27,
+			"pushed": "2026-10-30",
 			"touched": "2025-11-13",
 			"since": "2024-07-25",
-			"runs30": 1100,
+			"runs30": 1510,
 			"house": true
 		},
 		"Foundries.io": {
@@ -1495,7 +2108,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 1,
-			"pushed": "2026-08-24",
+			"pushed": "2026-10-05",
 			"touched": "2024-05-24",
 			"since": "2022-06-28",
 			"runs30": null,
@@ -1503,8 +2116,12 @@
 		},
 		"FreeBSD": {
 			"proof": "config",
-			"styles": ["FreeBSD"],
-			"formats": ["adoc"],
+			"styles": [
+				"FreeBSD"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "freebsd/freebsd-doc",
@@ -1523,17 +2140,59 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 387,
-			"pushed": "2026-09-28",
+			"stars": 390,
+			"pushed": "2026-10-30",
 			"touched": "2023-08-01",
 			"since": "2022-11-10",
 			"runs30": null,
 			"house": true
 		},
+		"Gardener": {
+			"proof": "config",
+			"styles": [
+				"Gardener"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "gardener/documentation",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 43,
+			"pushed": "2026-10-30",
+			"touched": "2026-07-16",
+			"since": "2026-06-02",
+			"runs30": 0,
+			"house": true
+		},
 		"GitHub": {
 			"proof": "config",
-			"styles": ["Semmle"],
-			"formats": ["rst", "csv"],
+			"styles": [
+				"Semmle"
+			],
+			"formats": [
+				"rst",
+				"csv"
+			],
 			"vocab": false,
 			"level": "suggestions",
 			"repo": "github/codeql",
@@ -1552,8 +2211,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 10136,
-			"pushed": "2026-09-28",
+			"stars": 10280,
+			"pushed": "2026-10-30",
 			"touched": "2020-11-12",
 			"since": "2020-11-12",
 			"runs30": null,
@@ -1561,8 +2220,15 @@
 		},
 		"GitLab": {
 			"proof": "writeup",
-			"styles": ["gitlab_base", "gitlab_docs", "gitlab_release_notes", "gitlab_release_index"],
-			"formats": ["md"],
+			"styles": [
+				"gitlab_base",
+				"gitlab_docs",
+				"gitlab_release_notes",
+				"gitlab_release_index"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "gitlab.com/gitlab-org/gitlab",
@@ -1581,10 +2247,10 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 6147,
-			"pushed": "2026-09-28",
-			"touched": "2026-08-17",
-			"since": "2020-01-27",
+			"stars": 6187,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-14",
+			"since": null,
 			"runs30": null,
 			"house": true
 		},
@@ -1596,7 +2262,9 @@
 			"level": null,
 			"repo": "alphagov/tech-docs-linter",
 			"integrations": {
-				"actions": [".github/workflows/test.yaml"],
+				"actions": [
+					".github/workflows/test.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1610,8 +2278,8 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 12,
-			"pushed": "2026-09-28",
+			"stars": 13,
+			"pushed": "2026-10-29",
 			"touched": null,
 			"since": "2024-02-15",
 			"runs30": 0,
@@ -1619,8 +2287,16 @@
 		},
 		"GOV.UK One Login": {
 			"proof": "config",
-			"styles": ["tech-writing-style-guide"],
-			"formats": ["md", "org", "txt", "erb", "html"],
+			"styles": [
+				"tech-writing-style-guide"
+			],
+			"formats": [
+				"md",
+				"org",
+				"txt",
+				"erb",
+				"html"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "govuk-one-login/tech-docs",
@@ -1640,7 +2316,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 16,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2024-02-29",
 			"since": "2024-02-29",
 			"runs30": null,
@@ -1648,13 +2324,19 @@
 		},
 		"Grafana Labs": {
 			"proof": "writeup",
-			"styles": ["Grafana"],
-			"formats": ["md"],
+			"styles": [
+				"Grafana"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "grafana/grafana",
 			"integrations": {
-				"actions": [".github/workflows/documentation-ci.yml"],
+				"actions": [
+					".github/workflows/documentation-ci.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1668,22 +2350,29 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 76968,
-			"pushed": "2026-09-28",
+			"stars": 77598,
+			"pushed": "2026-10-31",
 			"touched": "2026-08-03",
 			"since": "2025-01-14",
-			"runs30": 406,
+			"runs30": 607,
 			"house": true
 		},
 		"Graphile": {
 			"proof": "config",
-			"styles": ["Microsoft", "Graphile"],
-			"formats": ["md"],
+			"styles": [
+				"Microsoft",
+				"Graphile"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "graphile/crystal",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -1693,21 +2382,28 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 12935,
-			"pushed": "2026-09-28",
+			"stars": 12934,
+			"pushed": "2026-10-30",
 			"touched": "2026-05-03",
 			"since": "2026-05-03",
-			"runs30": 178,
+			"runs30": 95,
 			"house": true
 		},
 		"Harness": {
 			"proof": "config",
-			"styles": ["Microsoft", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "harness/developer-hub",
@@ -1722,79 +2418,287 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": false,
 			"preCommit": false,
 			"stars": 82,
-			"pushed": "2026-09-17",
+			"pushed": "2026-09-29",
 			"touched": "2023-07-20",
 			"since": "2022-10-05",
 			"runs30": null,
 			"house": false
 		},
+		"Hazelcast": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"Hazelcast"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "hazelcast/documentation",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 0,
+			"pushed": "2026-10-30",
+			"touched": "2026-10-23",
+			"since": "2026-10-23",
+			"runs30": null,
+			"house": true
+		},
 		"Homebrew": {
 			"proof": "config",
-			"styles": ["Homebrew"],
-			"formats": ["md", "rb"],
+			"styles": [
+				"Homebrew"
+			],
+			"formats": [
+				"md",
+				"rb"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "Homebrew/brew",
 			"integrations": {
-				"actions": [".github/workflows/docs.yml"],
+				"actions": [
+					".github/workflows/docs.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["docs/AGENTS.md"],
+				"agents": [
+					"docs/AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 49810,
-			"pushed": "2026-09-28",
+			"stars": 50167,
+			"pushed": "2026-10-31",
 			"touched": "2026-07-20",
 			"since": "2019-12-17",
-			"runs30": 1497,
+			"runs30": 880,
 			"house": true
+		},
+		"HURIDOCS": {
+			"proof": "config",
+			"styles": [
+				"Uwazi"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"docs",
+				"blog"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "huridocs/uwazi-knowledge-hub",
+			"integrations": {
+				"actions": [
+					".github/workflows/ci.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"package.json"
+				],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 1,
+			"pushed": "2026-10-13",
+			"touched": "2026-05-21",
+			"since": "2026-05-01",
+			"runs30": 2,
+			"house": true
+		},
+		"ICTU": {
+			"proof": "config",
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "ICTU/sonar",
+			"integrations": {
+				"actions": [
+					".github/workflows/markdown-lint.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 4,
+			"pushed": "2026-10-23",
+			"touched": "2025-06-13",
+			"since": "2024-11-14",
+			"runs30": 1,
+			"house": false
+		},
+		"IISER Mohali": {
+			"proof": "config",
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [],
+			"vocab": false,
+			"level": "error",
+			"repo": "IISERM/thewiki",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 0,
+			"pushed": "2024-04-13",
+			"touched": "2023-05-02",
+			"since": "2023-05-02",
+			"runs30": null,
+			"house": false
+		},
+		"Imply": {
+			"proof": "config",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "error",
+			"repo": "implydata/learn-druid",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": true,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 63,
+			"pushed": "2026-06-02",
+			"touched": "2025-10-15",
+			"since": "2025-10-10",
+			"runs30": 0,
+			"house": false
 		},
 		"Infisical": {
 			"proof": "config",
-			"styles": ["Infisical"],
-			"formats": ["mdx"],
+			"styles": [
+				"Infisical"
+			],
+			"formats": [
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "Infisical/infisical",
 			"integrations": {
-				"actions": [".github/workflows/check-docs-style.yml"],
+				"actions": [
+					".github/workflows/check-docs-style.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md", "CLAUDE.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 29491,
-			"pushed": "2026-09-28",
+			"stars": 30188,
+			"pushed": "2026-10-31",
 			"touched": "2026-08-20",
 			"since": "2026-08-20",
-			"runs30": 1944,
+			"runs30": 2837,
 			"house": true
 		},
 		"InfluxData": {
 			"proof": "config",
-			"styles": ["InfluxDataDocs", "Google", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"InfluxDataDocs",
+				"Google",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "influxdata/docs-v2",
@@ -1816,40 +2720,50 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 82,
-			"pushed": "2026-09-28",
-			"touched": "2026-05-22",
+			"stars": 83,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-14",
 			"since": "2023-08-01",
-			"runs30": 168,
+			"runs30": 267,
 			"house": true
 		},
 		"Infrahub": {
 			"proof": "config",
-			"styles": ["Infrahub"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Infrahub"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "opsmill/infrahub",
 			"integrations": {
-				"actions": [".github/workflows/bug-agent-test.md", ".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/bug-agent-test.md",
+					".github/workflows/ci.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["docs/AGENTS.md"],
+				"agents": [
+					"docs/AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 526,
-			"pushed": "2026-09-28",
+			"stars": 544,
+			"pushed": "2026-10-31",
 			"touched": "2026-09-07",
 			"since": "2023-11-28",
-			"runs30": 1198,
+			"runs30": 1848,
 			"house": true
 		},
 		"ING": {
@@ -1871,28 +2785,40 @@
 		},
 		"Innovations for Poverty Action": {
 			"proof": "config",
-			"styles": ["IPA", "Microsoft"],
-			"formats": ["md", "qmd"],
+			"styles": [
+				"IPA",
+				"Microsoft"
+			],
+			"formats": [
+				"md",
+				"qmd"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "PovertyAction/ipa-research-data-science-hub",
 			"integrations": {
-				"actions": [".github/workflows/checks.yml"],
+				"actions": [
+					".github/workflows/checks.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 3,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-27",
 			"touched": "2025-06-30",
 			"since": "2025-03-10",
 			"runs30": 14,
@@ -1920,8 +2846,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 3093,
-			"pushed": "2026-09-28",
+			"stars": 3097,
+			"pushed": "2026-10-29",
 			"touched": null,
 			"since": "2022-05-17",
 			"runs30": null,
@@ -1929,13 +2855,19 @@
 		},
 		"IPFS": {
 			"proof": "config",
-			"styles": ["docs"],
-			"formats": ["md"],
+			"styles": [
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "ipfs/ipfs-docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -1949,22 +2881,100 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 332,
+			"stars": 334,
 			"pushed": "2026-09-27",
 			"touched": "2024-07-24",
 			"since": "2022-12-20",
 			"runs30": 1,
 			"house": true
 		},
+		"JabRef": {
+			"proof": "config",
+			"styles": [
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "JabRef/user-documentation",
+			"integrations": {
+				"actions": [
+					".github/workflows/lint.yaml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 54,
+			"pushed": "2026-10-28",
+			"touched": "2026-07-06",
+			"since": "2026-07-06",
+			"runs30": 78,
+			"house": false
+		},
+		"Jenkins Templating Engine": {
+			"proof": "writeup",
+			"styles": [
+				"Microsoft",
+				"JTE"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "jenkinsci/templating-engine-plugin",
+			"integrations": {
+				"actions": [
+					".github/workflows/CI.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 179,
+			"pushed": "2025-04-12",
+			"touched": "2021-10-13",
+			"since": "2021-10-11",
+			"runs30": 0,
+			"house": true
+		},
 		"JuMP": {
 			"proof": "config",
-			"styles": ["Google"],
-			"formats": ["md", "jl"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"jl"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "jump-dev/JuMP.jl",
 			"integrations": {
-				"actions": [".github/workflows/documentation.yml"],
+				"actions": [
+					".github/workflows/documentation.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -1978,17 +2988,21 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 2481,
-			"pushed": "2026-09-28",
+			"stars": 2488,
+			"pushed": "2026-10-28",
 			"touched": "2026-08-18",
 			"since": "2024-04-08",
-			"runs30": 132,
+			"runs30": 30,
 			"house": false
 		},
 		"Kedro": {
 			"proof": "config",
-			"styles": ["Kedro"],
-			"formats": ["md"],
+			"styles": [
+				"Kedro"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "kedro-org/kedro",
@@ -2004,86 +3018,34 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 11012,
-			"pushed": "2026-09-28",
+			"stars": 11038,
+			"pushed": "2026-10-28",
 			"touched": "2026-04-29",
 			"since": "2023-08-22",
-			"runs30": 199,
+			"runs30": 221,
 			"house": true
 		},
-		"Kong": {
+		"kitconcept": {
 			"proof": "config",
-			"styles": ["base", "docs"],
-			"formats": ["md"],
-			"vocab": false,
-			"level": "suggestion",
-			"repo": "Kong/developer.konghq.com",
-			"integrations": {
-				"actions": [".github/workflows/linting.yml"],
-				"valeAction": true,
-				"reviewdog": false,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": null,
-				"agents": ["CLAUDE.md"],
-				"tasks": ["Makefile"],
-				"vscode": null,
-				"contributing": []
-			},
-			"ci": true,
-			"preCommit": false,
-			"stars": 28,
-			"pushed": "2026-09-28",
-			"touched": "2025-05-14",
-			"since": "2024-11-25",
-			"runs30": 2933,
-			"house": true
-		},
-		"LangChain": {
-			"proof": "config",
-			"styles": ["LangChain", "proselint", "vale", "write-good"],
-			"formats": ["md", "mdx"],
-			"vocab": false,
-			"level": "error",
-			"repo": "langchain-ai/docs",
-			"integrations": {
-				"actions": [".github/workflows/lint-prose.yml"],
-				"valeAction": false,
-				"reviewdog": false,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": ".pre-commit-config.yaml",
-				"agents": ["AGENTS.md"],
-				"tasks": ["Makefile"],
-				"vscode": null,
-				"contributing": []
-			},
-			"ci": true,
-			"preCommit": true,
-			"stars": 420,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-10",
-			"since": "2026-03-09",
-			"runs30": 1153,
-			"house": true
-		},
-		"Lean": {
-			"proof": "config",
-			"styles": ["Lean", "proselint"],
+			"styles": [
+				"Microsoft"
+			],
 			"formats": [],
 			"vocab": true,
 			"level": "suggestion",
-			"repo": "leanprover/reference-manual",
+			"repo": "kitconcept/kitconcept-core",
 			"integrations": {
-				"actions": [".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/docs.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2093,26 +3055,301 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 131,
-			"pushed": "2026-09-28",
+			"stars": 0,
+			"pushed": "2026-10-23",
+			"touched": "2025-04-28",
+			"since": "2025-04-28",
+			"runs30": 0,
+			"house": false
+		},
+		"Kong": {
+			"proof": "config",
+			"styles": [
+				"base",
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "Kong/developer.konghq.com",
+			"integrations": {
+				"actions": [
+					".github/workflows/linting.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"CLAUDE.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 28,
+			"pushed": "2026-10-31",
+			"touched": "2025-05-14",
+			"since": "2024-11-25",
+			"runs30": 1324,
+			"house": true
+		},
+		"Konstruct": {
+			"proof": "config",
+			"styles": [
+				"Custom"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "konstructio/gitops-catalog",
+			"integrations": {
+				"actions": [
+					".github/workflows/check-syntax.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 31,
+			"pushed": "2025-09-10",
+			"touched": "2025-08-17",
+			"since": "2023-11-15",
+			"runs30": 0,
+			"house": true
+		},
+		"Kuma": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"Kuma"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "error",
+			"repo": "kumahq/kuma-website",
+			"integrations": {
+				"actions": [
+					".github/workflows/ci.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"CLAUDE.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 139,
+			"pushed": "2026-10-30",
+			"touched": "2025-11-25",
+			"since": "2022-07-07",
+			"runs30": 90,
+			"house": true
+		},
+		"LanceDB": {
+			"proof": "config",
+			"styles": [
+				"LanceDB"
+			],
+			"formats": [
+				"mdx"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "lancedb/lancedb",
+			"integrations": {
+				"actions": [
+					".github/workflows/docs-style.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 11821,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-28",
+			"since": "2026-10-19",
+			"runs30": 188,
+			"house": true
+		},
+		"LangChain": {
+			"proof": "config",
+			"styles": [
+				"LangChain",
+				"proselint",
+				"vale",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"vocab": false,
+			"level": "error",
+			"repo": "langchain-ai/docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/changelog-weekly.yml",
+					".github/workflows/lint-prose.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": ".pre-commit-config.yaml",
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": true,
+			"stars": 443,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-20",
+			"since": "2026-03-09",
+			"runs30": 1744,
+			"house": true
+		},
+		"Lean": {
+			"proof": "config",
+			"styles": [
+				"Lean",
+				"proselint"
+			],
+			"formats": [],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "leanprover/reference-manual",
+			"integrations": {
+				"actions": [
+					".github/workflows/ci.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 136,
+			"pushed": "2026-10-30",
 			"touched": "2025-02-19",
 			"since": "2024-11-04",
-			"runs30": 181,
+			"runs30": 93,
+			"house": true
+		},
+		"Lightbend": {
+			"proof": "config",
+			"styles": [
+				"Lightbend",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"adoc"
+			],
+			"vocab": true,
+			"level": "error",
+			"repo": "lightbend/kalix-jvm-sdk",
+			"integrations": {
+				"actions": [
+					".github/workflows/documentation.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 67,
+			"pushed": "2026-10-23",
+			"touched": "2024-01-17",
+			"since": "2022-09-15",
+			"runs30": 12,
 			"house": true
 		},
 		"Linode": {
 			"proof": "config",
-			"styles": ["Linode"],
-			"formats": ["md"],
+			"styles": [
+				"Linode"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "linode/docs",
 			"integrations": {
-				"actions": [".github/workflows/test.yaml"],
+				"actions": [
+					".github/workflows/test.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -2122,20 +3359,24 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1395,
-			"pushed": "2026-09-28",
+			"stars": 1392,
+			"pushed": "2026-10-30",
 			"touched": "2024-05-21",
 			"since": "2018-02-07",
-			"runs30": 4,
+			"runs30": 8,
 			"house": true
 		},
 		"Linux Foundation": {
 			"proof": "config",
-			"styles": ["Microsoft"],
+			"styles": [
+				"Microsoft"
+			],
 			"formats": [],
 			"vocab": false,
 			"level": "suggestion",
@@ -2164,13 +3405,19 @@
 		},
 		"Manticore Games": {
 			"proof": "config",
-			"styles": ["Google"],
-			"formats": ["md"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "ManticoreGamesInc/platform-documentation",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2178,7 +3425,9 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
@@ -2193,13 +3442,24 @@
 		},
 		"Mastra": {
 			"proof": "config",
-			"styles": ["write-good", "Mastra", "signs-of-ai-writing", "ai-tells", "ai-tells-overrides"],
-			"formats": ["docs", "guides"],
+			"styles": [
+				"write-good",
+				"Mastra",
+				"signs-of-ai-writing",
+				"ai-tells",
+				"ai-tells-overrides"
+			],
+			"formats": [
+				"docs",
+				"guides"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "mastra-ai/mastra",
 			"integrations": {
-				"actions": [".github/workflows/lint-docs.yml"],
+				"actions": [
+					".github/workflows/lint-docs.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2209,21 +3469,29 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["docs/CONTRIBUTING.md"]
+				"contributing": [
+					"docs/CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 28402,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-09",
+			"stars": 29228,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-07",
 			"since": "2026-02-23",
-			"runs30": 8935,
+			"runs30": 13383,
 			"house": true
 		},
 		"Mattermost": {
 			"proof": "config",
-			"styles": ["Mattermost"],
-			"formats": ["md", "mdx", "rst"],
+			"styles": [
+				"Mattermost"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"rst"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "mattermost/mattermost",
@@ -2242,8 +3510,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 39211,
-			"pushed": "2026-09-28",
+			"stars": 39488,
+			"pushed": "2026-10-31",
 			"touched": "2026-07-02",
 			"since": "2026-07-02",
 			"runs30": null,
@@ -2251,13 +3519,20 @@
 		},
 		"Mautic": {
 			"proof": "config",
-			"styles": ["Google", "Mautic"],
-			"formats": ["md"],
+			"styles": [
+				"Google",
+				"Mautic"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "mautic/mautic-documentation",
 			"integrations": {
-				"actions": [".github/workflows/linting.yml"],
+				"actions": [
+					".github/workflows/linting.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2280,8 +3555,12 @@
 		},
 		"McKinsey": {
 			"proof": "config",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "mckinsey/vizro",
@@ -2300,8 +3579,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 3798,
-			"pushed": "2026-09-28",
+			"stars": 3817,
+			"pushed": "2026-10-30",
 			"touched": "2024-04-16",
 			"since": "2024-03-27",
 			"runs30": null,
@@ -2309,13 +3588,21 @@
 		},
 		"Medusa": {
 			"proof": "config",
-			"styles": ["write-good", "docs"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"write-good",
+				"docs"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "medusajs/medusa",
 			"integrations": {
-				"actions": [".github/workflows/docs-test.yml"],
+				"actions": [
+					".github/workflows/docs-test.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -2329,22 +3616,32 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 36507,
-			"pushed": "2026-09-28",
+			"stars": 37029,
+			"pushed": "2026-10-31",
 			"touched": "2024-03-18",
 			"since": "2022-09-22",
-			"runs30": 357,
+			"runs30": 347,
 			"house": true
 		},
 		"Mendix": {
 			"proof": "config",
-			"styles": ["Microsoft", "Mendix"],
-			"formats": ["md", "mdx", "howto8", "howto9"],
+			"styles": [
+				"Microsoft",
+				"Mendix"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"howto8",
+				"howto9"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "mendix/docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2358,22 +3655,30 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 184,
-			"pushed": "2026-09-28",
+			"stars": 185,
+			"pushed": "2026-10-30",
 			"touched": "2026-06-08",
 			"since": "2026-06-03",
-			"runs30": 558,
+			"runs30": 564,
 			"house": true
 		},
 		"Mesa": {
 			"proof": "config",
-			"styles": ["Google", "Mesa"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"Google",
+				"Mesa"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "mesa/mesa",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2387,11 +3692,11 @@
 			},
 			"ci": true,
 			"preCommit": true,
-			"stars": 3860,
-			"pushed": "2026-09-23",
+			"stars": 3930,
+			"pushed": "2026-10-29",
 			"touched": "2026-01-07",
 			"since": "2026-01-07",
-			"runs30": 5,
+			"runs30": 68,
 			"house": true
 		},
 		"MetaMask": {
@@ -2402,25 +3707,29 @@
 			"level": null,
 			"repo": "MetaMask/metamask-docs",
 			"integrations": {
-				"actions": [".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/ci.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 865,
-			"pushed": "2026-09-24",
+			"stars": 868,
+			"pushed": "2026-10-29",
 			"touched": "2026-07-02",
 			"since": "2025-04-28",
-			"runs30": 39,
+			"runs30": 14,
 			"house": null
 		},
 		"Microsoft": {
@@ -2431,7 +3740,10 @@
 			"level": null,
 			"repo": "microsoft/Documentarian",
 			"integrations": {
-				"actions": [".github/workflows/build.pwsh.yaml", ".github/workflows/test.pwsh.yaml"],
+				"actions": [
+					".github/workflows/build.pwsh.yaml",
+					".github/workflows/test.pwsh.yaml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2445,17 +3757,23 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 50,
-			"pushed": "2026-09-12",
+			"stars": 51,
+			"pushed": "2026-10-19",
 			"touched": null,
 			"since": "2022-10-18",
-			"runs30": 2,
+			"runs30": 3,
 			"house": null
 		},
 		"Mintlify": {
 			"proof": "writeup",
-			"styles": ["Mintlify"],
-			"formats": ["mdx", "color", "tree"],
+			"styles": [
+				"Mintlify"
+			],
+			"formats": [
+				"mdx",
+				"color",
+				"tree"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "mintlify/docs",
@@ -2474,8 +3792,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 449,
-			"pushed": "2026-09-28",
+			"stars": 460,
+			"pushed": "2026-10-31",
 			"touched": "2026-08-14",
 			"since": "2025-09-19",
 			"runs30": null,
@@ -2483,13 +3801,23 @@
 		},
 		"mirrord": {
 			"proof": "config",
-			"styles": ["write-good", "Google", "Metalbear"],
-			"formats": ["md", "rs"],
+			"styles": [
+				"write-good",
+				"Google",
+				"Metalbear"
+			],
+			"formats": [
+				"md",
+				"rs"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "metalbear-co/mirrord",
 			"integrations": {
-				"actions": [".github/workflows/check-lint.yaml", ".github/workflows/ci.yaml"],
+				"actions": [
+					".github/workflows/check-lint.yaml",
+					".github/workflows/ci.yaml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2499,45 +3827,35 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 5340,
-			"pushed": "2026-09-28",
+			"stars": 5396,
+			"pushed": "2026-10-31",
 			"touched": "2026-03-12",
 			"since": "2026-03-12",
-			"runs30": 903,
+			"runs30": 1174,
 			"house": true
 		},
 		"Mistral AI": {
 			"proof": "config",
-			"styles": ["Microsoft", "Mistral"],
-			"formats": ["md", "mdx"],
-			"vocab": true,
-			"level": "warning",
-			"repo": "mistralai/platform-docs-public",
-			"integrations": {
-				"actions": [],
-				"valeAction": false,
-				"reviewdog": false,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": null,
-				"agents": [],
-				"tasks": ["package.json"],
-				"vscode": null,
-				"contributing": []
-			},
-			"ci": false,
-			"preCommit": false,
-			"stars": 73,
-			"pushed": "2026-09-28",
-			"touched": "2026-04-17",
-			"since": "2026-04-17",
+			"styles": null,
+			"formats": null,
+			"vocab": null,
+			"level": null,
+			"repo": null,
+			"integrations": null,
+			"ci": null,
+			"preCommit": null,
+			"stars": null,
+			"pushed": null,
+			"touched": null,
+			"since": null,
 			"runs30": null,
-			"house": true
+			"house": null
 		},
 		"MongoDB": {
 			"proof": "config",
@@ -2547,65 +3865,88 @@
 			"level": null,
 			"repo": "mongodb/docs",
 			"integrations": {
-				"actions": [".github/workflows/lint-docs.yml"],
+				"actions": [
+					".github/workflows/lint-docs.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 777,
-			"pushed": "2026-09-28",
-			"touched": "2026-05-11",
+			"stars": 779,
+			"pushed": "2026-10-30",
+			"touched": "2026-10-07",
 			"since": "2026-05-11",
 			"runs30": 0,
 			"house": null
 		},
 		"MUI": {
 			"proof": "config",
-			"styles": ["MUI"],
-			"formats": ["md"],
+			"styles": [
+				"MUI"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "mui/material-ui",
 			"integrations": {
-				"actions": [".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/ci.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
-				"tasks": ["package.json"],
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 99109,
-			"pushed": "2026-09-28",
-			"touched": "2026-04-29",
+			"stars": 99286,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-01",
 			"since": "2023-10-30",
-			"runs30": 1013,
+			"runs30": 1163,
 			"house": true
 		},
 		"n8n": {
 			"proof": "config",
-			"styles": ["from-write-good", "n8n-styles", "from-microsoft"],
-			"formats": ["md"],
+			"styles": [
+				"from-write-good",
+				"n8n-styles",
+				"from-microsoft"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "n8n-io/n8n-docs",
 			"integrations": {
-				"actions": [".github/workflows/docops-auto-merge.yml", ".github/workflows/lint.yml"],
+				"actions": [
+					".github/workflows/docops-auto-merge.yml",
+					".github/workflows/lint.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2619,17 +3960,59 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1799,
-			"pushed": "2026-09-28",
+			"stars": 1838,
+			"pushed": "2026-10-31",
 			"touched": "2026-09-24",
 			"since": "2022-04-20",
-			"runs30": 3687,
+			"runs30": 3734,
+			"house": true
+		},
+		"NASA": {
+			"proof": "config",
+			"styles": [
+				"NASA",
+				"PlainLanguage"
+			],
+			"formats": [
+				"md",
+				"ts",
+				"html"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "nasa/terra-ui-components",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"package.json"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 9,
+			"pushed": "2026-10-30",
+			"touched": "2026-10-23",
+			"since": "2026-10-23",
+			"runs30": null,
 			"house": true
 		},
 		"Neo4j": {
 			"proof": "config",
-			"styles": ["Neo4j"],
-			"formats": ["adoc"],
+			"styles": [
+				"Neo4j"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "neo4j/docs-tools",
@@ -2653,7 +4036,7 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 0,
-			"pushed": "2026-09-25",
+			"pushed": "2026-10-30",
 			"touched": "2024-01-19",
 			"since": "2024-01-19",
 			"runs30": 0,
@@ -2661,8 +4044,13 @@
 		},
 		"Neon": {
 			"proof": "config",
-			"styles": ["Neon"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Neon"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "neondatabase/website",
@@ -2681,8 +4069,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 325,
-			"pushed": "2026-09-28",
+			"stars": 333,
+			"pushed": "2026-10-31",
 			"touched": "2026-05-09",
 			"since": "2026-05-09",
 			"runs30": null,
@@ -2690,8 +4078,14 @@
 		},
 		"Netlify": {
 			"proof": "config",
-			"styles": ["base", "netlify-terms", "smart-marks"],
-			"formats": ["md"],
+			"styles": [
+				"base",
+				"netlify-terms",
+				"smart-marks"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "netlify/cli",
@@ -2711,15 +4105,17 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1920,
-			"pushed": "2026-09-28",
+			"stars": 1934,
+			"pushed": "2026-10-30",
 			"touched": "2021-05-04",
 			"since": "2021-05-04",
-			"runs30": 1432,
+			"runs30": 2108,
 			"house": true
 		},
 		"New Relic": {
@@ -2730,7 +4126,9 @@
 			"level": null,
 			"repo": "newrelic/docs-website",
 			"integrations": {
-				"actions": [".github/workflows/vale-lint.yml"],
+				"actions": [
+					".github/workflows/vale-lint.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -2744,22 +4142,63 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 197,
-			"pushed": "2026-09-28",
+			"stars": 198,
+			"pushed": "2026-10-30",
 			"touched": "2023-01-19",
 			"since": "2022-12-08",
-			"runs30": 861,
+			"runs30": 829,
 			"house": null
+		},
+		"Nextcloud": {
+			"proof": "config",
+			"styles": [],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "nextcloud/news",
+			"integrations": {
+				"actions": [
+					".github/workflows/lint-text.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					".github/copilot-instructions.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 1012,
+			"pushed": "2026-10-31",
+			"touched": "2025-05-13",
+			"since": "2024-08-18",
+			"runs30": 118,
+			"house": false
 		},
 		"nf-core": {
 			"proof": "config",
-			"styles": ["nf-core"],
-			"formats": ["md"],
+			"styles": [
+				"nf-core"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "nf-core/website",
 			"integrations": {
-				"actions": [".github/workflows/linting.yml"],
+				"actions": [
+					".github/workflows/linting.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2773,22 +4212,29 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 98,
-			"pushed": "2026-09-28",
+			"stars": 100,
+			"pushed": "2026-10-31",
 			"touched": "2024-02-09",
 			"since": "2024-01-25",
-			"runs30": 245,
+			"runs30": 388,
 			"house": true
 		},
 		"ngrok": {
 			"proof": "config",
-			"styles": ["StyleRules"],
-			"formats": ["mdx"],
+			"styles": [
+				"StyleRules"
+			],
+			"formats": [
+				"mdx"
+			],
 			"vocab": true,
-			"level": "warning",
+			"level": "suggestion",
 			"repo": "ngrok/ngrok-docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/apply-style-guide.yml",
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2796,28 +4242,36 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 163,
-			"pushed": "2026-09-28",
-			"touched": "2026-06-24",
+			"stars": 166,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-20",
 			"since": "2025-10-20",
-			"runs30": 125,
+			"runs30": 256,
 			"house": true
 		},
 		"Nix": {
 			"proof": "config",
-			"styles": ["Style"],
-			"formats": ["md"],
+			"styles": [
+				"Style"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "nixos/nix.dev",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2831,11 +4285,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 3983,
-			"pushed": "2026-09-24",
+			"stars": 4039,
+			"pushed": "2026-10-30",
 			"touched": "2023-11-13",
 			"since": "2023-11-13",
-			"runs30": 57,
+			"runs30": 40,
 			"house": true
 		},
 		"NMSU HPC": {
@@ -2857,13 +4311,19 @@
 		},
 		"Nordic Semiconductor": {
 			"proof": "config",
-			"styles": ["Nordic"],
-			"formats": ["rst"],
+			"styles": [
+				"Nordic"
+			],
+			"formats": [
+				"rst"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "nrfconnect/sdk-nrf",
 			"integrations": {
-				"actions": [".github/workflows/vale-lint.yml"],
+				"actions": [
+					".github/workflows/vale-lint.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2877,16 +4337,22 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1430,
-			"pushed": "2026-09-28",
+			"stars": 1443,
+			"pushed": "2026-10-30",
 			"touched": "2025-06-24",
 			"since": "2025-06-24",
-			"runs30": 1018,
+			"runs30": 887,
 			"house": true
 		},
 		"Northwestern Yang Lab": {
 			"proof": "config",
-			"styles": ["proselint", "write-good", "alex", "Readability", "Joblint"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"alex",
+				"Readability",
+				"Joblint"
+			],
 			"formats": [],
 			"vocab": false,
 			"level": "suggestion",
@@ -2906,8 +4372,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 11,
-			"pushed": "2026-09-21",
+			"stars": 13,
+			"pushed": "2026-10-19",
 			"touched": "2024-02-13",
 			"since": "2024-02-13",
 			"runs30": null,
@@ -2915,13 +4381,22 @@
 		},
 		"Novu": {
 			"proof": "config",
-			"styles": ["Google", "Novu", "write-good"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Google",
+				"Novu",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "novuhq/docs",
 			"integrations": {
-				"actions": [".github/workflows/pr-checks.yml"],
+				"actions": [
+					".github/workflows/pr-checks.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2929,23 +4404,65 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 53,
-			"pushed": "2026-06-24",
+			"pushed": "2026-10-13",
 			"touched": "2026-04-22",
 			"since": "2025-12-18",
-			"runs30": 0,
+			"runs30": 2,
+			"house": true
+		},
+		"Nuclio": {
+			"proof": "config",
+			"styles": [
+				"Nuclio"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "nuclio/nuclio",
+			"integrations": {
+				"actions": [
+					".github/workflows/docs-language-linter.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 5769,
+			"pushed": "2026-10-29",
+			"touched": "2024-07-16",
+			"since": "2024-07-16",
+			"runs30": 29,
 			"house": true
 		},
 		"NVIDIA": {
 			"proof": "writeup",
 			"styles": [],
-			"formats": ["md", "rst"],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": true,
 			"level": "error",
 			"repo": "NVIDIA/NeMo-Agent-Toolkit",
@@ -2964,22 +4481,26 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 2650,
-			"pushed": "2026-09-26",
+			"stars": 2688,
+			"pushed": "2026-10-31",
 			"touched": "2025-08-12",
 			"since": "2025-03-14",
 			"runs30": null,
 			"house": false
 		},
-		"Open Policy Agent": {
+		"Open Energy Transition": {
 			"proof": "config",
-			"styles": ["OPA"],
-			"formats": ["md"],
-			"vocab": true,
-			"level": "suggestion",
-			"repo": "open-policy-agent/opa",
+			"styles": [
+				"handbook"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": null,
+			"repo": "open-energy-transition/oet-hugo-handbook",
 			"integrations": {
-				"actions": [".github/workflows/pull-request.yaml"],
+				"actions": [],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -2991,53 +4512,34 @@
 				"vscode": null,
 				"contributing": []
 			},
-			"ci": true,
+			"ci": false,
 			"preCommit": false,
-			"stars": 12282,
-			"pushed": "2026-09-28",
-			"touched": "2026-07-16",
-			"since": "2026-02-05",
-			"runs30": 316,
+			"stars": 0,
+			"pushed": "2024-04-17",
+			"touched": "2024-03-26",
+			"since": "2024-03-26",
+			"runs30": null,
 			"house": true
 		},
-		"OpenSAFELY": {
+		"Open Liberty": {
 			"proof": "config",
-			"styles": ["OpenSAFELY"],
-			"formats": ["md"],
-			"vocab": false,
-			"level": "suggestion",
-			"repo": "opensafely/documentation",
-			"integrations": {
-				"actions": [".github/workflows/check_vale.yml"],
-				"valeAction": false,
-				"reviewdog": false,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": null,
-				"agents": [],
-				"tasks": ["justfile"],
-				"vscode": null,
-				"contributing": []
-			},
-			"ci": true,
-			"preCommit": false,
-			"stars": 48,
-			"pushed": "2026-09-28",
-			"touched": "2023-08-10",
-			"since": "2023-08-10",
-			"runs30": 0,
-			"house": true
-		},
-		"OpenSearch": {
-			"proof": "config",
-			"styles": ["OpenSearch"],
-			"formats": ["md"],
+			"styles": [
+				"WordUsage",
+				"Inclusivity",
+				"Spelling",
+				"Grammar",
+				"Google"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": true,
-			"level": "warning",
-			"repo": "opensearch-project/documentation-website",
+			"level": "suggestion",
+			"repo": "OpenLiberty/blogs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/make_blog_draft_pr.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3047,21 +4549,153 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 12,
+			"pushed": "2026-10-30",
+			"touched": "2025-06-27",
+			"since": "2025-06-27",
+			"runs30": 0,
+			"house": true
+		},
+		"Open Policy Agent": {
+			"proof": "config",
+			"styles": [
+				"OPA"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "open-policy-agent/opa",
+			"integrations": {
+				"actions": [
+					".github/workflows/pull-request.yaml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 12418,
+			"pushed": "2026-10-31",
+			"touched": "2026-07-16",
+			"since": "2026-02-05",
+			"runs30": 280,
+			"house": true
+		},
+		"OpenGeoSys": {
+			"proof": "writeup",
+			"styles": null,
+			"formats": null,
+			"vocab": null,
+			"level": null,
+			"repo": null,
+			"integrations": null,
+			"ci": null,
+			"preCommit": null,
+			"stars": null,
+			"pushed": null,
+			"touched": null,
+			"since": null,
+			"runs30": null,
+			"house": null
+		},
+		"OpenSAFELY": {
+			"proof": "config",
+			"styles": [
+				"OpenSAFELY"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "opensafely/documentation",
+			"integrations": {
+				"actions": [
+					".github/workflows/check_vale.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"justfile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 48,
+			"pushed": "2026-10-30",
+			"touched": "2023-08-10",
+			"since": "2023-08-10",
+			"runs30": 0,
+			"house": true
+		},
+		"OpenSearch": {
+			"proof": "config",
+			"styles": [
+				"OpenSearch"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "opensearch-project/documentation-website",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 113,
-			"pushed": "2026-09-28",
-			"touched": "2026-07-16",
+			"pushed": "2026-10-29",
+			"touched": "2026-10-06",
 			"since": "2023-05-03",
-			"runs30": 448,
+			"runs30": 432,
 			"house": true
 		},
 		"OpenShift": {
 			"proof": "config",
-			"styles": ["RedHat", "AsciiDoc", "OpenShiftAsciiDoc"],
-			"formats": ["adoc"],
+			"styles": [
+				"RedHat",
+				"AsciiDoc",
+				"OpenShiftAsciiDoc"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "openshift/openshift-docs",
@@ -3080,8 +4714,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 883,
-			"pushed": "2026-09-28",
+			"stars": 885,
+			"pushed": "2026-10-30",
 			"touched": "2026-08-25",
 			"since": "2022-08-30",
 			"runs30": null,
@@ -3109,17 +4743,19 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 27,
-			"pushed": "2026-03-13",
+			"stars": 28,
+			"pushed": "2026-10-30",
 			"touched": null,
-			"since": "2022-06-27",
+			"since": "2026-10-13",
 			"runs30": null,
 			"house": null
 		},
 		"Optimism": {
 			"proof": "config",
 			"styles": [],
-			"formats": ["mdx"],
+			"formats": [
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "ethereum-optimism/optimism",
@@ -3138,17 +4774,56 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 6473,
-			"pushed": "2026-09-28",
+			"stars": 6485,
+			"pushed": "2026-10-31",
 			"touched": "2026-03-19",
 			"since": "2026-03-19",
 			"runs30": null,
 			"house": false
 		},
+		"Oracle": {
+			"proof": "config",
+			"styles": [
+				"Oracle",
+				"Markup"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "oracle-livelabs/common",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 6,
+			"pushed": "2026-10-15",
+			"touched": "2022-05-23",
+			"since": "2022-05-23",
+			"runs30": null,
+			"house": true
+		},
 		"OutSystems": {
 			"proof": "config",
-			"styles": ["OutSystems", "alex"],
-			"formats": ["md"],
+			"styles": [
+				"OutSystems",
+				"alex"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "OutSystems/docs-product",
@@ -3160,15 +4835,17 @@
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 54,
-			"pushed": "2026-09-28",
+			"stars": 55,
+			"pushed": "2026-10-30",
 			"touched": "2026-06-22",
 			"since": "2020-05-13",
 			"runs30": null,
@@ -3176,13 +4853,19 @@
 		},
 		"Palo Alto Networks": {
 			"proof": "config",
-			"styles": ["Google"],
-			"formats": ["md"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "PaloAltoNetworks/shifter",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3190,22 +4873,65 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 6,
-			"pushed": "2026-09-21",
+			"stars": 7,
+			"pushed": "2026-10-25",
 			"touched": "2026-07-20",
 			"since": "2026-05-24",
-			"runs30": 5,
+			"runs30": 3,
 			"house": false
+		},
+		"Pantheon": {
+			"proof": "config",
+			"styles": [
+				"Pantheon",
+				"Google"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "pantheon-systems/documentation",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale-rules-test.yml",
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 207,
+			"pushed": "2026-10-30",
+			"touched": "2026-10-14",
+			"since": "2026-10-05",
+			"runs30": 165,
+			"house": true
 		},
 		"Pelican": {
 			"proof": "config",
-			"styles": ["proselint", "alex"],
+			"styles": [
+				"proselint",
+				"alex"
+			],
 			"formats": [],
 			"vocab": true,
 			"level": "suggestion",
@@ -3225,80 +4951,24 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 13343,
-			"pushed": "2026-04-20",
+			"stars": 13364,
+			"pushed": "2026-10-13",
 			"touched": "2024-07-30",
 			"since": "2024-07-30",
 			"runs30": null,
 			"house": false
 		},
-		"PingCAP": {
+		"PharmGKB": {
 			"proof": "config",
-			"styles": ["PingCAP"],
-			"formats": ["md"],
+			"styles": [],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
-			"repo": "pingcap/docs",
+			"repo": "PharmGKB/PharmCAT",
 			"integrations": {
-				"actions": [".github/workflows/ci.yaml"],
-				"valeAction": true,
-				"reviewdog": true,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": null,
-				"agents": [],
-				"tasks": [],
-				"vscode": null,
-				"contributing": []
-			},
-			"ci": true,
-			"preCommit": false,
-			"stars": 617,
-			"pushed": "2026-09-28",
-			"touched": "2022-06-17",
-			"since": "2022-04-20",
-			"runs30": 1391,
-			"house": true
-		},
-		"Platform.sh": {
-			"proof": "config",
-			"styles": ["Platform"],
-			"formats": ["md"],
-			"vocab": true,
-			"level": "error",
-			"repo": "platformsh/platformsh-docs",
-			"integrations": {
-				"actions": [".github/workflows/linting.yaml"],
-				"valeAction": true,
-				"reviewdog": true,
-				"gitlab": null,
-				"circle": null,
-				"buildkite": null,
-				"precommit": null,
-				"agents": [],
-				"tasks": [],
-				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
-			},
-			"ci": true,
-			"preCommit": false,
-			"stars": 114,
-			"pushed": "2026-09-28",
-			"touched": "2024-04-03",
-			"since": "2021-09-20",
-			"runs30": 91,
-			"house": true
-		},
-		"Plone": {
-			"proof": "config",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
-			"vocab": true,
-			"level": "suggestion",
-			"repo": "plone/volto",
-			"integrations": {
-				"actions": [".github/workflows/docs.yml"],
+				"actions": [],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3306,22 +4976,172 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 199,
+			"pushed": "2026-10-17",
+			"touched": "2023-12-29",
+			"since": "2023-11-15",
+			"runs30": null,
+			"house": false
+		},
+		"PhotoPrism": {
+			"proof": "config",
+			"styles": [
+				"PhotoPrism"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "photoprism/photoprism-docs",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"AGENTS.md",
+					"CLAUDE.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 69,
+			"pushed": "2026-10-30",
+			"touched": "2026-07-28",
+			"since": "2026-07-28",
+			"runs30": null,
+			"house": true
+		},
+		"PingCAP": {
+			"proof": "config",
+			"styles": [
+				"PingCAP"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "pingcap/docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/ci.yaml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 604,
-			"pushed": "2026-09-27",
+			"stars": 616,
+			"pushed": "2026-10-30",
+			"touched": "2022-06-17",
+			"since": "2022-04-20",
+			"runs30": 1035,
+			"house": true
+		},
+		"Platform.sh": {
+			"proof": "config",
+			"styles": [
+				"Platform"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "error",
+			"repo": "platformsh/platformsh-docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/linting.yaml"
+				],
+				"valeAction": true,
+				"reviewdog": true,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 114,
+			"pushed": "2026-10-31",
+			"touched": "2024-04-03",
+			"since": "2021-09-20",
+			"runs30": 47,
+			"house": true
+		},
+		"Plone": {
+			"proof": "config",
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "plone/volto",
+			"integrations": {
+				"actions": [
+					".github/workflows/docs.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 606,
+			"pushed": "2026-10-31",
 			"touched": "2023-11-05",
 			"since": "2023-03-18",
-			"runs30": 12,
+			"runs30": 31,
 			"house": false
 		},
 		"Polkadot": {
 			"proof": "config",
-			"styles": ["Google", "Polkadot"],
+			"styles": [
+				"Google",
+				"Polkadot"
+			],
 			"formats": [],
 			"vocab": true,
 			"level": "suggestion",
@@ -3341,7 +5161,7 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 436,
+			"stars": 435,
 			"pushed": "2026-09-15",
 			"touched": "2025-10-07",
 			"since": "2025-10-07",
@@ -3350,13 +5170,23 @@
 		},
 		"PostHog": {
 			"proof": "writeup",
-			"styles": ["PostHogBase", "PostHogDocs", "PostHogEditorial"],
-			"formats": ["md", "mdx", "blog"],
+			"styles": [
+				"PostHogBase",
+				"PostHogDocs",
+				"PostHogEditorial"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"blog"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "PostHog/posthog.com",
 			"integrations": {
-				"actions": [".github/workflows/vale-lint.yml"],
+				"actions": [
+					".github/workflows/vale-lint.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3364,17 +5194,19 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1146,
-			"pushed": "2026-09-28",
+			"stars": 1161,
+			"pushed": "2026-10-31",
 			"touched": "2026-02-17",
 			"since": "2026-02-17",
-			"runs30": 1660,
+			"runs30": 2988,
 			"house": true
 		},
 		"Postman": {
@@ -3395,12 +5227,14 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": false,
 			"preCommit": false,
 			"stars": 5,
-			"pushed": "2026-09-18",
+			"pushed": "2026-10-14",
 			"touched": "2023-02-13",
 			"since": "2023-02-13",
 			"runs30": null,
@@ -3408,8 +5242,12 @@
 		},
 		"PowerShell Docs": {
 			"proof": "config",
-			"styles": ["PowerShell-Docs"],
-			"formats": ["md"],
+			"styles": [
+				"PowerShell-Docs"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "MicrosoftDocs/PowerShell-Docs",
@@ -3428,8 +5266,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 2556,
-			"pushed": "2026-09-24",
+			"stars": 2576,
+			"pushed": "2026-10-28",
 			"touched": "2023-03-21",
 			"since": "2023-03-21",
 			"runs30": null,
@@ -3437,7 +5275,10 @@
 		},
 		"Prefect": {
 			"proof": "config",
-			"styles": ["Google", "CustomStyles"],
+			"styles": [
+				"Google",
+				"CustomStyles"
+			],
 			"formats": [],
 			"vocab": false,
 			"level": "warning",
@@ -3450,15 +5291,17 @@
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["docs/AGENTS.md"],
+				"agents": [
+					"docs/AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 23946,
-			"pushed": "2026-09-28",
+			"stars": 24101,
+			"pushed": "2026-10-30",
 			"touched": "2025-07-31",
 			"since": "2024-07-01",
 			"runs30": null,
@@ -3466,13 +5309,19 @@
 		},
 		"Princeton Logion Project": {
 			"proof": "config",
-			"styles": ["logionDoc"],
-			"formats": ["md"],
+			"styles": [
+				"logionDoc"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "princeton-logion/logion-app",
 			"integrations": {
-				"actions": [".github/workflows/publish-docs.yml"],
+				"actions": [
+					".github/workflows/publish-docs.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3486,11 +5335,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 6,
+			"stars": 9,
 			"pushed": "2026-09-28",
 			"touched": "2025-07-09",
 			"since": "2025-04-07",
-			"runs30": 2,
+			"runs30": 0,
 			"house": true
 		},
 		"Progress Chef": {
@@ -3501,7 +5350,9 @@
 			"level": null,
 			"repo": "chef/chef-web-docs",
 			"integrations": {
-				"actions": [".github/workflows/lint.yml"],
+				"actions": [
+					".github/workflows/lint.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -3516,16 +5367,39 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 143,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": null,
 			"since": "2021-04-07",
-			"runs30": 100,
+			"runs30": 115,
+			"house": null
+		},
+		"Promptless": {
+			"proof": "writeup",
+			"styles": null,
+			"formats": null,
+			"vocab": null,
+			"level": null,
+			"repo": null,
+			"integrations": null,
+			"ci": null,
+			"preCommit": null,
+			"stars": null,
+			"pushed": null,
+			"touched": null,
+			"since": null,
+			"runs30": null,
 			"house": null
 		},
 		"Pulumi": {
 			"proof": "config",
-			"styles": ["Pulumi", "Google", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Pulumi",
+				"Google",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "pulumi/docs",
@@ -3541,6 +5415,10 @@
 					".github/workflows/content-review-article.yml",
 					".github/workflows/pull-request.yml",
 					".github/workflows/pulumi-cli-docs.yml",
+					".github/workflows/pulumi-cloud-sdk-dotnet-docs.yml",
+					".github/workflows/pulumi-cloud-sdk-java-docs.yml",
+					".github/workflows/pulumi-cloud-sdk-python-docs.yml",
+					".github/workflows/pulumi-cloud-sdk-typescript-docs.yml",
 					".github/workflows/pulumi-esc-sdk-dotnet-docs.yml",
 					".github/workflows/pulumi-esc-sdk-python-docs.yml",
 					".github/workflows/pulumi-esc-sdk-typescript-docs.yml",
@@ -3560,25 +5438,29 @@
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
-				"tasks": ["Makefile"],
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 179,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-17",
+			"stars": 180,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-06",
 			"since": "2026-05-15",
-			"runs30": 10896,
+			"runs30": 7490,
 			"house": true
 		},
 		"pyOpenSci": {
 			"proof": "config",
-			"styles": ["package-guide-test"],
-			"formats": ["md"],
-			"vocab": true,
+			"styles": null,
+			"formats": null,
+			"vocab": null,
 			"level": null,
 			"repo": "pyOpenSci/python-package-guide",
 			"integrations": {
@@ -3588,30 +5470,78 @@
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
-				"precommit": ".pre-commit-config.yaml",
+				"precommit": null,
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": false,
-			"preCommit": true,
-			"stars": 152,
-			"pushed": "2026-09-26",
-			"touched": "2024-05-23",
+			"preCommit": false,
+			"stars": 153,
+			"pushed": "2026-10-26",
+			"touched": "2026-10-04",
 			"since": "2024-05-20",
 			"runs30": null,
-			"house": true
+			"house": null
+		},
+		"PyVista": {
+			"proof": "config",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"rst",
+				"py"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "pyvista/pyvista",
+			"integrations": {
+				"actions": [
+					".github/workflows/style-docstring.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 3869,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-18",
+			"since": "2023-03-15",
+			"runs30": 689,
+			"house": false
 		},
 		"Qiskit": {
 			"proof": "config",
-			"styles": ["IBMQuantum"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"IBMQuantum"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "Qiskit/qiskit-ibm-runtime",
 			"integrations": {
-				"actions": [".github/workflows/ci.yml"],
+				"actions": [
+					".github/workflows/ci.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3619,17 +5549,21 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 237,
-			"pushed": "2026-09-28",
+			"stars": 240,
+			"pushed": "2026-10-30",
 			"touched": "2023-10-27",
 			"since": "2023-03-07",
-			"runs30": 389,
+			"runs30": 575,
 			"house": true
 		},
 		"Qt": {
@@ -3651,13 +5585,19 @@
 		},
 		"Quarkus": {
 			"proof": "config",
-			"styles": ["Quarkus"],
-			"formats": ["adoc"],
+			"styles": [
+				"Quarkus"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "quarkusio/quarkus",
 			"integrations": {
-				"actions": [".github/workflows/ci-actions-incremental.yml"],
+				"actions": [
+					".github/workflows/ci-actions-incremental.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3671,22 +5611,29 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 15908,
-			"pushed": "2026-09-28",
+			"stars": 15972,
+			"pushed": "2026-10-31",
 			"touched": "2023-01-30",
 			"since": "2023-01-30",
-			"runs30": 1474,
+			"runs30": 1306,
 			"house": true
 		},
 		"Rackspace": {
 			"proof": "config",
-			"styles": ["Rackspace", "Microsoft"],
-			"formats": ["md"],
+			"styles": [
+				"Rackspace",
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "rackerlabs/technical-blog",
 			"integrations": {
-				"actions": [".github/workflows/main.yml"],
+				"actions": [
+					".github/workflows/main.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3709,8 +5656,12 @@
 		},
 		"Rancher": {
 			"proof": "config",
-			"styles": ["common"],
-			"formats": ["md"],
+			"styles": [
+				"common"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "rancher/rancher-docs",
@@ -3730,7 +5681,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 78,
-			"pushed": "2026-07-20",
+			"pushed": "2026-10-14",
 			"touched": "2024-08-02",
 			"since": "2024-05-01",
 			"runs30": null,
@@ -3738,8 +5689,19 @@
 		},
 		"Ray": {
 			"proof": "config",
-			"styles": ["Google", "KubeRay", "Ray", "RLlib"],
-			"formats": ["rst", "md"],
+			"styles": [
+				"Google",
+				"KubeRay",
+				"Ray",
+				"RLlib",
+				"Core",
+				"Train",
+				"Tune"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "ray-project/ray",
@@ -3758,9 +5720,9 @@
 			},
 			"ci": false,
 			"preCommit": true,
-			"stars": 43940,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-18",
+			"stars": 44171,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-23",
 			"since": "2023-08-22",
 			"runs30": null,
 			"house": true
@@ -3787,8 +5749,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 8392,
-			"pushed": "2026-09-28",
+			"stars": 8405,
+			"pushed": "2026-10-29",
 			"touched": "2025-06-23",
 			"since": "2025-06-19",
 			"runs30": null,
@@ -3796,8 +5758,14 @@
 		},
 		"Red Hat": {
 			"proof": "writeup",
-			"styles": ["RedHat"],
-			"formats": ["adoc", "md", "ini"],
+			"styles": [
+				"RedHat"
+			],
+			"formats": [
+				"adoc",
+				"md",
+				"ini"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "redhat-documentation/vale-at-red-hat",
@@ -3823,24 +5791,24 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 57,
-			"pushed": "2026-09-10",
+			"stars": 56,
+			"pushed": "2026-10-26",
 			"touched": "2026-01-19",
 			"since": "2021-05-02",
-			"runs30": 32,
+			"runs30": 14,
 			"house": false
 		},
 		"Redocly": {
 			"proof": "config",
-			"styles": ["Rules"],
-			"formats": ["md", "mdx", "ini"],
-			"vocab": true,
-			"level": "suggestion",
+			"styles": null,
+			"formats": null,
+			"vocab": null,
+			"level": null,
 			"repo": "Redocly/redoc",
 			"integrations": {
-				"actions": [".github/workflows/docs-tests.yaml"],
-				"valeAction": true,
-				"reviewdog": true,
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
@@ -3850,24 +5818,31 @@
 				"vscode": null,
 				"contributing": []
 			},
-			"ci": true,
+			"ci": false,
 			"preCommit": false,
-			"stars": 25930,
-			"pushed": "2026-09-24",
-			"touched": "2023-07-11",
+			"stars": 25993,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-14",
 			"since": "2023-07-11",
-			"runs30": 11,
-			"house": true
+			"runs30": null,
+			"house": null
 		},
 		"RISC-V": {
 			"proof": "config",
-			"styles": ["riscv", "AsciiDoc"],
-			"formats": ["adoc"],
+			"styles": [
+				"riscv",
+				"AsciiDoc"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "riscv/docs-dev-guide",
 			"integrations": {
-				"actions": [".github/workflows/vale-linting.yml"],
+				"actions": [
+					".github/workflows/vale-linting.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3881,11 +5856,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 142,
-			"pushed": "2026-09-28",
+			"stars": 145,
+			"pushed": "2026-10-06",
 			"touched": "2026-09-10",
 			"since": "2025-02-17",
-			"runs30": 12,
+			"runs30": 3,
 			"house": true
 		},
 		"Rocky Linux": {
@@ -3907,8 +5882,17 @@
 		},
 		"rOpenSci": {
 			"proof": "config",
-			"styles": ["proselint", "write-good", "alex", "rOpenSci"],
-			"formats": ["md", "qmd", "rmd"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"alex",
+				"rOpenSci"
+			],
+			"formats": [
+				"md",
+				"qmd",
+				"rmd"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "ropensci/roweb3",
@@ -3928,7 +5912,7 @@
 			"ci": false,
 			"preCommit": false,
 			"stars": 24,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-31",
 			"touched": "2026-06-24",
 			"since": "2026-06-24",
 			"runs30": null,
@@ -3936,20 +5920,31 @@
 		},
 		"Rubin Observatory": {
 			"proof": "writeup",
-			"styles": ["Google", "RSP"],
-			"formats": ["rst", "md"],
+			"styles": [
+				"Google",
+				"RSP"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
 			"vocab": true,
 			"level": null,
 			"repo": "lsst/rsp_lsst_io",
 			"integrations": {
-				"actions": [".github/workflows/ci.yaml", ".github/workflows/periodic-ci.yaml"],
+				"actions": [
+					".github/workflows/ci.yaml",
+					".github/workflows/periodic-ci.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
@@ -3957,21 +5952,29 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 10,
-			"pushed": "2026-08-28",
+			"pushed": "2026-10-28",
 			"touched": "2026-07-17",
 			"since": "2026-07-17",
-			"runs30": 9,
+			"runs30": 14,
 			"house": true
 		},
 		"Safe": {
 			"proof": "config",
-			"styles": ["Microsoft", "write-good"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "safe-global/safe-docs",
 			"integrations": {
-				"actions": [".github/workflows/style-check.yml"],
+				"actions": [
+					".github/workflows/style-check.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -3979,28 +5982,38 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": ".vscode/settings.json",
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 65,
-			"pushed": "2026-09-21",
+			"pushed": "2026-10-29",
 			"touched": "2024-04-25",
 			"since": "2023-10-11",
-			"runs30": 20,
+			"runs30": 7,
 			"house": false
 		},
 		"SAP": {
 			"proof": "config",
-			"styles": ["SAP"],
-			"formats": ["md"],
+			"styles": [
+				"SAP"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "SAP/cloud-sdk",
 			"integrations": {
-				"actions": [".github/workflows/build_documentation.yml"],
+				"actions": [
+					".github/workflows/build_documentation.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4008,28 +6021,38 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 52,
-			"pushed": "2026-09-27",
+			"pushed": "2026-10-31",
 			"touched": "2025-03-03",
 			"since": "2020-12-09",
-			"runs30": 28,
+			"runs30": 42,
 			"house": true
 		},
 		"Semrush": {
 			"proof": "config",
-			"styles": ["DevDocs"],
-			"formats": ["md"],
+			"styles": [
+				"DevDocs"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "semrush/intergalactic",
 			"integrations": {
-				"actions": [".github/workflows/cd.yml"],
+				"actions": [
+					".github/workflows/cd.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -4037,17 +6060,19 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 185,
-			"pushed": "2026-09-28",
+			"stars": 184,
+			"pushed": "2026-10-29",
 			"touched": "2024-07-03",
 			"since": "2023-09-13",
-			"runs30": 291,
+			"runs30": 344,
 			"house": true
 		},
 		"Shopify": {
@@ -4087,7 +6112,9 @@
 			"level": null,
 			"repo": "SixLabors/docs",
 			"integrations": {
-				"actions": [".github/workflows/build.yml"],
+				"actions": [
+					".github/workflows/build.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -4102,16 +6129,23 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 12,
-			"pushed": "2026-08-12",
+			"pushed": "2026-10-09",
 			"touched": "2022-03-16",
 			"since": "2020-12-18",
-			"runs30": 0,
+			"runs30": 1,
 			"house": null
 		},
 		"Spectro Cloud": {
 			"proof": "writeup",
-			"styles": ["Google", "write-good", "alex", "spectrocloud-docs-internal"],
-			"formats": ["md"],
+			"styles": [
+				"Google",
+				"write-good",
+				"alex",
+				"spectrocloud-docs-internal"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "spectrocloud/librarium",
@@ -4127,17 +6161,19 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 27,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-08-29",
 			"since": "2025-05-01",
-			"runs30": 768,
+			"runs30": 594,
 			"house": true
 		},
 		"Splunk": {
@@ -4172,12 +6208,16 @@
 		"Spotify": {
 			"proof": "config",
 			"styles": [],
-			"formats": ["md"],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": null,
 			"repo": "backstage/backstage",
 			"integrations": {
-				"actions": [".github/workflows/verify_docs-quality.yml"],
+				"actions": [
+					".github/workflows/verify_docs-quality.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4187,33 +6227,45 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 34523,
-			"pushed": "2026-09-28",
+			"stars": 34749,
+			"pushed": "2026-10-31",
 			"touched": "2022-12-22",
 			"since": "2020-10-02",
-			"runs30": 847,
+			"runs30": 999,
 			"house": false
 		},
 		"Spryker": {
 			"proof": "config",
-			"styles": ["Google", "Spryker", "terms"],
-			"formats": ["md"],
+			"styles": [
+				"Google",
+				"Spryker",
+				"terms"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "spryker/spryker-docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
+				"agents": [
+					"CLAUDE.md"
+				],
 				"tasks": [],
 				"vscode": ".vscode/settings.json",
 				"contributing": []
@@ -4221,21 +6273,31 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 12,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-01-12",
 			"since": "2022-06-09",
-			"runs30": 219,
+			"runs30": 184,
 			"house": true
 		},
 		"StarRocks": {
 			"proof": "config",
-			"styles": ["local"],
-			"formats": ["md", "mdx", "en", "zh", "ja"],
+			"styles": [
+				"local"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"en",
+				"zh",
+				"ja"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "StarRocks/starrocks",
 			"integrations": {
-				"actions": [".github/workflows/ci-vale.yml"],
+				"actions": [
+					".github/workflows/ci-vale.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4249,11 +6311,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 12149,
-			"pushed": "2026-09-28",
-			"touched": "2026-07-17",
+			"stars": 12221,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-21",
 			"since": "2026-04-14",
-			"runs30": 1073,
+			"runs30": 1096,
 			"house": true
 		},
 		"Stoplight": {
@@ -4292,13 +6354,21 @@
 		},
 		"Teleport": {
 			"proof": "config",
-			"styles": ["messaging", "examples", "3rd-party-products"],
-			"formats": ["mdx"],
+			"styles": [
+				"messaging",
+				"examples",
+				"3rd-party-products"
+			],
+			"formats": [
+				"mdx"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "gravitational/teleport",
 			"integrations": {
-				"actions": [".github/workflows/doc-tests.yaml"],
+				"actions": [
+					".github/workflows/doc-tests.yaml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4312,17 +6382,21 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 20953,
-			"pushed": "2026-09-17",
+			"stars": 21055,
+			"pushed": "2026-10-20",
 			"touched": "2025-10-29",
 			"since": "2024-10-17",
-			"runs30": 49,
+			"runs30": 27,
 			"house": true
 		},
 		"Telepresence": {
 			"proof": "config",
-			"styles": ["Telepresence"],
-			"formats": ["md"],
+			"styles": [
+				"Telepresence"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "error",
 			"repo": "telepresenceio/telepresence",
@@ -4334,15 +6408,17 @@
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 7311,
-			"pushed": "2026-09-28",
+			"stars": 7326,
+			"pushed": "2026-10-27",
 			"touched": "2026-07-11",
 			"since": "2026-07-11",
 			"runs30": null,
@@ -4350,42 +6426,100 @@
 		},
 		"Temporal": {
 			"proof": "config",
-			"styles": ["Std", "Temporal"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Std",
+				"Temporal"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "temporalio/documentation",
 			"integrations": {
-				"actions": [".github/workflows/vale-ci.yml"],
+				"actions": [
+					".github/workflows/vale-ci.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
-				"tasks": ["package.json"],
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 174,
-			"pushed": "2026-09-28",
-			"touched": "2026-09-10",
+			"stars": 175,
+			"pushed": "2026-10-31",
+			"touched": "2026-10-05",
 			"since": "2023-03-06",
-			"runs30": 575,
+			"runs30": 674,
+			"house": true
+		},
+		"TestNG": {
+			"proof": "config",
+			"styles": [
+				"TestNG"
+			],
+			"formats": [
+				"md",
+				"java"
+			],
+			"vocab": true,
+			"level": "warning",
+			"repo": "testng-team/testng",
+			"integrations": {
+				"actions": [
+					".github/workflows/prose.yml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 2060,
+			"pushed": "2026-10-26",
+			"touched": "2026-09-07",
+			"since": "2026-09-07",
+			"runs30": 75,
 			"house": true
 		},
 		"Texas Instruments": {
 			"proof": "config",
-			"styles": ["RedHat", "PSDK"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"RedHat",
+				"PSDK"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "TexasInstruments/processor-sdk-doc",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4395,21 +6529,25 @@
 				"agents": [],
 				"tasks": [],
 				"vscode": null,
-				"contributing": ["CONTRIBUTING.md"]
+				"contributing": [
+					"CONTRIBUTING.md"
+				]
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 40,
-			"pushed": "2026-09-24",
+			"pushed": "2026-10-26",
 			"touched": "2026-09-09",
 			"since": "2025-05-16",
-			"runs30": 26,
+			"runs30": 49,
 			"house": true
 		},
 		"Thousand Brains Project": {
 			"proof": "config",
 			"styles": [],
-			"formats": ["md"],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "error",
 			"repo": "thousandbrainsproject/tbp.monty",
@@ -4428,8 +6566,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 590,
-			"pushed": "2026-09-25",
+			"stars": 604,
+			"pushed": "2026-10-30",
 			"touched": "2025-08-18",
 			"since": "2025-01-15",
 			"runs30": null,
@@ -4437,42 +6575,60 @@
 		},
 		"Tigera": {
 			"proof": "config",
-			"styles": ["CalicoStyle"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"CalicoStyle"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": true,
 			"level": "warning",
 			"repo": "tigera/docs",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml", ".github/workflows/validate.yml"],
+				"actions": [
+					".github/workflows/vale.yml",
+					".github/workflows/validate.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": [".github/copilot-instructions.md"],
-				"tasks": ["Makefile"],
+				"agents": [
+					".github/copilot-instructions.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
 			"stars": 20,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-09-08",
 			"since": "2023-11-21",
-			"runs30": 296,
+			"runs30": 552,
 			"house": true
 		},
 		"Timescale": {
 			"proof": "config",
-			"styles": ["Google"],
-			"formats": ["md"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "timescale/docs",
 			"integrations": {
-				"actions": [".github/workflows/vale-linter.yml"],
+				"actions": [
+					".github/workflows/vale-linter.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4493,15 +6649,91 @@
 			"runs30": 0,
 			"house": false
 		},
+		"TrueNAS": {
+			"proof": "config",
+			"styles": [
+				"Microsoft",
+				"TrueNAS"
+			],
+			"formats": [
+				"md",
+				"txt"
+			],
+			"vocab": false,
+			"level": "suggestion",
+			"repo": "truenas/documentation",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 199,
+			"pushed": "2026-10-31",
+			"touched": "2025-10-10",
+			"since": "2025-08-11",
+			"runs30": 114,
+			"house": true
+		},
+		"Trunk": {
+			"proof": "config",
+			"styles": [
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
+			"vocab": true,
+			"level": null,
+			"repo": "trunk-io/docs",
+			"integrations": {
+				"actions": [],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": false,
+			"preCommit": false,
+			"stars": 26,
+			"pushed": "2026-05-20",
+			"touched": "2026-04-22",
+			"since": "2024-08-30",
+			"runs30": null,
+			"house": true
+		},
 		"TrussWorks": {
 			"proof": "config",
-			"styles": ["Styles"],
-			"formats": ["md"],
+			"styles": [
+				"Styles"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "trussworks/Engineering-Playbook",
 			"integrations": {
-				"actions": [".github/workflows/check_prose.yaml"],
+				"actions": [
+					".github/workflows/check_prose.yaml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4516,16 +6748,21 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 144,
-			"pushed": "2026-09-10",
+			"pushed": "2026-10-29",
 			"touched": "2022-03-01",
 			"since": "2022-03-01",
-			"runs30": 3,
+			"runs30": 6,
 			"house": true
 		},
 		"Tyk": {
 			"proof": "config",
-			"styles": ["Tyk", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Tyk",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "error",
 			"repo": "TykTechnologies/tyk",
@@ -4544,8 +6781,8 @@
 			},
 			"ci": false,
 			"preCommit": false,
-			"stars": 10838,
-			"pushed": "2026-09-28",
+			"stars": 10871,
+			"pushed": "2026-10-30",
 			"touched": "2024-11-02",
 			"since": "2024-11-02",
 			"runs30": null,
@@ -4553,13 +6790,21 @@
 		},
 		"UCL Advanced Research Computing": {
 			"proof": "config",
-			"styles": ["proselint", "write-good", "Readability"],
-			"formats": ["md"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"Readability"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "UCL-ARC/python-tooling",
 			"integrations": {
-				"actions": [".github/workflows/linting.yml"],
+				"actions": [
+					".github/workflows/linting.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4574,21 +6819,27 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 62,
-			"pushed": "2026-09-16",
+			"pushed": "2026-10-23",
 			"touched": "2025-07-14",
 			"since": "2025-06-06",
-			"runs30": 71,
+			"runs30": 23,
 			"house": false
 		},
 		"Umbraco": {
 			"proof": "config",
-			"styles": ["UmbracoDocs"],
-			"formats": ["md"],
+			"styles": [
+				"UmbracoDocs"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": null,
 			"repo": "umbraco/UmbracoDocs",
 			"integrations": {
-				"actions": [".github/workflows/Vale-Linter.yml"],
+				"actions": [
+					".github/workflows/Vale-Linter.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
@@ -4603,45 +6854,219 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 292,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-04-14",
 			"since": "2022-05-24",
-			"runs30": 312,
+			"runs30": 361,
+			"house": true
+		},
+		"Unikraft": {
+			"proof": "config",
+			"styles": [
+				"Microsoft",
+				"write-good",
+				"Unikraft"
+			],
+			"formats": [
+				"mdx"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "unikraft-cloud/docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/check-pr.yaml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 2,
+			"pushed": "2026-10-29",
+			"touched": "2025-12-19",
+			"since": "2025-10-04",
+			"runs30": 175,
 			"house": true
 		},
 		"Uniswap": {
 			"proof": "config",
 			"styles": [],
-			"formats": ["md"],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "Uniswap/uniswap-ai",
 			"integrations": {
-				"actions": [".github/workflows/CLAUDE.md", ".github/workflows/ci-pr-checks.yml"],
+				"actions": [
+					".github/workflows/CLAUDE.md",
+					".github/workflows/ci-pr-checks.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["CLAUDE.md"],
-				"tasks": ["package.json"],
+				"agents": [
+					"CLAUDE.md"
+				],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 233,
-			"pushed": "2026-09-28",
+			"stars": 236,
+			"pushed": "2026-10-26",
 			"touched": "2026-09-18",
 			"since": "2026-02-10",
-			"runs30": 36,
+			"runs30": 12,
 			"house": false
+		},
+		"Vaadin": {
+			"proof": "config",
+			"styles": [
+				"Vaadin"
+			],
+			"formats": [
+				"adoc"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "vaadin/docs",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yml"
+				],
+				"valeAction": true,
+				"reviewdog": true,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"CLAUDE.md"
+				],
+				"tasks": [],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 38,
+			"pushed": "2026-10-30",
+			"touched": "2026-09-08",
+			"since": "2020-11-11",
+			"runs30": 502,
+			"house": true
+		},
+		"Velociraptor": {
+			"proof": "config",
+			"styles": [
+				"Velociraptor"
+			],
+			"formats": [
+				"jsx",
+				"md",
+				"yml",
+				"yaml"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "Velocidex/velociraptor",
+			"integrations": {
+				"actions": [
+					".github/workflows/vale.yaml"
+				],
+				"valeAction": true,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 4400,
+			"pushed": "2026-10-31",
+			"touched": "2026-05-27",
+			"since": "2026-05-27",
+			"runs30": 50,
+			"house": true
+		},
+		"Voxgig": {
+			"proof": "config",
+			"styles": [
+				"Google",
+				"Omni"
+			],
+			"formats": [
+				"md",
+				"agents",
+				"claude",
+				"adr",
+				"todo",
+				"notes"
+			],
+			"vocab": true,
+			"level": "suggestion",
+			"repo": "voxgig/omni",
+			"integrations": {
+				"actions": [
+					".github/workflows/docs.yml"
+				],
+				"valeAction": false,
+				"reviewdog": false,
+				"gitlab": null,
+				"circle": null,
+				"buildkite": null,
+				"precommit": null,
+				"agents": [
+					"AGENTS.md"
+				],
+				"tasks": [
+					"Makefile"
+				],
+				"vscode": null,
+				"contributing": []
+			},
+			"ci": true,
+			"preCommit": false,
+			"stars": 1,
+			"pushed": "2026-10-17",
+			"touched": "2026-09-05",
+			"since": "2026-09-05",
+			"runs30": 32,
+			"house": true
 		},
 		"VSHN": {
 			"proof": "config",
-			"styles": ["Microsoft"],
-			"formats": ["adoc"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"adoc"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "vshn/application-catalog-docs",
@@ -4654,14 +7079,16 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["Makefile"],
+				"tasks": [
+					"Makefile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": false,
 			"preCommit": false,
 			"stars": 0,
-			"pushed": "2026-09-23",
+			"pushed": "2026-10-29",
 			"touched": "2025-01-17",
 			"since": "2021-01-19",
 			"runs30": null,
@@ -4669,13 +7096,21 @@
 		},
 		"webpack": {
 			"proof": "config",
-			"styles": ["proselint", "Speciesism"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"proselint",
+				"Speciesism"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"vocab": false,
 			"level": "warning",
 			"repo": "webpack/webpack.js.org",
 			"integrations": {
-				"actions": [".github/workflows/testing.yml"],
+				"actions": [
+					".github/workflows/testing.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4683,22 +7118,26 @@
 				"buildkite": null,
 				"precommit": null,
 				"agents": [],
-				"tasks": ["package.json"],
+				"tasks": [
+					"package.json"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 2269,
-			"pushed": "2026-09-28",
+			"stars": 2273,
+			"pushed": "2026-10-30",
 			"touched": "2026-02-25",
 			"since": "2020-11-24",
-			"runs30": 134,
+			"runs30": 67,
 			"house": true
 		},
 		"Wikimedia": {
 			"proof": "writeup",
-			"styles": ["Wikimedia"],
+			"styles": [
+				"Wikimedia"
+			],
 			"formats": [],
 			"vocab": false,
 			"level": "suggestion",
@@ -4727,8 +7166,13 @@
 		},
 		"WordPress": {
 			"proof": "config",
-			"styles": ["proselint", "Openverse"],
-			"formats": ["md"],
+			"styles": [
+				"proselint",
+				"Openverse"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "WordPress/openverse",
@@ -4744,17 +7188,19 @@
 				"buildkite": null,
 				"precommit": ".pre-commit-config.yaml",
 				"agents": [],
-				"tasks": ["justfile"],
+				"tasks": [
+					"justfile"
+				],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": true,
-			"stars": 379,
-			"pushed": "2026-09-28",
+			"stars": 450,
+			"pushed": "2026-10-29",
 			"touched": "2024-09-09",
 			"since": "2024-01-29",
-			"runs30": 344,
+			"runs30": 304,
 			"house": true
 		},
 		"Write the Docs": {
@@ -4765,43 +7211,55 @@
 			"level": null,
 			"repo": "writethedocs/www",
 			"integrations": {
-				"actions": [".github/workflows/vale.yml"],
+				"actions": [
+					".github/workflows/vale.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": ["AGENTS.md"],
+				"agents": [
+					"AGENTS.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 1368,
-			"pushed": "2026-09-28",
+			"stars": 1365,
+			"pushed": "2026-10-29",
 			"touched": "2024-05-14",
 			"since": "2023-06-13",
-			"runs30": 169,
+			"runs30": 205,
 			"house": null
 		},
 		"WSO2": {
 			"proof": "config",
-			"styles": ["WSO2-IAM"],
-			"formats": ["md"],
+			"styles": [
+				"WSO2-IAM"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": true,
 			"level": "suggestion",
 			"repo": "wso2/docs-is",
 			"integrations": {
-				"actions": [".github/workflows/style-checker.yml"],
+				"actions": [
+					".github/workflows/style-checker.yml"
+				],
 				"valeAction": true,
 				"reviewdog": true,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": [".github/copilot-instructions.md"],
+				"agents": [
+					".github/copilot-instructions.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
@@ -4809,28 +7267,36 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 81,
-			"pushed": "2026-09-28",
+			"pushed": "2026-10-30",
 			"touched": "2026-02-18",
 			"since": "2025-05-20",
-			"runs30": 60,
+			"runs30": 134,
 			"house": true
 		},
 		"Yii": {
 			"proof": "config",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "yiisoft/docs",
 			"integrations": {
-				"actions": [".github/workflows/docs.yml"],
+				"actions": [
+					".github/workflows/docs.yml"
+				],
 				"valeAction": true,
 				"reviewdog": false,
 				"gitlab": null,
 				"circle": null,
 				"buildkite": null,
 				"precommit": null,
-				"agents": [".github/copilot-instructions.md"],
+				"agents": [
+					".github/copilot-instructions.md"
+				],
 				"tasks": [],
 				"vscode": null,
 				"contributing": []
@@ -4838,21 +7304,31 @@
 			"ci": true,
 			"preCommit": false,
 			"stars": 252,
-			"pushed": "2026-09-25",
-			"touched": "2023-03-04",
+			"pushed": "2026-10-29",
+			"touched": "2026-10-15",
 			"since": "2023-03-04",
-			"runs30": 22,
+			"runs30": 57,
 			"house": false
 		},
 		"YugabyteDB": {
 			"proof": "config",
-			"styles": ["Yugabyte"],
-			"formats": ["html", "md", "rst", "txt"],
+			"styles": [
+				"Yugabyte"
+			],
+			"formats": [
+				"html",
+				"md",
+				"rst",
+				"txt"
+			],
 			"vocab": false,
 			"level": "suggestion",
 			"repo": "yugabyte/yugabyte-db",
 			"integrations": {
-				"actions": [".github/workflows/pr-lint.yml", ".github/workflows/pr-title.yml"],
+				"actions": [
+					".github/workflows/pr-lint.yml",
+					".github/workflows/pr-title.yml"
+				],
 				"valeAction": false,
 				"reviewdog": false,
 				"gitlab": null,
@@ -4866,11 +7342,11 @@
 			},
 			"ci": true,
 			"preCommit": false,
-			"stars": 10565,
-			"pushed": "2026-09-28",
+			"stars": 10641,
+			"pushed": "2026-10-31",
 			"touched": "2021-11-17",
 			"since": "2021-11-17",
-			"runs30": 1840,
+			"runs30": 6748,
 			"house": true
 		}
 	}
