@@ -1,6 +1,6 @@
 {
 	"vale": "master",
-	"generated": "2026-09-28",
+	"generated": "2026-10-31",
 	"posts": {
 		"case-study-epic-lore": {
 			"errors": 0,
@@ -14,7 +14,7 @@
 			"smog": 10.6,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 135
+			"ms": 107
 		},
 		"case-study-gov-uk": {
 			"errors": 0,
@@ -28,7 +28,21 @@
 			"smog": 10.4,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 132
+			"ms": 98
+		},
+		"case-study-rubin-observatory": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1604,
+			"sentences": 89,
+			"paragraphs": 34,
+			"grade": 8.4,
+			"ease": 66.9,
+			"smog": 10,
+			"complex": 7,
+			"minutes": 8,
+			"ms": 134
 		},
 		"commits": {
 			"errors": 0,
@@ -42,7 +56,7 @@
 			"smog": 9.5,
 			"complex": 5,
 			"minutes": 6,
-			"ms": 134
+			"ms": 124
 		},
 		"diataxis": {
 			"errors": 0,
@@ -56,7 +70,7 @@
 			"smog": 11,
 			"complex": 8,
 			"minutes": 6,
-			"ms": 139
+			"ms": 171
 		},
 		"journals": {
 			"errors": 0,
@@ -70,7 +84,7 @@
 			"smog": 11.1,
 			"complex": 10,
 			"minutes": 7,
-			"ms": 131
+			"ms": 182
 		},
 		"openapi": {
 			"errors": 0,
@@ -84,21 +98,21 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 141
+			"ms": 98
 		},
 		"spelling": {
 			"errors": 0,
 			"warnings": 0,
 			"suggestions": 0,
-			"words": 2124,
-			"sentences": 108,
-			"paragraphs": 27,
-			"grade": 8.5,
-			"ease": 68.9,
-			"smog": 10.1,
-			"complex": 7,
+			"words": 2294,
+			"sentences": 138,
+			"paragraphs": 30,
+			"grade": 7.2,
+			"ease": 73.2,
+			"smog": 9.4,
+			"complex": 6,
 			"minutes": 11,
-			"ms": 139
+			"ms": 188
 		},
 		"std": {
 			"errors": 0,
@@ -112,21 +126,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 140
-		},
-		"voices": {
-			"errors": 0,
-			"warnings": 0,
-			"suggestions": 0,
-			"words": 1762,
-			"sentences": 131,
-			"paragraphs": 40,
-			"grade": 6.5,
-			"ease": 72.8,
-			"smog": 9.3,
-			"complex": 7,
-			"minutes": 9,
-			"ms": 137
+			"ms": 111
 		},
 		"testing-rules": {
 			"errors": 0,
@@ -140,7 +140,21 @@
 			"smog": 8.5,
 			"complex": 5,
 			"minutes": 4,
-			"ms": 95
+			"ms": 94
+		},
+		"voices": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1762,
+			"sentences": 131,
+			"paragraphs": 40,
+			"grade": 6.5,
+			"ease": 72.8,
+			"smog": 9.3,
+			"complex": 7,
+			"minutes": 9,
+			"ms": 102
 		}
 	}
 }

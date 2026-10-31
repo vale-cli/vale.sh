@@ -123,3 +123,6 @@ Flesch
 combinators
 combinator
 preprint
+COmanage
+Documenteer
+Avro
