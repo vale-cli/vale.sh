@@ -1,18 +1,19 @@
 {
-	"sampleSize": 133,
-	"adopterCount": 167,
+	"sampleSize": 169,
+	"adopterCount": 208,
 	"styles": {
-		"Google": 20,
-		"write-good": 20,
-		"Microsoft": 16,
-		"proselint": 13,
-		"alex": 7,
+		"Google": 33,
+		"write-good": 24,
+		"Microsoft": 21,
+		"proselint": 14,
+		"alex": 9,
+		"docs": 4,
 		"RedHat": 4,
+		"ai-tells": 3,
 		"AsciiDoc": 3,
-		"docs": 3,
-		"ai-tells": 2,
+		"Joblint": 3,
+		"Readability": 3,
 		"base": 2,
-		"Readability": 2,
 		"3rd-party-products": 1,
 		"ADI": 1,
 		"ai-tells-overrides": 1,
@@ -28,15 +29,20 @@
 		"Coder": 1,
 		"commercetools": 1,
 		"common": 1,
+		"Core": 1,
 		"CrateDB": 1,
 		"crucible": 1,
 		"custom": 1,
+		"Custom": 1,
 		"CustomStyles": 1,
 		"Dagster": 1,
 		"Datadog": 1,
 		"DeadlineSamples": 1,
 		"DetSys": 1,
 		"DevDocs": 1,
+		"DigitalAsset": 1,
+		"Direct": 1,
+		"DocDetective": 1,
 		"Docker": 1,
 		"DocsGPT": 1,
 		"Espressif-latest": 1,
@@ -49,27 +55,36 @@
 		"FreeBSD": 1,
 		"from-microsoft": 1,
 		"from-write-good": 1,
+		"Gardener": 1,
 		"gitlab_base": 1,
 		"gitlab_docs": 1,
 		"gitlab_release_index": 1,
 		"gitlab_release_notes": 1,
 		"Grafana": 1,
+		"Grammar": 1,
 		"Graphile": 1,
+		"handbook": 1,
+		"Hazelcast": 1,
 		"Homebrew": 1,
 		"IBMQuantum": 1,
+		"Inclusivity": 1,
 		"Infisical": 1,
 		"InfluxDataDocs": 1,
 		"Infrahub": 1,
 		"IPA": 1,
-		"Joblint": 1,
+		"JTE": 1,
 		"Kedro": 1,
 		"KubeRay": 1,
+		"Kuma": 1,
+		"LanceDB": 1,
 		"LangChain": 1,
 		"Lean": 1,
+		"Lightbend": 1,
 		"Linode": 1,
 		"local": 1,
 		"logionDoc": 1,
 		"Lore": 1,
+		"Markup": 1,
 		"Mastra": 1,
 		"Mattermost": 1,
 		"Mautic": 1,
@@ -78,23 +93,29 @@
 		"messaging": 1,
 		"Metalbear": 1,
 		"Mintlify": 1,
-		"Mistral": 1,
+		"Moose": 1,
 		"MUI": 1,
 		"n8n-styles": 1,
+		"NASA": 1,
 		"Neo4j": 1,
 		"Neon": 1,
 		"netlify-terms": 1,
 		"nf-core": 1,
 		"Nordic": 1,
 		"Novu": 1,
+		"Nuclio": 1,
+		"Omni": 1,
 		"OPA": 1,
 		"OpenSAFELY": 1,
 		"OpenSearch": 1,
 		"OpenShiftAsciiDoc": 1,
 		"Openverse": 1,
+		"Oracle": 1,
 		"OutSystems": 1,
-		"package-guide-test": 1,
+		"Pantheon": 1,
+		"PhotoPrism": 1,
 		"PingCAP": 1,
+		"PlainLanguage": 1,
 		"Platform": 1,
 		"Polkadot": 1,
 		"PostHogBase": 1,
@@ -110,7 +131,6 @@
 		"RLlib": 1,
 		"rOpenSci": 1,
 		"RSP": 1,
-		"Rules": 1,
 		"SAP": 1,
 		"Semmle": 1,
 		"signs-of-ai-writing": 1,
@@ -118,6 +138,7 @@
 		"SmartWallets": 1,
 		"Speciesism": 1,
 		"spectrocloud-docs-internal": 1,
+		"Spelling": 1,
 		"Spryker": 1,
 		"Std": 1,
 		"Style": 1,
@@ -128,32 +149,44 @@
 		"Temporal": 1,
 		"terms": 1,
 		"Terms": 1,
+		"TestNG": 1,
+		"Train": 1,
+		"TrueNAS": 1,
 		"ttd-light": 1,
+		"Tune": 1,
 		"Tyk": 1,
 		"UmbracoDocs": 1,
+		"Unikraft": 1,
+		"Uwazi": 1,
+		"Vaadin": 1,
 		"vale": 1,
+		"Velociraptor": 1,
+		"Voices": 1,
 		"Wikimedia": 1,
+		"WordUsage": 1,
 		"WSO2-IAM": 1,
 		"Yugabyte": 1
 	},
 	"packages": {
-		"Google": 17,
-		"write-good": 16,
-		"Microsoft": 11,
-		"proselint": 10,
-		"alex": 6,
+		"Google": 25,
+		"write-good": 20,
+		"Microsoft": 16,
+		"proselint": 12,
+		"alex": 9,
+		"MDX": 5,
 		"RedHat": 5,
+		"ai-tells": 3,
 		"AsciiDoc": 3,
-		"ai-tells": 2,
-		"MDX": 2,
-		"Readability": 2,
+		"Joblint": 3,
+		"Readability": 3,
+		"ai-tells-commits": 1,
 		"ApifyStyleGuide": 1,
 		"AsciiDocDITA": 1,
 		"config": 1,
 		"Docker": 1,
 		"Espressif-latest": 1,
 		"Hugo": 1,
-		"Joblint": 1,
+		"Moose": 1,
 		"nf-core": 1,
 		"OpenShiftAsciiDoc": 1,
 		"PowerShell-Docs": 1,
@@ -165,17 +198,21 @@
 		"vale": 1
 	},
 	"formats": {
-		"md": 103,
-		"mdx": 29,
-		"rst": 16,
-		"adoc": 8,
-		"html": 3,
-		"ini": 3,
-		"docs": 2,
+		"md": 130,
+		"mdx": 36,
+		"rst": 18,
+		"adoc": 11,
+		"html": 4,
+		"docs": 3,
+		"txt": 3,
+		"blog": 2,
+		"ini": 2,
 		"qmd": 2,
-		"txt": 2,
+		"rs": 2,
+		"adr": 1,
+		"agents": 1,
 		"api": 1,
-		"blog": 1,
+		"claude": 1,
 		"cli": 1,
 		"color": 1,
 		"csv": 1,
@@ -185,34 +222,42 @@
 		"howto8": 1,
 		"howto9": 1,
 		"ja": 1,
+		"java": 1,
 		"jl": 1,
+		"jsx": 1,
+		"notes": 1,
 		"org": 1,
+		"py": 1,
 		"rb": 1,
 		"readme": 1,
 		"rmd": 1,
-		"rs": 1,
+		"todo": 1,
 		"tree": 1,
+		"ts": 1,
+		"yaml": 1,
+		"yml": 1,
 		"zh": 1
 	},
 	"minAlertLevels": {
-		"suggestion": 77,
-		"warning": 31,
-		"error": 13,
+		"suggestion": 99,
+		"warning": 34,
+		"error": 18,
 		"suggestions": 1
 	},
 	"keys": {
-		"BasedOnStyles": 131,
-		"StylesPath": 129,
-		"MinAlertLevel": 122,
-		"Vocab": 76,
-		"Packages": 50,
-		"TokenIgnores": 49,
-		"IgnoredScopes": 31,
-		"BlockIgnores": 30,
-		"SkippedScopes": 23,
-		"CommentDelimiters": 7,
-		"IgnoredClasses": 4,
-		"WordTemplate": 3,
+		"BasedOnStyles": 167,
+		"StylesPath": 165,
+		"MinAlertLevel": 152,
+		"Vocab": 102,
+		"Packages": 67,
+		"TokenIgnores": 63,
+		"BlockIgnores": 42,
+		"IgnoredScopes": 40,
+		"SkippedScopes": 26,
+		"CommentDelimiters": 8,
+		"IgnoredClasses": 6,
+		"WordTemplate": 4,
+		"View": 2,
 		"Checks": 1,
 		"experimental": 1,
 		"Formats": 1,
@@ -221,38 +266,55 @@
 		"IgnorePatterns": 1,
 		"mdx": 1,
 		"spelling": 1,
-		"Vale": 1,
-		"View": 1
+		"Vale": 1
 	},
-	"pathScoped": 45,
+	"pathScoped": 58,
 	"pairedWith": {
-		"Aiven": {},
-		"SmartWallets": {},
-		"ADI": {
-			"Google": 1
-		},
 		"Google": {
 			"write-good": 7,
+			"alex": 3,
+			"Joblint": 2,
 			"ADI": 1,
-			"alex": 1,
 			"commercetools": 1,
+			"Core": 1,
 			"CustomStyles": 1,
-			"Fly": 1,
+			"DigitalAsset": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Grammar": 1,
+			"Hazelcast": 1,
+			"Inclusivity": 1,
 			"InfluxDataDocs": 1,
 			"KubeRay": 1,
+			"Kuma": 1,
 			"Mautic": 1,
 			"Mesa": 1,
 			"Metalbear": 1,
+			"Microsoft": 1,
+			"Moose": 1,
 			"Novu": 1,
+			"Omni": 1,
+			"Pantheon": 1,
 			"Polkadot": 1,
 			"proselint": 1,
 			"Pulumi": 1,
 			"Ray": 1,
+			"Readability": 1,
 			"RLlib": 1,
 			"RSP": 1,
 			"spectrocloud-docs-internal": 1,
+			"Spelling": 1,
 			"Spryker": 1,
-			"terms": 1
+			"terms": 1,
+			"Train": 1,
+			"Tune": 1,
+			"Voices": 1,
+			"WordUsage": 1
+		},
+		"Aiven": {},
+		"SmartWallets": {},
+		"ADI": {
+			"Google": 1
 		},
 		"Apify": {
 			"ApifyDocs": 1,
@@ -266,21 +328,21 @@
 		},
 		"write-good": {
 			"Google": 7,
+			"Microsoft": 7,
 			"proselint": 7,
-			"Microsoft": 5,
-			"alex": 4,
+			"alex": 5,
+			"Readability": 3,
 			"ai-tells": 2,
-			"Readability": 2,
+			"Joblint": 2,
 			"ai-tells-overrides": 1,
 			"Apify": 1,
 			"ApifyDocs": 1,
 			"commercetools": 1,
 			"DeadlineSamples": 1,
 			"docs": 1,
-			"Fly": 1,
 			"InfluxDataDocs": 1,
-			"Joblint": 1,
 			"LangChain": 1,
+			"Lightbend": 1,
 			"Mastra": 1,
 			"Metalbear": 1,
 			"Novu": 1,
@@ -290,30 +352,33 @@
 			"spectrocloud-docs-internal": 1,
 			"ttd-light": 1,
 			"Tyk": 1,
+			"Unikraft": 1,
 			"vale": 1
 		},
 		"Microsoft": {
-			"write-good": 5,
+			"write-good": 7,
 			"alex": 2,
 			"proselint": 2,
 			"Apify": 1,
 			"ApifyDocs": 1,
+			"Google": 1,
 			"Graphile": 1,
 			"IPA": 1,
+			"JTE": 1,
 			"Mendix": 1,
-			"Mistral": 1,
 			"Rackspace": 1,
-			"ttd-light": 1
+			"TrueNAS": 1,
+			"ttd-light": 1,
+			"Unikraft": 1
 		},
 		"Atlantis": {},
 		"proselint": {
 			"write-good": 7,
-			"alex": 4,
+			"alex": 5,
+			"Readability": 3,
+			"Joblint": 2,
 			"Microsoft": 2,
-			"Readability": 2,
-			"Fly": 1,
 			"Google": 1,
-			"Joblint": 1,
 			"LangChain": 1,
 			"Lean": 1,
 			"Openverse": 1,
@@ -323,15 +388,19 @@
 			"vale": 1
 		},
 		"alex": {
-			"proselint": 4,
-			"write-good": 4,
+			"proselint": 5,
+			"write-good": 5,
+			"Google": 3,
+			"Joblint": 3,
 			"Microsoft": 2,
-			"Google": 1,
-			"Joblint": 1,
+			"Readability": 2,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Moose": 1,
 			"OutSystems": 1,
-			"Readability": 1,
 			"rOpenSci": 1,
-			"spectrocloud-docs-internal": 1
+			"spectrocloud-docs-internal": 1,
+			"Voices": 1
 		},
 		"ai-tells": {
 			"write-good": 2,
@@ -355,6 +424,24 @@
 			"write-good": 1
 		},
 		"CrateDB": {},
+		"Readability": {
+			"proselint": 3,
+			"write-good": 3,
+			"alex": 2,
+			"Joblint": 2,
+			"Google": 1
+		},
+		"Joblint": {
+			"alex": 3,
+			"Google": 2,
+			"proselint": 2,
+			"Readability": 2,
+			"write-good": 2,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Moose": 1,
+			"Voices": 1
+		},
 		"ttd-light": {
 			"Microsoft": 1,
 			"proselint": 1,
@@ -369,6 +456,41 @@
 		"Datadog": {},
 		"custom": {},
 		"DetSys": {},
+		"DigitalAsset": {
+			"Google": 1
+		},
+		"DocDetective": {
+			"alex": 1,
+			"Direct": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1,
+			"Voices": 1
+		},
+		"Voices": {
+			"alex": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1
+		},
+		"Direct": {
+			"alex": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Moose": 1,
+			"Voices": 1
+		},
+		"Moose": {
+			"alex": 1,
+			"Direct": 1,
+			"DocDetective": 1,
+			"Google": 1,
+			"Joblint": 1,
+			"Voices": 1
+		},
 		"Docker": {},
 		"DocsGPT": {},
 		"Lore": {},
@@ -376,11 +498,7 @@
 		"expo-docs": {},
 		"FernStyles": {},
 		"FluentBit": {},
-		"Fly": {
-			"Google": 1,
-			"proselint": 1,
-			"write-good": 1
-		},
+		"Fly": {},
 		"RedHat": {
 			"AsciiDoc": 2,
 			"foreman-documentation": 1,
@@ -398,6 +516,7 @@
 			"RedHat": 1
 		},
 		"FreeBSD": {},
+		"Gardener": {},
 		"Semmle": {},
 		"gitlab_base": {
 			"gitlab_docs": 1,
@@ -424,7 +543,11 @@
 		"Graphile": {
 			"Microsoft": 1
 		},
+		"Hazelcast": {
+			"Google": 1
+		},
 		"Homebrew": {},
+		"Uwazi": {},
 		"Infisical": {},
 		"InfluxDataDocs": {
 			"Google": 1,
@@ -438,12 +561,20 @@
 			"base": 1,
 			"write-good": 1
 		},
+		"JTE": {
+			"Microsoft": 1
+		},
 		"Kedro": {},
 		"base": {
 			"docs": 1,
 			"netlify-terms": 1,
 			"smart-marks": 1
 		},
+		"Custom": {},
+		"Kuma": {
+			"Google": 1
+		},
+		"LanceDB": {},
 		"LangChain": {
 			"proselint": 1,
 			"vale": 1,
@@ -456,6 +587,9 @@
 		},
 		"Lean": {
 			"proselint": 1
+		},
+		"Lightbend": {
+			"write-good": 1
 		},
 		"Linode": {},
 		"Mastra": {
@@ -491,9 +625,6 @@
 			"Google": 1,
 			"write-good": 1
 		},
-		"Mistral": {
-			"Microsoft": 1
-		},
 		"MUI": {},
 		"from-write-good": {
 			"from-microsoft": 1,
@@ -506,6 +637,12 @@
 		"from-microsoft": {
 			"from-write-good": 1,
 			"n8n-styles": 1
+		},
+		"NASA": {
+			"PlainLanguage": 1
+		},
+		"PlainLanguage": {
+			"NASA": 1
 		},
 		"Neo4j": {},
 		"Neon": {},
@@ -521,21 +658,35 @@
 		"StyleRules": {},
 		"Style": {},
 		"Nordic": {},
-		"Readability": {
-			"proselint": 2,
-			"write-good": 2,
-			"alex": 1,
-			"Joblint": 1
-		},
-		"Joblint": {
-			"alex": 1,
-			"proselint": 1,
-			"Readability": 1,
-			"write-good": 1
-		},
 		"Novu": {
 			"Google": 1,
 			"write-good": 1
+		},
+		"Nuclio": {},
+		"handbook": {},
+		"WordUsage": {
+			"Google": 1,
+			"Grammar": 1,
+			"Inclusivity": 1,
+			"Spelling": 1
+		},
+		"Inclusivity": {
+			"Google": 1,
+			"Grammar": 1,
+			"Spelling": 1,
+			"WordUsage": 1
+		},
+		"Spelling": {
+			"Google": 1,
+			"Grammar": 1,
+			"Inclusivity": 1,
+			"WordUsage": 1
+		},
+		"Grammar": {
+			"Google": 1,
+			"Inclusivity": 1,
+			"Spelling": 1,
+			"WordUsage": 1
 		},
 		"OPA": {},
 		"OpenSAFELY": {},
@@ -544,9 +695,19 @@
 			"AsciiDoc": 1,
 			"RedHat": 1
 		},
+		"Oracle": {
+			"Markup": 1
+		},
+		"Markup": {
+			"Oracle": 1
+		},
 		"OutSystems": {
 			"alex": 1
 		},
+		"Pantheon": {
+			"Google": 1
+		},
+		"PhotoPrism": {},
 		"PingCAP": {},
 		"Platform": {},
 		"Polkadot": {
@@ -573,7 +734,6 @@
 			"Google": 1,
 			"write-good": 1
 		},
-		"package-guide-test": {},
 		"IBMQuantum": {},
 		"Quarkus": {},
 		"Rackspace": {
@@ -581,21 +741,53 @@
 		},
 		"common": {},
 		"KubeRay": {
+			"Core": 1,
 			"Google": 1,
 			"Ray": 1,
-			"RLlib": 1
+			"RLlib": 1,
+			"Train": 1,
+			"Tune": 1
 		},
 		"Ray": {
+			"Core": 1,
 			"Google": 1,
 			"KubeRay": 1,
-			"RLlib": 1
+			"RLlib": 1,
+			"Train": 1,
+			"Tune": 1
 		},
 		"RLlib": {
+			"Core": 1,
 			"Google": 1,
 			"KubeRay": 1,
-			"Ray": 1
+			"Ray": 1,
+			"Train": 1,
+			"Tune": 1
 		},
-		"Rules": {},
+		"Core": {
+			"Google": 1,
+			"KubeRay": 1,
+			"Ray": 1,
+			"RLlib": 1,
+			"Train": 1,
+			"Tune": 1
+		},
+		"Train": {
+			"Core": 1,
+			"Google": 1,
+			"KubeRay": 1,
+			"Ray": 1,
+			"RLlib": 1,
+			"Tune": 1
+		},
+		"Tune": {
+			"Core": 1,
+			"Google": 1,
+			"KubeRay": 1,
+			"Ray": 1,
+			"RLlib": 1,
+			"Train": 1
+		},
 		"riscv": {
 			"AsciiDoc": 1
 		},
@@ -642,15 +834,28 @@
 		"Temporal": {
 			"Std": 1
 		},
+		"TestNG": {},
 		"PSDK": {
 			"RedHat": 1
 		},
 		"CalicoStyle": {},
+		"TrueNAS": {
+			"Microsoft": 1
+		},
 		"Styles": {},
 		"Tyk": {
 			"write-good": 1
 		},
 		"UmbracoDocs": {},
+		"Unikraft": {
+			"Microsoft": 1,
+			"write-good": 1
+		},
+		"Vaadin": {},
+		"Velociraptor": {},
+		"Omni": {
+			"Google": 1
+		},
 		"Speciesism": {
 			"proselint": 1
 		},
@@ -663,18 +868,50 @@
 	},
 	"sampled": [
 		{
+			"name": "Actian",
+			"url": "https://github.com/ActianCorp/vectorai-db-docs/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Aiven",
 			"url": "https://github.com/aiven/devportal/blob/main/.vale.ini",
-			"styles": ["Aiven"],
-			"formats": ["rst"],
-			"keys": ["StylesPath", "SkippedScopes", "BasedOnStyles"],
+			"styles": [
+				"Aiven"
+			],
+			"formats": [
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"SkippedScopes",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "Alchemy",
 			"url": "https://github.com/alchemyplatform/aa-sdk/blob/HEAD/.vale.ini",
-			"styles": ["SmartWallets"],
-			"formats": ["mdx"],
+			"styles": [
+				"SmartWallets"
+			],
+			"formats": [
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -689,8 +926,14 @@
 		{
 			"name": "Analog Devices",
 			"url": "https://github.com/analogdevicesinc/libiio/blob/HEAD/.vale.ini",
-			"styles": ["ADI", "Google"],
-			"formats": ["rst", "md"],
+			"styles": [
+				"ADI",
+				"Google"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -704,8 +947,13 @@
 		{
 			"name": "Ansys",
 			"url": "https://github.com/ansys/pymapdl/blob/HEAD/doc/.vale.ini",
-			"styles": ["Google"],
-			"formats": ["md", "rst"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -722,8 +970,16 @@
 		{
 			"name": "Apify",
 			"url": "https://github.com/apify/apify-docs/blob/HEAD/.vale.ini",
-			"styles": ["Apify", "ApifyDocs", "write-good", "Microsoft"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"Apify",
+				"ApifyDocs",
+				"write-good",
+				"Microsoft"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -736,74 +992,211 @@
 			"minAlertLevel": "warning"
 		},
 		{
+			"name": "Appsmith",
+			"url": "https://github.com/appsmithorg/appsmith-docs/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "error"
+		},
+		{
 			"name": "Atlantis",
 			"url": "https://github.com/runatlantis/atlantis/blob/HEAD/.vale.ini",
-			"styles": ["Atlantis"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Atlantis"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Atuin",
 			"url": "https://github.com/atuinsh/atuin/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "proselint", "alex", "write-good"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Microsoft",
+				"proselint",
+				"alex",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "AWS Deadline Cloud",
 			"url": "https://github.com/aws-deadline/deadline-cloud-samples/blob/mainline/.vale.ini",
-			"styles": ["write-good", "ai-tells", "DeadlineSamples"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"write-good",
+				"ai-tells",
+				"DeadlineSamples"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Bazel Contrib",
+			"url": "https://github.com/bazel-contrib/bazel-lib/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"IgnoredScopes",
+				"Vocab",
+				"BlockIgnores",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": null
+		},
+		{
+			"name": "Broad Institute",
+			"url": "https://github.com/broadinstitute/poasta/blob/HEAD/.vale.ini",
+			"styles": [
+				"ai-tells"
+			],
+			"formats": [
+				"md",
+				"rs"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Buildkite",
 			"url": "https://github.com/buildkite/docs/blob/HEAD/vale/.vale.ini",
-			"styles": ["Buildkite"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "TokenIgnores", "BlockIgnores", "BasedOnStyles"],
+			"styles": [
+				"Buildkite"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"TokenIgnores",
+				"BlockIgnores",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Camunda",
 			"url": "https://github.com/camunda/camunda-docs/blob/HEAD/.vale.ini",
-			"styles": ["all"],
-			"formats": ["docs"],
-			"keys": ["StylesPath", "BasedOnStyles"],
+			"styles": [
+				"all"
+			],
+			"formats": [
+				"docs"
+			],
+			"keys": [
+				"StylesPath",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "ClickHouse",
 			"url": "https://github.com/clickhouse/clickhouse-docs/blob/HEAD/.vale.ini",
-			"styles": ["ClickHouse"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "BasedOnStyles"],
+			"styles": [
+				"ClickHouse"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "CloudQuery",
 			"url": "https://github.com/cloudquery/cloudquery/blob/main/.vale.ini",
-			"styles": ["proselint"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "CMU Software Engineering Institute",
 			"url": "https://github.com/cmu-sei/crucible/blob/HEAD/.vale.ini",
-			"styles": ["crucible"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"crucible"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "CockroachDB",
 			"url": "https://github.com/cockroachdb/docs/blob/master/.vale.ini",
-			"styles": ["CockroachDB"],
-			"formats": ["md"],
+			"styles": [
+				"CockroachDB"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -818,8 +1211,13 @@
 		{
 			"name": "Codacy",
 			"url": "https://github.com/codacy/docs/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "alex"],
-			"formats": ["readme"],
+			"styles": [
+				"Microsoft",
+				"alex"
+			],
+			"formats": [
+				"readme"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -836,56 +1234,149 @@
 		{
 			"name": "Coder",
 			"url": "https://github.com/coder/coder/blob/HEAD/.vale.ini",
-			"styles": ["Coder"],
-			"formats": ["md", "api", "cli"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Coder"
+			],
+			"formats": [
+				"md",
+				"api",
+				"cli"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "commercetools",
 			"url": "https://github.com/commercetools/commercetools-docs-kit/blob/main/packages/writing-style/.vale.ini",
-			"styles": ["write-good", "Google", "commercetools"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"write-good",
+				"Google",
+				"commercetools"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Cornell EmPRISE Lab",
 			"url": "https://github.com/empriselab/mote/blob/HEAD/.vale.ini",
-			"styles": ["proselint"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "CrateDB",
 			"url": "https://github.com/crate/crate/blob/HEAD/.vale.ini",
-			"styles": ["CrateDB"],
-			"formats": ["rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "SkippedScopes", "BasedOnStyles"],
+			"styles": [
+				"CrateDB"
+			],
+			"formats": [
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"SkippedScopes",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
+		},
+		{
+			"name": "CryptPad",
+			"url": "https://github.com/cryptpad/onlyoffice-editor/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google",
+				"proselint",
+				"write-good",
+				"alex",
+				"Readability",
+				"Joblint"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "D2iQ",
 			"url": "https://github.com/mesosphere/dcos-docs-site/blob/main/.vale.ini",
-			"styles": ["write-good", "Microsoft", "ttd-light", "proselint"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"write-good",
+				"Microsoft",
+				"ttd-light",
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Dagster",
 			"url": "https://github.com/dagster-io/dagster/blob/HEAD/docs/.vale.ini",
-			"styles": ["Dagster", "Terms"],
-			"formats": ["md", "mdx", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Dagster",
+				"Terms"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Datadog",
 			"url": "https://www.datadoghq.com/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/",
-			"styles": ["Datadog"],
-			"formats": ["md", "html"],
+			"styles": [
+				"Datadog"
+			],
+			"formats": [
+				"md",
+				"html"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -899,24 +1390,63 @@
 		{
 			"name": "dbt Labs",
 			"url": "https://github.com/dbt-labs/docs.getdbt.com/blob/HEAD/.vale.ini",
-			"styles": ["custom"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"custom"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Determinate Systems",
 			"url": "https://github.com/DeterminateSystems/zero-to-nix/blob/HEAD/.vale.ini",
-			"styles": ["DetSys"],
-			"formats": ["md", "mdx"],
-			"keys": ["MinAlertLevel", "StylesPath", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"DetSys"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"MinAlertLevel",
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Digital Asset",
+			"url": "https://github.com/digital-asset/canton/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google",
+				"DigitalAsset"
+			],
+			"formats": [
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": null
 		},
 		{
 			"name": "Discord",
 			"url": "https://github.com/discord/discord-api-docs/blob/HEAD/.vale.ini",
 			"styles": [],
-			"formats": ["mdx"],
+			"formats": [
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -931,10 +1461,39 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Doc Detective",
+			"url": "https://github.com/doc-detective/doc-detective/blob/main/docs/.vale.ini",
+			"styles": [
+				"Google",
+				"alex",
+				"Joblint",
+				"DocDetective",
+				"Voices",
+				"Direct",
+				"Moose"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Docker",
 			"url": "https://github.com/docker/docs/blob/main/.vale.ini",
-			"styles": ["Docker"],
-			"formats": ["md"],
+			"styles": [
+				"Docker"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -950,9 +1509,19 @@
 		{
 			"name": "DocsGPT",
 			"url": "https://github.com/arc53/DocsGPT/blob/HEAD/.vale.ini",
-			"styles": ["DocsGPT"],
-			"formats": ["md", "mdx"],
-			"keys": ["MinAlertLevel", "StylesPath", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"DocsGPT"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"MinAlertLevel",
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
@@ -960,14 +1529,38 @@
 			"url": "https://github.com/duckdb/duckdb-web/blob/HEAD/.vale.ini",
 			"styles": [],
 			"formats": [],
-			"keys": ["MinAlertLevel", "IgnoredScopes"],
+			"keys": [
+				"MinAlertLevel",
+				"IgnoredScopes"
+			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Edgeless Systems",
+			"url": "https://github.com/edgelesssys/marblerun/blob/HEAD/.vale.ini",
+			"styles": [
+				"Microsoft",
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": null
 		},
 		{
 			"name": "Epic Games",
 			"url": "https://github.com/EpicGames/lore/blob/HEAD/.vale.ini",
-			"styles": ["Lore"],
-			"formats": ["md"],
+			"styles": [
+				"Lore"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -981,16 +1574,31 @@
 		{
 			"name": "Espressif",
 			"url": "https://github.com/espressif/esp-idf/blob/HEAD/.vale.ini",
-			"styles": ["Espressif-latest"],
-			"formats": ["md", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Espressif-latest"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Expo",
 			"url": "https://github.com/expo/expo/blob/HEAD/docs/.vale.ini",
-			"styles": ["expo-docs"],
-			"formats": ["md", "mdx"],
+			"styles": [
+				"expo-docs"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1005,30 +1613,73 @@
 		{
 			"name": "Fern",
 			"url": "https://buildwithfern.com/learn/docs/developer-tools/vale",
-			"styles": ["FernStyles"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"FernStyles"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
+		},
+		{
+			"name": "Flox",
+			"url": "https://github.com/flox/docs/blob/HEAD/.vale.ini",
+			"styles": [],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Fluent Bit",
 			"url": "https://github.com/fluent/fluent-bit-docs/blob/HEAD/.vale.ini",
-			"styles": ["FluentBit"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"FluentBit"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Fly.io",
 			"url": "https://github.com/superfly/docs/blob/HEAD/.vale.ini",
-			"styles": ["Fly", "Google", "proselint", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Fly"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
 				"MinAlertLevel",
 				"SkippedScopes",
-				"Packages",
 				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
@@ -1036,8 +1687,15 @@
 		{
 			"name": "Foreman",
 			"url": "https://github.com/theforeman/foreman-documentation/blob/HEAD/.vale.ini",
-			"styles": ["RedHat", "AsciiDoc", "foreman-documentation"],
-			"formats": ["adoc", "ini"],
+			"styles": [
+				"RedHat",
+				"AsciiDoc",
+				"foreman-documentation"
+			],
+			"formats": [
+				"adoc",
+				"ini"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1053,8 +1711,12 @@
 		{
 			"name": "FreeBSD",
 			"url": "https://github.com/freebsd/freebsd-doc/blob/HEAD/.vale.ini",
-			"styles": ["FreeBSD"],
-			"formats": ["adoc"],
+			"styles": [
+				"FreeBSD"
+			],
+			"formats": [
+				"adoc"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1066,66 +1728,260 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Gardener",
+			"url": "https://github.com/gardener/documentation/blob/HEAD/.vale.ini",
+			"styles": [
+				"Gardener"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "GitHub",
 			"url": "https://github.com/github/codeql/blob/main/docs/codeql/.vale.ini",
-			"styles": ["Semmle"],
-			"formats": ["rst", "csv"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Semmle"
+			],
+			"formats": [
+				"rst",
+				"csv"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestions"
 		},
 		{
 			"name": "GitLab",
 			"url": "https://docs.gitlab.com/development/documentation/testing/vale/",
-			"styles": ["gitlab_base", "gitlab_docs", "gitlab_release_notes", "gitlab_release_index"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"gitlab_base",
+				"gitlab_docs",
+				"gitlab_release_notes",
+				"gitlab_release_index"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "GOV.UK One Login",
 			"url": "https://github.com/govuk-one-login/tech-docs/blob/HEAD/.vale.ini",
-			"styles": ["tech-writing-style-guide"],
-			"formats": ["md", "org", "txt", "erb", "html"],
-			"keys": ["StylesPath", "Packages", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"tech-writing-style-guide"
+			],
+			"formats": [
+				"md",
+				"org",
+				"txt",
+				"erb",
+				"html"
+			],
+			"keys": [
+				"StylesPath",
+				"Packages",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Grafana Labs",
 			"url": "https://grafana.com/docs/writers-toolkit/review/lint-prose/rules/",
-			"styles": ["Grafana"],
-			"formats": ["md"],
-			"keys": ["MinAlertLevel", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Grafana"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Graphile",
 			"url": "https://github.com/graphile/crystal/blob/main/.vale.ini",
-			"styles": ["Microsoft", "Graphile"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Microsoft",
+				"Graphile"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Harness",
 			"url": "https://github.com/harness/developer-hub/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "write-good"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Hazelcast",
+			"url": "https://github.com/hazelcast/documentation/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google",
+				"Hazelcast"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"IgnoredScopes",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Homebrew",
 			"url": "https://github.com/Homebrew/brew/blob/HEAD/.vale.ini",
-			"styles": ["Homebrew"],
-			"formats": ["md", "rb"],
-			"keys": ["StylesPath", "BasedOnStyles"],
+			"styles": [
+				"Homebrew"
+			],
+			"formats": [
+				"md",
+				"rb"
+			],
+			"keys": [
+				"StylesPath",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
+		},
+		{
+			"name": "HURIDOCS",
+			"url": "https://github.com/huridocs/uwazi-knowledge-hub/blob/HEAD/.vale.ini",
+			"styles": [
+				"Uwazi"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"docs",
+				"blog"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
+			"name": "ICTU",
+			"url": "https://github.com/ICTU/sonar/blob/HEAD/tests/.vale.ini",
+			"styles": [
+				"proselint"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "IISER Mohali",
+			"url": "https://github.com/IISERM/thewiki/blob/HEAD/.vale.ini",
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
+			"name": "Imply",
+			"url": "https://github.com/implydata/learn-druid/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"IgnoredScopes",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
 		},
 		{
 			"name": "Infisical",
 			"url": "https://github.com/Infisical/infisical/blob/HEAD/docs/.vale.ini",
-			"styles": ["Infisical"],
-			"formats": ["mdx"],
+			"styles": [
+				"Infisical"
+			],
+			"formats": [
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1141,71 +1997,272 @@
 		{
 			"name": "InfluxData",
 			"url": "https://github.com/influxdata/docs-v2/blob/HEAD/.vale.ini",
-			"styles": ["InfluxDataDocs", "Google", "write-good"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"InfluxDataDocs",
+				"Google",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Infrahub",
 			"url": "https://github.com/opsmill/infrahub/blob/HEAD/.vale.ini",
-			"styles": ["Infrahub"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"Infrahub"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Innovations for Poverty Action",
 			"url": "https://github.com/PovertyAction/ipa-research-data-science-hub/blob/HEAD/.vale.ini",
-			"styles": ["IPA", "Microsoft"],
-			"formats": ["md", "qmd"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"IPA",
+				"Microsoft"
+			],
+			"formats": [
+				"md",
+				"qmd"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "IPFS",
 			"url": "https://github.com/ipfs/ipfs-docs/blob/HEAD/.vale.ini",
-			"styles": ["docs"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles"],
+			"styles": [
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "JabRef",
+			"url": "https://github.com/JabRef/user-documentation/blob/HEAD/.vale.ini",
+			"styles": [
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Jenkins Templating Engine",
+			"url": "https://jenkinsci.github.io/templating-engine-plugin/2.5/contributing/docs/vale/",
+			"styles": [
+				"Microsoft",
+				"JTE"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
+			"minAlertLevel": null
 		},
 		{
 			"name": "JuMP",
 			"url": "https://github.com/jump-dev/JuMP.jl/blob/HEAD/.vale.ini",
-			"styles": ["Google"],
-			"formats": ["md", "jl"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"jl"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Kedro",
 			"url": "https://github.com/kedro-org/kedro/blob/HEAD/.vale.ini",
-			"styles": ["Kedro"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Kedro"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "kitconcept",
+			"url": "https://github.com/kitconcept/kitconcept-core/blob/HEAD/docs/.vale.ini",
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Kong",
 			"url": "https://github.com/Kong/developer.konghq.com/blob/HEAD/.vale.ini",
-			"styles": ["base", "docs"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles", "BlockIgnores", "TokenIgnores"],
+			"styles": [
+				"base",
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Konstruct",
+			"url": "https://github.com/konstructio/gitops-catalog/blob/HEAD/.vale.ini",
+			"styles": [
+				"Custom"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles",
+				"Packages",
+				"IgnoredScopes",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": null
+		},
+		{
+			"name": "Kuma",
+			"url": "https://github.com/kumahq/kuma-website/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google",
+				"Kuma"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"SkippedScopes",
+				"IgnoredClasses",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "error"
+		},
+		{
+			"name": "LanceDB",
+			"url": "https://github.com/lancedb/lancedb/blob/HEAD/.vale.ini",
+			"styles": [
+				"LanceDB"
+			],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "LangChain",
 			"url": "https://github.com/langchain-ai/docs/blob/HEAD/.vale.ini",
-			"styles": ["LangChain", "proselint", "vale", "write-good"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "SkippedScopes", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"LangChain",
+				"proselint",
+				"vale",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"SkippedScopes",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Lean",
 			"url": "https://github.com/leanprover/reference-manual/blob/HEAD/.vale.ini",
-			"styles": ["Lean", "proselint"],
+			"styles": [
+				"Lean",
+				"proselint"
+			],
 			"formats": [],
 			"keys": [
 				"StylesPath",
@@ -1220,10 +2277,34 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Lightbend",
+			"url": "https://github.com/lightbend/kalix-jvm-sdk/blob/HEAD/.vale.ini",
+			"styles": [
+				"Lightbend",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
 			"name": "Linode",
 			"url": "https://github.com/linode/docs/blob/develop/.vale.ini",
-			"styles": ["Linode"],
-			"formats": ["md"],
+			"styles": [
+				"Linode"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1237,64 +2318,146 @@
 		{
 			"name": "Linux Foundation",
 			"url": "https://github.com/linuxfoundation/lfx-architecture-decisions/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft"],
+			"styles": [
+				"Microsoft"
+			],
 			"formats": [],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Manticore Games",
 			"url": "https://github.com/ManticoreGamesInc/platform-documentation/blob/HEAD/.vale.ini",
-			"styles": ["Google"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Mastra",
 			"url": "https://github.com/mastra-ai/mastra/blob/HEAD/docs/.vale.ini",
-			"styles": ["write-good", "Mastra", "signs-of-ai-writing", "ai-tells", "ai-tells-overrides"],
-			"formats": ["docs", "guides"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"write-good",
+				"Mastra",
+				"signs-of-ai-writing",
+				"ai-tells",
+				"ai-tells-overrides"
+			],
+			"formats": [
+				"docs",
+				"guides"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Mattermost",
 			"url": "https://github.com/mattermost/mattermost/blob/HEAD/docs/.vale.ini",
-			"styles": ["Mattermost"],
-			"formats": ["md", "mdx", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Mattermost"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Mautic",
 			"url": "https://github.com/mautic/mautic-documentation/blob/main/.vale.ini",
-			"styles": ["Google", "Mautic"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "IgnoredClasses", "BasedOnStyles"],
+			"styles": [
+				"Google",
+				"Mautic"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"IgnoredClasses",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "McKinsey",
 			"url": "https://github.com/mckinsey/vizro/blob/HEAD/.vale/.vale.ini",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Medusa",
 			"url": "https://github.com/medusajs/medusa/blob/HEAD/.vale.ini",
-			"styles": ["write-good", "docs"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"write-good",
+				"docs"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Mendix",
 			"url": "https://github.com/mendix/docs/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "Mendix"],
-			"formats": ["md", "mdx", "howto8", "howto9"],
+			"styles": [
+				"Microsoft",
+				"Mendix"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"howto8",
+				"howto9"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1308,16 +2471,33 @@
 		{
 			"name": "Mesa",
 			"url": "https://github.com/mesa/mesa/blob/HEAD/.vale.ini",
-			"styles": ["Google", "Mesa"],
-			"formats": ["md", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Google",
+				"Mesa"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Mintlify",
 			"url": "https://www.mintlify.com/docs/deploy/ci",
-			"styles": ["Mintlify"],
-			"formats": ["mdx", "color", "tree"],
+			"styles": [
+				"Mintlify"
+			],
+			"formats": [
+				"mdx",
+				"color",
+				"tree"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1334,8 +2514,15 @@
 		{
 			"name": "mirrord",
 			"url": "https://github.com/metalbear-co/mirrord/blob/HEAD/.vale.ini",
-			"styles": ["write-good", "Google", "Metalbear"],
-			"formats": ["md", "rs"],
+			"styles": [
+				"write-good",
+				"Google",
+				"Metalbear"
+			],
+			"formats": [
+				"md",
+				"rs"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1349,18 +2536,14 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
-			"name": "Mistral AI",
-			"url": "https://github.com/mistralai/platform-docs-public/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "Mistral"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles", "TokenIgnores"],
-			"minAlertLevel": "warning"
-		},
-		{
 			"name": "MUI",
 			"url": "https://github.com/mui/material-ui/blob/HEAD/.vale.ini",
-			"styles": ["MUI"],
-			"formats": ["md"],
+			"styles": [
+				"MUI"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1374,48 +2557,142 @@
 		{
 			"name": "n8n",
 			"url": "https://github.com/n8n-io/n8n-docs/blob/HEAD/.vale.ini",
-			"styles": ["from-write-good", "n8n-styles", "from-microsoft"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"from-write-good",
+				"n8n-styles",
+				"from-microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "warning"
+		},
+		{
+			"name": "NASA",
+			"url": "https://github.com/nasa/terra-ui-components/blob/HEAD/.vale.ini",
+			"styles": [
+				"NASA",
+				"PlainLanguage"
+			],
+			"formats": [
+				"md",
+				"ts",
+				"html"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Neo4j",
 			"url": "https://github.com/neo4j/docs-tools/blob/HEAD/.vale.ini",
-			"styles": ["Neo4j"],
-			"formats": ["adoc"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Neo4j"
+			],
+			"formats": [
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Neon",
 			"url": "https://github.com/neondatabase/website/blob/HEAD/.vale.ini",
-			"styles": ["Neon"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Neon"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Netlify",
 			"url": "https://github.com/netlify/cli/blob/HEAD/.vale.ini",
-			"styles": ["base", "netlify-terms", "smart-marks"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"base",
+				"netlify-terms",
+				"smart-marks"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Nextcloud",
+			"url": "https://github.com/nextcloud/news/blob/HEAD/.vale.ini",
+			"styles": [],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "nf-core",
 			"url": "https://github.com/nf-core/website/blob/HEAD/.vale.ini",
-			"styles": ["nf-core"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"nf-core"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "ngrok",
 			"url": "https://github.com/ngrok/ngrok-docs/blob/HEAD/.vale.ini",
-			"styles": ["StyleRules"],
-			"formats": ["mdx"],
+			"styles": [
+				"StyleRules"
+			],
+			"formats": [
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1425,21 +2702,34 @@
 				"BasedOnStyles",
 				"TokenIgnores"
 			],
-			"minAlertLevel": "warning"
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Nix",
 			"url": "https://github.com/nixos/nix.dev/blob/HEAD/.vale.ini",
-			"styles": ["Style"],
-			"formats": ["md"],
-			"keys": ["MinAlertLevel", "StylesPath", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Style"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"MinAlertLevel",
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Nordic Semiconductor",
 			"url": "https://github.com/nrfconnect/sdk-nrf/blob/HEAD/.vale.ini",
-			"styles": ["Nordic"],
-			"formats": ["rst"],
+			"styles": [
+				"Nordic"
+			],
+			"formats": [
+				"rst"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1455,48 +2745,155 @@
 		{
 			"name": "Northwestern Yang Lab",
 			"url": "https://github.com/ylab-hi/DeepChopper/blob/HEAD/.vale.ini",
-			"styles": ["proselint", "write-good", "alex", "Readability", "Joblint"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"alex",
+				"Readability",
+				"Joblint"
+			],
 			"formats": [],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Novu",
 			"url": "https://github.com/novuhq/docs/blob/HEAD/.vale.ini",
-			"styles": ["Google", "Novu", "write-good"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Google",
+				"Novu",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Nuclio",
+			"url": "https://github.com/nuclio/nuclio/blob/HEAD/.vale.ini",
+			"styles": [
+				"Nuclio"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "NVIDIA",
 			"url": "https://docs.nvidia.com/nemo/agent-toolkit/1.2/resources/contributing.html#checks",
 			"styles": [],
-			"formats": ["md", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "error"
+		},
+		{
+			"name": "Open Energy Transition",
+			"url": "https://github.com/open-energy-transition/oet-hugo-handbook/blob/HEAD/.vale.ini",
+			"styles": [
+				"handbook"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": null
+		},
+		{
+			"name": "Open Liberty",
+			"url": "https://github.com/OpenLiberty/blogs/blob/HEAD/.vale.ini",
+			"styles": [
+				"WordUsage",
+				"Inclusivity",
+				"Spelling",
+				"Grammar",
+				"Google"
+			],
+			"formats": [
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Open Policy Agent",
 			"url": "https://github.com/open-policy-agent/opa/blob/HEAD/docs/.vale.ini",
-			"styles": ["OPA"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"OPA"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "OpenSAFELY",
 			"url": "https://github.com/opensafely/documentation/blob/HEAD/.vale.ini",
-			"styles": ["OpenSAFELY"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"OpenSAFELY"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "OpenSearch",
 			"url": "https://github.com/opensearch-project/documentation-website/blob/HEAD/.vale.ini",
-			"styles": ["OpenSearch"],
-			"formats": ["md"],
+			"styles": [
+				"OpenSearch"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1511,16 +2908,30 @@
 		{
 			"name": "OpenShift",
 			"url": "https://github.com/openshift/openshift-docs/blob/HEAD/.vale.ini",
-			"styles": ["RedHat", "AsciiDoc", "OpenShiftAsciiDoc"],
-			"formats": ["adoc"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"RedHat",
+				"AsciiDoc",
+				"OpenShiftAsciiDoc"
+			],
+			"formats": [
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Optimism",
 			"url": "https://github.com/ethereum-optimism/optimism/blob/HEAD/docs/public-docs/.vale.ini",
 			"styles": [],
-			"formats": ["mdx"],
+			"formats": [
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1535,10 +2946,32 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Oracle",
+			"url": "https://github.com/oracle-livelabs/common/blob/HEAD/lintchecker/vale/.vale.ini",
+			"styles": [
+				"Oracle",
+				"Markup"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "OutSystems",
 			"url": "https://github.com/OutSystems/docs-product/blob/HEAD/.vale.ini",
-			"styles": ["OutSystems", "alex"],
-			"formats": ["md"],
+			"styles": [
+				"OutSystems",
+				"alex"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1553,24 +2986,98 @@
 		{
 			"name": "Palo Alto Networks",
 			"url": "https://github.com/PaloAltoNetworks/shifter/blob/HEAD/.vale.ini",
-			"styles": ["Google"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
+		},
+		{
+			"name": "Pantheon",
+			"url": "https://github.com/pantheon-systems/documentation/blob/HEAD/.vale.ini",
+			"styles": [
+				"Pantheon",
+				"Google"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Pelican",
 			"url": "https://github.com/getpelican/pelican/blob/HEAD/.vale.ini",
-			"styles": ["proselint", "alex"],
+			"styles": [
+				"proselint",
+				"alex"
+			],
 			"formats": [],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "PharmGKB",
+			"url": "https://github.com/PharmGKB/PharmCAT/blob/HEAD/.vale.ini",
+			"styles": [],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "PhotoPrism",
+			"url": "https://github.com/photoprism/photoprism-docs/blob/HEAD/.vale.ini",
+			"styles": [
+				"PhotoPrism"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "PingCAP",
 			"url": "https://github.com/pingcap/docs/blob/master/.vale.ini",
-			"styles": ["PingCAP"],
-			"formats": ["md"],
+			"styles": [
+				"PingCAP"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1584,8 +3091,12 @@
 		{
 			"name": "Platform.sh",
 			"url": "https://github.com/platformsh/platformsh-docs/blob/main/.vale.ini",
-			"styles": ["Platform"],
-			"formats": ["md"],
+			"styles": [
+				"Platform"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1599,15 +3110,28 @@
 		{
 			"name": "Plone",
 			"url": "https://github.com/plone/volto/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Polkadot",
 			"url": "https://github.com/w3f/polkadot-wiki/blob/HEAD/.vale.ini",
-			"styles": ["Google", "Polkadot"],
+			"styles": [
+				"Google",
+				"Polkadot"
+			],
 			"formats": [],
 			"keys": [
 				"StylesPath",
@@ -1622,8 +3146,16 @@
 		{
 			"name": "PostHog",
 			"url": "https://posthog.com/handbook/wizard-and-docs/vale",
-			"styles": ["PostHogBase", "PostHogDocs", "PostHogEditorial"],
-			"formats": ["md", "mdx", "blog"],
+			"styles": [
+				"PostHogBase",
+				"PostHogDocs",
+				"PostHogEditorial"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"blog"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1639,32 +3171,63 @@
 		{
 			"name": "PowerShell Docs",
 			"url": "https://github.com/MicrosoftDocs/PowerShell-Docs/blob/HEAD/.vale.ini",
-			"styles": ["PowerShell-Docs"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Packages", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"PowerShell-Docs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Packages",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Prefect",
 			"url": "https://github.com/prefecthq/prefect/blob/HEAD/docs/.vale.ini",
-			"styles": ["Google", "CustomStyles"],
+			"styles": [
+				"Google",
+				"CustomStyles"
+			],
 			"formats": [],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "BasedOnStyles"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Princeton Logion Project",
 			"url": "https://github.com/princeton-logion/logion-app/blob/HEAD/.vale.ini",
-			"styles": ["logionDoc"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"logionDoc"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Pulumi",
 			"url": "https://github.com/pulumi/docs/blob/HEAD/.vale.ini",
-			"styles": ["Pulumi", "Google", "write-good"],
-			"formats": ["md"],
+			"styles": [
+				"Pulumi",
+				"Google",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1676,26 +3239,52 @@
 			"minAlertLevel": "warning"
 		},
 		{
-			"name": "pyOpenSci",
-			"url": "https://github.com/pyOpenSci/python-package-guide/blob/HEAD/.vale.ini",
-			"styles": ["package-guide-test"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "BasedOnStyles"],
-			"minAlertLevel": null
+			"name": "PyVista",
+			"url": "https://github.com/pyvista/pyvista/blob/HEAD/doc/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md",
+				"rst",
+				"py"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"WordTemplate",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Qiskit",
 			"url": "https://github.com/Qiskit/qiskit-ibm-runtime/blob/HEAD/docs/.vale.ini",
-			"styles": ["IBMQuantum"],
-			"formats": ["md", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"IBMQuantum"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Quarkus",
 			"url": "https://github.com/quarkusio/quarkus/blob/HEAD/docs/.vale.ini",
-			"styles": ["Quarkus"],
-			"formats": ["adoc"],
+			"styles": [
+				"Quarkus"
+			],
+			"formats": [
+				"adoc"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1709,24 +3298,53 @@
 		{
 			"name": "Rackspace",
 			"url": "https://github.com/rackerlabs/technical-blog/blob/master/.vale.ini",
-			"styles": ["Rackspace", "Microsoft"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Rackspace",
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Rancher",
 			"url": "https://github.com/rancher/rancher-docs/blob/HEAD/.vale.ini",
-			"styles": ["common"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "mdx", "BasedOnStyles"],
+			"styles": [
+				"common"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"mdx",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "Ray",
 			"url": "https://github.com/ray-project/ray/blob/HEAD/.vale.ini",
-			"styles": ["Google", "KubeRay", "Ray", "RLlib"],
-			"formats": ["rst", "md"],
+			"styles": [
+				"Google",
+				"KubeRay",
+				"Ray",
+				"RLlib",
+				"Core",
+				"Train",
+				"Tune"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1749,8 +3367,14 @@
 		{
 			"name": "Red Hat",
 			"url": "https://redhat-documentation.github.io/vale-at-red-hat/",
-			"styles": ["RedHat"],
-			"formats": ["adoc", "md", "ini"],
+			"styles": [
+				"RedHat"
+			],
+			"formats": [
+				"adoc",
+				"md",
+				"ini"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1763,26 +3387,15 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
-			"name": "Redocly",
-			"url": "https://github.com/Redocly/redoc/blob/HEAD/.vale.ini",
-			"styles": ["Rules"],
-			"formats": ["md", "mdx", "ini"],
-			"keys": [
-				"StylesPath",
-				"Vocab",
-				"MinAlertLevel",
-				"IgnoredScopes",
-				"SkippedScopes",
-				"BasedOnStyles",
-				"TokenIgnores"
-			],
-			"minAlertLevel": "suggestion"
-		},
-		{
 			"name": "RISC-V",
 			"url": "https://github.com/riscv/docs-dev-guide/blob/HEAD/.vale.ini",
-			"styles": ["riscv", "AsciiDoc"],
-			"formats": ["adoc"],
+			"styles": [
+				"riscv",
+				"AsciiDoc"
+			],
+			"formats": [
+				"adoc"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1798,32 +3411,75 @@
 		{
 			"name": "rOpenSci",
 			"url": "https://github.com/ropensci/roweb3/blob/HEAD/.vale.ini",
-			"styles": ["proselint", "write-good", "alex", "rOpenSci"],
-			"formats": ["md", "qmd", "rmd"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "Vocab", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"alex",
+				"rOpenSci"
+			],
+			"formats": [
+				"md",
+				"qmd",
+				"rmd"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Rubin Observatory",
 			"url": "https://rsp.lsst.io/contributing/vale.html",
-			"styles": ["Google", "RSP"],
-			"formats": ["rst", "md"],
-			"keys": ["StylesPath", "Packages", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Google",
+				"RSP"
+			],
+			"formats": [
+				"rst",
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "Safe",
 			"url": "https://github.com/safe-global/safe-docs/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft", "write-good"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "Packages", "BasedOnStyles"],
+			"styles": [
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "SAP",
 			"url": "https://github.com/SAP/cloud-sdk/blob/main/.vale.ini",
-			"styles": ["SAP"],
-			"formats": ["md"],
+			"styles": [
+				"SAP"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1838,16 +3494,32 @@
 		{
 			"name": "Semrush",
 			"url": "https://github.com/semrush/intergalactic/blob/HEAD/.vale.ini",
-			"styles": ["DevDocs"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "IgnoredScopes", "BasedOnStyles"],
+			"styles": [
+				"DevDocs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Spectro Cloud",
 			"url": "https://www.spectrocloud.com/blog/how-we-use-vale-to-enforce-better-writing-in-docs-and-beyond",
-			"styles": ["Google", "write-good", "alex", "spectrocloud-docs-internal"],
-			"formats": ["md"],
+			"styles": [
+				"Google",
+				"write-good",
+				"alex",
+				"spectrocloud-docs-internal"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"Vocab",
@@ -1863,15 +3535,27 @@
 			"name": "Spotify",
 			"url": "https://github.com/backstage/backstage/blob/master/.vale.ini",
 			"styles": [],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "BasedOnStyles"],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "Spryker",
 			"url": "https://github.com/spryker/spryker-docs/blob/HEAD/.vale.ini",
-			"styles": ["Google", "Spryker", "terms"],
-			"formats": ["md"],
+			"styles": [
+				"Google",
+				"Spryker",
+				"terms"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -1887,136 +3571,442 @@
 		{
 			"name": "StarRocks",
 			"url": "https://github.com/StarRocks/starrocks/blob/HEAD/docs/.vale.ini",
-			"styles": ["local"],
-			"formats": ["md", "mdx", "en", "zh", "ja"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"local"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"en",
+				"zh",
+				"ja"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Teleport",
 			"url": "https://github.com/gravitational/teleport/blob/HEAD/docs/.vale.ini",
-			"styles": ["messaging", "examples", "3rd-party-products"],
-			"formats": ["mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles", "CommentDelimiters"],
+			"styles": [
+				"messaging",
+				"examples",
+				"3rd-party-products"
+			],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"CommentDelimiters"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Telepresence",
 			"url": "https://github.com/telepresenceio/telepresence/blob/HEAD/.vale.ini",
-			"styles": ["Telepresence"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Telepresence"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Temporal",
 			"url": "https://github.com/temporalio/documentation/blob/HEAD/.vale.ini",
-			"styles": ["Std", "Temporal"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Std",
+				"Temporal"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "TestNG",
+			"url": "https://github.com/testng-team/testng/blob/HEAD/.vale.ini",
+			"styles": [
+				"TestNG"
+			],
+			"formats": [
+				"md",
+				"java"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Texas Instruments",
 			"url": "https://github.com/TexasInstruments/processor-sdk-doc/blob/master/.vale.ini",
-			"styles": ["RedHat", "PSDK"],
-			"formats": ["md", "rst"],
-			"keys": ["StylesPath", "MinAlertLevel", "Packages", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"RedHat",
+				"PSDK"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Thousand Brains Project",
 			"url": "https://github.com/thousandbrainsproject/tbp.monty/blob/HEAD/.vale.ini",
 			"styles": [],
-			"formats": ["md"],
-			"keys": ["MinAlertLevel", "StylesPath", "Vocab", "BasedOnStyles", "BlockIgnores"],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"MinAlertLevel",
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "Tigera",
 			"url": "https://github.com/tigera/docs/blob/HEAD/.vale.ini",
-			"styles": ["CalicoStyle"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"CalicoStyle"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Timescale",
 			"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
-			"styles": ["Google"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "TrueNAS",
+			"url": "https://github.com/truenas/documentation/blob/HEAD/.vale.ini",
+			"styles": [
+				"Microsoft",
+				"TrueNAS"
+			],
+			"formats": [
+				"md",
+				"txt"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Trunk",
+			"url": "https://github.com/trunk-io/docs/blob/HEAD/.trunk/configs/.vale.ini",
+			"styles": [
+				"docs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": null
 		},
 		{
 			"name": "TrussWorks",
 			"url": "https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini",
-			"styles": ["Styles"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Vocab", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Styles"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Tyk",
 			"url": "https://github.com/TykTechnologies/tyk/blob/HEAD/.vale.ini",
-			"styles": ["Tyk", "write-good"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles"],
+			"styles": [
+				"Tyk",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "error"
 		},
 		{
 			"name": "UCL Advanced Research Computing",
 			"url": "https://github.com/UCL-ARC/python-tooling/blob/HEAD/.vale.ini",
-			"styles": ["proselint", "write-good", "Readability"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "Packages", "BasedOnStyles", "BlockIgnores"],
+			"styles": [
+				"proselint",
+				"write-good",
+				"Readability"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Packages",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
 			"minAlertLevel": null
 		},
 		{
 			"name": "Umbraco",
 			"url": "https://github.com/umbraco/UmbracoDocs/blob/main/.vale.ini",
-			"styles": ["UmbracoDocs"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "BasedOnStyles", "TokenIgnores"],
+			"styles": [
+				"UmbracoDocs"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
 			"minAlertLevel": null
+		},
+		{
+			"name": "Unikraft",
+			"url": "https://github.com/unikraft-cloud/docs/blob/HEAD/.vale.ini",
+			"styles": [
+				"Microsoft",
+				"write-good",
+				"Unikraft"
+			],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores",
+				"CommentDelimiters"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Uniswap",
 			"url": "https://github.com/Uniswap/uniswap-ai/blob/HEAD/.vale.ini",
 			"styles": [],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "TokenIgnores"],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Vaadin",
+			"url": "https://github.com/vaadin/docs/blob/HEAD/.vale.ini",
+			"styles": [
+				"Vaadin"
+			],
+			"formats": [
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"IgnoredClasses",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Velociraptor",
+			"url": "https://github.com/Velocidex/velociraptor/blob/HEAD/.vale.ini",
+			"styles": [
+				"Velociraptor"
+			],
+			"formats": [
+				"jsx",
+				"md",
+				"yml",
+				"yaml"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores",
+				"View"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Voxgig",
+			"url": "https://github.com/voxgig/omni/blob/HEAD/.vale.ini",
+			"styles": [
+				"Google",
+				"Omni"
+			],
+			"formats": [
+				"md",
+				"agents",
+				"claude",
+				"adr",
+				"todo",
+				"notes"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "VSHN",
 			"url": "https://github.com/vshn/application-catalog-docs/blob/master/docs/modules/ROOT/pages/.vale.ini",
-			"styles": ["Microsoft"],
-			"formats": ["adoc"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"adoc"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "webpack",
 			"url": "https://github.com/webpack/webpack.js.org/blob/master/.vale.ini",
-			"styles": ["proselint", "Speciesism"],
-			"formats": ["md", "mdx"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"proselint",
+				"Speciesism"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Wikimedia",
 			"url": "https://www.mediawiki.org/wiki/Documentation/Tools/Linting",
-			"styles": ["Wikimedia"],
+			"styles": [
+				"Wikimedia"
+			],
 			"formats": [],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "WordPress",
 			"url": "https://github.com/WordPress/openverse/blob/HEAD/.vale/.vale.ini",
-			"styles": ["proselint", "Openverse"],
-			"formats": ["md"],
+			"styles": [
+				"proselint",
+				"Openverse"
+			],
+			"formats": [
+				"md"
+			],
 			"keys": [
 				"MinAlertLevel",
 				"Vocab",
@@ -2030,25 +4020,55 @@
 		{
 			"name": "WSO2",
 			"url": "https://github.com/wso2/docs-is/blob/HEAD/.vale.ini",
-			"styles": ["WSO2-IAM"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "Vocab", "BasedOnStyles", "spelling", "TokenIgnores"],
+			"styles": [
+				"WSO2-IAM"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles",
+				"spelling",
+				"TokenIgnores"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Yii",
 			"url": "https://github.com/yiisoft/docs/blob/HEAD/.vale.ini",
-			"styles": ["Microsoft"],
-			"formats": ["md"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "YugabyteDB",
 			"url": "https://github.com/yugabyte/yugabyte-db/blob/HEAD/docs/.vale.ini",
-			"styles": ["Yugabyte"],
-			"formats": ["html", "md", "rst", "txt"],
-			"keys": ["StylesPath", "MinAlertLevel", "BasedOnStyles"],
+			"styles": [
+				"Yugabyte"
+			],
+			"formats": [
+				"html",
+				"md",
+				"rst",
+				"txt"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
 			"minAlertLevel": "suggestion"
 		}
 	]
