@@ -2,7 +2,7 @@
 
 Learn how Vale handles source code.
 
-Vale lints the comments in source code, found with a [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar for each language below. Clojure and PowerShell have no bundled grammar and are read with comment patterns instead. A one-line comment is scoped `text.comment.line` and a comment spanning lines `text.comment.block`, each followed by the file's extension.
+Vale lints the comments in source code, found with a [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar for each language below. A grammar is a WebAssembly module that `vale sync` installs when the [`Grammars`](../keys/grammars.md) key names it; without one, the comments are found by their delimiters instead, which is how Clojure and PowerShell are always read. A one-line comment is scoped `text.comment.line` and a comment spanning lines `text.comment.block`, each followed by the file's extension.
 
 | Language   | Extensions                           | Scopes                                                                                                                                                                                                                                      |
 | ---------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

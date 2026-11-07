@@ -54,6 +54,8 @@ Every function returns an object. A failure is `{ error: string }`; the shapes b
 
 The configuration is a string, and everything it names is resolved against an in-memory filesystem the host fills. Paths are absolute under a single root, so a `StylesPath` of `/styles` reads rules from `/styles/<Style>/<Rule>.yml`, vocabularies from `/styles/config/vocabularies/`, and dictionaries from `/styles/config/dictionaries/`, as it would on disk.
 
+The same goes for what `vale sync` would install. A [language model](../keys/lang.md) is the files of its archive under `/styles/config/models/<lang>/`, and a [grammar](../keys/grammars.md) is its module at `/styles/config/grammars/<name>.wasm`; a code file is parsed with the grammar when it is there and read by its comment delimiters when it isn't. Neither `Lang` nor `Grammars` downloads anything in the browser: the host adds the files.
+
 ```js
 ValeAddFile("/styles/House/Hedging.yml", ruleYAML);
 ValeAddPackage("/styles", await (await fetch(packageURL)).arrayBuffer());
@@ -107,7 +109,7 @@ Each rule a section's styles bring is `active`, `disabled`, or `override` with t
 | AsciiDoc                              | With the host's converter | Asciidoctor.js; see below.                                                             |
 | XML                                   | With the host's converter | The browser's `XSLTProcessor` and the section's `Transform` stylesheet.                |
 | DITA, reStructuredText, Typst         | With the host's converter | When the host has one: DITA-OT and Docutils have no browser build; Typst does.          |
-| Source code                           | No alerts          | Comments are found with tree-sitter, which is CGo. The file is accepted and produces nothing.  |
+| Source code                           | Yes                | Comments are found by their delimiters, or parsed with a grammar the host adds; see below.    |
 
 A document in an unsupported format is not an error: it lints as empty.
 

@@ -26,21 +26,24 @@ A run needs a configuration file, found in this order:
 
 Whichever one is found, the user-level configuration in the operating system's config directory is read too, underneath it, so preferences that hold across projects live in one place and a project's own settings win. `vale ls-dirs` prints where that is, and `--no-global` leaves it out of a run.
 
-The same two environment variables `ls-vars` reports are all Vale reads:
+The environment variables `ls-vars` reports are all Vale reads:
 
-| Variable           | Description                                                                                  |
-| ------------------ | -------------------------------------------------------------------------------------------- |
-| `VALE_CONFIG_PATH` | A configuration file to use instead of searching for one.                                    |
-| `VALE_STYLES_PATH` | The default [`StylesPath`](../keys/stylespath.md), used when no configuration file sets one. |
+| Variable             | Description                                                                                                                          |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `VALE_CONFIG_PATH`   | A configuration file to use instead of searching for one.                                                                            |
+| `VALE_STYLES_PATH`   | The default [`StylesPath`](../keys/stylespath.md), used when no configuration file sets one.                                         |
+| `VALE_MODELS_URL`    | Where `sync` downloads [language models](../keys/lang.md) from: a URL or a directory holding one archive per language.             |
+| `VALE_GRAMMARS_URL`  | Where `sync` downloads [grammars](../keys/grammars.md) from: a URL or a directory holding one archive per grammar.                   |
+| `VALE_GRAMMARS_PATH` | A directory of grammar modules, read when the `StylesPath` has none.                                                                 |
 
 ## [Commands](cli.md#commands)
 
 | Name         | Description                                                                                                                                                                                                                          |
 | ------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sync`       | <p>Install every entry in the configuration's <a href="../keys/packages.md"><code>Packages</code></a> key into the <code>StylesPath</code>. Run it after adding a package, and in CI before linting.<br><code>$ vale sync</code></p> |
+| `sync`       | <p>Install every entry in the configuration's <a href="../keys/packages.md"><code>Packages</code></a> key into the <code>StylesPath</code>, then the models for the languages its <a href="../keys/lang.md"><code>Lang</code></a> keys name and the grammars its <a href="../keys/grammars.md"><code>Grammars</code></a> key names. Run it after changing any of them, and in CI before linting.<br><code>$ vale sync</code></p> |
 | `test`       | <p>Run the test cases kept beside your rules, and report the ones that failed. See <a href="testing.md">Testing</a>.<br><code>$ vale test styles</code></p>                                                                          |
 | `ls-config`  | <p>Resolve the configuration the way a lint run would, every source in order, and print the result as JSON. The fastest way to see which styles and rules a directory has in scope.<br><code>$ vale ls-config</code></p>             |
-| `ls-metrics` | <p>Print the counts Vale computed while reading a file, as JSON: words, sentences, paragraphs, and the elements of its markup. See <a href="../checks/metric.md">metric</a>.<br><code>$ vale ls-metrics README.md</code></p>         |
+| `ls-metrics` | <p>Print the counts Vale computed while reading a file, as JSON: words, sentences, paragraphs, and the elements of its markup. Several files, or a directory, print an object keyed by file; <code>--glob</code> chooses a directory's files. See <a href="../checks/metric.md">metric</a>.<br><code>$ vale ls-metrics README.md docs/</code></p> |
 | `ls-dirs`    | <p>Print where Vale looks for the default <code>StylesPath</code>, the user-level configuration, and the native messaging host, and whether each is there.<br><code>$ vale ls-dirs</code></p>                                        |
 | `ls-vars`    | <p>Print the environment variables Vale reads, what each does, and its current value.<br><code>$ vale ls-vars</code></p>                                                                                                             |
 | `help`       | <p>Print the listing of options and commands, or one command's own help.<br><code>$ vale help sync</code></p>                                                                                                                        |
@@ -56,8 +59,11 @@ vale-native | /Users/me/Library/Application Support/vale/native/vale-native | �
 
 $ vale ls-vars
 Variable         | Description                                                         | Value
-VALE_CONFIG_PATH | Override the default search process by specifying a .vale.ini file. | ✗
-VALE_STYLES_PATH | Specify the location of the default StylesPath.                     | ✗
+VALE_CONFIG_PATH   | Override the default search process by specifying a .vale.ini file.                                              | ✗
+VALE_STYLES_PATH   | Specify the location of the default StylesPath.                                                                  | ✗
+VALE_MODELS_URL    | Where `vale sync` downloads language models from: a URL or a directory holding one archive per language.        | ✗
+VALE_GRAMMARS_URL  | Where `vale sync` downloads grammars from: a URL or a directory holding one archive per grammar.                 | ✗
+VALE_GRAMMARS_PATH | A directory of tree-sitter grammar modules, read when the StylesPath has none.                                   | ✗
 ```
 
 ## [Options](cli.md#options)

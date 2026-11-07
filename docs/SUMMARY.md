@@ -21,7 +21,9 @@
 
 * [StylesPath](keys/stylespath.md)
 * [Packages](keys/packages.md)
+* [Grammars](keys/grammars.md)
 * [Vocabularies](keys/vocabularies.md)
+* [Lang](keys/lang.md)
 * [MinAlertLevel](keys/minalertlevel.md)
 * [IgnoredScopes](keys/ignoredscopes.md)
 * [IgnoredClasses](keys/ignoredclasses.md)

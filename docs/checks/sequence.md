@@ -86,7 +86,7 @@ upos: '...'
 target: true # or false
 ```
 
-`sequence`-based are [sentence-scoped](../topics/scopes.md). See [prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging) for a full list of supported part-of-speech tags.
+`sequence`-based are [sentence-scoped](../topics/scopes.md). See [prose/tagging](https://github.com/jdkato/prose?tab=readme-ov-file#tagging) for a full list of supported part-of-speech tags. A file in another language, set by [`Lang`](../keys/lang.md), is tagged with the universal tag set directly, so `upos` is the key that reads across languages.
 
 {% hint style="info" %}
 `min` requires Vale v3.19.0 or later.
