@@ -15,7 +15,7 @@ imageAlt: 'An abstract drawing: a tangle of nodes on the left feeds one line int
   import GateReviews from '$lib/components/blog/GateReviews.svelte';
 </script>
 
-There is a [pitch going around](https://ekline.io/blog/from-vale-to-a-quality-gate-that-ships-evolving-ci-cd-for-documentation-in-2026) for AI documentation review, and it has a shape. A rule-based linter, the argument goes, is "completely rule-based and runs offline," so it "can't grasp the semantic context of your writing." Setting one up means "defining your custom styles with YAML and regular expressions, which can be complex," and that takes a lot of time upfront. What you want instead is a quality gate that is context-aware, AI-powered, and low-configuration, with pre-built rules you customize through a UI instead of config files.
+There is a pitch going around for AI documentation review, and it has a shape. A rule-based linter, the argument goes, is "completely rule-based and runs offline," so it "can't grasp the semantic context of your writing." Setting one up means "defining your custom styles with YAML and regular expressions, which can be complex," and that takes a lot of time upfront. What you want instead is a quality gate that is context-aware, AI-powered, and low-configuration, with pre-built rules you customize through a UI instead of config files.
 
 Every sentence of that is true as a description. The conclusion is backwards, and it is backwards in a way you can measure. So I measured it: five model reviews of one draft, a counting test, a forgetting test, and a full pass over a million-word corpus. The model is the wrong tool for the gate and the right tool for the part the pitch calls hard.
 
