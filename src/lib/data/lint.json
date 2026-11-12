@@ -1,6 +1,6 @@
 {
 	"vale": "master",
-	"generated": "2026-10-31",
+	"generated": "2026-11-12",
 	"posts": {
 		"case-study-epic-lore": {
 			"errors": 0,
@@ -14,7 +14,7 @@
 			"smog": 10.6,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 107
+			"ms": 110
 		},
 		"case-study-gov-uk": {
 			"errors": 0,
@@ -28,7 +28,21 @@
 			"smog": 10.4,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 98
+			"ms": 115
+		},
+		"case-study-pnpm": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 1838,
+			"sentences": 119,
+			"paragraphs": 42,
+			"grade": 6.7,
+			"ease": 74.5,
+			"smog": 9,
+			"complex": 5,
+			"minutes": 9,
+			"ms": 114
 		},
 		"case-study-rubin-observatory": {
 			"errors": 0,
@@ -42,7 +56,7 @@
 			"smog": 10,
 			"complex": 7,
 			"minutes": 8,
-			"ms": 134
+			"ms": 116
 		},
 		"commits": {
 			"errors": 0,
@@ -56,7 +70,7 @@
 			"smog": 9.5,
 			"complex": 5,
 			"minutes": 6,
-			"ms": 124
+			"ms": 111
 		},
 		"diataxis": {
 			"errors": 0,
@@ -70,7 +84,7 @@
 			"smog": 11,
 			"complex": 8,
 			"minutes": 6,
-			"ms": 171
+			"ms": 117
 		},
 		"journals": {
 			"errors": 0,
@@ -84,7 +98,7 @@
 			"smog": 11.1,
 			"complex": 10,
 			"minutes": 7,
-			"ms": 182
+			"ms": 105
 		},
 		"openapi": {
 			"errors": 0,
@@ -98,7 +112,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 98
+			"ms": 103
 		},
 		"spelling": {
 			"errors": 0,
@@ -112,7 +126,7 @@
 			"smog": 9.4,
 			"complex": 6,
 			"minutes": 11,
-			"ms": 188
+			"ms": 110
 		},
 		"std": {
 			"errors": 0,
@@ -126,7 +140,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 111
+			"ms": 112
 		},
 		"testing-rules": {
 			"errors": 0,
@@ -140,7 +154,7 @@
 			"smog": 8.5,
 			"complex": 5,
 			"minutes": 4,
-			"ms": 94
+			"ms": 97
 		},
 		"voices": {
 			"errors": 0,
@@ -154,7 +168,7 @@
 			"smog": 9.3,
 			"complex": 7,
 			"minutes": 9,
-			"ms": 102
+			"ms": 105
 		}
 	}
 }

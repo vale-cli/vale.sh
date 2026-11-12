@@ -126,3 +126,6 @@ preprint
 COmanage
 Documenteer
 Avro
+pnpm
+[Cc]hangesets?
+repos?
