@@ -59,7 +59,7 @@ A pass over the Grafana docs is 2.7 seconds, or $17 of input at the model the pi
 
 Two things, and the model fails both as a gate while passing both as an author.
 
-A gate's verdict has to be stated in advance. A rule's is: [`vale test`](/docs/topics/testing) runs each rule against the sentences it should catch and the ones it should leave alone, and `--coverage` fails any rule no case exercises. A model's verdict on a judgment call changes between runs, as the two single-run findings show, so a gate built on it can be sampled but not tested.
+A gate's verdict has to be stated in advance. A rule's is: [`vale test`](https://docs.vale.sh/topics/testing) runs each rule against the sentences it should catch and the ones it should leave alone, and `--coverage` fails any rule no case exercises. A model's verdict on a judgment call changes between runs, as the two single-run findings show, so a gate built on it can be sampled but not tested.
 
 And a gate has to carry the style's definitions, not its headings. The forgetting test is the measurement: the names survive, the lists don't. A rule in a linter is the list.
 
@@ -69,7 +69,7 @@ So far this is the case for a linter as it stood in 2019, and the pitch's answer
 
 It is the cost a model removes. Not by standing at the gate, but by doing the setup once and leaving.
 
-Vale ships [skills](/docs/guides/agents) for the agent you already run. `setup` installs Vale, writes the `.vale.ini`, syncs the styles, and gets a first run in a repository that has none. `triage` turns that first run's thousands of alerts into a decision per rule: fix, downgrade, or switch off, with the reason written into the config. `vocab` adds the project's terms so spelling stops arguing about product names. `ci` wires the whole thing into GitHub Actions or a pre-commit hook. A rule you can describe in a sentence, the model writes as YAML, with the regex, and `vale test` tells both of you whether it does what the sentence said. The regex that was the pitch's complaint is the one artifact a model produces reliably and a test can verify.
+Vale ships [skills](https://docs.vale.sh/guides/agents) for the agent you already run. `setup` installs Vale, writes the `.vale.ini`, syncs the styles, and gets a first run in a repository that has none. `triage` turns that first run's thousands of alerts into a decision per rule: fix, downgrade, or switch off, with the reason written into the config. `vocab` adds the project's terms so spelling stops arguing about product names. `ci` wires the whole thing into GitHub Actions or a pre-commit hook. A rule you can describe in a sentence, the model writes as YAML, with the regex, and `vale test` tells both of you whether it does what the sentence said. The regex that was the pitch's complaint is the one artifact a model produces reliably and a test can verify.
 
 Notice what that leaves in the repository: a config file and a directory of rules, each with a test, each in version control, each reviewed in a pull request like any other change. "A UI instead of config files" asks you to give that up. Config files are the format a model edits best and a team reviews best, and they are what makes the gate's behavior something you can read.
 
