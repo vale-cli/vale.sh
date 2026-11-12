@@ -29,6 +29,7 @@
 		// 'compass': the four kinds of documentation on their two axes.
 		// 'spelling': three markup files, prose lit and code dark, one alert each.
 		// 'test': a failing `vale test` case, expected against actual.
+		// 'gate': a rule being written on the left, the alerts it raised on the right.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -278,6 +279,47 @@
 		}
 	];
 
+	// The 'gate' motif: the split the post argues for, drawn abstractly.
+	// On the left, a tangle of nodes (the model) resolves into one line that
+	// writes a small rule card. From the card, a straight gate runs down the
+	// right, and lines of text pass through it; the ones a rule catches stop
+	// at the gate with a mark. The OG card in script/build-og.mjs draws the
+	// same picture.
+	const gateNodes = [
+		[22, 30],
+		[22, 60],
+		[22, 90],
+		[52, 20],
+		[52, 45],
+		[52, 75],
+		[52, 100],
+		[82, 35],
+		[82, 60],
+		[82, 85]
+	];
+	const gateLinks: [number, number][] = [
+		[0, 3],
+		[0, 4],
+		[1, 4],
+		[1, 5],
+		[2, 5],
+		[2, 6],
+		[3, 7],
+		[4, 7],
+		[4, 8],
+		[5, 8],
+		[5, 9],
+		[6, 9]
+	];
+	// Document lines on the right: y, width, and whether the gate stops one.
+	const gateLines = [
+		{ y: 28, w: 116, caught: false },
+		{ y: 44, w: 96, caught: true },
+		{ y: 60, w: 124, caught: false },
+		{ y: 76, w: 88, caught: true },
+		{ y: 92, w: 108, caught: false }
+	];
+
 	const title = $derived(
 		motif === 'view'
 			? 'vale API.yml'
@@ -293,7 +335,9 @@
 								? 'vale docs/'
 								: motif === 'test'
 									? 'vale test'
-									: `vale ${seed}.md`
+									: motif === 'gate'
+										? 'vale docs/'
+										: `vale ${seed}.md`
 	);
 </script>
 
@@ -430,6 +474,76 @@
 							{/if}
 						</div>
 					{/each}
+				</div>
+			{:else if motif === 'gate'}
+				<div class="flex min-h-0 flex-1 items-center px-4 py-2">
+					<svg viewBox="0 0 320 120" class="h-full w-full" role="presentation" aria-hidden="true">
+						<!-- The model: a tangle of nodes. -->
+						{#each gateLinks as [a, b], i (i)}
+							<line
+								x1={gateNodes[a][0]}
+								y1={gateNodes[a][1]}
+								x2={gateNodes[b][0]}
+								y2={gateNodes[b][1]}
+								class="stroke-foreground/25"
+								stroke-width="1.5"
+							/>
+						{/each}
+						{#each gateNodes as [x, y], i (i)}
+							<circle cx={x} cy={y} r="4.5" class="fill-foreground/35" />
+						{/each}
+						<!-- One line out of the tangle writes the rule. -->
+						<path
+							d="M86 60 C 104 60, 108 60, 124 60"
+							class="stroke-lime-500"
+							stroke-width="2.5"
+							fill="none"
+							stroke-linecap="round"
+						/>
+						<!-- The rule card. -->
+						<rect
+							x="126"
+							y="40"
+							width="44"
+							height="40"
+							rx="5"
+							class="fill-lime-500/15 stroke-lime-500"
+							stroke-width="2"
+						/>
+						<rect x="134" y="50" width="22" height="3.5" rx="1.75" class="fill-lime-500" />
+						<rect x="134" y="58" width="28" height="3.5" rx="1.75" class="fill-lime-500/70" />
+						<rect x="134" y="66" width="16" height="3.5" rx="1.75" class="fill-lime-500/70" />
+						<!-- The gate the rule becomes. -->
+						<path
+							d="M170 60 L 190 60"
+							class="stroke-lime-500"
+							stroke-width="2.5"
+							stroke-linecap="round"
+						/>
+						<line
+							x1="190"
+							y1="14"
+							x2="190"
+							y2="106"
+							class="stroke-lime-500"
+							stroke-width="3"
+							stroke-linecap="round"
+						/>
+						<!-- The docs passing through. -->
+						{#each gateLines as l, i (i)}
+							<rect
+								x="180"
+								y={l.y - 2.5}
+								width={l.caught ? 10 : l.w + 10}
+								height="5"
+								rx="2.5"
+								class="fill-foreground/20"
+							/>
+							{#if l.caught}
+								<circle cx="198" cy={l.y} r="4.5" class="fill-rose-400" />
+							{/if}
+						{/each}
+					</svg>
 				</div>
 			{:else if motif === 'savings'}
 				<div class="flex min-h-0 flex-1 gap-3 px-4 py-3">

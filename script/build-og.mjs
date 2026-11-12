@@ -253,6 +253,76 @@ function sketch(seed) {
 	return out;
 }
 
+function gate() {
+	// The split the post argues for, drawn abstractly: a tangle of nodes (the
+	// model) writes one rule card, and the rule becomes a gate the docs pass
+	// through, where two lines are stopped with a mark. Mirrors PostBanner,
+	// scaled from its 320x120 box into the pane.
+	const sx = PANE.w / 320;
+	const sy = PANE.h / 120;
+	const S = Math.min(sx, sy);
+	const ox = PANE.x + (PANE.w - 320 * S) / 2;
+	const oy = PANE.y + (PANE.h - 120 * S) / 2;
+	const X = (x) => ox + x * S;
+	const Y = (y) => oy + y * S;
+	const nodes = [
+		[22, 30],
+		[22, 60],
+		[22, 90],
+		[52, 20],
+		[52, 45],
+		[52, 75],
+		[52, 100],
+		[82, 35],
+		[82, 60],
+		[82, 85]
+	];
+	const links = [
+		[0, 3],
+		[0, 4],
+		[1, 4],
+		[1, 5],
+		[2, 5],
+		[2, 6],
+		[3, 7],
+		[4, 7],
+		[4, 8],
+		[5, 8],
+		[5, 9],
+		[6, 9]
+	];
+	const lines = [
+		[28, 116, false],
+		[44, 96, true],
+		[60, 124, false],
+		[76, 88, true],
+		[92, 108, false]
+	];
+	let out = '';
+	for (const [a, b] of links) {
+		out += `<line x1="${X(nodes[a][0])}" y1="${Y(nodes[a][1])}" x2="${X(nodes[b][0])}" y2="${Y(nodes[b][1])}" stroke="${C.muted}" stroke-opacity="0.5" stroke-width="${1.5 * S}"/>`;
+	}
+	for (const [x, y] of nodes) {
+		out += `<circle cx="${X(x)}" cy="${Y(y)}" r="${4.5 * S}" fill="${C.muted}" fill-opacity="0.7"/>`;
+	}
+	out += `<path d="M${X(86)} ${Y(60)} C ${X(104)} ${Y(60)}, ${X(108)} ${Y(60)}, ${X(124)} ${Y(60)}" stroke="${C.lime}" stroke-width="${2.5 * S}" fill="none" stroke-linecap="round"/>`;
+	out += `<rect x="${X(126)}" y="${Y(40)}" width="${44 * S}" height="${40 * S}" rx="${5 * S}" fill="${C.lime}" fill-opacity="0.15" stroke="${C.lime}" stroke-width="${2 * S}"/>`;
+	for (const [w, y, op] of [
+		[22, 50, 1],
+		[28, 58, 0.7],
+		[16, 66, 0.7]
+	]) {
+		out += `<rect x="${X(134)}" y="${Y(y)}" width="${w * S}" height="${3.5 * S}" rx="${1.75 * S}" fill="${C.lime}" fill-opacity="${op}"/>`;
+	}
+	out += `<path d="M${X(170)} ${Y(60)} L ${X(190)} ${Y(60)}" stroke="${C.lime}" stroke-width="${2.5 * S}" stroke-linecap="round"/>`;
+	out += `<line x1="${X(190)}" y1="${Y(14)}" x2="${X(190)}" y2="${Y(106)}" stroke="${C.lime}" stroke-width="${3 * S}" stroke-linecap="round"/>`;
+	for (const [y, w, caught] of lines) {
+		out += `<rect x="${X(180)}" y="${Y(y - 2.5)}" width="${(caught ? 10 : w + 10) * S}" height="${5 * S}" rx="${2.5 * S}" fill="${C.muted}" fill-opacity="0.45"/>`;
+		if (caught) out += `<circle cx="${X(198)}" cy="${Y(y)}" r="${4.5 * S}" fill="${C.rose}"/>`;
+	}
+	return out;
+}
+
 function savings() {
 	// Cumulative cost over fifty requests: resident context as straight
 	// lines, rules as a band. Endpoints from the measured per-request costs.
@@ -305,7 +375,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 						? 'vale trial.md'
 						: meta.motif === 'test'
 							? 'vale test'
-							: `vale ${slug}.md`;
+							: meta.motif === 'gate'
+								? 'vale docs/'
+								: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -321,7 +393,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 								? manuscript()
 								: meta.motif === 'test'
 									? testRun()
-									: sketch(slug);
+									: meta.motif === 'gate'
+										? gate()
+										: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines

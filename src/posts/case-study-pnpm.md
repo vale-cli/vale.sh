@@ -2,7 +2,7 @@
 title: 'How pnpm holds its release notes to a stricter standard than its docs'
 description: 'pnpm runs one 25-rule Vale style over its docs, its release notes, its contributor Markdown, and the comments in its Rust and TypeScript. The config decides which rules apply to which text, and the release notes get the most.'
 date: '2026-11-12'
-draft: false
+draft: true
 tags: ['case-studies', 'adopters']
 brand: 'pnpm'
 figure: '25 rules'

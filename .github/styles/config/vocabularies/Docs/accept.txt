@@ -4,6 +4,7 @@
 [cC]onfig
 [dD]ivs?
 [gG]lob(?:bing)?
+Grafana
 [lL]inter(?:'s|s)?
 [lL]ookaheads?
 [lL]ookarounds?
