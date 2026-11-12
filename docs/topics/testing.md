@@ -74,6 +74,7 @@ Or a file ending in `.test.yml` holds a list of them:
 | `format`   | The extension `input` is read as, such as `rst` or `.adoc`. Defaults to `md`.                                                  |
 | `rule`     | A rule file, relative to the test file, to run alone. See [Isolated and project cases](testing.md#isolated-and-project-cases). |
 | `view`     | A [View](views.md) under `config/views` to read `input` through, for a rule scoped to one of its pieces.                       |
+| `lang`     | The language `input` is written in, as [`Lang`](../keys/lang.md) names it, for an isolated case; its model comes from `config/models` on the search path. A project case takes its language from the project's sections. |
 | `want`     | The exact alerts, one `line:column:Check:message` per line. An empty `want` asserts that there are none.                       |
 | `contains` | Text, or a list of texts, that the alerts must include.                                                                        |
 | `absent`   | Text, or a list of texts, that the alerts must not include.                                                                    |
@@ -159,7 +160,13 @@ $ vale test
   ERROR   2 files — 4 passed, 1 failed
 ```
 
-`--output=JSON` prints the same results as JSON, with each failure's `reason`, `got`, and `want`.
+A failing case of a [`sequence`](../checks/sequence.md) rule also shows `input` as the tagger read it, one `word/TAG` per token, since the tags are what the rule matched and nothing in the YAML shows them:
+
+```
+  tags  The/DT old/JJ house/NN ./.
+```
+
+`--output=JSON` prints the same results as JSON, with each failure's `reason`, `got`, `want`, and, for a sequence rule, `tags`.
 
 ### [Coverage](testing.md#coverage)
 

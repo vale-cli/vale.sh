@@ -24,7 +24,15 @@ The language chooses three things about how a file is read:
 * **Words.** French and Italian split elisions as their models were trained to, so `l'homme` is `l'` and `homme`; Chinese and Japanese are split where the script changes and at each punctuation mark.
 * **Part-of-speech tags.** A supported language has a tagging model. Each emits the [universal tag set](https://universaldependencies.org/u/pos/), so a [`sequence`](../checks/sequence.md) rule written with `upos` reads the same in every language. The `tag` key, which takes Penn tags, applies to English alone.
 
-`Lang` doesn't change spelling: `Vale.Spelling` reads the dictionary the [`spelling`](../checks/spelling.md) check names.
+The checks built for English behave as follows on a file in another language:
+
+* **Spelling.** `Vale.Spelling`, and any [`spelling`](../checks/spelling.md) rule that names no dictionary of its own, reads the language's dictionary from `<StylesPath>/config/dictionaries/`: `de.dic` and `de.aff`, or Hunspell's `de_DE`. Vale doesn't carry those dictionaries; add the one you use. Without it, the rule skips the file and says so once, rather than reporting every word.
+* **Capitalization.** `$sentence` keeps what the language capitalizes, so a German heading keeps its nouns: the words the language's tagger reads as nouns and names count as exceptions. `$title` is an English convention and skips the file, with a warning.
+* **Readability.** Every formula counts English syllables, so the rule skips the file, with a warning.
+
+A rule that matches text, such as `existence` or `substitution`, is language-neutral: word boundaries and `ignorecase` handle accented letters, though a case-insensitive match folds simple pairs only, so `Straße` doesn't match `STRASSE`.
+
+`vale sync` reports what each model holds and from which prose release, and names the languages that have no dictionary.
 
 ## [Models](lang.md#models)
 

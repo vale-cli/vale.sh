@@ -34,7 +34,7 @@ test.md:1:1:style.Spelling:Did you really mean 'Teh'?
 test.md:1:19:style.Spelling:Did you really mean 'evrey'?
 ```
 
-By default, `spelling` includes a custom, open-source [dictionary for American English](https://github.com/vale-cli/en_US-web).
+By default, `spelling` includes a custom, open-source [dictionary for American English](https://github.com/vale-cli/en_US-web). A file in another language, set by [`Lang`](../keys/lang.md), is checked against that language's dictionary from `config/dictionaries` instead, or skipped when there is none.
 
 ## [Dictionaries](spelling.md#dictionaries)
 
