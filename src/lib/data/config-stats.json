@@ -1,19 +1,20 @@
 {
-	"sampleSize": 169,
-	"adopterCount": 208,
+	"sampleSize": 211,
+	"adopterCount": 246,
 	"styles": {
-		"Google": 33,
-		"write-good": 24,
-		"Microsoft": 21,
-		"proselint": 14,
-		"alex": 9,
+		"Google": 44,
+		"write-good": 31,
+		"Microsoft": 29,
+		"proselint": 20,
+		"alex": 13,
+		"Joblint": 5,
+		"RedHat": 5,
 		"docs": 4,
-		"RedHat": 4,
+		"Readability": 4,
 		"ai-tells": 3,
 		"AsciiDoc": 3,
-		"Joblint": 3,
-		"Readability": 3,
 		"base": 2,
+		"vale": 2,
 		"3rd-party-products": 1,
 		"ADI": 1,
 		"ai-tells-overrides": 1,
@@ -22,8 +23,10 @@
 		"Apify": 1,
 		"ApifyDocs": 1,
 		"Atlantis": 1,
+		"Aurae": 1,
 		"Buildkite": 1,
 		"CalicoStyle": 1,
+		"Clever": 1,
 		"ClickHouse": 1,
 		"CockroachDB": 1,
 		"Coder": 1,
@@ -31,6 +34,7 @@
 		"common": 1,
 		"Core": 1,
 		"CrateDB": 1,
+		"Crossplane": 1,
 		"crucible": 1,
 		"custom": 1,
 		"Custom": 1,
@@ -41,6 +45,7 @@
 		"DetSys": 1,
 		"DevDocs": 1,
 		"DigitalAsset": 1,
+		"DIMO": 1,
 		"Direct": 1,
 		"DocDetective": 1,
 		"Docker": 1,
@@ -49,13 +54,16 @@
 		"examples": 1,
 		"expo-docs": 1,
 		"FernStyles": 1,
+		"Fio-docs": 1,
 		"FluentBit": 1,
 		"Fly": 1,
+		"flyway": 1,
 		"foreman-documentation": 1,
 		"FreeBSD": 1,
 		"from-microsoft": 1,
 		"from-write-good": 1,
 		"Gardener": 1,
+		"gitlab": 1,
 		"gitlab_base": 1,
 		"gitlab_docs": 1,
 		"gitlab_release_index": 1,
@@ -67,6 +75,7 @@
 		"Hazelcast": 1,
 		"Homebrew": 1,
 		"IBMQuantum": 1,
+		"IDM": 1,
 		"Inclusivity": 1,
 		"Infisical": 1,
 		"InfluxDataDocs": 1,
@@ -84,6 +93,7 @@
 		"local": 1,
 		"logionDoc": 1,
 		"Lore": 1,
+		"Mark": 1,
 		"Markup": 1,
 		"Mastra": 1,
 		"Mattermost": 1,
@@ -93,6 +103,8 @@
 		"messaging": 1,
 		"Metalbear": 1,
 		"Mintlify": 1,
+		"MLRun": 1,
+		"MongoDB": 1,
 		"Moose": 1,
 		"MUI": 1,
 		"n8n-styles": 1,
@@ -100,10 +112,13 @@
 		"Neo4j": 1,
 		"Neon": 1,
 		"netlify-terms": 1,
+		"new-relic": 1,
 		"nf-core": 1,
 		"Nordic": 1,
+		"Notebooks": 1,
 		"Novu": 1,
 		"Nuclio": 1,
+		"Nx": 1,
 		"Omni": 1,
 		"OPA": 1,
 		"OpenSAFELY": 1,
@@ -117,30 +132,38 @@
 		"PingCAP": 1,
 		"PlainLanguage": 1,
 		"Platform": 1,
+		"pnpm": 1,
 		"Polkadot": 1,
 		"PostHogBase": 1,
 		"PostHogDocs": 1,
 		"PostHogEditorial": 1,
+		"Postman": 1,
 		"PowerShell-Docs": 1,
 		"PSDK": 1,
 		"Pulumi": 1,
+		"pyos-styles": 1,
 		"Quarkus": 1,
 		"Rackspace": 1,
 		"Ray": 1,
+		"Redocly-Docs": 1,
+		"Renovate": 1,
 		"riscv": 1,
 		"RLlib": 1,
 		"rOpenSci": 1,
 		"RSP": 1,
 		"SAP": 1,
 		"Semmle": 1,
+		"Sensible": 1,
 		"signs-of-ai-writing": 1,
 		"smart-marks": 1,
 		"SmartWallets": 1,
 		"Speciesism": 1,
 		"spectrocloud-docs-internal": 1,
+		"spelling": 1,
 		"Spelling": 1,
 		"Spryker": 1,
 		"Std": 1,
+		"Steel": 1,
 		"Style": 1,
 		"StyleRules": 1,
 		"Styles": 1,
@@ -150,6 +173,8 @@
 		"terms": 1,
 		"Terms": 1,
 		"TestNG": 1,
+		"ThunderID": 1,
+		"TitleCase": 1,
 		"Train": 1,
 		"TrueNAS": 1,
 		"ttd-light": 1,
@@ -157,35 +182,39 @@
 		"Tyk": 1,
 		"UmbracoDocs": 1,
 		"Unikraft": 1,
+		"Utopia": 1,
 		"Uwazi": 1,
 		"Vaadin": 1,
-		"vale": 1,
 		"Velociraptor": 1,
+		"VijilStyle": 1,
 		"Voices": 1,
 		"Wikimedia": 1,
 		"WordUsage": 1,
 		"WSO2-IAM": 1,
+		"WTD": 1,
+		"Xorq": 1,
+		"Yellow": 1,
 		"Yugabyte": 1
 	},
 	"packages": {
-		"Google": 25,
-		"write-good": 20,
-		"Microsoft": 16,
-		"proselint": 12,
-		"alex": 9,
-		"MDX": 5,
-		"RedHat": 5,
+		"Google": 34,
+		"write-good": 23,
+		"Microsoft": 20,
+		"proselint": 16,
+		"alex": 12,
+		"MDX": 7,
+		"RedHat": 6,
+		"Joblint": 4,
+		"Readability": 4,
 		"ai-tells": 3,
 		"AsciiDoc": 3,
-		"Joblint": 3,
-		"Readability": 3,
+		"Hugo": 3,
 		"ai-tells-commits": 1,
 		"ApifyStyleGuide": 1,
 		"AsciiDocDITA": 1,
 		"config": 1,
 		"Docker": 1,
 		"Espressif-latest": 1,
-		"Hugo": 1,
 		"Moose": 1,
 		"nf-core": 1,
 		"OpenShiftAsciiDoc": 1,
@@ -198,21 +227,23 @@
 		"vale": 1
 	},
 	"formats": {
-		"md": 130,
-		"mdx": 36,
-		"rst": 18,
+		"md": 162,
+		"mdx": 48,
+		"rst": 21,
 		"adoc": 11,
-		"html": 4,
+		"html": 5,
+		"txt": 5,
+		"qmd": 4,
+		"rs": 4,
 		"docs": 3,
-		"txt": 3,
+		"ini": 3,
+		"ts": 3,
+		"agents": 2,
 		"blog": 2,
-		"ini": 2,
-		"qmd": 2,
-		"rs": 2,
+		"claude": 2,
+		"org": 2,
 		"adr": 1,
-		"agents": 1,
 		"api": 1,
-		"claude": 1,
 		"cli": 1,
 		"color": 1,
 		"csv": 1,
@@ -221,66 +252,81 @@
 		"guides": 1,
 		"howto8": 1,
 		"howto9": 1,
+		"htm": 1,
 		"ja": 1,
 		"java": 1,
 		"jl": 1,
+		"json": 1,
 		"jsx": 1,
+		"mdoc": 1,
 		"notes": 1,
-		"org": 1,
+		"pnpm": 1,
+		"pnpm11": 1,
+		"pnpr": 1,
+		"psr": 1,
 		"py": 1,
 		"rb": 1,
 		"readme": 1,
+		"rfc": 1,
 		"rmd": 1,
+		"svg": 1,
 		"todo": 1,
 		"tree": 1,
-		"ts": 1,
+		"xml": 1,
 		"yaml": 1,
 		"yml": 1,
 		"zh": 1
 	},
 	"minAlertLevels": {
-		"suggestion": 99,
-		"warning": 34,
-		"error": 18,
+		"suggestion": 123,
+		"warning": 45,
+		"error": 23,
 		"suggestions": 1
 	},
 	"keys": {
-		"BasedOnStyles": 167,
-		"StylesPath": 165,
-		"MinAlertLevel": 152,
-		"Vocab": 102,
-		"Packages": 67,
-		"TokenIgnores": 63,
-		"BlockIgnores": 42,
-		"IgnoredScopes": 40,
-		"SkippedScopes": 26,
+		"BasedOnStyles": 209,
+		"StylesPath": 206,
+		"MinAlertLevel": 192,
+		"Vocab": 128,
+		"Packages": 83,
+		"TokenIgnores": 74,
+		"BlockIgnores": 49,
+		"IgnoredScopes": 46,
+		"SkippedScopes": 29,
 		"CommentDelimiters": 8,
 		"IgnoredClasses": 6,
-		"WordTemplate": 4,
+		"WordTemplate": 5,
+		"IgnorePatterns": 2,
+		"spelling": 2,
 		"View": 2,
 		"Checks": 1,
+		"CodeDirectives": 1,
 		"experimental": 1,
 		"Formats": 1,
 		"ignored": 1,
 		"Ignored": 1,
-		"IgnorePatterns": 1,
 		"mdx": 1,
-		"spelling": 1,
+		"Transform": 1,
 		"Vale": 1
 	},
-	"pathScoped": 58,
+	"pathScoped": 70,
 	"pairedWith": {
 		"Google": {
-			"write-good": 7,
-			"alex": 3,
+			"write-good": 9,
+			"alex": 5,
 			"Joblint": 2,
+			"Microsoft": 2,
+			"proselint": 2,
+			"Readability": 2,
 			"ADI": 1,
 			"commercetools": 1,
 			"Core": 1,
+			"Crossplane": 1,
 			"CustomStyles": 1,
 			"DigitalAsset": 1,
 			"Direct": 1,
 			"DocDetective": 1,
+			"gitlab": 1,
 			"Grammar": 1,
 			"Hazelcast": 1,
 			"Inclusivity": 1,
@@ -290,18 +336,16 @@
 			"Mautic": 1,
 			"Mesa": 1,
 			"Metalbear": 1,
-			"Microsoft": 1,
 			"Moose": 1,
 			"Novu": 1,
 			"Omni": 1,
 			"Pantheon": 1,
 			"Polkadot": 1,
-			"proselint": 1,
 			"Pulumi": 1,
 			"Ray": 1,
-			"Readability": 1,
 			"RLlib": 1,
 			"RSP": 1,
+			"Sensible": 1,
 			"spectrocloud-docs-internal": 1,
 			"Spelling": 1,
 			"Spryker": 1,
@@ -309,7 +353,8 @@
 			"Train": 1,
 			"Tune": 1,
 			"Voices": 1,
-			"WordUsage": 1
+			"WordUsage": 1,
+			"Xorq": 1
 		},
 		"Aiven": {},
 		"SmartWallets": {},
@@ -327,45 +372,59 @@
 			"write-good": 1
 		},
 		"write-good": {
-			"Google": 7,
-			"Microsoft": 7,
-			"proselint": 7,
-			"alex": 5,
+			"Microsoft": 10,
+			"proselint": 10,
+			"Google": 9,
+			"alex": 8,
+			"Joblint": 4,
 			"Readability": 3,
 			"ai-tells": 2,
-			"Joblint": 2,
+			"vale": 2,
 			"ai-tells-overrides": 1,
 			"Apify": 1,
 			"ApifyDocs": 1,
 			"commercetools": 1,
+			"Crossplane": 1,
 			"DeadlineSamples": 1,
 			"docs": 1,
+			"gitlab": 1,
+			"IDM": 1,
 			"InfluxDataDocs": 1,
 			"LangChain": 1,
 			"Lightbend": 1,
 			"Mastra": 1,
 			"Metalbear": 1,
+			"Notebooks": 1,
 			"Novu": 1,
+			"Postman": 1,
 			"Pulumi": 1,
+			"RedHat": 1,
 			"rOpenSci": 1,
 			"signs-of-ai-writing": 1,
 			"spectrocloud-docs-internal": 1,
 			"ttd-light": 1,
 			"Tyk": 1,
 			"Unikraft": 1,
-			"vale": 1
+			"VijilStyle": 1
 		},
 		"Microsoft": {
-			"write-good": 7,
-			"alex": 2,
-			"proselint": 2,
+			"write-good": 10,
+			"proselint": 5,
+			"alex": 4,
+			"Google": 2,
 			"Apify": 1,
 			"ApifyDocs": 1,
-			"Google": 1,
+			"Crossplane": 1,
+			"flyway": 1,
+			"gitlab": 1,
 			"Graphile": 1,
+			"IDM": 1,
 			"IPA": 1,
 			"JTE": 1,
 			"Mendix": 1,
+			"new-relic": 1,
+			"Notebooks": 1,
+			"Postman": 1,
 			"Rackspace": 1,
 			"TrueNAS": 1,
 			"ttd-light": 1,
@@ -373,35 +432,45 @@
 		},
 		"Atlantis": {},
 		"proselint": {
-			"write-good": 7,
-			"alex": 5,
+			"write-good": 10,
+			"alex": 7,
+			"Microsoft": 5,
+			"Joblint": 3,
 			"Readability": 3,
-			"Joblint": 2,
-			"Microsoft": 2,
-			"Google": 1,
+			"Google": 2,
+			"Crossplane": 1,
+			"flyway": 1,
+			"gitlab": 1,
 			"LangChain": 1,
 			"Lean": 1,
 			"Openverse": 1,
+			"RedHat": 1,
 			"rOpenSci": 1,
 			"Speciesism": 1,
 			"ttd-light": 1,
-			"vale": 1
+			"vale": 1,
+			"VijilStyle": 1,
+			"WTD": 1
 		},
 		"alex": {
-			"proselint": 5,
-			"write-good": 5,
-			"Google": 3,
-			"Joblint": 3,
-			"Microsoft": 2,
-			"Readability": 2,
+			"write-good": 8,
+			"proselint": 7,
+			"Google": 5,
+			"Joblint": 4,
+			"Microsoft": 4,
+			"Readability": 3,
+			"Crossplane": 1,
 			"Direct": 1,
 			"DocDetective": 1,
+			"gitlab": 1,
 			"Moose": 1,
 			"OutSystems": 1,
+			"RedHat": 1,
 			"rOpenSci": 1,
 			"spectrocloud-docs-internal": 1,
 			"Voices": 1
 		},
+		"Aurae": {},
 		"ai-tells": {
 			"write-good": 2,
 			"ai-tells-overrides": 1,
@@ -415,6 +484,7 @@
 		},
 		"Buildkite": {},
 		"all": {},
+		"Clever": {},
 		"ClickHouse": {},
 		"crucible": {},
 		"CockroachDB": {},
@@ -424,22 +494,40 @@
 			"write-good": 1
 		},
 		"CrateDB": {},
+		"Crossplane": {
+			"alex": 1,
+			"gitlab": 1,
+			"Google": 1,
+			"Microsoft": 1,
+			"proselint": 1,
+			"write-good": 1
+		},
+		"gitlab": {
+			"alex": 1,
+			"Crossplane": 1,
+			"Google": 1,
+			"Microsoft": 1,
+			"proselint": 1,
+			"write-good": 1
+		},
 		"Readability": {
+			"alex": 3,
 			"proselint": 3,
 			"write-good": 3,
-			"alex": 2,
-			"Joblint": 2,
-			"Google": 1
+			"Google": 2,
+			"Joblint": 2
 		},
 		"Joblint": {
-			"alex": 3,
+			"alex": 4,
+			"write-good": 4,
+			"proselint": 3,
 			"Google": 2,
-			"proselint": 2,
 			"Readability": 2,
-			"write-good": 2,
 			"Direct": 1,
 			"DocDetective": 1,
 			"Moose": 1,
+			"RedHat": 1,
+			"vale": 1,
 			"Voices": 1
 		},
 		"ttd-light": {
@@ -459,6 +547,7 @@
 		"DigitalAsset": {
 			"Google": 1
 		},
+		"DIMO": {},
 		"DocDetective": {
 			"alex": 1,
 			"Direct": 1,
@@ -499,11 +588,19 @@
 		"FernStyles": {},
 		"FluentBit": {},
 		"Fly": {},
+		"flyway": {
+			"Microsoft": 1,
+			"proselint": 1
+		},
 		"RedHat": {
 			"AsciiDoc": 2,
+			"alex": 1,
 			"foreman-documentation": 1,
+			"Joblint": 1,
 			"OpenShiftAsciiDoc": 1,
-			"PSDK": 1
+			"proselint": 1,
+			"PSDK": 1,
+			"write-good": 1
 		},
 		"AsciiDoc": {
 			"RedHat": 2,
@@ -515,6 +612,7 @@
 			"AsciiDoc": 1,
 			"RedHat": 1
 		},
+		"Fio-docs": {},
 		"FreeBSD": {},
 		"Gardener": {},
 		"Semmle": {},
@@ -557,6 +655,16 @@
 		"IPA": {
 			"Microsoft": 1
 		},
+		"IDM": {
+			"Microsoft": 1,
+			"Notebooks": 1,
+			"write-good": 1
+		},
+		"Notebooks": {
+			"IDM": 1,
+			"Microsoft": 1,
+			"write-good": 1
+		},
 		"docs": {
 			"base": 1,
 			"write-good": 1
@@ -581,9 +689,10 @@
 			"write-good": 1
 		},
 		"vale": {
+			"write-good": 2,
+			"Joblint": 1,
 			"LangChain": 1,
-			"proselint": 1,
-			"write-good": 1
+			"proselint": 1
 		},
 		"Lean": {
 			"proselint": 1
@@ -625,6 +734,8 @@
 			"Google": 1,
 			"write-good": 1
 		},
+		"MLRun": {},
+		"MongoDB": {},
 		"MUI": {},
 		"from-write-good": {
 			"from-microsoft": 1,
@@ -644,6 +755,7 @@
 		"PlainLanguage": {
 			"NASA": 1
 		},
+		"Mark": {},
 		"Neo4j": {},
 		"Neon": {},
 		"netlify-terms": {
@@ -654,6 +766,9 @@
 			"base": 1,
 			"netlify-terms": 1
 		},
+		"new-relic": {
+			"Microsoft": 1
+		},
 		"nf-core": {},
 		"StyleRules": {},
 		"Style": {},
@@ -663,6 +778,8 @@
 			"write-good": 1
 		},
 		"Nuclio": {},
+		"Nx": {},
+		"TitleCase": {},
 		"handbook": {},
 		"WordUsage": {
 			"Google": 1,
@@ -710,6 +827,7 @@
 		"PhotoPrism": {},
 		"PingCAP": {},
 		"Platform": {},
+		"pnpm": {},
 		"Polkadot": {
 			"Google": 1
 		},
@@ -725,6 +843,10 @@
 			"PostHogBase": 1,
 			"PostHogDocs": 1
 		},
+		"Postman": {
+			"Microsoft": 1,
+			"write-good": 1
+		},
 		"PowerShell-Docs": {},
 		"CustomStyles": {
 			"Google": 1
@@ -734,6 +856,7 @@
 			"Google": 1,
 			"write-good": 1
 		},
+		"pyos-styles": {},
 		"IBMQuantum": {},
 		"Quarkus": {},
 		"Rackspace": {
@@ -788,6 +911,8 @@
 			"RLlib": 1,
 			"Train": 1
 		},
+		"Redocly-Docs": {},
+		"Renovate": {},
 		"riscv": {
 			"AsciiDoc": 1
 		},
@@ -800,7 +925,11 @@
 			"Google": 1
 		},
 		"SAP": {},
+		"spelling": {},
 		"DevDocs": {},
+		"Sensible": {
+			"Google": 1
+		},
 		"spectrocloud-docs-internal": {
 			"alex": 1,
 			"Google": 1,
@@ -815,6 +944,7 @@
 			"Spryker": 1
 		},
 		"local": {},
+		"Steel": {},
 		"messaging": {
 			"3rd-party-products": 1,
 			"examples": 1
@@ -838,6 +968,7 @@
 		"PSDK": {
 			"RedHat": 1
 		},
+		"ThunderID": {},
 		"CalicoStyle": {},
 		"TrueNAS": {
 			"Microsoft": 1
@@ -851,8 +982,13 @@
 			"Microsoft": 1,
 			"write-good": 1
 		},
+		"Utopia": {},
 		"Vaadin": {},
 		"Velociraptor": {},
+		"VijilStyle": {
+			"proselint": 1,
+			"write-good": 1
+		},
 		"Omni": {
 			"Google": 1
 		},
@@ -863,7 +999,14 @@
 		"Openverse": {
 			"proselint": 1
 		},
+		"WTD": {
+			"proselint": 1
+		},
 		"WSO2-IAM": {},
+		"Xorq": {
+			"Google": 1
+		},
+		"Yellow": {},
 		"Yugabyte": {}
 	},
 	"sampled": [
@@ -1012,6 +1155,26 @@
 			"minAlertLevel": "error"
 		},
 		{
+			"name": "Armory",
+			"url": "https://github.com/armory/docs/blob/master/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"WordTemplate",
+				"BasedOnStyles",
+				"IgnorePatterns"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "Atlantis",
 			"url": "https://github.com/runatlantis/atlantis/blob/HEAD/.vale.ini",
 			"styles": [
@@ -1048,6 +1211,23 @@
 				"TokenIgnores"
 			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Aurae",
+			"url": "https://github.com/aurae-runtime/aurae/blob/main/.vale.ini",
+			"styles": [
+				"Aurae"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "AWS Deadline Cloud",
@@ -1139,6 +1319,45 @@
 			"minAlertLevel": null
 		},
 		{
+			"name": "CedarDB",
+			"url": "https://github.com/cedardb/docs/blob/master/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
+			"name": "Clever Cloud",
+			"url": "https://github.com/CleverCloud/documentation/blob/main/.vale.ini",
+			"styles": [
+				"Clever"
+			],
+			"formats": [
+				"md",
+				"xml"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"Transform"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "ClickHouse",
 			"url": "https://github.com/clickhouse/clickhouse-docs/blob/HEAD/.vale.ini",
 			"styles": [
@@ -1152,6 +1371,26 @@
 				"BasedOnStyles"
 			],
 			"minAlertLevel": null
+		},
+		{
+			"name": "Cloud Native Buildpacks",
+			"url": "https://github.com/buildpacks/docs/blob/main/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"svg",
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "CloudQuery",
@@ -1306,6 +1545,30 @@
 			"minAlertLevel": "warning"
 		},
 		{
+			"name": "Crossplane",
+			"url": "https://github.com/crossplane/docs/blob/master/utils/vale/.vale.ini",
+			"styles": [
+				"alex",
+				"Google",
+				"Microsoft",
+				"proselint",
+				"write-good",
+				"Crossplane",
+				"gitlab"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "CryptPad",
 			"url": "https://github.com/cryptpad/onlyoffice-editor/blob/HEAD/.vale.ini",
 			"styles": [
@@ -1439,6 +1702,24 @@
 				"TokenIgnores"
 			],
 			"minAlertLevel": null
+		},
+		{
+			"name": "DIMO",
+			"url": "https://github.com/DIMO-Network/dimo-org/blob/main/.vale.ini",
+			"styles": [
+				"DIMO"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Discord",
@@ -1685,6 +1966,29 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Flyway",
+			"url": "https://github.com/flyway/flyway/blob/HEAD/documentation/_vale_config/_vale.ini",
+			"styles": [
+				"Microsoft",
+				"proselint",
+				"flyway"
+			],
+			"formats": [
+				"md",
+				"htm",
+				"html"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"Packages",
+				"TokenIgnores",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
 			"name": "Foreman",
 			"url": "https://github.com/theforeman/foreman-documentation/blob/HEAD/.vale.ini",
 			"styles": [
@@ -1705,6 +2009,46 @@
 				"Vocab",
 				"BasedOnStyles",
 				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "FOSS United",
+			"url": "https://github.com/fossunited/fossunited/blob/develop/.vale.ini",
+			"styles": [
+				"RedHat",
+				"proselint",
+				"write-good",
+				"alex",
+				"Joblint"
+			],
+			"formats": [
+				"md",
+				"org"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Foundries.io",
+			"url": "https://github.com/foundriesio/fio-style/blob/HEAD/_vale.ini",
+			"styles": [
+				"Fio-docs"
+			],
+			"formats": [
+				"md",
+				"rst"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
 		},
@@ -1836,25 +2180,6 @@
 				"StylesPath",
 				"Vocab",
 				"MinAlertLevel",
-				"Packages",
-				"BasedOnStyles"
-			],
-			"minAlertLevel": "suggestion"
-		},
-		{
-			"name": "Harness",
-			"url": "https://github.com/harness/developer-hub/blob/HEAD/.vale.ini",
-			"styles": [
-				"Microsoft",
-				"write-good"
-			],
-			"formats": [
-				"md"
-			],
-			"keys": [
-				"StylesPath",
-				"MinAlertLevel",
-				"Vocab",
 				"Packages",
 				"BasedOnStyles"
 			],
@@ -2054,6 +2379,27 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Institute for Disease Modeling",
+			"url": "https://github.com/InstituteforDiseaseModeling/idm_standards/blob/main/idm_standards_plugin/skills/audit-docs/assets/vale.ini",
+			"styles": [
+				"IDM",
+				"Microsoft",
+				"write-good",
+				"Notebooks"
+			],
+			"formats": [
+				"md",
+				"qmd"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "IPFS",
 			"url": "https://github.com/ipfs/ipfs-docs/blob/HEAD/.vale.ini",
 			"styles": [
@@ -2147,6 +2493,25 @@
 				"Microsoft"
 			],
 			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Knope",
+			"url": "https://github.com/knope-dev/knope/blob/main/.vale.ini",
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
@@ -2275,6 +2640,24 @@
 				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Leaning Technologies",
+			"url": "https://github.com/leaningtech/labs/blob/main/.vale.ini",
+			"styles": [],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Lightbend",
@@ -2536,6 +2919,41 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "MLRun",
+			"url": "https://github.com/mlrun/mlrun/blob/development/.vale.ini",
+			"styles": [
+				"MLRun"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "MongoDB",
+			"url": "https://github.com/mongodb/docs/blob/HEAD/vale.ini",
+			"styles": [
+				"MongoDB"
+			],
+			"formats": [
+				"rst",
+				"txt"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"CodeDirectives",
+				"BasedOnStyles",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "MUI",
 			"url": "https://github.com/mui/material-ui/blob/HEAD/.vale.ini",
 			"styles": [
@@ -2597,6 +3015,48 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "National Microbiome Data Collaborative",
+			"url": "https://github.com/microbiomedata/nmdc-lakehouse/blob/main/.vale.ini",
+			"styles": [
+				"Mark"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
+			"name": "NativeLink",
+			"url": "https://github.com/TraceMachina/nativelink/blob/main/.vale.ini",
+			"styles": [
+				"alex",
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"rs",
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"IgnoredScopes",
+				"BasedOnStyles",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "error"
+		},
+		{
 			"name": "Neo4j",
 			"url": "https://github.com/neo4j/docs-tools/blob/HEAD/.vale.ini",
 			"styles": [
@@ -2647,6 +3107,25 @@
 			"keys": [
 				"StylesPath",
 				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "New Relic",
+			"url": "https://github.com/newrelic/docs-website/blob/HEAD/vale.ini",
+			"styles": [
+				"Microsoft",
+				"new-relic"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
 				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
@@ -2815,6 +3294,60 @@
 			"minAlertLevel": "error"
 		},
 		{
+			"name": "Nx",
+			"url": "https://github.com/nrwl/nx/blob/master/astro-docs/.vale.ini",
+			"styles": [
+				"Nx"
+			],
+			"formats": [
+				"mdoc",
+				"mdx",
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "NYU Research Technology Services",
+			"url": "https://github.com/NYU-RTS/rts-docs/blob/main/.vale.ini",
+			"styles": [
+				"TitleCase"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": null
+		},
+		{
+			"name": "Onyx",
+			"url": "https://github.com/onyx-dot-app/onyx/blob/main/documentation/.vale.ini",
+			"styles": [],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"Vocab",
+				"BasedOnStyles",
+				"TokenIgnores",
+				"BlockIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Open Energy Transition",
 			"url": "https://github.com/open-energy-transition/oet-hugo-handbook/blob/HEAD/.vale.ini",
 			"styles": [
@@ -2852,6 +3385,25 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Open Podcast API",
+			"url": "https://github.com/OpenPodcastAPI/api-specs/blob/main/.vale.ini",
+			"styles": [
+				"Google",
+				"write-good"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "error"
+		},
+		{
 			"name": "Open Policy Agent",
 			"url": "https://github.com/open-policy-agent/opa/blob/HEAD/docs/.vale.ini",
 			"styles": [
@@ -2866,6 +3418,22 @@
 				"Vocab",
 				"BasedOnStyles",
 				"BlockIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "OpenAnalytics",
+			"url": "https://github.com/openanalytics/shinyproxy-config-examples/blob/master/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
 		},
@@ -3039,6 +3607,22 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Percona",
+			"url": "https://github.com/percona/pcsm-docs/blob/main/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "PharmGKB",
 			"url": "https://github.com/PharmGKB/PharmCAT/blob/HEAD/.vale.ini",
 			"styles": [],
@@ -3126,6 +3710,27 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "pnpm",
+			"url": "https://github.com/pnpm/pnpm/blob/main/.vale.ini",
+			"styles": [
+				"pnpm"
+			],
+			"formats": [
+				"md",
+				"pnpm",
+				"pnpm11",
+				"pnpr",
+				"rs",
+				"ts"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Polkadot",
 			"url": "https://github.com/w3f/polkadot-wiki/blob/HEAD/.vale.ini",
 			"styles": [
@@ -3165,6 +3770,25 @@
 				"BasedOnStyles",
 				"BlockIgnores",
 				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Postman",
+			"url": "https://github.com/postmanlabs/collection-format-docs/blob/HEAD/_vale.ini",
+			"styles": [
+				"Postman",
+				"Microsoft",
+				"write-good"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
 		},
@@ -3237,6 +3861,22 @@
 				"TokenIgnores"
 			],
 			"minAlertLevel": "warning"
+		},
+		{
+			"name": "pyOpenSci",
+			"url": "https://github.com/pyOpenSci/handbook/blob/main/.vale.ini",
+			"styles": [
+				"pyos-styles"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": null
 		},
 		{
 			"name": "PyVista",
@@ -3387,6 +4027,45 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Redocly",
+			"url": "https://github.com/Redocly/redocly-cli/blob/main/.vale.ini",
+			"styles": [
+				"Redocly-Docs"
+			],
+			"formats": [
+				"md",
+				"mdx",
+				"ini"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Renovate",
+			"url": "https://github.com/renovatebot/renovate/blob/main/.vale.ini",
+			"styles": [
+				"Renovate"
+			],
+			"formats": [
+				"md",
+				"ts"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "RISC-V",
 			"url": "https://github.com/riscv/docs-dev-guide/blob/HEAD/.vale.ini",
 			"styles": [
@@ -3492,6 +4171,25 @@
 			"minAlertLevel": "warning"
 		},
 		{
+			"name": "SAS",
+			"url": "https://github.com/sassoftware/sas-viya-forge/blob/main/.vale/.vale.ini",
+			"styles": [
+				"spelling"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"IgnoredScopes",
+				"SkippedScopes",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Semrush",
 			"url": "https://github.com/semrush/intergalactic/blob/HEAD/.vale.ini",
 			"styles": [
@@ -3507,6 +4205,43 @@
 				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Sensible",
+			"url": "https://github.com/sensible-hq/sensible-docs/blob/v0/.vale.ini",
+			"styles": [
+				"Google",
+				"Sensible"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "SixLabors",
+			"url": "https://github.com/SixLabors/docs/blob/main/vale.ini",
+			"styles": [
+				"Microsoft"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"Vocab",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Spectro Cloud",
@@ -3587,6 +4322,55 @@
 				"BasedOnStyles"
 			],
 			"minAlertLevel": "error"
+		},
+		{
+			"name": "Steel",
+			"url": "https://github.com/steel-dev/docs/blob/main/.vale.ini",
+			"styles": [
+				"Steel"
+			],
+			"formats": [
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"Packages",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
+			"name": "Swan",
+			"url": "https://github.com/swan-io/docs/blob/main/.vale.ini",
+			"styles": [
+				"Google",
+				"alex",
+				"Readability"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Symbol",
+			"url": "https://github.com/symbol/symbol-docs/blob/main/.vale.ini",
+			"styles": [
+				"vale",
+				"write-good",
+				"Joblint"
+			],
+			"formats": [],
+			"keys": [
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
 		},
 		{
 			"name": "Teleport",
@@ -3682,6 +4466,24 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Theengs",
+			"url": "https://github.com/theengs/gateway/blob/development/.vale.ini",
+			"styles": [
+				"Google"
+			],
+			"formats": [
+				"md"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
 			"name": "Thousand Brains Project",
 			"url": "https://github.com/thousandbrainsproject/tbp.monty/blob/HEAD/.vale.ini",
 			"styles": [],
@@ -3696,6 +4498,26 @@
 				"BlockIgnores"
 			],
 			"minAlertLevel": "error"
+		},
+		{
+			"name": "ThunderID",
+			"url": "https://github.com/thunder-id/thunderid/blob/main/.vale.ini",
+			"styles": [
+				"ThunderID"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"spelling",
+				"BlockIgnores",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
 		},
 		{
 			"name": "Tigera",
@@ -3883,6 +4705,27 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Utopia PHP",
+			"url": "https://github.com/utopia-php/monorepo/blob/main/.vale.ini",
+			"styles": [
+				"Utopia"
+			],
+			"formats": [
+				"md",
+				"claude",
+				"agents",
+				"rfc",
+				"psr"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "Vaadin",
 			"url": "https://github.com/vaadin/docs/blob/HEAD/.vale.ini",
 			"styles": [
@@ -3922,6 +4765,24 @@
 				"TokenIgnores",
 				"BlockIgnores",
 				"View"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Vijil",
+			"url": "https://github.com/vijilAI/docs/blob/main/.vale.ini",
+			"styles": [
+				"VijilStyle",
+				"write-good",
+				"proselint"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Packages",
+				"Vocab",
+				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
 		},
@@ -4018,6 +4879,44 @@
 			"minAlertLevel": "suggestion"
 		},
 		{
+			"name": "Workflow Orchestrator",
+			"url": "https://github.com/workfloworchestrator/lso/blob/main/.vale.ini",
+			"styles": [
+				"proselint",
+				"Microsoft"
+			],
+			"formats": [],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"Vocab",
+				"Packages",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Write the Docs",
+			"url": "https://github.com/writethedocs/www/blob/main/vale/vale.ini",
+			"styles": [
+				"WTD",
+				"proselint"
+			],
+			"formats": [
+				"md",
+				"rst",
+				"txt",
+				"json"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
+			],
+			"minAlertLevel": "warning"
+		},
+		{
 			"name": "WSO2",
 			"url": "https://github.com/wso2/docs-is/blob/HEAD/.vale.ini",
 			"styles": [
@@ -4033,6 +4932,41 @@
 				"BasedOnStyles",
 				"spelling",
 				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "xorq",
+			"url": "https://github.com/xorq-labs/xorq/blob/main/.vale.ini",
+			"styles": [
+				"Xorq",
+				"Google"
+			],
+			"formats": [
+				"qmd"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles",
+				"TokenIgnores"
+			],
+			"minAlertLevel": "suggestion"
+		},
+		{
+			"name": "Yellow Network",
+			"url": "https://github.com/layer-3/docs/blob/master/.vale.ini",
+			"styles": [
+				"Yellow"
+			],
+			"formats": [
+				"md",
+				"mdx"
+			],
+			"keys": [
+				"StylesPath",
+				"MinAlertLevel",
+				"BasedOnStyles"
 			],
 			"minAlertLevel": "suggestion"
 		},

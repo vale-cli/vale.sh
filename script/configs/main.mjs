@@ -137,7 +137,7 @@ const adopters = JSON.parse(await readFile(ADOPTERS, 'utf8'));
 const targets = adopters
 	.map((a) => ({
 		...a,
-		raw: /\.vale\.ini$/i.test(a.url) ? toRaw(a.url) : a.repo ? rawFromRepo(a.repo) : null
+		raw: /vale\.ini$/i.test(a.url) ? toRaw(a.url) : a.repo ? rawFromRepo(a.repo) : null
 	}))
 	.filter((a) => a.raw);
 

@@ -12,11 +12,12 @@ StylesPath = styles
 Grammars = go, python
 ```
 
-Vale lints the comments in [source code](../formats/code.md) by parsing the file with a [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar, so a `//` inside a string isn't a comment and a doc comment is told apart from a note. The grammars are WebAssembly modules that Vale downloads rather than carries, and `Grammars` names the ones to install:
+Vale lints the comments in [source code](../formats/code.md) by parsing the file with a [tree-sitter](https://tree-sitter.github.io/tree-sitter/) grammar, so a `//` inside a string isn't a comment and a doc comment is told apart from a note. The grammars are WebAssembly modules that Vale downloads rather than carries, and `vale sync` installs them:
 
-* `Grammars = go, python` installs those two.
+* Without the key, the sections decide: a `[*.go]` or `[src/**/*.{py,rs}]` section installs the grammars for the extensions it names. A section that names none, such as `[*]`, implies none.
+* `Grammars = go, python` installs those two, and nothing the sections imply.
 * `Grammars = ALL` installs every grammar, about 13 MB.
-* Without the key, `vale sync` installs none.
+* `Grammars = NONE` installs none.
 
 Running `vale sync` places each one at `<StylesPath>/config/grammars/<name>.wasm`, fetched from the Vale release the binary is. The names are:
 
