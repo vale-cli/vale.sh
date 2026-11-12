@@ -18,6 +18,8 @@ Lang = fr
 
 `Lang` names the language a file is written in, as a [BCP 47](https://www.rfc-editor.org/info/bcp47) tag: `de`, `pt-BR`, `zh-Hant`. A section's `Lang` applies to the files it matches, and the top-level one to the rest. Without the key, every file is English.
 
+A tag is matched without regard to case, and an underscore reads as a hyphen, so `de_DE` and `de-de` both mean `de-DE`. A tag with a region or script uses its base language's model: `de-AT` and `de-CH` read with the German model, `fr-CA` with the French one, and `en`, `en-US`, and `en-GB` are all English. The tags in the table below are the base languages Vale has models for.
+
 The language chooses three things about how a file is read:
 
 * **Sentences.** A supported language has a trained model that knows its abbreviations, so `Dr. Müller` doesn't end a sentence. Any other language is segmented by punctuation, which includes the East Asian terminators (`。！？`) that take no space.
