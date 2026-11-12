@@ -100,6 +100,16 @@
 		"site": "medium.com"
 	},
 	{
+		"title": "How to Install Vale Linter in VS Code for Documentation",
+		"url": "https://nikhilajain.com/blog/posts/how-to-install-vale-linter-for-documentation-in-vs-code/",
+		"author": "Nikhila Jain",
+		"year": 2025,
+		"type": "post",
+		"description": "Installing Vale, configuring a documentation project, and wiring it into VS Code so style issues show as you write.",
+		"image": "",
+		"site": "nikhilajain.com"
+	},
+	{
 		"title": "How to set up Vale as a linter for text in Neovim",
 		"url": "https://tkreuziger.com/posts/2024-10-29-how_to_set_up_vale_as_a_linter_for_text_in_neovim/",
 		"author": "Tristan Kreuziger",
@@ -158,6 +168,16 @@
 		"description": "Learn the importance of a style guide in technical writing and how Vale ensures your content complies with it.",
 		"image": "https://unable-actionable-car.media.strapiapp.com/47_1_bf1ababada.png",
 		"site": ""
+	},
+	{
+		"title": "Better Markdown Writing With Vale",
+		"url": "https://andyatkinson.com/blog/2023/05/26/better-writing-vale",
+		"author": "Andy Atkinson",
+		"year": 2023,
+		"type": "post",
+		"description": "Setting up Vale for Markdown writing, from installation to a first style.",
+		"image": "",
+		"site": "andyatkinson.com"
 	},
 	{
 		"title": "Introducing “Packages”",
@@ -300,6 +320,26 @@
 		"site": ""
 	},
 	{
+		"title": "Documentation as code (Part 1): A Linting How To - What, Why, and How?",
+		"url": "https://www.tag1.com/tag1-team-talks/documentation-code-linting-part1/",
+		"author": "Michael Meyers and Lynette Miles",
+		"year": 2020,
+		"type": "video",
+		"description": "The first of three Tag1 TeamTalks on docs as code: version control, review, and linting for prose, and why they lower the bar for contributors.",
+		"image": "",
+		"site": "Tag1"
+	},
+	{
+		"title": "Documentation as code (Part 2): A Linting How To - What tools are out there and how do they work?",
+		"url": "https://www.tag1.com/tag1-team-talks/documentation-code-linting-part2/",
+		"author": "Michael Meyers and Lynette Miles",
+		"year": 2020,
+		"type": "video",
+		"description": "A survey of prose linters for technical documentation, settling on Vale with custom style guides and tests.",
+		"image": "",
+		"site": "Tag1"
+	},
+	{
 		"title": "Vale & The OpenAPI Specification",
 		"url": "https://medium.com/valelint/vale-the-openapi-specification-8a7cfae135fb",
 		"author": "jdkato",
@@ -388,6 +428,86 @@
 		"description": "",
 		"image": "",
 		"site": ""
+	},
+	{
+		"title": "Writing Prose with Vale",
+		"url": "https://www.jakeworth.com/tils/writing-prose-with-vale/",
+		"author": "Jake Worth",
+		"year": 2026,
+		"type": "post",
+		"description": "Months of READMEs, wikis, and blog posts written with Vale in Vim, following Microsoft's style.",
+		"image": "",
+		"site": "jakeworth.com"
+	},
+	{
+		"title": "Prose linting with Vale",
+		"url": "https://andrewowen.net/blog/prose-linting-with-vale/",
+		"author": "Andrew Owen",
+		"year": 2026,
+		"type": "post",
+		"description": "Vale beside a grammar checker rather than instead of one, with custom rules for French punctuation after the Académie Française.",
+		"image": "",
+		"site": "andrewowen.net"
+	},
+	{
+		"title": "Linting prose around code with vale",
+		"url": "https://jcarroll.xyz/2026/05/21/linting-prose-around-code-with.html",
+		"author": "Jonathan Carroll",
+		"year": 2026,
+		"type": "post",
+		"description": "Vale on R Markdown blog posts: it skips the code and flags long sentences and gendered pronouns in the prose around it.",
+		"image": "",
+		"site": "jcarroll.xyz"
+	},
+	{
+		"title": "Your prompt won't fix AI-sounding writing. A lint rule will.",
+		"url": "https://dev.to/dekita/your-prompt-wont-fix-ai-sounding-writing-a-lint-rule-will-1l0p",
+		"author": "Dekita",
+		"year": 2026,
+		"type": "post",
+		"description": "Why a lint rule catches AI-sounding prose where a prompt can't, with Vale as the tool to start with and a GitHub Actions workflow to run it.",
+		"image": "",
+		"site": "dev.to"
+	},
+	{
+		"title": "Checking your writing in your editor with LanguageTool and Vale",
+		"url": "https://dev.to/emmajansen/nederlandse-teksten-controleren-in-je-editor-met-languagetool-en-vale-1281",
+		"author": "Emma Jansen",
+		"year": 2026,
+		"type": "post",
+		"description": "LanguageTool checks whether a sentence is correct and Vale whether it fits your style; here they run side by side in the editor and in CI.",
+		"image": "",
+		"site": "dev.to"
+	},
+	{
+		"title": "Documentation Linting: How to Catch Broken Links, Style Drift, and Stale Docs Automatically",
+		"url": "https://www.mintlify.com/library/documentation-linting",
+		"author": "Mintlify",
+		"year": 2026,
+		"type": "post",
+		"description": "How Mintlify lints documentation, with Vale as the rule-based check for terminology, tone, and style in Markdown and MDX.",
+		"image": "",
+		"site": "mintlify.com"
+	},
+	{
+		"title": "I Built a Git-Tracked Book Production Pipeline",
+		"url": "https://dev.to/onsen/i-built-a-git-tracked-book-production-pipeline-2b8m",
+		"author": "onsen",
+		"year": 2026,
+		"type": "post",
+		"description": "A book written in Git, with Vale running a custom style, Microsoft's rules, and a subject dictionary on every pull request.",
+		"image": "",
+		"site": "dev.to"
+	},
+	{
+		"title": "Vale CLI",
+		"url": "https://www.dsebastien.net/vale-cli/",
+		"author": "Sébastien Dubois",
+		"year": 2026,
+		"type": "post",
+		"description": "A short profile of Vale: offline, fast, and checking writing against a team's own rules rather than generic opinions.",
+		"image": "",
+		"site": "dsebastien.net"
 	},
 	{
 		"title": "Linting my blog posts with Vale",

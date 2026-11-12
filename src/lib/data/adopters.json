@@ -1,5 +1,14 @@
 [
 	{
+		"name": "100ms",
+		"category": "Developer tools",
+		"context": "Lints the Flutter SDK docs with Google's style and Readability, with its own vocabulary.",
+		"url": "https://github.com/100mslive/100ms-flutter/blob/main/.vale.ini",
+		"github": "100mslive",
+		"avatar": "/users/avatars/100mslive.png",
+		"repo": "github.com/100mslive/100ms-flutter"
+	},
+	{
 		"name": "Actian",
 		"category": "Data & observability",
 		"context": "Lints the VectorAI DB docs with Google's style.",
@@ -358,6 +367,15 @@
 		"avatar": "/users/avatars/DeterminateSystems.png"
 	},
 	{
+		"name": "devvm",
+		"category": "Developer tools",
+		"context": "Lints its Hugo docs with a house style, with the shortcodes ignored.",
+		"url": "https://github.com/devvmhq/devvm/blob/main/.vale.ini",
+		"github": "devvmhq",
+		"avatar": "/users/avatars/devvmhq.png",
+		"repo": "github.com/devvmhq/devvm"
+	},
+	{
 		"name": "Digital Asset",
 		"category": "Web3 & blockchain",
 		"context": "Checks the Canton docs with Google's style and a Digital Asset style.",
@@ -444,6 +462,15 @@
 		"icon": "elastic"
 	},
 	{
+		"name": "Engineering Handbook",
+		"category": "Open source & communities",
+		"context": "Lints an open system-design and AI engineering handbook with proselint, write-good, alex, and Readability.",
+		"url": "https://github.com/handbook-academy/engineering-handbook/blob/main/.vale.ini",
+		"github": "handbook-academy",
+		"avatar": "/users/avatars/handbook-academy.png",
+		"repo": "github.com/handbook-academy/engineering-handbook"
+	},
+	{
 		"name": "Epic Games",
 		"category": "Developer tools",
 		"context": "Lints the docs for Lore, its open source version control system, with a Lore style.",
@@ -496,6 +523,15 @@
 		"context": "Lints its docs with a FluentBit style.",
 		"url": "https://github.com/fluent/fluent-bit-docs/blob/HEAD/.vale.ini",
 		"icon": "fluentbit"
+	},
+	{
+		"name": "FluxNinja",
+		"category": "Cloud & infrastructure",
+		"context": "Lints the Aperture docs with Red Hat's style and proselint, with its own vocabulary.",
+		"url": "https://github.com/fluxninja/aperture/blob/main/.vale.ini",
+		"github": "fluxninja",
+		"avatar": "/users/avatars/fluxninja.png",
+		"repo": "github.com/fluxninja/aperture"
 	},
 	{
 		"name": "Fly.io",
@@ -646,6 +682,15 @@
 		"url": "https://github.com/IISERM/thewiki/blob/HEAD/.vale.ini",
 		"github": "IISERM",
 		"avatar": "/users/avatars/IISERM.png"
+	},
+	{
+		"name": "immich-go",
+		"category": "Developer tools",
+		"context": "Lints the docs of the immich uploader against Microsoft's style.",
+		"url": "https://github.com/simulot/immich-go/blob/main/.vale.ini",
+		"github": "simulot",
+		"avatar": "/users/avatars/simulot.png",
+		"repo": "github.com/simulot/immich-go"
 	},
 	{
 		"name": "Imply",
@@ -850,6 +895,15 @@
 		"context": "Lints its LFX architecture decisions with Microsoft's style.",
 		"url": "https://github.com/linuxfoundation/lfx-architecture-decisions/blob/HEAD/.vale.ini",
 		"icon": "linuxfoundation"
+	},
+	{
+		"name": "LunaSec",
+		"category": "Developer tools",
+		"context": "Lints the MDX docs of its dependency scanner with Google's style and a house vocabulary.",
+		"url": "https://github.com/lunasec-io/lunasec/blob/master/.vale.ini",
+		"github": "lunasec-io",
+		"avatar": "/users/avatars/lunasec-io.png",
+		"repo": "github.com/lunasec-io/lunasec"
 	},
 	{
 		"name": "Manticore Games",
@@ -1415,6 +1469,15 @@
 		"avatar": "/users/avatars/quarkusio.png"
 	},
 	{
+		"name": "QuipNetwork",
+		"category": "Developer tools",
+		"context": "Lints the handwritten book pages of the xquad optimization SDK with a house style, pinned so CI and every machine agree.",
+		"url": "https://github.com/QuipNetwork/xquad/blob/main/.vale.ini",
+		"github": "QuipNetwork",
+		"avatar": "/users/avatars/QuipNetwork.png",
+		"repo": "github.com/QuipNetwork/xquad"
+	},
+	{
 		"name": "Rackspace",
 		"category": "Cloud & infrastructure",
 		"context": "Custom style for the Rackspace Expert Insights technical blog.",
@@ -1697,6 +1760,15 @@
 		"avatar": "/users/avatars/theengs.png"
 	},
 	{
+		"name": "Thinking in Python",
+		"category": "Open source & communities",
+		"context": "Bruce Eckel lints the manuscript of his book for house style, with spelling left to codespell.",
+		"url": "https://github.com/BruceEckel/ThinkingInPython/blob/main/.vale.ini",
+		"github": "BruceEckel",
+		"avatar": "/users/avatars/BruceEckel.png",
+		"repo": "github.com/BruceEckel/ThinkingInPython"
+	},
+	{
 		"name": "Thousand Brains Project",
 		"category": "AI & machine learning",
 		"context": "Fails on errors from Vale's built-in rules, with a TBP vocabulary, across its Monty framework.",
@@ -1726,6 +1798,15 @@
 		"context": "Style enforcement for Timescale product documentation.",
 		"url": "https://github.com/timescale/docs/blob/latest/.vale.ini",
 		"icon": "timescale"
+	},
+	{
+		"name": "tlsfuzzer",
+		"category": "Developer tools",
+		"context": "Lints its Markdown, reStructuredText, and Python sources with Google's style and write-good.",
+		"url": "https://github.com/tlsfuzzer/tlsfuzzer/blob/master/.vale.ini",
+		"github": "tlsfuzzer",
+		"avatar": "/users/avatars/tlsfuzzer.png",
+		"repo": "github.com/tlsfuzzer/tlsfuzzer"
 	},
 	{
 		"name": "TrueNAS",
