@@ -1,7 +1,7 @@
 /*
-	The landing page in forty seconds: a guideline, the rule that encodes it,
-	a run, what Vale sees in a document, where it runs, how fast, and how to
-	get it. Every example and figure is the page's own -- the hero's
+	The product in a minute: a guideline in three kinds of writing, the rule
+	that encodes it, published styles, a run, the fix, what Vale sees in a
+	document, where it runs, tests and speed, and who uses it. Every example and figure is the page's own -- the hero's
 	terminology rule, the session from Terminal.svelte, the GitLab run from
 	the speed feature -- so when one changes there, change it here.
 
@@ -9,6 +9,8 @@
 	and a system monospace, both read from the machine that renders.
 */
 import type { CSSProperties, ReactNode } from 'react';
+import adopters from '../../src/lib/data/adopters.json';
+import { brandIcons } from '../../src/lib/data/brand-icons';
 import {
 	AbsoluteFill,
 	Easing,
@@ -208,24 +210,33 @@ const Intro = () => {
 	);
 };
 
+// The hero's three kinds of writing, each with the wording it bans.
+const GUIDES: { kicker: string; before: string; keep: string; mid: string; ban: string }[] = [
+	{
+		kicker: 'Writing guide · Terminology',
+		before: 'The product is ',
+		keep: 'Vale CLI',
+		mid: '. Don’t write ',
+		ban: 'Vale cli'
+	},
+	{
+		kicker: 'Elmore Leonard · Rule 4',
+		before: 'Never use an adverb to modify ',
+		keep: '“said”',
+		mid: '. Not ',
+		ban: 'he admonished gravely'
+	},
+	{
+		kicker: 'Author guidelines · Units',
+		before: 'A space between a number and its unit: ',
+		keep: '12 mmHg',
+		mid: ', not ',
+		ban: '12mmHg'
+	}
+];
+
 const Guideline = () => {
 	const frame = useCurrentFrame();
-	const strike = tween(frame, 70, 16);
-	const struck = (text: string) => (
-		<span style={{ position: 'relative', color: strike > 0 ? C.red : C.fg }}>
-			{text}
-			<span
-				style={{
-					position: 'absolute',
-					left: 0,
-					top: '54%',
-					height: 4,
-					width: `${strike * 100}%`,
-					background: C.red
-				}}
-			/>
-		</span>
-	);
 	return (
 		<Scene>
 			<Heading eyebrow="01 · Your guideline">
@@ -233,29 +244,56 @@ const Guideline = () => {
 				<br />
 				<Muted>Nobody rereads it.</Muted>
 			</Heading>
-			<div
-				style={{
-					...enter(frame, 28, 22),
-					marginTop: 90,
-					padding: '48px 56px',
-					background: C.card,
-					border: `2px solid ${C.border}`,
-					borderRadius: 22,
-					width: 1240
-				}}
-			>
-				<div style={{ font: `24px ${MONO}`, color: C.muted }}>Writing guide · Terminology</div>
-				<div
-					style={{
-						marginTop: 28,
-						paddingLeft: 32,
-						borderLeft: `5px solid ${C.lime}`,
-						font: `52px/1.45 ${SERIF}`,
-						color: C.fg
-					}}
-				>
-					The product is <b>Vale CLI</b>. Don’t write {struck('Vale cli')} or {struck('vale-cli')}.
-				</div>
+			<div style={{ display: 'flex', gap: 32, marginTop: 64 }}>
+				{GUIDES.map((g, i) => {
+					const at = 26 + i * 34;
+					const strike = tween(frame, at + 34, 14);
+					return (
+						<div
+							key={g.kicker}
+							style={{
+								...enter(frame, at, 20),
+								flex: 1,
+								padding: '40px 44px 48px',
+								background: C.card,
+								border: `2px solid ${C.border}`,
+								borderRadius: 22
+							}}
+						>
+							<div style={{ font: `22px ${MONO}`, color: C.muted }}>{g.kicker}</div>
+							<div
+								style={{
+									marginTop: 26,
+									paddingLeft: 28,
+									borderLeft: `5px solid ${C.lime}`,
+									font: `40px/1.45 ${SERIF}`,
+									color: C.fg
+								}}
+							>
+								{g.before}
+								<b>{g.keep}</b>
+								{g.mid}
+								<span style={{ position: 'relative', color: strike > 0 ? C.red : C.fg }}>
+									{g.ban}
+									<span
+										style={{
+											position: 'absolute',
+											left: 0,
+											top: '54%',
+											height: 4,
+											width: `${strike * 100}%`,
+											background: C.red
+										}}
+									/>
+								</span>
+								.
+							</div>
+						</div>
+					);
+				})}
+			</div>
+			<div style={{ ...enter(frame, 150), marginTop: 44, font: `32px ${SANS}`, color: C.muted }}>
+				Technical docs, fiction, or a journal’s author guidelines.
 			</div>
 		</Scene>
 	);
@@ -272,37 +310,68 @@ const RULE: [string, string][] = [
 	["  'style ?guide'", ' style guide'],
 	["  'e-?mail'", ' email']
 ];
+// The twelve extension points, in the docs' order.
+const CHECKS = [
+	'existence',
+	'substitution',
+	'occurrence',
+	'repetition',
+	'consistency',
+	'conditional',
+	'capitalization',
+	'metric',
+	'readability',
+	'spelling',
+	'sequence',
+	'script'
+];
 
 const Rule = () => {
 	const frame = useCurrentFrame();
 	// Type the file line by line: each line starts when the last has finished.
-	let at = 30;
+	let at = 26;
 	return (
 		<Scene>
 			<div style={{ display: 'flex', gap: 90, alignItems: 'flex-start' }}>
-				<div style={{ width: 660, flexShrink: 0 }}>
+				<div style={{ width: 700, flexShrink: 0 }}>
 					<Heading eyebrow="02 · A rule you own">
 						Write it down
 						<br />
 						once, as a rule.
 					</Heading>
 					<div
-						style={{
-							...enter(frame, 20),
-							marginTop: 44,
-							font: `36px/1.5 ${SANS}`,
-							color: C.muted
-						}}
+						style={{ ...enter(frame, 20), marginTop: 36, font: `34px/1.5 ${SANS}`, color: C.muted }}
 					>
-						Plain YAML, in your repository, reviewed like any other change.
+						Plain YAML, in your repository, built on one of twelve kinds of check.
+					</div>
+					<div style={{ display: 'flex', flexWrap: 'wrap', gap: 12, marginTop: 36 }}>
+						{CHECKS.map((name, i) => {
+							const on = name === 'substitution';
+							return (
+								<span
+									key={name}
+									style={{
+										...enter(frame, 110 + i * 5, 10, 12),
+										padding: '8px 18px',
+										borderRadius: 10,
+										border: `2px solid ${on ? C.lime : C.border}`,
+										background: on ? C.lime : C.card,
+										color: on ? C.bg : C.fg,
+										font: `24px ${MONO}`
+									}}
+								>
+									{name}
+								</span>
+							);
+						})}
 					</div>
 				</div>
 				<Panel title="styles/Docs/Terms.yml" style={{ ...enter(frame, 14, 22), flex: 1 }}>
 					<div style={{ font: `32px/1.62 ${MONO}`, whiteSpace: 'pre', minHeight: 470 }}>
 						{RULE.map(([key, value]) => {
 							const line = `${key}:${value}`;
-							const shown = typed(line, frame, at, 2.2);
-							at += Math.ceil(line.length / 2.2) + 2;
+							const shown = typed(line, frame, at, 2.6);
+							at += Math.ceil(line.length / 2.6) + 2;
 							const k = shown.slice(0, key.length + 1);
 							const v = shown.slice(key.length + 1);
 							return (
@@ -317,6 +386,79 @@ const Rule = () => {
 						})}
 					</div>
 				</Panel>
+			</div>
+		</Scene>
+	);
+};
+
+const INI: [string, string][] = [
+	['StylesPath', 'styles'],
+	['Packages', 'Microsoft, Google'],
+	['', ''],
+	['[*.md]', ''],
+	['BasedOnStyles', 'Vale, Microsoft, Google']
+];
+
+const Styles = () => {
+	const frame = useCurrentFrame();
+	return (
+		<Scene>
+			<Heading eyebrow="Packages">Or start from a published style.</Heading>
+			<div style={{ display: 'flex', gap: 48, marginTop: 64, alignItems: 'stretch' }}>
+				<Panel title=".vale.ini" style={{ ...enter(frame, 14, 22), flex: 1 }}>
+					<div style={{ font: `27px/1.75 ${MONO}`, whiteSpace: 'pre' }}>
+						{INI.map(([key, value], i) => (
+							<div key={i} style={{ minHeight: 47 }}>
+								<span style={{ color: key.startsWith('[') ? C.muted : C.lime }}>{key}</span>
+								{value ? <Muted> = </Muted> : null}
+								<span style={{ color: C.fg }}>{value}</span>
+							</div>
+						))}
+					</div>
+				</Panel>
+				<div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 32 }}>
+					<Panel title="bash — vale" style={enter(frame, 30, 22)}>
+						<div style={{ font: `30px/1.7 ${MONO}`, whiteSpace: 'pre', color: C.fg }}>
+							<div>
+								<span style={{ color: C.lime }}>$</span> {typed('vale sync', frame, 44, 0.7)}
+							</div>
+							<div style={{ opacity: tween(frame, 66, 8) }}>
+								<span
+									style={{
+										padding: '2px 12px',
+										borderRadius: 6,
+										background: 'rgba(144,212,84,0.18)',
+										color: C.lime,
+										fontWeight: 700
+									}}
+								>
+									SUCCESS
+								</span>
+								<Muted> Synced 2 package(s) to 'styles'.</Muted>
+							</div>
+						</div>
+					</Panel>
+					<div
+						style={{
+							...enter(frame, 84, 20),
+							flex: 1,
+							padding: '30px 36px',
+							background: C.card,
+							border: `2px solid ${C.border}`,
+							borderRadius: 22
+						}}
+					>
+						<div style={{ font: `24px ${MONO}`, color: C.muted }}>vocabularies/Docs/accept.txt</div>
+						<div style={{ marginTop: 14, font: `32px/1.5 ${MONO}`, color: C.fg }}>
+							Kubernetes
+							<br />
+							kubectl
+						</div>
+						<div style={{ marginTop: 14, font: `28px ${SANS}`, color: C.muted }}>
+							Your own terms, accepted everywhere.
+						</div>
+					</div>
+				</div>
 			</div>
 		</Scene>
 	);
@@ -351,19 +493,19 @@ const SESSION: { path: string; alerts: [string, Sev, string, string][] }[] = [
 const Run = () => {
 	const frame = useCurrentFrame();
 	const cmd = 'vale docs/';
-	const START = 50; // first line of output
+	const START = 44; // first line of output
 	let row = 0;
 	const show = (): CSSProperties => {
-		const at = START + row++ * 7;
+		const at = START + row++ * 6;
 		return { opacity: tween(frame, at, 6) };
 	};
 	return (
 		<Scene>
-			<Heading eyebrow="03 · Feedback where you write">Then run it. Everywhere.</Heading>
+			<Heading eyebrow="03 · Feedback where you write">Then run it.</Heading>
 			<Panel title="bash — vale" style={{ ...enter(frame, 12, 22), marginTop: 56 }}>
 				<div style={{ font: `28px/1.7 ${MONO}`, whiteSpace: 'pre', color: C.fg, minHeight: 560 }}>
 					<div>
-						<span style={{ color: C.lime }}>$</span> {typed(cmd, frame, 26, 0.7)}
+						<span style={{ color: C.lime }}>$</span> {typed(cmd, frame, 22, 0.7)}
 						{frame < START ? <span>▍</span> : null}
 					</div>
 					{SESSION.map((file) => (
@@ -391,62 +533,291 @@ const Run = () => {
 	);
 };
 
-const SCOPES: [string, string, boolean][] = [
-	['# Getting started', 'heading', true],
-	['Write with your team’s voice.', 'paragraph', true],
-	['- Keep instructions clear.', 'list', true],
-	['[Read the guide](https://example.com)', 'URL skipped', false],
-	['```sh\nvale docs/\n```', 'code skipped', false]
-];
-
-const Scopes = () => {
+const Fix = () => {
 	const frame = useCurrentFrame();
+	const FIXED = 96; // the frame the quick fix lands
+	const done = frame >= FIXED;
+	const press = tween(frame, 80, 8) - tween(frame, 90, 8);
+	const flash = interpolate(frame, [FIXED, FIXED + 30], [1, 0], clamp);
+	return (
+		<Scene>
+			<Heading eyebrow="Actions">The fix comes with the alert.</Heading>
+			<div style={{ ...enter(frame, 20), marginTop: 28, font: `34px ${SANS}`, color: C.muted }}>
+				A rule can carry its own correction: suggest, replace, remove, edit, or convert.
+			</div>
+			<Panel title="docs/install.md" style={{ ...enter(frame, 14, 22), marginTop: 50 }}>
+				<div
+					style={{ font: `34px/1.8 ${MONO}`, color: C.fg, minHeight: 430, position: 'relative' }}
+				>
+					<div>
+						<Muted>1 </Muted> <Muted>#</Muted> Installation
+					</div>
+					<div>
+						<Muted>2</Muted>
+					</div>
+					<div>
+						<Muted>3 </Muted>{' '}
+						<span
+							style={{
+								borderBottom: done ? '4px solid transparent' : `4px solid ${C.red}`,
+								background: `rgba(144,212,84,${flash * 0.35})`,
+								borderRadius: 4
+							}}
+						>
+							{done ? 'Vale CLI' : 'Vale cli'}
+						</span>{' '}
+						runs on macOS, Windows, and Linux.
+					</div>
+					<div
+						style={{
+							position: 'absolute',
+							left: 70,
+							top: 210,
+							width: 900,
+							opacity:
+								tween(frame, 40, 10) * interpolate(frame, [FIXED, FIXED + 12], [1, 0], clamp),
+							background: C.bg,
+							border: `2px solid ${C.border}`,
+							borderRadius: 16,
+							boxShadow: '0 30px 60px rgba(0,0,0,0.5)',
+							overflow: 'hidden'
+						}}
+					>
+						<div style={{ padding: '22px 28px', font: `30px/1.4 ${SANS}` }}>
+							<span style={{ color: C.red, fontWeight: 700 }}>error</span> Use 'Vale CLI' instead of
+							'Vale cli'. <span style={{ font: `24px ${MONO}`, color: C.muted }}>Docs.Terms</span>
+						</div>
+						<div
+							style={{
+								padding: '18px 28px',
+								borderTop: `2px solid ${C.border}`,
+								font: `500 30px ${SANS}`,
+								color: C.lime,
+								background: `rgba(144,212,84,${0.08 + press * 0.25})`
+							}}
+						>
+							Quick fix: replace with 'Vale CLI'
+						</div>
+					</div>
+					<div
+						style={{
+							...enter(frame, FIXED + 10, 14, 12),
+							position: 'absolute',
+							left: 0,
+							bottom: 0,
+							font: `30px ${MONO}`,
+							color: C.muted
+						}}
+					>
+						<span style={{ color: C.lime }}>✔</span> 0 errors, 0 warnings and 0 suggestions in 1
+						file.
+					</div>
+				</div>
+			</Panel>
+		</Scene>
+	);
+};
+
+// Three files, one idea: the markup decides what is prose. From the features
+// section of the landing page.
+const FILES: { name: string; lines: [string, string, boolean][] }[] = [
+	{
+		name: 'guide.md',
+		lines: [
+			['# Getting started', 'heading', true],
+			['Write with your team’s voice.', 'paragraph', true],
+			['- Keep instructions clear.', 'list', true],
+			['[Read the guide](https://example.com)', 'URL skipped', false],
+			['```sh\nvale docs/\n```', 'code skipped', false]
+		]
+	},
+	{
+		name: 'person.rs',
+		lines: [
+			['/// Creates a person with the given name.', 'paragraph', true],
+			['/// # Examples', 'heading', true],
+			['/// ```\n/// let person = Person::new("name");\n/// ```', 'code skipped', false],
+			['pub fn new(name: &str) -> Person {', 'not a comment', false]
+		]
+	},
+	{
+		name: 'openapi.yml',
+		lines: [
+			['openapi: 3.1.0', 'skipped', false],
+			['info:\n  title: Example API', 'skipped', false],
+			['  description: Manage your projects.', 'description', true],
+			['paths:\n  /projects: {}', 'skipped', false]
+		]
+	}
+];
+const PER_FILE = 76;
+
+const Document = () => {
+	const frame = useCurrentFrame();
+	const active = Math.min(FILES.length - 1, Math.max(0, Math.floor((frame - 14) / PER_FILE)));
 	return (
 		<Scene>
 			<Heading eyebrow="Markup-aware">
 				Most tools see text. <Muted>Vale sees a document.</Muted>
 			</Heading>
-			<div style={{ ...enter(frame, 20), marginTop: 28, font: `36px/1.5 ${SANS}`, color: C.muted }}>
-				Check the prose in headings, lists, and comments. Leave the code and the URLs alone.
+			<div style={{ display: 'flex', gap: 14, marginTop: 44 }}>
+				{FILES.map((file, i) => (
+					<span
+						key={file.name}
+						style={{
+							...enter(frame, 12 + i * 4, 12, 10),
+							padding: '10px 24px',
+							borderRadius: 12,
+							font: `26px ${MONO}`,
+							border: `2px solid ${i === active ? C.lime : C.border}`,
+							color: i === active ? C.lime : C.muted,
+							background: C.card
+						}}
+					>
+						{file.name}
+					</span>
+				))}
 			</div>
-			<div style={{ marginTop: 50 }}>
-				<Panel title="guide.md" style={enter(frame, 14, 22)}>
-					<div style={{ font: `28px/1.5 ${MONO}` }}>
-						{SCOPES.map(([src, tag, checked], i) => {
-							const at = 34 + i * 16;
-							return (
-								<div
-									key={tag}
-									style={{
-										display: 'flex',
-										alignItems: 'flex-start',
-										justifyContent: 'space-between',
-										gap: 20,
-										padding: '12px 0',
-										borderTop: i ? `2px solid ${C.border}` : undefined,
-										opacity: checked ? 1 : interpolate(tween(frame, at), [0, 1], [1, 0.45])
-									}}
-								>
-									<span style={{ whiteSpace: 'pre', color: C.fg }}>{src}</span>
-									<span
+			<div style={{ position: 'relative', height: 500, marginTop: 24 }}>
+				{FILES.map((file, i) => {
+					const start = 14 + i * PER_FILE;
+					const local = frame - start;
+					const visible = i === active ? tween(frame, start, 10) : i < active ? 0 : 0;
+					return (
+						<div
+							key={file.name}
+							style={{
+								position: 'absolute',
+								inset: 0,
+								opacity: visible,
+								background: C.card,
+								border: `2px solid ${C.border}`,
+								borderRadius: 22,
+								padding: '18px 36px',
+								font: `28px/1.5 ${MONO}`
+							}}
+						>
+							{file.lines.map(([src, tag, checked], j) => {
+								const at = 12 + j * 9;
+								return (
+									<div
+										key={src}
 										style={{
-											...enter(frame, at, 14, 0),
-											flexShrink: 0,
-											padding: '4px 14px',
-											borderRadius: 8,
-											font: `22px ${MONO}`,
-											color: checked ? C.bg : C.muted,
-											background: checked ? C.lime : 'transparent',
-											border: `2px solid ${checked ? C.lime : C.border}`
+											display: 'flex',
+											alignItems: 'flex-start',
+											justifyContent: 'space-between',
+											gap: 20,
+											padding: '13px 0',
+											borderTop: j ? `2px solid ${C.border}` : undefined,
+											opacity: checked ? 1 : interpolate(tween(local, at), [0, 1], [1, 0.45])
 										}}
 									>
-										{tag}
-									</span>
-								</div>
-							);
-						})}
+										<span style={{ whiteSpace: 'pre', color: C.fg }}>{src}</span>
+										<span
+											style={{
+												opacity: tween(local, at, 10),
+												flexShrink: 0,
+												padding: '4px 14px',
+												borderRadius: 8,
+												font: `22px ${MONO}`,
+												color: checked ? C.bg : C.muted,
+												background: checked ? C.lime : 'transparent',
+												border: `2px solid ${checked ? C.lime : C.border}`
+											}}
+										>
+											{tag}
+										</span>
+									</div>
+								);
+							})}
+						</div>
+					);
+				})}
+			</div>
+			<div style={{ ...enter(frame, 30), marginTop: 28, font: `28px ${SANS}`, color: C.muted }}>
+				12 markup formats · comments in 19 languages · API specs, notebooks, commit messages
+			</div>
+		</Scene>
+	);
+};
+
+const PLACES: { title: string; note: string; body: ReactNode }[] = [
+	{
+		title: 'In your editor',
+		note: 'VS Code · Neovim · JetBrains · Zed · Obsidian · any LSP client',
+		body: (
+			<>
+				<span style={{ borderBottom: `4px solid ${C.red}` }}>Vale cli</span> runs on macOS…
+			</>
+		)
+	},
+	{
+		title: 'On the pull request',
+		note: 'GitHub Actions · pre-commit · Docker · code scanning',
+		body: (
+			<>
+				<span style={{ color: C.red }}>✖</span> vale <Muted>— 2 errors on changed lines</Muted>
+			</>
+		)
+	},
+	{
+		title: 'In the commit message',
+		note: 'A hook that stops a bad commit',
+		body: (
+			<>
+				<span style={{ color: C.red }}>✖</span> A subject does not end with a period.
+			</>
+		)
+	},
+	{
+		title: 'With your agent',
+		note: 'Agent skills · an MCP server that writes and tests rules',
+		body: (
+			<>
+				scaffold_rule <Muted>→</Muted> test_rule <span style={{ color: C.lime }}>✔</span>
+			</>
+		)
+	}
+];
+
+const Everywhere = () => {
+	const frame = useCurrentFrame();
+	return (
+		<Scene>
+			<Heading eyebrow="One engine">Wherever you write.</Heading>
+			<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginTop: 64 }}>
+				{PLACES.map((place, i) => (
+					<div
+						key={place.title}
+						style={{
+							...enter(frame, 20 + i * 14, 18),
+							padding: '36px 40px',
+							background: C.card,
+							border: `2px solid ${C.border}`,
+							borderRadius: 22
+						}}
+					>
+						<div style={{ font: `600 40px ${SANS}`, letterSpacing: -1, color: C.fg }}>
+							{place.title}
+						</div>
+						<div
+							style={{
+								marginTop: 22,
+								padding: '16px 22px',
+								borderRadius: 12,
+								background: C.bg,
+								border: `2px solid ${C.border}`,
+								font: `28px ${MONO}`,
+								color: C.fg,
+								whiteSpace: 'nowrap',
+								overflow: 'hidden'
+							}}
+						>
+							{place.body}
+						</div>
+						<div style={{ marginTop: 20, font: `26px ${SANS}`, color: C.muted }}>{place.note}</div>
 					</div>
-				</Panel>
+				))}
 			</div>
 		</Scene>
 	);
@@ -458,75 +829,105 @@ const FIGURES: [number, string, string, string][] = [
 	[20, '<', 'start to finish', 's']
 ];
 
-const Speed = () => {
+const Tested = () => {
 	const frame = useCurrentFrame();
+	let row = 0;
+	const show = (): CSSProperties => ({ opacity: tween(frame, 46 + row++ * 6, 6) });
 	return (
 		<Scene>
-			<Heading eyebrow="One Go binary · Runs offline">Built for the whole repository.</Heading>
-			<div style={{ ...enter(frame, 18), marginTop: 36, font: `36px ${SANS}`, color: C.muted }}>
-				One run over the GitLab documentation.
-			</div>
-			<div style={{ display: 'flex', gap: 48, marginTop: 80 }}>
-				{FIGURES.map(([value, prefix, label, unit], i) => {
-					const at = 26 + i * 10;
-					const n = Math.round(
-						interpolate(frame, [at, at + 40], [0, value], {
-							...clamp,
-							easing: Easing.out(Easing.cubic)
-						})
-					);
-					return (
-						<div
-							key={label}
-							style={{
-								...enter(frame, at),
-								flex: 1,
-								padding: '48px 52px',
-								background: C.card,
-								border: `2px solid ${C.border}`,
-								borderRadius: 22
-							}}
-						>
+			<Heading eyebrow="vale test · one Go binary · offline">
+				Tested like code. <Muted>Fast like a linter.</Muted>
+			</Heading>
+			<div style={{ display: 'flex', gap: 48, marginTop: 60, alignItems: 'stretch' }}>
+				<Panel title="bash — vale test" style={{ ...enter(frame, 14, 22), flex: 1.25 }}>
+					<div
+						style={{ font: `23px/1.65 ${MONO}`, whiteSpace: 'pre', color: C.fg, minHeight: 440 }}
+					>
+						<div>
+							<span style={{ color: C.lime }}>$</span> {typed('vale test', frame, 26, 0.7)}
+						</div>
+						<div style={{ ...show(), marginTop: 16 }}>
+							<span style={{ color: C.red }}>✗</span> flags a hedge{' '}
+							<Muted>— output does not match</Muted>
+						</div>
+						<div style={{ ...show(), marginTop: 10 }}>
+							<Muted>{'  from  styles/House/Hedging.yml'}</Muted>
+						</div>
+						<div style={{ ...show(), marginTop: 10, color: C.red }}>
+							{"    - 1:2:House.Hedging:Consider removing 'Perhaps'."}
+						</div>
+						<div style={{ ...show(), color: C.lime }}>
+							{"    + 1:1:House.Hedging:Consider removing 'Perhaps'."}
+						</div>
+						<div style={{ ...show(), marginTop: 16 }}>
+							<span style={{ color: C.red, fontWeight: 700 }}>{'  ERROR'}</span>
+							{'   2 files — 4 passed, 1 failed'}
+						</div>
+					</div>
+				</Panel>
+				<div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: 20 }}>
+					<div style={{ ...enter(frame, 80), font: `28px ${SANS}`, color: C.muted }}>
+						One run over the GitLab documentation
+					</div>
+					{FIGURES.map(([value, prefix, label, unit], i) => {
+						const at = 90 + i * 10;
+						const n = Math.round(
+							interpolate(frame, [at, at + 36], [0, value], {
+								...clamp,
+								easing: Easing.out(Easing.cubic)
+							})
+						);
+						return (
 							<div
+								key={label}
 								style={{
-									font: `600 150px/1 ${SANS}`,
-									letterSpacing: -6,
-									color: i === 2 ? C.lime : C.fg,
-									fontVariantNumeric: 'tabular-nums'
+									...enter(frame, at),
+									flex: 1,
+									display: 'flex',
+									alignItems: 'baseline',
+									gap: 28,
+									padding: '18px 40px',
+									background: C.card,
+									border: `2px solid ${C.border}`,
+									borderRadius: 22
 								}}
 							>
-								{prefix}
-								{n.toLocaleString('en-US')}
-								<span style={{ fontSize: 80, letterSpacing: 0 }}>{unit}</span>
+								<span
+									style={{
+										font: `600 96px/1.1 ${SANS}`,
+										letterSpacing: -4,
+										color: i === 2 ? C.lime : C.fg,
+										fontVariantNumeric: 'tabular-nums'
+									}}
+								>
+									{prefix}
+									{n.toLocaleString('en-US')}
+									<span style={{ fontSize: 56, letterSpacing: 0 }}>{unit}</span>
+								</span>
+								<span style={{ font: `28px ${MONO}`, color: C.muted }}>{label}</span>
 							</div>
-							<div style={{ marginTop: 20, font: `30px ${MONO}`, color: C.muted }}>{label}</div>
-						</div>
-					);
-				})}
-			</div>
-			<div style={{ display: 'flex', gap: 18, marginTop: 64, flexWrap: 'wrap' }}>
-				{['VS Code', 'Neovim', 'JetBrains', 'Zed', 'Obsidian', 'GitHub Actions', 'pre-commit'].map(
-					(name, i) => (
-						<span
-							key={name}
-							style={{
-								...enter(frame, 70 + i * 4, 14, 16),
-								padding: '14px 28px',
-								border: `2px solid ${C.border}`,
-								borderRadius: 999,
-								background: C.card,
-								font: `500 30px ${SANS}`,
-								color: C.fg
-							}}
-						>
-							{name}
-						</span>
-					)
-				)}
+						);
+					})}
+				</div>
 			</div>
 		</Scene>
 	);
 };
+
+// Marks from the landing page's adopter band that Simple Icons carries.
+const MARKS = [
+	'nvidia',
+	'epicgames',
+	'github',
+	'docker',
+	'redhat',
+	'gitlab',
+	'datadog',
+	'mongodb',
+	'grafana',
+	'spotify',
+	'sap'
+];
 
 const Outro = () => {
 	const frame = useCurrentFrame();
@@ -534,15 +935,50 @@ const Outro = () => {
 	return (
 		<Scene>
 			<AbsoluteFill style={{ alignItems: 'center', justifyContent: 'center' }}>
-				<div style={{ ...enter(frame, 0), display: 'flex', alignItems: 'center', gap: 30 }}>
-					<Mark size={120} />
-					<Wordmark height={108} />
+				<div
+					style={{ ...enter(frame, 0), font: `500 26px ${MONO}`, letterSpacing: 5, color: C.lime }}
+				>
+					{adopters.length} TEAMS LISTED, EACH WITH A PUBLIC CONFIG
+				</div>
+				<div style={{ display: 'flex', gap: 22, marginTop: 36 }}>
+					{MARKS.map((slug, i) => (
+						<div
+							key={slug}
+							style={{
+								...enter(frame, 8 + i * 3, 14, 16),
+								width: 104,
+								height: 104,
+								display: 'flex',
+								alignItems: 'center',
+								justifyContent: 'center',
+								background: C.card,
+								border: `2px solid ${C.border}`,
+								borderRadius: 20
+							}}
+						>
+							<svg viewBox="0 0 24 24" width={56} height={56}>
+								<path d={brandIcons[slug]} fill={C.fg} />
+							</svg>
+						</div>
+					))}
 				</div>
 				<div
 					style={{
-						...enter(frame, 10),
-						marginTop: 50,
-						font: `600 80px ${SANS}`,
+						...enter(frame, 56),
+						display: 'flex',
+						alignItems: 'center',
+						gap: 28,
+						marginTop: 90
+					}}
+				>
+					<Mark size={110} />
+					<Wordmark height={98} />
+				</div>
+				<div
+					style={{
+						...enter(frame, 64),
+						marginTop: 36,
+						font: `600 72px ${SANS}`,
 						letterSpacing: -3,
 						color: C.fg
 					}}
@@ -551,9 +987,9 @@ const Outro = () => {
 				</div>
 				<div
 					style={{
-						...enter(frame, 22),
-						marginTop: 60,
-						padding: '26px 44px',
+						...enter(frame, 74),
+						marginTop: 44,
+						padding: '24px 44px',
 						background: C.card,
 						border: `2px solid ${C.border}`,
 						borderRadius: 18,
@@ -562,28 +998,30 @@ const Outro = () => {
 						minWidth: 620
 					}}
 				>
-					<span style={{ color: C.lime }}>$</span> {typed(cmd, frame, 34, 0.8)}
+					<span style={{ color: C.lime }}>$</span> {typed(cmd, frame, 84, 0.8)}
 					<span style={{ opacity: Math.floor(frame / 15) % 2 ? 0 : 1 }}>▍</span>
 				</div>
-				<div style={{ ...enter(frame, 64), marginTop: 48, font: `34px ${MONO}`, color: C.lime }}>
-					vale.sh
-				</div>
-				<div style={{ ...enter(frame, 70), marginTop: 14, font: `26px ${MONO}`, color: C.muted }}>
-					OPEN SOURCE · MIT
+				<div style={{ ...enter(frame, 110), marginTop: 36, font: `34px ${MONO}`, color: C.lime }}>
+					vale.sh <Muted>· open source · MIT</Muted>
 				</div>
 			</AbsoluteFill>
 		</Scene>
 	);
 };
 
-const SCENES: [() => ReactNode, number][] = [
-	[Intro, 3.5],
-	[Guideline, 5.5],
-	[Rule, 7.5],
-	[Run, 7],
-	[Scopes, 6],
-	[Speed, 6],
-	[Outro, 5]
+// Scene and length in seconds. The landing page's chapter list
+// (src/lib/components/landing/Promo.svelte) names where each starts.
+export const SCENES: [() => ReactNode, number][] = [
+	[Intro, 3],
+	[Guideline, 6.5],
+	[Rule, 7],
+	[Styles, 5],
+	[Run, 5.5],
+	[Fix, 5.5],
+	[Document, 8.5],
+	[Everywhere, 6.5],
+	[Tested, 6.5],
+	[Outro, 7]
 ];
 
 export const TOTAL = SCENES.reduce((n, [, s]) => n + Math.round(s * FPS), 0);

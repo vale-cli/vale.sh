@@ -6,7 +6,10 @@
 		"jsx": "react-jsx",
 		"strict": true,
 		"skipLibCheck": true,
-		"noEmit": true
+		"noEmit": true,
+		"resolveJsonModule": true
 	},
-	"include": ["src"]
+	"include": [
+		"src"
+	]
 }
