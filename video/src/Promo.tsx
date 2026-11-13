@@ -8,12 +8,14 @@
 	Colors are the social cards' (script/build-og-home.mjs). Type is Inter
 	and a system monospace, both read from the machine that renders.
 */
+import { createContext, useContext } from 'react';
 import type { CSSProperties, ReactNode } from 'react';
 import adopters from '../../src/lib/data/adopters.json';
 import { brandIcons } from '../../src/lib/data/brand-icons';
 import {
 	AbsoluteFill,
 	Easing,
+	Sequence,
 	Series,
 	interpolate,
 	spring,
@@ -89,6 +91,9 @@ const Background = () => (
 	</AbsoluteFill>
 );
 
+/** A loop is framed tighter than the film: less margin, and no camera move. */
+const Tight = createContext(false);
+
 /** Fades its scene in and out, so cuts between scenes are soft. */
 const Scene = ({ children }: { children: ReactNode }) => {
 	const frame = useCurrentFrame();
@@ -97,22 +102,43 @@ const Scene = ({ children }: { children: ReactNode }) => {
 		interpolate(frame, [0, 10], [0, 1], clamp),
 		interpolate(frame, [durationInFrames - 10, durationInFrames], [1, 0], clamp)
 	);
+	const tight = useContext(Tight);
+	// A slow push-in, so a still shot reads as a camera on the product.
+	const zoom = tight ? 1 : interpolate(frame, [0, durationInFrames], [1.03, 1.08]);
 	return (
-		<AbsoluteFill style={{ opacity, padding: '100px 160px', justifyContent: 'center' }}>
+		<AbsoluteFill
+			style={{
+				opacity,
+				padding: tight ? '30px 56px' : '100px 160px',
+				justifyContent: 'center',
+				transform: `scale(${zoom})`
+			}}
+		>
 			{children}
 		</AbsoluteFill>
 	);
 };
 
-const Heading = ({ eyebrow, children }: { eyebrow: string; children: ReactNode }) => {
+const Muted = ({ children }: { children: ReactNode }) => (
+	<span style={{ color: C.muted }}>{children}</span>
+);
+
+/** How long a scene's claim holds the screen before its shot, in frames. */
+export const CLAIM = 36;
+
+/** One claim, alone on the screen, before the shot that proves it. */
+const Claim = ({ eyebrow, lines }: { eyebrow: string; lines: [string, string?] }) => {
 	const frame = useCurrentFrame();
+	const opacity = Math.min(
+		tween(frame, 0, 8),
+		interpolate(frame, [CLAIM - 8, CLAIM], [1, 0], clamp)
+	);
 	return (
-		<div>
+		<AbsoluteFill style={{ opacity, alignItems: 'center', justifyContent: 'center', padding: 160 }}>
 			<div
 				style={{
-					...enter(frame, 0),
-					font: `500 26px ${MONO}`,
-					letterSpacing: 5,
+					font: `500 28px ${MONO}`,
+					letterSpacing: 6,
 					color: C.lime,
 					textTransform: 'uppercase'
 				}}
@@ -121,18 +147,60 @@ const Heading = ({ eyebrow, children }: { eyebrow: string; children: ReactNode }
 			</div>
 			<div
 				style={{
-					...enter(frame, 5),
-					marginTop: 22,
-					font: `600 84px/1.08 ${SANS}`,
-					letterSpacing: -3.4,
-					color: C.fg
+					marginTop: 30,
+					font: `600 124px/1.05 ${SANS}`,
+					letterSpacing: -5.5,
+					textAlign: 'center',
+					color: C.fg,
+					transform: `scale(${interpolate(frame, [0, CLAIM], [0.97, 1.02])})`
 				}}
 			>
-				{children}
+				{lines[0]}
+				{lines[1] ? (
+					<>
+						<br />
+						<Muted>{lines[1]}</Muted>
+					</>
+				) : null}
 			</div>
-		</div>
+		</AbsoluteFill>
 	);
 };
+
+/** A pointer, so the eye knows where the next thing happens. */
+const Cursor = ({
+	x,
+	y,
+	press = 0,
+	opacity = 1
+}: {
+	x: number;
+	y: number;
+	press?: number;
+	opacity?: number;
+}) => (
+	<svg
+		viewBox="0 0 24 24"
+		width={54}
+		height={54}
+		style={{
+			position: 'absolute',
+			left: x,
+			top: y,
+			opacity,
+			transform: `scale(${1 - press * 0.18})`,
+			transformOrigin: 'top left',
+			filter: 'drop-shadow(0 6px 10px rgba(0,0,0,0.6))'
+		}}
+	>
+		<path
+			d="M4 2l15 9.5-6.6 1.3L16 20l-3 1.4-3.5-7.2L4 19z"
+			fill="#fff"
+			stroke="#101310"
+			strokeWidth={1.2}
+		/>
+	</svg>
+);
 
 const Panel = ({
 	title,
@@ -174,10 +242,6 @@ const Panel = ({
 		</div>
 		<div style={{ padding: '32px 36px' }}>{children}</div>
 	</div>
-);
-
-const Muted = ({ children }: { children: ReactNode }) => (
-	<span style={{ color: C.muted }}>{children}</span>
 );
 
 // --- scenes ----------------------------------------------------------------
@@ -239,11 +303,6 @@ const Guideline = () => {
 	const frame = useCurrentFrame();
 	return (
 		<Scene>
-			<Heading eyebrow="01 · Your guideline">
-				Every team has a style guide.
-				<br />
-				<Muted>Nobody rereads it.</Muted>
-			</Heading>
 			<div style={{ display: 'flex', gap: 32, marginTop: 64 }}>
 				{GUIDES.map((g, i) => {
 					const at = 26 + i * 34;
@@ -334,11 +393,6 @@ const Rule = () => {
 		<Scene>
 			<div style={{ display: 'flex', gap: 90, alignItems: 'flex-start' }}>
 				<div style={{ width: 700, flexShrink: 0 }}>
-					<Heading eyebrow="02 · A rule you own">
-						Write it down
-						<br />
-						once, as a rule.
-					</Heading>
 					<div
 						style={{ ...enter(frame, 20), marginTop: 36, font: `34px/1.5 ${SANS}`, color: C.muted }}
 					>
@@ -351,7 +405,7 @@ const Rule = () => {
 								<span
 									key={name}
 									style={{
-										...enter(frame, 110 + i * 5, 10, 12),
+										...enter(frame, 60 + i * 4, 10, 12),
 										padding: '8px 18px',
 										borderRadius: 10,
 										border: `2px solid ${on ? C.lime : C.border}`,
@@ -403,7 +457,6 @@ const Styles = () => {
 	const frame = useCurrentFrame();
 	return (
 		<Scene>
-			<Heading eyebrow="Packages">Or start from a published style.</Heading>
 			<div style={{ display: 'flex', gap: 48, marginTop: 64, alignItems: 'stretch' }}>
 				<Panel title=".vale.ini" style={{ ...enter(frame, 14, 22), flex: 1 }}>
 					<div style={{ font: `27px/1.75 ${MONO}`, whiteSpace: 'pre' }}>
@@ -501,7 +554,6 @@ const Run = () => {
 	};
 	return (
 		<Scene>
-			<Heading eyebrow="03 · Feedback where you write">Then run it.</Heading>
 			<Panel title="bash — vale" style={{ ...enter(frame, 12, 22), marginTop: 56 }}>
 				<div style={{ font: `28px/1.7 ${MONO}`, whiteSpace: 'pre', color: C.fg, minHeight: 560 }}>
 					<div>
@@ -538,16 +590,15 @@ const Fix = () => {
 	const FIXED = 96; // the frame the quick fix lands
 	const done = frame >= FIXED;
 	const press = tween(frame, 80, 8) - tween(frame, 90, 8);
-	const flash = interpolate(frame, [FIXED, FIXED + 30], [1, 0], clamp);
+	const flash = done ? interpolate(frame, [FIXED, FIXED + 30], [1, 0], clamp) : 0;
 	return (
 		<Scene>
-			<Heading eyebrow="Actions">The fix comes with the alert.</Heading>
 			<div style={{ ...enter(frame, 20), marginTop: 28, font: `34px ${SANS}`, color: C.muted }}>
 				A rule can carry its own correction: suggest, replace, remove, edit, or convert.
 			</div>
 			<Panel title="docs/install.md" style={{ ...enter(frame, 14, 22), marginTop: 50 }}>
 				<div
-					style={{ font: `34px/1.8 ${MONO}`, color: C.fg, minHeight: 430, position: 'relative' }}
+					style={{ font: `34px/1.8 ${MONO}`, color: C.fg, minHeight: 365, position: 'relative' }}
 				>
 					<div>
 						<Muted>1 </Muted> <Muted>#</Muted> Installation
@@ -599,6 +650,14 @@ const Fix = () => {
 							Quick fix: replace with 'Vale CLI'
 						</div>
 					</div>
+					<Cursor
+						x={interpolate(frame, [48, 78], [1250, 360], { ...clamp, easing: ease })}
+						y={interpolate(frame, [48, 78], [40, 318], { ...clamp, easing: ease })}
+						press={press}
+						opacity={
+							tween(frame, 44, 8) * interpolate(frame, [FIXED + 6, FIXED + 18], [1, 0], clamp)
+						}
+					/>
 					<div
 						style={{
 							...enter(frame, FIXED + 10, 14, 12),
@@ -657,9 +716,6 @@ const Document = () => {
 	const active = Math.min(FILES.length - 1, Math.max(0, Math.floor((frame - 14) / PER_FILE)));
 	return (
 		<Scene>
-			<Heading eyebrow="Markup-aware">
-				Most tools see text. <Muted>Vale sees a document.</Muted>
-			</Heading>
 			<div style={{ display: 'flex', gap: 14, marginTop: 44 }}>
 				{FILES.map((file, i) => (
 					<span
@@ -784,7 +840,6 @@ const Everywhere = () => {
 	const frame = useCurrentFrame();
 	return (
 		<Scene>
-			<Heading eyebrow="One engine">Wherever you write.</Heading>
 			<div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, marginTop: 64 }}>
 				{PLACES.map((place, i) => (
 					<div
@@ -835,9 +890,6 @@ const Tested = () => {
 	const show = (): CSSProperties => ({ opacity: tween(frame, 46 + row++ * 6, 6) });
 	return (
 		<Scene>
-			<Heading eyebrow="vale test · one Go binary · offline">
-				Tested like code. <Muted>Fast like a linter.</Muted>
-			</Heading>
 			<div style={{ display: 'flex', gap: 48, marginTop: 60, alignItems: 'stretch' }}>
 				<Panel title="bash — vale test" style={{ ...enter(frame, 14, 22), flex: 1.25 }}>
 					<div
@@ -1009,32 +1061,94 @@ const Outro = () => {
 	);
 };
 
-// Scene and length in seconds. The landing page's chapter list
-// (src/lib/components/landing/Promo.svelte) names where each starts.
-export const SCENES: [() => ReactNode, number][] = [
-	[Intro, 3],
-	[Guideline, 6.5],
-	[Rule, 7],
-	[Styles, 5],
-	[Run, 5.5],
-	[Fix, 5.5],
-	[Document, 8.5],
-	[Everywhere, 6.5],
-	[Tested, 6.5],
-	[Outro, 7]
+type SceneDef = {
+	Shot: () => ReactNode;
+	/** Length of the shot in seconds, not counting its claim. */
+	seconds: number;
+	eyebrow?: string;
+	claim?: [string, string?];
+};
+
+// The film: a claim, then the shot that proves it. The landing page's chapter
+// list (src/lib/components/landing/Promo.svelte) names where each starts.
+export const SCENES: SceneDef[] = [
+	{ Shot: Intro, seconds: 3 },
+	{
+		Shot: Guideline,
+		seconds: 6,
+		eyebrow: '01 · Your guideline',
+		claim: ['Every team has a style guide.', 'Nobody rereads it.']
+	},
+	{
+		Shot: Rule,
+		seconds: 6.5,
+		eyebrow: '02 · A rule you own',
+		claim: ['Write it down once,', 'as a rule.']
+	},
+	{
+		Shot: Styles,
+		seconds: 4.5,
+		eyebrow: 'Packages',
+		claim: ['Or start from', 'a published style.']
+	},
+	{ Shot: Run, seconds: 5, eyebrow: '03 · Feedback where you write', claim: ['Then run it.'] },
+	{ Shot: Fix, seconds: 5.5, eyebrow: 'Actions', claim: ['The fix comes', 'with the alert.'] },
+	{
+		Shot: Document,
+		seconds: 8,
+		eyebrow: 'Markup-aware',
+		claim: ['Most tools see text.', 'Vale sees a document.']
+	},
+	{ Shot: Everywhere, seconds: 6, eyebrow: 'One engine', claim: ['Wherever', 'you write.'] },
+	{
+		Shot: Tested,
+		seconds: 6.5,
+		eyebrow: 'vale test · one binary · offline',
+		claim: ['Tested like code.', 'Fast like a linter.']
+	},
+	{ Shot: Outro, seconds: 7 }
 ];
 
-export const TOTAL = SCENES.reduce((n, [, s]) => n + Math.round(s * FPS), 0);
+const frames = (scene: SceneDef) => Math.round(scene.seconds * FPS) + (scene.claim ? CLAIM : 0);
+
+export const TOTAL = SCENES.reduce((n, scene) => n + frames(scene), 0);
 
 export const Promo = () => (
 	<AbsoluteFill>
 		<Background />
 		<Series>
-			{SCENES.map(([Component, seconds]) => (
-				<Series.Sequence key={Component.name} durationInFrames={Math.round(seconds * FPS)}>
-					<Component />
+			{SCENES.map((scene) => (
+				<Series.Sequence key={scene.Shot.name} durationInFrames={frames(scene)}>
+					{scene.claim ? <Claim eyebrow={scene.eyebrow ?? ''} lines={scene.claim} /> : null}
+					<Sequence
+						from={scene.claim ? CLAIM - 4 : 0}
+						durationInFrames={frames(scene) - (scene.claim ? CLAIM - 4 : 0)}
+					>
+						<scene.Shot />
+					</Sequence>
 				</Series.Sequence>
 			))}
 		</Series>
 	</AbsoluteFill>
 );
+
+// The loops: one shot each, with no claim, for the page section it proves.
+// Each fades in and out, so the seam of the loop is the dark ground.
+export const LOOPS: Record<string, SceneDef> = {
+	LoopRule: SCENES[2],
+	LoopRun: SCENES[4],
+	LoopFix: SCENES[5],
+	LoopDocument: SCENES[6]
+};
+
+export const Loop = ({ id }: { id: string }) => {
+	const { Shot } = LOOPS[id];
+	return (
+		<AbsoluteFill>
+			<Background />
+			<Tight.Provider value={true}>
+				<Shot />
+			</Tight.Provider>
+		</AbsoluteFill>
+	);
+};
