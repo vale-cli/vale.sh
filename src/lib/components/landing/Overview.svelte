@@ -1,4 +1,6 @@
 <script lang="ts">
+	import Check from 'lucide-svelte/icons/check';
+	import Copy from 'lucide-svelte/icons/copy';
 	import { Button } from '$lib/components/ui/button';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
@@ -118,6 +120,18 @@
 		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '/library' },
 		{ value: String(adopters.length), label: 'teams listed', href: '/adopters' }
 	]);
+
+	const install = 'brew install vale';
+	let copied = $state(false);
+	async function copyInstall() {
+		try {
+			await navigator.clipboard.writeText(install);
+			copied = true;
+			setTimeout(() => (copied = false), 2000);
+		} catch {
+			// No clipboard permission: the command is still on the page to select.
+		}
+	}
 </script>
 
 <section class="hero-shell">
@@ -146,7 +160,23 @@
 					>
 					<Button size="lg" variant="outline" href="#how-it-works">See how it works</Button>
 				</div>
-				<p class="hero-note">macOS, Windows & Linux · Runs offline</p>
+				<!-- The one command most visitors can run as it stands; the note
+				     beside it covers everyone else. -->
+				<button
+					type="button"
+					class="install"
+					onclick={copyInstall}
+					aria-label="Copy the install command: {install}"
+				>
+					<span aria-hidden="true" class="prompt">$</span>
+					<code>{install}</code>
+					{#if copied}<Check aria-hidden="true" />{:else}<Copy aria-hidden="true" />{/if}
+					<span class="sr-only" aria-live="polite">{copied ? 'Copied' : ''}</span>
+				</button>
+				<p class="hero-note">
+					macOS, Windows & Linux · Runs offline ·
+					<a href="https://docs.vale.sh/topics/installation">Other installs</a>
+				</p>
 			</div>
 		</div>
 
@@ -385,12 +415,47 @@
 		gap: 12px;
 		margin-top: 24px;
 	}
+	.install {
+		display: inline-flex;
+		align-items: center;
+		gap: 10px;
+		margin-top: 20px;
+		padding: 8px 12px;
+		border: 1px solid hsl(var(--border));
+		border-radius: 8px;
+		background: hsl(var(--card));
+		font:
+			13px/1.5 ui-monospace,
+			monospace;
+		color: hsl(var(--foreground));
+		cursor: copy;
+		transition: border-color 0.2s;
+	}
+	.install:hover {
+		border-color: hsl(var(--primary) / 0.5);
+	}
+	.install:focus-visible {
+		outline: 2px solid hsl(var(--ring));
+		outline-offset: 3px;
+	}
+	.install .prompt {
+		color: hsl(var(--primary));
+	}
+	.install :global(svg) {
+		width: 14px;
+		height: 14px;
+		color: hsl(var(--muted-foreground));
+	}
 	.hero-note {
-		margin-top: 16px;
+		margin-top: 12px;
 		font:
 			11px/1.8 ui-monospace,
 			monospace;
 		color: hsl(var(--muted-foreground));
+	}
+	.hero-note a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 	a:hover {
 		text-decoration: underline;
@@ -647,9 +712,14 @@
 		.actions {
 			margin-top: 0;
 		}
+		.install {
+			grid-column: 1 / -1;
+			justify-self: start;
+			margin-top: 0;
+		}
 		.hero-note {
 			grid-column: 1 / -1;
-			margin-top: 0;
+			margin-top: -8px;
 		}
 		.stages {
 			grid-template-columns: 1fr 1fr;
@@ -696,8 +766,11 @@
 		.actions {
 			margin-top: 24px;
 		}
-		.hero-note {
+		.install {
 			margin-top: 16px;
+		}
+		.hero-note {
+			margin-top: 12px;
 		}
 		.intro {
 			font-size: 16px;
