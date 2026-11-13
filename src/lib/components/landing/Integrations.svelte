@@ -1,6 +1,7 @@
 <script lang="ts">
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import BrandIcon from './BrandIcon.svelte';
+	import LoopVideo from './LoopVideo.svelte';
 	import Section from './Section.svelte';
 	import { integrationGroups } from '$lib/data/integrations';
 </script>
@@ -18,40 +19,53 @@
 		line of detail; the detail now rides in the tooltip, and the whole list
 		fits in one screen.
 	-->
-	<dl class="divide-y divide-border border-y border-border">
-		{#each integrationGroups as group}
-			<div class="grid gap-x-8 gap-y-3 py-5 md:grid-cols-[14rem_minmax(0,1fr)]">
-				<dt>
-					<span class="block text-sm font-semibold tracking-tight">{group.title}</span>
-					<span class="mt-1 block text-sm leading-6 text-muted-foreground">{group.note}</span>
-				</dt>
-				<dd>
-					<ul class="flex flex-wrap gap-2">
-						{#each group.items as item}
-							<li>
-								<a
-									href={item.href}
-									target="_blank"
-									rel="noreferrer"
-									title="{item.name} — {item.detail}"
-									class="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium transition-colors duration-200 hover:border-primary/40 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
-								>
-									<BrandIcon
-										name={item.name}
-										slug={item.slug}
-										avatar={item.avatar}
-										size="h-4 w-4"
-										class="text-foreground/70"
-									/>
-									{item.name}
-								</a>
-							</li>
-						{/each}
-					</ul>
-				</dd>
-			</div>
-		{/each}
-	</dl>
+	<!-- The loop is the section's claim, shown: the same rule, fixing a line
+	     in an editor. The groups beside it are where that runs. -->
+	<div class="grid items-start gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
+		<figure>
+			<LoopVideo
+				name="fix"
+				label="In an editor, the phrase Vale cli is underlined; a quick fix replaces it with Vale CLI and the file reports no errors"
+			/>
+			<figcaption class="mt-3 text-xs leading-5 text-muted-foreground">
+				In an editor, the alert carries its fix. The language server offers it as a quick fix.
+			</figcaption>
+		</figure>
+		<dl class="divide-y divide-border border-y border-border">
+			{#each integrationGroups as group}
+				<div class="grid gap-x-8 gap-y-3 py-5 md:grid-cols-[14rem_minmax(0,1fr)] lg:grid-cols-1">
+					<dt>
+						<span class="block text-sm font-semibold tracking-tight">{group.title}</span>
+						<span class="mt-1 block text-sm leading-6 text-muted-foreground">{group.note}</span>
+					</dt>
+					<dd>
+						<ul class="flex flex-wrap gap-2">
+							{#each group.items as item}
+								<li>
+									<a
+										href={item.href}
+										target="_blank"
+										rel="noreferrer"
+										title="{item.name} — {item.detail}"
+										class="group inline-flex items-center gap-2 rounded-full border border-border bg-card px-3 py-1.5 text-sm font-medium transition-colors duration-200 hover:border-primary/40 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+									>
+										<BrandIcon
+											name={item.name}
+											slug={item.slug}
+											avatar={item.avatar}
+											size="h-4 w-4"
+											class="text-foreground/70"
+										/>
+										{item.name}
+									</a>
+								</li>
+							{/each}
+						</ul>
+					</dd>
+				</div>
+			{/each}
+		</dl>
+	</div>
 
 	<div class="mt-8">
 		<a

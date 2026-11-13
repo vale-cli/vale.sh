@@ -1,9 +1,9 @@
 <script lang="ts">
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 
 	// Redundant on the page it points at.
-	const hidden = $derived($page.url.pathname.startsWith('/cms'));
+	const hidden = $derived(page.url.pathname.startsWith('/cms'));
 </script>
 
 {#if !hidden}

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { Icons } from '../icons';
-	import { page } from '$app/stores';
+	import { page } from '$app/state';
 	import { siteConfig } from '$lib/config/site.js';
 	import { docsConfig } from '$lib/config/docs.js';
 	import { cn } from '$lib/utils.js';
@@ -24,7 +24,7 @@
 				href={item.href}
 				class={cn(
 					'inline-flex items-center gap-1.5 transition-colors hover:text-foreground/80',
-					current(item.href, $page.url.pathname) ? 'text-foreground' : 'text-foreground/60'
+					current(item.href, page.url.pathname) ? 'text-foreground' : 'text-foreground/60'
 				)}
 			>
 				{#if item.icon}

@@ -1,23 +1,32 @@
 <script lang="ts">
-	import { page } from '$app/stores';
+	import type { Snippet } from 'svelte';
+	import type { HTMLAnchorAttributes } from 'svelte/elements';
+	import { page } from '$app/state';
 	import { cn } from '$lib/utils.js';
 
-	export let href: string;
-	export let open: boolean;
-
-	let className: string | undefined | null = undefined;
-	export { className as class };
+	let {
+		href,
+		open = $bindable(),
+		class: className,
+		children,
+		...rest
+	}: HTMLAnchorAttributes & {
+		href: string;
+		open: boolean;
+		children: Snippet;
+	} = $props();
 
 	// A page under the link's path counts as the link, as in MainNav.
-	$: current =
-		$page.url.pathname === href || (href !== '/' && $page.url.pathname.startsWith(`${href}/`));
+	const current = $derived(
+		page.url.pathname === href || (href !== '/' && page.url.pathname.startsWith(`${href}/`))
+	);
 </script>
 
 <a
 	{href}
 	class={cn(current ? 'text-foreground' : 'text-foreground/60', className)}
-	on:click={() => (open = false)}
-	{...$$restProps}
+	onclick={() => (open = false)}
+	{...rest}
 >
-	<slot />
+	{@render children()}
 </a>

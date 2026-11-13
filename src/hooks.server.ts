@@ -1,5 +1,5 @@
 import { redirect } from '@sveltejs/kit';
-import type { Handle } from '@sveltejs/kit';
+import type { Handle } from '@sveltejs/kit/hooks';
 
 const migrated: Record<string, string> = {
     // Package Hub is now combined with the Explorer:
