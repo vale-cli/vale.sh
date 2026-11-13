@@ -26,12 +26,20 @@
 		description,
 		images: [
 			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
+				url: 'https://vale.sh/media/mac.png',
+				width: 1300,
+				height: 743,
 				alt: 'Example Vale output'
 			}
 		]
+	}}
+	twitter={{
+		cardType: 'summary_large_image',
+		site: '@jdkato',
+		title: 'Vale: Your style, our editor',
+		description,
+		image: 'https://vale.sh/media/mac.png',
+		imageAlt: 'Example Vale output'
 	}}
 />
 

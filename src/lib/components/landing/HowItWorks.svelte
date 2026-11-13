@@ -17,7 +17,11 @@
 			</p>
 			<ol class="steps">
 				<li>
-					<strong>Install Vale.</strong><span>Choose a package for your operating system.</span>
+					<strong>Install Vale.</strong><span
+						><code>brew install vale</code> on macOS and Linux, <code>choco install vale</code> on
+						Windows, or
+						<a href="https://docs.vale.sh/topics/installation">another package</a>.</span
+					>
 				</li>
 				<li>
 					<strong>Pick your styles.</strong><span
@@ -139,6 +143,10 @@
 		color: hsl(var(--foreground) / 0.8);
 		margin-top: 4px;
 		line-height: 1.6;
+	}
+	.steps a {
+		text-decoration: underline;
+		text-underline-offset: 3px;
 	}
 	.config-example {
 		min-width: 0;

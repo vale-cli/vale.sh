@@ -683,16 +683,19 @@
 		.hero-copy {
 			grid-template-columns: 1fr;
 		}
+		/* One column: the description comes before the figures, so a first
+		   visit reads what Vale is before how many people use it. */
 		.figures {
 			grid-column: 1;
-			grid-row: 3;
+			grid-row: 4;
 			flex-direction: row;
 			align-items: flex-start;
 			gap: 12px 28px;
+			margin-top: 8px;
 			text-align: left;
 		}
 		.hero-description {
-			grid-row: 4;
+			grid-row: 3;
 			display: block;
 		}
 		.actions {
