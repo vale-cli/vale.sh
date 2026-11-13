@@ -118,18 +118,13 @@
 		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '/library' },
 		{ value: String(adopters.length), label: 'teams listed', href: '/adopters' }
 	]);
-	const starLabel = $derived(
-		new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(
-			stats.stars
-		)
-	);
 </script>
 
 <section class="hero-shell">
 	<div class="landing-wrap hero-grid">
 		<div class="hero-copy">
 			<a class="eyebrow" href="https://github.com/vale-cli/vale"
-				>OPEN SOURCE · MIT · {starLabel} STARS <span aria-hidden="true">↗</span></a
+				>OPEN SOURCE · MIT <span aria-hidden="true">↗</span></a
 			>
 			<h1>Your style.<br /><span>Our editor.</span></h1>
 			<dl class="figures">

@@ -12,7 +12,8 @@
 		"lint": "prettier --check . && eslint .",
 		"validate": "node script/adopters.mjs",
 		"posts": "node script/lint-posts.mjs && node script/build-og.mjs && node script/build-og-brand.mjs",
-		"og:adopters": "node script/build-og-adopters.mjs"
+		"og:adopters": "node script/build-og-adopters.mjs",
+		"og:home": "node script/build-og-home.mjs"
 	},
 	"devDependencies": {
 		"@codemirror/lang-markdown": "^6.5.1",

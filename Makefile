@@ -49,6 +49,11 @@ stats:
 og-adopters:
 	node script/build-og-adopters.mjs
 
+# Re-render the home page's social card. Run it when the headline or the
+# hero's example changes; the PNG is committed.
+og-home:
+	node script/build-og-home.mjs
+
 # Rebuild /explorer alone, without the rest of a build. `build` runs this too,
 # so the page follows the package library on its own; this is for checking that
 # step by itself.

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import adopters from '$lib/data/adopters.json';
-	import stats from '$lib/data/adopter-stats.json';
 	import stories from '$lib/data/stories.json';
 	import { sectors } from '$lib/data/sectors';
 	import BrandIcon from './BrandIcon.svelte';
@@ -104,26 +103,6 @@
 			];
 		});
 
-	/*
-		Three counted figures under the marks, from script/adopters-stats.mjs:
-		the list, the repos on it that run Vale in CI, and the one figure that
-		reaches past the list -- how many repositories depend on the Action.
-	*/
-	const compactCount = new Intl.NumberFormat('en-US');
-	const figures = [
-		{ value: String(all.length), label: 'teams', gloss: `across ${sectors.length} sectors` },
-		{
-			value: `${stats.ci} / ${stats.checked}`,
-			label: 'run Vale in CI',
-			gloss: 'of the repos checked'
-		},
-		{
-			value: compactCount.format(stats.actionDependents ?? 0),
-			label: 'repos using the Vale Action',
-			gloss: "GitHub's dependents count"
-		}
-	];
-
 	// The nine sectors, each a jump to its band on /adopters.
 	const chips = sectors.map((s) => ({
 		name: s.name,
@@ -222,18 +201,8 @@
 		</ul>
 	</Tooltip.Provider>
 
-	<dl class="mt-12 grid gap-3 sm:grid-cols-3">
-		{#each figures as f (f.label)}
-			<div class="rounded-xl border border-border bg-card px-5 py-4">
-				<dd class="text-2xl font-semibold tracking-tight text-foreground">{f.value}</dd>
-				<dt class="mt-0.5 text-sm font-medium text-foreground">{f.label}</dt>
-				<p class="mt-0.5 text-xs text-muted-foreground">{f.gloss}</p>
-			</div>
-		{/each}
-	</dl>
-
 	<!-- The split by sector, each chip landing on that sector's roster. -->
-	<ul class="mt-6 flex flex-wrap gap-2" aria-label="Adopters by sector">
+	<ul class="mt-12 flex flex-wrap gap-2" aria-label="Adopters by sector">
 		{#each chips as chip (chip.name)}
 			<li>
 				<a

@@ -14,6 +14,8 @@
 
 	const description =
 		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
+	const cardAlt =
+		"Vale: Your style. Our editor. A linter for prose, beside an alert reading: Use 'Vale CLI' instead of 'Vale cli'.";
 </script>
 
 <MetaTags
@@ -26,10 +28,10 @@
 		description,
 		images: [
 			{
-				url: 'https://vale.sh/media/mac.png',
-				width: 1300,
-				height: 743,
-				alt: 'Example Vale output'
+				url: 'https://vale.sh/media/home-og.png',
+				width: 1200,
+				height: 630,
+				alt: cardAlt
 			}
 		]
 	}}
@@ -38,8 +40,8 @@
 		site: '@jdkato',
 		title: 'Vale: Your style, our editor',
 		description,
-		image: 'https://vale.sh/media/mac.png',
-		imageAlt: 'Example Vale output'
+		image: 'https://vale.sh/media/home-og.png',
+		imageAlt: cardAlt
 	}}
 />
 
