@@ -3,6 +3,7 @@
 	import Overview from '$lib/components/landing/Overview.svelte';
 	import SponsorSpotlight from '$lib/components/landing/SponsorSpotlight.svelte';
 	import AdopterConfigs from '$lib/components/landing/AdopterConfigs.svelte';
+	import Promo from '$lib/components/landing/Promo.svelte';
 	import WhyRules from '$lib/components/landing/WhyRules.svelte';
 	import Features from '$lib/components/landing/Features.svelte';
 	import HowItWorks from '$lib/components/landing/HowItWorks.svelte';
@@ -64,6 +65,7 @@
 			scientific: data.snippets.heroScientific
 		}}
 	/>
+	<Promo />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs editorial />
 	<Features />
