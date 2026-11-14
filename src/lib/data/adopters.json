@@ -40,6 +40,15 @@
 		"icon": "alchemy"
 	},
 	{
+		"name": "Aleph",
+		"category": "Open source & communities",
+		"context": "Lints its MDX docs with Google's style and proselint.",
+		"url": "https://github.com/alephdata/aleph/blob/HEAD/docs/.vale.ini",
+		"github": "alephdata",
+		"repo": "github.com/alephdata/aleph",
+		"avatar": "/users/avatars/alephdata.png"
+	},
+	{
 		"name": "Amazon Web Services",
 		"category": "Cloud & infrastructure",
 		"context": "The EKS User Guide walks contributors through installing Vale for live style feedback.",
@@ -158,6 +167,15 @@
 		"avatar": "/users/avatars/broadinstitute.png"
 	},
 	{
+		"name": "Bruin",
+		"category": "Data & observability",
+		"context": "Lints the ingestr docs with Google's style and its own bruin rules.",
+		"url": "https://github.com/bruin-data/ingestr/blob/HEAD/.vale.ini",
+		"github": "bruin-data",
+		"repo": "github.com/bruin-data/ingestr",
+		"avatar": "/users/avatars/bruin-data.png"
+	},
+	{
 		"name": "Buildkite",
 		"category": "Developer tools",
 		"context": "Lints its docs with a Buildkite style.",
@@ -194,6 +212,15 @@
 		"url": "https://github.com/circleci/circleci-docs/blob/main/AGENTS.md",
 		"github": "circleci",
 		"avatar": "/users/avatars/circleci.png"
+	},
+	{
+		"name": "ClassroomIO",
+		"category": "Open source & communities",
+		"context": "Lints its help center's MDX with Google's style and write-good.",
+		"url": "https://github.com/classroomio/classroomio/blob/HEAD/apps/help/.vale.ini",
+		"github": "classroomio",
+		"repo": "github.com/classroomio/classroomio",
+		"avatar": "/users/avatars/classroomio.png"
 	},
 	{
 		"name": "Clever Cloud",
@@ -248,6 +275,15 @@
 		"url": "https://github.com/codacy/docs/blob/HEAD/.vale.ini",
 		"github": "codacy",
 		"avatar": "/users/avatars/codacy.png"
+	},
+	{
+		"name": "Codename One",
+		"category": "Developer tools",
+		"context": "Lints its website docs with Microsoft's style, proselint, and write-good.",
+		"url": "https://github.com/codenameone/CodenameOne/blob/HEAD/docs/website/.vale.ini",
+		"github": "codenameone",
+		"repo": "github.com/codenameone/CodenameOne",
+		"avatar": "/users/avatars/codenameone.png"
 	},
 	{
 		"name": "Coder",
@@ -423,6 +459,15 @@
 		"logo": "/users/Docker.svg"
 	},
 	{
+		"name": "Docling",
+		"category": "AI & machine learning",
+		"context": "Lints the docling-serve Markdown with Vale's built-in style.",
+		"url": "https://github.com/docling-project/docling-serve/blob/HEAD/.github/vale.ini",
+		"github": "docling-project",
+		"repo": "github.com/docling-project/docling-serve",
+		"avatar": "/users/avatars/docling-project.png"
+	},
+	{
 		"name": "DocsGPT",
 		"category": "AI & machine learning",
 		"context": "A DocsGPT style of their own over the project documentation.",
@@ -439,12 +484,39 @@
 		"avatar": "/users/avatars/duckdb.png"
 	},
 	{
+		"name": "E2B",
+		"category": "AI & machine learning",
+		"context": "Lints Markdown, TypeScript, and Python with Microsoft, Google, proselint, write-good, alex, Readability, and Joblint.",
+		"url": "https://github.com/e2b-dev/E2B/blob/HEAD/.vale.ini",
+		"github": "e2b-dev",
+		"repo": "github.com/e2b-dev/E2B",
+		"avatar": "/users/avatars/e2b-dev.png"
+	},
+	{
+		"name": "Earthly",
+		"category": "Developer tools",
+		"context": "Lints its Markdown with a house style of its own.",
+		"url": "https://github.com/earthly/earthly/blob/HEAD/.vale/vale.ini",
+		"github": "earthly",
+		"repo": "github.com/earthly/earthly",
+		"avatar": "/users/avatars/earthly.png"
+	},
+	{
 		"name": "Eclipse Che",
 		"category": "Open source & communities",
 		"context": "Publishes a Vale style for the Eclipse Che documentation and related projects.",
 		"url": "https://github.com/eclipse-che/che-docs-vale-style",
 		"github": "eclipse-che",
 		"avatar": "/users/avatars/eclipse-che.png"
+	},
+	{
+		"name": "Eclipse SysON",
+		"category": "Open source & communities",
+		"context": "Lints its AsciiDoc docs with Microsoft, Google, Red Hat, proselint, write-good, alex, Readability, and Joblint.",
+		"url": "https://github.com/eclipse-syson/syson/blob/HEAD/doc/.vale.ini",
+		"github": "eclipse-syson",
+		"repo": "github.com/eclipse-syson/syson",
+		"avatar": "/users/avatars/eclipse-syson.png"
 	},
 	{
 		"name": "Edgeless Systems",
@@ -484,6 +556,15 @@
 		"url": "https://github.com/espressif/esp-idf/blob/HEAD/.vale.ini",
 		"github": "espressif",
 		"avatar": "/users/avatars/espressif.png"
+	},
+	{
+		"name": "Evennia",
+		"category": "Open source & communities",
+		"context": "Lints its Markdown docs with write-good.",
+		"url": "https://github.com/evennia/evennia/blob/HEAD/docs/source/.vale.ini",
+		"github": "evennia",
+		"repo": "github.com/evennia/evennia",
+		"avatar": "/users/avatars/evennia.png"
 	},
 	{
 		"name": "Expo",
@@ -620,6 +701,15 @@
 		"avatar": "/users/avatars/govuk-one-login.png"
 	},
 	{
+		"name": "gqlgen",
+		"category": "Developer tools",
+		"context": "Lints its Markdown with write-good, alex, proselint, Readability, Elastic's style, and a package that flags AI tells.",
+		"url": "https://github.com/99designs/gqlgen/blob/HEAD/.vale.ini",
+		"github": "99designs",
+		"repo": "github.com/99designs/gqlgen",
+		"avatar": "/users/avatars/99designs.png"
+	},
+	{
 		"name": "Grafana Labs",
 		"category": "Data & observability",
 		"context": "Powers the prose linting rules in the Grafana Writers' Toolkit.",
@@ -733,6 +823,15 @@
 		"avatar": "/users/avatars/ing-bank.png"
 	},
 	{
+		"name": "Inko",
+		"category": "Developer tools",
+		"context": "Lints its Markdown with proselint, write-good, and its own docs style.",
+		"url": "https://github.com/inko-lang/inko/blob/HEAD/.vale.ini",
+		"github": "inko-lang",
+		"repo": "github.com/inko-lang/inko",
+		"avatar": "/users/avatars/inko-lang.png"
+	},
+	{
 		"name": "InnerSource Commons",
 		"category": "Open source & communities",
 		"context": "Publishes an ISC style package and runs it on its patterns, learning path, and handbook.",
@@ -797,6 +896,15 @@
 		"avatar": "/users/avatars/jump-dev.png"
 	},
 	{
+		"name": "K8up",
+		"category": "Cloud & infrastructure",
+		"context": "Lints its AsciiDoc docs with Microsoft's style.",
+		"url": "https://github.com/k8up-io/k8up/blob/HEAD/docs/modules/ROOT/pages/.vale.ini",
+		"github": "k8up-io",
+		"repo": "github.com/k8up-io/k8up",
+		"avatar": "/users/avatars/k8up-io.png"
+	},
+	{
 		"name": "Kedro",
 		"category": "AI & machine learning",
 		"context": "Checks its data-science toolbox docs against a Kedro style.",
@@ -833,6 +941,15 @@
 		"url": "https://github.com/konstructio/gitops-catalog/blob/HEAD/.vale.ini",
 		"github": "konstructio",
 		"avatar": "/users/avatars/konstructio.png"
+	},
+	{
+		"name": "kubernetes-mixin",
+		"category": "Cloud & infrastructure",
+		"context": "Lints the repository's prose with Readability, write-good, and alex.",
+		"url": "https://github.com/kubernetes-monitoring/kubernetes-mixin/blob/HEAD/.vale.ini",
+		"github": "kubernetes-monitoring",
+		"repo": "github.com/kubernetes-monitoring/kubernetes-mixin",
+		"avatar": "/users/avatars/kubernetes-monitoring.png"
 	},
 	{
 		"name": "Kuma",
@@ -874,6 +991,15 @@
 		"avatar": "/users/avatars/leaningtech.png"
 	},
 	{
+		"name": "LibreTime",
+		"category": "Open source & communities",
+		"context": "Lints its Markdown and MDX with Microsoft's style and its own LibreTime rules.",
+		"url": "https://github.com/libretime/libretime/blob/HEAD/.vale.ini",
+		"github": "libretime",
+		"repo": "github.com/libretime/libretime",
+		"avatar": "/users/avatars/libretime.png"
+	},
+	{
 		"name": "Lightbend",
 		"category": "Developer tools",
 		"context": "Lints the Kalix SDK docs with a Lightbend style and write-good.",
@@ -895,6 +1021,15 @@
 		"context": "Lints its LFX architecture decisions with Microsoft's style.",
 		"url": "https://github.com/linuxfoundation/lfx-architecture-decisions/blob/HEAD/.vale.ini",
 		"icon": "linuxfoundation"
+	},
+	{
+		"name": "LinuxBoot",
+		"category": "Open source & communities",
+		"context": "Lints the LinuxBoot book with Red Hat's style, proselint, alex, Joblint, and write-good.",
+		"url": "https://github.com/linuxboot/book/blob/HEAD/.vale.ini",
+		"github": "linuxboot",
+		"repo": "github.com/linuxboot/book",
+		"avatar": "/users/avatars/linuxboot.png"
 	},
 	{
 		"name": "LunaSec",
@@ -952,6 +1087,15 @@
 		"avatar": "/users/avatars/medusajs.png"
 	},
 	{
+		"name": "MegaLinter",
+		"category": "Developer tools",
+		"context": "Lints its own Markdown with Microsoft's style and proselint, and ships Vale as one of its linters.",
+		"url": "https://github.com/oxsecurity/megalinter/blob/HEAD/.vale.ini",
+		"github": "oxsecurity",
+		"repo": "github.com/oxsecurity/megalinter",
+		"avatar": "/users/avatars/oxsecurity.png"
+	},
+	{
 		"name": "Mendix",
 		"category": "Enterprise software",
 		"context": "Lints its docs with Microsoft's style and a Mendix style.",
@@ -974,6 +1118,15 @@
 		"url": "https://github.com/MetaMask/metamask-docs/blob/HEAD/.github/workflows/ci.yml",
 		"github": "MetaMask",
 		"avatar": "/users/avatars/MetaMask.png"
+	},
+	{
+		"name": "Metatype",
+		"category": "Developer tools",
+		"context": "Lints its Markdown and MDX docs with Google's style.",
+		"url": "https://github.com/metatypedev/metatype/blob/HEAD/docs/metatype.dev/.vale.ini",
+		"github": "metatypedev",
+		"repo": "github.com/metatypedev/metatype",
+		"avatar": "/users/avatars/metatypedev.png"
 	},
 	{
 		"name": "Microsoft",
@@ -1069,11 +1222,29 @@
 		"icon": "neon"
 	},
 	{
+		"name": "NEST Simulator",
+		"category": "Academia & public sector",
+		"context": "Lints its reStructuredText docs with its own NEST style.",
+		"url": "https://github.com/nest/nest-simulator/blob/HEAD/.vale.ini",
+		"github": "nest",
+		"repo": "github.com/nest/nest-simulator",
+		"avatar": "/users/avatars/nest.png"
+	},
+	{
 		"name": "Netlify",
 		"category": "Cloud & infrastructure",
 		"context": "Lints the CLI docs with base, netlify-terms, and smart-marks styles.",
 		"url": "https://github.com/netlify/cli/blob/HEAD/.vale.ini",
 		"icon": "netlify"
+	},
+	{
+		"name": "Network to Code",
+		"category": "Cloud & infrastructure",
+		"context": "Lints the ntc-templates Markdown with Microsoft's style, write-good, proselint, and alex.",
+		"url": "https://github.com/networktocode/ntc-templates/blob/HEAD/.vale.ini",
+		"github": "networktocode",
+		"repo": "github.com/networktocode/ntc-templates",
+		"avatar": "/users/avatars/networktocode.png"
 	},
 	{
 		"name": "New Relic",
@@ -1102,6 +1273,24 @@
 		"context": "Lints its MDX docs with a StyleRules style and an ngrok vocabulary.",
 		"url": "https://github.com/ngrok/ngrok-docs/blob/HEAD/.vale.ini",
 		"icon": "ngrok"
+	},
+	{
+		"name": "Nhost",
+		"category": "Cloud & infrastructure",
+		"context": "Lints its docs with Google's style and its own Nhost rules.",
+		"url": "https://github.com/nhost/nhost/blob/HEAD/docs/.vale.ini",
+		"github": "nhost",
+		"repo": "github.com/nhost/nhost",
+		"avatar": "/users/avatars/nhost.png"
+	},
+	{
+		"name": "Nightscout",
+		"category": "Open source & communities",
+		"context": "Lints the interface copy of Nocturne with its own style.",
+		"url": "https://github.com/nightscout/nocturne/blob/HEAD/.vale.ini",
+		"github": "nightscout",
+		"repo": "github.com/nightscout/nocturne",
+		"avatar": "/users/avatars/nightscout.png"
 	},
 	{
 		"name": "Nix",
@@ -1172,6 +1361,15 @@
 		"url": "https://github.com/NYU-RTS/rts-docs/blob/main/.vale.ini",
 		"github": "NYU-RTS",
 		"avatar": "/users/avatars/NYU-RTS.png"
+	},
+	{
+		"name": "OASIS Open",
+		"category": "Academia & public sector",
+		"context": "Lints the prose of the CSAF and SARIF specifications with Vale's built-in style.",
+		"url": "https://github.com/oasis-tcs/csaf/blob/HEAD/csaf_2.1/prose/edit/etc/vale.ini",
+		"github": "oasis-tcs",
+		"repo": "github.com/oasis-tcs/csaf",
+		"avatar": "/users/avatars/oasis-tcs.png"
 	},
 	{
 		"name": "Onyx",
@@ -1298,6 +1496,15 @@
 		"context": "Runs a Pantheon style beside a pinned Google release across its docs.",
 		"url": "https://github.com/pantheon-systems/documentation/blob/HEAD/.vale.ini",
 		"icon": "pantheon"
+	},
+	{
+		"name": "Parcels",
+		"category": "Academia & public sector",
+		"context": "Lints the repository's prose with its own Parcels style.",
+		"url": "https://github.com/Parcels-code/Parcels/blob/HEAD/.vale.ini",
+		"github": "Parcels-code",
+		"repo": "github.com/Parcels-code/Parcels",
+		"avatar": "/users/avatars/Parcels-code.png"
 	},
 	{
 		"name": "Pelican",
@@ -1430,6 +1637,15 @@
 		"avatar": "/users/avatars/pulumi.png"
 	},
 	{
+		"name": "Pydantic",
+		"category": "Developer tools",
+		"context": "Checks the Pydantic docs with Vale's built-in style and a hyperlint style.",
+		"url": "https://github.com/pydantic/pydantic/blob/HEAD/.hyperlint/.vale.ini",
+		"github": "pydantic",
+		"repo": "github.com/pydantic/pydantic",
+		"avatar": "/users/avatars/pydantic.png"
+	},
+	{
 		"name": "pyOpenSci",
 		"category": "Academia & public sector",
 		"context": "Lints its handbook with a house pyos-styles style.",
@@ -1444,6 +1660,15 @@
 		"url": "https://github.com/pyvista/pyvista/blob/HEAD/doc/.vale.ini",
 		"github": "pyvista",
 		"avatar": "/users/avatars/pyvista.png"
+	},
+	{
+		"name": "QGroundControl",
+		"category": "Open source & communities",
+		"context": "Lints its Markdown with Google's style and write-good.",
+		"url": "https://github.com/mavlink/qgroundcontrol/blob/HEAD/.vale.ini",
+		"github": "mavlink",
+		"repo": "github.com/mavlink/qgroundcontrol",
+		"avatar": "/users/avatars/mavlink.png"
 	},
 	{
 		"name": "Qiskit",
@@ -1493,6 +1718,15 @@
 		"icon": "rancher"
 	},
 	{
+		"name": "RaspiBolt",
+		"category": "Web3 & blockchain",
+		"context": "Lints its Bitcoin node guide with its own RaspiBolt style.",
+		"url": "https://github.com/raspibolt/raspibolt/blob/HEAD/.vale.ini",
+		"github": "raspibolt",
+		"repo": "github.com/raspibolt/raspibolt",
+		"avatar": "/users/avatars/raspibolt.png"
+	},
+	{
 		"name": "Ray",
 		"category": "AI & machine learning",
 		"context": "Lints the Ray docs with Google's style and vocabularies for KubeRay, RLlib, and Train.",
@@ -1522,6 +1756,15 @@
 		"url": "https://github.com/Redocly/redocly-cli/blob/main/.vale.ini",
 		"github": "Redocly",
 		"avatar": "/users/avatars/Redocly.png"
+	},
+	{
+		"name": "Remix",
+		"category": "Web3 & blockchain",
+		"context": "Lints the Remix IDE docs with its own Remix style.",
+		"url": "https://github.com/remix-project-org/remix-ide/blob/HEAD/vale.ini",
+		"github": "remix-project-org",
+		"repo": "github.com/remix-project-org/remix-ide",
+		"avatar": "/users/avatars/remix-project-org.png"
 	},
 	{
 		"name": "Renovate",
@@ -1606,6 +1849,15 @@
 		"url": "https://github.com/sensible-hq/sensible-docs/blob/v0/.vale.ini",
 		"github": "sensible-hq",
 		"avatar": "/users/avatars/sensible-hq.png"
+	},
+	{
+		"name": "ShellHub",
+		"category": "Cloud & infrastructure",
+		"context": "Lints its MDX docs with its own ShellHub style.",
+		"url": "https://github.com/shellhub-io/shellhub/blob/HEAD/ui/apps/docs/.vale.ini",
+		"github": "shellhub-io",
+		"repo": "github.com/shellhub-io/shellhub",
+		"avatar": "/users/avatars/shellhub-io.png"
 	},
 	{
 		"name": "Shopify",
@@ -1711,6 +1963,15 @@
 		"avatar": "/users/avatars/symbol.png"
 	},
 	{
+		"name": "Tekton",
+		"category": "Cloud & infrastructure",
+		"context": "Lints the Pipelines-as-Code docs with Red Hat's style and its own rules.",
+		"url": "https://github.com/tektoncd/pipelines-as-code/blob/HEAD/.vale.ini",
+		"github": "tektoncd",
+		"repo": "github.com/tektoncd/pipelines-as-code",
+		"avatar": "/users/avatars/tektoncd.png"
+	},
+	{
 		"name": "Teleport",
 		"category": "Cloud & infrastructure",
 		"context": "Splits its rules into messaging, examples, and third-party product styles.",
@@ -1793,6 +2054,15 @@
 		"avatar": "/users/avatars/tigera.png"
 	},
 	{
+		"name": "TigerBeetle",
+		"category": "Data & observability",
+		"context": "Lints its documentation site's Markdown with Vale's built-in style.",
+		"url": "https://github.com/tigerbeetle/tigerbeetle/blob/HEAD/src/docs_website/.vale.ini",
+		"github": "tigerbeetle",
+		"repo": "github.com/tigerbeetle/tigerbeetle",
+		"avatar": "/users/avatars/tigerbeetle.png"
+	},
+	{
 		"name": "Timescale",
 		"category": "Data & observability",
 		"context": "Style enforcement for Timescale product documentation.",
@@ -1807,6 +2077,24 @@
 		"github": "tlsfuzzer",
 		"avatar": "/users/avatars/tlsfuzzer.png",
 		"repo": "github.com/tlsfuzzer/tlsfuzzer"
+	},
+	{
+		"name": "TODO Group",
+		"category": "Open source & communities",
+		"context": "Lints its OSPO guides with its own TODO style.",
+		"url": "https://github.com/todogroup/ospology/blob/HEAD/.vale.ini",
+		"github": "todogroup",
+		"repo": "github.com/todogroup/ospology",
+		"avatar": "/users/avatars/todogroup.png"
+	},
+	{
+		"name": "Trino",
+		"category": "Data & observability",
+		"context": "Lints its Markdown and reStructuredText docs with Google's style.",
+		"url": "https://github.com/trinodb/trino/blob/HEAD/docs/.vale.ini",
+		"github": "trinodb",
+		"repo": "github.com/trinodb/trino",
+		"avatar": "/users/avatars/trinodb.png"
 	},
 	{
 		"name": "TrueNAS",
@@ -1830,6 +2118,15 @@
 		"url": "https://github.com/trussworks/Engineering-Playbook/blob/main/.vale.ini",
 		"github": "trussworks",
 		"avatar": "/users/avatars/trussworks.png"
+	},
+	{
+		"name": "Twenty",
+		"category": "Enterprise software",
+		"context": "Lints its Markdown and MDX docs with write-good and its own docs style.",
+		"url": "https://github.com/twentyhq/twenty/blob/HEAD/.github/vale.ini",
+		"github": "twentyhq",
+		"repo": "github.com/twentyhq/twenty",
+		"avatar": "/users/avatars/twentyhq.png"
 	},
 	{
 		"name": "Tyk",
@@ -1894,6 +2191,15 @@
 		"avatar": "/users/avatars/Velocidex.png"
 	},
 	{
+		"name": "ViewComponent",
+		"category": "Open source & communities",
+		"context": "Lints its Markdown with proselint, Microsoft's style, and an inclusive-language style.",
+		"url": "https://github.com/ViewComponent/view_component/blob/HEAD/.vale.ini",
+		"github": "ViewComponent",
+		"repo": "github.com/ViewComponent/view_component",
+		"avatar": "/users/avatars/ViewComponent.png"
+	},
+	{
 		"name": "Vijil",
 		"category": "AI & machine learning",
 		"context": "Lints its docs with a Vijil style, write-good, and proselint.",
@@ -1932,6 +2238,15 @@
 		"github": "wikimedia",
 		"avatar": "/users/avatars/wikimedia.png",
 		"repo": "gitlab.wikimedia.org/repos/technical-documentation/documentation-linting/linter-quickstart"
+	},
+	{
+		"name": "Winterbloom",
+		"category": "Hardware & semiconductors",
+		"context": "Lints its hardware user guides with Google's style and its own Winterbloom rules.",
+		"url": "https://github.com/wntrblm/Castor_and_Pollux/blob/HEAD/user_guide/.vale.ini",
+		"github": "wntrblm",
+		"repo": "github.com/wntrblm/Castor_and_Pollux",
+		"avatar": "/users/avatars/wntrblm.png"
 	},
 	{
 		"name": "WordPress",
@@ -1995,5 +2310,14 @@
 		"url": "https://github.com/yugabyte/yugabyte-db/blob/HEAD/docs/.vale.ini",
 		"github": "yugabyte",
 		"avatar": "/users/avatars/yugabyte.png"
+	},
+	{
+		"name": "Zeabur",
+		"category": "Cloud & infrastructure",
+		"context": "Lints English and Chinese docs and interface strings with its own styles for each language.",
+		"url": "https://github.com/zeabur-oss/zeabur/blob/HEAD/.vale.ini",
+		"github": "zeabur-oss",
+		"repo": "github.com/zeabur-oss/zeabur",
+		"avatar": "/users/avatars/zeabur-oss.png"
 	}
 ]
