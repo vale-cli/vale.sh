@@ -588,5 +588,15 @@
 		"description": "An introduction for technical writers: installing Vale, using it in VS Code, creating a style guide of your own, and running it in CI/CD.",
 		"image": "",
 		"site": "tw-docs.com"
+	},
+	{
+		"title": "How to add Vale prose checking to your writing",
+		"url": "https://kitfrance.com/blog/how-to-add-vale-prose-checking-to-your-writing/",
+		"author": "Kit France",
+		"year": 2025,
+		"type": "post",
+		"description": "What a prose linter is, then Vale from install to configuration: the command line, an editor extension, GitHub Actions, style packages, custom rules, and dictionaries.",
+		"image": "",
+		"site": "kitfrance.com"
 	}
 ]

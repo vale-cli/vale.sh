@@ -476,6 +476,14 @@
 		"avatar": "/users/avatars/arc53.png"
 	},
 	{
+		"name": "Drupalize.Me",
+		"category": "Developer tools",
+		"context": "Enforces its tutorial style guide automatically with Vale.",
+		"url": "https://drupalize.me/blog/201910/automated-enforcement-our-style-guide",
+		"github": "DrupalizeMe",
+		"avatar": "/users/avatars/DrupalizeMe.png"
+	},
+	{
 		"name": "DuckDB",
 		"category": "Data & observability",
 		"context": "A root .vale.ini setting the alert level and skipping front matter.",
@@ -589,6 +597,15 @@
 		"github": "fern-api",
 		"avatar": "/users/avatars/fern-api.png",
 		"repo": "github.com/fern-api/fern"
+	},
+	{
+		"name": "Flipt",
+		"category": "Developer tools",
+		"context": "Lints its docs with Microsoft's style, Openly, and its own Flipt rules.",
+		"url": "https://github.com/flipt-io/docs/blob/HEAD/docs/.vale.ini",
+		"github": "flipt-io",
+		"repo": "github.com/flipt-io/docs",
+		"avatar": "/users/avatars/flipt-io.png"
 	},
 	{
 		"name": "Flox",
@@ -2002,6 +2019,15 @@
 		"url": "https://github.com/testng-team/testng/blob/HEAD/.vale.ini",
 		"github": "testng-team",
 		"avatar": "/users/avatars/testng-team.png"
+	},
+	{
+		"name": "Tether",
+		"category": "Web3 & blockchain",
+		"context": "Lints its docs template with Google's style, proselint, write-good, and its own Tether rules.",
+		"url": "https://github.com/tetherto/docs-template/blob/HEAD/.vale.ini",
+		"github": "tetherto",
+		"repo": "github.com/tetherto/docs-template",
+		"avatar": "/users/avatars/tetherto.png"
 	},
 	{
 		"name": "Texas Instruments",
