@@ -598,5 +598,15 @@
 		"description": "What a prose linter is, then Vale from install to configuration: the command line, an editor extension, GitHub Actions, style packages, custom rules, and dictionaries.",
 		"image": "",
 		"site": "kitfrance.com"
+	},
+	{
+		"title": "New custom automated style workflow",
+		"url": "https://opensearch.org/blog/style-workflow/",
+		"author": "Nathan Bower and Fanit Kolchina",
+		"year": 2023,
+		"type": "post",
+		"description": "How the OpenSearch Project checks its documentation and website against its style guidelines with Vale: on the command line, in the editor, and in CI.",
+		"image": "",
+		"site": "OpenSearch"
 	}
 ]
