@@ -538,5 +538,55 @@
 		"description": "",
 		"image": "",
 		"site": ""
+	},
+	{
+		"title": "How to automate style checks with Vale: a complete guide",
+		"url": "https://buildwithfern.com/post/automate-style-checks-vale",
+		"author": "Fern",
+		"year": 2026,
+		"type": "post",
+		"description": "One Vale workflow for writing from engineers, non-technical contributors, and AI agents alike, from the config to the CI check.",
+		"image": "",
+		"site": "buildwithfern.com"
+	},
+	{
+		"title": "The Living Style Guide: Enforcing Documentation Standards as Code",
+		"url": "https://darlotechnicalwriting.com/blog/innovative-approaches-to-style-guides-for-technical-writing-and-documentation",
+		"author": "Darlo Technical Writing",
+		"year": 2026,
+		"type": "post",
+		"description": "Why a static style guide gets ignored, and how to express its rules as code: Vale in the editor, for terminology, and in CI.",
+		"image": "",
+		"site": "darlotechnicalwriting.com"
+	},
+	{
+		"title": "Prose linting with Vale",
+		"url": "https://docstatic.com/docs/guides/vale",
+		"author": "docStatic",
+		"year": 2026,
+		"type": "post",
+		"description": "Installing Vale, configuring it for a docStatic project, downloading style packages, and running it on Markdown and MDX.",
+		"image": "",
+		"site": "docstatic.com"
+	},
+	{
+		"title": "Vale: a prose linter",
+		"url": "https://lanceleonard.com/tips/doc/vale/",
+		"author": "Lance Leonard",
+		"year": 2025,
+		"type": "post",
+		"description": "A practical reference: installing Vale, checking one file or many, adding rule packages, and customizing with overrides, vocabularies, and editor integration.",
+		"image": "",
+		"site": "lanceleonard.com"
+	},
+	{
+		"title": "Style guides, linters, and Vale: Why do tech writers need this?",
+		"url": "https://tw-docs.com/docs/vale/vale-styleguides/",
+		"author": "Ivan Cheban",
+		"year": 2024,
+		"type": "post",
+		"description": "An introduction for technical writers: installing Vale, using it in VS Code, creating a style guide of your own, and running it in CI/CD.",
+		"image": "",
+		"site": "tw-docs.com"
 	}
 ]

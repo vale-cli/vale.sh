@@ -98,5 +98,13 @@
 		"outlet": "Golang Weekly #510",
 		"year": 2024,
 		"url": "https://golangweekly.com/issues/510"
+	},
+	{
+		"type": "article",
+		"title": "Vale (Assess)",
+		"outlet": "Thoughtworks Technology Radar Vol. 35",
+		"author": "Thoughtworks",
+		"year": 2026,
+		"url": "https://www.thoughtworks.com/radar/tools/vale"
 	}
 ]
