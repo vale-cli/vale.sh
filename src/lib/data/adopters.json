@@ -1593,6 +1593,13 @@
 		"avatar": "/users/avatars/sassoftware.png"
 	},
 	{
+		"name": "seedcord",
+		"category": "Developer tools",
+		"context": "Keeps LLMisms out of its docs, guide, and code comments, and holds them to plain English that readers at any level can follow.",
+		"url": "https://github.com/seedcord/seedcord/blob/HEAD/.vale.ini",
+		"github": "seedcord"
+	},
+	{
 		"name": "Semrush",
 		"category": "Enterprise software",
 		"context": "Lints the docs for its Intergalactic design system with a DevDocs style.",
