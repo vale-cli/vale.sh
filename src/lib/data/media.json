@@ -538,5 +538,95 @@
 		"description": "",
 		"image": "",
 		"site": ""
+	},
+	{
+		"title": "How to automate style checks with Vale: a complete guide",
+		"url": "https://buildwithfern.com/post/automate-style-checks-vale",
+		"author": "Fern",
+		"year": 2026,
+		"type": "post",
+		"description": "One Vale workflow for writing from engineers, non-technical contributors, and AI agents alike, from the config to the CI check.",
+		"image": "",
+		"site": "buildwithfern.com"
+	},
+	{
+		"title": "The Living Style Guide: Enforcing Documentation Standards as Code",
+		"url": "https://darlotechnicalwriting.com/blog/innovative-approaches-to-style-guides-for-technical-writing-and-documentation",
+		"author": "Darlo Technical Writing",
+		"year": 2026,
+		"type": "post",
+		"description": "Why a static style guide gets ignored, and how to express its rules as code: Vale in the editor, for terminology, and in CI.",
+		"image": "",
+		"site": "darlotechnicalwriting.com"
+	},
+	{
+		"title": "Prose linting with Vale",
+		"url": "https://docstatic.com/docs/guides/vale",
+		"author": "docStatic",
+		"year": 2026,
+		"type": "post",
+		"description": "Installing Vale, configuring it for a docStatic project, downloading style packages, and running it on Markdown and MDX.",
+		"image": "",
+		"site": "docstatic.com"
+	},
+	{
+		"title": "Vale: a prose linter",
+		"url": "https://lanceleonard.com/tips/doc/vale/",
+		"author": "Lance Leonard",
+		"year": 2025,
+		"type": "post",
+		"description": "A practical reference: installing Vale, checking one file or many, adding rule packages, and customizing with overrides, vocabularies, and editor integration.",
+		"image": "",
+		"site": "lanceleonard.com"
+	},
+	{
+		"title": "Style guides, linters, and Vale: Why do tech writers need this?",
+		"url": "https://tw-docs.com/docs/vale/vale-styleguides/",
+		"author": "Ivan Cheban",
+		"year": 2024,
+		"type": "post",
+		"description": "An introduction for technical writers: installing Vale, using it in VS Code, creating a style guide of your own, and running it in CI/CD.",
+		"image": "",
+		"site": "tw-docs.com"
+	},
+	{
+		"title": "How to add Vale prose checking to your writing",
+		"url": "https://kitfrance.com/blog/how-to-add-vale-prose-checking-to-your-writing/",
+		"author": "Kit France",
+		"year": 2025,
+		"type": "post",
+		"description": "What a prose linter is, then Vale from install to configuration: the command line, an editor extension, GitHub Actions, style packages, custom rules, and dictionaries.",
+		"image": "",
+		"site": "kitfrance.com"
+	},
+	{
+		"title": "New custom automated style workflow",
+		"url": "https://opensearch.org/blog/style-workflow/",
+		"author": "Nathan Bower and Fanit Kolchina",
+		"year": 2023,
+		"type": "post",
+		"description": "How the OpenSearch Project checks its documentation and website against its style guidelines with Vale: on the command line, in the editor, and in CI.",
+		"image": "",
+		"site": "OpenSearch"
+	},
+	{
+		"title": "Using Vale to Improve my Writing",
+		"url": "https://blog.scottlowe.org/2024/07/29/using-vale-to-improve-my-writing/",
+		"author": "Scott Lowe",
+		"year": 2024,
+		"type": "post",
+		"description": "Vale beside markdownlint for blog posts: installing it, adding the proselint, alex, and Readability styles, and a short configuration file.",
+		"image": "",
+		"site": "Scott's Weblog"
+	},
+	{
+		"title": "Code-like linting for prose",
+		"url": "https://bulimov.me/post/2022/01/16/prose-lint/",
+		"author": "Alexander Bulimov",
+		"year": 2022,
+		"type": "post",
+		"description": "Trying Vale on two blogs: configurable rules, text config in the repository, and a run of about 1.5 seconds where proselint took about 50.",
+		"image": "",
+		"site": "bulimov.me"
 	}
 ]
