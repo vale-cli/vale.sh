@@ -79,6 +79,28 @@
 		{/each}
 	</ul>
 
+	<a
+		href="/guides"
+		class="group mt-4 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime-500/40"
+	>
+		<div class="max-w-xl">
+			<h2 class="text-lg font-medium text-foreground">Style guide explorer</h2>
+			<p class="mt-1 text-sm leading-relaxed text-foreground/85">
+				Sixteen open style guides, from Google and Microsoft to GitLab and GOV.UK, drawn from the
+				rules each one publishes. Browse by topic, or look up what every guide says about a word.
+			</p>
+		</div>
+		<span
+			class="inline-flex items-center gap-1 text-sm font-medium text-lime-600 dark:text-lime-400"
+		>
+			Explore the guides
+			<ArrowRight
+				class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+				aria-hidden="true"
+			/>
+		</span>
+	</a>
+
 	<section class="mt-16 max-w-2xl">
 		<h2 class="text-2xl font-medium tracking-tight">Why these are free</h2>
 		<p class="mt-4 leading-7 text-foreground/85">

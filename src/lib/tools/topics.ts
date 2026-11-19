@@ -115,7 +115,7 @@ type RawRule = {
 };
 
 export function summarize(rule: RawRule): RuleSummary {
-	const name = rule.name.split('.')[1];
+	const name = rule.name.slice(rule.name.indexOf('.') + 1);
 	const tokens = [...(rule.tokens ?? []), ...(rule.itokens ?? [])];
 	const swaps = rule.swap ?? [];
 
@@ -147,4 +147,38 @@ export function summarize(rule: RawRule): RuleSummary {
 		size: swaps.length || tokens.length || 1,
 		examples
 	};
+}
+
+export type Term = {
+	/** The word or phrase the rule flags. */
+	find: string;
+	/** What it says to write instead, when it says. */
+	use?: string;
+	/** "google.WordList" */
+	rule: string;
+	level: string;
+};
+
+/**
+ * Every term a rule names that can be shown as plain words: the guide's word
+ * list, in effect. Patterns that aren't a word or a short choice of words are
+ * left out, so this undercounts rules written as regular expressions.
+ */
+export function terms(rule: RawRule): Term[] {
+	// A passive-voice rule lists irregular verbs, which aren't terms the guide
+	// has a view on.
+	if (/passive/i.test(rule.name)) return [];
+	const out: Term[] = [];
+	const seen = new Set<string>();
+	const add = (source: string, use?: string) => {
+		const find = readable(source);
+		if (!find || find.length < 2 || seen.has(find.toLowerCase())) return;
+		seen.add(find.toLowerCase());
+		out.push({ find, use, rule: rule.name, level: rule.level });
+	};
+	for (const [from, to] of rule.swap ?? []) add(from, to.split('|')[0]);
+	if (!rule.swap?.length) {
+		for (const t of [...(rule.tokens ?? []), ...(rule.itokens ?? [])]) add(t);
+	}
+	return out;
 }

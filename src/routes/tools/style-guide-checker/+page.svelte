@@ -190,7 +190,7 @@ In order to utilize the blacklist feature, the admin must login first. This sent
 		},
 		{
 			q: 'Which style guides can I check against?',
-			a: 'The Google developer documentation style guide, the Microsoft Writing Style Guide, and the Red Hat supplementary style guide. These are the three with complete, openly maintained rule sets. To see how they differ from each other and from AP and Chicago, use the style guide comparison.'
+			a: 'The Google developer documentation style guide, the Microsoft Writing Style Guide, and the Red Hat supplementary style guide. These are the three with complete, openly maintained rule sets. To browse them alongside thirteen other open guides, use the style guide explorer.'
 		},
 		{
 			q: 'Is this an AP style checker or a Chicago style checker?',
@@ -530,8 +530,8 @@ In order to utilize the blacklist feature, the admin must login first. This sent
 			</p>
 		{/each}
 		<p>
-			For a question-by-question view that also covers AP and Chicago, see the
-			<a href="/tools/style-guide-comparison">style guide comparison</a>.
+			To browse these and thirteen other open style guides without pasting anything, see the
+			<a href="/guides">style guide explorer</a>.
 		</p>
 
 		<h2>What it can’t tell you</h2>

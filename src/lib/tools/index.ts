@@ -2,7 +2,6 @@ import Bot from 'lucide-svelte/icons/bot';
 import Hash from 'lucide-svelte/icons/hash';
 import BookOpenCheck from 'lucide-svelte/icons/book-open-check';
 import CaseSensitive from 'lucide-svelte/icons/case-sensitive';
-import Scale from 'lucide-svelte/icons/scale';
 import SpellCheck from 'lucide-svelte/icons/spell-check';
 
 /**
@@ -66,16 +65,6 @@ export const tools = [
 		description:
 			'Convert headlines to title case in AP, APA, Chicago, or MLA style, or to sentence case. See how the styles differ on the same title. Free and instant.',
 		blurb: 'AP, APA, Chicago, MLA, and sentence case, side by side on the same headline.'
-	},
-	{
-		slug: 'style-guide-comparison',
-		icon: Scale,
-		name: 'Style Guide Comparison',
-		title: 'Style Guide Comparison',
-		metaTitle: 'Style Guide Comparison: Google vs. Microsoft vs. AP vs. Chicago',
-		description:
-			'Compare the Google, Microsoft, Red Hat, AP, and Chicago style guides rule by rule: Oxford comma, headings, contractions, numbers, dashes, and more.',
-		blurb: 'Google, Microsoft, Red Hat, AP, and Chicago, rule by rule.'
 	}
 ] as const;
 

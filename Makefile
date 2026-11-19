@@ -9,7 +9,7 @@ define build_index
 	$(CURDIR)/bin/index-media
 endef
 
-.PHONY: all build preview index media configs brand tools
+.PHONY: all build preview index media configs brand tools guides
 
 all: build
 
@@ -36,6 +36,10 @@ media:
 # latest release.
 tools:
 	node script/tools.mjs
+
+# Re-read the open style guides behind /guides from their repositories.
+guides:
+	node script/guides.mjs
 
 # Re-read the public .vale.ini files the adopters list points at and rebuild
 # the counts the generator shows. Run it when adopters.json changes.

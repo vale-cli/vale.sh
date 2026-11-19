@@ -40,6 +40,7 @@
 			heading: 'Resources',
 			links: [
 				{ label: 'Documentation', href: 'https://docs.vale.sh', external: true },
+				{ label: 'Style Guides', href: '/guides' },
 				{ label: 'Media Library', href: '/library' },
 				{ label: 'Press Guide', href: '/press' },
 				{ label: 'Brand Assets', href: '/brand' }

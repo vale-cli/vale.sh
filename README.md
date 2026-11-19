@@ -34,6 +34,7 @@ pnpm run dev -- --open
 | `pnpm run dev`      | Development server                                                                                                                 |
 | `pnpm run build`    | Production build                                                                                                                   |
 | `pnpm run validate` | Check `adopters.json`, `press.json`, and `events.json`                                                                             |
+| `make guides`       | Re-read the open style guides behind `/guides` from their repositories into `guides.json`                                          |
 | `make tools`        | Refresh the patterns `/tools/ai-detector` runs from the ai-tells package's latest release                                          |
 | `make configs`      | Re-read the adopters' public `.vale.ini` files into `config-stats.json`                                                            |
 | `make stats`        | Count CI use, house rules, CI runs, and downloads into `adopter-stats.json` (a weekly workflow runs this and opens a pull request) |

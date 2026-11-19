@@ -183,8 +183,8 @@ how to write with clarity in under a minute`;
 			Converting one title is easy. Keeping a thousand headings in one style is not. Vale checks
 			every heading in your docs against the style you pick, with rules such as
 			<a href="/explorer/Google">Google’s</a> and <a href="/explorer/Microsoft">Microsoft’s</a>
-			sentence-case checks, and flags the ones that drift. To see where the major guides stand on headings
-			and much else, see the <a href="/tools/style-guide-comparison">style guide comparison</a>.
+			sentence-case checks, and flags the ones that drift. To see what each guide asks for, on headings
+			and much else, browse the <a href="/guides">style guide explorer</a>.
 		</p>
 	{/snippet}
 </ToolPage>
