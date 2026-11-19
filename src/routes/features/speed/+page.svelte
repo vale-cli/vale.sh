@@ -34,12 +34,12 @@
 			clone: 'https://github.com/docker/docs.git',
 			dir: 'docs',
 			target: 'content/',
-			pages: 1048,
+			pages: 1056,
 			mb: 7.66,
 			rules: 14,
-			seconds: 10.8,
+			seconds: 6.12,
 			note: 'Fourteen rules they wrote themselves, with per-directory overrides that relax them for generated reference content and release notes.',
-			levels: { suggestion: 86, warning: 322, error: 385 }
+			levels: { suggestion: 86, warning: 300, error: 362 }
 		},
 		{
 			id: 'gitlab',
@@ -57,8 +57,8 @@
 			pages: 2826,
 			mb: 31.3,
 			rules: 82,
-			seconds: 19.5,
-			note: 'The largest corpus here and the most rules. Excludes one 4.5 MB generated GraphQL reference; including it the run takes 45 s.',
+			seconds: 15.5,
+			note: 'The largest corpus here and the most rules. Excludes one 4.5 MB generated GraphQL reference; including it the run takes 19 s.',
 			levels: { suggestion: 15109, warning: 9851, error: 1 }
 		},
 		{
@@ -73,12 +73,12 @@
 			clone: 'https://github.com/TexasInstruments/processor-sdk-doc.git',
 			dir: 'processor-sdk-doc',
 			target: '.',
-			pages: 634,
+			pages: 632,
 			mb: 5.61,
 			rules: 38,
-			seconds: 33.5,
-			note: 'Every embedded-systems manual in the SDK, checked against the Red Hat style and their own vocabulary. Docutils converts each page first, and Vale keeps those interpreters up across the run rather than restarting them per file.',
-			levels: { suggestion: 25455, warning: 11099, error: 864 }
+			seconds: 10.4,
+			note: 'Every embedded-systems manual in the SDK, checked against the Red Hat style and their own vocabulary. Vale reads reStructuredText itself, so no Python runs alongside it.',
+			levels: { suggestion: 28650, warning: 12270, error: 1018 }
 		},
 		{
 			id: 'circleci',
@@ -95,9 +95,9 @@
 			pages: 812,
 			mb: 6.15,
 			rules: 62,
-			seconds: 104.3,
-			note: 'Eight hundred AsciiDoc pages against 62 rules, inside two minutes. Asciidoctor converts each page before Vale reads it, and Vale keeps those converters running for the whole corpus rather than starting one per file.',
-			levels: { suggestion: 8783, warning: 7128, error: 3874 }
+			seconds: 13.1,
+			note: 'Eight hundred AsciiDoc pages against 62 rules, in thirteen seconds. Vale reads AsciiDoc itself, so no Ruby runs alongside it.',
+			levels: { suggestion: 8792, warning: 6123, error: 3328 }
 		}
 	];
 
@@ -147,10 +147,10 @@
 	);
 
 	const page = [
-		{ label: 'Vale', value: 156 },
-		{ label: '+ Microsoft', value: 180 },
-		{ label: '+ Google', value: 189 },
-		{ label: '+ write-good, proselint', value: 246 }
+		{ label: 'Vale', value: 40 },
+		{ label: '+ Microsoft', value: 76 },
+		{ label: '+ Google', value: 87 },
+		{ label: '+ write-good, proselint', value: 129 }
 	];
 
 	const local = [
@@ -160,7 +160,7 @@
 		},
 		{
 			title: 'Every core you have',
-			body: 'The GitLab run spent close to four cores’ worth of CPU throughout: files are linted several at a time, and results stream back as they land.'
+			body: 'The GitLab run spent close to five cores’ worth of CPU throughout: files are linted several at a time, and results stream back as they land.'
 		}
 	];
 
@@ -186,7 +186,7 @@
 	];
 
 	const description =
-		"Vale checks about 145 documentation pages a second—GitLab's 2,826-page repository, 31.3 MB against 82 rules, in under 20 seconds.";
+		"Vale checks about 183 documentation pages a second—GitLab's 2,826-page repository, 31.3 MB against 82 rules, in under 16 seconds.";
 </script>
 
 <MetaTags
@@ -218,12 +218,9 @@
 		</p>
 
 		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
-			Format moves this number more than corpus size does. Markdown Vale parses itself, at about 7
-			ms a page. reStructuredText and AsciiDoc go first through the tools that define them—Docutils
-			and Asciidoctor—and Vale holds those open for the whole run instead of starting one per page,
-			which is most of the difference between 53 ms and 128 ms a page here and what those
-			conversions used to cost. Rule count matters second: Docker runs fourteen rules, GitLab
-			eighty-two.
+			Format moves this number more than corpus size does, and Vale parses all three of these
+			formats itself: Markdown at about 6 ms a page, reStructuredText and AsciiDoc at about 16 ms.
+			Rule count matters second: Docker runs fourteen rules, GitLab eighty-two.
 		</p>
 		<p class="mt-8 text-sm leading-relaxed text-foreground/85">
 			Every rule ran against every page—no sampling, no incremental cache. Each project links to its
@@ -265,7 +262,7 @@
 		</div>
 
 		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
-			Going from one style guide to five adds 90 ms. Most of even that is the one-time cost of
+			Going from one style guide to five adds 89 ms. Most of even that is the one-time cost of
 			loading and compiling the rules, paid on every CLI invocation—which is why the language
 			server, which pays it once and then keeps the styles in memory, can re-lint as you type.
 		</p>
@@ -337,8 +334,8 @@
 		<div class="mt-6 rounded-xl border border-border bg-muted p-5">
 			<h3 class="text-sm font-medium text-foreground">How these were measured</h3>
 			<p class="mt-2 text-sm leading-relaxed text-foreground/85">
-				Vale v3.17.0, built from commit
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">5f071ef5</code>, on an
+				Vale v3.28.0, built from commit
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">8ed03254</code>, on an
 				Apple M1 with 8 cores, macOS 15.7. The {current.name} figures use commit
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">{current.commit}</code>
 				and the

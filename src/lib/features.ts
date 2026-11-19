@@ -41,7 +41,7 @@ export const features = [
 		title: 'Speed',
 		tagline: 'One binary, nothing to install alongside it',
 		description:
-			'Written in Go, with no runtime and files linted in parallel. GitLab runs 82 rules across all 2,826 pages of its documentation in under twenty seconds.'
+			'Written in Go, with no runtime and files linted in parallel. GitLab runs 82 rules across all 2,826 pages of its documentation in under sixteen seconds.'
 	}
 ] as const;
 

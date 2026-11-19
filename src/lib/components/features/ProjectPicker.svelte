@@ -22,7 +22,7 @@
 		pages: number;
 		mb: number;
 		rules: number;
-		/** Wall-clock seconds, mean of three runs from cold. */
+		/** Wall-clock seconds for one full run. */
 		seconds: number;
 		/** One line explaining what is distinctive about this project's setup. */
 		note: string;
