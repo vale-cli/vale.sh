@@ -32,6 +32,10 @@
 					<strong>Sync, then lint.</strong><span>Download the styles and check your docs.</span>
 				</li>
 			</ol>
+			<p class="agent-note">
+				Working with a coding assistant? <a href="/agents">Agent tools</a> has it do all three, then
+				lint every file it writes.
+			</p>
 			<div class="actions">
 				<Button size="lg" href="https://docs.vale.sh/topics/quickstart"
 					>Get started <ArrowRight data-icon="inline-end" /></Button
@@ -57,6 +61,17 @@
 				<a class="text-link rule-link" href="https://docs.vale.sh/topics/styles"
 					>Learn to write rules →</a
 				>
+			</details>
+			<details>
+				<summary>Or have your assistant set it up <span aria-hidden="true">+</span></summary>
+				<div class="snippet">
+					<pre class="agent-commands">/plugin marketplace add vale-cli/agent-tools
+/plugin install vale@agent-tools</pre>
+					<p class="agent-steps">
+						Type both in Claude Code, then ask it to set up Vale, or run <code>/vale:setup</code>.
+					</p>
+				</div>
+				<a class="text-link rule-link" href="/agents">See the agent tools →</a>
 			</details>
 		</div>
 	</div>
@@ -143,6 +158,29 @@
 		color: hsl(var(--foreground) / 0.8);
 		margin-top: 4px;
 		line-height: 1.6;
+	}
+	.agent-note {
+		margin-top: 28px;
+		font-size: 13px;
+		line-height: 1.6;
+	}
+	.agent-note a {
+		font-weight: 500;
+		text-decoration: underline;
+		text-decoration-color: hsl(var(--primary) / 0.5);
+		text-underline-offset: 4px;
+	}
+	.agent-commands {
+		overflow-x: auto;
+		font:
+			13px/1.625 ui-monospace,
+			monospace;
+	}
+	.agent-steps {
+		margin-top: 16px;
+		font-size: 13px;
+		line-height: 1.6;
+		color: hsl(var(--foreground) / 0.8);
 	}
 	.steps a {
 		text-decoration: underline;

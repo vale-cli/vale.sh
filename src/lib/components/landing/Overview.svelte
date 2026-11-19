@@ -155,10 +155,10 @@
 					journal’s author guidelines into checks that run in your editor and alongside your code.
 				</p>
 				<div class="actions">
-					<Button size="lg" href="https://docs.vale.sh/topics/quickstart"
+					<Button size="lg" href="#how-it-works"
 						>Get started <ArrowRight data-icon="inline-end" /></Button
 					>
-					<Button size="lg" variant="outline" href="#how-it-works">See how it works</Button>
+					<Button size="lg" variant="outline" href="https://docs.vale.sh">Read the docs</Button>
 				</div>
 				<!-- The one command most visitors can run as it stands; the note
 				     beside it covers everyone else. -->
@@ -284,7 +284,7 @@
 				href={assistant.href}
 				target="_blank"
 				rel="noreferrer">{assistant.label} ↗</a
-			>{/each}<a href="/skills">Agent skills →</a>
+			>{/each}<a href="/agents">Agent tools →</a>
 	</div>
 	<p>
 		Thanks to <a href="https://claude.com/contact-sales/claude-for-oss">Claude for Open Source</a>.

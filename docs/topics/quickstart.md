@@ -99,9 +99,29 @@ $ echo $?
 
 See [MinAlertLevel](../keys/minalertlevel.md) for changing what gets reported, and [BasedOnStyles](../keys/basedonstyles.md) for enabling and disabling rules.
 
+## [With an assistant](quickstart.md#with-an-assistant)
+
+A coding assistant can do the steps above for you. In Claude Code, install the [agent tools](https://vale.sh/agents) plugin:
+
+```
+/plugin marketplace add vale-cli/agent-tools
+/plugin install vale@agent-tools
+```
+
+Then ask it to set up Vale, or run `/vale:setup`. It writes a `.vale.ini` for the formats your project has, syncs the styles, and reports the first run. It drives the `vale` binary on your machine, installing it first if it's missing.
+
+Two more pieces come with it:
+
+* **Skills** for the work after setup: `/vale:fix`, `/vale:triage`, `/vale:vocab`, `/vale:ignore`, `/vale:rule`, and `/vale:ci`.
+* **An edit hook** that lints each prose file as the assistant writes it and hands back the error-level alerts, so they're fixed in the same turn.
+
+Both run locally and need no account.
+
+For any other assistant, save [AGENTS.md](https://vale.sh/AGENTS.md) in the root of your repository. The [Agents](../guides/agents.md) guide covers the rest.
+
 ## [Where to go next](quickstart.md#where-to-go-next)
 
 * Browse the [Package Explorer](https://vale.sh/explorer) for styles beyond Microsoft.
 * Write your own rules with [Styles](styles.md) and the [checks](../checks/existence.md) reference.
 * Narrow what Vale reads using [Scopes](scopes.md).
-* Put an assistant to work, and hold it to a style, with the [Agents](../guides/agents.md) guide.
+* Hold an assistant's own writing to a style with the [Agents](../guides/agents.md) guide.

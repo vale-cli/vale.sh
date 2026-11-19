@@ -16,7 +16,7 @@
 	const tools: { label: string; href: string; icon: typeof PackageSearch; external?: boolean }[] = [
 		{ label: 'Style Explorer', href: '/explorer', icon: PackageSearch },
 		{ label: 'Config Generator', href: '/generator', icon: WandSparkles },
-		{ label: 'Agent Skills', href: '/skills', icon: Sparkles }
+		{ label: 'Agent Tools', href: '/agents', icon: Sparkles }
 	];
 
 	const columns = [

@@ -63,6 +63,22 @@ export const skills: Skill[] = [
 		path: `${base}/vocab/SKILL.md`
 	},
 	{
+		name: 'ignore',
+		summary:
+			'Take text that is not prose out of Vale’s view: shortcodes, templating tags, generated blocks, one quoted passage.',
+		guard:
+			'Uses the narrowest tool that works, a pattern or a named-rule comment, so a false positive never costs a rule its true ones.',
+		path: `${base}/ignore/SKILL.md`
+	},
+	{
+		name: 'rule',
+		summary:
+			'Write a rule for a house convention, with test cases beside it, and prove it with vale test and a run on the real corpus.',
+		guard:
+			'A rule that matches nothing loads and reports success, so every rule ships with a case that fires and a case that must not.',
+		path: `${base}/rule/SKILL.md`
+	},
+	{
 		name: 'ci',
 		summary:
 			'Run Vale in GitHub Actions, a pre-commit hook, or any other runner, with pinned versions.',
