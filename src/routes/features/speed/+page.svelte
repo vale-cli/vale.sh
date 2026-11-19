@@ -37,7 +37,7 @@
 			pages: 1056,
 			mb: 7.66,
 			rules: 14,
-			seconds: 6.12,
+			seconds: 5.57,
 			note: 'Fourteen rules they wrote themselves, with per-directory overrides that relax them for generated reference content and release notes.',
 			levels: { suggestion: 86, warning: 300, error: 362 }
 		},
@@ -57,9 +57,9 @@
 			pages: 2826,
 			mb: 31.3,
 			rules: 82,
-			seconds: 15.5,
-			note: 'The largest corpus here and the most rules. Excludes one 4.5 MB generated GraphQL reference; including it the run takes 19 s.',
-			levels: { suggestion: 15109, warning: 9851, error: 1 }
+			seconds: 12.8,
+			note: 'The largest corpus here and the most rules. Excludes one 4.5 MB generated GraphQL reference; including it the run takes 14 s.',
+			levels: { suggestion: 15214, warning: 9789, error: 16 }
 		},
 		{
 			id: 'ti',
@@ -76,7 +76,7 @@
 			pages: 632,
 			mb: 5.61,
 			rules: 38,
-			seconds: 10.4,
+			seconds: 8.9,
 			note: 'Every embedded-systems manual in the SDK, checked against the Red Hat style and their own vocabulary. Vale reads reStructuredText itself, so no Python runs alongside it.',
 			levels: { suggestion: 28650, warning: 12270, error: 1018 }
 		},
@@ -95,8 +95,8 @@
 			pages: 812,
 			mb: 6.15,
 			rules: 62,
-			seconds: 13.1,
-			note: 'Eight hundred AsciiDoc pages against 62 rules, in thirteen seconds. Vale reads AsciiDoc itself, so no Ruby runs alongside it.',
+			seconds: 11.7,
+			note: 'Eight hundred AsciiDoc pages against 62 rules, in under twelve seconds. Vale reads AsciiDoc itself, so no Ruby runs alongside it.',
 			levels: { suggestion: 8792, warning: 6123, error: 3328 }
 		}
 	];
@@ -108,7 +108,7 @@
 
 	/*
 		The severity split from that same run. It is on a speed page because it is
-		the context the raw total needs: 24,961 alerts is not 24,961 defects, and
+		the context the raw total needs: 25,019 alerts is not 25,019 defects, and
 		the shape of the split is what lets a team run every rule without the
 		pipeline becoming noise.
 	*/
@@ -147,10 +147,10 @@
 	);
 
 	const page = [
-		{ label: 'Vale', value: 40 },
-		{ label: '+ Microsoft', value: 76 },
-		{ label: '+ Google', value: 87 },
-		{ label: '+ write-good, proselint', value: 129 }
+		{ label: 'Vale', value: 39 },
+		{ label: '+ Microsoft', value: 75 },
+		{ label: '+ Google', value: 85 },
+		{ label: '+ write-good, proselint', value: 124 }
 	];
 
 	const local = [
@@ -160,7 +160,7 @@
 		},
 		{
 			title: 'Every core you have',
-			body: 'The GitLab run spent close to five cores’ worth of CPU throughout: files are linted several at a time, and results stream back as they land.'
+			body: 'The GitLab run spent more than five cores’ worth of CPU throughout: files are linted several at a time, and results stream back as they land.'
 		}
 	];
 
@@ -186,7 +186,7 @@
 	];
 
 	const description =
-		"Vale checks about 183 documentation pages a second—GitLab's 2,826-page repository, 31.3 MB against 82 rules, in under 16 seconds.";
+		"Vale checks about 220 documentation pages a second—GitLab's 2,826-page repository, 31.3 MB against 82 rules, in under 13 seconds.";
 </script>
 
 <MetaTags
@@ -219,7 +219,7 @@
 
 		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
 			Format moves this number more than corpus size does, and Vale parses all three of these
-			formats itself: Markdown at about 6 ms a page, reStructuredText and AsciiDoc at about 16 ms.
+			formats itself: Markdown at about 5 ms a page, reStructuredText and AsciiDoc at about 14 ms.
 			Rule count matters second: Docker runs fourteen rules, GitLab eighty-two.
 		</p>
 		<p class="mt-8 text-sm leading-relaxed text-foreground/85">
@@ -244,7 +244,7 @@
 			The shapes differ because the policies do. GitLab reserves <code
 				class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">error</code
 			>
-			for a single thing across 2,826 pages and lets the rest inform; Docker puts most of its findings
+			for 16 findings across 2,826 pages and lets the rest inform; Docker puts nearly half of its findings
 			there. Neither is wrong—the level is set per rule, so the decision about what stops a build gets
 			made once, in the rule, instead of being argued over in review.
 		</p>
@@ -262,7 +262,7 @@
 		</div>
 
 		<p class="mt-6 text-sm leading-relaxed text-foreground/85">
-			Going from one style guide to five adds 89 ms. Most of even that is the one-time cost of
+			Going from one style guide to five adds 85 ms. Most of even that is the one-time cost of
 			loading and compiling the rules, paid on every CLI invocation—which is why the language
 			server, which pays it once and then keeps the styles in memory, can re-lint as you type.
 		</p>
@@ -334,8 +334,8 @@
 		<div class="mt-6 rounded-xl border border-border bg-muted p-5">
 			<h3 class="text-sm font-medium text-foreground">How these were measured</h3>
 			<p class="mt-2 text-sm leading-relaxed text-foreground/85">
-				Vale v3.28.0, built from commit
-				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">8ed03254</code>, on an
+				Vale v3.28.1, built from commit
+				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">58f0dbfb</code>, on an
 				Apple M1 with 8 cores, macOS 15.7. The {current.name} figures use commit
 				<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">{current.commit}</code>
 				and the
