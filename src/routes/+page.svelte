@@ -3,6 +3,8 @@
 	import Overview from '$lib/components/landing/Overview.svelte';
 	import SponsorSpotlight from '$lib/components/landing/SponsorSpotlight.svelte';
 	import AdopterConfigs from '$lib/components/landing/AdopterConfigs.svelte';
+	import Promo from '$lib/components/landing/Promo.svelte';
+	import WhyRules from '$lib/components/landing/WhyRules.svelte';
 	import Features from '$lib/components/landing/Features.svelte';
 	import HowItWorks from '$lib/components/landing/HowItWorks.svelte';
 	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
@@ -15,6 +17,8 @@
 
 	const description =
 		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
+	const cardAlt =
+		"Vale: Your style. Our editor. A linter for prose, beside an alert reading: Use 'Vale CLI' instead of 'Vale cli'.";
 </script>
 
 <MetaTags
@@ -27,12 +31,20 @@
 		description,
 		images: [
 			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
-				alt: 'Example Vale output'
+				url: 'https://vale.sh/media/home-og.png',
+				width: 1200,
+				height: 630,
+				alt: cardAlt
 			}
 		]
+	}}
+	twitter={{
+		cardType: 'summary_large_image',
+		site: '@jdkato',
+		title: 'Vale: Your style, our editor',
+		description,
+		image: 'https://vale.sh/media/home-og.png',
+		imageAlt: cardAlt
 	}}
 />
 
@@ -55,9 +67,11 @@
 			scientific: data.snippets.heroScientific
 		}}
 	/>
+	<Promo />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs editorial />
 	<Features />
+	<WhyRules />
 	<Ecosystem stats={data.stats} />
 	<Integrations />
 	<Agents />

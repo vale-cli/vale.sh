@@ -181,7 +181,7 @@
 	];
 
 	const toneClass = {
-		fail: 'text-rose-500 dark:text-rose-400',
+		fail: 'text-rose-600 dark:text-rose-400',
 		name: 'text-foreground',
 		muted: 'text-muted-foreground',
 		got: 'text-lime-600 dark:text-lime-400'

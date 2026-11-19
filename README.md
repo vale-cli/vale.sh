@@ -64,7 +64,7 @@ so you can see the rendered page before it merges.
 
 The site used to render these pages itself from `src/lib/content`. It no longer
 does — `vale.sh/docs/*` redirects to `docs.vale.sh` (see
-[`static/_redirects`](static/_redirects)).
+[`_redirects`](_redirects)).
 
 ## Contributing
 

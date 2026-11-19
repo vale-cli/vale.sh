@@ -4,7 +4,7 @@
 Requires Vale v3.26.0 or later.
 {% endhint %}
 
-Vale ships as a WebAssembly module for JavaScript hosts: a browser, a browser extension, or Node. It is the same engine as the CLI, built without CGo, so it lints Markdown, HTML, and plain text from memory with no server and no filesystem.
+Vale ships as a WebAssembly module for JavaScript hosts: a browser, a browser extension, or Node. It is the same engine as the CLI, built without cgo, so it lints Markdown, HTML, and plain text from memory with no server and no filesystem.
 
 Each release carries `vale_<version>_wasm.tar.gz`, which holds two files:
 

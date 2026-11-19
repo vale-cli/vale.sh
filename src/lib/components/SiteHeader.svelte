@@ -18,6 +18,11 @@
 	<div class="container flex h-14 max-w-screen-2xl items-center">
 		<MainNav />
 		<MobileNav />
+		<!-- MainNav carries the logo from md up; below that it is hidden, and
+		     without this the header on a phone names nothing. -->
+		<a href="/" class="mr-3 flex shrink-0 items-center md:hidden" aria-label={siteConfig.name}>
+			<Icons.logo class="h-6 w-6" />
+		</a>
 		<div class="flex flex-1 items-center justify-between space-x-2 md:justify-end">
 			<!--
 				`md:flex-none` pinned this to the button's own width; it shrinks now

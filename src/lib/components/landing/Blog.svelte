@@ -31,7 +31,7 @@
 	title="Notes from building Vale."
 	lede="Releases, the standard library, and prose linting in the age of agents. Every post ships with Vale's own report on it."
 >
-	<ul class="grid gap-6 md:grid-cols-3">
+	<ul class="grid grid-cols-1 gap-6 md:grid-cols-3">
 		{#each posts as post (post.slug)}
 			{@const s = statsFor(post.slug)}
 			<li>
