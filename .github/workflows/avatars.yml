@@ -1,0 +1,42 @@
+name: Sync adopter avatars
+
+# An adopter names a GitHub org and nothing else; the avatar is fetched from
+# it. This runs when the list changes on the default branch and commits any
+# avatar that is missing, so neither a contributor nor a maintainer has to.
+on:
+  push:
+    branches: [svelte]
+    paths:
+      - src/lib/data/adopters.json
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: avatars
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    name: runner / avatars
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: corepack enable && pnpm install --frozen-lockfile
+      - run: node script/adopters.mjs --sync
+      - name: Commit new avatars
+        run: |
+          git add static/users/avatars src/lib/data/adopters.json
+          if git diff --cached --quiet; then
+            echo "Nothing to sync."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "data: sync adopter avatars"
+          git pull --rebase
+          git push

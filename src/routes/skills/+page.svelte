@@ -9,7 +9,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	const description =
-		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, ignores, rules, and CI. Free, local, and driven by the CLI.';
+		'Agent skills for Vale: one-prompt onboarding, style choices, rules from your style guide, vocabularies, fixes, CI, and commit messages. Free, local, and driven by the CLI.';
 </script>
 
 <MetaTags
@@ -40,8 +40,8 @@
 		</p>
 		<CodeBlock html={data.installHtml} code={data.install} class="mt-3" />
 		<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-			Then type <code class="font-mono">/vale:</code> and the seven below should complete. For an
-			assistant that reads skills from a folder, copy one into
+			Then type <code class="font-mono">/vale:</code> and the {skills.length} below should complete.
+			For an assistant that reads skills from a folder, copy one into
 			<code class="font-mono">.claude/skills/</code> instead; for one with no skill support, hand it
 			<a href="/AGENTS.md" class="font-medium text-lime-600 hover:underline dark:text-lime-400"
 				>AGENTS.md</a

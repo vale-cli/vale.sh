@@ -6,13 +6,21 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
-	import adopters from '$lib/data/adopters.json';
 	import FileCode from 'lucide-svelte/icons/file-code';
 	import Feather from 'lucide-svelte/icons/feather';
 	import FlaskConical from 'lucide-svelte/icons/flask-conical';
 
 	type Kind = 'technical' | 'creative' | 'scientific';
-	let { stats, rules }: { stats: Stats; rules: Record<Kind, string> } = $props();
+	let {
+		stats,
+		rules,
+		adopters
+	}: {
+		stats: Stats;
+		rules: Record<Kind, string>;
+		/** How many teams the adopter list holds. */
+		adopters: number;
+	} = $props();
 
 	/*
 		The flow figure, once per kind of writing. Each walks a real guideline
@@ -117,9 +125,30 @@
 			label: 'GitHub stars',
 			href: 'https://github.com/vale-cli/vale'
 		},
-		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '/library' },
-		{ value: String(adopters.length), label: 'teams listed', href: '/adopters' }
+		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '#stats' },
+		{ value: String(adopters), label: 'teams listed', href: '/adopters' }
 	]);
+
+	// Arrow keys move between the tabs, as the tab pattern expects: only the
+	// selected one is in the tab order.
+	function onTabKey(event: KeyboardEvent) {
+		const i = kinds.findIndex((k) => k.id === kind);
+		const last = kinds.length - 1;
+		const next =
+			event.key === 'ArrowRight'
+				? (i + 1) % kinds.length
+				: event.key === 'ArrowLeft'
+					? (i + last) % kinds.length
+					: event.key === 'Home'
+						? 0
+						: event.key === 'End'
+							? last
+							: -1;
+		if (next < 0) return;
+		event.preventDefault();
+		kind = kinds[next].id;
+		document.getElementById(`kind-${kind}`)?.focus();
+	}
 
 	const install = 'brew install vale';
 	let copied = $state(false);
@@ -198,6 +227,7 @@
 						aria-controls="flow-stages"
 						tabindex={k.id === kind ? 0 : -1}
 						onclick={() => (kind = k.id)}
+						onkeydown={onTabKey}
 					>
 						<k.icon aria-hidden="true" />
 						{k.label}
@@ -218,7 +248,7 @@
 						{:else if kind === 'creative'}
 							<p class="guide-text">
 								Never use an adverb to modify the verb <strong>“said”</strong>. Not
-								<s>he admonished gravely</s>.
+								<s>he said gravely</s>.
 							</p>
 						{:else}
 							<p class="guide-text">

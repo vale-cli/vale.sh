@@ -1,116 +1,14 @@
 <script lang="ts">
-	import adopters from '$lib/data/adopters.json';
-	import stories from '$lib/data/stories.json';
-	import { sectors } from '$lib/data/sectors';
+	import type { AdopterBand } from '$lib/types/adopter-band';
 	import BrandIcon from './BrandIcon.svelte';
 	import Section from './Section.svelte';
 	import InlineCode from '$lib/components/features/InlineCode.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 
-	let { editorial = false }: { editorial?: boolean } = $props();
-
-	type Adopter = {
-		name: string;
-		category: string;
-		context: string;
-		url: string;
-		github?: string;
-		avatar?: string;
-		logo?: string;
-		icon?: string;
-	};
-
-	const all = adopters as Adopter[];
-
-	/*
-		A logo wall asserts that a company uses the tool; this band shows where to
-		go and check. Each mark's tooltip names the evidence:
-
-		  - a .vale.ini in a public repo  -> the path and the repository
-		  - a page the team wrote about   -> the host
-
-		Both are somewhere a reader can open, which is the point.
-	*/
-	const CONFIG =
-		/^https:\/\/github\.com\/([^/]+\/[^/]+)\/blob\/[^/]+\/(.*(?:\.vale\.ini|_vale\.ini|vale\.ini))$/;
-
-	const REPO = /^https:\/\/github\.com\/([^/]+\/[^/]+)\/?$/;
-
-	function receipt(url: string): string {
-		const config = CONFIG.exec(url);
-		if (config) return `${config[1]} · ${config[2]}`;
-		const repo = REPO.exec(url);
-		if (repo) return repo[1];
-		return new URL(url).hostname.replace(/^www\./, '');
-	}
-
-	/*
-		The biggest names, gated by proof: each mark has to land on a real
-		config or a CI job, since a visitor who clicks and finds a thin page
-		stops believing the rest. A team with a story card above is skipped
-		here, so no name appears twice; the list runs longer than twelve so
-		the row stays full whichever teams the cards take.
-	*/
-	const FEATURED = [
-		'Amazon Web Services',
-		'Microsoft',
-		'NVIDIA',
-		'Epic Games',
-		'GitHub',
-		'Docker',
-		'Red Hat',
-		'GitLab',
-		'Datadog',
-		'MongoDB',
-		'MetaMask',
-		'GOV.UK',
-		'Discord',
-		'SAP',
-		'Spotify',
-		'Grafana Labs',
-		'Texas Instruments'
-	];
-
-	const byName = new Map(all.map((a) => [a.name, a]));
-
-	/*
-		Four teams, one figure each, read from the team's own page: the number
-		leads, the way a customer page leads with "350 million daily users"
-		rather than a logo. Resolved against the data so the mark and sector
-		come from the adopter entry, and validated in script/adopters.mjs.
-	*/
-	const featuredStories = stories.flatMap((st) => {
-		const adopter = byName.get(st.name);
-		return adopter ? [{ ...st, adopter }] : [];
-	});
-
-	const storied = new Set(stories.map((st) => st.name));
-	const marks = FEATURED.filter((name) => !storied.has(name))
-		.slice(0, 12)
-		.flatMap((name) => {
-			const adopter = byName.get(name);
-			if (!adopter) return [];
-			return [
-				{
-					...adopter,
-					receipt: receipt(adopter.url),
-					// BrandIcon resolves a Simple Icons glyph, then the avatar, then a
-					// monogram. Most entries name their glyph; fall back to the key the
-					// name implies for the ones that don't.
-					slug: adopter.icon ?? name.toLowerCase().replace(/[^a-z0-9]/g, '')
-				}
-			];
-		});
-
-	// The nine sectors, each a jump to its band on /adopters.
-	const chips = sectors.map((s) => ({
-		name: s.name,
-		count: all.filter((a) => a.category === s.name).length,
-		href: `/adopters#sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
-	}));
-
-	const total = all.length;
+	// The band is chosen in $lib/server/adopter-band, at build time, so the
+	// page's script carries these entries and not the whole adopter list.
+	let { band, editorial = false }: { band: AdopterBand; editorial?: boolean } = $props();
 </script>
 
 {#snippet configsLede()}
@@ -133,7 +31,7 @@
 		scrolls; these are links and a moving row makes them a moving target.
 	-->
 	<ul class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-		{#each featuredStories as story (story.name)}
+		{#each band.stories as story (story.name)}
 			<li>
 				<a
 					href={story.url}
@@ -142,13 +40,8 @@
 					class="group flex h-full flex-col rounded-xl border border-border bg-card p-5 transition-all duration-200 hover:-translate-y-0.5 hover:border-lime-500/40 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
 				>
 					<span class="flex items-center gap-2.5">
-						<BrandIcon
-							name={story.adopter.name}
-							slug={story.adopter.icon}
-							avatar={story.adopter.avatar}
-							size="h-6 w-6"
-						/>
-						<span class="text-sm font-medium text-foreground">{story.adopter.name}</span>
+						<BrandIcon name={story.name} slug={story.icon} avatar={story.avatar} size="h-6 w-6" />
+						<span class="text-sm font-medium text-foreground">{story.name}</span>
 					</span>
 					<span class="mt-5 text-4xl font-semibold tracking-tight text-foreground"
 						>{story.figure}</span
@@ -168,7 +61,7 @@
 
 	<Tooltip.Provider delayDuration={150}>
 		<ul class="mt-12 grid grid-cols-3 gap-x-4 gap-y-8 sm:grid-cols-4 lg:grid-cols-6">
-			{#each marks as mark (mark.name)}
+			{#each band.marks as mark (mark.name)}
 				<li>
 					<Tooltip.Root>
 						<Tooltip.Trigger>
@@ -203,7 +96,7 @@
 
 	<!-- The split by sector, each chip landing on that sector's roster. -->
 	<ul class="mt-12 flex flex-wrap gap-2" aria-label="Adopters by sector">
-		{#each chips as chip (chip.name)}
+		{#each band.chips as chip (chip.name)}
 			<li>
 				<a
 					href={chip.href}
@@ -221,7 +114,7 @@
 			href="/adopters"
 			class="group inline-flex items-center gap-1.5 rounded-lg border border-border px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-muted/60"
 		>
-			Browse all {total}
+			Browse all {band.total}
 			<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
 		</a>
 	</div>

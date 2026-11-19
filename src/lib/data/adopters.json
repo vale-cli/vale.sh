@@ -2250,7 +2250,8 @@
 		"category": "Developer tools",
 		"context": "Keeps LLMisms out of its docs, guide, and code comments, and holds them to plain English that readers at any level can follow.",
 		"url": "https://github.com/seedcord/seedcord/blob/HEAD/.vale.ini",
-		"github": "seedcord"
+		"github": "seedcord",
+		"avatar": "/users/avatars/seedcord.png"
 	},
 	{
 		"name": "Semaphore UI",

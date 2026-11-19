@@ -61,6 +61,7 @@
 <main>
 	<Overview
 		stats={data.stats}
+		adopters={data.band.total}
 		rules={{
 			technical: data.snippets.heroTechnical,
 			creative: data.snippets.heroCreative,
@@ -69,7 +70,7 @@
 	/>
 	<Promo />
 	<SponsorSpotlight editorial />
-	<AdopterConfigs editorial />
+	<AdopterConfigs band={data.band} editorial />
 	<Features />
 	<WhyRules />
 	<Ecosystem stats={data.stats} />

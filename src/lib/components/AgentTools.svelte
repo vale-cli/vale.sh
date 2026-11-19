@@ -21,7 +21,7 @@
 			icon: Sparkles,
 			title: 'Skills',
 			cost: 'Free',
-			body: 'Setup, fixing alerts, triaging a noisy first run, vocabularies, ignores, rules, and CI. Each one runs the CLI in your repository and ends with a report.',
+			body: 'One-prompt onboarding, style choices, rules from your style guide, vocabularies, fixes, CI, and commit messages. Each one runs the CLI in your repository and ends with a report.',
 			// An anchor, not a link: this renders on /skills, above the list.
 			href: '#skill-list',
 			cta: 'Browse the skills',

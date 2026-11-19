@@ -108,16 +108,16 @@ A coding assistant can do the steps above for you. In Claude Code, install the [
 /plugin install vale@agent-tools
 ```
 
-Then ask it to set up Vale, or run `/vale:setup`. It writes a `.vale.ini` for the formats your project has, syncs the styles, and reports the first run. It drives the `vale` binary on your machine, installing it first if it's missing.
+Then run `/vale:onboard`. It tries the style packages against your docs, drafts a configuration, a vocabulary, and a CI job, and shows you one proposal with before and after counts. Nothing is written until you say yes. It drives the `vale` binary on your machine, installing it first if it's missing.
 
 Two more pieces come with it:
 
-* **Skills** for the work after setup: `/vale:fix`, `/vale:triage`, `/vale:vocab`, `/vale:ignore`, `/vale:rule`, and `/vale:ci`.
-* **An edit hook** that lints each prose file as the assistant writes it and hands back the error-level alerts, so they're fixed in the same turn.
+* **Skills** for the work after setup, such as `/vale:tune` to change a style choice, `/vale:from-guide` to turn your style guide into tested rules, and `/vale:fix` to clear the errors.
+* **Hooks** that lint each file the assistant writes, and each commit it makes, and hand back the error-level alerts so they're fixed in the same turn.
 
 Both run locally and need no account.
 
-For any other assistant, save [AGENTS.md](https://vale.sh/AGENTS.md) in the root of your repository. The [Agents](../guides/agents.md) guide covers the rest.
+For any other assistant, save [AGENTS.md](https://vale.sh/AGENTS.md) in the root of your repository. [Agent setup](../guides/agent-setup.md) walks through the whole process.
 
 ## [Where to go next](quickstart.md#where-to-go-next)
 

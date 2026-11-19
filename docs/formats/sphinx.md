@@ -37,10 +37,4 @@ A project written in MyST goes through Vale's own [MyST](myst.md) reader, which 
 
 ## [Setting up](sphinx.md#setting-up)
 
-Install `docutils` into the environment the project builds with, so that `rst2html` is on your `$PATH`:
-
-```bash
-$ pip install docutils
-```
-
-Vale finds the interpreter from the script and keeps one Docutils process warm per run, so a project of a few hundred pages converts in a second or two. Nothing about the project's `conf.py`, theme, or extensions has to be installed for Vale to run.
+Nothing. Vale converts reStructuredText itself, with a Go port of Docutils, so a project of a few hundred pages converts in well under a second. Nothing about the project's `conf.py`, theme, or extensions has to be installed for Vale to run, and neither does Python.

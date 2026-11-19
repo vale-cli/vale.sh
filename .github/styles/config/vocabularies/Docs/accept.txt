@@ -1,3 +1,4 @@
+adocgo
 [bB]lockquotes?
 [bB]oolean
 [cC]allouts?
@@ -11,6 +12,7 @@ Grafana
 [lL]ookbehinds?
 [oO]rg(?:'s)?
 [pP]assthroughs?
+rstgo
 [sS]hortcodes?
 [sS]uperset
 [tT]okenizers?

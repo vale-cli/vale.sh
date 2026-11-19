@@ -2,13 +2,7 @@
 
 Learn how Vale handles reStructuredText content.
 
-reStructuredText is supported through the external program [`rst2html`](http://docutils.sourceforge.net/docs/user/tools.html#rst2html-py). To get started, you’ll need to install the [`docutils`](https://pypi.org/project/docutils/) package:
-
-```bash
-$ pip install docutils
-```
-
-Vale looks for `rst2html`, `rst2html.py`, `rst2html-3`, or `rst2html-3.py` on your `$PATH`, which installing `docutils` normally provides. The script is asked which Python it runs under, so the interpreter `docutils` was installed into is the one used, even when it is not the `python3` on the path.
+Vale reads reStructuredText with [rstgo](https://github.com/jdkato/rstgo), a Go port of Docutils' `rst2html` whose output matches Docutils 0.23 byte for byte. Nothing needs to be installed: no Python, no `docutils`, and no `rst2html` on your `$PATH`.
 
 The supported extensions are `.rst` and `.rest`.
 

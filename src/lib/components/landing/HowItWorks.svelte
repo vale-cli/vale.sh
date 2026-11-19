@@ -56,19 +56,20 @@
 				<CodeBlock html={snippets.commands} bare />
 			</div>
 			<details>
-				<summary>Make it your own with a YAML rule <span aria-hidden="true">+</span></summary>
+				<summary>Make it your own with a YAML rule <span aria-hidden="true"></span></summary>
 				<div class="snippet"><CodeBlock html={snippets.rule} bare /></div>
 				<a class="text-link rule-link" href="https://docs.vale.sh/topics/styles"
 					>Learn to write rules →</a
 				>
 			</details>
 			<details>
-				<summary>Or have your assistant set it up <span aria-hidden="true">+</span></summary>
+				<summary>Or have your assistant set it up <span aria-hidden="true"></span></summary>
 				<div class="snippet">
 					<pre class="agent-commands">/plugin marketplace add vale-cli/agent-tools
 /plugin install vale@agent-tools</pre>
 					<p class="agent-steps">
-						Type both in Claude Code, then ask it to set up Vale, or run <code>/vale:setup</code>.
+						Type both in Claude Code, then run <code>/vale:onboard</code>. It shows one proposal and
+						writes nothing until you say yes.
 					</p>
 				</div>
 				<a class="text-link rule-link" href="/agents">See the agent tools →</a>
@@ -228,6 +229,12 @@
 	}
 	summary span {
 		float: right;
+	}
+	summary span::before {
+		content: '+';
+	}
+	details[open] summary span::before {
+		content: '−';
 	}
 	.rule-link {
 		margin: 0 28px 24px;

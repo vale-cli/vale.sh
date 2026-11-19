@@ -26,7 +26,7 @@
 		{
 			title: 'A model writes the rule. The rule checks the docs.',
 			body: 'Describe a guideline in a sentence and your agent writes the YAML and its tests. Its attention then goes to what no pattern can judge.',
-			link: { href: '/skills', label: 'Agent skills' }
+			link: { href: '/agents#skills', label: 'Agent skills' }
 		}
 	];
 </script>

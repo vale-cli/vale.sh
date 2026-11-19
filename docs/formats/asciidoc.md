@@ -2,7 +2,7 @@
 
 Learn how Vale handles AsciiDoc content.
 
-AsciiDoc is supported through the external program [Asciidoctor](https://asciidoctor.org/). See their [installation](https://docs.asciidoctor.org/asciidoctor/latest/install) instructions to get started. You’ll need to ensure that the `asciidoctor` executable is available in your `$PATH`.
+Vale reads AsciiDoc with [adocgo](https://github.com/jdkato/adocgo), a Go port of [Asciidoctor](https://asciidoctor.org/) whose HTML matches Asciidoctor 2.0.26 byte for byte. Nothing needs to be installed: no Ruby and no `asciidoctor` on your `$PATH`.
 
 The supported extensions are `.adoc`, `.asciidoc`, and `.asc`.
 

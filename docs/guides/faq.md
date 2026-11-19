@@ -225,11 +225,7 @@ Yes, with `scope: raw`, since the rule needs to see the markup itself. There are
 
 ### How does Vale parse AsciiDoc?
 
-It doesn't. Vale operates on the HTML that Asciidoctor produces.
-
-### How do I set Asciidoctor up as the parser?
-
-Make sure `asciidoctor` is on your `$PATH`. Any standard installation puts it there.
+Vale converts the document to HTML with [adocgo](https://github.com/jdkato/adocgo), a Go port of Asciidoctor built into Vale, and lints the HTML. Nothing needs to be installed, and the output is what Asciidoctor 2.0.26 would produce with the same attributes.
 
 ### Where does Vale look for a global config on Windows?
 

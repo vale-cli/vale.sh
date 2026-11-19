@@ -8,7 +8,8 @@
  *
  * Contributors only ever hand-edit the JSON. Anything binary — the avatar PNGs
  * under static/users/avatars — is fetched here from the `github` field, so a
- * pull request never has to include an image.
+ * pull request never has to include an image. The avatars workflow runs
+ * --sync when the list changes on the default branch.
  */
 
 import { readFileSync, writeFileSync, existsSync, mkdirSync } from 'node:fs';
@@ -252,7 +253,7 @@ if (SYNC) {
 } else {
 	for (const a of adopters) {
 		if (a.github && !existsSync(join(AVATAR_DIR, `${a.github}.png`))) {
-			fail(a.name, `missing avatar for "${a.github}" — run: node script/adopters.mjs --sync`);
+			notes.push(`${a.name}: avatar for "${a.github}" is fetched once this is merged`);
 		}
 	}
 }

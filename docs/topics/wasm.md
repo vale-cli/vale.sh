@@ -103,19 +103,19 @@ Each rule a section's styles bring is `active`, `disabled`, or `override` with t
 | Format                                | In the browser     | How                                                                                           |
 | ------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------- |
 | Markdown, MDX, MyST, Quarto, Org-mode | Yes                | Parsed in Go.                                                                                 |
+| AsciiDoc, reStructuredText            | Yes                | Converted in Go, by ports of Asciidoctor and Docutils.                                        |
 | HTML                                  | Yes                |                                                                                               |
 | Plain text                            | Yes                |                                                                                               |
 | YAML, JSON, TOML                      | Yes                | Through a [View](views.md).                                                                   |
-| AsciiDoc                              | With the host's converter | Asciidoctor.js; see below.                                                             |
 | XML                                   | With the host's converter | The browser's `XSLTProcessor` and the section's `Transform` stylesheet.                |
-| DITA, reStructuredText, Typst         | With the host's converter | When the host has one: DITA-OT and Docutils have no browser build; Typst does.          |
+| DITA, Typst                           | With the host's converter | When the host has one: DITA-OT has no browser build; Typst does.                        |
 | Source code                           | Yes                | Comments are found by their delimiters, or parsed with a grammar the host adds; see below.    |
 
 A document in an unsupported format is not an error: it lints as empty.
 
 ## [Converted formats](wasm.md#converted-formats)
 
-Natively, Vale reads AsciiDoc, reStructuredText, XML, DITA, and Typst by running a converter and linting its HTML. A browser can't run those programs, but it can run some of their JavaScript builds, so the module takes the HTML from the host instead: `ValeLintBuilt` is `ValeLint` with the conversion step already done. Everything after it is the same, including where each alert lands in the source.
+Natively, Vale reads XML, DITA, and Typst by running a converter and linting its HTML. A browser can't run those programs, but it can run some of their JavaScript builds, so the module takes the HTML from the host instead: `ValeLintBuilt` is `ValeLint` with the conversion step already done. Everything after it is the same, including where each alert lands in the source. AsciiDoc and reStructuredText no longer need this, since the module converts them itself, but a host that has its own Asciidoctor.js or Docutils HTML can still hand it over the same way.
 
 The HTML has to be what Vale would have produced, which means the same arguments. `ValeConverterOptions` returns them, so the host and the CLI stay in step as they change:
 

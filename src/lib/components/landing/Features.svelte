@@ -297,7 +297,7 @@
 				<dl>
 					<div>
 						<dt>Markdown pages</dt>
-						<dd>2,827</dd>
+						<dd>2,826</dd>
 					</div>
 					<div>
 						<dt>Rules applied</dt>

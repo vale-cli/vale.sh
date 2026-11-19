@@ -99,7 +99,7 @@ A one-line `input` can be written plainly, but quote it if it contains `: ` or s
 
 ### [Formats](testing.md#formats)
 
-A case is read as Markdown unless its `format` names another extension, and it's parsed the way a file of that format would be. A reStructuredText or AsciiDoc case needs the same tools a lint run of that format does, `rst2html` or `asciidoctor`. Any extension works, including one a [View](views.md) is attached to, such as `COMMIT_EDITMSG`.
+A case is read as Markdown unless its `format` names another extension, and it's parsed the way a file of that format would be. A Typst, XML, or DITA case needs the same converter a lint run of that format does. Any extension works, including one a [View](views.md) is attached to, such as `COMMIT_EDITMSG`.
 
 ### [Views](testing.md#views)
 

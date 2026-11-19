@@ -108,8 +108,8 @@ avatar. With neither, the card shows a two-letter monogram.
 > [!NOTE]
 >
 > **Don't commit images.** The avatar PNGs under `static/users/avatars` are
-> fetched from the `github` field by a maintainer running
-> `node script/adopters.mjs --sync`.
+> fetched from the `github` field by a workflow once your pull request is
+> merged. Until then the validator prints a note for the missing avatar.
 
 ### Feature a figure
 

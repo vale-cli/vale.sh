@@ -4,40 +4,48 @@
 	import Bot from 'lucide-svelte/icons/bot';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
 	import Zap from 'lucide-svelte/icons/zap';
+	import Blocks from 'lucide-svelte/icons/blocks';
 	import Server from 'lucide-svelte/icons/server';
 	import Section from '$lib/components/features/Section.svelte';
 	import InlineCode from '$lib/components/features/InlineCode.svelte';
 	import ExternalLink from '$lib/components/features/ExternalLink.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
-	import { skills } from '$lib/data/skills';
+	import { skillGroups, skills } from '$lib/data/skills';
 
 	let { data } = $props();
 
 	const repo = 'https://github.com/vale-cli/agent-tools';
 
-	// The free/account split is on each card, not in a footnote: two of the
-	// three need nothing but the binary, and that has to be obvious here.
+	// What each piece costs is on its card, not in a footnote: everything but
+	// the MCP server needs nothing but the binary, and that has to be obvious.
 	const pieces = [
 		{
 			icon: Sparkles,
 			title: 'Skills',
 			cost: 'Free',
 			href: '#skills',
-			body: 'Seven task-shaped instructions: setup, fixing alerts, triage, vocabularies, ignores, rules, and CI. Each runs the CLI in your repository and ends with a report.'
+			body: `${skills.length} of them: one-prompt onboarding, style choices, rules from your style guide, a written guide, vocabularies, fixes, CI, and commit messages.`
 		},
 		{
 			icon: Zap,
-			title: 'Edit hook',
+			title: 'Hooks',
 			cost: 'Free',
 			href: '#hook',
-			body: 'Lints each prose file the moment the assistant writes it and hands the alerts back, so a mistake is fixed in the turn it was made.'
+			body: 'Lint each file the assistant writes and each commit it makes, and hand the alerts back in the same turn.'
+		},
+		{
+			icon: Blocks,
+			title: 'More plugins',
+			cost: 'Experimental',
+			href: '#plugins',
+			body: 'A setup pane beside the chat, Vale as tools the assistant calls directly, and the language server.'
 		},
 		{
 			icon: Server,
 			title: 'MCP server',
 			cost: 'Vale CMS',
 			href: '#mcp',
-			body: 'The engine as tools an assistant can call, so a rule it writes is compiled and tested before it reaches your repository.'
+			body: 'The engine as tools, so a rule the assistant writes is diagnosed and stress-tested before it reaches your repository.'
 		}
 	];
 
@@ -47,25 +55,66 @@
 		{ value: 'suggestion', relays: 'Everything', note: '' }
 	];
 
+	// What the proposal leaves switched off, each a skill of its own.
+	const options = [
+		{ name: 'Blocking checks', detail: 'once the remaining errors are fixed' },
+		{ name: 'One-click fixes', detail: 'suggested changes on pull requests' },
+		{ name: 'Translated docs', detail: 'a section and a dictionary per language' },
+		{ name: 'Code comments', detail: 'Go, Python, TypeScript, and about twenty more' },
+		{ name: 'One spelling', detail: 'American, British, Australian, Canadian' },
+		{ name: 'Commit messages', detail: 'the convention your history already follows' },
+		{ name: 'Your style guide', detail: 'turned into tested rules' },
+		{ name: 'A written guide', detail: 'generated from the configuration' }
+	];
+
+	const plugins = [
+		{
+			id: 'vale-onboard',
+			title: 'The setup pane',
+			body: 'The onboarding proposal, drawn beside the chat: a button per style package with its alert count, a button on each rule that makes it quieter, the unknown words to tick, and where Vale should run. Every press re-runs the preview, so the count is a real one. Apply hands the result to the assistant; nothing is written before that.',
+			note: '/vale-checks opens the “where it runs” part alone in a repository that already has Vale.',
+			snippet: 'pane' as const
+		},
+		{
+			id: 'vale-tools',
+			title: 'Vale as tools',
+			body: 'Two tools the assistant calls with no shell command: lint, which checks a draft or a file against the project’s rules and returns each alert with the fix its rule carries, and test, which runs the cases beside the project’s own rules. Because lint takes text, a paragraph or a commit message can be checked before it is written.',
+			note: 'Works on Windows without Git Bash. In the desktop app it adds “Check with Vale” and “Add to Vale vocabulary” to the right-click menu.',
+			snippet: 'tools' as const
+		},
+		{
+			id: 'vale-lsp',
+			title: 'The language server',
+			body: 'Connects Claude Code to vale-ls, so alerts arrive as diagnostics after an edit, the way a type error does for code. Errors only, matching the hook’s default.',
+			note: 'An alternative to the edit hook: install one or the other, or every alert arrives twice. Needs vale-ls on your PATH.',
+			snippet: 'lsp' as const
+		}
+	];
+
 	const requirements = [
 		{
 			part: 'Skills',
 			needs:
-				'The vale binary on PATH. fix, triage, and vocab also use jq; rule needs Vale v3.24.0 or later for vale test.'
+				'The vale binary on PATH; onboard and setup install it if it is missing. fix, triage, and vocab read Vale’s JSON with jq. tune and from-guide test their rules with vale test, which needs Vale v3.24.0 or later.'
 		},
 		{
-			part: 'Edit hook',
+			part: 'Hooks',
 			needs:
-				'The vale binary and any POSIX shell. On Windows that means Git Bash; without it the hook does nothing and the rest is unaffected.'
+				'The vale binary and any POSIX shell. On Windows that means Git Bash, which Git for Windows includes; without it the hooks do nothing and the skills do their scripted steps by hand.'
+		},
+		{
+			part: 'More plugins',
+			needs:
+				'The vale binary. The pane needs a POSIX shell, the tools do not, and the language server needs vale-ls.'
 		},
 		{
 			part: 'MCP server',
-			needs: 'A Vale CMS Pro or Site subscription. Nothing else in the plugin depends on it.'
+			needs: 'A Vale CMS Pro or Site subscription. Nothing else here depends on it.'
 		}
 	];
 
 	const description =
-		'Vale for coding agents: seven skills, an edit-time linting hook, and an MCP server, installed as one Claude Code plugin.';
+		'Vale for coding agents: one-prompt onboarding, thirteen skills, hooks that lint what the assistant writes, and an MCP server, installed as a Claude Code plugin.';
 </script>
 
 <MetaTags
@@ -74,6 +123,20 @@
 	canonical="https://vale.sh/agents"
 	openGraph={{ url: 'https://vale.sh/agents', title: 'Agent tools', description }}
 />
+
+{#snippet shot(src: string, width: number, height: number, alt: string, caption: string)}
+	<figure>
+		<img
+			{src}
+			{width}
+			{height}
+			loading="lazy"
+			{alt}
+			class="h-auto w-full rounded-xl border border-border"
+		/>
+		<figcaption class="mt-3 text-xs leading-5 text-muted-foreground">{caption}</figcaption>
+	</figure>
+{/snippet}
 
 <article>
 	<header class="border-b border-border">
@@ -96,22 +159,28 @@
 			</h1>
 			<p class="mt-6 text-pretty text-lg leading-8 text-foreground/85">
 				A model writes plausible prose and plausible linter rules with equal confidence. Agent tools
-				put Vale in the loop: skills for the jobs around a linter, a hook that checks each file as
-				it is written, and an MCP server for checking the rules themselves.
+				put Vale in the loop: an assistant that sets Vale up in one prompt, shapes it to how your
+				team writes, and is checked by it on every file and commit.
 			</p>
 
 			<CodeBlock html={data.html.install} code={data.code.install} class="mt-8" />
 			<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-				Type both in Claude Code. The second restarts the session, which registers the hook and the
+				Type both in Claude Code. The second restarts the session, which registers the hooks and the
 				MCP server. The plugin drives the
 				<a
 					href="https://docs.vale.sh/topics/installation"
 					class="font-medium text-foreground underline decoration-lime-500/40 underline-offset-4"
 					>Vale binary</a
-				>; it does not bundle it.
+				>
+				and installs it if it is missing.
+				<a
+					href="https://docs.vale.sh/guides/agent-setup"
+					class="font-medium text-foreground underline decoration-lime-500/40 underline-offset-4"
+					>The setup guide</a
+				> walks through the whole process.
 			</p>
 
-			<div class="mt-10 grid gap-4 sm:grid-cols-3">
+			<div class="mt-10 grid gap-4 sm:grid-cols-2">
 				{#each pieces as piece (piece.title)}
 					<a
 						href={piece.href}
@@ -137,30 +206,155 @@
 		</div>
 	</header>
 
-	<div id="skills" class="scroll-mt-24">
+	<div id="onboard" class="scroll-mt-24">
 		<Section
-			title="Seven skills"
-			lede="Ask in your own words and the assistant reaches for the one that fits, or call it by name. Each checks its prerequisites before touching anything, and one that cannot run Vale says so instead of improvising."
+			title="Set up in one prompt"
+			lede="In a repository that has prose and no Vale yet, one skill does the whole job: not a configuration and two thousand alerts, but a baseline the team can keep."
 		>
-			<ul class="divide-y divide-border rounded-2xl border border-border bg-card">
-				{#each skills as skill (skill.name)}
-					<li class="grid gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[8.5rem_1fr]">
-						<a
-							href={skill.path}
-							target="_blank"
-							rel="noreferrer"
-							class="font-mono text-sm font-semibold hover:text-lime-600 dark:hover:text-lime-400"
-							><span class="text-muted-foreground">/vale:</span>{skill.name}</a
-						>
-						<div>
-							<p class="text-sm leading-relaxed">{skill.summary}</p>
-							<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{skill.guard}</p>
-						</div>
+			<CodeBlock html={data.html.onboard} code={data.code.onboard} class="max-w-2xl" />
+
+			<div class="mt-8 grid items-start gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)]">
+				{@render shot(
+					'/media/agents/onboard-proposal.png',
+					1372,
+					1978,
+					'The onboarding proposal as text: a table showing 427 alerts on the first run and 353 with the baseline, three findings in named files, the package, path, vocabulary and unlinted front matter, five style choices with their evidence, the CI change, the five errors that remain, and a list of seven options that are not included.',
+					'The proposal an assistant produced for Vale’s own documentation site, before anything was written.'
+				)}
+				<div class="text-sm leading-6 text-foreground/85">
+					<h3 class="font-medium text-foreground">Look, draft, one yes, apply</h3>
+					<ol class="mt-3 list-decimal space-y-3 pl-5">
+						<li>
+							It surveys the repository: where the prose is, translated docs, source code, a written
+							style guide, existing CI.
+						</li>
+						<li>
+							It tries the style packages against your docs in a temp directory and takes the
+							quieter one.
+						</li>
+						<li>
+							It drafts a vocabulary, a decision for each rule that would block, and your style
+							choices, read from how the docs are written today.
+						</li>
+						<li>
+							It shows one proposal: what it found in named files, the before and after counts, and
+							where Vale will run.
+						</li>
+						<li>
+							On a yes, it applies all of it and opens a pull request whose description is the
+							proposal, so the team reviews what you did.
+						</li>
+					</ol>
+					<p class="mt-5">
+						A word list kept for cspell or another spell checker is carried over into the
+						vocabulary. CI starts advisory and looks only at the lines a pull request adds, so the
+						backlog lands on nobody.
+					</p>
+				</div>
+			</div>
+
+			<h3 class="mt-12 font-medium">Everything else is offered, not switched on</h3>
+			<p class="mt-2 max-w-2xl text-sm leading-6 text-foreground/85">
+				The baseline is the smallest useful one: English prose, one package, advisory CI. The rest
+				is listed in the proposal with one fact from your repository, and each is a separate yes.
+			</p>
+			<ul class="mt-5 grid gap-x-8 gap-y-2 text-sm sm:grid-cols-2">
+				{#each options as option (option.name)}
+					<li class="flex gap-2 border-b border-border/60 py-2">
+						<span class="font-medium">{option.name}</span>
+						<span class="text-muted-foreground">{option.detail}</span>
 					</li>
 				{/each}
 			</ul>
-			<p class="mt-5 text-sm leading-relaxed text-muted-foreground">
-				Type <InlineCode>/vale:</InlineCode> and all seven should complete. The
+
+			<div class="mt-12">
+				{@render shot(
+					'/media/agents/preview.png',
+					1438,
+					1434,
+					'Terminal output of the preview script. Microsoft reports 427 alerts and Google 598 on 57 files. For Microsoft it then lists the busiest rules and, for each error-level rule, one real alert with its file and line.',
+					'Behind the proposal is a script that tries each package against your docs and shows a real alert from your own files for every rule that would block. It needs only Vale and writes nothing to the repository.'
+				)}
+			</div>
+		</Section>
+	</div>
+
+	<div id="skills" class="scroll-mt-24">
+		<Section
+			title="{skills.length} skills"
+			lede="Ask in your own words and the assistant reaches for the one that fits, or call it by name. Each checks its prerequisites before touching anything, and one that cannot run Vale says so instead of improvising."
+		>
+			<div class="space-y-10">
+				{#each skillGroups as group (group.title)}
+					<div>
+						<div class="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+							<h3 class="font-medium">{group.title}</h3>
+							<p class="text-sm text-muted-foreground">{group.note}</p>
+						</div>
+						<ul class="mt-4 divide-y divide-border rounded-2xl border border-border bg-card">
+							{#each group.skills as skill (skill.name)}
+								<li
+									id="skill-{skill.name}"
+									class="grid scroll-mt-24 gap-x-6 gap-y-1 px-5 py-4 sm:grid-cols-[10.5rem_1fr]"
+								>
+									<div>
+										<a
+											href={skill.path}
+											target="_blank"
+											rel="noreferrer"
+											class="font-mono text-sm font-semibold hover:text-lime-600 dark:hover:text-lime-400"
+											><span class="text-muted-foreground">/vale:</span>{skill.name}</a
+										>
+										<p class="mt-1 text-xs leading-5 text-muted-foreground">“{skill.ask}”</p>
+									</div>
+									<div>
+										<p class="text-sm leading-relaxed">{skill.summary}</p>
+										<p class="mt-1 text-sm leading-relaxed text-muted-foreground">{skill.guard}</p>
+									</div>
+								</li>
+							{/each}
+						</ul>
+					</div>
+				{/each}
+			</div>
+
+			<h3 class="mt-14 font-medium">A style guide, in both directions</h3>
+			<div class="mt-4 grid gap-8 text-sm leading-6 text-foreground/85 sm:grid-cols-2">
+				<p>
+					<span class="font-medium text-foreground">From a guide to rules.</span>
+					<InlineCode>/vale:from-guide</InlineCode> reads your written guide and sorts every statement:
+					already covered by a package, a rule to write, a vocabulary entry, or not checkable. Each new
+					rule links to its section and takes its tests from the guide’s own do and don’t examples. “Be
+					warm” is reported as needing a person, not approximated.
+				</p>
+				<p>
+					<span class="font-medium text-foreground">From rules to a guide.</span>
+					<InlineCode>/vale:write-guide</InlineCode> writes the page a new contributor can read: what
+					blocks a merge, the style choices and why, the words you use. The rule table is read from the
+					configuration by a script and sits between markers, so it can be regenerated without touching
+					the prose.
+				</p>
+			</div>
+
+			<div class="mt-12 grid items-start gap-8 lg:grid-cols-2">
+				{@render shot(
+					'/media/agents/doctor.png',
+					1892,
+					598,
+					'Terminal output of the doctor script: nine checks, two marked FAIL because the Microsoft style named in the configuration is not on disk, with "vale sync" given as the fix.',
+					'/vale:doctor on a fresh clone where the styles were never synced, the most common reason Vale “stops working”.'
+				)}
+				{@render shot(
+					'/media/agents/commits.png',
+					1778,
+					682,
+					'Terminal output of the history script: of the last 20 commits, 19 fail Conventional Commits and 3 fail the "seven rules", so it names SevenRules as the closest convention.',
+					'/vale:commits scoring a repository’s own history before suggesting a convention.'
+				)}
+			</div>
+
+			<p class="mt-8 text-sm leading-relaxed text-muted-foreground">
+				Type <InlineCode>/vale:</InlineCode> and all {skills.length} should complete. The
 				<a
 					href="/skills"
 					class="font-medium text-foreground underline decoration-lime-500/40 underline-offset-4"
@@ -172,17 +366,29 @@
 
 	<div id="hook" class="scroll-mt-24">
 		<Section
-			title="The edit hook"
-			lede="It runs when the assistant writes or edits a file, not when you do. If the file is prose and has a Vale configuration above it, the hook lints that one file and returns the alerts in the same turn."
+			title="The hooks"
+			lede="Two checks that run on the assistant’s work, not yours: one when it writes a file, one when it makes a commit. Both are silent unless there is something to fix."
 		>
-			<CodeBlock html={data.html.alert} />
+			{@render shot(
+				'/media/agents/hook.svg',
+				812,
+				763,
+				'A Claude Code session. Asked to add a line about disk space to docs/install.md, the assistant makes the edit, says the Vale hook flagged the existing word whitelist on line 4, and makes a second edit replacing it with allowlist.',
+				'A real session. The request was one line about disk space; the edit hook reported a house-style error already in the file, and the assistant fixed it in the same turn.'
+			)}
+			<p class="mt-8 text-sm leading-6 text-foreground/85">
+				What the edit hook hands back, word for word:
+			</p>
+			<CodeBlock html={data.html.alert} class="mt-3" />
+
 			<div class="mt-8 grid gap-8 sm:grid-cols-2">
 				<div>
 					<h3 class="font-medium">Silent unless there is something to fix</h3>
 					<p class="mt-2 text-sm leading-6 text-foreground/85">
-						No Vale binary, no configuration, a file that is not prose, or a clean run: the hook
-						says nothing. Prose means Markdown, MDX, AsciiDoc, reStructuredText, Org, Quarto, MyST,
-						Typst, and plain text. Source files are left alone.
+						No Vale binary, no configuration, a file Vale does not lint, or a clean run: the hook
+						says nothing. It covers Markdown, MDX, AsciiDoc, reStructuredText, Org, and plain text,
+						and source files too when your configuration has a section for them, so a typo in a doc
+						comment is caught the same way.
 					</p>
 				</div>
 				<div>
@@ -231,27 +437,78 @@
 			</p>
 			<CodeBlock html={data.html.level} code={data.code.level} class="mt-3 max-w-2xl" />
 
+			<h3 id="commit-hook" class="mt-12 scroll-mt-24 font-medium">Commit messages</h3>
+			<div class="mt-2 grid items-start gap-8 sm:grid-cols-2">
+				<p class="text-sm leading-6 text-foreground/85">
+					The second hook runs after the assistant makes a commit. If your configuration has a
+					<InlineCode>[COMMIT_EDITMSG]</InlineCode> section, it lints the message git just recorded and
+					hands back any error-level alerts, with the instruction to amend if the commit has not been
+					pushed. A project’s own commit-msg hook is installed per clone, and an assistant’s checkout
+					usually has not run that setup; this gives its commits the same check. Without the section
+					it does nothing. <InlineCode>/vale:commits</InlineCode> writes it.
+				</p>
+				<CodeBlock html={data.html.commits} />
+			</div>
+
 			<h3 class="mt-12 font-medium">Nothing happened</h3>
 			<p class="mt-2 max-w-2xl text-sm leading-6 text-foreground/85">
-				That is often correct. Check the setup by hand; no error lines means the hook has nothing to
-				say.
+				That is often correct. Ask for <InlineCode>/vale:doctor</InlineCode>, or check by hand; no
+				error lines means the hook has nothing to say.
 			</p>
 			<CodeBlock html={data.html.check} code={data.code.check} class="mt-3 max-w-2xl" />
+		</Section>
+	</div>
+
+	<div id="plugins" class="scroll-mt-24">
+		<Section
+			title="More plugins"
+			lede="Three more plugins come from the same marketplace. Each is experimental and installs on its own, beside the main one."
+		>
+			<div class="space-y-10">
+				{#each plugins as plugin (plugin.id)}
+					<div
+						id={plugin.id}
+						class="grid scroll-mt-24 items-start gap-x-8 gap-y-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,0.8fr)]"
+					>
+						<div>
+							<h3 class="font-medium">
+								{plugin.title}
+								<span class="ml-2 font-mono text-xs font-normal text-muted-foreground"
+									>{plugin.id}</span
+								>
+							</h3>
+							<p class="mt-2 text-sm leading-6 text-foreground/85">{plugin.body}</p>
+							<p class="mt-2 text-sm leading-6 text-muted-foreground">{plugin.note}</p>
+						</div>
+						<CodeBlock html={data.html[plugin.snippet]} code={data.code[plugin.snippet]} />
+					</div>
+				{/each}
+			</div>
+
+			<div class="mt-12">
+				{@render shot(
+					'/media/agents/lint-tool.png',
+					1804,
+					640,
+					'What the lint tool returns for one sentence: six alerts, each with its position, severity, rule and message, and for four of them the exact replacement to make.',
+					'What the lint tool returns for one sentence: each alert with its position, level, rule, and message, and the replacement where the rule carries one.'
+				)}
+			</div>
 		</Section>
 	</div>
 
 	<div id="mcp" class="scroll-mt-24">
 		<Section
 			title="The MCP server"
-			lede="Ask an assistant for a Vale rule and it writes plausible YAML. Whether it compiles, whether the pattern matches anything, whether the configuration still loads: it has no way to find out. The MCP server gives it the engine to ask."
+			lede="The skills test a rule the way anyone can, with vale test and cases kept beside it. The MCP server goes further than a pass or a fail, by handing the assistant the engine itself."
 		>
 			<div class="grid items-start gap-8 sm:grid-cols-2">
 				<div class="text-sm leading-6 text-foreground/85">
 					<p>
-						<InlineCode>scaffold_rule</InlineCode> starts from something valid,
-						<InlineCode>diagnose_rule</InlineCode> and <InlineCode>test_rule</InlineCode> say whether
-						it works, <InlineCode>stress_rule</InlineCode> finds the false positives the examples miss,
-						and <InlineCode>diff_rule</InlineCode> shows what an edit changes before it lands.
+						<InlineCode>diagnose_rule</InlineCode> says why a pattern does not match,
+						<InlineCode>stress_rule</InlineCode> finds the false positives the cases miss,
+						<InlineCode>diff_rule</InlineCode> shows what an edit changes in a rule already in use, and
+						<InlineCode>audit_style</InlineCode> reports what a style costs to run.
 					</p>
 					<p class="mt-4">
 						It is hosted by <a
@@ -291,7 +548,7 @@
 		</dl>
 		<p class="mt-5 max-w-2xl text-sm leading-6 text-foreground/85">
 			The pieces are independent: a missing one is quiet and the others keep working. The skills and
-			the hook run the CLI on your machine, against your files.
+			the hooks run the CLI on your machine, against your files.
 		</p>
 	</Section>
 
@@ -302,8 +559,12 @@
 				<InlineCode>skills/</InlineCode> in
 				<ExternalLink href={repo}>vale-cli/agent-tools</ExternalLink> is a plain skills directory. Copy
 				the folders you want to wherever your assistant reads them, such as
-				<InlineCode>.claude/skills/</InlineCode> or <InlineCode>.cursor/skills/</InlineCode>. For
-				one with no skill support, hand it
+				<InlineCode>.claude/skills/</InlineCode> or <InlineCode>.cursor/skills/</InlineCode>. Any
+				coding agent that can run a shell can do the onboarding from one prompt:
+			</p>
+			<CodeBlock html={data.html.clone} code={data.code.clone} class="mt-5 max-w-2xl" />
+			<p class="mt-5 max-w-2xl text-pretty leading-7 text-foreground/85">
+				For one with no skill support, hand it
 				<a
 					href="/AGENTS.md"
 					class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"

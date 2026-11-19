@@ -14,14 +14,14 @@
 			title: 'Skills',
 			cost: 'Free',
 			href: '/agents#skills',
-			body: 'Setup, fixes, triage, vocabularies, ignores, rules, and CI, each run through the CLI in your repository.'
+			body: 'One-prompt onboarding, style choices, rules from your style guide, fixes, CI, and commit messages, each run through the CLI in your repository.'
 		},
 		{
 			icon: Zap,
-			title: 'Edit hook',
+			title: 'Hooks',
 			cost: 'Free',
 			href: '/agents#hook',
-			body: 'Lints each prose file as the assistant writes it and hands the alerts back in the same turn.'
+			body: 'Lint each file the assistant writes and each commit it makes, and hand the alerts back in the same turn.'
 		},
 		{
 			icon: Server,
@@ -43,13 +43,15 @@
 >
 	<div class="grid items-start gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-12">
 		<!--
-			The hook's own wording, from a real run. A clean file gets no output
-			at all, which is why the last line is a note and not a check mark.
+			The hook's own wording, from the run pictured on /agents. A clean file
+			gets no output at all, which is why the last line is a note and not a
+			check mark.
 		-->
 		<div
 			class="overflow-hidden rounded-2xl border font-mono text-[13px] leading-[1.75]"
 			style="background:#16180f; border-color:#2a2e1f; color:#d7d6c8"
-			aria-hidden="true"
+			role="img"
+			aria-label="The edit hook at work: the assistant edits docs/install.md, Vale reports a House.Terms error on line 4, use allowlist instead of whitelist, the assistant edits the file again, and the hook has nothing left to report."
 		>
 			<div
 				class="border-b px-4 py-2 text-[11px]"
@@ -63,7 +65,7 @@
 					Vale reports 1 alert(s) at error level or above in this file:
 				</div>
 				<div class="text-[#f0745a]">
-					&nbsp;&nbsp;line 11: Vale.Spelling [error] — Did you really mean 'Teh'?
+					&nbsp;&nbsp;line 4: House.Terms [error] — Use 'allowlist' instead of 'whitelist'.
 				</div>
 				<div class="mt-2"><span class="text-lime-400">assistant</span> › Edit docs/install.md</div>
 				<div style="color:#6c7059">&nbsp;&nbsp;↳ no output: nothing left to fix</div>

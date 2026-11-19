@@ -46,21 +46,27 @@ An assistant can install Vale, write a configuration, and fix what it reports. W
 
 For task-shaped work there are [skills](https://vale.sh/skills) to copy in beside it, each a set of instructions an assistant follows when the task comes up:
 
-| Skill    | What it does                                                                                                           |
-| -------- | ---------------------------------------------------------------------------------------------------------------------- |
-| `setup`  | Install Vale, write a `.vale.ini`, sync the styles, and get a first run in a repository that has none.                  |
-| `fix`    | Run Vale, fix the error-level alerts, and open a pull request per file. Warnings and suggestions are left for a person. |
-| `triage` | Turn a large first run into a decision per rule: fix, downgrade, or switch off.                                        |
-| `vocab`  | Add a project's terms to a vocabulary so spell check accepts them.                                                     |
-| `ignore` | Take text that isn't prose, such as shortcodes and templating tags, out of Vale's view without switching a rule off.   |
-| `rule`   | Write a rule for a house convention, with test cases, and prove it with `vale test`.                                   |
-| `ci`     | Run Vale in GitHub Actions, a pre-commit hook, or another runner, failing the build on errors.                         |
+| Skill         | What it does                                                                                                              |
+| ------------- | ------------------------------------------------------------------------------------------------------------------------- |
+| `onboard`     | Take a repository from no Vale to a reviewed baseline in one pass: configuration, vocabulary, a decision per rule, and CI. |
+| `setup`       | Install Vale, write a `.vale.ini`, sync the styles, and get a first run in a repository that has none.                     |
+| `doctor`      | Check a setup end to end and give the command that fixes each broken part.                                                |
+| `tune`        | Change one style choice in plain words, such as heading case, contractions, or preferred terms.                           |
+| `from-guide`  | Turn a written style guide into rules, each tested against the guide's own examples.                                      |
+| `rule`        | Write one rule for a house convention, with test cases, and prove it with `vale test`.                                    |
+| `write-guide` | Write a readable style guide from the configuration.                                                                      |
+| `vocab`       | Add a project's terms to a vocabulary, and set up a regional or other-language dictionary.                                |
+| `triage`      | Turn a large first run into a decision per rule: fix, keep, downgrade, or switch off.                                     |
+| `ignore`      | Take text that isn't prose, such as shortcodes and templating tags, out of Vale's view without switching a rule off.      |
+| `fix`         | Run Vale, fix the error-level alerts, and open a pull request per file. Warnings and suggestions are left for a person.   |
+| `ci`          | Run Vale in GitHub Actions, a pre-commit hook, or another runner.                                                         |
+| `commits`     | Lint commit messages against the convention the history already follows.                                                  |
 
 The skills run the CLI you installed and need no account.
 
 ### [Claude Code](agents.md#claude-code)
 
-In Claude Code, the skills, an edit-time hook, and the Vale CMS MCP server install together as one plugin, [agent tools](https://vale.sh/agents):
+In Claude Code, the skills, two hooks, and the Vale CMS MCP server install together as one plugin, [agent tools](https://vale.sh/agents):
 
 ```
 /plugin marketplace add vale-cli/agent-tools
@@ -68,5 +74,9 @@ In Claude Code, the skills, an edit-time hook, and the Vale CMS MCP server insta
 ```
 
 The hook lints each prose file as the assistant writes it and hands back the alerts, so a mistake is fixed in the same turn it was made. By default it hands back errors only, since a project's warnings and suggestions are advisory by its own choice; the plugin's `level` setting widens that to `warning` or `suggestion` for a style whose rules are deliberately advisory, which is what a voice is.
+
+A second hook lints each commit message the assistant writes, in a repository whose configuration has a `[COMMIT_EDITMSG]` section.
+
+[Agent setup](agent-setup.md) walks through every skill, the hooks, and the experimental plugins that come from the same marketplace.
 
 The MCP server is the one paid piece. It belongs to [Vale CMS](https://vale.sh/cms) and gives an assistant the engine itself to check a rule against, rather than the docs about it. See [MCP](mcp.md).

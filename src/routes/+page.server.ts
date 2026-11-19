@@ -1,6 +1,7 @@
 import { highlightAll } from '$lib/server/highlight';
 import { getStats } from '$lib/server/stats';
 import { listPosts } from '$lib/posts';
+import { adopterBand } from '$lib/server/adopter-band';
 import type { PageServerLoad } from './$types';
 
 // The page is prerendered, so this runs once per build.
@@ -71,5 +72,11 @@ swap:
 	]);
 	// The three newest posts; the blog index has the rest.
 	const posts = listPosts();
-	return { stats, snippets, posts: posts.slice(0, 3), postCount: posts.length };
+	return {
+		stats,
+		snippets,
+		band: adopterBand(),
+		posts: posts.slice(0, 3),
+		postCount: posts.length
+	};
 };
