@@ -2246,6 +2246,13 @@
 		"avatar": "/users/avatars/saucelabs.png"
 	},
 	{
+		"name": "seedcord",
+		"category": "Developer tools",
+		"context": "Keeps LLMisms out of its docs, guide, and code comments, and holds them to plain English that readers at any level can follow.",
+		"url": "https://github.com/seedcord/seedcord/blob/HEAD/.vale.ini",
+		"github": "seedcord"
+	},
+	{
 		"name": "Semaphore UI",
 		"category": "Developer tools",
 		"context": "Lints its docs with Vale's built-in style.",
