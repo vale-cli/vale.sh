@@ -12,6 +12,7 @@
 	import { count, duration, maskMarkdown, sentences, stripMarkdownSyntax } from '$lib/tools/text';
 	import { audience, consensus, score } from '$lib/tools/readability';
 	import { convert } from '$lib/tools/titlecase';
+	import { code, writing } from '$lib/tools/cases';
 	import { createDetector, type Detector, type PackageData } from '$lib/tools/aitells';
 
 	let { data } = $props();
@@ -19,7 +20,7 @@
 
 	const title = 'Free Writing Tools: AI Detector, Word Counter, Readability Checker';
 	const description =
-		'Free writing tools that run in your browser: an AI writing detector, word counter, readability checker, and title case converter. No sign-up.';
+		'Free writing tools that run in your browser: an AI writing detector, word and character counters, a readability checker, case converters, and reading and speech time calculators. No sign-up.';
 	const url = 'https://vale.sh/tools';
 
 	const jsonLd = $derived(
@@ -101,7 +102,11 @@ We rewrote ours last quarter. Sign-ups that finished setup went from 41% to 63%,
 					: 'Needs a few more sentences',
 			'ai-detector':
 				tells === null ? 'Checking…' : tells ? plural(tells, 'tell') + ' found' : 'No usual tells',
-			'title-case-converter': headline
+			'title-case-converter': headline,
+			'character-counter': `${plural(counts.characters, 'character')} · ${counts.charactersNoSpaces.toLocaleString('en-US')} without spaces`,
+			'reading-time-calculator': `${Math.max(1, Math.ceil(counts.words / 238))} min read`,
+			'speech-time-calculator': `${duration(counts.words, 130)} to say`,
+			'case-converter': headline ? cases[3].apply(headline) : ''
 		};
 	});
 
@@ -112,6 +117,7 @@ We rewrote ours last quarter. Sign-ups that finished setup went from 41% to 63%,
 	const grade = $derived(has && counts.sentences >= 2 ? Math.max(0, consensus(score(counts))) : 8);
 	const marker = $derived(Math.min(100, (grade / 18) * 100));
 
+	const cases = [...writing.slice(0, 2), ...code.slice(0, 3)];
 	const voices = ['Direct', 'Human', 'Simple', 'Coach', 'Claude', 'Gen Z'];
 	// Guides down, topics across: which guides have a rule on which topic.
 	const matrix = [
@@ -276,6 +282,45 @@ We rewrote ours last quarter. Sign-ups that finished setup went from 41% to 63%,
 							<p class="mt-1.5 truncate text-lg font-medium">
 								{mounted && headline ? headline : 'A Short Guide to Writing for the Web'}
 							</p>
+						{:else if t.slug === 'character-counter'}
+							<div class="flex items-end gap-5">
+								<div>
+									<div class="text-4xl font-medium tabular-nums tracking-tight">
+										{mounted ? counts.characters.toLocaleString('en-US') : 0}
+									</div>
+									<div class="text-xs text-muted-foreground">characters</div>
+								</div>
+								<div class="min-w-0 flex-1 pb-1.5">
+									<div class="h-1.5 overflow-hidden rounded-full bg-muted">
+										<div
+											class="h-full rounded-full {mounted && counts.characters > 280
+												? 'bg-amber-500'
+												: 'bg-lime-500'}"
+											style="width: {mounted ? Math.min(100, (counts.characters / 280) * 100) : 0}%"
+										></div>
+									</div>
+									<div class="mt-1.5 text-xs text-muted-foreground">of 280 in a post</div>
+								</div>
+							</div>
+						{:else if t.slug === 'reading-time-calculator' || t.slug === 'speech-time-calculator'}
+							{@const wpm = t.slug === 'reading-time-calculator' ? 238 : 130}
+							<div class="text-3xl font-medium tabular-nums tracking-tight">
+								{mounted && has ? duration(counts.words, wpm) : duration(650, wpm)}
+							</div>
+							<div class="mt-1 text-xs text-muted-foreground">
+								{mounted && has ? counts.words.toLocaleString('en-US') : 650} words at {wpm} a minute
+							</div>
+						{:else if t.slug === 'case-converter'}
+							<div class="flex flex-wrap gap-1.5">
+								{#each cases as c (c.id)}
+									<span
+										class="rounded-md border border-border bg-card px-2 py-0.5 text-xs text-foreground/80 {c.id ===
+											'title' || c.id === 'sentence'
+											? ''
+											: 'font-mono'}">{c.name}</span
+									>
+								{/each}
+							</div>
 						{:else if t.slug === 'voice-checker'}
 							<div class="flex flex-wrap gap-1.5">
 								{#each voices as v, i (v)}

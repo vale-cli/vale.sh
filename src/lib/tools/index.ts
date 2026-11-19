@@ -3,6 +3,10 @@ import Hash from 'lucide-svelte/icons/hash';
 import BookOpenCheck from 'lucide-svelte/icons/book-open-check';
 import CaseSensitive from 'lucide-svelte/icons/case-sensitive';
 import Speech from 'lucide-svelte/icons/speech';
+import LetterText from 'lucide-svelte/icons/letter-text';
+import Timer from 'lucide-svelte/icons/timer';
+import MicVocal from 'lucide-svelte/icons/mic-vocal';
+import ALargeSmall from 'lucide-svelte/icons/a-large-small';
 
 /**
  * The pages under /tools.
@@ -36,6 +40,16 @@ export const tools = [
 		blurb: 'Words, characters, sentences, reading time, and keyword density as you type.'
 	},
 	{
+		slug: 'character-counter',
+		icon: LetterText,
+		name: 'Character Counter',
+		title: 'Character Counter',
+		metaTitle: 'Character Counter: With and Without Spaces, Against Every Limit',
+		description:
+			'Count characters with and without spaces as you type, and see what is left before the limit of a title tag, meta description, text message, or post. Free and private.',
+		blurb: 'Characters with and without spaces, against the limits of posts, titles, and texts.'
+	},
+	{
 		slug: 'readability-checker',
 		icon: BookOpenCheck,
 		name: 'Readability Checker',
@@ -54,6 +68,36 @@ export const tools = [
 		description:
 			'Convert headlines to title case in AP, APA, Chicago, or MLA style, or to sentence case. See how the styles differ on the same title. Free and instant.',
 		blurb: 'AP, APA, Chicago, MLA, and sentence case, side by side on the same headline.'
+	},
+	{
+		slug: 'case-converter',
+		icon: ALargeSmall,
+		name: 'Case Converter',
+		title: 'Case Converter',
+		metaTitle: 'Case Converter: Uppercase, Lowercase, Sentence, camelCase, and snake_case',
+		description:
+			'Convert text to uppercase, lowercase, sentence case, or title case, and names to camelCase, snake_case, or kebab-case. Fix caps lock in one paste. Free and instant.',
+		blurb: 'Sentence, title, upper, and lower case, and camelCase, snake_case, and kebab-case.'
+	},
+	{
+		slug: 'reading-time-calculator',
+		icon: Timer,
+		name: 'Reading Time Calculator',
+		title: 'Reading Time Calculator',
+		metaTitle: 'Reading Time Calculator: How Long Does It Take to Read?',
+		description:
+			'Paste a text, drop a Word or PDF file, or enter a word count to see how long it takes to read, at the average reading speed or your own. Free, no sign-up.',
+		blurb: 'How long a text takes to read, at the average speed or your own.'
+	},
+	{
+		slug: 'speech-time-calculator',
+		icon: MicVocal,
+		name: 'Speech Time Calculator',
+		title: 'Speech Time Calculator',
+		metaTitle: 'Speech Time Calculator: Convert Words to Minutes',
+		description:
+			'Paste a speech or enter a word count to see how long it takes to say, and how many words fit a 5, 10, or 20-minute slot at your pace. Free, no sign-up.',
+		blurb: 'How long a speech takes to say, and how many words fit your time limit.'
 	},
 	{
 		slug: 'voice-checker',
