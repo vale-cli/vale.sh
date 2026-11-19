@@ -147,8 +147,8 @@ So count early. It is easier to write to a length than to cut down to one.`;
 
 	<div class="mt-8 grid gap-6 md:grid-cols-2">
 		<section class="rounded-xl border border-border bg-card p-5">
-			<div class="flex items-center justify-between gap-3">
-				<h2 class="font-medium">Keyword density</h2>
+			<div class="flex flex-wrap items-center justify-between gap-3">
+				<h2 class="whitespace-nowrap font-medium">Keyword density</h2>
 				<div
 					class="flex rounded-md border border-border text-xs"
 					role="group"
@@ -159,7 +159,8 @@ So count early. It is easier to write to a length than to cut down to one.`;
 							type="button"
 							onclick={() => (gram = n)}
 							aria-pressed={gram === n}
-							class="px-2.5 py-1 transition-colors first:rounded-l-md last:rounded-r-md {gram === n
+							class="whitespace-nowrap px-2.5 py-1 transition-colors first:rounded-l-md last:rounded-r-md max-sm:px-3 max-sm:py-2 {gram ===
+							n
 								? 'bg-lime-500/15 font-medium text-foreground'
 								: 'text-muted-foreground hover:text-foreground'}"
 						>

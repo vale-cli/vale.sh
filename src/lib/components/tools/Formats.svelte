@@ -28,23 +28,30 @@
 	Drag a file onto the editor, or choose <strong>Open</strong>. The file is read in your browser, so
 	it is never uploaded. Files up to 25 MB are accepted.
 </p>
+<!-- On a phone each format is a stacked block; a three-column table doesn't fit. -->
 <div class="mt-5 overflow-x-auto rounded-xl border border-border">
-	<table class="w-full text-left text-sm">
-		<thead class="border-b border-border bg-muted/40 text-xs text-muted-foreground">
+	<table class="w-full text-left text-sm max-sm:block">
+		<thead class="border-b border-border bg-muted/40 text-xs text-muted-foreground max-sm:hidden">
 			<tr>
 				<th scope="col" class="px-4 py-2.5 font-medium">Format</th>
 				<th scope="col" class="px-4 py-2.5 font-medium">Files</th>
 				<th scope="col" class="px-4 py-2.5 font-medium">What is read</th>
 			</tr>
 		</thead>
-		<tbody class="divide-y divide-border">
+		<tbody class="divide-y divide-border max-sm:block">
 			{#each formats as f (f.id)}
-				<tr>
-					<th scope="row" class="whitespace-nowrap px-4 py-2.5 font-medium">{f.name}</th>
-					<td class="whitespace-nowrap px-4 py-2.5 font-mono text-xs text-muted-foreground">
+				<tr class="max-sm:block max-sm:px-4 max-sm:py-3">
+					<th scope="row" class="font-medium max-sm:block sm:whitespace-nowrap sm:px-4 sm:py-2.5">
+						{f.name}
+					</th>
+					<td
+						class="font-mono text-xs text-muted-foreground max-sm:mt-0.5 max-sm:block sm:whitespace-nowrap sm:px-4 sm:py-2.5"
+					>
 						{f.extensions.map((e) => `.${e}`).join(' ')}
 					</td>
-					<td class="px-4 py-2.5 text-foreground/85">{kept[f.id]}</td>
+					<td class="text-foreground/85 max-sm:mt-1.5 max-sm:block sm:px-4 sm:py-2.5"
+						>{kept[f.id]}</td
+					>
 				</tr>
 			{/each}
 		</tbody>

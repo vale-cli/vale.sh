@@ -72,7 +72,7 @@
 					onclick={() => toggle(c.id)}
 					aria-pressed={!off}
 					aria-label="{off ? 'Show' : 'Hide'} {c.label.toLowerCase()} highlights"
-					class="flex w-9 shrink-0 items-center justify-center border-l border-border/60 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+					class="flex w-11 shrink-0 items-center justify-center border-l border-border/60 text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring sm:w-9"
 				>
 					{#if off}
 						<EyeOff class="h-3.5 w-3.5" aria-hidden="true" />

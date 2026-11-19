@@ -258,10 +258,17 @@ Most style guides ask for a grade level of eight or below. That is not because r
 						<th scope="row" class="px-4 py-2.5 font-normal">
 							<a href="#{s.formula.id}" class="hover:underline">{s.formula.name}</a>
 						</th>
-						<td class="px-4 py-2.5 text-right font-medium tabular-nums">
+						<!-- The result column is hidden on a phone, so the score carries it. -->
+						<td
+							class="px-4 py-2.5 text-right font-medium tabular-nums {empty
+								? ''
+								: s.over
+									? 'max-sm:text-amber-700 max-sm:dark:text-amber-400'
+									: 'max-sm:text-lime-700 max-sm:dark:text-lime-400'}"
+						>
 							{empty ? '–' : show(s.value)}
 						</td>
-						<td class="px-4 py-2.5 text-muted-foreground">{s.formula.target}</td>
+						<td class="whitespace-nowrap px-4 py-2.5 text-muted-foreground">{s.formula.target}</td>
 						<td class="hidden px-4 py-2.5 sm:table-cell">
 							{#if !empty}
 								<span

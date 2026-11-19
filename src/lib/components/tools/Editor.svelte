@@ -392,7 +392,7 @@
 	}
 
 	const button =
-		'inline-flex items-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium text-foreground/80 transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-40';
+		'inline-flex items-center justify-center gap-1.5 rounded-md px-2.5 py-1.5 text-xs font-medium text-foreground/80 max-sm:h-10 max-sm:w-10 max-sm:p-0 transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-40';
 </script>
 
 <div
@@ -409,8 +409,10 @@
 		void open(e.dataTransfer?.files[0]);
 	}}
 >
-	<div class="flex items-center justify-between gap-2 border-b border-border/70 px-3 py-2">
-		<span class="pl-1.5 text-xs font-medium text-muted-foreground">{label}</span>
+	<div
+		class="flex items-center justify-between gap-2 border-b border-border/70 px-2 py-1 sm:px-3 sm:py-2"
+	>
+		<span class="pl-2.5 text-xs font-medium text-muted-foreground sm:pl-1.5">{label}</span>
 		<div class="flex items-center gap-0.5">
 			<input
 				bind:this={picker}
@@ -423,25 +425,25 @@
 				}}
 			/>
 			<button type="button" class={button} onclick={() => picker.click()} aria-label="Open a file">
-				<FileUp class="h-3.5 w-3.5" aria-hidden="true" />
+				<FileUp class="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 				<span class="hidden sm:inline">Open</span>
 			</button>
 			{#if canPaste}
 				<button type="button" class={button} onclick={paste} aria-label="Paste">
-					<ClipboardPaste class="h-3.5 w-3.5" aria-hidden="true" />
+					<ClipboardPaste class="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 					<span class="hidden sm:inline">Paste</span>
 				</button>
 			{/if}
 			<button type="button" class={button} onclick={() => (value = sample)} aria-label="Sample">
-				<TextQuote class="h-3.5 w-3.5" aria-hidden="true" />
+				<TextQuote class="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 				<span class="hidden sm:inline">Sample</span>
 			</button>
 			<button type="button" class={button} onclick={copy} disabled={!value} aria-label="Copy">
 				{#if copied}
-					<Check class="h-3.5 w-3.5 text-lime-600" aria-hidden="true" />
+					<Check class="h-4 w-4 text-lime-600 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 					<span class="hidden sm:inline">Copied</span>
 				{:else}
-					<Copy class="h-3.5 w-3.5" aria-hidden="true" />
+					<Copy class="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 					<span class="hidden sm:inline">Copy</span>
 				{/if}
 			</button>
@@ -452,7 +454,7 @@
 				disabled={!value}
 				aria-label="Clear"
 			>
-				<Eraser class="h-3.5 w-3.5" aria-hidden="true" />
+				<Eraser class="h-4 w-4 sm:h-3.5 sm:w-3.5" aria-hidden="true" />
 				<span class="hidden sm:inline">Clear</span>
 			</button>
 		</div>
@@ -498,16 +500,16 @@
 					>
 					to paste, or just start typing
 				</p>
-				<p class="pointer-events-auto text-xs text-muted-foreground">
+				<p class="pointer-events-auto text-sm text-muted-foreground sm:text-xs">
 					<button
 						type="button"
-						class="underline underline-offset-2 hover:text-foreground"
+						class="py-2 underline underline-offset-2 hover:text-foreground"
 						onclick={() => (value = sample)}>Try a sample</button
 					>
 					·
 					<button
 						type="button"
-						class="underline underline-offset-2 hover:text-foreground"
+						class="py-2 underline underline-offset-2 hover:text-foreground"
 						onclick={() => picker.click()}>open a file</button
 					>
 				</p>
@@ -714,6 +716,31 @@
 	}
 	:global(.vt-card button:hover) {
 		filter: brightness(1.06);
+	}
+	/* A phone: less padding, a shorter empty editor, a fix button to tap. */
+	@media (max-width: 639px) {
+		.vt-shell,
+		.vt-editor :global(.cm-scroller) {
+			min-height: min(var(--vt-min), 16rem);
+		}
+		/* A long paste scrolls in place, so the result stays a swipe away. */
+		.vt-editor :global(.cm-scroller) {
+			max-height: 70svh;
+		}
+		/* Keeps the card off the screen's edge. */
+		.vt-editor :global(.cm-tooltip) {
+			padding: 0 0.75rem;
+		}
+		.vt-shell,
+		.vt-editor :global(.cm-content) {
+			padding: 1rem 1.125rem;
+		}
+	}
+	@media (pointer: coarse) {
+		:global(.vt-card button) {
+			padding: 0.5rem 0.9rem;
+			font-size: 0.8125rem;
+		}
 	}
 	@keyframes vt-in {
 		from {
