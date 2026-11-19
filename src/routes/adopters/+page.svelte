@@ -9,6 +9,7 @@
 	import Figures from '$lib/components/adopters/Figures.svelte';
 	import AdoptionCurve from '$lib/components/adopters/AdoptionCurve.svelte';
 	import SectorBands from '$lib/components/adopters/SectorBands.svelte';
+	import UsageChart from '$lib/components/adopters/UsageChart.svelte';
 	import AddYourTeam from '$lib/components/adopters/AddYourTeam.svelte';
 
 	let { data }: { data: PageData } = $props();
@@ -17,6 +18,15 @@
 
 	// Owned here so the sector bands and the directory's chips move together.
 	let category = $state('All');
+
+	// The directory's "how it's used" chips, owned here so a bar in the usage
+	// chart can turn one on and send the reader to the teams behind it.
+	let facets = $state<string[]>([]);
+	function showFacet(id: string) {
+		category = 'All';
+		facets = [id];
+		document.getElementById('adopters')?.scrollIntoView({ behavior: 'smooth' });
+	}
 
 	const description = `${total} teams across ${sectors.length} sectors run Vale, each entry linking to a public .vale.ini, style package, or write-up.`;
 </script>
@@ -61,6 +71,15 @@
 	</div>
 </Section>
 
-<AdopterExplorer bind:activeCategory={category} studied={data.studied} />
+{#snippet usageLede()}
+	Counted from each team's public repository and config, with the same tests the directory filters
+	by. Pick a bar to see the teams behind it.
+{/snippet}
+
+<Section id="usage" eyebrow="In practice" title="What teams actually run" lede={usageLede}>
+	<UsageChart onpick={showFacet} />
+</Section>
+
+<AdopterExplorer bind:activeCategory={category} bind:facets studied={data.studied} />
 
 <AddYourTeam />

@@ -66,6 +66,13 @@
 	},
 	{
 		"type": "newsletter",
+		"title": "Write the Docs Newsletter – December 2020",
+		"outlet": "Write the Docs",
+		"year": 2020,
+		"url": "https://www.writethedocs.org/blog/newsletter-december-2020/"
+	},
+	{
+		"type": "newsletter",
 		"title": "Vale: A Customizable Syntax-Aware Linter for Natural Language / Prose",
 		"outlet": "Golang Weekly #394",
 		"year": 2022,
@@ -87,6 +94,13 @@
 	},
 	{
 		"type": "newsletter",
+		"title": "Vale 3.1 – A linter for natural language/prose.",
+		"outlet": "Golang Weekly",
+		"year": 2024,
+		"url": "https://golangweekly.com/issues/496"
+	},
+	{
+		"type": "newsletter",
 		"title": "Vale 3.3: A linter for natural language/prose",
 		"outlet": "Golang Weekly #499",
 		"year": 2024,
@@ -98,6 +112,13 @@
 		"outlet": "Golang Weekly #510",
 		"year": 2024,
 		"url": "https://golangweekly.com/issues/510"
+	},
+	{
+		"type": "newsletter",
+		"title": "Vale 3.13 – CLI tool for code-like linting of prose/natural language.",
+		"outlet": "Golang Weekly",
+		"year": 2025,
+		"url": "https://golangweekly.com/issues/576"
 	},
 	{
 		"type": "article",

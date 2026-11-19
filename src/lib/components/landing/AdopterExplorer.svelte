@@ -2,6 +2,7 @@
 	import adopters from '$lib/data/adopters.json';
 	import { sectors } from '$lib/data/sectors';
 	import { usageGroups, usageOf, facetLabel, linksOf } from '$lib/data/usage';
+	import { slugOf } from '$lib/data/adopter-slug';
 	import BrandIcon from './BrandIcon.svelte';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import Search from 'lucide-svelte/icons/search';
@@ -32,9 +33,12 @@
 	*/
 	let {
 		activeCategory = $bindable('All'),
+		facets = $bindable([]),
 		studied = {}
 	}: {
 		activeCategory?: string;
+		/** The "how it's used" chips that are on. Bindable, so the usage chart can set one. */
+		facets?: string[];
 		/** Adopter name -> post slug, for the teams with a case study. */
 		studied?: Record<string, string>;
 	} = $props();
@@ -48,7 +52,6 @@
 		plus "Google style" means both, and each chip's count says how many of
 		the teams already in view it would leave.
 	*/
-	let facets = $state<string[]>([]);
 	const toggleFacet = (id: string) => {
 		facets = facets.includes(id) ? facets.filter((f) => f !== id) : [...facets, id];
 	};
@@ -363,6 +366,12 @@
 									{/each}
 								</ul>
 							{/if}
+							<a
+								href="/adopters/{slugOf(user.name)}"
+								class="mt-3 inline-flex items-center gap-1 self-start text-sm font-medium text-foreground/80 underline decoration-lime-500/40 underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500"
+							>
+								How {user.name} runs it
+							</a>
 							{#if links.length}
 								<ul class="mt-3 flex flex-wrap gap-1.5" aria-label="Files in the repo">
 									{#each links as link (link.url)}

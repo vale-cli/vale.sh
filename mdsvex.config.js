@@ -1,6 +1,7 @@
 import { escapeSvelte } from 'mdsvex';
 import { createHighlighter } from 'shiki';
 import { h } from 'hastscript';
+import GithubSlugger from 'github-slugger';
 import rehypeSlug from 'rehype-slug';
 import { visit } from 'unist-util-visit';
 import {
@@ -216,6 +217,23 @@ const highlighter = await createHighlighter({
 const mdsvexOptions = {
 	extensions: ['.md'],
 	smartypants: { dashes: 'oldschool' },
+	remarkPlugins: [
+		// A page's sections, exported with its frontmatter as
+		// `metadata.headings`, so a table of contents renders on the server.
+		// The slugger sees every heading in order, as rehype-slug does below,
+		// so the ids agree.
+		() => (tree, file) => {
+			const text = (node) => node.value ?? (node.children ?? []).map(text).join('');
+			const slugger = new GithubSlugger();
+			const headings = [];
+			visit(tree, 'heading', (node) => {
+				const title = text(node);
+				const id = slugger.slug(title);
+				if (node.depth === 2) headings.push({ id, title });
+			});
+			file.data.fm = { ...file.data.fm, headings };
+		}
+	],
 	rehypePlugins: [
 		rehypeSlug,
 		// Off-site links open in a new tab; the reader keeps their place in

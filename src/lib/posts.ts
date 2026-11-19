@@ -34,7 +34,11 @@ export type PostMeta = {
 	author?: string;
 	// TAGS keys. A tag the vocabulary doesn't know fails the build.
 	tags?: string[];
+	// The post's h2 sections, added by the remark plugin in mdsvex.config.js.
+	headings?: PostHeading[];
 };
+
+export type PostHeading = { id: string; title: string };
 
 export type Author = { name: string; avatar: string; url: string };
 

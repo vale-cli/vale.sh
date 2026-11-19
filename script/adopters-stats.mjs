@@ -174,7 +174,16 @@ async function graphql(query, attempt = 1) {
 		return graphql(query, attempt + 1);
 	}
 	if (!res.ok) throw new Error(`graphql -> ${res.status}`);
-	const body = await res.json();
+	// A wide batch sometimes arrives cut short, which fails to parse. That is
+	// the transfer, not the query, so it gets the same retry as a 502.
+	let body;
+	try {
+		body = await res.json();
+	} catch (err) {
+		if (attempt >= 4) throw err;
+		await new Promise((r) => setTimeout(r, 2000 * attempt));
+		return graphql(query, attempt + 1);
+	}
 	if (body.errors && !body.data) throw new Error(JSON.stringify(body.errors).slice(0, 300));
 	return body.data;
 }

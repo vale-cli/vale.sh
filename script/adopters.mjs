@@ -125,6 +125,23 @@ for (const [i, a] of adopters.entries()) {
 	}
 }
 
+// Each team has a profile at /adopters/<slug>; two names folding to the same
+// slug would put two teams at one URL. Mirrors src/lib/data/adopter-slug.ts.
+const slugOf = (name) =>
+	name
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+const seenSlugs = new Map();
+for (const a of adopters) {
+	if (!a.name) continue;
+	const slug = slugOf(a.name);
+	if (!slug) fail(a.name, 'name has no letters or digits to build a profile URL from');
+	else if (seenSlugs.has(slug))
+		fail(a.name, `profile URL /adopters/${slug} is already taken by "${seenSlugs.get(slug)}"`);
+	else seenSlugs.set(slug, a.name);
+}
+
 // ----------------------------------------------------------------- sectors
 
 /*

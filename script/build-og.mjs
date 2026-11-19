@@ -183,6 +183,41 @@ function testRun() {
 			['  1 file — 1 passed, 1 failed', C.fg]
 		]
 	];
+	return runLines(lines);
+}
+
+function onboard() {
+	// The proposal an agent shows before it writes anything: errors on the
+	// first run against errors with the baseline, and the one finding left
+	// standing. Mirrors PostBanner.
+	return runLines([
+		[['               errors  warnings', C.muted]],
+		[
+			['First run          ', C.fg],
+			['54', C.rose],
+			['       106', C.muted]
+		],
+		[
+			['With baseline       ', C.fg],
+			['5', C.lime],
+			['        73', C.muted]
+		],
+		[],
+		[
+			['✓ ', C.lime],
+			['12 names accepted, "we" allowed', C.fg]
+		],
+		[
+			['✗ ', C.rose],
+			['"VSCode" → "VS Code"', C.fg],
+			['  creating-plugin.md:16', C.muted]
+		],
+		[['Apply this as a pull request?', C.lime]]
+	]);
+}
+
+// Lines of [text, color] runs, one row each; an empty line is a gap.
+function runLines(lines) {
 	const rowH = PANE.h / lines.length;
 	let out = '';
 	lines.forEach((runs, i) => {
@@ -377,7 +412,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 							? 'vale test'
 							: meta.motif === 'gate'
 								? 'vale docs/'
-								: `vale ${slug}.md`;
+								: meta.motif === 'onboard'
+									? '/vale:onboard'
+									: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -395,7 +432,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 									? testRun()
 									: meta.motif === 'gate'
 										? gate()
-										: sketch(slug);
+										: meta.motif === 'onboard'
+											? onboard()
+											: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines

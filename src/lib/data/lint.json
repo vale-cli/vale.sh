@@ -1,6 +1,6 @@
 {
 	"vale": "master",
-	"generated": "2026-11-12",
+	"generated": "2026-11-19",
 	"posts": {
 		"case-study-epic-lore": {
 			"errors": 0,
@@ -14,7 +14,7 @@
 			"smog": 10.6,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 124
+			"ms": 50
 		},
 		"case-study-gov-uk": {
 			"errors": 0,
@@ -28,7 +28,7 @@
 			"smog": 10.4,
 			"complex": 8,
 			"minutes": 5,
-			"ms": 101
+			"ms": 49
 		},
 		"case-study-pnpm": {
 			"errors": 0,
@@ -42,7 +42,7 @@
 			"smog": 9,
 			"complex": 5,
 			"minutes": 9,
-			"ms": 112
+			"ms": 55
 		},
 		"case-study-rubin-observatory": {
 			"errors": 0,
@@ -56,7 +56,7 @@
 			"smog": 10,
 			"complex": 7,
 			"minutes": 8,
-			"ms": 107
+			"ms": 53
 		},
 		"commits": {
 			"errors": 0,
@@ -70,7 +70,7 @@
 			"smog": 9.5,
 			"complex": 5,
 			"minutes": 6,
-			"ms": 110
+			"ms": 53
 		},
 		"diataxis": {
 			"errors": 0,
@@ -84,7 +84,7 @@
 			"smog": 11,
 			"complex": 8,
 			"minutes": 6,
-			"ms": 109
+			"ms": 58
 		},
 		"journals": {
 			"errors": 0,
@@ -98,7 +98,21 @@
 			"smog": 11.1,
 			"complex": 10,
 			"minutes": 7,
-			"ms": 104
+			"ms": 51
+		},
+		"onboard": {
+			"errors": 0,
+			"warnings": 0,
+			"suggestions": 0,
+			"words": 2222,
+			"sentences": 146,
+			"paragraphs": 45,
+			"grade": 6.6,
+			"ease": 74.6,
+			"smog": 9.5,
+			"complex": 6,
+			"minutes": 11,
+			"ms": 54
 		},
 		"openapi": {
 			"errors": 0,
@@ -112,7 +126,7 @@
 			"smog": 12.1,
 			"complex": 11,
 			"minutes": 3,
-			"ms": 101
+			"ms": 47
 		},
 		"quality-gate": {
 			"errors": 0,
@@ -126,7 +140,7 @@
 			"smog": 10.1,
 			"complex": 6,
 			"minutes": 8,
-			"ms": 104
+			"ms": 51
 		},
 		"spelling": {
 			"errors": 0,
@@ -140,7 +154,7 @@
 			"smog": 9.4,
 			"complex": 6,
 			"minutes": 11,
-			"ms": 110
+			"ms": 57
 		},
 		"std": {
 			"errors": 0,
@@ -154,7 +168,7 @@
 			"smog": 9.7,
 			"complex": 6,
 			"minutes": 5,
-			"ms": 163
+			"ms": 56
 		},
 		"testing-rules": {
 			"errors": 0,
@@ -168,7 +182,7 @@
 			"smog": 8.5,
 			"complex": 5,
 			"minutes": 4,
-			"ms": 99
+			"ms": 48
 		},
 		"voices": {
 			"errors": 0,
@@ -182,7 +196,7 @@
 			"smog": 9.3,
 			"complex": 7,
 			"minutes": 9,
-			"ms": 105
+			"ms": 54
 		}
 	}
 }

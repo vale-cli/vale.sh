@@ -30,6 +30,7 @@
 		// 'spelling': three markup files, prose lit and code dark, one alert each.
 		// 'test': a failing `vale test` case, expected against actual.
 		// 'gate': a rule being written on the left, the alerts it raised on the right.
+		// 'onboard': an agent's setup proposal, errors before and after the baseline.
 		motif?: string;
 		alt?: string;
 		class?: string;
@@ -178,6 +179,35 @@
 			{ text: '  ERROR', tone: 'fail' },
 			{ text: '  1 file — 1 passed, 1 failed', tone: 'name' }
 		]
+	];
+
+	// The 'onboard' motif: the proposal an agent shows before it writes
+	// anything, from the post's run on Vale's docs. The errors column is the
+	// picture: 54 on the first run, 5 with the baseline, and the one finding
+	// left standing.
+	const onboardLines: TestRun[][] = [
+		[{ text: '               errors  warnings', tone: 'muted' }],
+		[
+			{ text: 'First run          ', tone: 'name' },
+			{ text: '54', tone: 'fail' },
+			{ text: '       106', tone: 'muted' }
+		],
+		[
+			{ text: 'With baseline       ', tone: 'name' },
+			{ text: '5', tone: 'got' },
+			{ text: '        73', tone: 'muted' }
+		],
+		[],
+		[
+			{ text: '✓ ', tone: 'got' },
+			{ text: '12 names accepted, "we" allowed', tone: 'name' }
+		],
+		[
+			{ text: '✗ ', tone: 'fail' },
+			{ text: '"VSCode" → "VS Code"', tone: 'name' },
+			{ text: '  creating-plugin.md:16', tone: 'muted' }
+		],
+		[{ text: 'Apply this as a pull request?', tone: 'got' }]
 	];
 
 	const toneClass = {
@@ -337,7 +367,9 @@
 									? 'vale test'
 									: motif === 'gate'
 										? 'vale docs/'
-										: `vale ${seed}.md`
+										: motif === 'onboard'
+											? '/vale:onboard'
+											: `vale ${seed}.md`
 	);
 </script>
 
@@ -444,11 +476,11 @@
 						</div>
 					{/each}
 				</div>
-			{:else if motif === 'test'}
+			{:else if motif === 'test' || motif === 'onboard'}
 				<div
 					class="flex min-h-0 flex-1 flex-col justify-center overflow-hidden px-4 py-2 font-mono text-[10px] leading-[1.6] sm:text-[11px]"
 				>
-					{#each testLines as runs, i (i)}
+					{#each motif === 'test' ? testLines : onboardLines as runs, i (i)}
 						<div class="truncate whitespace-pre">
 							{#each runs as run, j (j)}<span class={toneClass[run.tone]}>{run.text}</span
 								>{:else}{' '}{/each}

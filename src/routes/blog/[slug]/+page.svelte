@@ -5,6 +5,7 @@
 	import PostDiscuss from '$lib/components/PostDiscuss.svelte';
 	import PostLintFooter from '$lib/components/PostLintFooter.svelte';
 	import PostTags from '$lib/components/PostTags.svelte';
+	import PostToc from '$lib/components/PostToc.svelte';
 	import report from '$lib/data/lint.json';
 	import { authorOf, tagsOf } from '$lib/posts';
 
@@ -14,6 +15,8 @@
 	const Body = $derived(data.component);
 	const author = $derived(authorOf(data.meta));
 	const tags = $derived(tagsOf(data.meta).map((tag) => tag.label));
+	// A short post reads fine without a map.
+	const headings = $derived((data.meta.headings ?? []).length >= 3 ? data.meta.headings! : []);
 	const minutes = $derived(
 		(report.posts as Record<string, { minutes: number }>)[data.meta.slug]?.minutes
 	);
@@ -85,7 +88,15 @@
 	}}
 />
 
-<article class="mx-auto max-w-3xl px-6 py-16 lg:px-8">
+<article id="top" class="relative mx-auto max-w-3xl px-6 py-16 lg:px-8">
+	{#if headings.length}
+		<aside class="absolute left-full top-0 hidden h-full w-52 py-16 xl:block">
+			<div class="sticky top-24 max-h-[calc(100vh-8rem)] overflow-y-auto">
+				<PostToc {headings} variant="rail" />
+			</div>
+		</aside>
+	{/if}
+
 	<div class="mb-10 overflow-hidden rounded-xl border border-border">
 		<PostBanner
 			seed={data.meta.slug}
@@ -130,6 +141,10 @@
 		</div>
 
 		<PostTags post={data.meta} class="mt-6" />
+
+		{#if headings.length}
+			<PostToc {headings} variant="inline" />
+		{/if}
 	</header>
 
 	<Body />
@@ -138,3 +153,10 @@
 
 	<PostLintFooter slug={data.meta.slug} />
 </article>
+
+<style>
+	/* A section link lands below the sticky site header. */
+	article :global(h2[id]) {
+		scroll-margin-top: 5rem;
+	}
+</style>

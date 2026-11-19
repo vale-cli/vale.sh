@@ -628,5 +628,145 @@
 		"description": "Trying Vale on two blogs: configurable rules, text config in the repository, and a run of about 1.5 seconds where proselint took about 50.",
 		"image": "",
 		"site": "bulimov.me"
+	},
+	{
+		"title": "Starting with Vale for Linting Prose",
+		"url": "https://www.stuartellis.name/articles/vale-minimal/",
+		"author": "Stuart Ellis",
+		"year": 2026,
+		"type": "post",
+		"description": "A short starter guide: installing Vale, a minimal project configuration, running it in VS Code and JetBrains IDEs, and automating checks with prek or pre-commit hooks.",
+		"image": "",
+		"site": "Field Notes"
+	},
+	{
+		"title": "Vale 1.0.0; prose linting for Drupal",
+		"url": "https://stuar.tc/writing/vale-100-prose-linting-drupal-20261028",
+		"author": "Stuart Clark",
+		"year": 2026,
+		"type": "post",
+		"description": "Announces a Drupal module that runs Vale on content at save time and can refuse text that breaks error-level style rules, including content written over JSON:API.",
+		"image": "",
+		"site": "stuar.tc"
+	},
+	{
+		"title": "Checking Text with Vale",
+		"url": "https://seasidetesting.com/2025/10/15/checking-text-with-vale/",
+		"author": "Stephan",
+		"year": 2025,
+		"type": "post",
+		"description": "After zero-width spaces copied from an EPUB broke a Vale configuration file, the author writes a custom rule that flags invisible characters.",
+		"image": "",
+		"site": "Seaside Testing"
+	},
+	{
+		"title": "Style as code: Using open source tooling to codify technical documentation style",
+		"url": "https://archive.fosdem.org/2024/schedule/event/fosdem-2024-2471-style-as-code-using-open-source-tooling-to-codify-technical-documentation-style/",
+		"author": "Jack Baldry",
+		"year": 2024,
+		"type": "talk",
+		"description": "A Tool the Docs devroom talk on enforcing documentation style with Vale: existing rulesets, Grafana's own rules, per-project configuration, and introducing linting gradually.",
+		"image": "",
+		"site": "FOSDEM 2024"
+	},
+	{
+		"title": "How To Automate Documentation Workflow For Developers",
+		"url": "https://archive.fosdem.org/2023/schedule/event/how_to_automate_documentation_workflow_for_developers/",
+		"author": "Portia Burton",
+		"year": 2023,
+		"type": "talk",
+		"description": "A CI/CD devroom talk on keeping documentation maintained and consistent in style using Vale and GitHub Actions.",
+		"image": "",
+		"site": "FOSDEM 2023"
+	},
+	{
+		"title": "Appwrite OSS Fund Sponsors Vale",
+		"url": "https://dev.to/appwrite/appwrite-oss-fund-sponsors-vale-4oig",
+		"author": "Haimantika Mitra",
+		"year": 2023,
+		"type": "post",
+		"description": "A profile of Vale and its maintainer as the 20th project in Appwrite's OSS Fund, covering its origins as a markup-aware checker for CI and its adoption.",
+		"image": "",
+		"site": "DEV Community"
+	},
+	{
+		"title": "Vale – software to help you write with a consistent tone and style",
+		"url": "https://www.linuxlinks.com/vale-software-write-consistent-tone-style/",
+		"author": "Steve Emms",
+		"year": 2024,
+		"type": "post",
+		"description": "A two-page review covering what Vale does, installation on Ubuntu and Manjaro, the basic configuration file, and day-to-day use.",
+		"image": "",
+		"site": "LinuxLinks"
+	},
+	{
+		"title": "Getting Started with Vale: Using Vale with GitHub Actions and the Terminal",
+		"url": "https://www.youtube.com/watch?v=gAOgvGFEBtY",
+		"author": "DocumentWrite",
+		"year": 2022,
+		"type": "video",
+		"description": "Part 1 of a three-part series: installing Vale, linting documentation locally in the terminal, and running it on GitHub with GitHub Actions.",
+		"image": "",
+		"site": "YouTube"
+	},
+	{
+		"title": "Getting Started with Vale part 2 | Using Vale in Visual Studio Code",
+		"url": "https://www.youtube.com/watch?v=VyVym_4gfGw",
+		"author": "DocumentWrite",
+		"year": 2022,
+		"type": "video",
+		"description": "Part 2: installing the Vale extension in VS Code and setting its path so Markdown files are linted as you type.",
+		"image": "",
+		"site": "YouTube"
+	},
+	{
+		"title": "Getting Started with Vale part 3: Using Vale with 3rd party style guides and custom rules",
+		"url": "https://www.youtube.com/watch?v=CRJtpMhpk3Y",
+		"author": "DocumentWrite",
+		"year": 2022,
+		"type": "video",
+		"description": "Part 3: applying third-party styles such as Google, Microsoft, and Joblint, and writing custom rules for headings and technical terms.",
+		"image": "",
+		"site": "YouTube"
+	},
+	{
+		"title": "Integrate vale into an open source project",
+		"url": "https://blog.spinthemoose.com/2022/06/03/integrate-vale-into-an-open-source-project/",
+		"author": "David Alpert",
+		"year": 2022,
+		"type": "post",
+		"description": "Adds Vale to a project's Markdown files with style packages, vocabulary files, and per-rule suppression comments, then runs it with Guard and as a Make target that can fail CI.",
+		"image": "",
+		"site": "Spin the Moose"
+	},
+	{
+		"title": "Vale による英語ドキュメント校正入門",
+		"url": "https://qiita.com/haru52/items/c554ac75767767ea1f8c",
+		"author": "haru52",
+		"year": 2022,
+		"type": "post",
+		"description": "A Japanese-language introduction to proofreading English documentation with Vale: installation, the Microsoft and write-good packages, a custom vocabulary, ignore comments, and editor and CI integrations.",
+		"image": "",
+		"site": "Qiita"
+	},
+	{
+		"title": "Set up Vale prose linter on Emacs",
+		"url": "https://emacstil.com/til/2022/03/05/setting-up-vale-prose-linter-on-emacs/",
+		"author": "Junji Zhi",
+		"year": 2022,
+		"type": "post",
+		"description": "Installs Vale with the Microsoft style for Org-mode files and connects it to Flycheck with a custom checker so alerts appear in Emacs.",
+		"image": "",
+		"site": "Emacs TIL"
+	},
+	{
+		"title": "Prose linting with Vale and Emacs",
+		"url": "https://www.mac-vicar.eu/posts/2020-09-14-prose-linting-vale-emacs/",
+		"author": "Duncan Mac-Vicar P.",
+		"year": 2020,
+		"type": "post",
+		"description": "A non-native English speaker explains choosing Vale for offline, real-time writing feedback, configuring it with write-good, and writing a Flycheck checker for Emacs.",
+		"image": "",
+		"site": "mac-vicar.eu"
 	}
 ]
