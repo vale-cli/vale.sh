@@ -6,7 +6,14 @@
 	import { settled } from '$lib/tools/settle.svelte';
 	import { count, duration, maskMarkdown, sentences, stripMarkdownSyntax } from '$lib/tools/text';
 	import { audience, consensus, formulas, score } from '$lib/tools/readability';
-	import { analyze } from '$lib/tools/style';
+	import { hardSentences, wordFindings } from '$lib/tools/style';
+	import {
+		createDetector,
+		type Detector,
+		type PackageData,
+		type RuleData
+	} from '$lib/tools/aitells';
+	import { onMount } from 'svelte';
 
 	const page = tool('readability-checker');
 
@@ -14,10 +21,10 @@
 
 Short sentences help. So do common words. When you really need a long word, use it, but make the sentence around it short.
 
-Most style guides ask for a grade level of eight or below. That is not because readers are slow. It is because people skim, and plain text survives skimming. In order to get there, mistakes were made by every writer who has tried, and the drafts were quietly rewritten until the numbers came down.`;
+Most style guides ask for a grade level of eight or below. That is not because readers are slow. It is because people skim, and plain text survives skimming. In order to get there, it is worth noting that you will probably need to make a decision about which long words actually matter and which ones you can simply cut.`;
 
 	/*
-		Sentences are filled and words are underlined, so a passive verb inside
+		Sentences are filled and words are underlined, so an adverb inside
 		a hard sentence shows as both.
 	*/
 	const categories: Category[] = [
@@ -30,16 +37,40 @@ Most style guides ask for a grade level of eight or below. That is not because r
 		},
 		{ id: 'hard', label: 'Hard to read', tone: 'amber', mark: 'fill', hint: 'Shorten' },
 		{ id: 'simpler', label: 'Simpler word', tone: 'teal', mark: 'line', hint: 'Swap in one click' },
-		{ id: 'passive', label: 'Passive voice', tone: 'sky', mark: 'line', hint: 'Say who did it' },
-		{ id: 'adverb', label: 'Adverbs', tone: 'violet', mark: 'line', hint: 'Use a stronger verb' },
 		{
-			id: 'qualifier',
-			label: 'Qualifiers',
+			id: 'adverb',
+			label: 'Adverbs',
+			tone: 'violet',
+			mark: 'line',
+			hint: 'Cut if it adds nothing'
+		},
+		{
+			id: 'filler',
+			label: 'Hedging and filler',
 			tone: 'orange',
 			mark: 'line',
-			hint: 'Usually safe to cut'
+			hint: 'State the point'
 		}
 	];
+
+	/*
+		The word-level rules are a separate download, fetched once the page has
+		painted. Scores and sentence highlights don't wait for them.
+	*/
+	let rules = $state<RuleData[]>([]);
+	let detector = $state<Detector | null>(null);
+
+	onMount(() => {
+		import('$lib/data/tools/style.json')
+			.then((m) => {
+				const data = m.default as unknown as { rules: RuleData[] };
+				rules = data.rules;
+				detector = createDetector({ rules: data.rules } as PackageData);
+			})
+			.catch(() => {
+				// The page still scores and marks sentences without them.
+			});
+	});
 
 	let text = $state('');
 	let hidden = $state<string[]>([]);
@@ -54,7 +85,10 @@ Most style guides ask for a grade level of eight or below. That is not because r
 	const scores = $derived(score(counts));
 	const grade = $derived(Math.max(0, consensus(scores)));
 	const reader = $derived(audience(grade));
-	const highlights = $derived(analyze(prose, split));
+	const highlights = $derived([
+		...hardSentences(split),
+		...(detector ? wordFindings(input.value, detector, rules) : [])
+	]);
 
 	const tally = $derived.by(() => {
 		const out: Record<string, number> = {};
@@ -103,7 +137,7 @@ Most style guides ask for a grade level of eight or below. That is not because r
 <ToolPage
 	tool={page}
 	wide
-	lede="Write or paste your text. Hard sentences, passive voice, adverbs, and needlessly long words are highlighted as you type, with seven readability scores alongside."
+	lede="Write or paste your text. Hard sentences, needlessly long words, adverbs, and filler are highlighted as you type, with seven readability scores alongside."
 	{faq}
 >
 	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
@@ -263,23 +297,22 @@ Most style guides ask for a grade level of eight or below. That is not because r
 			</li>
 			<li>
 				<strong>Simpler word</strong> marks a long word or phrase with a short equivalent: “use” for
-				“utilize,” “to” for “in order to.” Click it to swap.
+				“utilize,” “to” for “in order to.” Click it to swap. The pairs come from the Microsoft Writing
+				Style Guide, the Red Hat style guide, and Vale’s Voices package.
 			</li>
 			<li>
-				<strong>Passive voice</strong> marks phrases such as “was written.” Passive is fine when who
-				did it doesn’t matter; when it does, name them.
+				<strong>Adverbs</strong> marks the ones the Microsoft guide lists as usually removable: “really,”
+				“basically,” “quickly.” Keep one if the sentence means something different without it.
 			</li>
 			<li>
-				<strong>Adverbs</strong> often prop up a weak verb: “ran quickly” for “sprinted.”
-			</li>
-			<li>
-				<strong>Qualifiers</strong> such as “very,” “just,” and “I think” soften a claim. Most can go.
+				<strong>Hedging and filler</strong> marks throat-clearing (“it is worth noting”), hedges (“you
+				may want to consider”), and claims with no source (“experts agree”).
 			</li>
 		</ul>
 		<p>
 			Click a row in the list to jump to the next highlight of that kind, or the eye to hide a kind
-			while you work on another. These checks read the surface of the text, so treat each highlight
-			as a place to look, not a mistake.
+			while you work on another. The card on each highlight names the guide its advice comes from.
+			Treat a highlight as a place to look, not a mistake.
 		</p>
 
 		<h2>The seven formulas</h2>

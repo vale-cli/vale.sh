@@ -184,3 +184,91 @@ for (const pkg of PACKAGES) {
 			`${skipped.length} skipped, ${dropped} patterns dropped`
 	);
 }
+
+/*
+ * src/lib/data/tools/style.json — the word-level checks behind
+ * /tools/readability-checker.
+ *
+ * These are picked rule by rule from packages that each trace to a published
+ * style guide or a tested rule set, and sorted into the three kinds the page's
+ * legend shows. Each rule keeps its package's name (`Microsoft.Wordiness`), so
+ * a finding can say where its advice comes from.
+ */
+const STYLE = [
+	{
+		name: 'Microsoft',
+		repo: 'vale-cli/Microsoft',
+		dir: 'Microsoft',
+		guide: 'Microsoft Writing Style Guide',
+		rules: { Wordiness: 'simpler', Adverbs: 'adverb' }
+	},
+	{
+		name: 'RedHat',
+		repo: 'redhat-documentation/vale-at-red-hat',
+		dir: 'RedHat',
+		guide: 'Red Hat style guide',
+		rules: { SimpleWords: 'simpler' }
+	},
+	{
+		name: 'Voices',
+		repo: 'jdkato/voices',
+		dir: 'Voices',
+		guide: 'Voices',
+		rules: {
+			InflatedWords: 'simpler',
+			WeakVerbs: 'simpler',
+			ThroatClearing: 'filler',
+			Weasel: 'filler',
+			Puffery: 'filler'
+		}
+	},
+	{
+		name: 'Voices',
+		repo: 'jdkato/voices',
+		dir: 'Direct',
+		guide: 'Voices',
+		rules: { Hedging: 'filler' }
+	}
+];
+
+{
+	const archives = new Map();
+	const sources = [];
+	const rules = [];
+
+	for (const src of STYLE) {
+		const url = `https://github.com/${src.repo}/releases/latest/download/${src.name}.zip`;
+		if (!archives.has(url)) {
+			const head = await fetch(url, { redirect: 'manual' });
+			const version = head.headers.get('location')?.match(/\/download\/([^/]+)\//)?.[1] ?? '';
+			const res = await fetch(url);
+			if (!res.ok) throw new Error(`${res.status} fetching ${url}`);
+			archives.set(url, { version, files: unzipSync(new Uint8Array(await res.arrayBuffer())) });
+			sources.push({
+				name: src.name,
+				guide: src.guide,
+				homepage: `https://github.com/${src.repo}`,
+				version
+			});
+		}
+		const { files } = archives.get(url);
+
+		for (const [name, category] of Object.entries(src.rules)) {
+			const path = Object.keys(files).find((p) => `/${p}`.endsWith(`/${src.dir}/${name}.yml`));
+			// A rule that has been renamed or removed upstream should stop the
+			// build, not quietly drop a category from the page.
+			if (!path) throw new Error(`${src.name}: no ${src.dir}/${name}.yml in the archive`);
+
+			const out = convert(name, parseAllDocuments(strFromU8(files[path]))[0]?.toJS());
+			if (out.skipped) throw new Error(`${src.dir}.${name}: ${out.skipped.why}`);
+			rules.push({ ...out.rule, name: `${src.dir}.${name}`, category, guide: src.guide });
+		}
+	}
+
+	writeFileSync(`${OUT}/style.json`, JSON.stringify({ sources, rules }) + '\n');
+	const patterns = rules.reduce(
+		(n, r) => n + (r.swap?.length ?? 0) + (r.tokens?.length ?? 0) + (r.itokens?.length ?? 0),
+		0
+	);
+	console.log(`  style        ${rules.length} rules, ${patterns} patterns`);
+}

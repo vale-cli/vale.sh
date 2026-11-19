@@ -3,7 +3,7 @@
 
 	/**
 	 * How a category is drawn. Sentence-level findings fill the background;
-	 * word-level ones underline. The two can then overlap — a passive verb
+	 * word-level ones underline. The two can then overlap — an adverb
 	 * inside a hard sentence — and both stay readable.
 	 */
 	export type Tone = 'amber' | 'rose' | 'sky' | 'violet' | 'teal' | 'orange' | 'lime';
@@ -171,6 +171,13 @@
 				body.textContent = at.finding.message;
 				dom.append(body);
 
+				if (at.finding.source) {
+					const source = document.createElement('p');
+					source.className = 'vt-card-source';
+					source.textContent = at.finding.source;
+					dom.append(source);
+				}
+
 				const fix = at.finding.fix;
 				if (fix) {
 					const button = document.createElement('button');
@@ -213,13 +220,11 @@
 		create: () => null,
 		update(current, tr) {
 			if (!view) return null;
-			const fixed = tr.isUserEvent('input.fix');
-			// Typing or replacing the text closes the card; it shouldn't follow
-			// the caret through every keystroke.
-			if (tr.docChanged && !fixed) return null;
+			// Any edit closes the card, a fix included: it shouldn't follow the
+			// caret through every keystroke, or reopen on whatever is under it.
+			if (tr.docChanged) return null;
 			// A fresh analysis redraws the card only if one was already open.
-			const moved = !!tr.selection || fixed;
-			if (!moved && !(current && tr.effects.some((e) => e.is(setMarks)))) return current;
+			if (!tr.selection && !(current && tr.effects.some((e) => e.is(setMarks)))) return current;
 			const sel = tr.state.selection.main;
 			if (!sel.empty) return null;
 			const at = findingAt(tr.state, sel.head);
@@ -492,6 +497,11 @@
 		height: 0.5rem;
 		border-radius: 999px;
 		background: hsl(var(--vt));
+	}
+	:global(.vt-card-source) {
+		margin-top: 0.3rem;
+		font-size: 0.6875rem;
+		color: hsl(var(--muted-foreground));
 	}
 	:global(.vt-card button) {
 		margin-top: 0.6rem;

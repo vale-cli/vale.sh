@@ -23,6 +23,9 @@ export type RuleData = {
 	exceptions?: string[];
 	iexceptions?: string[];
 	swap?: [string, string][];
+	/** Set by script/tools.mjs for the readability checker's rules. */
+	category?: string;
+	guide?: string;
 };
 
 export type PackageData = {
@@ -38,6 +41,8 @@ export type Finding = Span & {
 	match: string;
 	/** The rule's own message, with the match filled in. */
 	message: string;
+	/** For a substitution rule: what the rule says to write instead. */
+	replacement?: string;
 };
 
 type Compiled = {
@@ -117,10 +122,17 @@ export function createDetector(data: PackageData): Detector {
 		for (const c of compiled) {
 			const target = c.rule.scope === 'heading' ? headings : c.rule.scope === 'raw' ? text : prose;
 
-			const add = (from: number, match: string, message: string) => {
+			const add = (from: number, match: string, message: string, replacement?: string) => {
 				if (!match.trim()) return;
 				if (c.exceptions.some((e) => e.test(match))) return;
-				found.push({ from, to: from + match.length, rule: c.rule.name, match, message });
+				found.push({
+					from,
+					to: from + match.length,
+					rule: c.rule.name,
+					match,
+					message,
+					replacement
+				});
 			};
 
 			for (const re of c.patterns) {
@@ -132,8 +144,11 @@ export function createDetector(data: PackageData): Detector {
 			for (const s of c.swaps ?? []) {
 				s.re.lastIndex = 0;
 				for (const m of target.matchAll(s.re)) {
-					if (m[0].toLowerCase() === s.to.toLowerCase()) continue;
-					add(m.index ?? 0, m[0], fill(c.rule.message, s.to, m[0]));
+					// A rule can offer several words ("aim|goal"); the first is its
+					// preferred one, and what a one-click fix writes.
+					const options = s.to.split('|');
+					if (options.some((o) => o.toLowerCase() === m[0].toLowerCase())) continue;
+					add(m.index ?? 0, m[0], fill(c.rule.message, options.join('” or “'), m[0]), options[0]);
 				}
 			}
 		}
