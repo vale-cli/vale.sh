@@ -2,13 +2,13 @@ import Bot from 'lucide-svelte/icons/bot';
 import Hash from 'lucide-svelte/icons/hash';
 import BookOpenCheck from 'lucide-svelte/icons/book-open-check';
 import CaseSensitive from 'lucide-svelte/icons/case-sensitive';
-import SpellCheck from 'lucide-svelte/icons/spell-check';
+import Speech from 'lucide-svelte/icons/speech';
 
 /**
  * The pages under /tools.
  *
  * One list, so the index, each page's metadata and structured data, the
- * "more tools" rail, and the footer all agree. A sixth tool is an entry here
+ * "more tools" rail, and the footer all agree. Another tool is an entry here
  * and a route.
  *
  * `title` is what a person searches for and is the page's <h1>; `metaTitle`
@@ -46,17 +46,6 @@ export const tools = [
 		blurb: 'Seven readability scores at once, and the sentences dragging them down.'
 	},
 	{
-		slug: 'style-guide-checker',
-		icon: SpellCheck,
-		name: 'Style Guide Checker',
-		title: 'Style Guide Checker',
-		metaTitle: 'Style Guide Checker: Google, Microsoft, and Red Hat Style',
-		description:
-			'Explore the Google, Microsoft, and Red Hat style guides as a map of their rules, and paste your text to see which ones it breaks, with a fix for each.',
-		blurb:
-			'A visual map of the Google, Microsoft, and Red Hat style guides that lights up on your text.'
-	},
-	{
 		slug: 'title-case-converter',
 		icon: CaseSensitive,
 		name: 'Title Case Converter',
@@ -65,6 +54,18 @@ export const tools = [
 		description:
 			'Convert headlines to title case in AP, APA, Chicago, or MLA style, or to sentence case. See how the styles differ on the same title. Free and instant.',
 		blurb: 'AP, APA, Chicago, MLA, and sentence case, side by side on the same headline.'
+	},
+	{
+		slug: 'voice-checker',
+		// Needs Vale's browser engine; see listed().
+		engine: true,
+		icon: Speech,
+		name: 'Voice Checker',
+		title: 'Writing Voice Checker',
+		metaTitle: 'Writing Voice Checker: Hold a Draft to a Voice',
+		description:
+			'Pick a writing voice, such as direct, plain, or brief, and see every place your draft breaks it, with the reason and a fix. Free, no sign-up, nothing uploaded.',
+		blurb: 'Pick a voice and see every place a draft breaks it, with the reason for each.'
 	}
 ] as const;
 
@@ -72,4 +73,9 @@ export type Tool = (typeof tools)[number];
 export type ToolSlug = Tool['slug'];
 
 export const tool = (slug: ToolSlug): Tool => tools.find((t) => t.slug === slug)!;
-export const otherTools = (slug: ToolSlug): Tool[] => tools.filter((t) => t.slug !== slug);
+/** The tools a build can offer: all of them, or those that work without the engine. */
+export const listed = (engine: boolean): Tool[] =>
+	tools.filter((t) => engine || !('engine' in t && t.engine));
+
+export const otherTools = (slug: ToolSlug, engine: boolean): Tool[] =>
+	listed(engine).filter((t) => t.slug !== slug);

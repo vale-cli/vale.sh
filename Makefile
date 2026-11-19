@@ -16,6 +16,7 @@ all: build
 build:
 	node script/packages.mjs
 	node script/assets.mjs
+	node script/wasm.mjs
 	$(call build_index)
 	pnpm run build
 

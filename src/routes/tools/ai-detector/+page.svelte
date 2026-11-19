@@ -6,6 +6,9 @@
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
 	import { maskMarkdown, words } from '$lib/tools/text';
+	import { useVale } from '$lib/tools/engine.svelte';
+	import { config, fixFor } from '$lib/tools/vale';
+	import { band as read, describe, score as modelese, type ScoreData } from '$lib/tools/modelese';
 	import {
 		createDetector,
 		density,
@@ -82,7 +85,78 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			.catch(() => (failed = true));
 	});
 
-	const findings = $derived(detector ? detector.scan(input.value) : []);
+	/*
+		Vale itself, in a worker, with every rule in the package. It takes a
+		moment to arrive, so the patterns above answer first and its findings
+		take their place. The archive nests its styles a level down.
+	*/
+	const vale = useVale(() => input.value, {
+		packages: [{ url: '/wasm/packages/ai-tells.zip', prefix: '/pkg' }],
+		config: config(['ai-tells'], '/pkg/ai-tells/styles')
+	});
+
+	type Found = {
+		from: number;
+		to: number;
+		rule: string;
+		match: string;
+		message: string;
+		fix?: Highlight['fix'];
+	};
+
+	const quick = $derived<Found[]>(detector ? detector.scan(input.value) : []);
+	const findings = $derived.by<Found[]>(() => {
+		if (!vale.result) return quick;
+
+		// One phrase, one finding: "plays a crucial role" and the "crucial"
+		// inside it are two rules on the same words. The longer one is kept,
+		// as the patterns above do.
+		const out: Found[] = [];
+		let end = -1;
+		for (const p of vale.result.placed) {
+			if (p.to <= end) continue;
+			end = Math.max(end, p.to);
+			out.push({
+				from: p.from,
+				to: p.to,
+				rule: p.alert.Check.replace(/^ai-tells\./, ''),
+				match: p.alert.Match,
+				message: p.alert.Message,
+				fix: fixFor(p.alert)
+			});
+		}
+		return out;
+	});
+	const checking = $derived(!detector && vale.state !== 'ready');
+
+	/*
+		The overall read: a weighted sum of measured style, placed against where
+		human writing lands. Its data is a download of its own, and it needs
+		fifty words before the measures mean anything.
+	*/
+	let scoreData = $state.raw<ScoreData | null>(null);
+	onMount(() => {
+		import('$lib/data/tools/modelese.json')
+			.then((m) => (scoreData = m.default as unknown as ScoreData))
+			.catch(() => {
+				// The page works without the overall read.
+			});
+	});
+	const scored = $derived(
+		scoreData && (input.value.match(/\S+/g) ?? []).length >= 50
+			? modelese(input.value, scoreData)
+			: null
+	);
+	const verdict = $derived(scored && scoreData ? read(scored.score, scoreData) : null);
+	// What pushed the score the way it went, for the three largest.
+	const drivers = $derived(
+		scored && scoreData && verdict
+			? scored.parts
+					.filter((p) => (verdict.level > 0 ? p.contribution > 0 : p.contribution < 0))
+					.slice(0, 3)
+					.map((p) => describe(p, scoreData!))
+			: []
+	);
 	const total = $derived(words(maskMarkdown(input.value)).length);
 	const per1k = $derived(total ? (findings.length / total) * 1000 : 0);
 	const band = $derived(density(per1k));
@@ -96,7 +170,8 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			from: f.from,
 			to: f.to,
 			category: family(f.rule),
-			message: `${ruleLabel(f.rule)}. ${advice(f.message)}`
+			message: `${ruleLabel(f.rule)}. ${advice(f.message)}`,
+			fix: f.fix
 		}))
 	);
 
@@ -109,16 +184,11 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 	/** The phrases found most often, for the list under the editor. */
 	const phrases = $derived.by(() => {
 		const map = new Map<string, { text: string; category: string; count: number }>();
-		for (const h of highlights) {
-			const key = input.value.slice(h.from, h.to).trim().toLowerCase();
-			const hit = map.get(key);
+		for (const f of findings) {
+			const text = f.match.trim();
+			const hit = map.get(text.toLowerCase());
 			if (hit) hit.count++;
-			else
-				map.set(key, {
-					text: input.value.slice(h.from, h.to).trim(),
-					category: h.category,
-					count: 1
-				});
+			else map.set(text.toLowerCase(), { text, category: family(f.rule), count: 1 });
 		}
 		return [...map.values()].sort((a, b) => b.count - a.count).slice(0, 24);
 	});
@@ -128,7 +198,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 	const faq = $derived([
 		{
 			q: 'How does this AI detector work?',
-			a: `It searches your text for ${data.rules} patterns that language models overuse: stock phrases such as “delve into” and “rich tapestry,” formulas such as “it’s not just X, it’s Y,” filler openings and closings, and marketing-style headings. Each match is highlighted and comes with a suggested fix. It does not use a neural network and it does not guess who wrote the text.`
+			a: `It searches your text for ${data.rules} patterns that language models overuse: stock phrases such as “delve into” and “rich tapestry,” formulas such as “it’s not just X, it’s Y,” filler openings and closings, and marketing-style headings. Each match is highlighted and comes with a suggested fix. It also measures the text as a whole, such as how much sentence lengths vary and how often words repeat, and places that against human writing. It does not use a neural network and it cannot tell you who wrote the text.`
 		},
 		{
 			q: 'Can it tell me for certain whether text was written by AI?',
@@ -201,14 +271,14 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				<div class="mt-2 flex items-baseline gap-2">
 					<span
 						class="text-5xl font-medium tabular-nums tracking-tight transition-colors {empty ||
-						!detector
+						checking
 							? 'text-muted-foreground/40'
 							: band.level === 3
 								? 'text-rose-600 dark:text-rose-400'
 								: band.level === 2
 									? 'text-amber-600 dark:text-amber-400'
 									: 'text-lime-600 dark:text-lime-400'}"
-						>{empty || !detector ? '–' : findings.length}</span
+						>{empty || checking ? '–' : findings.length}</span
 					>
 					<span class="text-sm text-muted-foreground">found</span>
 				</div>
@@ -217,7 +287,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 					{#each [1, 2, 3] as step (step)}
 						<span
 							class="h-2 flex-1 rounded-full transition-colors duration-300 {!empty &&
-							detector &&
+							!checking &&
 							band.level >= step
 								? band.level === 3
 									? 'bg-rose-400'
@@ -230,20 +300,20 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				</div>
 
 				<p class="mt-3 text-sm font-medium text-foreground">
-					{#if failed}
+					{#if failed && checking}
 						The patterns didn’t load
 					{:else if empty}
 						Paste some text to check it
-					{:else if !detector}
+					{:else if checking}
 						Loading {data.rules} patterns…
 					{:else}
 						{band.label}
 					{/if}
 				</p>
 				<p class="mt-0.5 text-xs leading-5 text-muted-foreground">
-					{#if failed}
+					{#if failed && checking}
 						Reload the page to try again.
-					{:else if empty || !detector}
+					{:else if empty || checking}
 						Checks {data.rules} patterns that language models overuse.
 					{:else if total < 100}
 						A short sample: one phrase swings the rate a lot under 100 words.
@@ -253,7 +323,53 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 						{per1k.toFixed(1)} per 1,000 words, across {total.toLocaleString('en-US')} words.
 					{/if}
 				</p>
+				{#if vale.state === 'ready' && !empty}
+					<p class="mt-3 border-t border-border/70 pt-3 text-xs leading-5 text-muted-foreground">
+						Checked by Vale, running in this tab, with every rule in the package.
+					</p>
+				{/if}
 			</div>
+
+			{#if verdict}
+				<div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
+					<div class="text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+						Overall read
+					</div>
+					<p
+						class="mt-2 text-sm font-medium {verdict.level === 2
+							? 'text-rose-600 dark:text-rose-400'
+							: verdict.level === 1
+								? 'text-amber-600 dark:text-amber-400'
+								: 'text-lime-600 dark:text-lime-400'}"
+					>
+						{verdict.label}
+					</p>
+					<div class="mt-3 flex gap-1" aria-hidden="true">
+						{#each [0, 1, 2] as step (step)}
+							<span
+								class="h-2 flex-1 rounded-full {verdict.level === step
+									? step === 2
+										? 'bg-rose-400'
+										: step === 1
+											? 'bg-amber-400'
+											: 'bg-lime-500'
+									: 'bg-muted'}"
+							></span>
+						{/each}
+					</div>
+					{#if drivers.length}
+						<ul class="mt-3 space-y-1 text-xs leading-5 text-muted-foreground">
+							{#each drivers as d (d)}
+								<li>{d}</li>
+							{/each}
+						</ul>
+					{/if}
+					<p class="mt-3 border-t border-border/70 pt-3 text-xs leading-5 text-muted-foreground">
+						Measured against human writing: 1 text in 20 lands in the middle band or above, and 1 in
+						100 in the top one.
+					</p>
+				</div>
+			{/if}
 
 			<Legend
 				{categories}
@@ -297,6 +413,33 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			These bands are a reading aid, not a calibrated verdict. The detector reports what is on the
 			page. It can’t know who put it there, and people who write formally, or in a second language,
 			use many of these phrases naturally.
+		</p>
+
+		<h2>The overall read</h2>
+		<p>
+			Beside the phrases, the detector measures the text as a whole: how much sentence lengths vary,
+			how often words and word pairs repeat, how expected each word is, and how often common words
+			and punctuation marks appear. Each measure has a weight, and the weighted sum is placed
+			against where human writing lands. It needs at least fifty words.
+		</p>
+		<ul>
+			<li>
+				<strong>Within the range of human writing:</strong> 19 human texts in 20 score here.
+			</li>
+			<li>
+				<strong>Leans model-written:</strong> 1 human text in 20 scores this high. On model-written
+				text held out of training, {data.caught5}% scores this high or higher.
+			</li>
+			<li>
+				<strong>Reads as model-written:</strong> 1 human text in 100 scores this high, and
+				{data.caught1}% of the held-out model text does.
+			</li>
+		</ul>
+		<p>
+			The weights were fitted to public collections of paired human and model writing, and to
+			issues, pull requests, and commit messages written before 2022. Text from a model or a kind of
+			writing unlike those is scored less reliably. The three lines under the result name what moved
+			the score most, so you can see why it landed where it did.
 		</p>
 
 		<h2>Why not a percentage?</h2>

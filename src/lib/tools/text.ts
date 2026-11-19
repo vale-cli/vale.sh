@@ -105,13 +105,16 @@ export function sentences(text: string): Sentence[] {
 	for (const m of text.matchAll(END)) {
 		const at = m.index ?? 0;
 		if (m[1]) {
+			const next = text[at + m[0].length] ?? '';
 			if (m[1].startsWith('.')) {
 				const before = text.slice(Math.max(start, at - 12), at);
 				const last = (before.match(/[\p{L}.]+$/u)?.[0] ?? '').toLowerCase();
 				// "Dr.", "e.g.", a lone initial, or the next word isn't a start.
 				if (ABBREVIATIONS.has(last) || /^\p{L}$/u.test(last)) continue;
-				const next = text[at + m[0].length] ?? '';
 				if (/[\p{Ll},;:]/u.test(next)) continue;
+			} else if (/["'”’]$/.test(m[1]) && /\p{Ll}/u.test(next)) {
+				// "Really?" she said.
+				continue;
 			}
 			push(start, at + m[1].length);
 			start = at + m[0].length;
@@ -126,6 +129,21 @@ export function sentences(text: string): Sentence[] {
 
 export function paragraphs(text: string): number {
 	return text.split(/\n\s*\n/).filter((p) => /\S/.test(p)).length;
+}
+
+const segmenter =
+	typeof Intl !== 'undefined' && 'Segmenter' in Intl
+		? new Intl.Segmenter(undefined, { granularity: 'grapheme' })
+		: null;
+
+/**
+ * Characters as a reader sees them: an accented letter or an emoji is one,
+ * however many code points it takes. Plain Latin text skips the segmenter.
+ */
+export function graphemes(text: string): number {
+	// eslint-disable-next-line no-control-regex
+	if (/^[\u0000-\u02ff]*$/.test(text)) return text.length;
+	return segmenter ? [...segmenter.segment(text)].length : [...text].length;
 }
 
 export type Counts = {
@@ -160,9 +178,8 @@ export function count(text: string, split: Sentence[] = sentences(text)): Counts
 	}
 	return {
 		words: list.length,
-		// Code points, not UTF-16 units: an emoji is one character to a reader.
-		characters: [...text].length,
-		charactersNoSpaces: [...text.replace(/\s/g, '')].length,
+		characters: graphemes(text),
+		charactersNoSpaces: graphemes(text.replace(/\s/g, '')),
 		letters,
 		sentences: split.length,
 		paragraphs: paragraphs(text),

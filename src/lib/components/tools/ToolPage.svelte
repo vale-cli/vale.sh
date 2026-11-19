@@ -3,6 +3,7 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import ShieldCheck from 'lucide-svelte/icons/shield-check';
+	import { page } from '$app/state';
 	import { otherTools, type Tool } from '$lib/tools';
 	import type { Snippet } from 'svelte';
 
@@ -40,7 +41,7 @@
 	} = $props();
 
 	const url = $derived(`https://vale.sh/tools/${tool.slug}`);
-	const rest = $derived(otherTools(tool.slug));
+	const rest = $derived(otherTools(tool.slug, page.data.engine === true));
 
 	const jsonLd = $derived(
 		JSON.stringify([
@@ -150,7 +151,7 @@
 			>
 				More writing tools
 			</h2>
-			<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
+			<div class="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
 				{#each rest as other (other.slug)}
 					{@const Icon = other.icon}
 					<a
@@ -185,7 +186,7 @@
 
 <style>
 	/* The explanation is written as plain headings and paragraphs on each page;
-	   this is their type, kept here so five pages can't drift apart. */
+	   this is their type, kept here so the pages can't drift apart. */
 	.tool-prose :global(h2) {
 		font-size: 1.5rem;
 		line-height: 2rem;
