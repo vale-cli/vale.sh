@@ -53,8 +53,9 @@ export const tools = [
 		title: 'Style Guide Checker',
 		metaTitle: 'Style Guide Checker: Google, Microsoft, and Red Hat Style',
 		description:
-			'Paste your text to check it against the Google, Microsoft, or Red Hat style guide. Every issue is highlighted with the rule, a link to the guide, and a fix.',
-		blurb: 'Check a draft against the Google, Microsoft, or Red Hat style guide.'
+			'Explore the Google, Microsoft, and Red Hat style guides as a map of their rules, and paste your text to see which ones it breaks, with a fix for each.',
+		blurb:
+			'A visual map of the Google, Microsoft, and Red Hat style guides that lights up on your text.'
 	},
 	{
 		slug: 'title-case-converter',

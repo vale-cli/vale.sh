@@ -83,7 +83,8 @@
 		sample,
 		placeholder = 'Paste your text here…',
 		label = 'Your text',
-		minHeight = '22rem'
+		minHeight = '22rem',
+		onpick
 	}: {
 		value?: string;
 		highlights?: Highlight[];
@@ -94,6 +95,8 @@
 		placeholder?: string;
 		label?: string;
 		minHeight?: string;
+		/** Called when the cursor lands in a finding, or leaves one. */
+		onpick?: (finding: Highlight | null) => void;
 	} = $props();
 
 	let host: HTMLDivElement;
@@ -321,6 +324,10 @@
 					}),
 					EditorView.updateListener.of((u) => {
 						if (u.docChanged) value = u.state.doc.toString();
+						if (onpick && u.selectionSet && !u.docChanged) {
+							const sel = u.state.selection.main;
+							onpick(sel.empty ? (findingAt(u.state, sel.head)?.finding ?? null) : null);
+						}
 					})
 				]
 			})
