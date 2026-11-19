@@ -182,3 +182,17 @@ export function terms(rule: RawRule): Term[] {
 	}
 	return out;
 }
+
+/** A term's place under /guides/term: "ad hoc" and "ad-hoc" share one page. */
+export const termSlug = (term: string) =>
+	term
+		.toLowerCase()
+		.replace(/[^a-z0-9]+/g, '-')
+		.replace(/^-|-$/g, '');
+
+/**
+ * A rule's `use` is a replacement ("blocklist") or a sentence of advice
+ * ("Do not use ..."). Only the first can be counted and compared.
+ */
+export const replacement = (use: string) =>
+	use.length > 48 || /^(?:do not|don['’]t|avoid|use |what )/i.test(use) ? '' : use;

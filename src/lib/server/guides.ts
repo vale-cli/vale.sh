@@ -1,7 +1,7 @@
 import raw from '$lib/data/guides.json';
 import termData from '$lib/data/guide-terms.json';
 import configs from '$lib/data/config-stats.json';
-import { topics, type RuleSummary, type TopicId } from '$lib/tools/topics';
+import { replacement, termSlug, topics, type RuleSummary, type TopicId } from '$lib/tools/topics';
 
 /**
  * The style guide explorer's data, shaped for its pages.
@@ -152,6 +152,110 @@ export function splits(): Split[] {
 		}
 	}
 	return [...groups.values()].sort((x, y) => y.pairs.length - x.pairs.length);
+}
+
+export type Ruling = {
+	guide: string;
+	name: string;
+	/** The spelling this guide's rule names. */
+	find: string;
+	/** What to write instead, when the rule gives a plain replacement. */
+	use: string;
+	/** The rule's advice, when it gives a sentence and not a replacement. */
+	note: string;
+	rule: string;
+	level: string;
+};
+
+export type TermPage = {
+	slug: string;
+	/** The spellings that share this page, the most common first. */
+	variants: string[];
+	rulings: Ruling[];
+	/** Each replacement given, with the guides that give it, the most common first. */
+	answers: { use: string; guides: string[] }[];
+	/** `agree`: one replacement. `split`: several. `avoid`: none. */
+	verdict: 'agree' | 'split' | 'avoid';
+	/** Guides that tell writers to use this term in place of another. */
+	endorsed: { guide: string; name: string; instead: string }[];
+};
+
+let pages: TermPage[] | null = null;
+
+/** One page per term that two or more guides have a rule about. */
+export function termPages(): TermPage[] {
+	if (pages) return pages;
+	const name = Object.fromEntries(guides.map((g) => [g.id, g.name]));
+	const order = Object.fromEntries(guides.map((g, i) => [g.id, i]));
+
+	const groups = new Map<string, Row[]>();
+	for (const r of rows) {
+		const slug = termSlug(r.find);
+		if (!slug) continue;
+		if (!groups.has(slug)) groups.set(slug, []);
+		groups.get(slug)!.push(r);
+	}
+
+	pages = [];
+	for (const [slug, group] of groups) {
+		// A guide's first rule on each spelling.
+		const seen = new Set<string>();
+		const rulings: Ruling[] = [];
+		for (const r of group) {
+			const key = `${r.guide}|${r.find.toLowerCase()}`;
+			if (seen.has(key)) continue;
+			seen.add(key);
+			const use = replacement(r.use);
+			rulings.push({
+				guide: r.guide,
+				name: name[r.guide],
+				find: r.find,
+				use,
+				note: use ? '' : r.use,
+				rule: r.rule,
+				level: r.level
+			});
+		}
+		if (new Set(rulings.map((r) => r.guide)).size < 2) continue;
+		rulings.sort((a, b) => order[a.guide] - order[b.guide]);
+
+		const count = new Map<string, number>();
+		for (const r of rulings) {
+			const v = r.find.toLowerCase();
+			count.set(v, (count.get(v) ?? 0) + 1);
+		}
+		const variants = [...count.entries()].sort((a, b) => b[1] - a[1]).map(([v]) => v);
+
+		// A replacement that is only another spelling of the term says which
+		// spelling to use; it is counted, but it is not a different word.
+		const tally = new Map<string, { use: string; guides: string[] }>();
+		for (const r of rulings) {
+			if (!r.use) continue;
+			const key = r.use.toLowerCase();
+			if (!tally.has(key)) tally.set(key, { use: r.use, guides: [] });
+			if (!tally.get(key)!.guides.includes(r.name)) tally.get(key)!.guides.push(r.name);
+		}
+		const answers = [...tally.values()].sort((a, b) => b.guides.length - a.guides.length);
+
+		const endorsed: TermPage['endorsed'] = [];
+		for (const r of rows) {
+			const use = replacement(r.use).toLowerCase();
+			if (!use || !variants.includes(use) || variants.includes(r.find.toLowerCase())) continue;
+			if (endorsed.some((e) => e.guide === r.guide)) continue;
+			endorsed.push({ guide: r.guide, name: name[r.guide], instead: r.find });
+		}
+
+		pages.push({
+			slug,
+			variants,
+			rulings,
+			answers,
+			verdict: answers.length === 0 ? 'avoid' : answers.length === 1 ? 'agree' : 'split',
+			endorsed
+		});
+	}
+	pages.sort((a, b) => a.variants[0].localeCompare(b.variants[0], 'en', { sensitivity: 'base' }));
+	return pages;
 }
 
 /** How many flagged terms two guides have in common. */

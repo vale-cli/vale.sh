@@ -2,7 +2,7 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Search from 'lucide-svelte/icons/search';
-	import { topics } from '$lib/tools/topics';
+	import { termSlug, topics } from '$lib/tools/topics';
 
 	let { data } = $props();
 
@@ -48,6 +48,7 @@
 		'master'
 	];
 
+	const pages = $derived(new Set(data.pages));
 	let query = $state('');
 	let all = $state<Hit[] | null>(null);
 	let loading = false;
@@ -195,7 +196,15 @@
 							<header
 								class="flex flex-wrap items-baseline justify-between gap-2 border-b border-border/70 px-5 py-3"
 							>
-								<h3 class="text-lg font-medium">“{block.term}”</h3>
+								<h3 class="text-lg font-medium">
+									{#if pages.has(termSlug(block.term))}
+										<a href="/guides/term/{termSlug(block.term)}" class="hover:underline"
+											>“{block.term}”</a
+										>
+									{:else}
+										“{block.term}”
+									{/if}
+								</h3>
 								<p class="text-sm text-muted-foreground">
 									{block.hits.length} of {data.totals.guides} guides have a rule about it
 								</p>
@@ -370,7 +379,8 @@
 			<h2 class="text-2xl font-medium tracking-tight">What most guides agree on</h2>
 			<p class="mt-3 leading-7 text-foreground/85">
 				The terms the most guides have a rule about, with the replacement when at least half of them
-				give the same one. Select a term to see each guide’s answer.
+				give the same one. Select a term to see each guide’s answer, or
+				<a href="/guides/terms" class="underline">browse all {data.pages.length} terms</a>.
 			</p>
 			<ul class="mt-5 divide-y divide-border rounded-2xl border border-border bg-card">
 				{#each data.shared as s (s.term)}
@@ -401,7 +411,8 @@
 			<h2 class="text-2xl font-medium tracking-tight">Where they contradict each other</h2>
 			<p class="mt-3 leading-7 text-foreground/85">
 				Cases where one guide’s fix is another guide’s error: the same two wordings, preferred in
-				opposite directions.
+				opposite directions. These are the largest;
+				<a href="/guides/disagreements" class="underline">see every disagreement</a>.
 			</p>
 			<ul class="mt-5 space-y-3">
 				{#each data.splits as split, i (i)}
