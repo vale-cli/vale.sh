@@ -11,6 +11,10 @@
     "host": "github",
     "site": "jdkato/a11y",
     "repo": "jdkato/a11y",
+    "stars": 0,
+    "downloads": 11866,
+    "version": "v0.1.0",
+    "released": "2026-09-24",
     "rules": [
       {
         "name": "Ableist",
@@ -181,7 +185,7 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 895,
+    "downloads": 17234,
     "version": "v1.0.0",
     "released": "2026-08-25",
     "rules": [
@@ -338,9 +342,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 178681,
-    "version": "v678",
-    "released": "2026-09-10",
+    "downloads": 194209,
+    "version": "v683",
+    "released": "2026-11-16",
     "rules": [
       {
         "name": "ClosedAttributeBlocks",
@@ -471,9 +475,9 @@
     "site": "jhradilek/asciidoctor-dita-vale",
     "repo": "jhradilek/asciidoctor-dita-vale",
     "stars": 7,
-    "downloads": 72248,
-    "version": "v1.1.14",
-    "released": "2026-09-07",
+    "downloads": 86378,
+    "version": "v1.1.16",
+    "released": "2026-10-27",
     "rules": [
       {
         "name": "AdmonitionTitle",
@@ -843,6 +847,10 @@
     "host": "github",
     "site": "jdkato/comments",
     "repo": "jdkato/comments",
+    "stars": 0,
+    "downloads": 788,
+    "version": "v0.1.0",
+    "released": "2026-09-24",
     "rules": [
       {
         "name": "Code",
@@ -972,8 +980,8 @@
     "host": "github",
     "site": "jdkato/commits",
     "repo": "jdkato/commits",
-    "stars": 0,
-    "downloads": 157,
+    "stars": 1,
+    "downloads": 6185,
     "version": "v0.2.0",
     "released": "2026-09-10",
     "rules": [
@@ -1805,6 +1813,10 @@
     "host": "github",
     "site": "jdkato/diataxis",
     "repo": "jdkato/diataxis",
+    "stars": 1,
+    "downloads": 12901,
+    "version": "v0.1.0",
+    "released": "2026-09-24",
     "rules": [
       {
         "name": "Examples",
@@ -1983,9 +1995,9 @@
     "site": "elastic/vale-rules",
     "repo": "elastic/vale-rules",
     "stars": 11,
-    "downloads": 40888,
-    "version": "v1.7.1",
-    "released": "2026-08-18",
+    "downloads": 53707,
+    "version": "v1.7.3",
+    "released": "2026-10-20",
     "rules": [
       {
         "name": "Accessibility",
@@ -2284,8 +2296,8 @@
     "host": "github",
     "site": "jdkato/fiction",
     "repo": "jdkato/fiction",
-    "stars": 0,
-    "downloads": 4,
+    "stars": 1,
+    "downloads": 809,
     "version": "v0.1.0",
     "released": "2026-09-18",
     "rules": [
@@ -2497,10 +2509,10 @@
     "host": "github",
     "site": "vale-cli/Google",
     "repo": "vale-cli/Google",
-    "stars": 90,
-    "downloads": 1605913,
-    "version": "v0.7.1",
-    "released": "2026-08-04",
+    "stars": 98,
+    "downloads": 2149576,
+    "version": "v0.7.2",
+    "released": "2026-11-12",
     "rules": [
       {
         "name": "Acronyms",
@@ -2808,7 +2820,7 @@
     "site": "vale-cli/Harper",
     "repo": "vale-cli/Harper",
     "stars": 1,
-    "downloads": 1423,
+    "downloads": 34224,
     "version": "v0.1.0",
     "released": "2026-08-05",
     "rules": [
@@ -7210,7 +7222,7 @@
     "site": "vale-cli/Hugo",
     "repo": "vale-cli/Hugo",
     "stars": 7,
-    "downloads": 124876,
+    "downloads": 155795,
     "version": "v0.4.0",
     "released": "2026-08-28",
     "rules": [],
@@ -7230,7 +7242,7 @@
     "site": "vale-cli/Joblint",
     "repo": "vale-cli/Joblint",
     "stars": 14,
-    "downloads": 131115,
+    "downloads": 147869,
     "version": "v0.4.1",
     "released": "2021-04-07",
     "rules": [
@@ -7386,8 +7398,8 @@
     "host": "github",
     "site": "jdkato/journals",
     "repo": "jdkato/journals",
-    "stars": 0,
-    "downloads": 33,
+    "stars": 1,
+    "downloads": 958,
     "version": "v0.1.0",
     "released": "2026-09-17",
     "rules": [
@@ -8391,7 +8403,7 @@
     "site": "vale-cli/MDX",
     "repo": "vale-cli/MDX",
     "stars": 3,
-    "downloads": 123952,
+    "downloads": 189287,
     "version": "v0.3.0",
     "released": "2026-07-31",
     "rules": [],
@@ -8410,10 +8422,10 @@
     "host": "github",
     "site": "vale-cli/Microsoft",
     "repo": "vale-cli/Microsoft",
-    "stars": 112,
-    "downloads": 796807,
-    "version": "v0.15.1",
-    "released": "2026-08-04",
+    "stars": 114,
+    "downloads": 1089140,
+    "version": "v0.15.2",
+    "released": "2026-11-12",
     "rules": [
       {
         "name": "Accessibility",
@@ -8808,9 +8820,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 105306,
-    "version": "v678",
-    "released": "2026-09-10",
+    "downloads": 113753,
+    "version": "v683",
+    "released": "2026-11-16",
     "rules": [
       {
         "name": "AdditionalResourcesHeadingHasRoleID",
@@ -8956,10 +8968,10 @@
     "host": "github",
     "site": "vale-cli/readability",
     "repo": "vale-cli/readability",
-    "stars": 29,
-    "downloads": 226000,
-    "version": "v0.1.1",
-    "released": "2022-10-31",
+    "stars": 31,
+    "downloads": 285612,
+    "version": "v0.2.0",
+    "released": "2026-09-24",
     "rules": [
       {
         "name": "AutomatedReadability",
@@ -9042,9 +9054,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 328542,
-    "version": "v678",
-    "released": "2026-09-10",
+    "downloads": 369013,
+    "version": "v683",
+    "released": "2026-11-16",
     "rules": [
       {
         "name": "Abbreviations",
@@ -9359,7 +9371,7 @@
     "site": "sfadriaan/Salesforce",
     "repo": "sfadriaan/Salesforce",
     "stars": 1,
-    "downloads": 331,
+    "downloads": 751,
     "version": "v0.1.0",
     "released": "2026-07-30",
     "rules": [
@@ -9603,8 +9615,8 @@
     "host": "github",
     "site": "vale-cli/Std",
     "repo": "vale-cli/Std",
-    "stars": 2,
-    "downloads": 1258,
+    "stars": 4,
+    "downloads": 24536,
     "version": "v0.2.0",
     "released": "2026-09-08",
     "rules": [
@@ -9737,6 +9749,10 @@
     "host": "github",
     "site": "jdkato/voices",
     "repo": "jdkato/voices",
+    "stars": 7,
+    "downloads": 13587,
+    "version": "v0.2.0",
+    "released": "2026-09-28",
     "rules": [
       {
         "name": "Banned",
@@ -10041,10 +10057,10 @@
     "host": "github",
     "site": "tbhb/vale-ai-tells",
     "repo": "tbhb/vale-ai-tells",
-    "stars": 91,
-    "downloads": 53729,
-    "version": "v1.34.0",
-    "released": "2026-09-07",
+    "stars": 137,
+    "downloads": 272649,
+    "version": "v1.37.0",
+    "released": "2026-09-15",
     "rules": [
       {
         "name": "AbsoluteAssertions",
@@ -11140,101 +11156,157 @@
     "site": "vale-cli/alex",
     "repo": "vale-cli/alex",
     "stars": 25,
-    "downloads": 314005,
-    "version": "v0.2.3",
-    "released": "2024-11-02",
+    "downloads": 442297,
+    "version": "v0.3.0",
+    "released": "2026-11-19",
     "rules": [
       {
         "name": "Ablist",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "When referring to a person, consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "AblistNested",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "AblistPhrases",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "Condescending",
         "extends": "existence",
-        "level": "error",
-        "scope": "text",
-        "message": "Using '%s' may come across as condescending.",
-        "link": "https://css-tricks.com/words-avoid-educational-writing/"
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%s' may be insensitive, try not to use it.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "Gendered",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "GenderedNested",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "GenderedPerson",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, when referring to a person, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "GenderedPhrases",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "LGBTQ",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
-        "name": "OCD",
+        "name": "LGBTQPhrases",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "When referring to a person, consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "Press",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "ProfanityLikely",
         "extends": "existence",
         "level": "warning",
-        "scope": "text",
+        "scope": "~table & ~frontmatter",
         "message": "Don't use '%s', it's profane.",
-        "link": ""
+        "link": "https://github.com/retextjs/retext-profanities#readme"
+      },
+      {
+        "name": "ProfanityLikelyPhrases",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "Don't use '%s', it's profane.",
+        "link": "https://github.com/retextjs/retext-profanities#readme"
       },
       {
         "name": "ProfanityMaybe",
         "extends": "existence",
         "level": "warning",
-        "scope": "text",
+        "scope": "~table & ~frontmatter",
         "message": "Reconsider using '%s', it may be profane.",
-        "link": ""
+        "link": "https://github.com/retextjs/retext-profanities#readme"
       },
       {
         "name": "ProfanityUnlikely",
         "extends": "existence",
         "level": "warning",
-        "scope": "text",
+        "scope": "~table & ~frontmatter",
         "message": "Be careful with '%s', it's profane in some cases.",
-        "link": ""
+        "link": "https://github.com/retextjs/retext-profanities#readme"
       },
       {
         "name": "Race",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
+      },
+      {
+        "name": "Slogans",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       },
       {
         "name": "Suicide",
         "extends": "substitution",
         "level": "warning",
-        "scope": "text",
-        "message": "Consider using '%s' instead of '%s' (which may be insensitive).",
-        "link": ""
+        "scope": "~table & ~frontmatter",
+        "message": "'%[2]s' may be insensitive, use %[1]s instead.",
+        "link": "https://github.com/retextjs/retext-equality#readme"
       }
     ],
     "assets": [],
-    "valeVersion": ">=1.0.0"
+    "valeVersion": ">=3.28.1"
   },
   {
     "name": "neighbor",
@@ -11250,7 +11322,7 @@
     "site": "a11yfred/neighbor",
     "repo": "a11yfred/neighbor",
     "stars": 1,
-    "downloads": 992,
+    "downloads": 16768,
     "version": "v2.2.0",
     "released": "2026-05-26",
     "rules": [
@@ -11375,105 +11447,289 @@
     "site": "vale-cli/proselint",
     "repo": "vale-cli/proselint",
     "stars": 45,
-    "downloads": 663614,
-    "version": "v0.3.4",
-    "released": "2024-06-09",
+    "downloads": 883067,
+    "version": "v0.4.0",
+    "released": "2026-11-19",
     "rules": [
       {
         "name": "Airlinese",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is airlinese.",
-        "link": ""
+        "message": "'%[1]s' is airlinese.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "AnimalLabels",
         "extends": "substitution",
         "level": "error",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "There's a word for this: %[1]s.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Annotations",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' left in text.",
-        "link": ""
+        "message": "Annotation left in text.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Apologizing",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "Excessive apologizing: '%s'",
-        "link": ""
+        "message": "Excessive apologizing.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Archaisms",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is archaic.",
-        "link": ""
+        "message": "'%[1]s' is archaic.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "BackFormations",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Back-formation. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Bureaucratese",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is bureaucratese.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "But",
         "extends": "existence",
         "level": "error",
         "scope": "paragraph",
-        "message": "Do not start a paragraph with a 'but'.",
-        "link": ""
+        "message": "No paragraph should start with a 'But'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Capitalization",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Incorrect capitalization. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CapitalizationDays",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Days of the week should be capitalized. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CapitalizationMonths",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Months should be capitalized. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CapitalizationSeasons",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Seasons shouldn't be capitalized. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Chatspeak",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is chatspeak. Write it out.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ChatspeakNested",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is chatspeak. Write it out.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Cliches",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is a cliche.",
-        "link": ""
+        "message": "'%[1]s' is a cliché",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ClichesDiction",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is a cliché",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ClichesGarner",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is a cliché",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ClichesHell",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Never use the phrase 'all hell broke loose'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ClichesNested",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is a cliché",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Commercialese",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is commercialese.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CommercialeseNested",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is commercialese.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Composition",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Try %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CompositionNested",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Try %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CompositionPatterns",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Try %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Copyright",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "(c) is a goofy alphabetic approximation, use the symbol ©.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "CorporateSpeak",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is corporate speak.",
-        "link": ""
+        "message": "Minimize your use of corporate catchphrases like '%[1]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "CurlyQuotes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use curly quotes “”, not straight quotes \"\".",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Currency",
         "extends": "existence",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "Incorrect use of symbols in '%s'.",
-        "link": ""
-      },
-      {
-        "name": "Cursing",
-        "extends": "existence",
-        "level": "error",
-        "scope": "text",
-        "message": "Consider replacing '%s'.",
-        "link": ""
+        "message": "Incorrect use of symbols in %[1]s.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "DateCase",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "With lowercase letters, the periods are standard.",
-        "link": ""
+        "message": "It's standard to use periods for lowercase 'a.m.' or 'p.m.'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DateDecades",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Apostrophes aren't needed for decades.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DateDecadesFull",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Apostrophes aren't needed for decades.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "DateMidnight",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "Use 'midnight' or 'noon'.",
-        "link": ""
+        "message": "'12 a.m.' and '12 p.m.' are ambiguous. Use 'midnight' or 'noon'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DateMonthComma",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "When specifying a month and year, no comma is needed.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DateMonthOf",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "When specifying a month and year, 'of' is unnecessary.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DateRange",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "When specifying a date range, write 'from X to Y'.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "DateRedundancy",
@@ -11481,179 +11737,683 @@
         "level": "error",
         "scope": "text",
         "message": "'a.m.' is always morning; 'p.m.' is always night.",
-        "link": ""
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "DateSpacing",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "It's standard to put a space before '%s'",
-        "link": ""
+        "message": "It's standard to put a space before 'a.m.' or 'p.m.'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Debased",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Debased language is a continuous temptation.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "DenizenLabels",
         "extends": "substitution",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "Did you mean '%s'?",
-        "link": ""
+        "message": "%[1]s is the preferred denizen label.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "DenizenLabelsNorris",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Would you like %[1]s?",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Diacritical",
         "extends": "substitution",
         "level": "error",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "Use diacritical marks in %[1]s.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Ellipsis",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'...' is an approximation, use the ellipsis symbol '…'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "EponymousAdjectives",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the preferred eponymous adjective.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "EtAl",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Misplaced punctuation. It's 'et al.'",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "EtAlNested",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Misplaced punctuation. It's 'et al.'",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Exclamation",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "More than 30 ppm of exclamations. Keep them under control. Surpassed 30 ppm.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "FalsePlurals",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "The correct plural is %[1]s.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "GenderBias",
         "extends": "substitution",
         "level": "error",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "Gender bias. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "GenderBiasForms",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Not a preferred form. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Greylist",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%s",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "GroupTerms",
         "extends": "substitution",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "The venery term is %[1]s.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Hedging",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is hedging.",
-        "link": ""
+        "message": "Hedging. Just say it.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Hyperbole",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is hyperbolic.",
-        "link": ""
+        "message": "'%[1]s' is hyperbolic.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Illogic",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s' is illogical.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "IllogicCoin",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "You can't coin an existing phrase. Did you mean 'borrow'?",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "IllogicCollusion",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "It's impossible to defraud yourself. Try 'aquiescence'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "InferiorSuperior",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "'Inferior' and 'superior' are not true comparatives. Use %[1]s.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "InstitutionName",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Incorrect name. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Jargon",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is jargon.",
-        "link": ""
+        "message": "'%[1]s' is jargon. Can you replace it with something more standard?",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Kudos",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Kudos is singular.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Latin",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Use English. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "LexicalIllusions",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "There's a lexical illusion in '%[1]s' - a phrase is repeated.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "LGBTOffensive",
         "extends": "existence",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "'%s' is offensive. Remove it or consider the context.",
-        "link": ""
+        "message": "Offensive term. Remove it or consider the context.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "LGBTTerms",
         "extends": "substitution",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "Possibly offensive term. Consider using %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "LieDetector",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Polygraph machines measure arousal, not lying per se. Try %[1]s.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Malapropisms",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is a malapropism.",
-        "link": ""
+        "message": "'%[1]s' is a malapropism.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ManyA",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "'many a' requires a singular verb.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "MentalTelepathy",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "This is redundant because all purported telepathy is mental.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Metadiscourse",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Excessive metadiscourse.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "MixedMetaphors",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Mixed metaphor. Try %[1]s.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "MixedMetaphorsBottleneck",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Mixed metaphor — bottles with big necks are easy to pass through.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Mondegreens",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Multiplication",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Use the multiplication symbol ×, not the letter x.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Narcissism",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Professional narcissism. Talk about the subject, not its study.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Needless",
         "extends": "substitution",
-        "level": "suggestion",
+        "level": "warning",
         "scope": "text",
-        "message": "Prefer '%s' over '%s'",
-        "link": ""
+        "message": "Needless variant. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Nonwords",
         "extends": "substitution",
         "level": "error",
         "scope": "text",
-        "message": "Consider using '%s' instead of '%s'.",
-        "link": ""
+        "message": "Nonword - try %[1]s.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "NotGuilty",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'not guilty beyond a reasonable doubt' is an ambiguous phrasing.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "NWord",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Take responsibility for the words you want to say.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Oxymorons",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is an oxymoron.",
-        "link": ""
+        "message": "'%[1]s' is an oxymoron.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "P-Value",
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
-        "message": "You should use more decimal places, unless '%s' is really true.",
-        "link": ""
+        "message": "Unless p really equals zero, you should use more decimal places.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
-        "name": "RASSyndrome",
+        "name": "PhrasalAdjectives",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Hyphenate '%[2]s', a phrasal adjective, as %[1]s.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "PhrasalAdjectivesLy",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is redundant.",
-        "link": ""
+        "message": "No hyphen is necessary in phrasal adjectives with an adverb ending in -ly, unless the -ly adverb is part of a longer phrase.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "PreferredForms",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "PreferredFormsMeantime",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "PreferredFormsMeantimeInner",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Pretension",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Jargon words like '%[1]s' are the hallmarks of a pretentious ass.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Professions",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "%[1]s is the name of that job.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RASSyndrome",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "RAS syndrome. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Redundancy",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RedundancyGarner",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RedundancyGarnerPatterns",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RedundancyNested",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RedundancyNordquist",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RedundancyWallace",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Redundancy. Use %[1]s instead of '%[2]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "RegisteredTrademark",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "(R) is a goofy alphabetic approximation, use the symbol ®.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "ScareQuotes",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Misuse of 'scare quotes'. Delete them.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SentenceSpacing",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "More than two spaces after the period; use 1 or 2.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SentenceSpacingMixed",
+        "extends": "script",
+        "level": "error",
+        "scope": "raw",
+        "message": "Inconsistent spacing after period (1 vs. 2 spaces).",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Skunked",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is a bit of a skunked term — impossible to use without issue.",
-        "link": ""
+        "message": "'%[1]s' is a a skunked term - impossible to use without issue. Find some other way to say it.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Spelling",
-        "extends": "consistency",
+        "extends": "script",
         "level": "error",
-        "scope": "text",
-        "message": "Inconsistent spelling of '%s'.",
-        "link": ""
+        "scope": "raw",
+        "message": "Inconsistent spelling of '%s' (vs. '%s').",
+        "link": "https://github.com/amperser/proselint"
       },
       {
-        "name": "Typography",
+        "name": "SpellingAbleAtable",
         "extends": "substitution",
         "level": "error",
         "scope": "text",
-        "message": "Consider using the '%s' symbol instead of '%s'.",
-        "link": ""
+        "message": "-able vs. -atable. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingAbleIble",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-able vs. -ible. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingAllyLy",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-ally vs. -ly. %[1]s is the correct spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingAnceEnce",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-ance vs. -ence. %[1]s is the correct spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingAthletes",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Misspelling of athlete's name. %[1]s is the preferred form.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingElyLy",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-ely vs. -ly. %[1]s is the correct spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingEmIm",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "em-, im-, en-, and in-. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingErOr",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-er vs. -or. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingInUn",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "in- vs. un-. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingMisc",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Misspelling. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingTill",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "Misspelling. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "SpellingVeOf",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "-ve vs. -of. %[1]s is the preferred spelling.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Suddenly",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Suddenly is nondescript, slows the action, and warns your reader.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "TensePresent",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "'%[1]s'.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Trademark",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "(TM) is a goofy alphabetic approximation, use the symbol ™.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Uncomparables",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "'%s' is not comparable",
-        "link": ""
+        "message": "Comparison of an uncomparable: '%[1]s' is not comparable.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "UncomparablesMost",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "Comparison of an uncomparable: '%[1]s' is not comparable.",
+        "link": "https://github.com/amperser/proselint"
       },
       {
         "name": "Very",
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "Remove '%s'.",
-        "link": ""
+        "message": "Substitute 'damn' every time you're inclined to write 'very'; your editor will delete it and the writing will be just as it should be.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Waxed",
+        "extends": "substitution",
+        "level": "error",
+        "scope": "text",
+        "message": "The modifier following 'waxed' must be an adj.: %[1]s is correct.",
+        "link": "https://github.com/amperser/proselint"
+      },
+      {
+        "name": "Whence",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "The 'from' in 'from whence' is not needed.",
+        "link": "https://github.com/amperser/proselint"
       }
     ],
     "assets": [],
-    "valeVersion": ">=1.0.0"
+    "valeVersion": ">=3.28.1"
   },
   {
     "name": "write-good",
@@ -11667,17 +12427,25 @@
     "host": "github",
     "site": "vale-cli/write-good",
     "repo": "vale-cli/write-good",
-    "stars": 49,
-    "downloads": 1097132,
-    "version": "v0.4.1",
-    "released": "2024-06-09",
+    "stars": 51,
+    "downloads": 1503401,
+    "version": "v0.5.0",
+    "released": "2026-11-19",
     "rules": [
+      {
+        "name": "Adverbs",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' can weaken meaning",
+        "link": ""
+      },
       {
         "name": "Cliches",
         "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "Try to avoid using clichés like '%s'.",
+        "message": "'%s' is a cliche",
         "link": ""
       },
       {
@@ -11685,15 +12453,15 @@
         "extends": "existence",
         "level": "suggestion",
         "scope": "text",
-        "message": "Try to avoid using '%s'.",
+        "message": "'%s' is a form of 'to be'",
         "link": ""
       },
       {
         "name": "Illusions",
-        "extends": "repetition",
+        "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "'%s' is repeated!",
+        "message": "'%s' is repeated",
         "link": ""
       },
       {
@@ -11701,7 +12469,7 @@
         "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "'%s' may be passive voice. Use active voice if you can.",
+        "message": "'%s' may be passive voice",
         "link": ""
       },
       {
@@ -11709,7 +12477,7 @@
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "Don't start a sentence with '%s'.",
+        "message": "'%s' adds no meaning",
         "link": ""
       },
       {
@@ -11717,7 +12485,7 @@
         "extends": "existence",
         "level": "error",
         "scope": "text",
-        "message": "Don't start a sentence with '%s'.",
+        "message": "'%s' is unnecessary verbiage",
         "link": ""
       },
       {
@@ -11725,7 +12493,7 @@
         "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "'%s' is too wordy.",
+        "message": "'%s' is wordy or unneeded",
         "link": ""
       },
       {
@@ -11733,11 +12501,11 @@
         "extends": "existence",
         "level": "warning",
         "scope": "text",
-        "message": "'%s' is a weasel word!",
+        "message": "'%s' is a weasel word",
         "link": ""
       }
     ],
     "assets": [],
-    "valeVersion": ">=1.0.0"
+    "valeVersion": ">=3.28.1"
   }
 ]
