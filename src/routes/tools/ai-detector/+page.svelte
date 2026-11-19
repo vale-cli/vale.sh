@@ -86,14 +86,25 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 	});
 
 	/*
-		Vale itself, in a worker, with every rule in the package. It takes a
+		Vale itself, in a worker, with every rule in both packages. It takes a
 		moment to arrive, so the patterns above answer first and its findings
 		take their place. The archive nests its styles a level down.
 	*/
 	const vale = useVale(() => input.value, {
-		packages: [{ url: '/wasm/packages/ai-tells.zip', prefix: '/pkg' }],
-		config: config(['ai-tells'], '/pkg/ai-tells/styles')
+		packages: [
+			{ url: '/wasm/packages/ai-tells.zip', prefix: '/pkg' },
+			{ url: '/wasm/packages/Modelese.zip', prefix: '/pkg/ai-tells/styles' }
+		],
+		config: config(['ai-tells', 'Modelese'], '/pkg/ai-tells/styles')
 	});
+
+	// Modelese's rules about the text as a whole. They have no phrase to mark.
+	const RHYTHM = /^Modelese\.(Monotone|SameStart|Transitions)$/;
+	const rhythm = $derived(
+		(vale.result?.placed ?? [])
+			.filter((p) => RHYTHM.test(p.alert.Check))
+			.map((p) => p.alert.Message)
+	);
 
 	type Found = {
 		from: number;
@@ -114,7 +125,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 		const out: Found[] = [];
 		let end = -1;
 		for (const p of vale.result.placed) {
-			if (p.to <= end) continue;
+			if (RHYTHM.test(p.alert.Check) || p.from < end) continue;
 			end = Math.max(end, p.to);
 			out.push({
 				from: p.from,
@@ -170,7 +181,9 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			from: f.from,
 			to: f.to,
 			category: family(f.rule),
-			message: `${ruleLabel(f.rule)}. ${advice(f.message)}`,
+			message: f.rule.startsWith('Modelese.')
+				? f.message.replace(/'(.*?)'/, '“$1”')
+				: `${ruleLabel(f.rule)}. ${advice(f.message)}`,
 			fix: f.fix
 		}))
 	);
@@ -325,7 +338,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				</p>
 				{#if vale.state === 'ready' && !empty}
 					<p class="mt-3 border-t border-border/70 pt-3 text-xs leading-5 text-muted-foreground">
-						Checked by Vale, running in this tab, with every rule in the package.
+						Checked by Vale, running in this tab, with every rule in both packages.
 					</p>
 				{/if}
 			</div>
@@ -371,6 +384,19 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				</div>
 			{/if}
 
+			{#if rhythm.length}
+				<div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
+					<div class="text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+						Rhythm
+					</div>
+					<ul class="mt-2 space-y-1.5 text-sm leading-6 text-foreground/85">
+						{#each rhythm as note (note)}
+							<li>{note}</li>
+						{/each}
+					</ul>
+				</div>
+			{/if}
+
 			<Legend
 				{categories}
 				counts={tally}
@@ -393,7 +419,10 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			This detector checks your text against {data.rules} of those patterns and shows you each match.
 			The patterns come from
 			<a href={data.homepage} target="_blank" rel="noreferrer">ai-tells</a>, an open-source
-			collection maintained in public, so you can read exactly what is being checked.
+			collection maintained in public, so you can read exactly what is being checked. Beside them
+			run the nine rules of
+			<a href="https://github.com/jdkato/Modelese" target="_blank" rel="noreferrer">Modelese</a>,
+			each found by comparing what people and models wrote in answer to the same questions.
 		</p>
 
 		<h2>What the result means</h2>

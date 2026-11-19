@@ -308,6 +308,7 @@ export function density(per1k: number): { label: string; level: 0 | 1 | 2 | 3 } 
 export function family(
 	rule: string
 ): 'vocabulary' | 'structure' | 'filler' | 'figurative' | 'heading' {
+	if (/^Modelese\./.test(rule)) return 'filler';
 	if (/Headings$/.test(rule)) return 'heading';
 	if (/^Figurative|Metaphors$|^Anthropomorphic|^Bare/.test(rule)) return 'figurative';
 	if (
