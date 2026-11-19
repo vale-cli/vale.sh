@@ -768,5 +768,15 @@
 		"description": "A non-native English speaker explains choosing Vale for offline, real-time writing feedback, configuring it with write-good, and writing a Flycheck checker for Emacs.",
 		"image": "",
 		"site": "mac-vicar.eu"
+	},
+	{
+		"title": "Vale: Prose Linting for Technical Writers and Documentation Teams",
+		"url": "https://devtoolsguide.com/vale-prose-linting/",
+		"author": "DevTools Guide",
+		"year": 2026,
+		"type": "post",
+		"description": "An introduction for docs teams: installation, community style packages, custom rules, editor and CI integration, and advice on adopting it.",
+		"image": "",
+		"site": "devtoolsguide.com"
 	}
 ]

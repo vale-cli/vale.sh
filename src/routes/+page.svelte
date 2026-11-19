@@ -5,7 +5,7 @@
 	import AdopterConfigs from '$lib/components/landing/AdopterConfigs.svelte';
 	import Promo from '$lib/components/landing/Promo.svelte';
 	import WhyRules from '$lib/components/landing/WhyRules.svelte';
-	import Features from '$lib/components/landing/Features.svelte';
+	import FeatureIndex from '$lib/components/landing/FeatureIndex.svelte';
 	import HowItWorks from '$lib/components/landing/HowItWorks.svelte';
 	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
@@ -71,7 +71,7 @@
 	<Promo />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs band={data.band} editorial />
-	<Features />
+	<FeatureIndex />
 	<WhyRules />
 	<Ecosystem stats={data.stats} />
 	<Integrations />
