@@ -5,7 +5,7 @@
 
 	const title = 'Free Writing Tools: AI Detector, Word Counter, Readability Checker';
 	const description =
-		'Free writing tools that run in your browser: an AI writing detector, word counter, readability checker, title case converter, and style guide comparison. No sign-up.';
+		'Free writing tools that run in your browser: an AI writing detector, word counter, readability checker, style guide checker, and title case converter. No sign-up.';
 	const url = 'https://vale.sh/tools';
 
 	const jsonLd = JSON.stringify({
@@ -45,8 +45,8 @@
 			Tools for people who write
 		</h1>
 		<p class="mt-5 text-pretty text-lg leading-8 text-foreground/85">
-			Five tools, free to use with no account. Each one runs in your browser, so the text you paste
-			never leaves your device.
+			Free to use, with no account. Each one runs in your browser, so the text you paste never
+			leaves your device.
 		</p>
 	</header>
 

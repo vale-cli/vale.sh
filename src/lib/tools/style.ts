@@ -21,6 +21,10 @@ export type Highlight = {
 	message: string;
 	/** Where the advice comes from, shown under the message. */
 	source?: string;
+	/** A page to read more on, linked from the source line. */
+	href?: string;
+	/** Draw as a filled block or an underline, whatever the category says. */
+	mark?: 'fill' | 'line';
 	/**
 	 * A one-click edit: replace the span with this. An empty string deletes
 	 * it, and `extend` takes that many characters after the span too, so

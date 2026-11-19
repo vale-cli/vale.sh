@@ -30,6 +30,51 @@ const SUPPORTED = new Set(['existence', 'substitution', 'repetition']);
 /** A leading `(?i)` is Go's inline flag; JavaScript wants it on the RegExp. */
 const INLINE_I = /^\(\?i\)/;
 
+/**
+ * Rewrites Go's scoped flag group `(?i:when|if)` as `(?:[wW][hH][eE][nN]|[iI][fF])`.
+ *
+ * JavaScript only gained scoped flags recently, and a pattern that uses them
+ * fails to compile in the browsers that lack them. Spelling the letters out
+ * means the same thing everywhere. `(?-i:…)`, which turns case-matching back
+ * on inside a rule that ignores it, has no such spelling and is left alone.
+ */
+function expandInlineI(source) {
+	let out = '';
+	for (let i = 0; i < source.length; ) {
+		if (!source.startsWith('(?i:', i)) {
+			out += source[i] === '\\' ? source.slice(i, i + 2) : source[i];
+			i += source[i] === '\\' ? 2 : 1;
+			continue;
+		}
+		// Find the group's closing parenthesis.
+		let depth = 1;
+		let j = i + 4;
+		let body = '';
+		for (; j < source.length && depth > 0; j++) {
+			const c = source[j];
+			if (c === '\\') {
+				body += source.slice(j, j + 2);
+				j++;
+				continue;
+			}
+			if (c === '[') {
+				// A character class is copied whole; its letters would need both
+				// cases added, which none of the packages' patterns rely on.
+				const end = source.indexOf(']', j + 1);
+				body += source.slice(j, end + 1);
+				j = end;
+				continue;
+			}
+			if (c === '(') depth++;
+			if (c === ')' && --depth === 0) break;
+			body += /[a-zA-Z]/.test(c) ? `[${c.toLowerCase()}${c.toUpperCase()}]` : c;
+		}
+		out += `(?:${body})`;
+		i = j + 1;
+	}
+	return out;
+}
+
 function compiles(source, flags = 'gm') {
 	try {
 		new RegExp(source, flags);
@@ -42,7 +87,7 @@ function compiles(source, flags = 'gm') {
 const list = (v) => (Array.isArray(v) ? v.map(String) : v == null ? [] : [String(v)]);
 
 /** Reads one rule into the fields the browser engine needs, or says why not. */
-function convert(name, rule) {
+function convert(name, rule, supported = SUPPORTED) {
 	const base = {
 		name,
 		extends: rule.extends,
@@ -52,7 +97,7 @@ function convert(name, rule) {
 		scope: list(rule.scope)[0] ?? 'text'
 	};
 
-	if (!SUPPORTED.has(rule.extends)) {
+	if (!supported.has(rule.extends)) {
 		return { skipped: { name, why: `${rule.extends} rule` } };
 	}
 	// A rule can name several scopes or negate one; the browser handles the
@@ -68,6 +113,46 @@ function convert(name, rule) {
 		return { rule: { ...base, ignorecase: rule.ignorecase === true } };
 	}
 
+	// "An acronym needs its expansion somewhere": `first` is the thing found,
+	// `second` what has to define it.
+	if (rule.extends === 'conditional') {
+		if (!compiles(String(rule.first)) || !compiles(String(rule.second))) {
+			return { skipped: { name, why: 'pattern' } };
+		}
+		return {
+			rule: {
+				...base,
+				ignorecase: rule.ignorecase === true,
+				first: String(rule.first),
+				second: String(rule.second),
+				exceptions: list(rule.exceptions).filter((e) => compiles(e))
+			}
+		};
+	}
+
+	// A count per sentence: the long-sentence rules.
+	if (rule.extends === 'occurrence') {
+		if (base.scope !== 'sentence' || !compiles(String(rule.token)) || rule.max == null) {
+			return { skipped: { name, why: 'occurrence outside a sentence' } };
+		}
+		return { rule: { ...base, token: String(rule.token), max: Number(rule.max) } };
+	}
+
+	// Sentence-case headings. Title case and custom patterns aren't handled.
+	if (rule.extends === 'capitalization') {
+		if (rule.match !== '$sentence' || base.scope !== 'heading') {
+			return { skipped: { name, why: `capitalization ${rule.match}` } };
+		}
+		return {
+			rule: {
+				...base,
+				exceptions: list(rule.exceptions).filter((e) => compiles(e)),
+				indicators: list(rule.indicators),
+				threshold: rule.threshold == null ? 0.8 : Number(rule.threshold)
+			}
+		};
+	}
+
 	let dropped = 0;
 	const keep = (source) => {
 		const ok = compiles(source);
@@ -77,7 +162,7 @@ function convert(name, rule) {
 
 	if (rule.extends === 'substitution') {
 		const swap = Object.entries(rule.swap ?? {})
-			.map(([k, v]) => [String(k), String(v)])
+			.map(([k, v]) => [expandInlineI(String(k)), String(v)])
 			.filter(([k]) => keep(k));
 		if (!swap.length) return { skipped: { name, why: 'no usable patterns' } };
 		return {
@@ -92,12 +177,12 @@ function convert(name, rule) {
 	}
 
 	// existence
-	const raw = list(rule.raw).join('');
+	const raw = expandInlineI(list(rule.raw).join(''));
 	if (raw && !compiles(raw)) return { skipped: { name, why: 'raw pattern' } };
 
 	const tokens = [];
 	const itokens = []; // carried their own (?i)
-	for (const t of list(rule.tokens)) {
+	for (const t of list(rule.tokens).map(expandInlineI)) {
 		if (INLINE_I.test(t)) {
 			const bare = t.replace(INLINE_I, '');
 			if (keep(bare)) itokens.push(bare);
@@ -271,4 +356,63 @@ const STYLE = [
 		0
 	);
 	console.log(`  style        ${rules.length} rules, ${patterns} patterns`);
+}
+
+/*
+ * src/lib/data/tools/guide-<name>.json — the rules behind
+ * /tools/style-guide-checker, one file per guide so the page downloads only
+ * the guide a reader picks.
+ *
+ * Every rule in the package is converted if the browser can run it; the rest
+ * are listed under `skipped` with the reason, and the page shows that list.
+ */
+const GUIDES = [
+	{ name: 'Google', repo: 'vale-cli/Google' },
+	{ name: 'Microsoft', repo: 'vale-cli/Microsoft' },
+	{ name: 'RedHat', repo: 'redhat-documentation/vale-at-red-hat' }
+];
+
+const GUIDE_RULES = new Set([
+	'existence',
+	'substitution',
+	'repetition',
+	'conditional',
+	'occurrence',
+	'capitalization'
+]);
+
+for (const guide of GUIDES) {
+	const url = `https://github.com/${guide.repo}/releases/latest/download/${guide.name}.zip`;
+	const head = await fetch(url, { redirect: 'manual' });
+	const version = head.headers.get('location')?.match(/\/download\/([^/]+)\//)?.[1] ?? '';
+	const res = await fetch(url);
+	if (!res.ok) throw new Error(`${res.status} fetching ${url}`);
+	const files = unzipSync(new Uint8Array(await res.arrayBuffer()));
+
+	const rules = [];
+	const skipped = [];
+	for (const path of Object.keys(files).sort()) {
+		const m = `/${path}`.match(new RegExp(`/${guide.name}/([^/]+)\\.yml$`));
+		if (!m) continue;
+		let rule;
+		try {
+			rule = parseAllDocuments(strFromU8(files[path]))[0]?.toJS();
+		} catch {
+			continue;
+		}
+		if (!rule || typeof rule !== 'object' || !rule.extends) continue;
+
+		const out = convert(m[1], rule, GUIDE_RULES);
+		if (out.skipped) skipped.push(out.skipped);
+		else rules.push({ ...out.rule, name: `${guide.name}.${m[1]}` });
+	}
+
+	writeFileSync(
+		`${OUT}/guide-${guide.name}.json`,
+		JSON.stringify({ name: guide.name, version, rules, skipped }) + '\n'
+	);
+	console.log(
+		`  ${guide.name.padEnd(12)} ${version.padEnd(9)} ${String(rules.length).padStart(3)} rules, ${skipped.length} skipped` +
+			(skipped.length ? ` (${skipped.map((s) => s.name).join(', ')})` : '')
+	);
 }

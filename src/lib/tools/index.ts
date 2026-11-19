@@ -3,6 +3,7 @@ import Hash from 'lucide-svelte/icons/hash';
 import BookOpenCheck from 'lucide-svelte/icons/book-open-check';
 import CaseSensitive from 'lucide-svelte/icons/case-sensitive';
 import Scale from 'lucide-svelte/icons/scale';
+import SpellCheck from 'lucide-svelte/icons/spell-check';
 
 /**
  * The pages under /tools.
@@ -44,6 +45,16 @@ export const tools = [
 		description:
 			'Score text, a Word document, or a PDF on seven readability formulas at once, including Flesch–Kincaid, and see which sentences to fix. Free, no sign-up.',
 		blurb: 'Seven readability scores at once, and the sentences dragging them down.'
+	},
+	{
+		slug: 'style-guide-checker',
+		icon: SpellCheck,
+		name: 'Style Guide Checker',
+		title: 'Style Guide Checker',
+		metaTitle: 'Style Guide Checker: Google, Microsoft, and Red Hat Style',
+		description:
+			'Paste your text to check it against the Google, Microsoft, or Red Hat style guide. Every issue is highlighted with the rule, a link to the guide, and a fix.',
+		blurb: 'Check a draft against the Google, Microsoft, or Red Hat style guide.'
 	},
 	{
 		slug: 'title-case-converter',

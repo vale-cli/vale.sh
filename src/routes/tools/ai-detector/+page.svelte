@@ -173,7 +173,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				{hidden}
 				sample={SAMPLE}
 				minHeight="30rem"
-				placeholder="Paste an essay, an email, or a blog post, or drop a Word or PDF file here…"
+				placeholder="Paste an essay, an email, a blog post…"
 			/>
 
 			{#if phrases.length}

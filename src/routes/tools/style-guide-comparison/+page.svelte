@@ -281,6 +281,13 @@
 			often, so check the guide itself before settling an argument.
 		</p>
 
+		<h2>Check your own text against a guide</h2>
+		<p>
+			Once you know which guide you follow, paste a draft into the
+			<a href="/tools/style-guide-checker">style guide checker</a> to see every place it goes against
+			the Google, Microsoft, or Red Hat guide.
+		</p>
+
 		<h2>Pick one, then enforce it</h2>
 		<p>
 			Which guide you choose matters less than applying it everywhere. That is the part people are

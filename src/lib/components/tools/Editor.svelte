@@ -81,7 +81,7 @@
 		categories = [],
 		hidden = [],
 		sample,
-		placeholder = 'Start writing, paste your text, or drop a file here…',
+		placeholder = 'Paste your text here…',
 		label = 'Your text',
 		minHeight = '22rem'
 	}: {
@@ -129,6 +129,7 @@
 		}
 	}
 
+	let pasteKey = $state('Ctrl+V');
 	const hasFiles = (e: DragEvent) => !!e.dataTransfer?.types.includes('Files');
 
 	const byId = $derived(new Map(categories.map((c) => [c.id, c])));
@@ -150,7 +151,7 @@
 					if (!c || h.from >= h.to || h.to > max) continue;
 					ranges.push(
 						Decoration.mark({
-							class: `vt-mark vt-${c.mark} vt-${c.tone}`,
+							class: `vt-mark vt-${h.mark ?? c.mark} vt-${c.tone}`,
 							// Fills sit under lines, so a word mark inside a sentence
 							// mark is the inner element and its underline shows.
 							inclusive: false,
@@ -207,7 +208,16 @@
 				if (at.finding.source) {
 					const source = document.createElement('p');
 					source.className = 'vt-card-source';
-					source.textContent = at.finding.source;
+					if (at.finding.href) {
+						const link = document.createElement('a');
+						link.href = at.finding.href;
+						link.target = '_blank';
+						link.rel = 'noreferrer';
+						link.textContent = at.finding.source;
+						source.append(link);
+					} else {
+						source.textContent = at.finding.source;
+					}
 					dom.append(source);
 				}
 
@@ -269,6 +279,7 @@
 	onMount(() => {
 		if (!value) value = recall();
 		canPaste = !!navigator.clipboard?.readText;
+		if (/Mac|iPhone|iPad/.test(navigator.platform)) pasteKey = '⌘V';
 
 		view = new EditorView({
 			parent: host,
@@ -440,7 +451,61 @@
 		</div>
 	</div>
 
-	<div bind:this={host} style="--vt-min: {minHeight}">
+	<!-- svelte-ignore a11y_click_events_have_key_events, a11y_no_static_element_interactions -->
+	<div
+		class="relative cursor-text"
+		bind:this={host}
+		style="--vt-min: {minHeight}"
+		onclick={(e) => {
+			// The space under the last line belongs to the editor too.
+			const t = e.target as HTMLElement;
+			if (view && !view.hasFocus && (t === host || t.classList.contains('cm-scroller'))) {
+				view.focus();
+				view.dispatch({ selection: { anchor: view.state.doc.length } });
+			}
+		}}
+	>
+		{#if mounted && !value && !reading}
+			<!--
+				The empty editor leads with paste, since that is how nearly everyone
+				arrives: with text already on the clipboard. Only the buttons take
+				clicks, so clicking anywhere else still puts the cursor in the editor.
+			-->
+			<div
+				class="pointer-events-none absolute inset-x-0 top-[7.5rem] z-10 flex flex-col items-center gap-3 px-6 text-center sm:top-[4.75rem]"
+			>
+				{#if canPaste}
+					<button
+						type="button"
+						onclick={paste}
+						class="pointer-events-auto inline-flex items-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-sm transition hover:brightness-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+					>
+						<ClipboardPaste class="h-4 w-4" aria-hidden="true" />
+						Paste your text
+					</button>
+				{/if}
+				<p class="hidden text-sm text-muted-foreground sm:block">
+					{canPaste ? 'or press' : 'Press'}
+					<kbd class="rounded border border-border bg-muted px-1.5 py-0.5 font-mono text-xs"
+						>{pasteKey}</kbd
+					>
+					to paste, or just start typing
+				</p>
+				<p class="pointer-events-auto text-xs text-muted-foreground">
+					<button
+						type="button"
+						class="underline underline-offset-2 hover:text-foreground"
+						onclick={() => (value = sample)}>Try a sample</button
+					>
+					·
+					<button
+						type="button"
+						class="underline underline-offset-2 hover:text-foreground"
+						onclick={() => picker.click()}>open a file</button
+					>
+				</p>
+			</div>
+		{/if}
 		{#if !mounted}
 			<!-- What the page shows before the editor starts, at the same size, so
 			     nothing moves when it does. -->
@@ -622,6 +687,13 @@
 		margin-top: 0.3rem;
 		font-size: 0.6875rem;
 		color: hsl(var(--muted-foreground));
+	}
+	:global(.vt-card-source a) {
+		text-decoration: underline;
+		text-underline-offset: 2px;
+	}
+	:global(.vt-card-source a:hover) {
+		color: hsl(var(--foreground));
 	}
 	:global(.vt-card button) {
 		margin-top: 0.6rem;
