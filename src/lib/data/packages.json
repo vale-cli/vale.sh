@@ -3149,7 +3149,7 @@
         "extends": "sequence",
         "level": "warning",
         "scope": "text",
-        "message": "The verb `to {verb} someone` should not be preceded by the preposition `to`.",
+        "message": "Identifies sequences like `ask to us` or `tell to him` and recommends removing the superfluous “to”.",
         "link": ""
       },
       {
@@ -5469,7 +5469,7 @@
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
-        "message": "Did you mean `{replacement}`?",
+        "message": "Did you mean %[1]s?",
         "link": ""
       },
       {
@@ -5733,7 +5733,7 @@
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
-        "message": "`{phrase}` should be written as two words.",
+        "message": "%[1]s should be written as two words.",
         "link": ""
       },
       {
@@ -6941,7 +6941,7 @@
         "extends": "sequence",
         "level": "warning",
         "scope": "text",
-        "message": "Did you mean `{verb} allowed`?",
+        "message": "Ensures `was aloud` and `were aloud` are corrected to `was allowed` or `were allowed` when referring to permission.",
         "link": ""
       },
       {
@@ -7141,7 +7141,7 @@
         "extends": "substitution",
         "level": "warning",
         "scope": "text",
-        "message": "Did you mean `{replacement_str}`?",
+        "message": "Did you mean %[1]s?",
         "link": ""
       },
       {
