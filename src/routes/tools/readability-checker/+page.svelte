@@ -1,54 +1,74 @@
 <script lang="ts">
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
-	import ProseInput from '$lib/components/tools/ProseInput.svelte';
-	import Stat from '$lib/components/tools/Stat.svelte';
-	import Marked from '$lib/components/tools/Marked.svelte';
+	import Editor, { type Category } from '$lib/components/tools/Editor.svelte';
+	import Legend from '$lib/components/tools/Legend.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
-	import { count, maskMarkdown, sentences, stripMarkdownSyntax } from '$lib/tools/text';
-	import { audience, consensus, formulas, score, sentenceGrade } from '$lib/tools/readability';
+	import { count, duration, maskMarkdown, sentences, stripMarkdownSyntax } from '$lib/tools/text';
+	import { audience, consensus, formulas, score } from '$lib/tools/readability';
+	import { analyze } from '$lib/tools/style';
 
 	const page = tool('readability-checker');
 
 	const SAMPLE = `The utilization of excessively complicated terminology in documentation has a detrimental effect on the comprehension of readers, particularly those individuals for whom English is not a primary language, and it frequently necessitates multiple readings of the same passage before the intended meaning becomes apparent.
 
-Short sentences help. So do common words. When you need a long word, use it, but make the sentence around it short.
+Short sentences help. So do common words. When you really need a long word, use it, but make the sentence around it short.
 
-Most style guides ask for a grade level of eight or below. That is not because readers are slow. It is because people skim, and plain text survives skimming.`;
+Most style guides ask for a grade level of eight or below. That is not because readers are slow. It is because people skim, and plain text survives skimming. In order to get there, mistakes were made by every writer who has tried, and the drafts were quietly rewritten until the numbers came down.`;
+
+	/*
+		Sentences are filled and words are underlined, so a passive verb inside
+		a hard sentence shows as both.
+	*/
+	const categories: Category[] = [
+		{
+			id: 'very-hard',
+			label: 'Very hard to read',
+			tone: 'rose',
+			mark: 'fill',
+			hint: 'Split or cut'
+		},
+		{ id: 'hard', label: 'Hard to read', tone: 'amber', mark: 'fill', hint: 'Shorten' },
+		{ id: 'simpler', label: 'Simpler word', tone: 'teal', mark: 'line', hint: 'Swap in one click' },
+		{ id: 'passive', label: 'Passive voice', tone: 'sky', mark: 'line', hint: 'Say who did it' },
+		{ id: 'adverb', label: 'Adverbs', tone: 'violet', mark: 'line', hint: 'Use a stronger verb' },
+		{
+			id: 'qualifier',
+			label: 'Qualifiers',
+			tone: 'orange',
+			mark: 'line',
+			hint: 'Usually safe to cut'
+		}
+	];
 
 	let text = $state('');
+	let hidden = $state<string[]>([]);
+	let editor = $state<ReturnType<typeof Editor>>();
 	const input = settled(() => text);
 
-	// Scores are computed on prose only. The marked-up view below needs the
-	// original characters, so the mask keeps every offset where it was.
+	// Scores are computed on prose only. The mask keeps every offset where it
+	// was, so a finding's position is its position in the editor.
 	const prose = $derived(stripMarkdownSyntax(maskMarkdown(input.value)));
 	const split = $derived(sentences(prose));
 	const counts = $derived(count(prose, split));
 	const scores = $derived(score(counts));
-	const grade = $derived(consensus(scores));
+	const grade = $derived(Math.max(0, consensus(scores)));
 	const reader = $derived(audience(grade));
+	const highlights = $derived(analyze(prose, split));
+
+	const tally = $derived.by(() => {
+		const out: Record<string, number> = {};
+		for (const h of highlights) out[h.category] = (out[h.category] ?? 0) + 1;
+		return out;
+	});
 
 	// Formulas are unstable on a sentence or two: SMOG was defined on 30.
 	const enough = $derived(counts.words >= 30 && counts.sentences >= 2);
+	const empty = $derived(counts.words === 0);
 
-	/*
-		A sentence is marked when it is long or scores well above the target on
-		its own. These are where an edit moves the numbers most: every formula
-		here is driven by words per sentence.
-	*/
-	const hard = $derived(
-		split
-			.map((s) => ({ ...s, grade: sentenceGrade(s.words, s.syllables) }))
-			.filter((s) => s.words >= 12 && (s.words > 25 || s.grade > 12))
-	);
-	const marks = $derived(
-		hard.map((s) => ({
-			from: s.from,
-			to: s.to,
-			tone: s.words > 35 || s.grade > 16 ? ('bad' as const) : ('warn' as const),
-			title: `${s.words} words, grade ${s.grade.toFixed(1)}`
-		}))
-	);
+	// Where the grade sits on a scale that runs from 0 to 18.
+	const SCALE = 18;
+	const marker = $derived(Math.min(100, (grade / SCALE) * 100));
 
 	const show = (n: number) => (Number.isFinite(n) ? n.toFixed(1) : '–');
 
@@ -82,105 +102,144 @@ Most style guides ask for a grade level of eight or below. That is not because r
 
 <ToolPage
 	tool={page}
-	lede="Paste your text to score it on seven readability formulas at once, from Flesch–Kincaid to SMOG, and see which sentences to shorten."
+	wide
+	lede="Write or paste your text. Hard sentences, passive voice, adverbs, and needlessly long words are highlighted as you type, with seven readability scores alongside."
 	{faq}
 >
-	<ProseInput bind:value={text} sample={SAMPLE} rows={9} />
+	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
+		<div class="min-w-0">
+			<Editor
+				bind:this={editor}
+				bind:value={text}
+				{highlights}
+				{categories}
+				{hidden}
+				sample={SAMPLE}
+				minHeight="30rem"
+			/>
 
-	<div class="mt-6" aria-live="polite">
-		{#if counts.words === 0}
-			<p
-				class="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground"
+			<dl
+				class="mt-3 flex flex-wrap gap-x-6 gap-y-1 px-1 text-sm text-muted-foreground"
+				aria-live="polite"
 			>
-				Your scores will appear here as you type.
-			</p>
-		{:else}
-			<div class="grid gap-3 sm:grid-cols-[1.4fr_1fr_1fr_1fr]">
-				<div class="rounded-xl border border-border bg-card p-4">
-					<div class="flex items-baseline gap-2">
-						<span
-							class="text-4xl font-medium tabular-nums tracking-tight {grade > 12
-								? 'text-amber-600 dark:text-amber-400'
-								: grade <= 9
-									? 'text-lime-600 dark:text-lime-400'
-									: 'text-foreground'}">{show(Math.max(0, grade))}</span
-						>
-						<span class="text-sm text-foreground/85">grade level</span>
-					</div>
-					<div class="mt-1 text-sm font-medium">{reader.label}</div>
-					<div class="mt-0.5 text-xs text-muted-foreground">{reader.detail}</div>
+				<div class="flex gap-1.5">
+					<dt>Words</dt>
+					<dd class="font-medium tabular-nums text-foreground">
+						{counts.words.toLocaleString('en-US')}
+					</dd>
 				</div>
-				<Stat value={counts.words.toLocaleString('en-US')} label="Words" />
-				<Stat
-					value={show(counts.words / (counts.sentences || 1))}
-					label="Words per sentence"
-					tone={counts.words / (counts.sentences || 1) > 20 ? 'warn' : 'plain'}
-				/>
-				<Stat
-					value={((counts.polysyllables / counts.words) * 100).toFixed(0) + '%'}
-					label="Long words"
-					note="3 or more syllables"
-				/>
-			</div>
+				<div class="flex gap-1.5">
+					<dt>Sentences</dt>
+					<dd class="font-medium tabular-nums text-foreground">{counts.sentences}</dd>
+				</div>
+				<div class="flex gap-1.5">
+					<dt>Words per sentence</dt>
+					<dd class="font-medium tabular-nums text-foreground">
+						{empty ? '–' : show(counts.words / (counts.sentences || 1))}
+					</dd>
+				</div>
+				<div class="flex gap-1.5">
+					<dt>Reading time</dt>
+					<dd class="font-medium tabular-nums text-foreground">{duration(counts.words, 238)}</dd>
+				</div>
+			</dl>
+		</div>
 
-			{#if !enough}
-				<p class="mt-3 text-sm text-amber-700 dark:text-amber-400">
-					This is a short sample. Scores settle down at around 100 words.
+		<aside class="space-y-5 lg:sticky lg:top-24 lg:self-start" aria-live="polite">
+			<div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
+				<div class="text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+					Readability
+				</div>
+				<div class="mt-2 flex items-baseline gap-2">
+					<span
+						class="text-5xl font-medium tabular-nums tracking-tight transition-colors {empty
+							? 'text-muted-foreground/40'
+							: grade > 12
+								? 'text-rose-600 dark:text-rose-400'
+								: grade > 9
+									? 'text-amber-600 dark:text-amber-400'
+									: 'text-lime-600 dark:text-lime-400'}">{empty ? '–' : show(grade)}</span
+					>
+					<span class="text-sm text-muted-foreground">grade level</span>
+				</div>
+
+				<!-- The scale: green through grade 9, amber to 12, red past it. -->
+				<div class="relative mt-4 h-2 rounded-full" aria-hidden="true">
+					<div class="absolute inset-0 flex overflow-hidden rounded-full">
+						<span class="h-full bg-lime-500/70" style="width: {(9 / SCALE) * 100}%"></span>
+						<span class="h-full bg-amber-400/80" style="width: {(3 / SCALE) * 100}%"></span>
+						<span class="h-full flex-1 bg-rose-400/80"></span>
+					</div>
+					{#if !empty}
+						<span
+							class="absolute top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 rounded-full border-[3px] border-card bg-foreground shadow transition-[left] duration-300 ease-out"
+							style="left: {marker}%"
+						></span>
+					{/if}
+				</div>
+				<div class="relative mt-1.5 h-3 text-[10px] tabular-nums text-muted-foreground">
+					<span class="absolute left-0">0</span>
+					<span class="absolute -translate-x-1/2" style="left: {(9 / SCALE) * 100}%">9</span>
+					<span class="absolute -translate-x-1/2" style="left: {(12 / SCALE) * 100}%">12</span>
+					<span class="absolute right-0">18+</span>
+				</div>
+
+				<p class="mt-3 text-sm font-medium text-foreground">
+					{empty ? 'Start writing to see your score' : reader.label}
 				</p>
-			{/if}
-
-			<div class="mt-6 overflow-x-auto rounded-xl border border-border bg-card">
-				<table class="w-full text-left text-sm">
-					<thead class="border-b border-border text-xs text-muted-foreground">
-						<tr>
-							<th scope="col" class="px-4 py-2.5 font-medium">Formula</th>
-							<th scope="col" class="px-4 py-2.5 text-right font-medium">Score</th>
-							<th scope="col" class="px-4 py-2.5 font-medium">Target</th>
-							<th scope="col" class="hidden px-4 py-2.5 font-medium sm:table-cell">Result</th>
-						</tr>
-					</thead>
-					<tbody class="divide-y divide-border">
-						{#each scores as s (s.formula.id)}
-							<tr>
-								<th scope="row" class="px-4 py-2.5 font-normal">
-									<a href="#{s.formula.id}" class="hover:underline">{s.formula.name}</a>
-								</th>
-								<td class="px-4 py-2.5 text-right font-medium tabular-nums">{show(s.value)}</td>
-								<td class="px-4 py-2.5 text-muted-foreground">{s.formula.target}</td>
-								<td class="hidden px-4 py-2.5 sm:table-cell">
-									<span
-										class="inline-flex items-center gap-1.5 {s.over
-											? 'text-amber-700 dark:text-amber-400'
-											: 'text-lime-700 dark:text-lime-400'}"
-									>
-										<span class="h-1.5 w-1.5 rounded-full {s.over ? 'bg-amber-500' : 'bg-lime-500'}"
-										></span>
-										{s.over ? 'Harder than target' : 'On target'}
-									</span>
-								</td>
-							</tr>
-						{/each}
-					</tbody>
-				</table>
+				<p class="mt-0.5 text-xs leading-5 text-muted-foreground">
+					{#if empty}
+						Aim for grade 9 or below for a general audience.
+					{:else if !enough}
+						A short sample. Scores settle at around 100 words.
+					{:else}
+						{reader.detail}
+					{/if}
+				</p>
 			</div>
 
-			<h2 class="mt-8 font-medium">
-				{hard.length
-					? `${hard.length} sentence${hard.length === 1 ? '' : 's'} to shorten`
-					: 'Sentences to shorten'}
-			</h2>
-			<p class="mt-1 text-sm text-muted-foreground">
-				Highlighted sentences are long or score above grade 12 on their own. Hover over one for its
-				numbers.
-			</p>
-			<div class="mt-3">
-				<Marked
-					text={input.value}
-					{marks}
-					empty="No sentence is over 25 words or above grade 12. Nothing to shorten."
-				/>
-			</div>
-		{/if}
+			<Legend {categories} counts={tally} bind:hidden onjump={(id) => editor?.jump(id)} />
+		</aside>
+	</div>
+
+	<h2 class="mt-12 text-lg font-medium">All seven scores</h2>
+	<div class="mt-3 overflow-x-auto rounded-2xl border border-border bg-card">
+		<table class="w-full text-left text-sm">
+			<thead class="border-b border-border text-xs text-muted-foreground">
+				<tr>
+					<th scope="col" class="px-4 py-2.5 font-medium">Formula</th>
+					<th scope="col" class="px-4 py-2.5 text-right font-medium">Score</th>
+					<th scope="col" class="px-4 py-2.5 font-medium">Target</th>
+					<th scope="col" class="hidden px-4 py-2.5 font-medium sm:table-cell">Result</th>
+				</tr>
+			</thead>
+			<tbody class="divide-y divide-border">
+				{#each scores as s (s.formula.id)}
+					<tr>
+						<th scope="row" class="px-4 py-2.5 font-normal">
+							<a href="#{s.formula.id}" class="hover:underline">{s.formula.name}</a>
+						</th>
+						<td class="px-4 py-2.5 text-right font-medium tabular-nums">
+							{empty ? '–' : show(s.value)}
+						</td>
+						<td class="px-4 py-2.5 text-muted-foreground">{s.formula.target}</td>
+						<td class="hidden px-4 py-2.5 sm:table-cell">
+							{#if !empty}
+								<span
+									class="inline-flex items-center gap-1.5 {s.over
+										? 'text-amber-700 dark:text-amber-400'
+										: 'text-lime-700 dark:text-lime-400'}"
+								>
+									<span class="h-1.5 w-1.5 rounded-full {s.over ? 'bg-amber-500' : 'bg-lime-500'}"
+									></span>
+									{s.over ? 'Harder than target' : 'On target'}
+								</span>
+							{/if}
+						</td>
+					</tr>
+				{/each}
+			</tbody>
+		</table>
 	</div>
 
 	{#snippet about()}
@@ -191,9 +250,36 @@ Most style guides ask for a grade level of eight or below. That is not because r
 			wrote. They work because long sentences and long words are, on average, harder to read.
 		</p>
 		<p>
-			This checker runs seven formulas on the same text. The grade level at the top is the average
-			of the five that report a US school grade. Code blocks, URLs, and Markdown markup are left out
-			before anything is counted.
+			This checker runs seven formulas on the same text. The grade level beside the editor is the
+			average of the five that report a US school grade. Code blocks, URLs, and Markdown markup are
+			left out before anything is counted.
+		</p>
+
+		<h2>What the highlights mean</h2>
+		<ul>
+			<li>
+				<strong>Hard to read</strong> and <strong>very hard to read</strong> sentences are long, or dense
+				with long words. Splitting one of these moves your score more than any other edit.
+			</li>
+			<li>
+				<strong>Simpler word</strong> marks a long word or phrase with a short equivalent: “use” for
+				“utilize,” “to” for “in order to.” Click it to swap.
+			</li>
+			<li>
+				<strong>Passive voice</strong> marks phrases such as “was written.” Passive is fine when who
+				did it doesn’t matter; when it does, name them.
+			</li>
+			<li>
+				<strong>Adverbs</strong> often prop up a weak verb: “ran quickly” for “sprinted.”
+			</li>
+			<li>
+				<strong>Qualifiers</strong> such as “very,” “just,” and “I think” soften a claim. Most can go.
+			</li>
+		</ul>
+		<p>
+			Click a row in the list to jump to the next highlight of that kind, or the eye to hide a kind
+			while you work on another. These checks read the surface of the text, so treat each highlight
+			as a place to look, not a mistake.
 		</p>
 
 		<h2>The seven formulas</h2>

@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
-	import ProseInput from '$lib/components/tools/ProseInput.svelte';
+	import Editor, { type Category, type Highlight } from '$lib/components/tools/Editor.svelte';
 	import Stat from '$lib/components/tools/Stat.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
@@ -34,6 +34,30 @@ So count early. It is easier to write to a length than to cut down to one.`;
 	const split = $derived(sentences(prose));
 	const counts = $derived(count(prose, split));
 	const top = $derived(keywords(prose, gram, 10));
+
+	/*
+		Pointing at a keyword in the list marks every place it appears in the
+		text, which is the quickest way to see whether ten uses are spread out
+		or stacked in one paragraph.
+	*/
+	const categories: Category[] = [{ id: 'keyword', label: 'Keyword', tone: 'lime', mark: 'line' }];
+	let focused = $state('');
+
+	const highlights = $derived.by<Highlight[]>(() => {
+		if (!focused) return [];
+		const pattern = focused
+			.split(' ')
+			.map((w) => w.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+			.join('[^\\p{L}\\p{N}]+');
+		const re = new RegExp(`(?<![\\p{L}\\p{N}])${pattern}(?![\\p{L}\\p{N}])`, 'giu');
+		const n = top.find((k) => k.term === focused)?.count ?? 0;
+		return [...prose.matchAll(re)].map((m) => ({
+			from: m.index,
+			to: m.index + m[0].length,
+			category: 'keyword',
+			message: `“${focused}” appears ${n} time${n === 1 ? '' : 's'}.`
+		}));
+	});
 
 	const longest = $derived(split.reduce((a, s) => (s.words > (a?.words ?? 0) ? s : a), split[0]));
 	const perSentence = $derived(counts.sentences ? counts.words / counts.sentences : 0);
@@ -87,7 +111,7 @@ So count early. It is easier to write to a length than to cut down to one.`;
 >
 	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_17rem]">
 		<div>
-			<ProseInput bind:value={text} sample={SAMPLE} rows={14} />
+			<Editor bind:value={text} {highlights} {categories} sample={SAMPLE} minHeight="24rem" />
 			<label class="mt-3 flex items-center gap-2 text-sm text-foreground/85">
 				<input
 					type="checkbox"
@@ -142,7 +166,11 @@ So count early. It is easier to write to a length than to cut down to one.`;
 			{#if top.length}
 				<ol class="mt-4 space-y-2">
 					{#each top as k (k.term)}
-						<li class="grid grid-cols-[1fr_auto_auto] items-center gap-3 text-sm">
+						<li
+							class="grid cursor-default grid-cols-[1fr_auto_auto] items-center gap-3 rounded text-sm"
+							onpointerenter={() => (focused = k.term)}
+							onpointerleave={() => (focused = '')}
+						>
 							<span class="relative truncate">
 								<span
 									class="absolute inset-y-0 left-0 rounded bg-lime-500/15"

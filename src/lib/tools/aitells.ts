@@ -172,3 +172,30 @@ export function density(per1k: number): { label: string; level: 0 | 1 | 2 | 3 } 
 	if (per1k < 15) return { label: 'Noticeable', level: 2 };
 	return { label: 'Heavy', level: 3 };
 }
+
+/**
+ * Sorts a rule into one of five kinds, by its name. The package has well over
+ * a hundred rules; a writer needs to know what sort of fix each calls for, not
+ * which of them fired.
+ */
+export function family(
+	rule: string
+): 'vocabulary' | 'structure' | 'filler' | 'figurative' | 'heading' {
+	if (/Headings$/.test(rule)) return 'heading';
+	if (/^Figurative|Metaphors$|^Anthropomorphic|^Bare/.test(rule)) return 'figurative';
+	if (
+		/Vocabulary|CompoundPhrases|Buzzwords|Overuse$|Puffery|FormalRegister|HouseStyle|Urgency|Intensifier/.test(
+			rule
+		)
+	) {
+		return 'vocabulary';
+	}
+	if (
+		/Hedg|Filler|Opening|Closing|Conclusion|Metacommentary|Sycophancy|Hollow|Transitions|Sequencing|ListIntro|Announcements|SelfReference|Restatement|Affirmative|Vague|Unpack|Padding|Precaution/.test(
+			rule
+		)
+	) {
+		return 'filler';
+	}
+	return 'structure';
+}

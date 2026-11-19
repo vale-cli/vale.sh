@@ -1,17 +1,16 @@
 <script lang="ts">
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
-	import ProseInput from '$lib/components/tools/ProseInput.svelte';
-	import Stat from '$lib/components/tools/Stat.svelte';
-	import Marked from '$lib/components/tools/Marked.svelte';
+	import Editor, { type Category, type Highlight } from '$lib/components/tools/Editor.svelte';
+	import Legend from '$lib/components/tools/Legend.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
 	import { maskMarkdown, words } from '$lib/tools/text';
 	import {
 		createDetector,
 		density,
+		family,
 		ruleLabel,
 		type Detector,
-		type Finding,
 		type PackageData
 	} from '$lib/tools/aitells';
 	import { onMount } from 'svelte';
@@ -29,13 +28,47 @@ This isn't just a linter — it's a paradigm shift. By leveraging a robust and c
 
 In conclusion, great documentation is a journey, not a destination. I hope this helps!`;
 
+	/* The 128 patterns, sorted into five kinds a writer can act on. */
+	const categories: Category[] = [
+		{
+			id: 'vocabulary',
+			label: 'Stock vocabulary',
+			tone: 'violet',
+			mark: 'line',
+			hint: 'Use a plainer word'
+		},
+		{
+			id: 'structure',
+			label: 'Formula sentences',
+			tone: 'amber',
+			mark: 'line',
+			hint: 'Say it directly'
+		},
+		{ id: 'filler', label: 'Filler and hedging', tone: 'orange', mark: 'line', hint: 'Cut it' },
+		{
+			id: 'figurative',
+			label: 'Empty metaphor',
+			tone: 'sky',
+			mark: 'line',
+			hint: 'Say the literal thing'
+		},
+		{
+			id: 'heading',
+			label: 'Marketing headings',
+			tone: 'teal',
+			mark: 'line',
+			hint: 'Name the topic'
+		}
+	];
+
 	let text = $state('');
+	let hidden = $state<string[]>([]);
+	let editor = $state<ReturnType<typeof Editor>>();
 	const input = settled(() => text, 220);
 
 	/*
-		The patterns are a separate download, fetched once the page is idle, so
-		the page itself paints without them. `detector` stays null until then
-		and the results area says so.
+		The patterns are a separate download, fetched once the page has painted.
+		`detector` stays null until then and the score card says so.
 	*/
 	let detector = $state<Detector | null>(null);
 	let failed = $state(false);
@@ -48,30 +81,48 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			.catch(() => (failed = true));
 	});
 
-	const findings = $derived<Finding[]>(detector ? detector.scan(input.value) : []);
+	const findings = $derived(detector ? detector.scan(input.value) : []);
 	const total = $derived(words(maskMarkdown(input.value)).length);
 	const per1k = $derived(total ? (findings.length / total) * 1000 : 0);
 	const band = $derived(density(per1k));
-
-	/** Findings grouped by pattern, most frequent first. */
-	const groups = $derived.by(() => {
-		const map = new Map<string, Finding[]>();
-		for (const f of findings) {
-			const list = map.get(f.rule);
-			if (list) list.push(f);
-			else map.set(f.rule, [f]);
-		}
-		return [...map.entries()]
-			.map(([rule, list]) => ({ rule, list }))
-			.sort((a, b) => b.list.length - a.list.length);
-	});
-
-	const marks = $derived(
-		findings.map((f) => ({ from: f.from, to: f.to, title: f.message, tone: 'warn' as const }))
-	);
+	const empty = $derived(total === 0);
 
 	/** A rule's advice with the quoted match taken out: "AI hedge: 'x'. Do y." → "Do y." */
 	const advice = (message: string) => message.replace(/^[^:]*:\s*'.*?'\.\s*/, '');
+
+	const highlights = $derived<Highlight[]>(
+		findings.map((f) => ({
+			from: f.from,
+			to: f.to,
+			category: family(f.rule),
+			message: `${ruleLabel(f.rule)}. ${advice(f.message)}`
+		}))
+	);
+
+	const tally = $derived.by(() => {
+		const out: Record<string, number> = {};
+		for (const h of highlights) out[h.category] = (out[h.category] ?? 0) + 1;
+		return out;
+	});
+
+	/** The phrases found most often, for the list under the editor. */
+	const phrases = $derived.by(() => {
+		const map = new Map<string, { text: string; category: string; count: number }>();
+		for (const h of highlights) {
+			const key = input.value.slice(h.from, h.to).trim().toLowerCase();
+			const hit = map.get(key);
+			if (hit) hit.count++;
+			else
+				map.set(key, {
+					text: input.value.slice(h.from, h.to).trim(),
+					category: h.category,
+					count: 1
+				});
+		}
+		return [...map.values()].sort((a, b) => b.count - a.count).slice(0, 24);
+	});
+
+	const toneOf = (id: string) => categories.find((c) => c.id === id)?.tone ?? 'amber';
 
 	const faq = $derived([
 		{
@@ -103,109 +154,110 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 
 <ToolPage
 	tool={page}
-	lede="Paste any text to see the phrases that make it read as AI-written. Each one is highlighted with the reason and a fix, and nothing leaves your browser."
+	wide
+	lede="Paste any text to see the phrases that make it read as AI-written. Each one is highlighted where it sits, with the reason and how to fix it. Nothing leaves your browser."
 	{faq}
 >
-	<ProseInput
-		bind:value={text}
-		sample={SAMPLE}
-		rows={9}
-		placeholder="Paste an essay, an email, a blog post, a pull request description…"
-	/>
+	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
+		<div class="min-w-0">
+			<Editor
+				bind:this={editor}
+				bind:value={text}
+				{highlights}
+				{categories}
+				{hidden}
+				sample={SAMPLE}
+				minHeight="30rem"
+				placeholder="Paste an essay, an email, a blog post, a pull request description…"
+			/>
 
-	<div class="mt-6" aria-live="polite">
-		{#if failed}
-			<p class="rounded-xl border border-border p-6 text-center text-sm text-muted-foreground">
-				The detector’s patterns didn’t load. Reload the page to try again.
-			</p>
-		{:else if total === 0}
-			<p
-				class="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground"
-			>
-				Results will appear here as soon as you paste some text.
-			</p>
-		{:else if !detector}
-			<p
-				class="rounded-xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground"
-			>
-				Loading {data.rules} patterns…
-			</p>
-		{:else}
-			<div class="grid gap-3 sm:grid-cols-[1.4fr_1fr_1fr]">
-				<div class="rounded-xl border border-border bg-card p-4">
-					<div class="flex items-baseline gap-2">
+			{#if phrases.length}
+				<div class="mt-4 flex flex-wrap items-center gap-1.5" aria-label="Phrases found">
+					<span class="mr-1 text-xs font-medium text-muted-foreground">Found</span>
+					{#each phrases as p (p.text.toLowerCase())}
 						<span
-							class="text-4xl font-medium tabular-nums tracking-tight {band.level >= 2
-								? 'text-amber-600 dark:text-amber-400'
-								: band.level === 0
-									? 'text-lime-600 dark:text-lime-400'
-									: 'text-foreground'}">{findings.length}</span
+							class="vt-{toneOf(p.category)} rounded-md px-2 py-0.5 text-sm"
+							style="background: hsl(var(--vt) / 0.14); box-shadow: inset 0 -1.5px 0 hsl(var(--vt))"
 						>
-						<span class="text-sm text-foreground/85">
-							AI tell{findings.length === 1 ? '' : 's'} found
+							{p.text}{#if p.count > 1}<span class="ml-1 text-xs text-muted-foreground"
+									>×{p.count}</span
+								>{/if}
 						</span>
-					</div>
-					<div class="mt-3 flex gap-1" aria-hidden="true">
-						{#each [1, 2, 3] as step (step)}
-							<span
-								class="h-1.5 flex-1 rounded-full {band.level >= step
-									? band.level >= 2
-										? 'bg-amber-500'
-										: 'bg-lime-500'
-									: 'bg-muted'}"
-							></span>
-						{/each}
-					</div>
-					<div class="mt-2 text-sm font-medium">{band.label}</div>
-				</div>
-				<Stat
-					value={per1k.toFixed(1)}
-					label="Per 1,000 words"
-					tone={band.level >= 2 ? 'warn' : 'plain'}
-				/>
-				<Stat value={total.toLocaleString('en-US')} label="Words checked" />
-			</div>
-
-			{#if total < 100}
-				<p class="mt-3 text-sm text-amber-700 dark:text-amber-400">
-					This is a short sample. One phrase swings the rate a lot under 100 words.
-				</p>
-			{/if}
-
-			<h2 class="mt-8 font-medium">Your text, marked up</h2>
-			<p class="mt-1 text-sm text-muted-foreground">
-				Hover over a highlight to see why it was flagged.
-			</p>
-			<div class="mt-3">
-				<Marked
-					text={input.value}
-					{marks}
-					empty="None of the {data.rules} patterns matched. That doesn’t prove a person wrote it, only that it avoids the usual tells."
-				/>
-			</div>
-
-			{#if groups.length}
-				<h2 class="mt-8 font-medium">What to fix</h2>
-				<ul class="mt-3 divide-y divide-border rounded-xl border border-border bg-card">
-					{#each groups as group (group.rule)}
-						<li class="p-4">
-							<div class="flex items-baseline justify-between gap-3">
-								<h3 class="font-medium">{ruleLabel(group.rule)}</h3>
-								<span class="shrink-0 text-sm tabular-nums text-muted-foreground">
-									{group.list.length}×
-								</span>
-							</div>
-							<p class="mt-1 text-sm text-foreground/85">{advice(group.list[0].message)}</p>
-							<div class="mt-2 flex flex-wrap gap-1.5">
-								{#each [...new Set(group.list.map( (f) => f.match.trim() ))].slice(0, 8) as match (match)}
-									<span class="rounded bg-amber-400/25 px-1.5 py-0.5 text-sm">{match}</span>
-								{/each}
-							</div>
-						</li>
 					{/each}
-				</ul>
+				</div>
 			{/if}
-		{/if}
+		</div>
+
+		<aside class="space-y-5 lg:sticky lg:top-24 lg:self-start" aria-live="polite">
+			<div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
+				<div class="text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
+					AI tells
+				</div>
+				<div class="mt-2 flex items-baseline gap-2">
+					<span
+						class="text-5xl font-medium tabular-nums tracking-tight transition-colors {empty ||
+						!detector
+							? 'text-muted-foreground/40'
+							: band.level === 3
+								? 'text-rose-600 dark:text-rose-400'
+								: band.level === 2
+									? 'text-amber-600 dark:text-amber-400'
+									: 'text-lime-600 dark:text-lime-400'}"
+						>{empty || !detector ? '–' : findings.length}</span
+					>
+					<span class="text-sm text-muted-foreground">found</span>
+				</div>
+
+				<div class="mt-4 flex gap-1" aria-hidden="true">
+					{#each [1, 2, 3] as step (step)}
+						<span
+							class="h-2 flex-1 rounded-full transition-colors duration-300 {!empty &&
+							detector &&
+							band.level >= step
+								? band.level === 3
+									? 'bg-rose-400'
+									: band.level === 2
+										? 'bg-amber-400'
+										: 'bg-lime-500'
+								: 'bg-muted'}"
+						></span>
+					{/each}
+				</div>
+
+				<p class="mt-3 text-sm font-medium text-foreground">
+					{#if failed}
+						The patterns didn’t load
+					{:else if empty}
+						Paste some text to check it
+					{:else if !detector}
+						Loading {data.rules} patterns…
+					{:else}
+						{band.label}
+					{/if}
+				</p>
+				<p class="mt-0.5 text-xs leading-5 text-muted-foreground">
+					{#if failed}
+						Reload the page to try again.
+					{:else if empty || !detector}
+						Checks {data.rules} patterns that language models overuse.
+					{:else if total < 100}
+						A short sample: one phrase swings the rate a lot under 100 words.
+					{:else if findings.length === 0}
+						No usual tells. That isn’t proof a person wrote it.
+					{:else}
+						{per1k.toFixed(1)} per 1,000 words, across {total.toLocaleString('en-US')} words.
+					{/if}
+				</p>
+			</div>
+
+			<Legend
+				{categories}
+				counts={tally}
+				bind:hidden
+				onjump={(id) => editor?.jump(id)}
+				title="What it found"
+			/>
+		</aside>
 	</div>
 
 	{#snippet about()}
