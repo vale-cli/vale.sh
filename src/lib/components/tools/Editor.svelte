@@ -60,6 +60,10 @@
 	import Copy from 'lucide-svelte/icons/copy';
 	import Eraser from 'lucide-svelte/icons/eraser';
 	import TextQuote from 'lucide-svelte/icons/text-quote';
+	import FileText from 'lucide-svelte/icons/file-text';
+	import FileUp from 'lucide-svelte/icons/file-up';
+	import X from 'lucide-svelte/icons/x';
+	import { accept, FileError, readFile, type Loaded } from '$lib/tools/files';
 
 	/**
 	 * The writing surface for the text tools: a plain-text editor that draws
@@ -77,7 +81,7 @@
 		categories = [],
 		hidden = [],
 		sample,
-		placeholder = 'Start writing, or paste your text here…',
+		placeholder = 'Start writing, paste your text, or drop a file here…',
 		label = 'Your text',
 		minHeight = '22rem'
 	}: {
@@ -97,6 +101,35 @@
 	let mounted = $state(false);
 	let canPaste = $state(false);
 	let copied = $state(false);
+
+	// A file being opened, the one that is open, or why one couldn't be.
+	let picker: HTMLInputElement;
+	let dragging = $state(0);
+	let reading = $state('');
+	let opened = $state<Loaded | null>(null);
+	let problem = $state('');
+
+	/**
+	 * Opens a file in place of the current text. The file is read here, in
+	 * the page; see $lib/tools/files for what each format keeps.
+	 */
+	async function open(file: File | undefined) {
+		if (!file) return;
+		problem = '';
+		reading = file.name;
+		try {
+			const loaded = await readFile(file);
+			value = loaded.text;
+			opened = loaded;
+		} catch (e) {
+			opened = null;
+			problem = e instanceof FileError ? e.message : `“${file.name}” couldn’t be opened.`;
+		} finally {
+			reading = '';
+		}
+	}
+
+	const hasFiles = (e: DragEvent) => !!e.dataTransfer?.types.includes('Files');
 
 	const byId = $derived(new Map(categories.map((c) => [c.id, c])));
 	const visible = $derived(highlights.filter((h) => !hidden.includes(h.category)));
@@ -264,6 +297,17 @@
 						spellcheck: 'false',
 						autocapitalize: 'sentences'
 					}),
+					// Left alone, the editor inserts a dropped file's raw bytes as
+					// text. Files go through `open` instead.
+					EditorView.domEventHandlers({
+						drop(e) {
+							if (!hasFiles(e)) return false;
+							e.preventDefault();
+							dragging = 0;
+							void open(e.dataTransfer?.files[0]);
+							return true;
+						}
+					}),
 					EditorView.updateListener.of((u) => {
 						if (u.docChanged) value = u.state.doc.toString();
 					})
@@ -283,6 +327,11 @@
 	});
 
 	$effect(() => remember(value));
+
+	// Once the text is cleared, it is no longer that file.
+	$effect(() => {
+		if (!value) opened = null;
+	});
 
 	// New analysis, or a category switched on or off.
 	$effect(() => {
@@ -329,11 +378,36 @@
 </script>
 
 <div
-	class="vt-editor overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow focus-within:border-lime-500/50 focus-within:shadow-md"
+	class="vt-editor relative overflow-hidden rounded-2xl border border-border bg-card shadow-sm transition-shadow focus-within:border-lime-500/50 focus-within:shadow-md"
+	role="group"
+	aria-label={label}
+	ondragenter={(e) => hasFiles(e) && dragging++}
+	ondragleave={(e) => hasFiles(e) && (dragging = Math.max(0, dragging - 1))}
+	ondragover={(e) => hasFiles(e) && e.preventDefault()}
+	ondrop={(e) => {
+		if (!hasFiles(e)) return;
+		e.preventDefault();
+		dragging = 0;
+		void open(e.dataTransfer?.files[0]);
+	}}
 >
 	<div class="flex items-center justify-between gap-2 border-b border-border/70 px-3 py-2">
 		<span class="pl-1.5 text-xs font-medium text-muted-foreground">{label}</span>
 		<div class="flex items-center gap-0.5">
+			<input
+				bind:this={picker}
+				type="file"
+				{accept}
+				class="hidden"
+				onchange={(e) => {
+					void open(e.currentTarget.files?.[0]);
+					e.currentTarget.value = ''; // so the same file can be opened again
+				}}
+			/>
+			<button type="button" class={button} onclick={() => picker.click()} aria-label="Open a file">
+				<FileUp class="h-3.5 w-3.5" aria-hidden="true" />
+				<span class="hidden sm:inline">Open</span>
+			</button>
 			{#if canPaste}
 				<button type="button" class={button} onclick={paste} aria-label="Paste">
 					<ClipboardPaste class="h-3.5 w-3.5" aria-hidden="true" />
@@ -373,6 +447,52 @@
 			<div class="vt-shell text-muted-foreground/70">{placeholder}</div>
 		{/if}
 	</div>
+
+	{#if reading || opened || problem}
+		<div
+			class="flex items-center gap-2 border-t border-border/70 px-4 py-2 text-xs {problem
+				? 'text-rose-700 dark:text-rose-300'
+				: 'text-muted-foreground'}"
+			role="status"
+		>
+			<FileText class="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+			<span class="min-w-0 flex-1 truncate">
+				{#if reading}
+					Reading {reading}…
+				{:else if problem}
+					{problem}
+				{:else if opened}
+					<span class="font-medium text-foreground">{opened.name}</span>
+					· {opened.format.name}, read on your device
+				{/if}
+			</span>
+			{#if !reading}
+				<button
+					type="button"
+					class="rounded p-0.5 hover:bg-muted hover:text-foreground"
+					aria-label="Dismiss"
+					onclick={() => {
+						opened = null;
+						problem = '';
+					}}
+				>
+					<X class="h-3.5 w-3.5" aria-hidden="true" />
+				</button>
+			{/if}
+		</div>
+	{/if}
+
+	{#if dragging > 0}
+		<div
+			class="pointer-events-none absolute inset-1.5 z-30 flex flex-col items-center justify-center gap-2 rounded-xl border-2 border-dashed border-lime-500 bg-card/90 text-center backdrop-blur-sm"
+		>
+			<FileUp class="h-7 w-7 text-lime-600 dark:text-lime-400" aria-hidden="true" />
+			<p class="text-base font-medium text-foreground">Drop your file to open it</p>
+			<p class="max-w-xs text-xs text-muted-foreground">
+				Word, PDF, Markdown, HTML, LaTeX, and more. It is read here, not uploaded.
+			</p>
+		</div>
+	{/if}
 </div>
 
 <style>

@@ -2,6 +2,7 @@
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
 	import Editor, { type Category, type Highlight } from '$lib/components/tools/Editor.svelte';
 	import Legend from '$lib/components/tools/Legend.svelte';
+	import Formats from '$lib/components/tools/Formats.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
 	import { maskMarkdown, words } from '$lib/tools/text';
@@ -134,6 +135,10 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			a: 'No, and no detector can. People wrote these phrases long before language models existed, and models learned them from people. A high count means the text reads as machine-written to many readers. It is not proof of how it was produced, and it should never be used on its own to accuse someone.'
 		},
 		{
+			q: 'Can I check a Word document or PDF for AI writing?',
+			a: 'Yes. Drag the file onto the editor or choose Open. Word (.docx), PDF, Markdown, HTML, and several other formats are read in your browser, so an essay or report never leaves your device.'
+		},
+		{
 			q: 'Is this AI detector free?',
 			a: 'Yes. There is no sign-up, no word limit, and no daily cap. The patterns come from an open-source project, and the check runs on your own device.'
 		},
@@ -168,7 +173,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				{hidden}
 				sample={SAMPLE}
 				minHeight="30rem"
-				placeholder="Paste an essay, an email, a blog post, a pull request description…"
+				placeholder="Paste an essay, an email, or a blog post, or drop a Word or PDF file here…"
 			/>
 
 			{#if phrases.length}
@@ -301,6 +306,8 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			is something you can verify and act on. If the goal is better writing, the fix is the same
 			either way: replace the stock phrase with what you actually mean.
 		</p>
+
+		<Formats verb="Check" />
 
 		<h2>Check every draft automatically</h2>
 		<p>

@@ -2,6 +2,7 @@
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
 	import Editor, { type Category } from '$lib/components/tools/Editor.svelte';
 	import Legend from '$lib/components/tools/Legend.svelte';
+	import Formats from '$lib/components/tools/Formats.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
 	import { count, duration, maskMarkdown, sentences, stripMarkdownSyntax } from '$lib/tools/text';
@@ -126,6 +127,10 @@ Most style guides ask for a grade level of eight or below. That is not because r
 		{
 			q: 'How much text do I need for an accurate score?',
 			a: 'At least 100 words, and more is better. Readability formulas are averages, so one unusually long sentence can swing a short passage by several grades. SMOG was designed for samples of 30 sentences.'
+		},
+		{
+			q: 'Can I check the readability of a Word document or PDF?',
+			a: 'Yes. Drag the file onto the editor or choose Open. Word (.docx), PDF, Markdown, HTML, LaTeX, and several other formats are read in your browser and never uploaded. Code, math, and markup are left out before the text is scored, so they don’t distort the result.'
 		},
 		{
 			q: 'Does a good score mean my writing is clear?',
@@ -331,6 +336,8 @@ Most style guides ask for a grade level of eight or below. That is not because r
 			<li><strong>30–50:</strong> difficult. College level.</li>
 			<li><strong>0–30:</strong> very difficult. Academic and legal writing.</li>
 		</ul>
+
+		<Formats verb="Check the readability of" />
 
 		<h2>Check readability on every draft</h2>
 		<p>

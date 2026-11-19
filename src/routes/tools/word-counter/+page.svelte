@@ -2,6 +2,7 @@
 	import ToolPage from '$lib/components/tools/ToolPage.svelte';
 	import Editor, { type Category, type Highlight } from '$lib/components/tools/Editor.svelte';
 	import Stat from '$lib/components/tools/Stat.svelte';
+	import Formats from '$lib/components/tools/Formats.svelte';
 	import { tool } from '$lib/tools';
 	import { settled } from '$lib/tools/settle.svelte';
 	import {
@@ -96,6 +97,10 @@ So count early. It is easier to write to a length than to cut down to one.`;
 		{
 			q: 'What is keyword density?',
 			a: 'The share of your text taken up by one word or phrase. If a 500-word article uses “style guide” ten times, that phrase accounts for 20 of the 500 words, a density of 4%. Common words like “the” and “and” are left out so the list shows what the text is about.'
+		},
+		{
+			q: 'Can I count the words in a PDF or Word document?',
+			a: 'Yes. Drag the file onto the editor or choose Open. Word (.docx), PDF, Markdown, HTML, LaTeX, reStructuredText, AsciiDoc, subtitle, and Jupyter notebook files are all read in your browser, so the file is never uploaded. Scanned PDFs have no text to count until they have been through OCR.'
 		},
 		{
 			q: 'Is my text saved or uploaded?',
@@ -271,6 +276,8 @@ So count early. It is easier to write to a length than to cut down to one.`;
 			<li><strong>Five-minute speech:</strong> about 650 words at a presentation pace.</li>
 			<li><strong>Novel:</strong> 70,000 to 100,000 words.</li>
 		</ul>
+
+		<Formats verb="Count the words in" />
 
 		<h2>From counting to checking</h2>
 		<p>

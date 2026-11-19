@@ -47,6 +47,7 @@
 		"globals": "^15.0.0",
 		"lucide-svelte": "^0.456.0",
 		"mdsvex": "^0.12.3",
+		"pdfjs-dist": "^6.5.438",
 		"prettier": "^3.3.2",
 		"prettier-plugin-svelte": "^3.2.6",
 		"prettier-plugin-tailwindcss": "^0.6.5",

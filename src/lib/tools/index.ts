@@ -22,7 +22,7 @@ export const tools = [
 		title: 'AI Writing Detector',
 		metaTitle: 'AI Writing Detector: Find What Makes Text Sound Like AI (Free)',
 		description:
-			'Paste text to see every phrase that reads as AI-written, highlighted with a fix for each one. Free, instant, no sign-up, and nothing leaves your browser.',
+			'Paste text or drop a Word or PDF file to see every phrase that reads as AI-written, highlighted with a fix for each. Free, no sign-up, nothing uploaded.',
 		blurb: 'Highlights the phrases that make text read as machine-written, with a fix for each.'
 	},
 	{
@@ -32,7 +32,7 @@ export const tools = [
 		title: 'Word Counter',
 		metaTitle: 'Word Counter: Words, Characters, Sentences, and Reading Time',
 		description:
-			'Count words, characters, sentences, and paragraphs as you type. Reading time, speaking time, keyword density, and length limits. Free and private.',
+			'Count words, characters, and sentences as you type, or drop in a Word, PDF, or Markdown file. Reading time, keyword density, and length limits. Free and private.',
 		blurb: 'Words, characters, sentences, reading time, and keyword density as you type.'
 	},
 	{
@@ -42,7 +42,7 @@ export const tools = [
 		title: 'Readability Checker',
 		metaTitle: 'Readability Checker: Flesch–Kincaid, Gunning Fog, SMOG, and More',
 		description:
-			'Score your text on seven readability formulas at once, including Flesch–Kincaid and Gunning fog, and see which sentences to fix. Free, no sign-up.',
+			'Score text, a Word document, or a PDF on seven readability formulas at once, including Flesch–Kincaid, and see which sentences to fix. Free, no sign-up.',
 		blurb: 'Seven readability scores at once, and the sentences dragging them down.'
 	},
 	{
