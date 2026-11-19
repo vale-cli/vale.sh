@@ -14,12 +14,13 @@
 
 ## Contents
 
-| Path                            | What lives there                                                       |
-| ------------------------------- | ---------------------------------------------------------------------- |
-| [`src/`](src)                   | The SvelteKit site — landing page, explorer, library, generator        |
-| [`docs/`](docs)                 | The documentation, synced with [docs.vale.sh](https://docs.vale.sh)    |
-| [`src/lib/data/`](src/lib/data) | Adopters, press, and events — the three files most contributions touch |
-| [`script/`](script)             | Data validation and avatar syncing                                     |
+| Path                              | What lives there                                                       |
+| --------------------------------- | ---------------------------------------------------------------------- |
+| [`src/`](src)                     | The SvelteKit site — landing page, explorer, library, generator        |
+| [`docs/`](docs)                   | The documentation, synced with [docs.vale.sh](https://docs.vale.sh)    |
+| [`src/lib/data/`](src/lib/data)   | Adopters, press, and events — the three files most contributions touch |
+| [`script/`](script)               | Data validation and avatar syncing                                     |
+| [`src/lib/tools/`](src/lib/tools) | The logic behind the free writing tools under `/tools`                 |
 
 ## Quick start
 
@@ -33,6 +34,8 @@ pnpm run dev -- --open
 | `pnpm run dev`      | Development server                                                                                                                 |
 | `pnpm run build`    | Production build                                                                                                                   |
 | `pnpm run validate` | Check `adopters.json`, `press.json`, and `events.json`                                                                             |
+| `make guides`       | Re-read the open style guides behind `/guides` from their repositories into `guides.json`                                          |
+| `make tools`        | Refresh the patterns `/tools/ai-detector` runs from the ai-tells package's latest release                                          |
 | `make configs`      | Re-read the adopters' public `.vale.ini` files into `config-stats.json`                                                            |
 | `make stats`        | Count CI use, house rules, CI runs, and downloads into `adopter-stats.json` (a weekly workflow runs this and opens a pull request) |
 | `make og-adopters`  | Re-render the `/adopters` social card from the data                                                                                |

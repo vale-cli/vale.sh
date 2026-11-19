@@ -40,3 +40,6 @@
 
 # The Voices demo moved into the announcement post.
 /voices               /blog/voices                               301!
+
+# The hand-written comparison gave way to the explorer built from the guides' own rules.
+/tools/style-guide-comparison   /guides                          301!

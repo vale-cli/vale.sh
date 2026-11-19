@@ -5,6 +5,7 @@
 	import PackageSearch from 'lucide-svelte/icons/package-search';
 	import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
 	import Sparkles from 'lucide-svelte/icons/sparkles';
+	import PenLine from 'lucide-svelte/icons/pen-line';
 
 	/*
 		Two bands. The first is the brand beside a toolbar of the site's own
@@ -16,7 +17,8 @@
 	const tools: { label: string; href: string; icon: typeof PackageSearch; external?: boolean }[] = [
 		{ label: 'Style Explorer', href: '/explorer', icon: PackageSearch },
 		{ label: 'Config Generator', href: '/generator', icon: WandSparkles },
-		{ label: 'Agent Tools', href: '/agents', icon: Sparkles }
+		{ label: 'Agent Tools', href: '/agents', icon: Sparkles },
+		{ label: 'Writing Tools', href: '/tools', icon: PenLine }
 	];
 
 	const columns = [
@@ -38,6 +40,7 @@
 			heading: 'Resources',
 			links: [
 				{ label: 'Documentation', href: 'https://docs.vale.sh', external: true },
+				{ label: 'Style Guides', href: '/guides' },
 				{ label: 'Media Library', href: '/library' },
 				{ label: 'Press Guide', href: '/press' },
 				{ label: 'Brand Assets', href: '/brand' }

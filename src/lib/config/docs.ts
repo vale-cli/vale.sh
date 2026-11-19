@@ -4,6 +4,7 @@ import WandSparkles from 'lucide-svelte/icons/wand-sparkles';
 import Package from 'lucide-svelte/icons/package';
 import Library from 'lucide-svelte/icons/library';
 import Newspaper from 'lucide-svelte/icons/newspaper';
+import PenLine from 'lucide-svelte/icons/pen-line';
 
 // The documentation itself lives on docs.vale.sh, which GitBook publishes and
 // which carries its own navigation. This file is only the site's own top-level
@@ -30,6 +31,11 @@ export const docsConfig: DocsConfig = {
 			title: 'Explorer',
 			href: '/explorer',
 			icon: Package
+		},
+		{
+			title: 'Tools',
+			href: '/tools',
+			icon: PenLine
 		},
 		{
 			title: 'Library',
