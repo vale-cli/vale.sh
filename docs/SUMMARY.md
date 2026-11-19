@@ -64,6 +64,7 @@
 * [Front Matter](formats/front-matter.md)
 * [Markdown](formats/markdown.md)
 * [MyST](formats/myst.md)
+* [Markdoc](formats/markdoc.md)
 * [Quarto](formats/quarto.md)
 * [R Markdown](formats/rmarkdown.md)
 * [Jupyter](formats/jupyter.md)

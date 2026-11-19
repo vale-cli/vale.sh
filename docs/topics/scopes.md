@@ -135,7 +135,7 @@ This rule corrects the casing in paragraphs and list items, and leaves headings 
 Requires Vale v3.18.0 or later.
 {% endhint %}
 
-A document’s machine-readable content—an anchor name, an image’s file name—is collected under the `meta` scope. A [QDoc](../formats/qdoc.md) file’s anchors and image file names land here, as does the content of an HTML `data` element.
+A document’s machine-readable content—an anchor name, an image’s file name—is collected under the `meta` scope. A [QDoc](../formats/qdoc.md) file’s anchors and image file names land here, as do the content of an HTML `data` element and a [Markdoc](../formats/markdoc.md) tag’s string attributes.
 
 Like the [inline elements](scopes.md#inline-elements), `meta` is a sibling of `text`: an ordinary prose rule passes over it, and only a rule that asks for `meta` reaches it. Its text isn’t segmented, either—an identifier has no sentences.
 
