@@ -6,10 +6,8 @@
 	import Server from 'lucide-svelte/icons/server';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
-	// Lives on /skills rather than the landing page: the hero and the footer
-	// already link here, and the edit hook and the MCP server have no other
-	// surface on the site at all. Keeping the three together is the point --
-	// the skills alone read as "paste a URL into a chat".
+	// The summary of /agents that closes /skills. Keeping the three together
+	// is the point -- the skills alone read as "paste a URL into a chat".
 	//
 	// The free/paid split is stated on each card rather than buried in a
 	// footnote. Two of these three need no account, and that has to be obvious
@@ -23,7 +21,7 @@
 			icon: Sparkles,
 			title: 'Skills',
 			cost: 'Free',
-			body: 'Setup, fixing alerts, triaging a noisy first run, vocabularies, and CI. Each one runs the CLI in your repository and ends with a report.',
+			body: 'Setup, fixing alerts, triaging a noisy first run, vocabularies, ignores, rules, and CI. Each one runs the CLI in your repository and ends with a report.',
 			// An anchor, not a link: this renders on /skills, above the list.
 			href: '#skill-list',
 			cta: 'Browse the skills',
@@ -34,9 +32,9 @@
 			title: 'Edit hook',
 			cost: 'Free',
 			body: 'Lints each prose file the moment your assistant writes it and hands back only the error-level alerts, so mistakes get fixed in the same turn they were made.',
-			href: 'https://github.com/vale-cli/agent-tools',
-			cta: 'See the hook',
-			external: true
+			href: '/agents#hook',
+			cta: 'How the hook works',
+			external: false
 		},
 		{
 			icon: Server,

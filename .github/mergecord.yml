@@ -47,6 +47,7 @@ github:
   # deliberately absent; the package registry already credits their authors.
   external_repositories:
     - ChrisChinchilla/vale-vscode
+    - Decipher/vale
 
 opencollective:
   slug: vale

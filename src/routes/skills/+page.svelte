@@ -9,7 +9,7 @@
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	const description =
-		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, and CI. Free, local, and driven by the CLI.';
+		'Agent skills for Vale: setup, fixing alerts, triaging a first run, vocabularies, ignores, rules, and CI. Free, local, and driven by the CLI.';
 </script>
 
 <MetaTags
@@ -40,7 +40,7 @@
 		</p>
 		<CodeBlock html={data.installHtml} code={data.install} class="mt-3" />
 		<p class="mt-3 text-sm leading-relaxed text-muted-foreground">
-			Then type <code class="font-mono">/vale:</code> and the five below should complete. For an
+			Then type <code class="font-mono">/vale:</code> and the seven below should complete. For an
 			assistant that reads skills from a folder, copy one into
 			<code class="font-mono">.claude/skills/</code> instead; for one with no skill support, hand it
 			<a href="/AGENTS.md" class="font-medium text-lime-600 hover:underline dark:text-lime-400"
@@ -103,8 +103,8 @@
 </div>
 
 <!--
-	The rest of the toolchain. Skills are one of three pieces, and the other two
-	-- the edit hook and the MCP server -- have no other home on the site.
+	The rest of the toolchain. Skills are one of three pieces; /agents has the
+	other two -- the edit hook and the MCP server -- in full.
 -->
 <div class="mt-16 border-t border-border/60 pb-20 pt-10">
 	<AgentTools install={data.install} installHtml={data.installHtml} />
