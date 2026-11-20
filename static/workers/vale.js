@@ -64,6 +64,9 @@ self.onmessage = async (event) => {
 
 		self.postMessage({ id, alerts: Object.values(JSON.parse(out.result)).flat() });
 	} catch (err) {
-		self.postMessage({ id, error: err instanceof Error ? err.message : String(err) });
+		const message = err instanceof Error ? err.message : String(err);
+		// Vale colors its errors for a terminal; a page shows the text.
+		// eslint-disable-next-line no-control-regex
+		self.postMessage({ id, error: message.replace(/\x1b\[[0-9;]*m/g, '').trim() });
 	}
 };
