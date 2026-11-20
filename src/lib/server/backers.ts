@@ -11,6 +11,23 @@ import { getCollectiveBackers } from './collective';
 import { getGitHubSponsors } from './github-sponsors';
 import type { Backer, Backers } from '$lib/types/backers';
 
+/**
+ * Backers who paid Vale directly rather than through either platform, so
+ * neither API knows about them. Kept by hand: add one when the money arrives,
+ * with a public link that confirms it.
+ */
+const DIRECT: Backer[] = [
+	{
+		slug: 'floss-fund',
+		name: 'FLOSS/fund',
+		website: 'https://floss.fund',
+		profile: 'https://floss.fund/blog/second-tranche-2025-anniversary/',
+		total: 10_000,
+		organization: true,
+		source: 'direct'
+	}
+];
+
 /** Names differ in case and spacing across platforms; slugs don't match at all. */
 const key = (b: Backer) => b.name.trim().toLowerCase().replace(/\s+/g, ' ');
 
@@ -35,11 +52,11 @@ function merge(collective: Backer[], github: Backer[]): Backer[] {
 
 export async function getBackers(fetch: typeof globalThis.fetch): Promise<Backers> {
 	const [oc, gh] = await Promise.all([getCollectiveBackers(fetch), getGitHubSponsors(fetch)]);
-	const all = merge(oc.backers, gh);
+	const all = merge([...DIRECT, ...oc.backers], gh);
 	return {
 		organizations: all.filter((b) => b.organization),
 		individuals: all.filter((b) => !b.organization),
-		sources: { opencollective: oc.live, github: gh.length > 0 }
+		sources: { opencollective: oc.live, github: gh.length > 0, direct: DIRECT.length > 0 }
 	};
 }
 

@@ -4,6 +4,7 @@
 	import BrandIcon from './BrandIcon.svelte';
 	import { siteConfig } from '$lib/config/site.js';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
+	import Landmark from 'lucide-svelte/icons/landmark';
 	import Section from './Section.svelte';
 
 	/**
@@ -40,10 +41,9 @@
 	/**
 	 * Everything the people on this wall have given, summed.
 	 *
-	 * Open Collective totals only -- GitHub reports a rate, which can't be added
-	 * to a lifetime figure. Backers only too, so it excludes the grants in the
-	 * Grants & Awards section; that's why it sits under "Who backs Vale" and
-	 * isn't labelled as everything Vale has ever raised.
+	 * Includes direct payments such as the FLOSS/fund grant, which is on the
+	 * wall as a backer. Other awards in Grants & Awards that weren't paid to
+	 * the project aren't, so this isn't labelled as everything Vale has raised.
 	 */
 	const allTime = $derived(
 		[...backers.organizations, ...backers.individuals].reduce((sum, b) => sum + (b.total ?? 0), 0)
@@ -61,6 +61,7 @@
 	/** Spelled out on hover, so the `~` isn't the only thing explaining itself. */
 	function basis(b: Backer): string | undefined {
 		if (b.source === 'opencollective') return 'Lifetime total on Open Collective';
+		if (b.source === 'direct') return 'Paid directly to the project';
 		if (!b.estimated) return 'One-time payment on GitHub Sponsors';
 		const rate = b.monthly !== undefined ? `${usd.format(b.monthly)}/mo` : 'a monthly tier';
 		return `${rate} on GitHub Sponsors${b.active ? ', ongoing' : ', since cancelled'}`;
@@ -94,6 +95,8 @@
 	>
 		{#if b.source === 'github'}
 			<Icons.GitHub class="h-3 w-3" />
+		{:else if b.source === 'direct'}
+			<Landmark class="h-3 w-3" />
 		{:else}
 			<BrandIcon name="Open Collective" slug="opencollective" size="h-3 w-3" />
 		{/if}
@@ -103,7 +106,7 @@
 {#if backers.organizations.length || backers.individuals.length}
 	<Section
 		id="backers"
-		eyebrow="Open Collective & GitHub Sponsors"
+		eyebrow="Open Collective, GitHub Sponsors & direct"
 		title="Who backs Vale"
 		lede="Every contribution is public, and so is every expense."
 	>

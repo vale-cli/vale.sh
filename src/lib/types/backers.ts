@@ -29,12 +29,13 @@ export type Backer = {
 	/** Still sponsoring. Past sponsors keep their total and lose the present tense. */
 	active?: boolean;
 	organization: boolean;
-	source: 'opencollective' | 'github';
+	/** `direct` is money paid straight to the project, kept by hand in backers.ts. */
+	source: 'opencollective' | 'github' | 'direct';
 };
 
 export type Backers = {
 	organizations: Backer[];
 	individuals: Backer[];
 	/** Which sources actually answered, for the note under the wall. */
-	sources: { opencollective: boolean; github: boolean };
+	sources: { opencollective: boolean; github: boolean; direct: boolean };
 };
