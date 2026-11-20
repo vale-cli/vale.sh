@@ -283,8 +283,9 @@
 	{
 		"name": "Canonical",
 		"category": "Open source & communities",
-		"context": "Ships Vale rules with its public documentation style guide, plus a GitHub Action.",
-		"url": "https://github.com/canonical/documentation-style-guide",
+		"context": "Runs Vale for style, spelling, and inclusive-language checks in the Sphinx Stack, the starter pack behind its documentation sites, with rules from its public style guide.",
+		"url": "https://documentation.ubuntu.com/sphinx-stack/latest/how-to/run-documentation-checks/",
+		"repo": "github.com/canonical/documentation-style-guide",
 		"icon": "canonical"
 	},
 	{
