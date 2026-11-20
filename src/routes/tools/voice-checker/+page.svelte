@@ -172,7 +172,9 @@ In conclusion, the team made a decision to leverage several caching solutions.`;
 	<p class="mb-4 text-sm text-foreground/85">{current.says}</p>
 
 	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
-		<div class="min-w-0">
+		<!-- Touching the editor starts the engine, ahead of the first text. -->
+		<!-- svelte-ignore a11y_no_static_element_interactions -->
+		<div class="min-w-0" onfocusin={vale.warm} onpointerdown={vale.warm}>
 			<Editor
 				bind:this={editor}
 				bind:value={text}

@@ -1,4 +1,4 @@
-import { onDestroy } from 'svelte';
+import { onDestroy, untrack } from 'svelte';
 import { createEngine, place, type Engine, type Placed, type ValeSpec } from './vale';
 
 /**
@@ -10,7 +10,9 @@ import { createEngine, place, type Engine, type Placed, type ValeSpec } from './
  * already has with each edit; `fresh` says whether it is for the text as it
  * stands.
  *
- * The engine isn't fetched until there is something to check.
+ * The engine isn't fetched until there is something to check, or until
+ * `warm` is called: a page calls it when its editor is first touched, so the
+ * download and the linter's start are under way before the first text.
  */
 export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec)) {
 	let state = $state<'idle' | 'loading' | 'ready' | 'failed'>('idle');
@@ -32,10 +34,9 @@ export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec))
 			return;
 		}
 
-		if (!engine) {
-			engine = createEngine(current);
-			state = 'loading';
-		}
+		engine ??= createEngine(current);
+		// A warmed engine is still idle as far as the page has been told.
+		if (untrack(() => state) === 'idle') state = 'loading';
 		engine
 			.lint(text, current)
 			.then((alerts) => {
@@ -43,14 +44,26 @@ export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec))
 				result = { text, config: current.config, placed: place(text, alerts) };
 				state = 'ready';
 			})
-			.catch((e: unknown) => {
-				failed = true;
-				error = e instanceof Error ? e.message : String(e);
-				console.error('Vale did not load:', e);
-				state = 'failed';
-				result = null;
-			});
+			.catch(fail);
 	});
+
+	const fail = (e: unknown) => {
+		failed = true;
+		error = e instanceof Error ? e.message : String(e);
+		console.error('Vale did not load:', e);
+		state = 'failed';
+		result = null;
+	};
+
+	/** Starts the engine and its linter ahead of the first text. */
+	function warm() {
+		if (failed || engine) return;
+		const current = typeof spec === 'function' ? spec() : spec;
+		engine = createEngine(current);
+		// A sentence, so that what the first lint sets up is set up too. Its
+		// findings are nobody's.
+		engine.lint('Start the engine early.', current).catch(fail);
+	}
 
 	onDestroy(() => engine?.dispose());
 
@@ -64,6 +77,7 @@ export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec))
 		get error() {
 			return error;
 		},
+		warm,
 		get fresh() {
 			return result !== null && result.text === source();
 		}
