@@ -46,7 +46,7 @@ export const AUTHORS: Record<string, Author> = {
 	jdkato: {
 		name: 'Joseph Kato',
 		avatar: '/blog/authors/jdkato.png',
-		url: 'https://github.com/jdkato'
+		url: 'https://jdkato.io'
 	}
 };
 

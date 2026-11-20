@@ -644,7 +644,7 @@
 					<h2 class="text-2xl font-semibold tracking-tight sm:text-3xl">Contact</h2>
 					<p class="mt-4 text-pretty leading-7 text-muted-foreground">
 						Vale is built and maintained by
-						<a href={siteConfig.links.jdkato} target="_blank" rel="noreferrer" class={link}
+						<a href={siteConfig.links.author} target="_blank" rel="noreferrer" class={link}
 							>Joseph Kato</a
 						>. For a quote, a correction, or a question the pages don’t answer, the fastest route is
 						an issue or a message on Discord.

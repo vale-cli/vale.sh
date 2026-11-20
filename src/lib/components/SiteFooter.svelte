@@ -161,12 +161,12 @@
 			<p class="text-sm text-muted-foreground">
 				Built and maintained by
 				<a
-					href={siteConfig.links.jdkato}
+					href={siteConfig.links.author}
 					target="_blank"
 					rel="noreferrer"
 					class="font-medium text-foreground underline decoration-border underline-offset-4 transition-colors hover:decoration-foreground"
 				>
-					@jdkato
+					Joseph Kato
 				</a>.
 			</p>
 
