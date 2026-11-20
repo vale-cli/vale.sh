@@ -190,9 +190,9 @@ export function band(
 	register = 'general'
 ): { level: 0 | 1 | 2; label: string } {
 	const t = data.thresholds[register] ?? data.thresholds.general;
-	if (value > t.fp1) return { level: 2, label: 'Reads as model-written' };
-	if (value > t.fp5) return { level: 1, label: 'Leans model-written' };
-	return { level: 0, label: 'Within the range of human writing' };
+	if (value > t.fp1) return { level: 2, label: 'Reads like typical model output' };
+	if (value > t.fp5) return { level: 1, label: 'Has some of its habits' };
+	return { level: 0, label: 'Reads like most human writing' };
 }
 
 const NAMED: Record<string, [more: string, less: string]> = {

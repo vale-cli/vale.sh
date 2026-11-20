@@ -211,7 +211,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 	const faq = $derived([
 		{
 			q: 'How does this AI detector work?',
-			a: `It searches your text for ${data.rules} patterns that language models overuse: stock phrases such as “delve into” and “rich tapestry,” formulas such as “it’s not just X, it’s Y,” filler openings and closings, and marketing-style headings. Each match is highlighted and comes with a suggested fix. It also measures the text as a whole, such as how much sentence lengths vary and how often words repeat, and places that against human writing. It does not use a neural network and it cannot tell you who wrote the text.`
+			a: `It looks for Modelese: the habits that make writing read as generated. It searches your text for the patterns language models overuse, such as stock phrases (“delve into,” “rich tapestry”), formulas (“it’s not just X, it’s Y”), filler openings and closings, and marketing-style headings. Each match is highlighted with a suggested fix. It also measures the text as a whole, such as how much sentence lengths vary and how often words repeat, and places that against human writing. It describes how the text reads. It does not, and cannot, tell you who wrote it.`
 		},
 		{
 			q: 'Can it tell me for certain whether text was written by AI?',
@@ -230,8 +230,12 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			a: 'No. The check runs entirely in your browser. Your text is not uploaded, logged, or shared, and no AI model reads it.'
 		},
 		{
-			q: 'How is this different from GPTZero, Turnitin, or Copyleaks?',
-			a: 'Those tools return a probability that text is AI-generated, produced by a model you cannot inspect. This one shows you the exact phrases it found and why each was flagged, so you can check every result yourself and fix the ones that matter. It is built for editing your own drafts, not for grading someone else’s.'
+			q: 'Does it catch text from the newest AI models?',
+			a: 'Often not, and nothing reliably does. Newer models have been trained away from the stock phrases older ones overused, and in our tests the text of a current frontier model reads, by these measures, like human writing. What this page finds is the writing readers react to, whoever or whatever produced it. Text without those habits passes, because it doesn’t read as generated.'
+		},
+		{
+			q: 'How is this different from other AI detectors?',
+			a: 'Most return a probability that text is AI-generated, produced by a model you cannot inspect. This one shows you the exact phrases it found and why each was flagged, so you can check every result yourself and fix the ones that matter. It is built for editing your own drafts, not for grading someone else’s.'
 		},
 		{
 			q: 'How do I make AI-assisted writing sound less like AI?',
@@ -243,7 +247,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 <ToolPage
 	tool={page}
 	wide
-	lede="Paste any text to see the phrases that make it read as AI-written. Each one is highlighted where it sits, with the reason and how to fix it. Nothing leaves your browser."
+	lede="Paste any text to see the phrases and habits that make it read as AI-written. Each one is highlighted where it sits, with the reason and how to fix it. Nothing leaves your browser."
 	{faq}
 >
 	<div class="grid gap-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
@@ -279,7 +283,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 		<aside class="space-y-5 lg:sticky lg:top-24 lg:self-start" aria-live="polite">
 			<div class="rounded-2xl border border-border bg-card p-5 shadow-sm">
 				<div class="text-xs font-medium uppercase tracking-[0.08em] text-muted-foreground">
-					AI tells
+					Modelese
 				</div>
 				<div class="mt-2 flex items-baseline gap-2">
 					<span
@@ -331,7 +335,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 					{:else if total < 100}
 						A short sample: one phrase swings the rate a lot under 100 words.
 					{:else if findings.length === 0}
-						No usual tells. That isn’t proof a person wrote it.
+						None of the usual habits. That isn’t proof a person wrote it.
 					{:else}
 						{per1k.toFixed(1)} per 1,000 words, across {total.toLocaleString('en-US')} words.
 					{/if}
@@ -379,7 +383,7 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 					{/if}
 					<p class="mt-3 border-t border-border/70 pt-3 text-xs leading-5 text-muted-foreground">
 						Measured against human writing: 1 text in 20 lands in the middle band or above, and 1 in
-						100 in the top one.
+						100 in the top one. It describes the writing, not who wrote it.
 					</p>
 				</div>
 			{/if}
@@ -410,14 +414,16 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 	{#snippet about()}
 		<h2>What this AI detector looks for</h2>
 		<p>
-			Language models have habits. They reach for the same vocabulary (“delve,” “tapestry,”
-			“robust”), the same sentence shapes (“it’s not just X, it’s Y”), and the same ways of opening
-			and closing (“In today’s fast-paced world,” “I hope this helps!”). Readers have learned to
-			spot these, and text that uses them gets trusted less, whoever wrote it.
+			Legalese is how contracts read. Modelese is how unedited model output reads. Language models
+			have habits. They reach for the same vocabulary (“delve,” “tapestry,” “robust”), the same
+			sentence shapes (“it’s not just X, it’s Y”), and the same ways of opening and closing (“In
+			today’s fast-paced world,” “I hope this helps!”). Readers have learned to spot these, and text
+			that uses them gets trusted less, whoever wrote it. This page finds those habits. It doesn’t
+			try to say who wrote the text, because no tool can do that reliably.
 		</p>
 		<p>
-			This detector checks your text against {data.rules} of those patterns and shows you each match.
-			The patterns come from
+			It checks your text against {data.rules} of those patterns and shows you each match. The patterns
+			come from
 			<a href={data.homepage} target="_blank" rel="noreferrer">ai-tells</a>, an open-source
 			collection maintained in public, so you can read exactly what is being checked. Beside them
 			run the nine rules of
@@ -436,39 +442,39 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 				<strong>Light</strong> (under 5 per 1,000 words): a few stock phrases, normal for anyone.
 			</li>
 			<li><strong>Noticeable</strong> (5 to 15): enough that a reader may wonder.</li>
-			<li><strong>Heavy</strong> (over 15): reads as unedited model output.</li>
+			<li><strong>Heavy</strong> (over 15): reads like unedited model output.</li>
 		</ul>
 		<p>
-			These bands are a reading aid, not a calibrated verdict. The detector reports what is on the
-			page. It can’t know who put it there, and people who write formally, or in a second language,
-			use many of these phrases naturally.
+			These bands are a reading aid, not a calibrated verdict. The page reports what is on the page.
+			It can’t know who put it there, and people who write formally, or in a second language, use
+			many of these phrases naturally.
 		</p>
 
 		<h2>The overall read</h2>
 		<p>
-			Beside the phrases, the detector measures the text as a whole: how much sentence lengths vary,
-			how often words and word pairs repeat, how expected each word is, and how often common words
-			and punctuation marks appear. Each measure has a weight, and the weighted sum is placed
-			against where human writing lands. It needs at least fifty words.
+			Beside the phrases, the page measures the text as a whole: how much sentence lengths vary, how
+			often words and word pairs repeat, how expected each word is, and how often common words and
+			punctuation marks appear. Each measure has a weight, and the weighted sum is placed against
+			where human writing lands. It needs at least fifty words.
 		</p>
 		<ul>
 			<li>
-				<strong>Within the range of human writing:</strong> 19 human texts in 20 score here.
+				<strong>Reads like most human writing:</strong> 19 human texts in 20 score here.
 			</li>
+			<li><strong>Has some of its habits:</strong> 1 human text in 20 scores this high.</li>
 			<li>
-				<strong>Leans model-written:</strong> 1 human text in 20 scores this high. On model-written
-				text held out of training, {data.caught5}% scores this high or higher.
-			</li>
-			<li>
-				<strong>Reads as model-written:</strong> 1 human text in 100 scores this high, and
-				{data.caught1}% of the held-out model text does.
+				<strong>Reads like typical model output:</strong> 1 human text in 100 scores this high.
 			</li>
 		</ul>
 		<p>
 			The weights were fitted to public collections of paired human and model writing, and to
 			issues, pull requests, and commit messages written before 2022. Text from a model or a kind of
-			writing unlike those is scored less reliably. The three lines under the result name what moved
-			the score most, so you can see why it landed where it did.
+			writing unlike those is scored less reliably. On the model text in those collections, most of
+			it from older and smaller models, it separates the two well. On text from a current frontier
+			model it mostly does not: those models have been trained away from these habits, and their
+			writing lands in the human range. So a low score doesn’t mean a person wrote the text, only
+			that it doesn’t read as generated. The three lines under the result name what moved the score
+			most, so you can see why it landed where it did.
 		</p>
 
 		<h2>Why not a percentage?</h2>

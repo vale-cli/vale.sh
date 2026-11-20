@@ -24,10 +24,10 @@ export const tools = [
 		icon: Bot,
 		name: 'AI Detector',
 		title: 'AI Writing Detector',
-		metaTitle: 'AI Writing Detector: Find What Makes Text Sound Like AI (Free)',
+		metaTitle: 'AI Writing Detector: Find the Phrases That Sound Like AI (Free)',
 		description:
-			'Paste text or drop a Word or PDF file to see every phrase that reads as AI-written, highlighted with a fix for each. Free, no sign-up, nothing uploaded.',
-		blurb: 'Highlights the phrases that make text read as machine-written, with a fix for each.'
+			'Paste text or drop a Word or PDF file to see every phrase and habit that makes writing read as AI-generated, highlighted with a fix for each. Free, no sign-up, nothing uploaded.',
+		blurb: 'Highlights the habits that make writing read as AI-generated, with a fix for each.'
 	},
 	{
 		slug: 'word-counter',
