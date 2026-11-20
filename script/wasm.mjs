@@ -195,7 +195,7 @@ const packages = JSON.parse(await readFile('src/lib/data/packages.json', 'utf8')
 // Used by a tool, and not in the package library.
 packages.push({
 	name: 'Modelese',
-	url: 'https://github.com/jdkato/Modelese/releases/download/v0.1.0/Modelese.zip',
+	url: 'https://github.com/jdkato/Modelese/releases/download/v0.2.0/Modelese.zip',
 	rules: [{}]
 });
 let staged = 0;
