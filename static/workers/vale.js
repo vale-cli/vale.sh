@@ -31,9 +31,13 @@ function start() {
 		}
 
 		// Never resolves: the module stays resident and installs its functions.
+		// A phone can take far longer than a laptop to get here, and timers in
+		// a busy worker fire late, so the deadline is wall-clock time, not a
+		// count of polls.
 		void go.run(instance);
-		for (let tries = 0; typeof self.ValeLint !== 'function'; tries++) {
-			if (tries > 300) throw new Error('the engine did not start');
+		const deadline = performance.now() + 30_000;
+		while (typeof self.ValeLint !== 'function') {
+			if (performance.now() > deadline) throw new Error('the engine did not start');
 			await new Promise((r) => setTimeout(r, 10));
 		}
 	})();

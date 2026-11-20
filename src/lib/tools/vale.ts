@@ -138,10 +138,12 @@ export function createEngine(spec: ValeSpec): Engine {
 	) => {
 		const job = running;
 		if (!job || event.data.id !== job.id) return;
-		running = null;
 
 		// The engine or a package didn't load: nothing later will either.
+		// `running` is still this job here, so fail() rejects it too.
 		if (event.data.error !== undefined) return fail(new Error(event.data.error));
+
+		running = null;
 
 		job.resolve(event.data.alerts ?? []);
 		if (waiting) {
