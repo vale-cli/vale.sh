@@ -15,6 +15,8 @@ import { createEngine, place, type Engine, type Placed, type ValeSpec } from './
 export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec)) {
 	let state = $state<'idle' | 'loading' | 'ready' | 'failed'>('idle');
 	let result = $state.raw<{ text: string; config: string; placed: Placed[] } | null>(null);
+	// Why the engine failed, as the worker or the browser put it.
+	let error = $state<string | null>(null);
 	let engine: Engine | null = null;
 	// Not reactive: the effect below must not rerun when it changes.
 	let failed = false;
@@ -41,8 +43,10 @@ export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec))
 				result = { text, config: current.config, placed: place(text, alerts) };
 				state = 'ready';
 			})
-			.catch(() => {
+			.catch((e: unknown) => {
 				failed = true;
+				error = e instanceof Error ? e.message : String(e);
+				console.error('Vale did not load:', e);
 				state = 'failed';
 				result = null;
 			});
@@ -56,6 +60,9 @@ export function useVale(source: () => string, spec: ValeSpec | (() => ValeSpec))
 		},
 		get result() {
 			return result;
+		},
+		get error() {
+			return error;
 		},
 		get fresh() {
 			return result !== null && result.text === source();

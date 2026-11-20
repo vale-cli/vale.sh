@@ -122,6 +122,8 @@ In conclusion, the team made a decision to leverage several caching solutions.`;
 		return out;
 	});
 	const empty = $derived(input.value.trim() === '');
+	// No count to show: there is no text, no answer yet, or no engine.
+	const blank = $derived(empty || pending || vale.state === 'failed');
 
 	const faq = [
 		{
@@ -190,12 +192,11 @@ In conclusion, the team made a decision to leverage several caching solutions.`;
 				</div>
 				<div class="mt-2 flex items-baseline gap-2">
 					<span
-						class="text-5xl font-medium tabular-nums tracking-tight {empty || pending
+						class="text-5xl font-medium tabular-nums tracking-tight {blank
 							? 'text-muted-foreground/40'
 							: highlights.length
 								? 'text-amber-600 dark:text-amber-400'
-								: 'text-lime-600 dark:text-lime-400'}"
-						>{empty || pending ? '–' : highlights.length}</span
+								: 'text-lime-600 dark:text-lime-400'}">{blank ? '–' : highlights.length}</span
 					>
 					<span class="text-sm text-muted-foreground">breaks</span>
 				</div>
@@ -215,6 +216,7 @@ In conclusion, the team made a decision to leverage several caching solutions.`;
 				<p class="mt-0.5 text-xs leading-5 text-muted-foreground">
 					{#if vale.state === 'failed'}
 						Reload the page to try again.
+						{#if vale.error}<span class="block break-words opacity-80">({vale.error})</span>{/if}
 					{:else}
 						Checked by Vale, running in this tab.
 					{/if}
