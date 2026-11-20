@@ -4,6 +4,7 @@
 	import ArrowLeft from 'lucide-svelte/icons/arrow-left';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import { ruleTitle } from '$lib/tools/topics';
+	import GuideLogo from '$lib/components/guides/GuideLogo.svelte';
 
 	let { data } = $props();
 	const term = $derived(data.term);
@@ -153,7 +154,11 @@
 						r.level
 					]} grid grid-cols-[7rem_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1 px-5 py-3 text-sm sm:grid-cols-[9rem_minmax(0,1fr)_auto]"
 				>
-					<a href="/guides/{r.guide}" class="font-medium hover:underline">{r.name}</a>
+					<a
+						href="/guides/{r.guide}"
+						class="inline-flex items-center gap-2 font-medium hover:underline"
+						><GuideLogo id={r.guide} name={r.name} size="h-4 w-4" />{r.name}</a
+					>
 					<span class="min-w-0">
 						{#if term.variants.length > 1}
 							<span class="text-foreground/70 line-through decoration-1">{r.find}</span>

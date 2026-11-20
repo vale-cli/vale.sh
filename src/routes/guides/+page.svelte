@@ -3,6 +3,7 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Search from 'lucide-svelte/icons/search';
 	import { termSlug, topics } from '$lib/tools/topics';
+	import GuideLogo from '$lib/components/guides/GuideLogo.svelte';
 
 	let { data } = $props();
 
@@ -216,8 +217,11 @@
 											h.level
 										]} grid grid-cols-[7rem_minmax(0,1fr)] items-baseline gap-x-4 gap-y-1 px-5 py-2.5 text-sm sm:grid-cols-[8rem_minmax(0,1fr)_auto]"
 									>
-										<a href="/guides/{h.guide}" class="font-medium hover:underline"
-											>{data.names[h.guide]}</a
+										<a
+											href="/guides/{h.guide}"
+											class="inline-flex items-center gap-2 font-medium hover:underline"
+											><GuideLogo id={h.guide} name={data.names[h.guide]} size="h-4 w-4" />{data
+												.names[h.guide]}</a
 										>
 										<span class="min-w-0">
 											{#if h.use}
@@ -274,7 +278,9 @@
 					{#each data.cards as c (c.id)}
 						<tr>
 							<th scope="row" class="whitespace-nowrap pr-2 text-left font-medium">
-								<a href="/guides/{c.id}" class="hover:underline">{c.name}</a>
+								<a href="/guides/{c.id}" class="inline-flex items-center gap-2 hover:underline"
+									><GuideLogo id={c.id} name={c.name} size="h-4 w-4" />{c.name}</a
+								>
 							</th>
 							{#each c.fingerprint as n, i (i)}
 								<td class="p-0">
@@ -329,9 +335,12 @@
 							class="group flex w-full flex-col rounded-2xl border border-border bg-card p-5 transition-colors hover:border-lime-500/40"
 						>
 							<div class="flex items-start justify-between gap-3">
-								<div>
-									<h4 class="text-lg font-medium">{c.name}</h4>
-									<p class="mt-0.5 text-sm text-muted-foreground">{c.full}</p>
+								<div class="flex items-start gap-3">
+									<GuideLogo id={c.id} name={c.name} size="h-8 w-8" />
+									<div>
+										<h4 class="text-lg font-medium">{c.name}</h4>
+										<p class="mt-0.5 text-sm text-muted-foreground">{c.full}</p>
+									</div>
 								</div>
 								<ArrowRight
 									class="mt-1.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-foreground"
@@ -375,7 +384,7 @@
 
 	<!-- Agreement and disagreement -->
 	<section class="mt-16 grid gap-10 lg:grid-cols-2" aria-label="Agreement">
-		<div>
+		<div class="min-w-0">
 			<h2 class="text-2xl font-medium tracking-tight">What most guides agree on</h2>
 			<p class="mt-3 leading-7 text-foreground/85">
 				The terms the most guides have a rule about, with the replacement when at least half of them
@@ -407,7 +416,7 @@
 			</ul>
 		</div>
 
-		<div>
+		<div class="min-w-0">
 			<h2 class="text-2xl font-medium tracking-tight">Where they contradict each other</h2>
 			<p class="mt-3 leading-7 text-foreground/85">
 				Cases where one guide’s fix is another guide’s error: the same two wordings, preferred in

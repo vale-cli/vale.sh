@@ -5,6 +5,7 @@
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import Search from 'lucide-svelte/icons/search';
 	import { topics, type RuleSummary } from '$lib/tools/topics';
+	import GuideLogo from '$lib/components/guides/GuideLogo.svelte';
 
 	let { data } = $props();
 
@@ -91,8 +92,11 @@
 			>
 				{guide.kind}
 			</p>
-			<h1 class="mt-3 text-balance text-4xl font-medium tracking-[-0.03em] sm:text-5xl">
-				{guide.full}
+			<h1
+				class="mt-3 flex items-center gap-4 text-balance text-4xl font-medium tracking-[-0.03em] sm:text-5xl"
+			>
+				<GuideLogo id={guide.id} name={guide.name} size="h-10 w-10 sm:h-12 sm:w-12" />
+				<span>{guide.full}</span>
 			</h1>
 			<p class="mt-5 max-w-2xl text-pretty text-lg leading-8 text-foreground/85">
 				{guide.rules.length} rules across {groups.length} topics, naming
@@ -190,6 +194,20 @@
 		<div>
 			<h2 id="map" class="text-2xl font-medium tracking-tight">The guide, by topic</h2>
 			<p class="mt-2 text-sm text-muted-foreground">Select a rule to see what it asks for.</p>
+			<nav class="mt-4 flex flex-wrap gap-1.5 text-sm" aria-label="Topics">
+				{#each groups as t (t.id)}
+					<a
+						href="#{t.id}"
+						class="inline-flex h-8 items-center gap-1.5 rounded-full border border-border bg-card px-3 transition-colors hover:border-lime-500/50 hover:bg-lime-500/10"
+						>{t.label}<span class="tabular-nums text-muted-foreground">{t.rules.length}</span></a
+					>
+				{/each}
+				<a
+					href="#word-list"
+					class="inline-flex h-8 items-center rounded-full border border-border bg-card px-3 transition-colors hover:border-lime-500/50 hover:bg-lime-500/10"
+					>Word list</a
+				>
+			</nav>
 
 			<div class="mt-6 space-y-7">
 				{#each groups as t (t.id)}
@@ -309,7 +327,9 @@
 							<li>
 								<a href="/guides/{o.id}" class="group block text-sm">
 									<div class="flex items-baseline justify-between gap-3">
-										<span class="font-medium group-hover:underline">{o.name}</span>
+										<span class="inline-flex items-center gap-2 font-medium group-hover:underline"
+											><GuideLogo id={o.id} name={o.name} size="h-4 w-4" />{o.name}</span
+										>
 										<span class="tabular-nums text-muted-foreground">{o.shared} shared</span>
 									</div>
 									<div class="mt-1 h-1.5 overflow-hidden rounded-full bg-muted">

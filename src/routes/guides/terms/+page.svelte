@@ -2,6 +2,8 @@
 	import { MetaTags } from 'svelte-meta-tags';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import Search from 'lucide-svelte/icons/search';
+	import { onMount } from 'svelte';
+	import { afterNavigate } from '$app/navigation';
 
 	let { data } = $props();
 
@@ -12,6 +14,13 @@
 	const url = 'https://vale.sh/guides/terms';
 
 	let query = $state('');
+	// The explorer's search lands here with ?q=; read it once the page is up.
+	onMount(() => {
+		query = new URLSearchParams(location.search).get('q') ?? '';
+	});
+	afterNavigate(() => {
+		query = new URLSearchParams(location.search).get('q') ?? query;
+	});
 	const q = $derived(query.trim().toLowerCase());
 	const shown = $derived(q ? data.terms.filter((t) => t.term.includes(q)) : data.terms);
 
