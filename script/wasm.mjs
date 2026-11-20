@@ -104,7 +104,7 @@ async function toolsFromRelease() {
  * own engine this way: built here, from source it names, so a deploy does
  * not wait on a Vale release. Move it forward to pick up engine changes.
  */
-const VALE_REF = '9cbdd4df953ccacd1415958e2adfb0a36d75aa90';
+const VALE_REF = '5d484ac7e5eed611b4790dd0184ee9ac19fceb45';
 // vale_nodict: the tools' spelling rules bring their own dictionaries.
 const TOOLS_TAGS = 'vale_nocode vale_noconvert vale_noviews vale_noexpr vale_nodict';
 
