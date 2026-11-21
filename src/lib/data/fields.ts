@@ -13,6 +13,12 @@ import Bot from 'lucide-svelte/icons/bot';
  * here. Every package, format, and post named below exists in this repo
  * (packages.json, docs/formats, src/posts); the build fails on a package
  * that doesn't, so a rename shows up instead of a dead card.
+ *
+ * Checked against Vale 3.27.0: each guide's config syncs and loads without
+ * a warning, and each demo's sample text, run under that config, raises the
+ * alert shown, with the message as printed. Each rule is the shipped one
+ * with comments and tests removed and long word lists trimmed. Technical's
+ * Docs.Terms is a team's own rule, so it ships in no package.
  */
 
 export type Sev = 'error' | 'warning' | 'suggestion';
@@ -177,7 +183,7 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 			file: 'styles/Journals/UnitSpacing.yml',
 			rule: `extends: existence
 message: "Put a space between the number and the unit: '%s'."
-link: https://github.com/jdkato/journals
+link: https://www.nature.com/nature/for-authors/formatting-guide
 level: warning
 nonword: true
 raw:
@@ -244,12 +250,12 @@ IMRaD.AbstractCitations = error`
 			file: 'styles/Leonard/Adverb.yml',
 			rule: `extends: existence
 message: "Drop the adverb on the tag: '%s'."
-link: https://github.com/jdkato/fiction
+link: https://www.theguardian.com/books/2010/feb/20/ten-rules-for-writing-fiction-part-one
 level: warning
 ignorecase: true
 tokens:
-  - '(?:said|asked|replied) \\w+ly'
-  - '\\w+ly,? (?:s?he|they|[A-Z]\\w+) said'
+  - '(?:said|asked|replied|answered|whispered|shouted|muttered) \\w+ly'
+  - '(?:s?he|they|we|you|I|[A-Z]\\w+) (?:said|asked) \\w+ly'
 exceptions:
   - only
   - early
@@ -258,10 +264,10 @@ exceptions:
 			lines: [
 				{ syntax: '#', text: 'One' },
 				{},
-				{ before: '“No,” he ', match: 'said gravely', after: '. She did not look up.' }
+				{ before: '“No,” ', match: 'he said gravely', after: '. She did not look up.' }
 			],
 			sev: 'warning',
-			msg: "Drop the adverb on the tag: 'said gravely'.",
+			msg: "Drop the adverb on the tag: 'he said gravely'.",
 			rule_name: 'Leonard.Adverb'
 		},
 		packages: ['Fiction', 'Voices', 'Readability', 'proselint', 'write-good'],
@@ -296,45 +302,45 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 		summary: 'The prose inside files that aren’t prose: comments, API descriptions, and the log.',
 		lede: 'A repository has prose all through it that no docs linter reads: doc comments, the descriptions in an OpenAPI spec, a commit’s subject and body. Vale finds it. Tree-sitter grammars lift comments out of source code, a View pulls named fields out of JSON and YAML, and a TextFSM template splits a commit message into its parts, so a rule reaches a commit subject the way it reaches a heading.',
 		demo: {
-			kicker: 'The seven rules · Rule 2',
+			kicker: 'Conventional Commits · Specification',
 			guideline: [
-				{ t: 'Limit the subject line to ' },
-				{ t: '50 characters', k: 'good' },
-				{ t: '. Not ' },
-				{ t: 'a subject that runs on past where the log cuts it off', k: 'bad' },
+				{ t: 'Prefix the subject with a type and a colon: ' },
+				{ t: 'fix:', k: 'good' },
+				{ t: ', not ' },
+				{ t: 'Fixed', k: 'bad' },
 				{ t: '.' }
 			],
-			file: 'styles/SevenRules/Limit.yml',
-			rule: `extends: Commits._shared.SubjectLength
-message: 'A subject of %d characters. Shoot for 50; 72 is the hard limit.'
-link: https://cbea.ms/git-commit/#limit-50
-level: warning
-max: 50`,
+			file: 'styles/Conventional/Type.yml',
+			rule: `extends: existence
+message: "Start with a type, then a colon: 'fix: ...', 'feat(scope)!: ...'. '%s' is not one."
+link: https://www.conventionalcommits.org/en/v1.0.0/#specification
+level: error
+scope: subject
+nonword: true
+raw:
+  - '^(?!\\w+(?:\\([^()]*\\))?!?:)[^\\s:]*'`,
 			doc: '.git/COMMIT_EDITMSG',
 			lines: [
-				{ match: 'Fixed the bug where vale sync skipped the StylesPath on Windows' },
+				{ match: 'Fixed', after: ' the bug where vale sync skipped StylesPath' },
 				{},
 				{ text: 'The path was joined before it was cleaned.' }
 			],
-			sev: 'warning',
-			msg: 'A subject of 63 characters. Shoot for 50; 72 is the hard limit.',
-			rule_name: 'SevenRules.Limit'
+			sev: 'error',
+			msg: "Start with a type, then a colon: 'fix: ...', 'feat(scope)!: ...'. 'Fixed' is not one.",
+			rule_name: 'Conventional.Type'
 		},
 		packages: ['Commits', 'Comments', 'TechTerms', 'Std'],
 		config: {
-			note: 'Commit messages against Conventional Commits, doc comments against their language’s conventions, and the descriptions in an OpenAPI spec through a View.',
+			note: 'Commit messages against Conventional Commits, and doc comments against their language’s conventions. Grammars has vale sync fetch the parsers that find the comments. For the descriptions in an OpenAPI spec, add the View from the Views docs.',
 			code: `StylesPath = styles
 Packages = Commits, Comments
+Grammars = go, java, kotlin
 
 [COMMIT_EDITMSG]
 BasedOnStyles = Commits, Conventional
 
 [*.{go,java,kt}]
-BasedOnStyles = Vale, Comments
-
-[openapi.{yml,yaml,json}]
-BasedOnStyles = Vale
-View = OpenAPI`
+BasedOnStyles = Vale, Comments`
 		},
 		formats: [
 			{ label: 'Source code', href: docs('formats/code'), note: 'Comments in nineteen languages' },
@@ -381,7 +387,7 @@ tokens:
   - is likely because
   - "it(?:'s| is) worth noting"
   - "it(?:'s| is) important to note"
-  - 'one could argue'`,
+  - "one could argue"`,
 			doc: 'reply.md',
 			lines: [
 				{ syntax: '#', text: 'Summary' },
