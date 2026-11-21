@@ -101,8 +101,11 @@
 			<h2 class="text-2xl font-semibold tracking-tight">Changes and contact</h2>
 			<p class="mt-4 text-muted-foreground">
 				A change to this policy is posted here with a new effective date. Questions go to
-				<a href="{siteConfig.links.github}/issues" target="_blank" rel="noreferrer" class={link}
-					>Vale’s issue tracker</a
+				<a
+					href="https://github.com/vale-cli/vale-web/issues"
+					target="_blank"
+					rel="noreferrer"
+					class={link}>the extension’s issue tracker</a
 				>.
 			</p>
 		</section>

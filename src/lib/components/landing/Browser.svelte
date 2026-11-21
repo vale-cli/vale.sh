@@ -71,11 +71,29 @@
 					</li>
 				{/each}
 			</ul>
-			<a
-				href="/privacy/extension"
-				class="mt-5 inline-block text-xs text-muted-foreground underline decoration-border underline-offset-4 hover:text-foreground"
-				>Privacy policy</a
-			>
+			<p class="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
+				<a
+					href="https://github.com/vale-cli/vale-web"
+					target="_blank"
+					rel="noreferrer"
+					class="underline decoration-border underline-offset-4 hover:text-foreground"
+					>Source on GitHub</a
+				>
+				<a
+					href="/privacy/extension"
+					class="underline decoration-border underline-offset-4 hover:text-foreground"
+					>Privacy policy</a
+				>
+				<span
+					>Thanks to <a
+						href="https://floss.fund/blog/second-tranche-2025-anniversary/"
+						target="_blank"
+						rel="noreferrer"
+						class="underline decoration-border underline-offset-4 hover:text-foreground"
+						>FLOSS/fund</a
+					> for funding Vale.</span
+				>
+			</p>
 		</div>
 
 		<div
