@@ -23,7 +23,12 @@
 	const compact = (v: number) =>
 		new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 }).format(v);
 
-	const facts = [
+	const ranking = $derived(data.stats.ranking);
+	// Rounded up, so the page never claims a better place than the data.
+	const brewTop = $derived(Math.ceil((ranking.brew.rank / ranking.brew.of) * 1000) / 10);
+	const brewInstalls = $derived(data.stats.channels.find((c) => c.name === 'Homebrew')?.value ?? 0);
+
+	const facts = $derived([
 		{ label: 'First release', value: 'February 2017' },
 		{ label: 'License', value: 'MIT' },
 		{ label: 'Written in', value: 'Go' },
@@ -39,8 +44,27 @@
 			value: compact(data.stats.contributors),
 			href: siteConfig.links.contributors
 		},
-		{ label: 'Source', value: 'github.com/vale-cli', href: siteConfig.links.org }
-	];
+		{ label: 'Source', value: 'github.com/vale-cli', href: siteConfig.links.org },
+		{
+			// homebrew-core's own ranking, which has no page; the JSON is it.
+			label: 'Homebrew core, past year',
+			value: `Top ${brewTop}% by installs`,
+			href: 'https://formulae.brew.sh/api/analytics/install-on-request/homebrew-core/365d.json'
+		},
+		// Claimed only while it holds on both registries; otherwise the plain
+		// count takes its place, so the grid stays even.
+		ranking.brew.leads && ranking.chocolatey.leads
+			? {
+					label: 'Among prose linters',
+					value: 'Most installed on Homebrew and Chocolatey',
+					href: 'https://formulae.brew.sh/formula/vale'
+				}
+			: {
+					label: 'Homebrew installs',
+					value: `${compact(brewInstalls)} a year`,
+					href: 'https://formulae.brew.sh/formula/vale'
+				}
+	]);
 
 	// The repositories a story links: the linter itself, then what ships
 	// around it.
