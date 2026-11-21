@@ -50,6 +50,18 @@ export type Funding = {
 	live: boolean;
 };
 
+/**
+ * Where Vale stands on the registries that publish comparable numbers.
+ * `leads` is whether it has more installs than every prose, grammar, and
+ * spelling checker on that registry; a page makes the "most installed" claim
+ * only while it holds on both.
+ */
+export type Ranking = {
+	/** Rank among homebrew-core formulae by installs on request, past year. */
+	brew: { rank: number; of: number; leads: boolean; live: boolean };
+	chocolatey: { leads: boolean; live: boolean };
+};
+
 export type Stats = {
 	channels: Channel[];
 	/**
@@ -65,6 +77,7 @@ export type Stats = {
 	contributors: number;
 	/** Stargazers on the main repo. */
 	stars: number;
+	ranking: Ranking;
 	/** ISO date the numbers were gathered, shown as "updated <date>". */
 	updated: string;
 };
