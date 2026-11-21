@@ -26,13 +26,13 @@ With the edit-time hook below, the alerts reach the assistant in the turn it wro
 An instruction file holds a model to a standard, and the same standard can be held to the file: say what to do, in the mood of a command, in a file short enough to be read on every turn. [Prompts](https://github.com/jdkato/Prompts) is a style for `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, and system prompts, on any agent's file:
 
 ```ini
-Packages = https://github.com/jdkato/Prompts/releases/latest/download/Prompts.zip
+Packages = Prompts
 
-[{AGENTS,CLAUDE,SKILL}.md]
+[**/{AGENTS,CLAUDE,SKILL}.md]
 BasedOnStyles = Prompts
 ```
 
-Its rules report advice where an instruction belongs (`you should`, `make sure to`), words that name no action (`handle`, `ensure`, `best practices`), more than ten absolutes in one file, two instructions that pull opposite ways, a skill `description` past the length its loader reads, a section past 300 words, and a file past 2,500. Each rule links to the vendor guidance it enforces. Name the files you mean in the section: a style for instructions has no business in the README. Prompts requires Vale v3.21.0 or later.
+Its rules report advice where an instruction belongs (`you should`, `make sure to`), words that name no action (`handle`, `ensure`, `best practices`), more than ten absolutes or three shouted words in one file, two instructions that pull opposite ways, dates that will go stale, backslashes in paths, a section past 300 words, and a file past 2,500. For a skill, they also check its frontmatter: a `name` a loader rejects, and a `description` that runs too long, is not in the third person, or never says when to use the skill. Each rule links to the vendor guidance it enforces. Name the files you mean in the section, with `**/` so it reaches skills in their own directories: a style for instructions has no business in the README. Prompts requires Vale v3.21.0 or later.
 
 ## [What an agent runs](agents.md#what-an-agent-runs)
 
