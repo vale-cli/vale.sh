@@ -117,6 +117,64 @@ function view() {
 	return out;
 }
 
+/** A document, a source file, and a data file, as PostBanner's 'spelling' motif draws them. */
+function spelling() {
+	const files = [
+		{
+			name: 'guide.md',
+			lines: [
+				[0, 56, 1],
+				[0, 88, 1, '3:15'],
+				[0, 72, 1],
+				[1, 64],
+				[1, 48],
+				[0, 80, 1]
+			]
+		},
+		{
+			name: 'client.go',
+			lines: [
+				[0, 84, 1],
+				[0, 70, 1, '2:24'],
+				[0, 52],
+				[1, 76],
+				[1, 60],
+				[0, 20]
+			]
+		},
+		{
+			name: 'config.yml',
+			lines: [
+				[0, 64, 1],
+				[0, 36],
+				[1, 84, 1, '3:16'],
+				[1, 44],
+				[1, 52],
+				[0, 70, 1]
+			]
+		}
+	];
+	const gap = 40;
+	const colW = (PANE.w - 2 * gap) / 3;
+	const rowH = (PANE.h - 28) / 6;
+	let out = '';
+	files.forEach((file, c) => {
+		const x0 = PANE.x + c * (colW + gap);
+		out += `<text x="${x0}" y="${PANE.y + 14}" font-family="${MONO}" font-size="17" fill="${C.muted}">${file.name}</text>`;
+		file.lines.forEach(([indent, w, prose, alert], i) => {
+			const y = PANE.y + 28 + i * rowH + (rowH - 14) / 2;
+			const x = x0 + indent * 22;
+			const width = ((colW - 90) * w) / 100;
+			out += `<rect x="${x}" y="${y}" width="${width}" height="14" rx="3" fill="${prose ? C.lime : C.faint}"/>`;
+			if (alert) {
+				out += `<circle cx="${x + width + 14}" cy="${y + 7}" r="5" fill="${C.rose}"/>`;
+				out += `<text x="${x + width + 24}" y="${y + 13}" font-family="${MONO}" font-size="16" fill="${C.rose}">${alert}</text>`;
+			}
+		});
+	});
+	return out;
+}
+
 function tree() {
 	const lines = [
 		['', 'Std/', ''],
@@ -414,7 +472,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 								? 'vale docs/'
 								: meta.motif === 'onboard'
 									? '/vale:onboard'
-									: `vale ${slug}.md`;
+									: meta.motif === 'spelling'
+										? 'vale docs/'
+										: `vale ${slug}.md`;
 	const art =
 		meta.motif === 'savings'
 			? savings()
@@ -434,7 +494,9 @@ for (const file of readdirSync(`${root}src/posts`).sort()) {
 										? gate()
 										: meta.motif === 'onboard'
 											? onboard()
-											: sketch(slug);
+											: meta.motif === 'spelling'
+												? spelling()
+												: sketch(slug);
 
 	const lines = wrap(meta.title);
 	const text = lines

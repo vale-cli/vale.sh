@@ -12,7 +12,7 @@
     "site": "jdkato/a11y",
     "repo": "jdkato/a11y",
     "stars": 0,
-    "downloads": 12368,
+    "downloads": 12623,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -185,7 +185,7 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 17739,
+    "downloads": 17997,
     "version": "v1.0.0",
     "released": "2026-08-25",
     "rules": [
@@ -342,7 +342,7 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 195520,
+    "downloads": 195534,
     "version": "v686",
     "released": "2026-11-20",
     "rules": [
@@ -475,7 +475,7 @@
     "site": "jhradilek/asciidoctor-dita-vale",
     "repo": "jhradilek/asciidoctor-dita-vale",
     "stars": 7,
-    "downloads": 86521,
+    "downloads": 86531,
     "version": "v1.1.16",
     "released": "2026-10-27",
     "rules": [
@@ -848,7 +848,7 @@
     "site": "jdkato/comments",
     "repo": "jdkato/comments",
     "stars": 0,
-    "downloads": 891,
+    "downloads": 907,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -981,7 +981,7 @@
     "site": "jdkato/commits",
     "repo": "jdkato/commits",
     "stars": 1,
-    "downloads": 6564,
+    "downloads": 6652,
     "version": "v0.2.0",
     "released": "2026-09-10",
     "rules": [
@@ -1814,7 +1814,7 @@
     "site": "jdkato/diataxis",
     "repo": "jdkato/diataxis",
     "stars": 1,
-    "downloads": 13469,
+    "downloads": 13757,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -1995,7 +1995,7 @@
     "site": "elastic/vale-rules",
     "repo": "elastic/vale-rules",
     "stars": 11,
-    "downloads": 54087,
+    "downloads": 54097,
     "version": "v1.7.3",
     "released": "2026-10-20",
     "rules": [
@@ -2297,7 +2297,7 @@
     "site": "jdkato/fiction",
     "repo": "jdkato/fiction",
     "stars": 1,
-    "downloads": 838,
+    "downloads": 852,
     "version": "v0.1.0",
     "released": "2026-09-18",
     "rules": [
@@ -2510,7 +2510,7 @@
     "site": "vale-cli/Google",
     "repo": "vale-cli/Google",
     "stars": 98,
-    "downloads": 2167528,
+    "downloads": 2169367,
     "version": "v0.7.2",
     "released": "2026-11-12",
     "rules": [
@@ -2820,7 +2820,7 @@
     "site": "vale-cli/Harper",
     "repo": "vale-cli/Harper",
     "stars": 1,
-    "downloads": 34648,
+    "downloads": 34704,
     "version": "v0.1.1",
     "released": "2026-11-19",
     "rules": [
@@ -7222,7 +7222,7 @@
     "site": "vale-cli/Hugo",
     "repo": "vale-cli/Hugo",
     "stars": 7,
-    "downloads": 156602,
+    "downloads": 156695,
     "version": "v0.4.0",
     "released": "2026-08-28",
     "rules": [],
@@ -7242,7 +7242,7 @@
     "site": "vale-cli/Joblint",
     "repo": "vale-cli/Joblint",
     "stars": 14,
-    "downloads": 148318,
+    "downloads": 148335,
     "version": "v0.4.1",
     "released": "2021-04-07",
     "rules": [
@@ -7399,7 +7399,7 @@
     "site": "jdkato/journals",
     "repo": "jdkato/journals",
     "stars": 1,
-    "downloads": 1004,
+    "downloads": 1019,
     "version": "v0.1.0",
     "released": "2026-09-17",
     "rules": [
@@ -8403,7 +8403,7 @@
     "site": "vale-cli/MDX",
     "repo": "vale-cli/MDX",
     "stars": 3,
-    "downloads": 191391,
+    "downloads": 191520,
     "version": "v0.3.0",
     "released": "2026-07-31",
     "rules": [],
@@ -8423,7 +8423,7 @@
     "site": "vale-cli/Microsoft",
     "repo": "vale-cli/Microsoft",
     "stars": 114,
-    "downloads": 1098820,
+    "downloads": 1099681,
     "version": "v0.15.2",
     "released": "2026-11-12",
     "rules": [
@@ -8820,7 +8820,7 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 114842,
+    "downloads": 114852,
     "version": "v686",
     "released": "2026-11-20",
     "rules": [
@@ -8969,8 +8969,8 @@
     "site": "jdkato/prompts",
     "repo": "jdkato/prompts",
     "stars": 2,
-    "downloads": 0,
-    "version": "v0.1.0",
+    "downloads": 20,
+    "version": "v0.1.1",
     "released": "2026-11-21",
     "rules": [
       {
@@ -9094,7 +9094,7 @@
     "site": "vale-cli/readability",
     "repo": "vale-cli/readability",
     "stars": 32,
-    "downloads": 287561,
+    "downloads": 287887,
     "version": "v0.2.0",
     "released": "2026-09-24",
     "rules": [
@@ -9179,7 +9179,7 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 372310,
+    "downloads": 372392,
     "version": "v686",
     "released": "2026-11-20",
     "rules": [
@@ -9496,7 +9496,7 @@
     "site": "sfadriaan/Salesforce",
     "repo": "sfadriaan/Salesforce",
     "stars": 1,
-    "downloads": 751,
+    "downloads": 794,
     "version": "v0.1.0",
     "released": "2026-07-30",
     "rules": [
@@ -9860,6 +9860,31 @@
     ],
     "assets": [],
     "valeVersion": ">=3.20.0"
+  },
+  {
+    "name": "TechTerms",
+    "description": "A spelling dictionary of 115,000 technical terms, from product and company names to file types and the vocabulary of some 30 programming languages, built from cspell's MIT-licensed word lists. Vale.Spelling uses it beside its own dictionary.",
+    "homepage": "https://github.com/jdkato/techterms",
+    "url": "https://github.com/jdkato/techterms/releases/latest/download/TechTerms.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "config"
+    ],
+    "host": "github",
+    "site": "jdkato/techterms",
+    "repo": "jdkato/techterms",
+    "rules": [],
+    "assets": [
+      {
+        "kind": "dictionary",
+        "name": "techterms.aff"
+      },
+      {
+        "kind": "dictionary",
+        "name": "techterms.dic"
+      }
+    ],
+    "valeVersion": ""
   },
   {
     "name": "Voices",

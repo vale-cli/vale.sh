@@ -27,7 +27,7 @@
 		// 'commit': a commit message read as subject, body, and trailers.
 		// 'manuscript': a paper's headings as the sections a rule is scoped to.
 		// 'compass': the four kinds of documentation on their two axes.
-		// 'spelling': three markup files, prose lit and code dark, one alert each.
+		// 'spelling': a document, a source file, and a data file, prose lit and code dark, one alert each.
 		// 'test': a failing `vale test` case, expected against actual.
 		// 'gate': a rule being written on the left, the alerts it raised on the right.
 		// 'onboard': an agent's setup proposal, errors before and after the baseline.
@@ -266,10 +266,12 @@
 		}
 	];
 
-	// The 'spelling' motif: a Markdown page, a reStructuredText page, and an
-	// HTML page sketched as bars. Prose is lit and everything else is dark,
-	// and each file carries one alert, in its prose: the argument of the
-	// post in three columns. Widths are hand-set to read as the documents.
+	// The 'spelling' motif: a Markdown page, a Go file, and a YAML file
+	// sketched as bars. Prose is lit and everything else is dark -- a fenced
+	// block, the code between comments, the keys and values that aren't
+	// prose -- and each file carries one alert, in its prose: the post's
+	// argument across its three kinds of file. Widths are hand-set to read
+	// as the files.
 	type SpellingLine = { indent: number; w: number; prose?: boolean; alert?: string };
 	type SpellingFile = { name: string; lines: SpellingLine[] };
 
@@ -286,25 +288,25 @@
 			]
 		},
 		{
-			name: 'guide.rst',
+			name: 'client.go',
 			lines: [
-				{ indent: 0, w: 60, prose: true },
-				{ indent: 0, w: 60 },
-				{ indent: 0, w: 84, prose: true, alert: '4:12' },
-				{ indent: 1, w: 72 },
-				{ indent: 1, w: 52 },
-				{ indent: 0, w: 76, prose: true }
+				{ indent: 0, w: 84, prose: true },
+				{ indent: 0, w: 70, prose: true, alert: '2:24' },
+				{ indent: 0, w: 52 },
+				{ indent: 1, w: 76 },
+				{ indent: 1, w: 60 },
+				{ indent: 0, w: 20 }
 			]
 		},
 		{
-			name: 'guide.html',
+			name: 'config.yml',
 			lines: [
-				{ indent: 0, w: 40 },
-				{ indent: 1, w: 76, prose: true },
-				{ indent: 1, w: 88, prose: true, alert: '3:31' },
+				{ indent: 0, w: 64, prose: true },
+				{ indent: 0, w: 36 },
+				{ indent: 1, w: 84, prose: true, alert: '3:16' },
 				{ indent: 1, w: 44 },
-				{ indent: 2, w: 56 },
-				{ indent: 0, w: 36 }
+				{ indent: 1, w: 52 },
+				{ indent: 0, w: 70, prose: true }
 			]
 		}
 	];

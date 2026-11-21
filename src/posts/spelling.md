@@ -1,10 +1,10 @@
 ---
 title: 'Spell checking is a parsing problem'
 description: 'Vale reads the format before it checks the spelling, so in fourteen markup formats, six programming languages, and three data formats, its output is the misspellings in your prose and nothing else. What that gets you, how fast it is, and how to bring a technical vocabulary along.'
-date: '2026-09-25'
+date: '2026-11-21'
 tags: ['formats']
 motif: 'spelling'
-imageAlt: 'A Markdown page, a reStructuredText page, and an HTML page sketched as bars, with the prose lit, the markup dark, and one alert in each at its exact position.'
+imageAlt: 'A Markdown page, a Go file, and a YAML file sketched as bars, with the prose lit, the code and markup dark, and one alert in each at its exact position.'
 draft: true
 ---
 
