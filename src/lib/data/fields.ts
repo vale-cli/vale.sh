@@ -71,7 +71,9 @@ export type Field = {
 	/** Posts on this blog, by slug. */
 	posts: string[];
 	/** Teams in adopters.json who write this kind of text, by name. */
-	adopters?: string[];
+	adopters: string[];
+	/** What those teams lint, said plainly: the lede of "Who runs it". */
+	adoptersNote: string;
 	/** Further reading in the manual. */
 	docs: Link[];
 };
@@ -155,6 +157,20 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 			'testing-rules',
 			'std'
 		],
+		adopters: [
+			'GOV.UK',
+			'GitLab',
+			'Red Hat',
+			'Elastic',
+			'Grafana Labs',
+			'Datadog',
+			'Microsoft',
+			'Epic Games',
+			'MetaMask',
+			'Polkadot'
+		],
+		adoptersNote:
+			'Documentation teams who run Vale on every change, from government services and developer platforms to blockchain protocols. Several publish their style as a package anyone can install.',
 		docs: [
 			{ label: 'Quickstart', href: docs('topics/quickstart') },
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Writing your own rules' },
@@ -229,6 +245,8 @@ BasedOnStyles = Vale, Google`
 			{ label: 'Org', href: docs('formats/org') }
 		],
 		posts: ['journals', 'case-study-rubin-observatory', 'spelling'],
+		adoptersNote:
+			'Research groups and institutes running Vale on the docs for the software their research depends on. The Journals package is new, so none of them lint papers with it yet.',
 		adopters: [
 			'Rubin Observatory',
 			'rOpenSci',
@@ -305,6 +323,20 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 			{ label: 'Typst', href: docs('formats/typst') }
 		],
 		posts: ['voices', 'std'],
+		adopters: [
+			'Thinking in Python',
+			'LinuxBoot',
+			'Open Liberty',
+			'Rackspace',
+			'InnerSource Commons',
+			'PostHog',
+			'TrussWorks',
+			'Matter',
+			'Stakater',
+			'Engineering Handbook'
+		],
+		adoptersNote:
+			'Teams who lint long-form writing: the manuscript of a book, a blog, an open handbook. None in the directory lint fiction yet; the Fiction package is new.',
 		docs: [
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Turning your own rules into checks' },
 			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Names and invented words' },
@@ -367,6 +399,20 @@ BasedOnStyles = Vale, Comments`
 			{ label: 'Front matter', href: docs('formats/front-matter') }
 		],
 		posts: ['commits', 'openapi', 'case-study-pnpm', 'spelling'],
+		adopters: [
+			'pnpm',
+			'Renovate',
+			'Gravitee',
+			'pgEdge',
+			'Veecle',
+			'TestNG',
+			'Workflow Orchestrator',
+			'DigitalService',
+			'Open Podcast API',
+			'Marigold'
+		],
+		adoptersNote:
+			'Teams who lint the prose outside their docs: comments in Rust, Go, TypeScript, and Java, Python docstrings, API specs, and changesets.',
 		docs: [
 			{
 				label: 'Commits',
@@ -434,6 +480,20 @@ BasedOnStyles = Prompts`
 			{ label: 'LSP', href: docs('guides/lsp') }
 		],
 		posts: ['voices', 'onboard', 'quality-gate'],
+		adopters: [
+			'NVIDIA',
+			'CircleCI',
+			'Promptless',
+			'Mastra',
+			'Uniswap',
+			'seedcord',
+			'Modelplane',
+			'gqlgen',
+			'Broad Institute',
+			'pgEdge'
+		],
+		adoptersNote:
+			'Teams who use Vale on what models write, or on the docs for the agents they build: as a check an agent runs, a skill it follows, or a style that flags AI tells.',
 		docs: [
 			{ label: 'Agents', href: docs('guides/agents') },
 			{ label: 'Setting up with an agent', href: docs('guides/agent-setup') },

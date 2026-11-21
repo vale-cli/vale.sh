@@ -49,7 +49,7 @@ export const load: PageServerLoad = async ({ params }) => {
 
 	// Teams who write this kind of text, from the adopter directory, each
 	// linking its profile. A name the directory doesn't have fails the build.
-	const adopters = (field.adopters ?? []).map((name) => {
+	const adopters = field.adopters.map((name) => {
 		const a = adopterList.find((x) => x.name === name);
 		if (!a)
 			throw new Error(
