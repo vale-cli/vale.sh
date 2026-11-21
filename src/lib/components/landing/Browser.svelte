@@ -91,7 +91,7 @@
 						rel="noreferrer"
 						class="underline decoration-border underline-offset-4 hover:text-foreground"
 						>FLOSS/fund</a
-					> for funding Vale.</span
+					> for funding it.</span
 				>
 			</p>
 		</div>
