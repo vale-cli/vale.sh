@@ -12,7 +12,7 @@
     "site": "jdkato/a11y",
     "repo": "jdkato/a11y",
     "stars": 0,
-    "downloads": 11866,
+    "downloads": 12368,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -185,7 +185,7 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 17234,
+    "downloads": 17739,
     "version": "v1.0.0",
     "released": "2026-08-25",
     "rules": [
@@ -342,9 +342,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 194209,
-    "version": "v683",
-    "released": "2026-11-16",
+    "downloads": 195520,
+    "version": "v686",
+    "released": "2026-11-20",
     "rules": [
       {
         "name": "ClosedAttributeBlocks",
@@ -475,7 +475,7 @@
     "site": "jhradilek/asciidoctor-dita-vale",
     "repo": "jhradilek/asciidoctor-dita-vale",
     "stars": 7,
-    "downloads": 86378,
+    "downloads": 86521,
     "version": "v1.1.16",
     "released": "2026-10-27",
     "rules": [
@@ -848,7 +848,7 @@
     "site": "jdkato/comments",
     "repo": "jdkato/comments",
     "stars": 0,
-    "downloads": 788,
+    "downloads": 891,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -981,7 +981,7 @@
     "site": "jdkato/commits",
     "repo": "jdkato/commits",
     "stars": 1,
-    "downloads": 6185,
+    "downloads": 6564,
     "version": "v0.2.0",
     "released": "2026-09-10",
     "rules": [
@@ -1814,7 +1814,7 @@
     "site": "jdkato/diataxis",
     "repo": "jdkato/diataxis",
     "stars": 1,
-    "downloads": 12901,
+    "downloads": 13469,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -1995,7 +1995,7 @@
     "site": "elastic/vale-rules",
     "repo": "elastic/vale-rules",
     "stars": 11,
-    "downloads": 53707,
+    "downloads": 54087,
     "version": "v1.7.3",
     "released": "2026-10-20",
     "rules": [
@@ -2297,7 +2297,7 @@
     "site": "jdkato/fiction",
     "repo": "jdkato/fiction",
     "stars": 1,
-    "downloads": 809,
+    "downloads": 838,
     "version": "v0.1.0",
     "released": "2026-09-18",
     "rules": [
@@ -2510,7 +2510,7 @@
     "site": "vale-cli/Google",
     "repo": "vale-cli/Google",
     "stars": 98,
-    "downloads": 2149576,
+    "downloads": 2167528,
     "version": "v0.7.2",
     "released": "2026-11-12",
     "rules": [
@@ -2820,9 +2820,9 @@
     "site": "vale-cli/Harper",
     "repo": "vale-cli/Harper",
     "stars": 1,
-    "downloads": 34224,
-    "version": "v0.1.0",
-    "released": "2026-08-05",
+    "downloads": 34648,
+    "version": "v0.1.1",
+    "released": "2026-11-19",
     "rules": [
       {
         "name": "ACoupleMore",
@@ -7222,7 +7222,7 @@
     "site": "vale-cli/Hugo",
     "repo": "vale-cli/Hugo",
     "stars": 7,
-    "downloads": 155795,
+    "downloads": 156602,
     "version": "v0.4.0",
     "released": "2026-08-28",
     "rules": [],
@@ -7242,7 +7242,7 @@
     "site": "vale-cli/Joblint",
     "repo": "vale-cli/Joblint",
     "stars": 14,
-    "downloads": 147869,
+    "downloads": 148318,
     "version": "v0.4.1",
     "released": "2021-04-07",
     "rules": [
@@ -7399,7 +7399,7 @@
     "site": "jdkato/journals",
     "repo": "jdkato/journals",
     "stars": 1,
-    "downloads": 958,
+    "downloads": 1004,
     "version": "v0.1.0",
     "released": "2026-09-17",
     "rules": [
@@ -8403,7 +8403,7 @@
     "site": "vale-cli/MDX",
     "repo": "vale-cli/MDX",
     "stars": 3,
-    "downloads": 189287,
+    "downloads": 191391,
     "version": "v0.3.0",
     "released": "2026-07-31",
     "rules": [],
@@ -8423,7 +8423,7 @@
     "site": "vale-cli/Microsoft",
     "repo": "vale-cli/Microsoft",
     "stars": 114,
-    "downloads": 1089140,
+    "downloads": 1098820,
     "version": "v0.15.2",
     "released": "2026-11-12",
     "rules": [
@@ -8820,9 +8820,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 113753,
-    "version": "v683",
-    "released": "2026-11-16",
+    "downloads": 114842,
+    "version": "v686",
+    "released": "2026-11-20",
     "rules": [
       {
         "name": "AdditionalResourcesHeadingHasRoleID",
@@ -8957,6 +8957,131 @@
     "valeVersion": ""
   },
   {
+    "name": "Prompts",
+    "description": "Lints instruction files such as AGENTS.md, CLAUDE.md, and SKILL.md: advice in place of commands, vague verbs, contradictions, too much emphasis, and files too long to read on every turn.",
+    "homepage": "https://github.com/jdkato/prompts",
+    "url": "https://github.com/jdkato/prompts/releases/latest/download/Prompts.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style"
+    ],
+    "host": "github",
+    "site": "jdkato/prompts",
+    "repo": "jdkato/prompts",
+    "stars": 2,
+    "downloads": 0,
+    "version": "v0.1.0",
+    "released": "2026-11-21",
+    "rules": [
+      {
+        "name": "Absolutes",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "summary",
+        "message": "%d absolutes in one file. Past ten, none of them lands.",
+        "link": "https://code.claude.com/docs/en/best-practices"
+      },
+      {
+        "name": "Contradiction",
+        "extends": "consistency",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' pulls against an earlier instruction. Say when each applies.",
+        "link": "https://developers.openai.com/cookbook/examples/gpt4-1_prompting_guide"
+      },
+      {
+        "name": "Emphasis",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "summary",
+        "message": "%d lines shouting. Emphasize one, and the rest stand out less, not more.",
+        "link": "https://code.claude.com/docs/en/best-practices"
+      },
+      {
+        "name": "Frontmatter",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "'%s' runs past what a skill loader accepts: 64 characters for a name, 1,024 for a description.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#yaml-frontmatter-requirements"
+      },
+      {
+        "name": "Imperative",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence",
+        "message": "Give the instruction, not the advice: '%s'.",
+        "link": "https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/claude-prompting-best-practices#be-clear-and-direct"
+      },
+      {
+        "name": "Length",
+        "extends": "metric",
+        "level": "warning",
+        "scope": "text",
+        "message": "A file of %s words, read on every turn. Move what is only sometimes needed into a skill or a linked file.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#token-budgets"
+      },
+      {
+        "name": "Paths",
+        "extends": "existence",
+        "level": "error",
+        "scope": "text",
+        "message": "A path with backslashes: '%s'. Use forward slashes, even on Windows.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-windows-style-paths"
+      },
+      {
+        "name": "SectionLength",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "doc(section:has(> h2))",
+        "message": "A section of %s words. Give the second half its own heading.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#token-budgets"
+      },
+      {
+        "name": "SkillName",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "'%s' is not a valid skill name: use lowercase letters, numbers, and hyphens, without 'anthropic' or 'claude'.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#yaml-frontmatter-requirements"
+      },
+      {
+        "name": "ThirdPerson",
+        "extends": "existence",
+        "level": "error",
+        "scope": "raw",
+        "message": "A description reads in the third person: not '%s'.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#writing-effective-descriptions"
+      },
+      {
+        "name": "TimeSensitive",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' will be wrong soon. State the current method, and put the old one under its own heading.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#avoid-time-sensitive-information"
+      },
+      {
+        "name": "Trigger",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "The description says what the skill does but not when to use it. Add 'Use when ...'.",
+        "link": "https://platform.claude.com/docs/en/agents-and-tools/agent-skills/best-practices#writing-effective-descriptions"
+      },
+      {
+        "name": "Vague",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' says nothing about what to do. Say what.",
+        "link": "https://code.claude.com/docs/en/best-practices"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.21.0"
+  },
+  {
     "name": "Readability",
     "description": "Readability scores: Automated Readability Index, Coleman-Liau, Flesch-Kincaid, Flesch reading ease, Gunning fog, LIX, and SMOG, with a rule that names the polysyllables behind them.",
     "homepage": "https://github.com/vale-cli/readability",
@@ -8968,8 +9093,8 @@
     "host": "github",
     "site": "vale-cli/readability",
     "repo": "vale-cli/readability",
-    "stars": 31,
-    "downloads": 285612,
+    "stars": 32,
+    "downloads": 287561,
     "version": "v0.2.0",
     "released": "2026-09-24",
     "rules": [
@@ -9054,9 +9179,9 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 369013,
-    "version": "v683",
-    "released": "2026-11-16",
+    "downloads": 372310,
+    "version": "v686",
+    "released": "2026-11-20",
     "rules": [
       {
         "name": "Abbreviations",
