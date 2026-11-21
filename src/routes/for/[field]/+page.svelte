@@ -5,7 +5,6 @@
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import Section from '$lib/components/features/Section.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
-	import FlowStages from '$lib/components/landing/FlowStages.svelte';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import { fields } from '$lib/data/fields';
 
@@ -35,7 +34,7 @@
 	<header class="border-b border-border">
 		<div class="mx-auto max-w-4xl px-6 pb-14 pt-10 sm:pb-16 lg:px-8">
 			<a
-				href="/?for={field.id}"
+				href="/"
 				class="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
 			>
 				<ArrowLeft class="h-4 w-4" />
@@ -78,16 +77,6 @@
 			</div>
 		</div>
 	</header>
-
-	<Section
-		title="From guideline to alert"
-		lede="One rule from the packages below, end to end: the guideline as a writer would read it, the rule that encodes it, and what Vale says when a draft breaks it."
-		wide
-	>
-		<div class="overflow-hidden rounded-xl border border-border bg-card shadow-sm">
-			<FlowStages demo={field.demo} rule={data.html.rule} />
-		</div>
-	</Section>
 
 	<Section title="Start with this config" lede={field.config.note}>
 		<div id="config" class="scroll-mt-24 space-y-4">

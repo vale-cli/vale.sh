@@ -71,7 +71,6 @@ export const load: PageServerLoad = async ({ params }) => {
 	});
 
 	const html = await highlightAll({
-		rule: { code: field.demo.rule, lang: 'yaml' },
 		config: { code: field.config.code, lang: 'ini' },
 		run: { code: '$ vale sync\n$ vale .', lang: 'console' }
 	});

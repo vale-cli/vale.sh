@@ -5,50 +5,16 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
-	import FlowStages from './FlowStages.svelte';
 	import { fields } from '$lib/data/fields';
 
 	let {
 		stats,
-		rules,
 		adopters
 	}: {
 		stats: Stats;
-		/** Each field's rule, highlighted at build time, by field id. */
-		rules: Record<string, string>;
 		/** How many teams the adopter list holds. */
 		adopters: number;
 	} = $props();
-
-	/*
-		The flow figure, once per kind of writing. Each walks a real guideline
-		to the alert a real rule raises, and links the guide for that kind of
-		writing. The entries live in $lib/data/fields, which the guides under
-		/for read too. The visitor picks the one that is theirs.
-	*/
-	const kinds = fields;
-	type Kind = string;
-	let kind = $state<Kind>('technical');
-	const current = $derived(kinds.find((k) => k.id === kind) ?? kinds[0]);
-	// The caption names the first three packages the guide recommends.
-	// An Explorer package links its page; one published elsewhere links its own.
-	const starters = $derived(
-		current.packages
-			.slice(0, 3)
-			.map((p) =>
-				typeof p === 'string' ? { name: p, href: `/explorer/${p}` } : { name: p.name, href: p.href }
-			)
-	);
-
-	// A link can open the figure on its own kind: /?for=creative.
-	$effect(() => {
-		try {
-			const want = new URLSearchParams(location.search).get('for');
-			if (kinds.some((k) => k.id === want)) kind = want as Kind;
-		} catch {
-			// No location to read: leave the default.
-		}
-	});
 
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 	// Three figures beside the headline. Each is a fact with a page behind it.
@@ -65,27 +31,6 @@
 		},
 		{ value: String(adopters), label: 'teams listed', href: '/adopters' }
 	]);
-
-	// Arrow keys move between the tabs, as the tab pattern expects: only the
-	// selected one is in the tab order.
-	function onTabKey(event: KeyboardEvent) {
-		const i = kinds.findIndex((k) => k.id === kind);
-		const last = kinds.length - 1;
-		const next =
-			event.key === 'ArrowRight'
-				? (i + 1) % kinds.length
-				: event.key === 'ArrowLeft'
-					? (i + last) % kinds.length
-					: event.key === 'Home'
-						? 0
-						: event.key === 'End'
-							? last
-							: -1;
-		if (next < 0) return;
-		event.preventDefault();
-		kind = kinds[next].id;
-		document.getElementById(`kind-${kind}`)?.focus();
-	}
 
 	const install = 'brew install vale';
 	let copied = $state(false);
@@ -146,46 +91,26 @@
 			</div>
 		</div>
 
-		<figure
-			class="flow"
-			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the YAML rule that encodes it, and the alert it raises in a file"
-		>
-			<!--
-				Which kind of writing the figure walks through. A tab list, so
-				the choice reads as a view of one thing and not three features.
-			-->
-			<div class="kinds" role="tablist" aria-label="Kind of writing">
-				{#each kinds as k (k.id)}
-					<button
-						type="button"
-						role="tab"
-						id={`kind-${k.id}`}
-						aria-selected={k.id === kind}
-						aria-controls="flow-stages"
-						tabindex={k.id === kind ? 0 : -1}
-						onclick={() => (kind = k.id)}
-						onkeydown={onTabKey}
-					>
-						<k.icon aria-hidden="true" />
-						{k.label}
-					</button>
+		<!--
+			One card per kind of writing, each opening its guide: the packages,
+			a starting config checked against Vale, and the teams who run it.
+			The entries live in $lib/data/fields, which the guides read too.
+		-->
+		<nav class="guides" aria-labelledby="guides-title">
+			<p class="guides-title" id="guides-title">Find the guide for what you write</p>
+			<ul>
+				{#each fields as f (f.id)}
+					<li>
+						<a href="/for/{f.id}">
+							<span class="guide-icon"><f.icon aria-hidden="true" /></span>
+							<span class="guide-name">{f.label}</span>
+							<span class="guide-summary">{f.summary}</span>
+							<span class="guide-more" aria-hidden="true">Read the guide →</span>
+						</a>
+					</li>
 				{/each}
-			</div>
-
-			<div id="flow-stages" role="tabpanel" aria-labelledby={`kind-${kind}`}>
-				<FlowStages demo={current.demo} rule={rules[current.id]} />
-			</div>
-
-			<figcaption>
-				Encode your guidelines in YAML, or start with a published style:
-				{#each starters as st, i (st.name)}{#if i > 0}{i === starters.length - 1
-							? ', or '
-							: ', '}{/if}<a href={st.href}>{st.name}</a>{/each}.
-				<a class="guide-link" href="/for/{current.id}"
-					>{current.title.replace('Vale for ', 'The guide to ')} →</a
-				>
-			</figcaption>
-		</figure>
+			</ul>
+		</nav>
 	</div>
 </section>
 
@@ -376,80 +301,81 @@
 		outline: 2px solid hsl(var(--ring));
 		outline-offset: 4px;
 	}
-	.flow {
+	/*
+		Six cards, three across on a wide screen, two on a tablet, one on a
+		phone. Each is a whole link: icon, name, a line on what it covers.
+	*/
+	.guides {
 		margin-top: 48px;
+	}
+	.guides-title {
+		font:
+			500 11px/1.6 ui-monospace,
+			monospace;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: hsl(var(--muted-foreground));
+	}
+	.guides ul {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 12px;
+		margin: 16px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	.guides a {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		grid-template-rows: auto 1fr auto;
+		gap: 4px 14px;
+		height: 100%;
+		padding: 18px 20px;
 		border: 1px solid hsl(var(--border));
 		border-radius: 12px;
 		background: hsl(var(--card));
-		overflow: hidden;
 		box-shadow: var(--shadow-sm);
+		color: hsl(var(--foreground));
+		transition: border-color 0.15s;
 	}
-	/* Five kinds don't fit a phone's width: the row scrolls instead of wrapping. */
-	.kinds {
+	.guides a:hover {
+		text-decoration: none;
+		border-color: hsl(var(--primary) / 0.5);
+	}
+	.guide-icon {
+		grid-row: 1 / -1;
 		display: flex;
-		gap: 4px;
-		overflow-x: auto;
-		scrollbar-width: none;
-		padding: 8px 12px;
-		border-bottom: 1px solid hsl(var(--border));
-		background: hsl(var(--muted) / 0.5);
-	}
-	.kinds button {
-		display: inline-flex;
 		align-items: center;
-		gap: 7px;
-		padding: 6px 12px;
-		border: 1px solid transparent;
-		border-radius: 8px;
-		font-size: 12px;
-		font-weight: 500;
-		color: hsl(var(--muted-foreground));
-		background: none;
-		cursor: pointer;
-		white-space: nowrap;
-		flex-shrink: 0;
-	}
-	.kinds button :global(svg) {
-		width: 14px;
-		height: 14px;
-		opacity: 0.7;
-	}
-	.kinds button[aria-selected='true'] :global(svg) {
-		opacity: 1;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border: 1px solid hsl(var(--primary) / 0.2);
+		border-radius: 9px;
+		background: hsl(var(--primary) / 0.08);
 		color: hsl(var(--primary));
 	}
-	.kinds button:hover {
-		color: hsl(var(--foreground));
+	.guide-icon :global(svg) {
+		width: 17px;
+		height: 17px;
 	}
-	.kinds button[aria-selected='true'] {
-		border-color: hsl(var(--border));
-		background: hsl(var(--card));
-		color: hsl(var(--foreground));
-		box-shadow: var(--shadow-sm);
+	.guide-name {
+		font-size: 15px;
+		font-weight: 500;
 	}
-	.kinds button:focus-visible {
-		outline: 2px solid hsl(var(--ring));
-		outline-offset: 2px;
-	}
-	figcaption {
-		padding: 14px 20px;
-		border-top: 1px solid hsl(var(--border));
-		font-size: 12px;
-		line-height: 1.7;
+	.guide-summary {
+		font-size: 13px;
+		line-height: 1.55;
 		color: hsl(var(--muted-foreground));
 	}
-	figcaption a {
-		color: hsl(var(--foreground));
+	.guide-more {
+		margin-top: 8px;
+		font-size: 12px;
+		font-weight: 500;
+		color: hsl(var(--primary));
+	}
+	.guides a:hover .guide-more {
 		text-decoration: underline;
 		text-underline-offset: 3px;
-	}
-	/* The way on: set apart from the sentence, in the accent. */
-	figcaption .guide-link {
-		margin-left: 6px;
-		font-weight: 500;
-		white-space: nowrap;
-		text-decoration-color: hsl(var(--primary));
-		text-decoration-thickness: 2px;
 	}
 	.agent-strip {
 		display: flex;
@@ -476,6 +402,9 @@
 		font-size: 10px;
 	}
 	@media (max-width: 1000px) {
+		.guides ul {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 		/* Two columns this narrow leave a hole under the headline, and one
 		   column leaves the right half empty. So the headline takes the full
 		   width, and under it the paragraph and the buttons share a row. */
@@ -556,8 +485,11 @@
 		.intro {
 			font-size: 16px;
 		}
-		.flow {
+		.guides {
 			margin-top: 32px;
+		}
+		.guides ul {
+			grid-template-columns: minmax(0, 1fr);
 		}
 	}
 	@media (max-width: 400px) {
