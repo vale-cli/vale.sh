@@ -14,8 +14,8 @@ import Bot from 'lucide-svelte/icons/bot';
  * (packages.json, docs/formats, src/posts); the build fails on a package
  * that doesn't, so a rename shows up instead of a dead card.
  *
- * Checked against Vale 3.27.0: each guide's config syncs and loads without
- * a warning, and each demo's sample text, run under that config, raises the
+ * Checked against Vale 3.27.0: each guide's config syncs and loads (Research's
+ * prints the W101 note its config explains, and nothing else), and each demo's sample text, run under that config, raises the
  * alert shown, with the message as printed. Each rule is the shipped one
  * with comments and tests removed and long word lists trimmed. Technical's
  * Docs.Terms is a team's own rule, so it ships in no package.
@@ -70,6 +70,8 @@ export type Field = {
 	formats: Link[];
 	/** Posts on this blog, by slug. */
 	posts: string[];
+	/** Teams in adopters.json who write this kind of text, by name. */
+	adopters?: string[];
 	/** Further reading in the manual. */
 	docs: Link[];
 };
@@ -165,12 +167,12 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 		]
 	},
 	{
-		id: 'scientific',
-		label: 'Scientific',
+		id: 'research',
+		label: 'Research',
 		icon: FlaskConical,
-		title: 'Vale for scientific writing',
-		summary: 'Manuscripts, notebooks, and the checklists a journal asks for.',
-		lede: 'A journal’s author guidelines and a reporting checklist are style guides with consequences. The Journals package turns the conventions every journal shares, the Nature and PLOS ONE guidelines, and the CONSORT, STROBE, and PRISMA checklists into rules read section by section. Vale reads the formats research is written in: Jupyter notebooks cell by cell, Quarto, R Markdown, Typst, and MyST.',
+		title: 'Vale for research',
+		summary: 'Papers, notebooks, and the docs for the software research runs on.',
+		lede: 'Research produces two kinds of writing, often in the same repository: the paper, and the docs for the code behind it. For the paper, the Journals package turns the conventions every journal shares, the Nature and PLOS ONE guidelines, and the CONSORT, STROBE, and PRISMA checklists into rules read section by section, in Jupyter notebooks, Quarto, R Markdown, Typst, and MyST. For the docs, research groups from rOpenSci to Rubin Observatory already run Vale with a published style or one of their own.',
 		demo: {
 			kicker: 'Author guidelines · Units',
 			guideline: [
@@ -198,17 +200,20 @@ raw:
 			msg: "Put a space between the number and the unit: '12mmHg'.",
 			rule_name: 'Journals.UnitSpacing'
 		},
-		packages: ['Journals', 'Readability', 'TechTerms', 'A11y'],
+		packages: ['Journals', 'Google', 'Readability', 'proselint', 'write-good', 'TechTerms'],
 		config: {
-			note: 'The shared conventions, the IMRaD structure, one journal’s guidelines, and the checklist for the study design. The same styles apply to a notebook’s Markdown cells.',
+			note: 'The paper gets the shared conventions, the IMRaD structure, one journal’s guidelines, and the checklist for the study design; the docs get Google’s style, the most common choice among the research groups below. Vale prints a note that the docs section replaces the styles Journals turns on for every Markdown file: that is the point, since a README has no Methods section.',
 			code: `StylesPath = styles
-Packages = Journals
+MinAlertLevel = suggestion
+Packages = Journals, Google
 Vocab = Journals
 
-[*.{md,qmd,ipynb}]
+[paper/*.{md,qmd,ipynb}]
 BasedOnStyles = Journals, IMRaD, PLOS, CONSORT
 IMRaD.AbstractLength[max] = 300
-IMRaD.AbstractCitations = error`
+
+[docs/**/*.md]
+BasedOnStyles = Vale, Google`
 		},
 		formats: [
 			{
@@ -220,10 +225,22 @@ IMRaD.AbstractCitations = error`
 			{ label: 'R Markdown', href: docs('formats/rmarkdown') },
 			{ label: 'Typst', href: docs('formats/typst') },
 			{ label: 'MyST', href: docs('formats/myst') },
-			{ label: 'reStructuredText', href: docs('formats/restructuredtext') },
+			{ label: 'reStructuredText', href: docs('formats/restructuredtext'), note: 'And Sphinx' },
 			{ label: 'Org', href: docs('formats/org') }
 		],
 		posts: ['journals', 'case-study-rubin-observatory', 'spelling'],
+		adopters: [
+			'Rubin Observatory',
+			'rOpenSci',
+			'pyOpenSci',
+			'nf-core',
+			'JuMP',
+			'Qiskit',
+			'Mesa',
+			'NEST Simulator',
+			'OpenSAFELY',
+			'Lean'
+		],
 		docs: [
 			{ label: 'Jupyter notebooks', href: docs('formats/jupyter') },
 			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Terms your field accepts' },

@@ -6,6 +6,7 @@
 	import Section from '$lib/components/features/Section.svelte';
 	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import FlowStages from '$lib/components/landing/FlowStages.svelte';
+	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import { fields } from '$lib/data/fields';
 
 	let { data } = $props();
@@ -129,6 +130,33 @@
 			{/each}
 		</div>
 	</Section>
+
+	{#if data.adopters.length}
+		<Section
+			title="Who runs it"
+			lede="Teams in the adopter directory who write this kind of text, and what Vale checks for them. Each profile links the config they run."
+			wide
+		>
+			<ul class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+				{#each data.adopters as a (a.slug)}
+					<li>
+						<a href="/adopters/{a.slug}" class="group flex gap-3">
+							<BrandIcon name={a.name} slug={a.icon} avatar={a.avatar} size="h-9 w-9" />
+							<span class="min-w-0">
+								<span
+									class="block font-medium text-foreground underline decoration-transparent underline-offset-4 transition-colors group-hover:decoration-lime-500"
+									>{a.name}</span
+								>
+								<span class="mt-0.5 block text-sm leading-relaxed text-foreground/75"
+									>{a.context}</span
+								>
+							</span>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</Section>
+	{/if}
 
 	<Section
 		title="Formats"

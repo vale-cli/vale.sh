@@ -1,5 +1,7 @@
 import { error } from '@sveltejs/kit';
 import packages from '$lib/data/packages.json';
+import adopterList from '$lib/data/adopters.json';
+import { slugOf } from '$lib/data/adopter-slug';
 import { fields } from '$lib/data/fields';
 import { listPosts } from '$lib/posts';
 import { highlightAll } from '$lib/server/highlight';
@@ -45,6 +47,23 @@ export const load: PageServerLoad = async ({ params }) => {
 		];
 	});
 
+	// Teams who write this kind of text, from the adopter directory, each
+	// linking its profile. A name the directory doesn't have fails the build.
+	const adopters = (field.adopters ?? []).map((name) => {
+		const a = adopterList.find((x) => x.name === name);
+		if (!a)
+			throw new Error(
+				`fields.ts: ${field.id} lists the adopter "${name}", which adopters.json lacks`
+			);
+		return {
+			name: a.name,
+			context: a.context,
+			slug: slugOf(a.name),
+			avatar: 'avatar' in a ? a.avatar : undefined,
+			icon: 'icon' in a ? a.icon : undefined
+		};
+	});
+
 	const html = await highlightAll({
 		rule: { code: field.demo.rule, lang: 'yaml' },
 		config: { code: field.config.code, lang: 'ini' },
@@ -54,5 +73,5 @@ export const load: PageServerLoad = async ({ params }) => {
 	// Everything but the icon, which is a component and can't be serialized;
 	// the page looks it up again by id.
 	const { icon: _icon, ...rest } = field;
-	return { field: rest, packages: pkgs, posts, html };
+	return { field: rest, packages: pkgs, posts, adopters, html };
 };
