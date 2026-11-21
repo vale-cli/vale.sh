@@ -1,5 +1,5 @@
 {
-	"generated": "2026-11-21T18:44:26Z",
+	"generated": "2026-11-21T19:48:56Z",
 	"versions": {
 		"codespell": "2.4.3",
 		"codespell-tuned": "2.4.3",
@@ -8,7 +8,7 @@
 		"textlint": "v15.7.1",
 		"typos": "typos-cli 1.50.2",
 		"typos-tuned": "typos-cli 1.50.2",
-		"vale": "vale version 3.28.1"
+		"vale": "vale version 3.28.1-4967fc21+code"
 	},
 	"rows": [
 		{
@@ -749,9 +749,9 @@
 				},
 				"vale": {
 					"found": 2620,
-					"leaked": 1386,
-					"seconds": 0.073,
-					"mb": 49
+					"leaked": 0,
+					"seconds": 0.185,
+					"mb": 148
 				}
 			}
 		},
@@ -781,9 +781,9 @@
 				},
 				"vale": {
 					"found": 2953,
-					"leaked": 1314,
-					"seconds": 0.071,
-					"mb": 50
+					"leaked": 0,
+					"seconds": 0.167,
+					"mb": 152
 				}
 			}
 		},
@@ -812,10 +812,10 @@
 					"mb": 92
 				},
 				"vale": {
-					"found": 866,
-					"leaked": 575,
-					"seconds": 0.058,
-					"mb": 47
+					"found": 2576,
+					"leaked": 0,
+					"seconds": 0.26,
+					"mb": 152
 				}
 			}
 		},
@@ -844,10 +844,10 @@
 					"mb": 86
 				},
 				"vale": {
-					"found": 3148,
-					"leaked": 2044,
-					"seconds": 0.077,
-					"mb": 50
+					"found": 3152,
+					"leaked": 0,
+					"seconds": 0.234,
+					"mb": 153
 				}
 			}
 		},
@@ -876,10 +876,10 @@
 					"mb": 89
 				},
 				"vale": {
-					"found": 2869,
-					"leaked": 1148,
-					"seconds": 0.068,
-					"mb": 49
+					"found": 2872,
+					"leaked": 0,
+					"seconds": 0.148,
+					"mb": 112
 				}
 			}
 		},
@@ -908,10 +908,10 @@
 					"mb": 89
 				},
 				"vale": {
-					"found": 2753,
-					"leaked": 1224,
-					"seconds": 0.068,
-					"mb": 49
+					"found": 2756,
+					"leaked": 0,
+					"seconds": 0.232,
+					"mb": 175
 				}
 			}
 		},
@@ -940,10 +940,10 @@
 					"mb": 88
 				},
 				"vale": {
-					"found": 1672,
+					"found": 2230,
 					"leaked": 0,
-					"seconds": 0.111,
-					"mb": 61
+					"seconds": 0.208,
+					"mb": 148
 				}
 			}
 		},
@@ -974,8 +974,8 @@
 				"vale": {
 					"found": 1655,
 					"leaked": 0,
-					"seconds": 0.099,
-					"mb": 61
+					"seconds": 0.097,
+					"mb": 59
 				}
 			}
 		},
@@ -1004,10 +1004,10 @@
 					"mb": 89
 				},
 				"vale": {
-					"found": 1483,
+					"found": 2225,
 					"leaked": 0,
-					"seconds": 0.264,
-					"mb": 62
+					"seconds": 0.339,
+					"mb": 149
 				}
 			}
 		}

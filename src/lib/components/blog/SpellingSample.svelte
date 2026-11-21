@@ -1,16 +1,14 @@
 <script lang="ts">
-	// One family's excerpts, read by each tool in turn. The select picks the
-	// format, the tabs pick the tool, and the excerpt is the same under every
-	// tab; what changes is which positions light up: a misspelling in prose
-	// the tool reported, a word in code it reported anyway, a misspelling in
-	// prose it missed. The excerpt wraps rather than scrolls, so a phone shows
-	// all of a line.
+	// One family's excerpts, as Vale read them. The select picks the format;
+	// each planted word is marked with what Vale did with it: a misspelling in
+	// prose reported, or a word in code left alone. The excerpt wraps rather
+	// than scrolls, so a phone shows all of a line.
 	//
 	// The syntax colors come from script/spelling-tokens.mjs, which runs
 	// shiki over the excerpts at build time; each line's tokens are laid
 	// under its marker spans here, split where a marker starts or ends
 	// inside a token.
-	import { tools, type Sample, type Span, type Tool } from '$lib/data/spelling';
+	import type { Sample, Span, Tool } from '$lib/data/spelling';
 	import allSamples from '$lib/data/spelling-samples.json';
 	import tokens from '$lib/data/spelling-tokens.json';
 
@@ -19,9 +17,8 @@
 	let { family, caption }: { family: Sample['family']; caption?: string } = $props();
 
 	const samples = (allSamples as Sample[]).filter((s) => s.family === family);
-	const tabs = tools.filter((t) => t.id !== 'textlint');
 	let format = $state(samples[0].id);
-	let tool = $state<Tool>('vale');
+	const tool: Tool = 'vale';
 
 	const sample = $derived(samples.find((s) => s.id === format) ?? samples[0]);
 
@@ -113,51 +110,33 @@
 	const tally = (t: Tool) => {
 		let found = 0,
 			prose = 0,
-			leaked = 0;
+			skipped = 0;
 		for (const line of sample.lines) {
 			for (const s of line) {
 				if (s.kind === 'prose') {
 					prose++;
 					if (s.by?.includes(t)) found++;
-				} else if (s.kind === 'code' && s.by?.includes(t)) {
-					leaked++;
+				} else if (s.kind === 'code' && !s.by?.includes(t)) {
+					skipped++;
 				}
 			}
 		}
-		return { found, prose, leaked };
+		return { found, prose, skipped };
 	};
-
-	const tabBtn = (active: boolean) =>
-		`rounded-t-md border-x border-t px-3 py-1.5 text-xs font-medium transition-colors ${
-			active
-				? 'border-border bg-card text-foreground'
-				: 'border-transparent text-muted-foreground hover:text-foreground'
-		}`;
 </script>
 
-<Figure {caption} hint="Pick a format, then a tool, to see what it reported in that excerpt.">
-	<div class="flex items-end justify-between gap-2">
-		<div class="flex" role="tablist">
-			{#each tabs as t (t.id)}
-				{@const n = tally(t.id)}
-				<button
-					type="button"
-					role="tab"
-					aria-selected={tool === t.id}
-					onclick={() => (tool = t.id)}
-					class={tabBtn(tool === t.id)}
-					title="{n.found} of {n.prose} misspellings in prose found; {n.leaked} words in code leaked"
-				>
-					{t.label}
-					<span
-						class="ml-1.5 font-mono text-[10px] {n.leaked > 0 || n.found < n.prose
-							? 'text-rose-400'
-							: 'text-lime-600 dark:text-lime-400'}">{n.found}/{n.prose} · {n.leaked}</span
-					>
-				</button>
-			{/each}
-		</div>
-		<label class="flex items-center gap-1.5 pb-1.5 text-[11px] text-muted-foreground">
+<Figure {caption} hint="Pick a format to see what Vale reported in its excerpt.">
+	{@const now = tally(tool)}
+	<div class="mb-2 flex flex-wrap items-center justify-between gap-2">
+		<p class="text-sm" aria-live="polite">
+			Vale found
+			<span class="font-medium text-lime-700 dark:text-lime-400"
+				>{now.found} of {now.prose} misspellings</span
+			>
+			and left
+			<span class="font-medium">{now.skipped} {now.skipped === 1 ? 'word' : 'words'} of code</span> alone.
+		</p>
+		<label class="flex items-center gap-1.5 text-[11px] text-muted-foreground">
 			<span class="hidden sm:inline">Format</span>
 			<select
 				bind:value={format}
@@ -169,26 +148,7 @@
 			</select>
 		</label>
 	</div>
-	{@const now = tally(tool)}
-	{@const name = tabs.find((t) => t.id === tool)?.label}
-	<p class="mb-2 text-sm" aria-live="polite">
-		<span class="font-medium">{name}</span> found
-		<span class="font-medium text-lime-700 dark:text-lime-400"
-			>{now.found} of {now.prose} typos</span
-		>
-		in this excerpt{#if now.found < now.prose}, missed
-			<span class="font-medium text-amber-700 dark:text-amber-400">{now.prose - now.found}</span
-			>{/if}, and reported
-		<span
-			class="font-medium {now.leaked
-				? 'text-rose-600 dark:text-rose-400'
-				: 'text-lime-700 dark:text-lime-400'}"
-			>{now.leaked} {now.leaked === 1 ? 'word' : 'words'} of code</span
-		> as misspellings.
-	</p>
-	<div
-		class="excerpt rounded-b-lg rounded-tr-lg border bg-card p-4 font-mono text-[12px] leading-relaxed"
-	>
+	<div class="excerpt rounded-lg border bg-card p-4 font-mono text-[12px] leading-relaxed">
 		{#each lines as pieces, i (i)}
 			<div class="grid grid-cols-[minmax(0,1fr)] gap-x-4 md:grid-cols-[minmax(0,1fr)_14rem]">
 				<div class="flex">
@@ -224,17 +184,11 @@
 	</div>
 	<div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
 		<span class="flex items-center gap-1.5"
-			><span class="h-2.5 w-2.5 rounded-sm bg-lime-500/60"></span>reported in prose</span
-		>
-		<span class="flex items-center gap-1.5"
-			><span class="h-2.5 w-2.5 rounded-sm bg-rose-500/60"></span>reported in code</span
-		>
-		<span class="flex items-center gap-1.5"
-			><span class="h-0.5 w-3 border-b-2 border-dotted border-amber-500"></span>missed in prose</span
+			><span class="h-2.5 w-2.5 rounded-sm bg-lime-500/60"></span>misspelling in prose, reported</span
 		>
 		<span class="flex items-center gap-1.5"
 			><span class="h-2.5 w-2.5 rounded-sm border border-dashed border-muted-foreground/50"
-			></span>code, left alone</span
+			></span>word in code, left alone</span
 		>
 	</div>
 </Figure>
