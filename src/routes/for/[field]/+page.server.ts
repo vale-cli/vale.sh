@@ -16,12 +16,18 @@ export const load: PageServerLoad = async ({ params }) => {
 	const field = fields.find((f) => f.id === params.field);
 	if (!field) error(404, `No guide for "${params.field}".`);
 
-	const pkgs = field.packages.map((name) => {
-		const pkg = packages.find((p) => p.name === name);
-		if (!pkg) throw new Error(`fields.ts: ${field.id} lists "${name}", which packages.json lacks`);
+	// A name is looked up in the Explorer; a package published elsewhere
+	// carries its own description and links its own page.
+	const pkgs = field.packages.map((entry) => {
+		if (typeof entry !== 'string') {
+			return { ...entry, rules: 0, downloads: 0 };
+		}
+		const pkg = packages.find((p) => p.name === entry);
+		if (!pkg) throw new Error(`fields.ts: ${field.id} lists "${entry}", which packages.json lacks`);
 		return {
 			name: pkg.name,
 			description: pkg.description,
+			href: `/explorer/${pkg.name}`,
 			rules: pkg.rules?.length ?? 0,
 			downloads: pkg.downloads ?? 0
 		};

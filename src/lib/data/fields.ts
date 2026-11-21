@@ -3,6 +3,7 @@ import Feather from 'lucide-svelte/icons/feather';
 import FlaskConical from 'lucide-svelte/icons/flask-conical';
 import GitCommitHorizontal from 'lucide-svelte/icons/git-commit-horizontal';
 import Bot from 'lucide-svelte/icons/bot';
+import Landmark from 'lucide-svelte/icons/landmark';
 
 /**
  * The kinds of writing Vale is set up for, one per tab in the home page's
@@ -37,6 +38,9 @@ export type Part = { t: string; k?: 'good' | 'bad' };
 
 export type Link = { label: string; href: string; note?: string };
 
+/** A package published outside the Explorer, installed by its URL. */
+export type ExternalPackage = { name: string; description: string; href: string };
+
 export type Field = {
 	id: string;
 	/** The tab's label. */
@@ -62,8 +66,8 @@ export type Field = {
 		rule_name: string;
 	};
 
-	/** Packages from the Explorer, by name, most useful first. */
-	packages: string[];
+	/** Packages from the Explorer by name, or published elsewhere, most useful first. */
+	packages: (string | ExternalPackage)[];
 	/** A starting configuration, and what it does in one sentence. */
 	config: { code: string; note: string };
 	/** Where the prose lives, each with its page in the manual. */
@@ -158,8 +162,8 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 			'std'
 		],
 		adopters: [
-			'GOV.UK',
 			'GitLab',
+			'Kong',
 			'Red Hat',
 			'Elastic',
 			'Grafana Labs',
@@ -170,7 +174,7 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 			'Polkadot'
 		],
 		adoptersNote:
-			'Documentation teams who run Vale on every change, from government services and developer platforms to blockchain protocols. Several publish their style as a package anyone can install.',
+			'Documentation teams who run Vale on every change, from developer platforms and observability tools to blockchain protocols. Several publish their style as a package anyone can install.',
 		docs: [
 			{ label: 'Quickstart', href: docs('topics/quickstart') },
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Writing your own rules' },
@@ -180,6 +184,109 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 				href: docs('topics/scopes'),
 				note: 'Targeting headings, lists, and tables'
 			}
+		]
+	},
+	{
+		id: 'public',
+		label: 'Public sector',
+		icon: Landmark,
+		title: 'Vale for the public sector',
+		summary: 'Plain English for the public, held to a government style guide.',
+		lede: 'Writing for the public has rules a product team’s docs don’t: plain English anyone can follow, words a government style guide tells you to avoid, acronyms defined the first time, and content that works with a screen reader. GOV.UK publishes its technical style guide as a Vale package any team can install, and the Readability, A11y, and alex packages check reading level, accessibility, and inclusive language on top.',
+		demo: {
+			kicker: 'GOV.UK style guide · Words to avoid',
+			guideline: [
+				{ t: 'Use ' },
+				{ t: 'make', k: 'good' },
+				{ t: ', ' },
+				{ t: 'create', k: 'good' },
+				{ t: ', or ' },
+				{ t: 'provide', k: 'good' },
+				{ t: '. Pizzas and post are delivered, not ' },
+				{ t: 'improvements', k: 'bad' },
+				{ t: '.' }
+			],
+			file: 'styles/tech-writing-style-guide/words-to-avoid.yml',
+			rule: `extends: substitution
+message: "From style guide words to avoid: \\" '%s' instead of '%s'.\\""
+link: https://guidance.publishing.service.gov.uk/writing-to-gov-uk-standards/style-guides/a-to-z-style-guide/
+level: error
+ignorecase: true
+scope: text
+swap:
+  advance: use ‘improve’ or something more specific
+  collaborate: use ‘work with’
+  deliver: use ‘make’, ‘create’, ‘provide’ or a more specific term (pizzas, post and services are delivered - not abstract concepts like improvements)
+  utilise: use ‘use’`,
+			doc: 'content/apply.md',
+			lines: [
+				{ syntax: '#', text: 'Apply for a licence' },
+				{},
+				{ before: 'This update will ', match: 'deliver', after: ' improvements to the service.' }
+			],
+			sev: 'error',
+			msg: "From style guide words to avoid: \" 'use ‘make’, ‘create’, ‘provide’ or a more specific term (pizzas, post and services are delivered - not abstract concepts like improvements)' instead of 'deliver'.\"",
+			rule_name: 'tech-writing-style-guide.words-to-avoid'
+		},
+		packages: [
+			{
+				name: 'GOV.UK',
+				description:
+					'The GOV.UK Technical Style guide as Vale rules: words to avoid, words to avoid unless a condition holds, acronyms defined on first use, and common misspellings. Published by the Government Digital Service.',
+				href: 'https://github.com/alphagov/tech-docs-linter'
+			},
+			'Readability',
+			'A11y',
+			'alex',
+			'neighbor',
+			'write-good'
+		],
+		config: {
+			note: 'The GOV.UK style installs by its release URL. Readability scores the reading level, A11y checks alt text, link text, and headings, and alex flags insensitive language. On a short page the readability scores fire as suggestions; raise MinAlertLevel to warning to see only the rest.',
+			code: `StylesPath = styles
+MinAlertLevel = suggestion
+Packages = https://github.com/alphagov/tech-docs-linter/releases/latest/download/tech-writing-style-guide.zip, \\
+  Readability, A11y, alex
+
+[content/*.md]
+BasedOnStyles = Vale, tech-writing-style-guide, Readability, A11y, alex`
+		},
+		formats: [
+			{ label: 'Markdown', href: docs('formats/markdown') },
+			{ label: 'HTML', href: docs('formats/html') },
+			{ label: 'AsciiDoc', href: docs('formats/asciidoc') },
+			{ label: 'Quarto', href: docs('formats/quarto'), note: 'Decision records and reports' },
+			{ label: 'reStructuredText', href: docs('formats/restructuredtext') },
+			{
+				label: 'Source code',
+				href: docs('formats/code'),
+				note: 'Comments, as GOV.UK One Login checks'
+			}
+		],
+		posts: ['case-study-gov-uk'],
+		adopters: [
+			'GOV.UK',
+			'GOV.UK One Login',
+			'Defra',
+			'DigitalService',
+			'Government of Western Australia',
+			'NASA',
+			'Platform One',
+			'ICTU',
+			'OASIS Open',
+			'HURIDOCS'
+		],
+		adoptersNote:
+			'Governments, agencies, and public-interest groups running Vale on what they publish: service guidance, architecture decisions, specifications, and the docs for public platforms.',
+		docs: [
+			{ label: 'Readability', href: docs('checks/readability'), note: 'Reading-level checks' },
+			{
+				label: 'Substitution',
+				href: docs('checks/substitution'),
+				note: 'Turning a words-to-avoid list into a rule'
+			},
+			{ label: 'Packages', href: docs('keys/packages'), note: 'Installing a style by its URL' },
+			{ label: 'Vocabularies', href: docs('keys/vocabularies') }
 		]
 	},
 	{

@@ -106,13 +106,13 @@
 
 	<Section
 		title="Packages"
-		lede="Published styles from the Explorer. Each installs by name with Packages and vale sync, and every rule in it can be turned off or changed in your own config."
+		lede="Published styles to start from. A package in the Explorer installs by name with Packages and vale sync, one published elsewhere by its release URL, and every rule in either can be turned off or changed in your own config."
 		wide
 	>
 		<div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
 			{#each data.packages as pkg (pkg.name)}
 				<a
-					href="/explorer/{pkg.name}"
+					href={pkg.href}
 					class="group flex flex-col gap-3 rounded-2xl border border-border bg-card p-6 transition-colors hover:border-lime-500/40"
 				>
 					<h3 class="font-mono text-sm font-medium text-foreground">{pkg.name}</h3>
@@ -238,7 +238,7 @@
 			>
 				Other kinds of writing
 			</h2>
-			<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+			<div class="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
 				{#each others as other (other.id)}
 					{@const OtherIcon = other.icon}
 					<a

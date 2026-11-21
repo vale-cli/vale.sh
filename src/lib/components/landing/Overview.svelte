@@ -31,7 +31,14 @@
 	let kind = $state<Kind>('technical');
 	const current = $derived(kinds.find((k) => k.id === kind) ?? kinds[0]);
 	// The caption names the first three packages the guide recommends.
-	const starters = $derived(current.packages.slice(0, 3));
+	// An Explorer package links its page; one published elsewhere links its own.
+	const starters = $derived(
+		current.packages
+			.slice(0, 3)
+			.map((p) =>
+				typeof p === 'string' ? { name: p, href: `/explorer/${p}` } : { name: p.name, href: p.href }
+			)
+	);
 
 	// A link can open the figure on its own kind: /?for=creative.
 	$effect(() => {
@@ -171,9 +178,9 @@
 
 			<figcaption>
 				Encode your guidelines in YAML, or start with a published style:
-				{#each starters as name, i (name)}{#if i > 0}{i === starters.length - 1
+				{#each starters as st, i (st.name)}{#if i > 0}{i === starters.length - 1
 							? ', or '
-							: ', '}{/if}<a href="/explorer/{name}">{name}</a>{/each}.
+							: ', '}{/if}<a href={st.href}>{st.name}</a>{/each}.
 				<a class="guide-link" href="/for/{current.id}"
 					>{current.title.replace('Vale for ', 'The guide to ')} →</a
 				>
