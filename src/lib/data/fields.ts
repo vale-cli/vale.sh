@@ -290,9 +290,9 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 	},
 	{
 		id: 'code',
-		label: 'Code, data & commits',
+		label: 'Code & data',
 		icon: GitCommitHorizontal,
-		title: 'Vale for code, data, and commits',
+		title: 'Vale for code and data',
 		summary: 'The prose inside files that aren’t prose: comments, API descriptions, and the log.',
 		lede: 'A repository has prose all through it that no docs linter reads: doc comments, the descriptions in an OpenAPI spec, a commit’s subject and body. Vale finds it. Tree-sitter grammars lift comments out of source code, a View pulls named fields out of JSON and YAML, and a TextFSM template splits a commit message into its parts, so a rule reaches a commit subject the way it reaches a heading.',
 		demo: {
