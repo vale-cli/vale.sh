@@ -125,7 +125,11 @@
 			label: 'GitHub stars',
 			href: 'https://github.com/vale-cli/vale'
 		},
-		{ value: compact.format(stats.lifetime.value), label: 'downloads', href: '#stats' },
+		{
+			value: compact.format(stats.lifetime.value),
+			label: 'downloads',
+			href: 'https://github.com/vale-cli/vale/releases'
+		},
 		{ value: String(adopters), label: 'teams listed', href: '/adopters' }
 	]);
 

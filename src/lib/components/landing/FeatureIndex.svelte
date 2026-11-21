@@ -9,7 +9,32 @@
 		moving, and each has its own page under /features, so the page keeps
 		the claim and the way in and drops the walk-through. Features.svelte
 		still holds the long form.
+
+		Below them, the case for a rule over a reviewer that reads the page
+		afresh each time, made without naming one. Every figure is from the
+		measurements in /blog/quality-gate; change them there first.
 	*/
+	const points = [
+		{
+			title: 'The same answer on every run.',
+			body: 'A rule’s verdict is decided before the draft exists. Test each one against the sentences it should catch and the ones it should leave alone.',
+			link: { href: 'https://docs.vale.sh/topics/testing', label: 'Testing rules' }
+		},
+		{
+			title: 'Milliseconds, not tokens.',
+			body: 'On one draft, Vale and a model review found the same fourteen long sentences. Vale took 70 milliseconds; the review took 46 seconds and 45,000 tokens.',
+			link: { href: '/blog/quality-gate', label: 'Read the measurements' }
+		},
+		{
+			title: 'Yours to read.',
+			body: 'Rules are YAML files in your repository, reviewed in a pull request like any other change. Vale runs offline, so no draft leaves your machine.'
+		},
+		{
+			title: 'A model writes the rule. The rule checks the docs.',
+			body: 'Describe a guideline in a sentence and your agent writes the YAML and its tests. Its attention then goes to what no pattern can judge.',
+			link: { href: '/agents#skills', label: 'Agent skills' }
+		}
+	];
 </script>
 
 <Section
@@ -55,4 +80,24 @@
 			</li>
 		{/each}
 	</ul>
+
+	<dl class="mt-12 grid gap-x-10 gap-y-8 border-t border-border pt-8 sm:grid-cols-2 lg:grid-cols-4">
+		{#each points as point (point.title)}
+			<div>
+				<dt class="text-base font-medium tracking-tight text-foreground">{point.title}</dt>
+				<dd class="mt-2 text-sm leading-6 text-muted-foreground">
+					{point.body}
+					{#if point.link}
+						<a
+							href={point.link.href}
+							class="group mt-2 flex w-fit items-center gap-1 font-medium text-foreground underline decoration-lime-500/40 underline-offset-4 transition-colors hover:text-lime-600 dark:hover:text-lime-400"
+						>
+							{point.link.label}
+							<ArrowRight class="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+						</a>
+					{/if}
+				</dd>
+			</div>
+		{/each}
+	</dl>
 </Section>

@@ -4,13 +4,11 @@
 	import SponsorSpotlight from '$lib/components/landing/SponsorSpotlight.svelte';
 	import AdopterConfigs from '$lib/components/landing/AdopterConfigs.svelte';
 	import Promo from '$lib/components/landing/Promo.svelte';
-	import WhyRules from '$lib/components/landing/WhyRules.svelte';
 	import FeatureIndex from '$lib/components/landing/FeatureIndex.svelte';
 	import HowItWorks from '$lib/components/landing/HowItWorks.svelte';
-	import Ecosystem from '$lib/components/landing/Ecosystem.svelte';
 	import Integrations from '$lib/components/landing/Integrations.svelte';
+	import Browser from '$lib/components/landing/Browser.svelte';
 	import Agents from '$lib/components/landing/Agents.svelte';
-	import Blog from '$lib/components/landing/Blog.svelte';
 	import { MetaTags } from 'svelte-meta-tags';
 
 	let { data }: { data: PageData } = $props();
@@ -55,8 +53,8 @@
 	the library, and the agent toolchain's detail on /agents. AdopterConfigs
 	stays because the proof is the argument, the sponsor band stays because
 	that visibility is what a sponsorship buys, the agent section stays as a
-	summary of its page, and the blog gets its three newest posts because they
-	show the work.
+	summary of its page, and Getting started stays because the hero's button
+	lands there. The blog is in the header.
 -->
 <main>
 	<Overview
@@ -72,10 +70,8 @@
 	<SponsorSpotlight editorial />
 	<AdopterConfigs band={data.band} editorial />
 	<FeatureIndex />
-	<WhyRules />
-	<Ecosystem stats={data.stats} />
 	<Integrations />
+	<Browser />
 	<Agents />
-	<Blog posts={data.posts} total={data.postCount} />
 	<HowItWorks snippets={data.snippets} />
 </main>

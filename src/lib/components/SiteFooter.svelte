@@ -33,7 +33,7 @@
 					href: 'https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vale-vscode',
 					external: true
 				},
-				{ label: 'Browser Extension', href: '/browser' },
+				{ label: 'Browser Extension', href: '/#browser' },
 				{ label: 'Vale CMS', href: '/cms' }
 			]
 		},

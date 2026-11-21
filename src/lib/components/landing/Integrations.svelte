@@ -1,7 +1,6 @@
 <script lang="ts">
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import BrandIcon from './BrandIcon.svelte';
-	import LoopVideo from './LoopVideo.svelte';
 	import Section from './Section.svelte';
 	import { integrationGroups } from '$lib/data/integrations';
 </script>
@@ -19,21 +18,10 @@
 		line of detail; the detail now rides in the tooltip, and the whole list
 		fits in one screen.
 	-->
-	<!-- The loop is the section's claim, shown: the same rule, fixing a line
-	     in an editor. The groups beside it are where that runs. -->
-	<div class="grid items-start gap-x-12 gap-y-8 lg:grid-cols-[minmax(0,1.25fr)_minmax(0,1fr)]">
-		<figure>
-			<LoopVideo
-				name="fix"
-				label="In an editor, the phrase Vale cli is underlined; a quick fix replaces it with Vale CLI and the file reports no errors"
-			/>
-			<figcaption class="mt-3 text-xs leading-5 text-muted-foreground">
-				In an editor, the alert carries its fix. The language server offers it as a quick fix.
-			</figcaption>
-		</figure>
+	<div>
 		<dl class="divide-y divide-border border-y border-border">
 			{#each integrationGroups as group}
-				<div class="grid gap-x-8 gap-y-3 py-5 md:grid-cols-[14rem_minmax(0,1fr)] lg:grid-cols-1">
+				<div class="grid gap-x-8 gap-y-3 py-5 md:grid-cols-[14rem_minmax(0,1fr)]">
 					<dt>
 						<span class="block text-sm font-semibold tracking-tight">{group.title}</span>
 						<span class="mt-1 block text-sm leading-6 text-muted-foreground">{group.note}</span>

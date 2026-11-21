@@ -39,10 +39,10 @@ export const integrationGroups: IntegrationGroup[] = [
 		note: 'Wherever the prose gets written, with diagnostics as you type.',
 		items: [
 			{
-				// Our own page, since it installs from three stores.
+				// Its own section, since it installs from three stores.
 				name: 'Browser',
 				detail: 'Chrome, Edge, Firefox',
-				href: '/browser'
+				href: '/#browser'
 			},
 			{
 				name: 'VS Code',
