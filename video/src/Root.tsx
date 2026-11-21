@@ -1,5 +1,5 @@
-import { Composition } from 'remotion';
-import { EXTENSION_TOTAL, ExtensionPromo } from './Extension';
+import { Composition, Still } from 'remotion';
+import { EXTENSION_TOTAL, ExtensionPromo, ExtensionThumb } from './Extension';
 import { FPS, LOOPS, Loop, Promo, TOTAL } from './Promo';
 
 export const Root = () => (
@@ -20,6 +20,7 @@ export const Root = () => (
 			width={1920}
 			height={1080}
 		/>
+		<Still id="ExtensionThumb" component={ExtensionThumb} width={1920} height={1080} />
 		{Object.entries(LOOPS).map(([id, scene]) => (
 			<Composition
 				key={id}

@@ -664,3 +664,62 @@ export const ExtensionPromo = () => (
 		</Series>
 	</AbsoluteFill>
 );
+
+/** The video's thumbnail: the claim, large, beside a card open on a mark. */
+export const ExtensionThumb = () => {
+	const hit = HITS[2]; // utilize
+	const p = at(hit.line, hit.col);
+	return (
+		<AbsoluteFill>
+			<Background />
+			<AbsoluteFill
+				style={{ padding: '110px 100px', flexDirection: 'row', gap: 50, alignItems: 'center' }}
+			>
+				<div style={{ width: 640, flexShrink: 0 }}>
+					<div style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
+						<Mark size={92} />
+						<Wordmark height={82} />
+					</div>
+					<div
+						style={{
+							marginTop: 48,
+							font: `700 108px/1.02 ${SANS}`,
+							letterSpacing: -5,
+							color: C.fg
+						}}
+					>
+						Your style guide,
+						<br />
+						<span style={{ color: C.lime }}>as you type.</span>
+					</div>
+					<div style={{ marginTop: 40, font: `500 38px ${SANS}`, color: C.muted }}>
+						Chrome · Edge · Firefox
+					</div>
+				</div>
+				<div
+					style={{
+						width: 1200,
+						flexShrink: 0,
+						transform: 'scale(0.84)',
+						transformOrigin: 'left center'
+					}}
+				>
+					<Panel title="Add a comment">
+						<Comment>
+							<Card
+								x={p.x - 20}
+								y={p.y + LH + 8}
+								sev="suggestion"
+								check="Demo.Wordy"
+								message="Use 'use' instead of 'utilize'."
+								fixes={['use']}
+								tools={['Dismiss', 'Turn off Demo.Wordy']}
+								focus={0}
+							/>
+						</Comment>
+					</Panel>
+				</div>
+			</AbsoluteFill>
+		</AbsoluteFill>
+	);
+};

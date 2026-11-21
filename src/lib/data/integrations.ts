@@ -39,6 +39,12 @@ export const integrationGroups: IntegrationGroup[] = [
 		note: 'Wherever the prose gets written, with diagnostics as you type.',
 		items: [
 			{
+				// Our own page, since it installs from three stores.
+				name: 'Browser',
+				detail: 'Chrome, Edge, Firefox',
+				href: '/browser'
+			},
+			{
 				name: 'VS Code',
 				detail: 'VS Code, Cursor, Windsurf',
 				href: 'https://marketplace.visualstudio.com/items?itemName=ChrisChinchilla.vale-vscode',
