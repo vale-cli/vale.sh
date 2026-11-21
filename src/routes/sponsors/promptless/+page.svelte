@@ -278,7 +278,7 @@
 			<div class="mt-8 grid gap-3 border-t border-border/60 pt-6 sm:grid-cols-3">
 				<div class="rounded-xl border border-border/60 bg-background p-4 shadow-sm">
 					<CircleDollarSign class="h-5 w-5 text-lime-600 dark:text-lime-400" />
-					<p class="text-sm font-medium text-foreground">$1,000+</p>
+					<p class="text-sm font-medium text-foreground">Sponsor tier</p>
 					<p class="mt-1 text-sm text-muted-foreground">Sponsor Spotlight eligibility</p>
 				</div>
 				<div class="rounded-xl border border-border/60 bg-background p-4 shadow-sm">

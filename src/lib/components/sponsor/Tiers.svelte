@@ -6,9 +6,10 @@
 </script>
 
 <!--
-	The anchor every funding email links to. Four cards, each a one-time
-	payment. Sponsor carries the accent: $1,000 is the easy yes, and marking
-	Partner instead would read as an upsell.
+	The anchor every funding email links to. Four cards: Sponsor and Partner
+	are priced by the year, payable yearly, monthly, or once for a year.
+	Sponsor carries the accent: it's the easy yes, and marking Partner
+	instead would read as an upsell.
 -->
 <Section
 	id="tiers"
