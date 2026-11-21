@@ -71,13 +71,13 @@ Any directory that is not `config` or `.vale-config` is read as a style, so keep
 
 ### [Styles](stylespath.md#styles)
 
-A style is a directory, and its name is the directory's name. Each `.yml` file in it is a rule, addressed as the style's name and the file's name joined with a dot: `Microsoft/HeadingPunctuation.yml` is `Microsoft.HeadingPunctuation` in configuration, in an in-text comment, in a filter, and in Vale's output.
+A style is a directory, and its name is the directory's name. Each `.yml` or `.yaml` file in it is a rule, addressed as the style's name and the file's name joined with a dot: `Microsoft/HeadingPunctuation.yml` is `Microsoft.HeadingPunctuation` in configuration, in an in-text comment, in a filter, and in Vale's output.
 
-Rules can be nested. A subdirectory joins the name with another dot, so `House/dates/TimeFormat.yml` is `House.dates.TimeFormat`, and any depth works the same way. Nesting is for organizing a large style; it doesn't change how a rule runs or what it inherits. The name is also how Vale finds a single rule that is switched on without its style: `House.dates.TimeFormat = YES` under a section opens `House/dates/TimeFormat.yml` directly.
+Rules can be nested. A subdirectory joins the name with another dot, so `House/dates/TimeFormat.yml` is `House.dates.TimeFormat`, and any depth works the same way. Nesting is for organizing a large style; it doesn't change how a rule runs or what it inherits. The name is also how Vale finds a single rule that is switched on without its style: `House.dates.TimeFormat = YES` under a section opens `House/dates/TimeFormat.yml` (or `.yaml`) directly.
 
 Three things about what's inside a style:
 
-- Only `.yml` files are rules. A README, a license, or a `.yaml` file is left alone.
+- Only `.yml` and `.yaml` files are rules; a README or a license is left alone. If a style has both `Rule.yml` and `Rule.yaml`, the rule is read from `Rule.yml`.
 - A directory whose name starts with `.` or `_` is skipped, along with everything under it. That is the place for drafts and retired rules.
 - A rule's name can't contain `[` or `]`, because `Style.Rule[param]` is configuration syntax.
 
