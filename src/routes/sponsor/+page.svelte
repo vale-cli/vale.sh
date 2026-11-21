@@ -20,7 +20,7 @@
 	let { data }: { data: PageData } = $props();
 
 	const description =
-		'Sponsor Vale as a Backer, a Sponsor at $1,000, or a Partner at $5,000, and see who funds it, who has recognized it, and who donates its infrastructure.';
+		'Sponsor Vale as a Backer, a Sponsor at $100 a month, or a Partner at $500 a month, and see who funds it, who has recognized it, and who donates its infrastructure.';
 
 	// Who depends on it, counted from the adopters list rather than typed.
 	const teams = adopters.length;
@@ -30,7 +30,7 @@
 	const facts = [
 		{
 			icon: CircleDollarSign,
-			term: '$1,000+',
+			term: '$100 a month',
 			gloss: 'Sponsor Spotlight eligibility'
 		},
 		{

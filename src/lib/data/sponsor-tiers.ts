@@ -16,10 +16,12 @@ export const contact = {
 	label: 'Contact us'
 };
 
-// Each level's own checkout on Open Collective.
+// Each level's own checkout on Open Collective; the yearly ones are tiers
+// of their own there, as they are on GitHub Sponsors.
 const checkout = {
 	backer: 'https://opencollective.com/vale/contribute/backer-106190/checkout',
-	sponsor: 'https://opencollective.com/vale/contribute/sponsor-106191/checkout'
+	sponsor: 'https://opencollective.com/vale/contribute/sponsor-106191/checkout',
+	partner: 'https://opencollective.com/vale/contribute/partner-108001/checkout'
 };
 
 export type TierLink = { label: string; href: string };
@@ -27,7 +29,7 @@ export type TierLink = { label: string; href: string };
 export type Tier = {
 	id: string;
 	name: string;
-	/** A one-time payment. */
+	/** The monthly price, or the one-time price for a tier with no monthly one. */
 	price: string;
 	unit: string;
 	/** A short note under the price. */
@@ -57,35 +59,44 @@ export const tiers: Tier[] = [
 	{
 		id: 'sponsor',
 		name: 'Sponsor',
-		price: '$1,000',
-		unit: '',
-		note: 'one-time payment',
+		price: '$100',
+		unit: '/ month',
+		note: 'or $1,200 once, for a year',
 		who: 'For teams that run Vale in their docs pipeline.',
 		features: [
+			'A written review of your Vale setup and styles',
 			'A Sponsor Spotlight card on vale.sh',
 			'A story page about how your team uses Vale',
+			'Your logo on vale.sh and in the Vale README',
 			'A Vale release sponsored by your team, named in its release notes',
-			'A thank-you message on the Vale Discord',
-			'A thank-you post in the testthedocs Slack, about 1,200 members',
+			'Thank-yous on the Vale Discord and in the testthedocs Slack',
 			'Listed on this page with your total'
 		],
-		links: [{ label: 'Become a Sponsor', href: checkout.sponsor }],
+		links: [
+			{ label: 'Become a Sponsor', href: siteConfig.links.sponsors },
+			{ label: 'Open Collective', href: checkout.sponsor }
+		],
 		badge: 'Most common'
 	},
 	{
 		id: 'partner',
 		name: 'Partner',
-		price: '$5,000',
-		unit: '',
-		note: 'one-time payment',
+		price: '$500',
+		unit: '/ month',
+		note: 'or $6,000 once, for a year',
 		who: 'For teams whose builds depend on Vale.',
 		features: [
 			'Everything in Sponsor',
-			"A private channel on the Vale Discord for your team's questions and requests, open for a year",
+			"A private channel on the Vale Discord for your team's questions and requests",
 			'Your requests triaged first',
-			'A year of Vale CMS Site for everyone at your domain'
+			'A say in the roadmap',
+			'Vale CMS Site for everyone at your domain, for as long as you sponsor'
 		],
-		links: [{ label: 'Become a Partner', href: contact.href }],
+		links: [
+			{ label: 'Become a Partner', href: siteConfig.links.sponsors },
+			{ label: 'Open Collective', href: checkout.partner },
+			{ label: contact.label, href: contact.href }
+		],
 		limit: 'Limited to six Partners'
 	},
 	{
@@ -105,12 +116,16 @@ export const partner = [
 	{
 		term: 'The channel',
 		detail:
-			'A private channel on the Vale Discord for your team and the maintainer, open for a year. Use it for questions, config help, bug reports, and requests.'
+			'A private channel on the Vale Discord for your team and the maintainer, for as long as you sponsor. Use it for questions, config help, bug reports, and requests.'
 	},
 	{
 		term: 'Triaged first',
 		detail:
 			'Partner requests are read before anything else. It is best effort, with no guaranteed response time.'
+	},
+	{
+		term: 'In writing',
+		detail: 'Everything happens in writing, with no calls or meetings.'
 	},
 	{
 		term: 'Bugs stay public',
@@ -119,7 +134,7 @@ export const partner = [
 	{
 		term: 'Vale CMS',
 		detail:
-			'A year of the Site plan: the full editor for every address at your domain, and the MCP server for the accounts your CI and agents run as.'
+			'The Site plan for as long as you sponsor: the full editor for every address at your domain, and the MCP server for the accounts your CI and agents run as.'
 	}
 ];
 
@@ -130,7 +145,7 @@ export const faq = [
 	},
 	{
 		q: 'Does sponsoring buy features?',
-		a: "No. It buys visibility and, for Partners, priority on requests. The roadmap stays the maintainer's."
+		a: "No. It buys visibility and, for Partners, priority on requests and a say in the roadmap. What ships stays the maintainer's call."
 	},
 	{
 		q: 'Is there an SLA?',

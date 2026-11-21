@@ -14,7 +14,7 @@
 		},
 		{
 			name: 'GitHub Sponsors',
-			detail: "Bills through your organization's GitHub account, as a one-time payment.",
+			detail: "Bills through your organization's GitHub account, monthly or once a year.",
 			href: siteConfig.links.sponsors,
 			cta: 'github.com/sponsors/jdkato'
 		}
@@ -24,8 +24,8 @@
 <Section
 	id="invoice"
 	eyebrow="Paying as a company"
-	title="One payment, with an invoice"
-	lede="Every level is a one-time payment, with a receipt or an invoice for your records."
+	title="Monthly or yearly, with an invoice"
+	lede="Pay monthly or once a year, with a receipt or an invoice for your records."
 >
 	<div class="grid gap-4 sm:grid-cols-2">
 		{#each routes as route (route.name)}

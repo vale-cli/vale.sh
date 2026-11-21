@@ -123,8 +123,60 @@
         ],
         "plans": [
             {
-                "guid": "vale-browser-extension-plan",
+                "guid": "sponsor-monthly",
                 "status": "active",
+                "name": "Sponsor, monthly",
+                "description": "Sponsor: a written review of your Vale setup, a Sponsor Spotlight card and story page on vale.sh, your logo on vale.sh and in the README, and a release named for your team. Details: https://vale.sh/sponsor#tiers",
+                "amount": 100,
+                "currency": "USD",
+                "frequency": "monthly",
+                "channels": [
+                    "github-sponsors",
+                    "open-collective"
+                ]
+            },
+            {
+                "guid": "sponsor-yearly",
+                "status": "active",
+                "name": "Sponsor, for a year",
+                "description": "Sponsor: a written review of your Vale setup, a Sponsor Spotlight card and story page on vale.sh, your logo on vale.sh and in the README, and a release named for your team. Details: https://vale.sh/sponsor#tiers",
+                "amount": 1200,
+                "currency": "USD",
+                "frequency": "one-time",
+                "channels": [
+                    "github-sponsors",
+                    "open-collective"
+                ]
+            },
+            {
+                "guid": "partner-monthly",
+                "status": "active",
+                "name": "Partner, monthly",
+                "description": "Partner: everything in Sponsor, plus a private Discord channel, requests triaged first, a say in the roadmap, and Vale CMS Site for your domain. Limited to six. Details: https://vale.sh/sponsor#tiers",
+                "amount": 500,
+                "currency": "USD",
+                "frequency": "monthly",
+                "channels": [
+                    "github-sponsors",
+                    "open-collective"
+                ]
+            },
+            {
+                "guid": "partner-yearly",
+                "status": "active",
+                "name": "Partner, for a year",
+                "description": "Partner: everything in Sponsor, plus a private Discord channel, requests triaged first, a say in the roadmap, and Vale CMS Site for your domain. Limited to six. Details: https://vale.sh/sponsor#tiers",
+                "amount": 6000,
+                "currency": "USD",
+                "frequency": "one-time",
+                "channels": [
+                    "github-sponsors",
+                    "open-collective"
+                ]
+            },
+            {
+                "guid": "vale-browser-extension-plan",
+                "status": "inactive",
                 "name": "Vale Browser Extension Development",
                 "description": "Funding requested to build a cross-browser extension for real-time text linting with Vale, supporting editing interfaces like GitHub, GitLab, and CMS tools. This will make Vale accessible to non-technical users and documentation writers.",
                 "amount": 10000,
