@@ -2,110 +2,36 @@
 	import Check from 'lucide-svelte/icons/check';
 	import Copy from 'lucide-svelte/icons/copy';
 	import { Button } from '$lib/components/ui/button';
-	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
-	import FileCode from 'lucide-svelte/icons/file-code';
-	import Feather from 'lucide-svelte/icons/feather';
-	import FlaskConical from 'lucide-svelte/icons/flask-conical';
+	import FlowStages from './FlowStages.svelte';
+	import { fields } from '$lib/data/fields';
 
-	type Kind = 'technical' | 'creative' | 'scientific';
 	let {
 		stats,
 		rules,
 		adopters
 	}: {
 		stats: Stats;
-		rules: Record<Kind, string>;
+		/** Each field's rule, highlighted at build time, by field id. */
+		rules: Record<string, string>;
 		/** How many teams the adopter list holds. */
 		adopters: number;
 	} = $props();
 
 	/*
 		The flow figure, once per kind of writing. Each walks a real guideline
-		to the alert a real rule raises: Microsoft-style terminology for docs,
-		Elmore Leonard's fourth rule from the Fiction package, and the unit
-		convention from Journals. The visitor picks the one that is theirs.
+		to the alert a real rule raises, and links the guide for that kind of
+		writing. The entries live in $lib/data/fields, which the guides under
+		/for read too. The visitor picks the one that is theirs.
 	*/
-	const kinds: {
-		id: Kind;
-		label: string;
-		icon: typeof FileCode;
-		kicker: string;
-		file: string;
-		doc: string;
-		heading: string;
-		before: string;
-		match: string;
-		after: string;
-		sev: 'error' | 'warning';
-		msg: string;
-		rule: string;
-		starters: { name: string; href: string }[];
-	}[] = [
-		{
-			id: 'technical',
-			label: 'Technical',
-			icon: FileCode,
-			kicker: 'Writing guide · Terminology',
-			file: 'styles/Docs/Terms.yml',
-			doc: 'docs/install.md',
-			heading: 'Installation',
-			before: '',
-			match: 'Vale cli',
-			after: ' runs on macOS, Windows, and Linux.',
-			sev: 'error',
-			msg: "Use 'Vale CLI' instead of 'Vale cli'.",
-			rule: 'Docs.Terms',
-			starters: [
-				{ name: 'Microsoft', href: '/explorer/Microsoft' },
-				{ name: 'Google', href: '/explorer/Google' },
-				{ name: 'Red Hat', href: '/explorer/RedHat' }
-			]
-		},
-		{
-			id: 'creative',
-			label: 'Creative',
-			icon: Feather,
-			kicker: 'Elmore Leonard · Rule 4',
-			file: 'styles/Leonard/Adverb.yml',
-			doc: 'manuscript/chapter-01.md',
-			heading: 'One',
-			before: '“No,” he ',
-			match: 'said gravely',
-			after: '. She did not look up.',
-			sev: 'warning',
-			msg: "Drop the adverb on the tag: 'said gravely'.",
-			rule: 'Leonard.Adverb',
-			starters: [
-				{ name: 'Fiction', href: '/explorer/Fiction' },
-				{ name: 'proselint', href: '/explorer/proselint' },
-				{ name: 'write-good', href: '/explorer/write-good' }
-			]
-		},
-		{
-			id: 'scientific',
-			label: 'Scientific',
-			icon: FlaskConical,
-			kicker: 'Author guidelines · Units',
-			file: 'styles/Journals/UnitSpacing.yml',
-			doc: 'paper/results.md',
-			heading: 'Results',
-			before: 'Blood pressure fell ',
-			match: '12mmHg',
-			after: ' after 20 min (p = 0.03).',
-			sev: 'warning',
-			msg: "Put a space between the number and the unit: '12mmHg'.",
-			rule: 'Journals.UnitSpacing',
-			starters: [
-				{ name: 'Journals', href: '/explorer/Journals' },
-				{ name: 'Readability', href: '/explorer/Readability' }
-			]
-		}
-	];
+	const kinds = fields;
+	type Kind = string;
 	let kind = $state<Kind>('technical');
 	const current = $derived(kinds.find((k) => k.id === kind) ?? kinds[0]);
+	// The caption names the first three packages the guide recommends.
+	const starters = $derived(current.packages.slice(0, 3));
 
 	// A link can open the figure on its own kind: /?for=creative.
 	$effect(() => {
@@ -239,74 +165,18 @@
 				{/each}
 			</div>
 
-			<div class="stages" id="flow-stages" role="tabpanel" aria-labelledby={`kind-${kind}`}>
-				<div class="stage">
-					<div class="stage-label"><span class="n">01</span>Your guideline</div>
-					<div class="stage-body">
-						<p class="guide-kicker">{current.kicker}</p>
-						{#if kind === 'technical'}
-							<p class="guide-text">
-								The product is <strong>Vale CLI</strong>. Don’t write <s>Vale cli</s> or
-								<s>vale-cli</s>.
-							</p>
-						{:else if kind === 'creative'}
-							<p class="guide-text">
-								Never use an adverb to modify the verb <strong>“said”</strong>. Not
-								<s>he said gravely</s>.
-							</p>
-						{:else}
-							<p class="guide-text">
-								A space between a number and its unit: <strong>12 mmHg</strong>, not
-								<s>12mmHg</s>.
-							</p>
-						{/if}
-					</div>
-				</div>
-
-				<div class="stage">
-					<div class="stage-label"><span class="n">02</span>A rule you own</div>
-					<div class="stage-body">
-						<p class="file">{current.file}</p>
-						{#key kind}
-							<CodeBlock html={rules[kind]} bare />
-						{/key}
-					</div>
-				</div>
-
-				<div class="stage">
-					<div class="stage-label"><span class="n">03</span>Feedback where you write</div>
-					<div class="stage-body doc">
-						<p class="file">{current.doc}</p>
-						<ol class="lines">
-							<li>
-								<span class="src"
-									><span class="syntax">{kind === 'scientific' ? '##' : '#'}</span>
-									{current.heading}</span
-								>
-							</li>
-							<li><span class="src"></span></li>
-							<li>
-								<span class="src"
-									>{current.before}<mark class={current.sev}>{current.match}</mark
-									>{current.after}</span
-								>
-							</li>
-						</ol>
-						<div class="diagnostic">
-							<span class="sev {current.sev}">{current.sev}</span>
-							<span>{current.msg}</span>
-							<span class="rule-name">{current.rule}</span>
-						</div>
-					</div>
-				</div>
+			<div id="flow-stages" role="tabpanel" aria-labelledby={`kind-${kind}`}>
+				<FlowStages demo={current.demo} rule={rules[current.id]} />
 			</div>
 
 			<figcaption>
 				Encode your guidelines in YAML, or start with a published style:
-				{#each current.starters as st, i (st.name)}{#if i > 0}{i === current.starters.length - 1
+				{#each starters as name, i (name)}{#if i > 0}{i === starters.length - 1
 							? ', or '
-							: ', '}{/if}<a href={st.href}>{st.name}</a>{/each}. Browse them all in the
-				<a href="/explorer">Explorer</a>.
+							: ', '}{/if}<a href="/explorer/{name}">{name}</a>{/each}.
+				<a class="guide-link" href="/for/{current.id}"
+					>{current.title.replace('Vale for ', 'The guide to ')} →</a
+				>
 			</figcaption>
 		</figure>
 	</div>
@@ -500,8 +370,6 @@
 		outline-offset: 4px;
 	}
 	.flow {
-		--error: hsl(var(--destructive));
-		--warning: #b45309;
 		margin-top: 48px;
 		border: 1px solid hsl(var(--border));
 		border-radius: 12px;
@@ -509,12 +377,12 @@
 		overflow: hidden;
 		box-shadow: var(--shadow-sm);
 	}
-	:global(html.dark) .flow {
-		--warning: #fbbf24;
-	}
+	/* Five kinds don't fit a phone's width: the row scrolls instead of wrapping. */
 	.kinds {
 		display: flex;
 		gap: 4px;
+		overflow-x: auto;
+		scrollbar-width: none;
 		padding: 8px 12px;
 		border-bottom: 1px solid hsl(var(--border));
 		background: hsl(var(--muted) / 0.5);
@@ -531,6 +399,8 @@
 		color: hsl(var(--muted-foreground));
 		background: none;
 		cursor: pointer;
+		white-space: nowrap;
+		flex-shrink: 0;
 	}
 	.kinds button :global(svg) {
 		width: 14px;
@@ -554,131 +424,6 @@
 		outline: 2px solid hsl(var(--ring));
 		outline-offset: 2px;
 	}
-	.stages {
-		display: grid;
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.1fr);
-	}
-	.stage {
-		min-width: 0;
-	}
-	.stage + .stage {
-		border-left: 1px solid hsl(var(--border));
-	}
-	.stage-label {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 16px 20px;
-		border-bottom: 1px solid hsl(var(--border));
-		font-size: 11px;
-		font-weight: 500;
-		background: hsl(var(--muted) / 0.5);
-	}
-	.n {
-		font:
-			10px ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
-	.stage-body {
-		padding: 20px;
-		min-width: 0;
-	}
-	.file {
-		margin-bottom: 16px;
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-		overflow-wrap: anywhere;
-	}
-	.guide-kicker {
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
-	.guide-text {
-		margin-top: 20px;
-		padding-left: 14px;
-		border-left: 2px solid hsl(var(--primary));
-		font:
-			19px/1.65 Georgia,
-			serif;
-	}
-	.guide-text strong {
-		font-weight: 700;
-	}
-	.guide-text s {
-		color: hsl(var(--muted-foreground));
-		text-decoration-color: var(--error);
-	}
-	.doc {
-		font:
-			12px/1.8 ui-monospace,
-			monospace;
-	}
-	.lines {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		counter-reset: line;
-	}
-	.lines li {
-		display: grid;
-		grid-template-columns: 12px minmax(0, 1fr);
-		gap: 10px;
-	}
-	.lines li::before {
-		counter-increment: line;
-		content: counter(line);
-		text-align: right;
-		font-size: 10px;
-		color: hsl(var(--muted-foreground));
-	}
-	.src {
-		min-width: 0;
-		min-height: 1.8em;
-		overflow-wrap: anywhere;
-	}
-	.syntax {
-		color: hsl(var(--muted-foreground));
-	}
-	mark {
-		padding: 0 2px;
-		border-bottom: 2px solid var(--error);
-		background: color-mix(in srgb, var(--error) 10%, transparent);
-		color: inherit;
-	}
-	mark.warning {
-		border-bottom-color: var(--warning);
-		background: color-mix(in srgb, var(--warning) 12%, transparent);
-	}
-	.diagnostic {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4px 8px;
-		margin-top: 18px;
-		padding-top: 12px;
-		border-top: 1px solid hsl(var(--border));
-		font:
-			12px/1.6 system-ui,
-			sans-serif;
-	}
-	.sev {
-		color: var(--error);
-		font-weight: 600;
-	}
-	.sev.warning {
-		color: var(--warning);
-	}
-	.rule-name {
-		width: 100%;
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
 	figcaption {
 		padding: 14px 20px;
 		border-top: 1px solid hsl(var(--border));
@@ -690,6 +435,14 @@
 		color: hsl(var(--foreground));
 		text-decoration: underline;
 		text-underline-offset: 3px;
+	}
+	/* The way on: set apart from the sentence, in the accent. */
+	figcaption .guide-link {
+		margin-left: 6px;
+		font-weight: 500;
+		white-space: nowrap;
+		text-decoration-color: hsl(var(--primary));
+		text-decoration-thickness: 2px;
 	}
 	.agent-strip {
 		display: flex;
@@ -755,19 +508,6 @@
 			grid-column: 1 / -1;
 			margin-top: -8px;
 		}
-		.stages {
-			grid-template-columns: 1fr 1fr;
-		}
-		.stage:first-child {
-			grid-column: 1 / -1;
-			border-bottom: 1px solid hsl(var(--border));
-		}
-		.stage:nth-child(2) {
-			border-left: 0;
-		}
-		.guide-text {
-			margin-top: 12px;
-		}
 	}
 	@media (max-width: 700px) {
 		.landing-wrap {
@@ -811,15 +551,6 @@
 		}
 		.flow {
 			margin-top: 32px;
-		}
-		.stages {
-			grid-template-columns: 1fr;
-		}
-		.stage + .stage {
-			border-left: 0;
-		}
-		.stage:nth-child(3) {
-			border-top: 1px solid hsl(var(--border));
 		}
 	}
 	@media (max-width: 400px) {
