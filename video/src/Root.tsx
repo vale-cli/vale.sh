@@ -1,4 +1,5 @@
 import { Composition } from 'remotion';
+import { EXTENSION_TOTAL, ExtensionPromo } from './Extension';
 import { FPS, LOOPS, Loop, Promo, TOTAL } from './Promo';
 
 export const Root = () => (
@@ -7,6 +8,14 @@ export const Root = () => (
 			id="ValePromo"
 			component={Promo}
 			durationInFrames={TOTAL}
+			fps={FPS}
+			width={1920}
+			height={1080}
+		/>
+		<Composition
+			id="ExtensionPromo"
+			component={ExtensionPromo}
+			durationInFrames={EXTENSION_TOTAL}
 			fps={FPS}
 			width={1920}
 			height={1080}

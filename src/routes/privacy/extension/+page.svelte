@@ -10,14 +10,12 @@
 
 	// Each item matches what the extension's code does; keep them in step.
 	const stored = [
-		'Your profile: its .vale.ini, the style packages it names, and the format you chose for each site.',
+		'Your profile: its .vale.ini, the style packages you sync or upload, and the format you chose for each site.',
 		'Which sites it is on or off for, and your options, such as checking as you type.',
-		'What you said from a card: words added to your vocabulary, rules turned off, and alerts dismissed. A dismissal keeps the flagged words and the word on either side of them, so the same alert stays hidden there.',
-		'A copy of each repository .vale.ini it has fetched, so it isn’t fetched on every page.'
+		'What you said from a card: words added to your vocabulary, rules turned off, and alerts dismissed. A dismissal keeps the flagged words and the word on either side of them, so the same alert stays hidden there.'
 	];
 
 	const fetched = [
-		'A repository’s .vale.ini, from github.com, raw.githubusercontent.com, or gitlab.com, when you write on that repository’s pages.',
 		'The style packages a configuration names, from their GitHub releases or a URL you add. A URL on any other host is fetched only after you grant that host when asked.'
 	];
 </script>
