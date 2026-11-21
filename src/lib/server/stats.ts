@@ -40,6 +40,40 @@ const FALLBACKS = {
 	yearlyIncome: 1450
 };
 
+/**
+ * Vale's place among Homebrew's formulae, and whether it leads the other
+ * writing tools there and on Chocolatey. Verified 2026-11-21.
+ */
+const RANKING_FALLBACK = {
+	brew: { rank: 212, of: 9_840, leads: true },
+	chocolatey: { leads: true }
+};
+
+/**
+ * The tools "most-installed prose linter" is measured against: prose,
+ * grammar, and spelling checkers, by their name on each registry. A tool
+ * missing from a registry is simply not counted there. typos checks code
+ * rather than prose, but it is the nearest rival on both, so it is in.
+ */
+const RIVALS = {
+	brew: [
+		'proselint',
+		'write-good',
+		'harper',
+		'languagetool',
+		'ltex-ls',
+		'ltex-ls-plus',
+		'aspell',
+		'hunspell',
+		'nuspell',
+		'cspell',
+		'codespell',
+		'typos-cli',
+		'redpen'
+	],
+	chocolatey: ['proselint', 'languagetool', 'harper', 'aspell', 'hunspell', 'codespell', 'typos']
+};
+
 type Fetch = typeof globalThis.fetch;
 
 function ghHeaders(): Record<string, string> {
@@ -131,6 +165,58 @@ async function fetchBrew(fetch: Fetch): Promise<number> {
 	const count = yearly && Object.values(yearly)[0];
 	if (typeof count !== 'number') throw new Error('no 365d install analytics');
 	return count;
+}
+
+/**
+ * Vale's rank among homebrew-core formulae by installs users asked for over
+ * the trailing year, and whether it leads every rival in RIVALS.brew.
+ *
+ * This is homebrew-core's own list (about 10,000 formulae installed in the
+ * year, a few since removed). The all-taps list adds some 46,000 formulae
+ * from third-party taps, nearly all barely installed; ranking against it
+ * would flatter the percentile. Each formula is listed with its variants
+ * (`vale`, `vale --HEAD`), which are summed.
+ */
+async function fetchBrewRank(fetch: Fetch): Promise<{ rank: number; of: number; leads: boolean }> {
+	const data = await json(
+		fetch,
+		'https://formulae.brew.sh/api/analytics/install-on-request/homebrew-core/365d.json'
+	);
+	const formulae = data?.formulae as Record<string, { count: string }[]> | undefined;
+	if (!formulae || Object.keys(formulae).length < 1000) throw new Error('too few formulae');
+	const installs = new Map(
+		Object.entries(formulae).map(([name, rows]) => [
+			name,
+			rows.reduce((sum, r) => sum + Number(r.count.replace(/,/g, '')), 0)
+		])
+	);
+	const vale = installs.get('vale');
+	if (!vale) throw new Error('vale is not in the analytics');
+	return {
+		rank: [...installs.values()].filter((n) => n > vale).length + 1,
+		of: installs.size,
+		leads: RIVALS.brew.every((r) => (installs.get(r) ?? 0) < vale)
+	};
+}
+
+/**
+ * Whether Vale has more lifetime downloads on Chocolatey than every rival in
+ * RIVALS.chocolatey. Compared by the package-level total each latest version
+ * carries, the same figure for every package.
+ */
+async function fetchChocolateyLead(fetch: Fetch): Promise<{ leads: boolean }> {
+	// One request each: the feed refuses a filter that ORs several ids.
+	const downloads = async (id: string) => {
+		const xml = await text(
+			fetch,
+			`https://community.chocolatey.org/api/v2/Packages()?$filter=Id%20eq%20'${id}'%20and%20IsLatestVersion`
+		);
+		const n = xml.match(/<d:DownloadCount[^>]*>(\d+)</)?.[1];
+		return n ? Number(n) : 0; // not on Chocolatey
+	};
+	const [vale, ...rivals] = await Promise.all(['vale', ...RIVALS.chocolatey].map(downloads));
+	if (!vale) throw new Error('vale is not in the Chocolatey feed');
+	return { leads: rivals.every((n) => n < vale) };
 }
 
 /**
@@ -272,7 +358,9 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[repology, repologyLive],
 		[collective, collectiveLive],
 		[contributors, contributorsLive],
-		[stars, starsLive]
+		[stars, starsLive],
+		[brewRank, brewRankLive],
+		[chocoLead, chocoLeadLive]
 	] = await Promise.all([
 		safely('releases', FALLBACKS.releases, () => fetchReleases(fetch)),
 		safely('docker pulls', FALLBACKS.docker, () => fetchDockerPulls(fetch)),
@@ -291,7 +379,9 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 			() => fetchOpenCollective(fetch)
 		),
 		safely('contributors', FALLBACKS.contributors, () => fetchContributors(fetch)),
-		safely('stars', FALLBACKS.stars, () => fetchStars(fetch))
+		safely('stars', FALLBACKS.stars, () => fetchStars(fetch)),
+		safely('brew rank', RANKING_FALLBACK.brew, () => fetchBrewRank(fetch)),
+		safely('chocolatey lead', RANKING_FALLBACK.chocolatey, () => fetchChocolateyLead(fetch))
 	]);
 
 	const channels: Channel[] = [
@@ -396,8 +486,17 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		live: counted.every((c) => c.live)
 	};
 
+	const ranking = {
+		brew: { ...brewRank, live: brewRankLive },
+		chocolatey: { ...chocoLead, live: chocoLeadLive }
+	};
+
 	const allLive =
-		channels.every((c) => c.live) && availability.every((a) => a.live) && contributorsLive;
+		channels.every((c) => c.live) &&
+		availability.every((a) => a.live) &&
+		contributorsLive &&
+		brewRankLive &&
+		chocoLeadLive;
 
 	return {
 		channels,
@@ -406,6 +505,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		funding: { ...collective, live: collectiveLive },
 		contributors,
 		stars,
+		ranking,
 		// Only claim the build date when every lookup actually succeeded —
 		// otherwise some figures are the older hand-verified fallbacks.
 		updated: allLive ? new Date().toISOString().slice(0, 10) : FALLBACK_DATE
