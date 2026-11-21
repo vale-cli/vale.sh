@@ -3,9 +3,9 @@
 	"rows": {
 		"md": {
 			"vale": {
-				"seconds": 0.513,
-				"user": 2.3,
-				"mb": 136
+				"seconds": 0.454,
+				"user": 2.1,
+				"mb": 143
 			},
 			"typos": {
 				"seconds": 0.115,
@@ -25,9 +25,9 @@
 		},
 		"adoc": {
 			"vale": {
-				"seconds": 1.479,
-				"user": 6.7,
-				"mb": 135
+				"seconds": 0.655,
+				"user": 3.2,
+				"mb": 170
 			},
 			"typos": {
 				"seconds": 0.125,
@@ -47,9 +47,9 @@
 		},
 		"rst": {
 			"vale": {
-				"seconds": 8.009,
-				"user": 31.6,
-				"mb": 101
+				"seconds": 0.748,
+				"user": 3.2,
+				"mb": 160
 			},
 			"typos": {
 				"seconds": 0.136,
@@ -69,9 +69,9 @@
 		},
 		"html": {
 			"vale": {
-				"seconds": 0.422,
-				"user": 1.7,
-				"mb": 121
+				"seconds": 0.275,
+				"user": 1.2,
+				"mb": 135
 			},
 			"typos": {
 				"seconds": 0.13,
@@ -91,9 +91,9 @@
 		},
 		"org": {
 			"vale": {
-				"seconds": 0.76,
-				"user": 3.8,
-				"mb": 151
+				"seconds": 0.591,
+				"user": 2.9,
+				"mb": 138
 			},
 			"typos": {
 				"seconds": 0.129,
@@ -113,9 +113,9 @@
 		},
 		"txt": {
 			"vale": {
-				"seconds": 0.174,
-				"user": 0.6,
-				"mb": 98
+				"seconds": 0.142,
+				"user": 0.5,
+				"mb": 106
 			},
 			"typos": {
 				"seconds": 0.123,
@@ -135,9 +135,9 @@
 		},
 		"mdx": {
 			"vale": {
-				"seconds": 0.582,
-				"user": 2.7,
-				"mb": 141
+				"seconds": 0.414,
+				"user": 2.0,
+				"mb": 159
 			},
 			"typos": {
 				"seconds": 0.123,
@@ -157,9 +157,9 @@
 		},
 		"myst": {
 			"vale": {
-				"seconds": 0.796,
-				"user": 3.7,
-				"mb": 137
+				"seconds": 0.622,
+				"user": 2.9,
+				"mb": 144
 			},
 			"typos": {
 				"seconds": 0.135,
@@ -179,9 +179,9 @@
 		},
 		"qmd": {
 			"vale": {
-				"seconds": 0.523,
-				"user": 2.5,
-				"mb": 140
+				"seconds": 0.4,
+				"user": 1.9,
+				"mb": 136
 			},
 			"typos": {
 				"seconds": 0.133,
@@ -201,9 +201,9 @@
 		},
 		"typ": {
 			"vale": {
-				"seconds": 0.8,
-				"user": 3.2,
-				"mb": 115
+				"seconds": 0.484,
+				"user": 2.2,
+				"mb": 134
 			},
 			"typos": {
 				"seconds": 0.226,
@@ -223,9 +223,9 @@
 		},
 		"xml": {
 			"vale": {
-				"seconds": 0.75,
-				"user": 1.8,
-				"mb": 101
+				"seconds": 0.321,
+				"user": 1.2,
+				"mb": 119
 			},
 			"typos": {
 				"seconds": 0.134,
@@ -245,9 +245,9 @@
 		},
 		"dita": {
 			"vale": {
-				"seconds": 14.893,
-				"user": 30.7,
-				"mb": 486
+				"seconds": 11.395,
+				"user": 24.0,
+				"mb": 615
 			},
 			"typos": {
 				"seconds": 0.127,
@@ -267,9 +267,9 @@
 		},
 		"qdoc": {
 			"vale": {
-				"seconds": 0.492,
-				"user": 2.3,
-				"mb": 127
+				"seconds": 0.416,
+				"user": 1.9,
+				"mb": 118
 			},
 			"typos": {
 				"seconds": 0.116,
@@ -289,9 +289,9 @@
 		},
 		"ipynb": {
 			"vale": {
-				"seconds": 0.889,
-				"user": 4.6,
-				"mb": 142
+				"seconds": 0.328,
+				"user": 1.5,
+				"mb": 117
 			},
 			"typos": {
 				"seconds": 0.192,

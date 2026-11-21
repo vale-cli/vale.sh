@@ -84,8 +84,8 @@ export const scale: Scale[] = [
 			{
 				label: 'Vale',
 				ours: true,
-				seconds: 1.047,
-				mb: 157,
+				seconds: 1.058,
+				mb: 133,
 				detail: 'Parsed as Markdown; code blocks, spans, and URLs skipped.'
 			},
 			{ label: 'typos', ours: false, seconds: 1.085, mb: 454, detail: 'Rust. Reads every token.' }
@@ -107,9 +107,9 @@ export const scale: Scale[] = [
 			{
 				label: 'Vale',
 				ours: true,
-				seconds: 25.233,
-				mb: 288,
-				detail: 'Docutils converts the document; the wait is Docutils.'
+				seconds: 1.541,
+				mb: 231,
+				detail: 'Parsed as reStructuredText; literal blocks, roles, and directive options skipped.'
 			}
 		]
 	}

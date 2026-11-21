@@ -70,10 +70,10 @@
 		return hit ? 'leaked' : 'skipped';
 	};
 	const tone: Record<string, string> = {
-		found: 'rounded-sm bg-lime-500/20 ring-1 ring-lime-500/60',
-		leaked: 'rounded-sm bg-rose-500/20 ring-1 ring-rose-500/60',
+		found: 'rounded-sm bg-lime-500/25 ring-1 ring-lime-500/70',
+		leaked: 'rounded-sm bg-rose-500/25 ring-1 ring-rose-500/70',
 		missed: 'underline decoration-amber-500 decoration-dotted decoration-2 underline-offset-4',
-		skipped: ''
+		skipped: 'rounded-sm outline-dashed outline-1 outline-muted-foreground/40'
 	};
 	const label: Record<string, string> = {
 		found: 'reported, in prose',
@@ -81,6 +81,34 @@
 		missed: 'missed, in prose',
 		skipped: 'code, left alone'
 	};
+
+	// One note per marker on a line, for the margin: what the word is, and
+	// what this tool did with it.
+	type Note = { word: string; verdict: string; text: string };
+	const noteText = (span: Span, verdict: string) => {
+		const where = span.what ?? '';
+		if (verdict === 'found') return 'typo, reported';
+		if (verdict === 'missed') return 'typo, missed';
+		if (verdict === 'leaked') return `${where}: reported as a typo`;
+		return `${where}: left alone`;
+	};
+	const notes = $derived(
+		sample.lines.map((spans) =>
+			spans
+				.filter((sp) => sp.kind)
+				.map((sp): Note => {
+					const v = verdictOf(sp, tool);
+					return { word: sp.text, verdict: v, text: noteText(sp, v) };
+				})
+		)
+	);
+	const noteTone: Record<string, string> = {
+		found: 'text-lime-700 dark:text-lime-400',
+		leaked: 'text-rose-600 dark:text-rose-400',
+		missed: 'text-amber-700 dark:text-amber-400',
+		skipped: 'text-muted-foreground'
+	};
+	const noteMark: Record<string, string> = { found: '✓', leaked: '✗', missed: '!', skipped: '·' };
 
 	const tally = (t: Tool) => {
 		let found = 0,
@@ -141,22 +169,56 @@
 			</select>
 		</label>
 	</div>
+	{@const now = tally(tool)}
+	{@const name = tabs.find((t) => t.id === tool)?.label}
+	<p class="mb-2 text-sm" aria-live="polite">
+		<span class="font-medium">{name}</span> found
+		<span class="font-medium text-lime-700 dark:text-lime-400"
+			>{now.found} of {now.prose} typos</span
+		>
+		in this excerpt{#if now.found < now.prose}, missed
+			<span class="font-medium text-amber-700 dark:text-amber-400">{now.prose - now.found}</span
+			>{/if}, and reported
+		<span
+			class="font-medium {now.leaked
+				? 'text-rose-600 dark:text-rose-400'
+				: 'text-lime-700 dark:text-lime-400'}"
+			>{now.leaked} {now.leaked === 1 ? 'word' : 'words'} of code</span
+		> as misspellings.
+	</p>
 	<div
 		class="excerpt rounded-b-lg rounded-tr-lg border bg-card p-4 font-mono text-[12px] leading-relaxed"
 	>
 		{#each lines as pieces, i (i)}
-			<div class="flex">
-				<span class="w-7 shrink-0 select-none pr-3 text-right text-muted-foreground/50"
-					>{i + 1}</span
-				>
-				<span class="min-w-0 whitespace-pre-wrap break-words"
-					>{#each pieces as p, j (j)}{#if p.span}{@const st = verdictOf(p.span, tool)}<mark
-								class="bg-transparent text-inherit {tone[st]}"
-								title="{label[st]}: {p.span.what}"
-								><span class="tok" style="--l:{p.light};--d:{p.dark}">{p.text}</span></mark
-							>{:else}<span class="tok" style="--l:{p.light};--d:{p.dark}">{p.text}</span
-							>{/if}{/each}{#if pieces.length === 0}{' '}{/if}</span
-				>
+			<div class="grid grid-cols-[minmax(0,1fr)] gap-x-4 md:grid-cols-[minmax(0,1fr)_14rem]">
+				<div class="flex">
+					<span class="w-7 shrink-0 select-none pr-3 text-right text-muted-foreground/50"
+						>{i + 1}</span
+					>
+					<span class="min-w-0 whitespace-pre-wrap break-words"
+						>{#each pieces as p, j (j)}{#if p.span}{@const st = verdictOf(p.span, tool)}<mark
+									class="bg-transparent text-inherit {tone[st]}"
+									title="{label[st]}: {p.span.what}"
+									><span class="tok" style="--l:{p.light};--d:{p.dark}">{p.text}</span></mark
+								>{:else}<span class="tok" style="--l:{p.light};--d:{p.dark}">{p.text}</span
+								>{/if}{/each}{#if pieces.length === 0}{' '}{/if}</span
+					>
+				</div>
+				<!-- The margin: what each marked word on this line is, and the verdict. -->
+				{#if notes[i].length}
+					<ul
+						class="mb-1 ml-7 space-y-0.5 font-sans text-[11px] leading-4 md:mb-0 md:ml-0 md:border-l md:border-border md:pl-3"
+					>
+						{#each notes[i] as n, k (k)}
+							<li class={noteTone[n.verdict]}>
+								<span aria-hidden="true">{noteMark[n.verdict]}</span>
+								<span class="font-mono">{n.word}</span> <span class="opacity-80">{n.text}</span>
+							</li>
+						{/each}
+					</ul>
+				{:else}
+					<div class="hidden md:block md:border-l md:border-border"></div>
+				{/if}
 			</div>
 		{/each}
 	</div>
@@ -169,6 +231,10 @@
 		>
 		<span class="flex items-center gap-1.5"
 			><span class="h-0.5 w-3 border-b-2 border-dotted border-amber-500"></span>missed in prose</span
+		>
+		<span class="flex items-center gap-1.5"
+			><span class="h-2.5 w-2.5 rounded-sm border border-dashed border-muted-foreground/50"
+			></span>code, left alone</span
 		>
 	</div>
 </Figure>
