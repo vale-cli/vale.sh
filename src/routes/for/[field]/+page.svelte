@@ -120,6 +120,28 @@
 		</div>
 	</Section>
 
+	<Section title="Where it runs" lede={field.integrationsNote} wide>
+		<ul class="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+			{#each data.integrations as it (it.name)}
+				<li>
+					<a
+						href={it.href}
+						class="group flex items-center gap-3 rounded-xl border border-border bg-card px-4 py-3 transition-colors hover:border-lime-500/40"
+					>
+						<BrandIcon name={it.name} slug={it.slug} avatar={it.avatar} size="h-8 w-8" />
+						<span class="min-w-0">
+							<span class="block font-medium text-foreground">{it.name}</span>
+							<span class="block text-sm text-muted-foreground">{it.detail}</span>
+						</span>
+						{#if external(it.href)}<ArrowUpRight
+								class="ml-auto h-4 w-4 shrink-0 text-muted-foreground"
+							/>{:else}<ArrowRight class="ml-auto h-4 w-4 shrink-0 text-muted-foreground" />{/if}
+					</a>
+				</li>
+			{/each}
+		</ul>
+	</Section>
+
 	<Section title="Who runs it" lede={field.adoptersNote} wide>
 		<ul class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
 			{#each data.adopters as a (a.slug)}

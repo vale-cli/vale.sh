@@ -2,6 +2,7 @@ import { error } from '@sveltejs/kit';
 import packages from '$lib/data/packages.json';
 import adopterList from '$lib/data/adopters.json';
 import { slugOf } from '$lib/data/adopter-slug';
+import { integrationGroups } from '$lib/data/integrations';
 import { fields } from '$lib/data/fields';
 import { listPosts } from '$lib/posts';
 import { highlightAll } from '$lib/server/highlight';
@@ -70,6 +71,18 @@ export const load: PageServerLoad = async ({ params }) => {
 		};
 	});
 
+	// The site's own list of integrations, so a guide and the home page
+	// can't disagree about where Vale runs. A name it lacks fails the build.
+	const allIntegrations = integrationGroups.flatMap((g) => g.items);
+	const integrations = field.integrations.map((name) => {
+		const it = allIntegrations.find((x) => x.name === name);
+		if (!it)
+			throw new Error(
+				`fields.ts: ${field.id} lists the integration "${name}", which integrations.ts lacks`
+			);
+		return it;
+	});
+
 	const html = await highlightAll({
 		config: { code: field.config.code, lang: 'ini' },
 		run: { code: '$ vale sync\n$ vale .', lang: 'console' }
@@ -78,5 +91,5 @@ export const load: PageServerLoad = async ({ params }) => {
 	// Everything but the icon, which is a component and can't be serialized;
 	// the page looks it up again by id.
 	const { icon: _icon, ...rest } = field;
-	return { field: rest, packages: pkgs, posts, adopters, html };
+	return { field: rest, packages: pkgs, posts, adopters, integrations, html };
 };
