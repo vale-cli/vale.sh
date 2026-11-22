@@ -85,7 +85,7 @@
 		<span class="text-foreground">{guide.name}</span>
 	</nav>
 
-	<header class="mt-6 grid gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
+	<header class="mt-6 grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_20rem]">
 		<div>
 			<p
 				class="font-mono text-[11px] font-medium uppercase tracking-[0.13em] text-lime-600 dark:text-lime-400"
