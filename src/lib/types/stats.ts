@@ -60,6 +60,7 @@ export type Ranking = {
 	/** Rank among homebrew-core formulae by installs on request, past year. */
 	brew: { rank: number; of: number; leads: boolean; live: boolean };
 	chocolatey: { leads: boolean; live: boolean };
+	mise: { leads: boolean; live: boolean };
 };
 
 export type Stats = {

@@ -56,7 +56,9 @@
 		ranking.brew.leads && ranking.chocolatey.leads
 			? {
 					label: 'Among prose linters',
-					value: 'Most installed on Homebrew and Chocolatey',
+					value: ranking.mise.leads
+						? 'Most installed on Homebrew, Chocolatey, and mise'
+						: 'Most installed on Homebrew and Chocolatey',
 					href: 'https://formulae.brew.sh/formula/vale'
 				}
 			: {
