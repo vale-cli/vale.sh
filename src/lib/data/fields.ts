@@ -50,6 +50,8 @@ export type Field = {
 	integrations: string[];
 	/** Why these, for this kind of writing: the lede of "Where it runs". */
 	integrationsNote: string;
+	/** Agent skills from $lib/data/skills, by name, in the order to reach for them. */
+	skills: string[];
 	/** Further reading in the manual. */
 	docs: Link[];
 };
@@ -125,6 +127,7 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 		],
 		integrationsNote:
 			'In the editor while the page is written, as a check on every pull request, and inside the docs platforms that run Vale themselves. Oxygen XML covers DITA.',
+		skills: ['onboard', 'from-guide', 'triage', 'write-guide'],
 		docs: [
 			{ label: 'Quickstart', href: docs('topics/quickstart') },
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Writing your own rules' },
@@ -196,6 +199,7 @@ BasedOnStyles = Vale, tech-writing-style-guide, Readability, A11y, alex`
 		integrations: ['Browser', 'VS Code', 'GitHub Actions', 'pre-commit', 'Mintlify'],
 		integrationsNote:
 			'Content designers often write in a browser, not a code editor, so the extension checks text where it’s typed. The same rules then run in CI before anything is published.',
+		skills: ['onboard', 'from-guide', 'tune', 'vocab'],
 		docs: [
 			{ label: 'Readability', href: docs('checks/readability'), note: 'Reading-level checks' },
 			{
@@ -260,6 +264,7 @@ BasedOnStyles = Vale, Google`
 		integrations: ['VS Code', 'JetBrains', 'Emacs', 'Neovim', 'GitHub Actions', 'pre-commit'],
 		integrationsNote:
 			'The editors research is written in: VS Code and PyCharm for notebooks and Quarto, Emacs for Org. The same config runs in CI on the docs and the paper.',
+		skills: ['onboard', 'vocab', 'ignore', 'ci'],
 		docs: [
 			{ label: 'Jupyter notebooks', href: docs('formats/jupyter') },
 			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Terms your field accepts' },
@@ -309,6 +314,7 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 		integrations: ['Obsidian', 'Browser', 'VS Code', 'Emacs', 'Zed', 'Sublime Text'],
 		integrationsNote:
 			'Writers draft in notes apps and plain editors more than in IDEs. Each of these shows alerts as you type, from the same config the manuscript uses.',
+		skills: ['setup', 'tune', 'rule', 'vocab'],
 		docs: [
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Turning your own rules into checks' },
 			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Names and invented words' },
@@ -368,6 +374,7 @@ BasedOnStyles = Vale, Comments`
 		],
 		integrationsNote:
 			'A commit-msg or pre-commit hook checks the message and the comments before they land, CI checks them again, and the language server flags them in any editor that speaks LSP. Qt Creator covers QDoc comments.',
+		skills: ['commits', 'ci', 'setup', 'ignore'],
 		docs: [
 			{
 				label: 'Commits',
@@ -422,6 +429,7 @@ BasedOnStyles = Prompts`
 		integrations: ['Promptless', 'Language server', 'VS Code', 'GitHub Actions', 'pre-commit'],
 		integrationsNote:
 			'Where agents write: Promptless runs Vale on every draft its agent makes, the language server reports to any LSP client, and VS Code covers Cursor and Windsurf. CI holds what an agent opens to the same rules.',
+		skills: ['onboard', 'rule', 'fix', 'doctor'],
 		docs: [
 			{ label: 'Agents', href: docs('guides/agents') },
 			{ label: 'Setting up with an agent', href: docs('guides/agent-setup') },

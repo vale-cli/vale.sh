@@ -3,6 +3,7 @@ import packages from '$lib/data/packages.json';
 import adopterList from '$lib/data/adopters.json';
 import { slugOf } from '$lib/data/adopter-slug';
 import { integrationGroups } from '$lib/data/integrations';
+import { skills as allSkills } from '$lib/data/skills';
 import { fields } from '$lib/data/fields';
 import { listPosts } from '$lib/posts';
 import { highlightAll } from '$lib/server/highlight';
@@ -11,6 +12,9 @@ import type { EntryGenerator, PageServerLoad } from './$types';
 // Prerendered, so each field is named up front, and a package or post the
 // field lists but the site doesn't have fails the build instead of leaving
 // a hole in the page.
+// The two lines that install the agent tools in Claude Code, as /agents gives them.
+const PLUGIN = '/plugin marketplace add vale-cli/agent-tools\n/plugin install vale@agent-tools';
+
 export const entries: EntryGenerator = () => fields.map((f) => ({ field: f.id }));
 
 export const load: PageServerLoad = async ({ params }) => {
@@ -83,13 +87,31 @@ export const load: PageServerLoad = async ({ params }) => {
 		return it;
 	});
 
+	// Agent skills, from the list /agents is built from; each links its card there.
+	const skills = field.skills.map((name) => {
+		const sk = allSkills.find((x) => x.name === name);
+		if (!sk)
+			throw new Error(`fields.ts: ${field.id} lists the skill "${name}", which skills.ts lacks`);
+		return { name: sk.name, ask: sk.ask, summary: sk.summary };
+	});
+
 	const html = await highlightAll({
 		config: { code: field.config.code, lang: 'ini' },
-		run: { code: '$ vale sync\n$ vale .', lang: 'console' }
+		run: { code: '$ vale sync\n$ vale .', lang: 'console' },
+		plugin: { code: PLUGIN, lang: 'plaintext' }
 	});
 
 	// Everything but the icon, which is a component and can't be serialized;
 	// the page looks it up again by id.
 	const { icon: _icon, ...rest } = field;
-	return { field: rest, packages: pkgs, posts, adopters, integrations, html };
+	return {
+		field: rest,
+		packages: pkgs,
+		posts,
+		adopters,
+		integrations,
+		skills,
+		plugin: PLUGIN,
+		html
+	};
 };

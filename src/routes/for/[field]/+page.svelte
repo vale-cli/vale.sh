@@ -140,6 +140,45 @@
 				</li>
 			{/each}
 		</ul>
+
+		<!--
+			The agent tools: the plugin that installs them, then the skills this
+			kind of writing reaches for, each as the request that brings it up.
+		-->
+		<div class="mt-10 rounded-2xl border border-border bg-card p-6">
+			<div class="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-2">
+				<h3 class="font-medium text-foreground">With an agent</h3>
+				<a
+					href="/agents"
+					class="inline-flex items-center gap-1 text-sm font-medium text-lime-600 dark:text-lime-400"
+				>
+					All agent tools <ArrowRight class="h-3.5 w-3.5" />
+				</a>
+			</div>
+			<p class="mt-2 max-w-2xl text-sm leading-relaxed text-foreground/85">
+				The agent tools install as a Claude Code plugin: skills for setting up and tuning Vale, and
+				hooks that lint each file the assistant writes. Type both lines in Claude Code, then ask for
+				what you need.
+			</p>
+			<div class="mt-4">
+				<CodeBlock html={data.html.plugin} code={data.plugin} />
+			</div>
+			<ul class="mt-6 grid grid-cols-1 gap-x-8 gap-y-5 sm:grid-cols-2">
+				{#each data.skills as sk (sk.name)}
+					<li>
+						<a href="/agents#skill-{sk.name}" class="group block">
+							<span class="font-mono text-[13px] text-foreground">“{sk.ask}”</span>
+							<span class="ml-1.5 font-mono text-[11px] text-muted-foreground">/vale:{sk.name}</span
+							>
+							<span
+								class="mt-1 line-clamp-2 block text-sm leading-relaxed text-foreground/75 group-hover:text-foreground"
+								>{sk.summary}</span
+							>
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
 	</Section>
 
 	<Section title="Who runs it" lede={field.adoptersNote} wide>
