@@ -32,11 +32,42 @@
 		{ value: String(adopters), label: 'teams listed', href: '/adopters' }
 	]);
 
-	const install = 'brew install vale';
+	/*
+		The install command for the visitor's OS, from the installation docs:
+		Homebrew on macOS, Chocolatey on Windows, and Snap on Linux, which works
+		on any distribution. The page is prerendered, so it ships with Homebrew
+		and swaps once the browser says where it's running; a phone, ChromeOS,
+		or a browser that won't say keeps the default and the general note.
+	*/
+	type Os = 'mac' | 'windows' | 'linux';
+	const commands: Record<Os, { name: string; prompt: string; command: string }> = {
+		mac: { name: 'macOS', prompt: '$', command: 'brew install vale' },
+		windows: { name: 'Windows', prompt: '>', command: 'choco install vale' },
+		linux: { name: 'Linux', prompt: '$', command: 'sudo snap install vale' }
+	};
+
+	let os = $state<Os | undefined>(undefined);
+	$effect(() => {
+		try {
+			// The platform hint where the browser gives one (Chromium does),
+			// else the older fields; a phone is checked first, since Android
+			// reports Linux.
+			const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+			const platform = nav.userAgentData?.platform || `${nav.platform} ${nav.userAgent}`;
+			if (/Android|iPhone|iPad|iPod|CrOS|Chrome OS/i.test(platform)) os = undefined;
+			else if (/Win/i.test(platform)) os = 'windows';
+			else if (/Mac/i.test(platform)) os = 'mac';
+			else if (/Linux/i.test(platform)) os = 'linux';
+		} catch {
+			// Nothing to read: keep the default.
+		}
+	});
+
+	const current = $derived(commands[os ?? 'mac']);
 	let copied = $state(false);
 	async function copyInstall() {
 		try {
-			await navigator.clipboard.writeText(install);
+			await navigator.clipboard.writeText(current.command);
 			copied = true;
 			setTimeout(() => (copied = false), 2000);
 		} catch {
@@ -71,21 +102,21 @@
 					>
 					<Button size="lg" variant="outline" href="https://docs.vale.sh">Read the docs</Button>
 				</div>
-				<!-- The one command most visitors can run as it stands; the note
-				     beside it covers everyone else. -->
+				<!-- The command for the visitor's OS; the note says which, and
+				     links the rest. -->
 				<button
 					type="button"
 					class="install"
 					onclick={copyInstall}
-					aria-label="Copy the install command: {install}"
+					aria-label="Copy the install command: {current.command}"
 				>
-					<span aria-hidden="true" class="prompt">$</span>
-					<code>{install}</code>
+					<span aria-hidden="true" class="prompt">{current.prompt}</span>
+					<code>{current.command}</code>
 					{#if copied}<Check aria-hidden="true" />{:else}<Copy aria-hidden="true" />{/if}
 					<span class="sr-only" aria-live="polite">{copied ? 'Copied' : ''}</span>
 				</button>
 				<p class="hero-note">
-					macOS, Windows & Linux · Runs offline ·
+					{os ? `For ${current.name}` : 'macOS, Windows & Linux'} · Runs offline ·
 					<a href="https://docs.vale.sh/topics/installation">Other installs</a>
 				</p>
 			</div>
