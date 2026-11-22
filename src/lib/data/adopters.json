@@ -2152,7 +2152,8 @@
 		"name": "Platform One",
 		"category": "Academia & public sector",
 		"context": "Offers Vale as a prose-linting stage in its Padawan pipelines, with Vale's built-in style and write-good.",
-		"url": "https://padawan-docs.dso.mil/documents/vale"
+		"url": "https://padawan-docs.dso.mil/documents/vale",
+		"avatar": "/users/avatars/platformone.svg"
 	},
 	{
 		"name": "Platform.sh",

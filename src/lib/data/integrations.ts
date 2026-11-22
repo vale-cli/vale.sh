@@ -42,7 +42,8 @@ export const integrationGroups: IntegrationGroup[] = [
 				// Its own section, since it installs from three stores.
 				name: 'Browser',
 				detail: 'Chrome, Edge, Firefox',
-				href: '/#browser'
+				href: '/#browser',
+				slug: 'browser'
 			},
 			{
 				name: 'VS Code',

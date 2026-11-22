@@ -57,15 +57,7 @@
 	lands there. The blog is in the header.
 -->
 <main>
-	<Overview
-		stats={data.stats}
-		adopters={data.band.total}
-		rules={{
-			technical: data.snippets.heroTechnical,
-			creative: data.snippets.heroCreative,
-			scientific: data.snippets.heroScientific
-		}}
-	/>
+	<Overview stats={data.stats} adopters={data.band.total} />
 	<Promo />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs band={data.band} editorial />
