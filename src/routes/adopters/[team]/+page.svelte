@@ -198,7 +198,7 @@
 	{#if similar.length}
 		<section class="mt-14 border-t border-border pt-10">
 			<h2 class="text-lg font-medium tracking-tight">Similar setups in {team.category}</h2>
-			<ul class="mt-4 grid gap-3 sm:grid-cols-2">
+			<ul class="mt-4 grid grid-cols-1 gap-3 sm:grid-cols-2">
 				{#each similar as other (other.slug)}
 					<li>
 						<a
