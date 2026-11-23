@@ -784,51 +784,42 @@
 	<section id="method" class="mt-16 max-w-3xl scroll-mt-24">
 		<h2 class="text-2xl font-medium tracking-tight">How this is built</h2>
 		<p class="mt-4 leading-7 text-foreground/85">
-			Each of these organizations publishes its style guide as rules for
+			Every guide here is published as rules for
 			<a
 				href="/"
 				class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"
 				>Vale</a
-			>, an open-source linter for prose. A rule is small and exact: flag this word, suggest that
-			one, at this severity, for this reason. Read together, a guide’s rules are a picture of what
-			the guide asks for, and that is what this explorer draws. Nothing here was summarized by hand.
+			>, and this explorer reads those rules; nothing is summarized by hand. Advice nobody wrote a
+			rule for isn’t here. Each guide’s page names its repository, commit, and license.
 		</p>
-		<p class="mt-4 leading-7 text-foreground/85">
-			That also sets its limits. A guide’s advice that nobody wrote a rule for isn’t here, and
-			“terms” counts only rules that name plain words, so a guide written mostly as patterns looks
-			smaller than it is. Each guide’s page names the repository, the commit it was read at, and its
-			license.
-		</p>
-		<p class="mt-4 leading-7 text-foreground/85">
-			The decisions table runs each guide’s rules on short test sentences, such as a list with and
-			without a final comma, or “do not” beside “don’t”. A rule that flags one side and not the
-			other is the guide’s answer, and the cell links to it. Only rules that read body text count,
-			and a rule must flag the whole phrase being tested, so a tense rule that flags “won’t” doesn’t
-			count as a view on contractions.
-		</p>
-		<p class="mt-4 leading-7 text-foreground/85">
-			Strictness is measured by running each guide’s rules with {data.sample?.vale ?? 'Vale'} over the
-			same {data.sample ? fmt.format(data.sample.words) : ''}-word sample: seven pages of Vale’s own
-			documentation, kept with the code so the numbers can be reproduced. Spelling rules are
-			switched off, since they would measure the sample’s product names rather than the guide; code
-			and markup aren’t counted as words. A rule that current Vale can’t load is left out, and the
-			guide’s page says so. A guide written mostly about its own product names flags little in
-			someone else’s docs, so a low number can mean narrow rather than lenient.
-		</p>
-		<p class="mt-4 leading-7 text-foreground/85">
-			“Rules changed” is the date of the newest commit to a guide’s rule files. A guide is
-			maintained by its company when the rules live in that company’s own repository, and by the
-			community otherwise.
-		</p>
-		<p class="mt-4 leading-7 text-foreground/85">
-			“Public configs” is how many of {data.sampleSize} sampled open-source Vale configurations use that
-			guide’s rules.
-			<a
-				href="/adopters"
-				class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"
-				>See who uses Vale</a
-			>.
-		</p>
+		<dl class="mt-6 grid gap-x-6 gap-y-3 text-sm leading-6 sm:grid-cols-[10rem_1fr]">
+			<dt class="font-medium">Decisions</dt>
+			<dd class="text-foreground/85">
+				Each guide’s rules run on paired test sentences; a rule that flags one side and not the
+				other is the guide’s answer.
+			</dd>
+			<dt class="font-medium">Strictness</dt>
+			<dd class="text-foreground/85">
+				Alerts per 1,000 words from {data.sample?.vale ?? 'Vale'} over one shared sample of Vale’s docs{data.sample
+					? ` (${fmt.format(data.sample.words)} words)`
+					: ''}, spelling off. Low can mean narrow, not lenient.
+			</dd>
+			<dt class="font-medium">Rules changed</dt>
+			<dd class="text-foreground/85">The newest commit to a guide’s rule files.</dd>
+			<dt class="font-medium">Maintained by</dt>
+			<dd class="text-foreground/85">
+				The company when its rules live in the company’s own repository; otherwise the community.
+			</dd>
+			<dt class="font-medium">Public configs</dt>
+			<dd class="text-foreground/85">
+				How many of {data.sampleSize} sampled open-source Vale configs use the guide.
+				<a
+					href="/adopters"
+					class="font-medium text-foreground underline decoration-lime-500 decoration-2 underline-offset-4"
+					>See who uses Vale</a
+				>.
+			</dd>
+		</dl>
 	</section>
 </div>
 
