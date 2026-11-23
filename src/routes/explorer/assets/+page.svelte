@@ -33,12 +33,13 @@
 
 <MetaTags
 	title="Asset Explorer"
-	description="Views, filters, and output templates: single-file assets to copy into a Vale StylesPath."
+	description="Views, templates, filters, vocabularies, scripts, and actions: single-file assets to copy into a Vale StylesPath."
 	canonical="https://vale.sh/explorer/assets"
 	openGraph={{
 		url: 'https://vale.sh/explorer/assets',
 		title: 'Vale Asset Explorer',
-		description: 'Ready-made views, filters, and output templates, each one file to copy.'
+		description:
+			'Ready-made views, templates, filters, vocabularies, scripts, and actions, each one file to copy.'
 	}}
 />
 
@@ -49,13 +50,14 @@
 	<div class="mx-auto mt-10 max-w-2xl text-center">
 		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Asset Explorer</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-			Views, filters &amp; templates
+			Views, templates &amp; more
 		</h1>
 		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
 			Single files to copy into your
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground">StylesPath</code
-			>. A view names the parts of a file Vale can’t otherwise parse, a filter picks the rules a run
-			applies, and a template shapes what a run prints.
+			>. A view names the parts of a file Vale can’t otherwise parse, a template shapes what a run
+			prints, a filter picks the rules a run applies, a vocabulary teaches the spell checker a
+			field’s terms, and a script or an action gives a rule logic of its own.
 		</p>
 	</div>
 

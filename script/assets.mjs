@@ -53,7 +53,7 @@ try {
 /**
  * The .vale.ini lines, or the command, that put an asset to use. A view is
  * named in the section it is meant for; a filter and a template are named on
- * the command line; the rest are picked up by being in place.
+ * the command line; a vocabulary by Vocab; a script or an action by a rule.
  */
 function usageFor(entry) {
 	const file = entry.path.split('/').pop();
@@ -64,8 +64,14 @@ function usageFor(entry) {
 			return `vale --filter=${file} .`;
 		case 'template':
 			return `vale --output=${file} .`;
+		case 'vocabulary':
+			return `Vocab = ${entry.name}`;
+		case 'script':
+			return `extends: script\nmessage: "%s"\nscript: ${file}`;
+		case 'action':
+			return `action:\n  name: suggest\n  params:\n    - ${file}`;
 		default:
-			return `# Saved under <StylesPath>/config/${entry.kind}s/${file}`;
+			return '';
 	}
 }
 

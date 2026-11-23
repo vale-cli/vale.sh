@@ -6,7 +6,6 @@
 	import Plus from 'lucide-svelte/icons/plus';
 	import Copy from 'lucide-svelte/icons/copy';
 	import Check from 'lucide-svelte/icons/check';
-	import ExternalLink from 'lucide-svelte/icons/external-link';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import Star from 'lucide-svelte/icons/star';
 	import Download from 'lucide-svelte/icons/download';
@@ -100,7 +99,11 @@
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 
 	const fmt = (t: string) =>
-		t === 'all' ? 'All' : t.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
+		t === 'all'
+			? 'All'
+			: t === 'ai'
+				? 'AI'
+				: t.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase());
 
 	let copied = $state('');
 	let copyTimeout: ReturnType<typeof setTimeout>;
@@ -291,7 +294,7 @@
 									{/if}
 								</div>
 							</div>
-							<ExternalLink
+							<ArrowRight
 								class="h-4 w-4 shrink-0 text-muted-foreground opacity-0 transition-opacity group-hover:opacity-100"
 							/>
 						</div>

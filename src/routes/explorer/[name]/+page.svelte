@@ -54,8 +54,24 @@
 	const shown = $derived(
 		pkg.rules.filter((r) => {
 			const q = query.trim().toLowerCase();
-			return !q || r.name.toLowerCase().includes(q) || r.message.toLowerCase().includes(q);
+			return (
+				!q ||
+				`${r.style}.${r.name}`.toLowerCase().includes(q) ||
+				r.message.toLowerCase().includes(q)
+			);
 		})
+	);
+
+	// A package with several styles lists its rules under each one, since the
+	// style is what goes in BasedOnStyles.
+	const styleCount = $derived(new Set(pkg.rules.map((r) => r.style)).size);
+	const groups = $derived(
+		Object.entries(
+			shown.reduce<Record<string, typeof shown>>((g, r) => {
+				(g[r.style] ??= []).push(r);
+				return g;
+			}, {})
+		)
 	);
 
 	// What a package ships under `config/` besides rules: views, vocabularies,
@@ -277,30 +293,40 @@
 			<ul
 				class="mt-4 max-h-[60vh] divide-y divide-border overflow-y-auto rounded-lg border border-border"
 			>
-				{#each shown as rule}
-					<li class="flex flex-col gap-1 p-4">
-						<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
-							<span class="font-mono text-sm font-medium">{pkg.name}.{rule.name}</span>
-							<span class="text-xs {levelClass[rule.level]}">{rule.level}</span>
-							<span class="font-mono text-xs text-muted-foreground">{rule.extends}</span>
-							{#if rule.scope !== 'text'}
-								<span class="font-mono text-xs text-muted-foreground">scope: {rule.scope}</span>
+				{#each groups as [style, rules] (style)}
+					{#if styleCount > 1}
+						<li
+							class="sticky top-0 z-10 flex items-baseline gap-2 bg-muted/80 px-4 py-2 backdrop-blur"
+						>
+							<span class="font-mono text-sm font-semibold">{style}</span>
+							<span class="text-xs text-muted-foreground">{rules.length} rules</span>
+						</li>
+					{/if}
+					{#each rules as rule}
+						<li class="flex flex-col gap-1 p-4">
+							<div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+								<span class="font-mono text-sm font-medium">{rule.style}.{rule.name}</span>
+								<span class="text-xs {levelClass[rule.level]}">{rule.level}</span>
+								<span class="font-mono text-xs text-muted-foreground">{rule.extends}</span>
+								{#if rule.scope !== 'text'}
+									<span class="font-mono text-xs text-muted-foreground">scope: {rule.scope}</span>
+								{/if}
+								{#if rule.link}
+									<a
+										href={rule.link}
+										target="_blank"
+										rel="noreferrer"
+										class="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-lime-600 dark:hover:text-lime-400"
+									>
+										Style guide <ExternalLink class="h-3 w-3" />
+									</a>
+								{/if}
+							</div>
+							{#if rule.message}
+								<p class="text-sm text-muted-foreground">{rule.message}</p>
 							{/if}
-							{#if rule.link}
-								<a
-									href={rule.link}
-									target="_blank"
-									rel="noreferrer"
-									class="ml-auto inline-flex items-center gap-1 text-xs text-muted-foreground transition-colors hover:text-lime-600 dark:hover:text-lime-400"
-								>
-									Style guide <ExternalLink class="h-3 w-3" />
-								</a>
-							{/if}
-						</div>
-						{#if rule.message}
-							<p class="text-sm text-muted-foreground">{rule.message}</p>
-						{/if}
-					</li>
+						</li>
+					{/each}
 				{/each}
 			</ul>
 

@@ -45,7 +45,7 @@ const fixEncoding = (s = '') =>
  * written and left to drift. `link` is the style guide the rule enforces, and
  * is the most useful thing on the page when it's there.
  */
-function summarize(name, body) {
+function summarize({ style, name }, body) {
 	let rule;
 	try {
 		rule = parse(body);
@@ -58,6 +58,7 @@ function summarize(name, body) {
 
 	const scope = Array.isArray(rule.scope) ? rule.scope.join(', ') : rule.scope;
 	return {
+		style,
 		name,
 		extends: rule.extends,
 		level: rule.level ?? 'suggestion',
@@ -75,21 +76,23 @@ function summarize(name, body) {
  * path — the basename alone gives a name Vale doesn't answer to. The archive
  * root and, for configuration packages, the `styles/<name>` wrapper are the
  * style's own identity and are dropped; a directory prefixed with `.` or `_`
- * never loads, so its files are skipped.
+ * never loads, so its files are skipped. `style` is the style the rule is
+ * addressed under: the archive root, or the `<name>` of `styles/<name>`.
  */
 function ruleName(path) {
 	const segments = path.replace(/\.yml$/, '').split('/');
 	const file = segments.pop();
 
-	segments.shift(); // The archive's root directory: the style itself.
+	let style = segments.shift(); // The archive's root directory: the style itself.
 	if (segments[0] === 'styles') {
-		segments.splice(0, 2); // `styles/<name>` in a configuration package.
+		style = segments[1]; // `styles/<name>` in a configuration package.
+		segments.splice(0, 2);
 	}
-	if (segments.some((dir) => dir.startsWith('.') || dir.startsWith('_'))) {
+	if (!style || segments.some((dir) => dir.startsWith('.') || dir.startsWith('_'))) {
 		return null;
 	}
 
-	return [...segments, file].join('.');
+	return { style, name: [...segments, file].join('.') };
 }
 
 /** The directories under `config/` Vale reads, and the kind each holds. */
@@ -294,17 +297,17 @@ async function rulesFor(pkg) {
 		if (!path.endsWith('.yml')) {
 			continue;
 		}
-		const name = ruleName(path);
-		if (!name) {
+		const id = ruleName(path);
+		if (!id) {
 			continue;
 		}
-		const rule = summarize(name, strFromU8(bytes));
+		const rule = summarize(id, strFromU8(bytes));
 		if (rule) {
 			rules.push(rule);
 		}
 	}
 
-	rules.sort((a, b) => a.name.localeCompare(b.name));
+	rules.sort((a, b) => a.style.localeCompare(b.style) || a.name.localeCompare(b.name));
 	const listed = [...assets.values()].sort(
 		(a, b) => a.kind.localeCompare(b.kind) || a.name.localeCompare(b.name)
 	);

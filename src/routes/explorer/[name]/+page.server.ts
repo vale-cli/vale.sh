@@ -13,7 +13,15 @@ export const load: PageServerLoad = async ({ params }) => {
 	if (!pkg) {
 		error(404, `No package named "${params.name}".`);
 	}
-	const snippet = `Packages = ${pkg.name}\n\n[*.md]\nBasedOnStyles = Vale, ${pkg.name}`;
+	// A package can hold several styles, some meant as alternatives, so the
+	// snippet turns on the one named for the package and lists the rest.
+	const styles = [...new Set(pkg.rules.map((r) => r.style))];
+	const core = styles.find((s) => s === pkg.name) ?? (styles.length === 1 ? styles[0] : '');
+	const others = styles.filter((s) => s !== core);
+	let snippet = `Packages = ${pkg.name}\n\n[*.md]\nBasedOnStyles = ${['Vale', core].filter(Boolean).join(', ')}`;
+	if (others.length) {
+		snippet += `\n\n# Also in this package; add the ones you want:\n# ${others.join(', ')}`;
+	}
 
 	// The name installs whatever release is latest when `vale sync` runs. A
 	// pinned URL names the release the page shows, so a repository stays on
