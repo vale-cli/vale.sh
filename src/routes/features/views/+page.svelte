@@ -116,7 +116,8 @@
 	openGraph={{
 		url: 'https://vale.sh/features/views',
 		title: 'Views',
-		description
+		description,
+		images: [{ url: 'https://vale.sh/media/og/views.png', width: 1200, height: 630, alt: 'Views' }]
 	}}
 />
 

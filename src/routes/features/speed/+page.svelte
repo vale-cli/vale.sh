@@ -196,7 +196,15 @@
 	openGraph={{
 		url: 'https://vale.sh/features/speed',
 		title: 'Built for speed',
-		description
+		description,
+		images: [
+			{
+				url: 'https://vale.sh/media/og/speed.png',
+				width: 1200,
+				height: 630,
+				alt: 'Built for speed'
+			}
+		]
 	}}
 />
 

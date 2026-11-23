@@ -297,22 +297,14 @@
 </script>
 
 <MetaTags
-	title="Media Library"
+	title="Media Library — Vale"
 	description="The Media Library is a collection of videos, articles, and other resources related to Vale and its ecosystem."
-	canonical="https://vale.sh"
+	canonical="https://vale.sh/library"
 	openGraph={{
-		url: 'https://vale.sh',
-		title: 'Vale: Your style, our editor',
+		url: 'https://vale.sh/library',
+		title: 'Media Library',
 		description:
-			'Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub.',
-		images: [
-			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
-				alt: 'Example Vale output'
-			}
-		]
+			'The Media Library is a collection of videos, articles, and other resources related to Vale and its ecosystem.'
 	}}
 />
 

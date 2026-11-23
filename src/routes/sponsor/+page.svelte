@@ -53,15 +53,7 @@
 	openGraph={{
 		url: 'https://vale.sh/sponsor',
 		title: 'Support Vale',
-		description,
-		images: [
-			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
-				alt: 'Example Vale output'
-			}
-		]
+		description
 	}}
 />
 

@@ -121,7 +121,19 @@
 	title="Agent tools — Vale"
 	{description}
 	canonical="https://vale.sh/agents"
-	openGraph={{ url: 'https://vale.sh/agents', title: 'Agent tools', description }}
+	openGraph={{
+		url: 'https://vale.sh/agents',
+		title: 'Agent tools',
+		description,
+		images: [
+			{
+				url: 'https://vale.sh/media/og/agents.png',
+				width: 1200,
+				height: 630,
+				alt: 'Your assistant writes the docs. Vale checks them.'
+			}
+		]
+	}}
 />
 
 {#snippet shot(src: string, width: number, height: number, alt: string, caption: string)}

@@ -174,7 +174,20 @@
 	{title}
 	{description}
 	canonical={url}
-	openGraph={{ url, title, description, type: 'website' }}
+	openGraph={{
+		url,
+		title,
+		description,
+		type: 'website',
+		images: [
+			{
+				url: 'https://vale.sh/media/og/guides.png',
+				width: 1200,
+				height: 630,
+				alt: `${data.totals.guides} open style guides, side by side`
+			}
+		]
+	}}
 	twitter={{ cardType: 'summary_large_image' }}
 />
 

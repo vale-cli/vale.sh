@@ -70,6 +70,11 @@ og-adopters:
 og-home:
 	node script/build-og-home.mjs
 
+# Re-render the main pages' social cards. Run it when a page's headline
+# changes; the PNGs are committed.
+og-pages:
+	node script/build-og-pages.mjs
+
 # Rebuild /explorer alone, without the rest of a build. `build` runs this too,
 # so the page follows the package library on its own; this is for checking that
 # step by itself.

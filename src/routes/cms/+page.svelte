@@ -24,14 +24,7 @@
 		url: 'https://vale.sh/cms',
 		title: 'Vale CMS',
 		description,
-		images: [
-			{
-				url: '/android-chrome-512x512.png',
-				width: 512,
-				height: 512,
-				alt: 'Vale'
-			}
-		]
+		images: [{ url: 'https://vale.sh/media/og/cms.png', width: 1200, height: 630, alt: 'Vale CMS' }]
 	}}
 />
 

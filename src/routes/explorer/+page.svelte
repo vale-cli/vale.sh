@@ -123,15 +123,7 @@
 		url: 'https://vale.sh/explorer',
 		title: 'Vale Package Explorer',
 		description:
-			'Browse ready-made Vale styles and configurations, and install them with `vale sync`.',
-		images: [
-			{
-				url: '/media/mac.png',
-				width: 800,
-				height: 600,
-				alt: 'Example Vale output'
-			}
-		]
+			'Browse ready-made Vale styles and configurations, and install them with `vale sync`.'
 	}}
 />
 

@@ -88,7 +88,15 @@
 	openGraph={{
 		url: 'https://vale.sh/features/code',
 		title: 'Code-aware linting',
-		description
+		description,
+		images: [
+			{
+				url: 'https://vale.sh/media/og/code.png',
+				width: 1200,
+				height: 630,
+				alt: 'Code-aware linting'
+			}
+		]
 	}}
 />
 

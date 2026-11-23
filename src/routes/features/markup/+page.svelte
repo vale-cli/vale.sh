@@ -310,7 +310,10 @@
 	openGraph={{
 		url: 'https://vale.sh/features/markup',
 		title: 'Scopes',
-		description
+		description,
+		images: [
+			{ url: 'https://vale.sh/media/og/markup.png', width: 1200, height: 630, alt: 'Scopes' }
+		]
 	}}
 />
 

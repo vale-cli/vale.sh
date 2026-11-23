@@ -26,7 +26,15 @@
 	openGraph={{
 		url: `https://vale.sh/for/${field.id}`,
 		title: field.title,
-		description: field.summary
+		description: field.summary,
+		images: [
+			{
+				url: `https://vale.sh/media/og/for/${field.id}.png`,
+				width: 1200,
+				height: 630,
+				alt: field.title
+			}
+		]
 	}}
 />
 

@@ -14,7 +14,8 @@
 		"validate": "node script/adopters.mjs",
 		"posts": "node script/lint-posts.mjs && node script/build-og.mjs && node script/build-og-brand.mjs",
 		"og:adopters": "node script/build-og-adopters.mjs",
-		"og:home": "node script/build-og-home.mjs"
+		"og:home": "node script/build-og-home.mjs",
+		"og:pages": "node script/build-og-pages.mjs"
 	},
 	"devDependencies": {
 		"@codemirror/commands": "^6.11.1",

@@ -314,15 +314,14 @@
 </script>
 
 <MetaTags
-	title="Config Generator"
+	title="Config Generator — Vale"
 	description="Pick what you write, technical, creative, or scientific, and get a ready-to-use Vale configuration for it."
-	canonical="https://vale.sh"
+	canonical="https://vale.sh/generator"
 	openGraph={{
-		url: 'https://vale.sh',
-		title: 'Vale: Your style, our editor',
+		url: 'https://vale.sh/generator',
+		title: 'Config Generator',
 		description:
-			'Vale is a command-line tool that brings code-like linting to prose. Vale is cross-platform (Windows, macOS, and Linux), written in Go, and available on GitHub.',
-		images: [{ url: '/media/mac.png', width: 800, height: 600, alt: 'Example Vale output' }]
+			'Pick what you write, technical, creative, or scientific, and get a ready-to-use Vale configuration for it.'
 	}}
 />
 

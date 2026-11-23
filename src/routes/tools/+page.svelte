@@ -151,7 +151,20 @@ We rewrote ours last quarter. Sign-ups that finished setup went from 41% to 63%,
 	{title}
 	{description}
 	canonical={url}
-	openGraph={{ url, title, description, type: 'website' }}
+	openGraph={{
+		url,
+		title,
+		description,
+		type: 'website',
+		images: [
+			{
+				url: 'https://vale.sh/media/og/tools.png',
+				width: 1200,
+				height: 630,
+				alt: 'Tools for people who write'
+			}
+		]
+	}}
 	twitter={{ cardType: 'summary_large_image' }}
 />
 
