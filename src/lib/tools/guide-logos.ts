@@ -24,5 +24,11 @@ export const guideLogos: Record<
 	canonical: { slug: 'canonical' },
 	apify: { avatar: '/users/avatars/apify.png' },
 	'spectro-cloud': { avatar: '/users/avatars/spectrocloud.png' },
+	digitalocean: { slug: 'digitalocean' },
+	// SUSE's own green is too dark to see on a dark page.
+	suse: { slug: 'suse', mono: true },
+	'amd-rocm': { slug: 'amd' },
+	foundries: { avatar: '/users/avatars/foundriesio.png' },
+	'albert-heijn': { avatar: '/users/avatars/albert-heijn-technology.png' },
 	'gov-uk': { letters: 'UK' }
 };
