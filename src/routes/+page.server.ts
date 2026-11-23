@@ -1,6 +1,7 @@
 import { highlightAll } from '$lib/server/highlight';
 import { getStats } from '$lib/server/stats';
 import { adopterBand } from '$lib/server/adopter-band';
+import { guides } from '$lib/server/guides';
 import type { PageServerLoad } from './$types';
 
 // The page is prerendered, so this runs once per build.
@@ -28,5 +29,5 @@ swap:
 			commands: { code: '$ vale sync\n$ vale docs/', lang: 'console' }
 		})
 	]);
-	return { stats, snippets, band: adopterBand() };
+	return { stats, snippets, band: adopterBand(), styleGuides: guides.length };
 };

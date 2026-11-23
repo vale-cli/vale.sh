@@ -9,11 +9,14 @@
 
 	let {
 		stats,
-		adopters
+		adopters,
+		styleGuides
 	}: {
 		stats: Stats;
 		/** How many teams the adopter list holds. */
 		adopters: number;
+		/** How many guides the style guide explorer compares. */
+		styleGuides: number;
 	} = $props();
 
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
@@ -141,6 +144,11 @@
 					</li>
 				{/each}
 			</ul>
+			<p class="guides-explorer">
+				Comparing house styles? <a href="/guides"
+					>Browse {styleGuides} open style guides side by side →</a
+				>
+			</p>
 		</nav>
 	</div>
 </section>
@@ -403,6 +411,27 @@
 		font-size: 12px;
 		font-weight: 500;
 		color: hsl(var(--primary));
+	}
+	.guides-explorer {
+		margin-top: 16px;
+		font:
+			12px/1.8 ui-monospace,
+			monospace;
+		color: hsl(var(--muted-foreground));
+	}
+	.guides .guides-explorer a {
+		display: inline;
+		padding: 0;
+		border: 0;
+		background: none;
+		box-shadow: none;
+		color: hsl(var(--foreground));
+		text-decoration: underline;
+		text-underline-offset: 3px;
+		text-decoration-color: hsl(var(--border));
+	}
+	.guides .guides-explorer a:hover {
+		text-decoration-color: currentColor;
 	}
 	.guides a:hover .guide-more {
 		text-decoration: underline;

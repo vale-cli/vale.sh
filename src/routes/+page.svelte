@@ -57,7 +57,7 @@
 	lands there. The blog is in the header.
 -->
 <main>
-	<Overview stats={data.stats} adopters={data.band.total} />
+	<Overview stats={data.stats} adopters={data.band.total} styleGuides={data.styleGuides} />
 	<Promo />
 	<SponsorSpotlight editorial />
 	<AdopterConfigs band={data.band} editorial />
