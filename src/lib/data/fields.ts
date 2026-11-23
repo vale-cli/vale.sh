@@ -5,6 +5,7 @@ import GitCommitHorizontal from 'lucide-svelte/icons/git-commit-horizontal';
 import Bot from 'lucide-svelte/icons/bot';
 import Landmark from 'lucide-svelte/icons/landmark';
 import AppWindow from 'lucide-svelte/icons/app-window';
+import GitFork from 'lucide-svelte/icons/git-fork';
 
 /**
  * The kinds of writing Vale is set up for: one card each on the home page,
@@ -441,6 +442,61 @@ BasedOnStyles = Vale, Comments`
 			{ label: 'Views', href: docs('topics/views') },
 			{ label: 'Code', href: docs('formats/code') },
 			{ label: 'TextFSM', href: docs('guides/textfsm') }
+		]
+	},
+	{
+		id: 'opensource',
+		label: 'Open source',
+		icon: GitFork,
+		title: 'Vale for open source',
+		summary: 'The README, the contributing guide, and the log a project keeps.',
+		lede: 'An open-source project is read first through a handful of files: a README that says what it is and how to install it, a contributing guide that tells a newcomer where to start, a changelog, and the commit log. Each has a published convention. The OpenSource package checks the README against Standard Readme and the contributing guide against The Good Docs Project and GitHub’s Open Source Guides, with a welcoming-language style on both; Changelog and Commits cover the rest.',
+		packages: ['OpenSource', 'Commits', 'Changelog', 'Std', 'alex', 'Readability'],
+		config: {
+			note: 'Each file gets the style written for it, chosen by its name, and the README and the contributing guide share the welcoming-language rules. Add a [COMMIT_EDITMSG] section with Commits to check the log in a commit-msg hook.',
+			code: `StylesPath = styles
+MinAlertLevel = suggestion
+Packages = OpenSource, Commits, Changelog
+
+[**/README.md]
+BasedOnStyles = Vale, Readme, Welcoming
+
+[**/CONTRIBUTING.md]
+BasedOnStyles = Vale, Contributing, Welcoming
+
+[CHANGELOG.md]
+BasedOnStyles = Changelog`
+		},
+		formats: [
+			{ label: 'Markdown', href: docs('formats/markdown'), note: 'README and CONTRIBUTING' },
+			{ label: 'Commit messages', href: docs('guides/commit-messages') },
+			{ label: 'reStructuredText', href: docs('formats/restructuredtext'), note: 'And Sphinx' },
+			{ label: 'AsciiDoc', href: docs('formats/asciidoc') }
+		],
+		posts: ['case-study-pnpm', 'commits', 'std'],
+		adopters: [
+			'Fedora Linux',
+			'Qt',
+			'InnerSource Commons',
+			'Write the Docs',
+			'pyOpenSci',
+			'Matter',
+			'Stakater',
+			'Engineering Handbook',
+			'Open Energy Transition',
+			'PostHog'
+		],
+		adoptersNote:
+			'Projects and communities that run Vale on what newcomers read: contributor docs and toolchains, handbooks, and the style packages several of them publish for anyone to install.',
+		integrations: ['GitHub Actions', 'pre-commit', 'VS Code', 'Language server', 'Browser'],
+		integrationsNote:
+			'A pull request is where a contributor meets the project’s style, so CI is the gate and pre-commit catches it earlier. The browser extension checks an issue or a pull request description as it is written.',
+		skills: ['onboard', 'setup', 'commits', 'vocab'],
+		docs: [
+			{ label: 'Packages', href: docs('keys/packages') },
+			{ label: 'Globbing', href: docs('guides/globbing'), note: 'Sections by file name' },
+			{ label: 'Commits', href: docs('guides/commit-messages') },
+			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Your project’s names' }
 		]
 	},
 	{

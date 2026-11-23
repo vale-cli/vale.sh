@@ -10785,6 +10785,228 @@
     "valeVersion": ""
   },
   {
+    "name": "OpenSource",
+    "description": "README and CONTRIBUTING files: Standard Readme's sections and order, what a contributing guide owes a newcomer, and welcoming language, from The Good Docs Project and the Open Source Guides.",
+    "homepage": "https://github.com/jdkato/opensource",
+    "url": "https://github.com/jdkato/opensource/releases/latest/download/OpenSource.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style",
+      "docs",
+      "inclusive-language"
+    ],
+    "host": "github",
+    "site": "jdkato/opensource",
+    "repo": "jdkato/opensource",
+    "rules": [
+      {
+        "style": "Contributing",
+        "name": "CodeOfConduct",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "No link to a code of conduct. Link to the one the project follows.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/contributing-guide/guide_contributing-guide.md#about-the-ground-rules-section"
+      },
+      {
+        "style": "Contributing",
+        "name": "FirstStep",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Nothing here tells a newcomer where to start. Point to good first issues, or name a first step.",
+        "link": "https://opensource.guide/building-community/#make-people-feel-welcome"
+      },
+      {
+        "style": "Contributing",
+        "name": "Imperative",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "list & doc(ol)",
+        "message": "'%s' softens the step. Start it with the verb.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/readme/guide_readme.md#about-the-instructions-for-using-project-section"
+      },
+      {
+        "style": "Contributing",
+        "name": "PullRequest",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Nothing here says how to submit a change. Describe how to open a pull request and how it's reviewed.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/contributing-guide/guide_contributing-guide.md#about-the-contribution-workflow-section"
+      },
+      {
+        "style": "Contributing",
+        "name": "Setup",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Nothing here says how to set up the project. Add the steps to get the code and its dependencies.",
+        "link": "https://opensource.guide/starting-a-project/#writing-your-contributing-guidelines"
+      },
+      {
+        "style": "Contributing",
+        "name": "Steps",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "doc(section:has(> :is(h1, h2, h3, h4, h5, h6):is(:contains(\"Setting up\"), :contains(\"Set up\"), :contains(\"Setup\"), :contains(\"Environment\"), :contains(\"Getting started\"), :contains(\"Local development\"), :contains(\"Building\"))):not(:has(ol)):not(:has(a)))",
+        "message": "The '%s' section has no numbered steps. Write the setup as a numbered list, or link to the guide that has it.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/contributing-guide/guide_contributing-guide.md#about-the-environment-setup-section"
+      },
+      {
+        "style": "Contributing",
+        "name": "Tests",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Nothing here says how to run the tests. Give the command.",
+        "link": "https://opensource.guide/starting-a-project/#writing-your-contributing-guidelines"
+      },
+      {
+        "style": "Readme",
+        "name": "Contributing",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "No Contributing section. Say where to ask questions and whether pull requests are welcome.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#contributing"
+      },
+      {
+        "style": "Readme",
+        "name": "Description",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "doc(h1 + section, h1 + p:has(img) + section)",
+        "message": "No short description. Add one line about the project above '%s'.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#short-description"
+      },
+      {
+        "style": "Readme",
+        "name": "DescriptionLength",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text & doc(h1 + p:not(:has(img)), h1 + p:has(img) + p)",
+        "message": "The description's first sentence runs to 120 characters or more. Open with one short line that says what the project is.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#short-description"
+      },
+      {
+        "style": "Readme",
+        "name": "Install",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "No Install section. Add one that shows how to install the project in a code block.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#install"
+      },
+      {
+        "style": "Readme",
+        "name": "InstallCode",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "doc(section:has(> :is(h1, h2, h3, h4, h5, h6):is(:contains(\"Install\"), :contains(\"Getting started\"), :contains(\"Quick start\"), :contains(\"Quickstart\"))):not(:has(pre)):not(:has(a)))",
+        "message": "The '%s' section has no code block. Show the install command in one.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#install"
+      },
+      {
+        "style": "Readme",
+        "name": "License",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "No License section. Name the license and who holds it.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#license"
+      },
+      {
+        "style": "Readme",
+        "name": "LicenseLast",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "doc(section:has(> :is(h1, h2, h3, h4, h5, h6):is(:contains(\"Licen\"), :contains(\"Terms of use\"))) + section)",
+        "message": "'%s' follows the License section. Make License the last section.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#license"
+      },
+      {
+        "style": "Readme",
+        "name": "LongSection",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "doc(section:has(> :is(h1, h2, h3, h4, h5, h6):is(:contains(\"Install\"), :contains(\"Usage\"), :contains(\"Getting started\"), :contains(\"Quick start\"), :contains(\"Quickstart\"), :contains(\"Example\"))))",
+        "message": "This section runs %s words. Keep the common case here, and link to the docs for the rest.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/readme/guide_readme.md#readme-best-practices"
+      },
+      {
+        "style": "Readme",
+        "name": "OptionTable",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "%d table rows list command-line options. Show the common ones in use, and link to the full list.",
+        "link": "https://gitlab.com/tgdp/templates/-/blob/main/readme/guide_readme.md#readme-best-practices"
+      },
+      {
+        "style": "Readme",
+        "name": "Order",
+        "extends": "script",
+        "level": "warning",
+        "scope": "raw",
+        "message": "'%s' is out of Standard Readme order.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#specification"
+      },
+      {
+        "style": "Readme",
+        "name": "Title",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "doc(body > section:first-of-type > :is(h2, h3, h4, h5, h6):first-child)",
+        "message": "'%s' is the first heading. Open with a level-1 heading that names the project.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#title"
+      },
+      {
+        "style": "Readme",
+        "name": "Usage",
+        "extends": "occurrence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "No Usage section. Add one that shows the project in use in a code block.",
+        "link": "https://github.com/RichardLitt/standard-readme/blob/main/spec.md#usage"
+      },
+      {
+        "style": "Welcoming",
+        "name": "Blame",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' blames the reader. Say what to do instead.",
+        "link": "https://opensource.guide/building-community/#make-people-feel-welcome"
+      },
+      {
+        "style": "Welcoming",
+        "name": "Dismissive",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' can make a newcomer who is stuck feel shut out. Drop it.",
+        "link": "https://opensource.guide/starting-a-project/#how-you-write-and-code-affects-your-brand-too"
+      },
+      {
+        "style": "Welcoming",
+        "name": "Gendered",
+        "extends": "Std.Usage.GenderedTerms",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "",
+        "link": "https://opensource.guide/starting-a-project/#how-you-write-and-code-affects-your-brand-too"
+      }
+    ],
+    "assets": [
+      {
+        "kind": "script",
+        "name": "ReadmeSectionOrder.tengo"
+      }
+    ],
+    "valeVersion": ">=3.23.0"
+  },
+  {
     "name": "PlainLanguage",
     "description": "The US Federal Plain Language Guidelines: simple words, hidden verbs, jargon, \"must\" over \"shall\", double negatives, passive voice, and sentence length.",
     "homepage": "https://github.com/vale-cli/PlainLanguage",
