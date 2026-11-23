@@ -66,7 +66,19 @@ export const fields: Field[] = [
 		title: 'Vale for technical writing',
 		summary: 'Docs, references, and the style guide your team already follows.',
 		lede: 'Technical writing is where Vale started: a style guide that lives in a wiki, turned into rules that run on every pull request. Start from a published guide like Microsoft’s, Google’s, or Red Hat’s, add the terms your product owns, and Vale reads Markdown, AsciiDoc, DITA, reStructuredText, and MDX through real parsers, so code blocks and URLs are never flagged.',
-		packages: ['Microsoft', 'Google', 'RedHat', 'Elastic', 'Diataxis', 'A11y', 'TechTerms', 'Std'],
+		packages: [
+			'Microsoft',
+			'Google',
+			'RedHat',
+			'Elastic',
+			'Salesforce',
+			'Diataxis',
+			'GlobalEnglish',
+			'APIDocs',
+			'A11y',
+			'TechTerms',
+			'Std'
+		],
 		config: {
 			note: 'A published style for the voice, plus Diátaxis to check that each page does the job its folder claims.',
 			code: `StylesPath = styles
@@ -153,6 +165,7 @@ BasedOnStyles = Vale, Microsoft, HowTo`
 					'The GOV.UK Technical Style guide as Vale rules: words to avoid, words to avoid unless a condition holds, acronyms defined on first use, and common misspellings. Published by the Government Digital Service.',
 				href: 'https://github.com/alphagov/tech-docs-linter'
 			},
+			'PlainLanguage',
 			'Readability',
 			'A11y',
 			'alex',
@@ -328,7 +341,7 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 		title: 'Vale for code and data',
 		summary: 'The prose inside files that aren’t prose: comments, API descriptions, and the log.',
 		lede: 'A repository has prose all through it that no docs linter reads: doc comments, the descriptions in an OpenAPI spec, a commit’s subject and body. Vale finds it. Tree-sitter grammars lift comments out of source code, a View pulls named fields out of JSON and YAML, and a TextFSM template splits a commit message into its parts, so a rule reaches a commit subject the way it reaches a heading.',
-		packages: ['Commits', 'Comments', 'TechTerms', 'Std'],
+		packages: ['Commits', 'Comments', 'APIDocs', 'Changelog', 'TechTerms', 'Std'],
 		config: {
 			note: 'Commit messages against Conventional Commits, and doc comments against their language’s conventions. Grammars has vale sync fetch the parsers that find the comments. For the descriptions in an OpenAPI spec, add the View from the Views docs.',
 			code: `StylesPath = styles
@@ -342,7 +355,7 @@ BasedOnStyles = Commits, Conventional
 BasedOnStyles = Vale, Comments`
 		},
 		formats: [
-			{ label: 'Source code', href: docs('formats/code'), note: 'Comments in nineteen languages' },
+			{ label: 'Source code', href: docs('formats/code'), note: 'Comments in 27 languages' },
 			{ label: 'Views', href: docs('topics/views'), note: 'JSON, YAML, TOML, and plain text' },
 			{ label: 'Commit messages', href: docs('guides/commit-messages') },
 			{ label: 'TextFSM', href: docs('guides/textfsm') },

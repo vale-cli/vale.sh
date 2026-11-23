@@ -55,8 +55,11 @@ export const kindInfo: Record<Asset['kind'], { dir: string; plural: string; blur
 	}
 };
 
-/** The file name an asset is saved under. */
-export const fileName = (a: Asset) => a.path.split('/').pop() ?? a.name;
+/** The file name an asset is saved under; a vocabulary keeps its folder. */
+export const fileName = (a: Asset) =>
+	a.kind === 'vocabulary'
+		? a.path.split('/').slice(-2).join('/')
+		: (a.path.split('/').pop() ?? a.name);
 
 /** A version floor worth showing: `>=1.0.0` is the legacy “any version”. */
 export const requires = (a: { requires?: string }) =>

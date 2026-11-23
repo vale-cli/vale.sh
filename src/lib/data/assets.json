@@ -1,5 +1,27 @@
 [
   {
+    "name": "SentenceCase",
+    "kind": "action",
+    "description": "The heading rewritten in sentence case, keeping words like API and JavaScript as written, for a rule's suggest action.",
+    "path": "assets/actions/SentenceCase.tengo",
+    "tags": [
+      "headings"
+    ],
+    "content": "// The match in sentence case: the first word capitalized and the rest\n// lowercased. A word with a capital past its first letter (\"JavaScript\",\n// \"API\") is kept as written, and so is \"I\". The first word after a colon is\n// capitalized too.\ntext := import(\"text\")\n\nwords := text.split(match, \" \")\nout := []\nfirst := true\nfor w in words {\n    if w == \"\" {\n        out = append(out, w)\n        continue\n    }\n    if first {\n        found := text.re_find(`^(\\PL*)(\\pL)(.*)$`, w)\n        if found != undefined {\n            w = found[0][1].text + text.to_upper(found[0][2].text) + found[0][3].text\n        }\n        first = false\n    } else if !text.re_match(`^\\PL*\\pL.*\\p{Lu}|^\\PL*I(\\PL.*)?$`, w) {\n        w = text.to_lower(w)\n    }\n    if text.has_suffix(w, \":\") {\n        first = true\n    }\n    out = append(out, w)\n}\n\nsuggestions := [text.join(out, \" \")]\n",
+    "usage": "action:\n  name: suggest\n  params:\n    - SentenceCase.tengo"
+  },
+  {
+    "name": "TitleCase",
+    "kind": "action",
+    "description": "The heading rewritten in title case, with short articles, conjunctions, and prepositions left lowercase, for a rule's suggest action.",
+    "path": "assets/actions/TitleCase.tengo",
+    "tags": [
+      "headings"
+    ],
+    "content": "// The match in title case: every word capitalized except articles, short\n// conjunctions, and short prepositions in the middle. A word with a capital\n// past its first letter (\"JavaScript\", \"API\") is kept as written.\ntext := import(\"text\")\n\nsmall := {\n    \"a\": true, \"an\": true, \"and\": true, \"as\": true, \"at\": true, \"but\": true, \"by\": true,\n    \"for\": true, \"if\": true, \"in\": true, \"nor\": true, \"of\": true, \"on\": true, \"or\": true,\n    \"per\": true, \"so\": true, \"the\": true, \"to\": true, \"up\": true, \"via\": true, \"vs\": true,\n    \"yet\": true, \"from\": true, \"into\": true, \"onto\": true, \"with\": true\n}\n\n// The first letter of a word, after any leading punctuation, in upper case.\nupper := func(w) {\n    found := text.re_find(`^(\\PL*)(\\pL)(.*)$`, w)\n    if found == undefined {\n        return w\n    }\n    return found[0][1].text + text.to_upper(found[0][2].text) + found[0][3].text\n}\n\nwords := text.split(match, \" \")\nlast := len(words) - 1\nfor last > 0 && words[last] == \"\" {\n    last--\n}\n\nout := []\nfor i, w in words {\n    if w == \"\" || text.re_match(`^\\PL*\\pL.*\\p{Lu}`, w) {\n        out = append(out, w)\n        continue\n    }\n    bare := text.to_lower(text.re_replace(`^\\PL+|\\PL+$`, w, \"\"))\n    if i > 0 && i < last && small[bare] && !text.has_suffix(out[i - 1], \":\") {\n        out = append(out, text.to_lower(w))\n        continue\n    }\n    // Each part of a hyphenated word: \"Built-In\".\n    parts := []\n    for p in text.split(w, \"-\") {\n        parts = append(parts, upper(p))\n    }\n    out = append(out, text.join(parts, \"-\"))\n}\n\nsuggestions := [text.join(out, \" \")]\n",
+    "usage": "action:\n  name: suggest\n  params:\n    - TitleCase.tengo"
+  },
+  {
     "name": "errors",
     "kind": "filter",
     "description": "Only error-level rules, for a hook or a CI step that should block on nothing else.",
@@ -20,6 +42,50 @@
     "usage": "vale --filter=no-spelling.expr ."
   },
   {
+    "name": "no-suggestions",
+    "kind": "filter",
+    "description": "Errors and warnings only, for a CI step that should report what needs fixing and leave the rest to the editor.",
+    "path": "assets/filters/no-suggestions.expr",
+    "tags": [
+      "ci"
+    ],
+    "content": ".Level in [\"error\", \"warning\"]\n",
+    "usage": "vale --filter=no-suggestions.expr ."
+  },
+  {
+    "name": "spelling",
+    "kind": "filter",
+    "description": "Only the spell checkers, for building a vocabulary from what a first run flags.",
+    "path": "assets/filters/spelling.expr",
+    "tags": [],
+    "content": ".Extends == \"spelling\"\n",
+    "usage": "vale --filter=spelling.expr ."
+  },
+  {
+    "name": "HeadingNumbers",
+    "kind": "script",
+    "description": "Numbered headings, such as 1. and 1.2, that skip or repeat a number, for a script rule scoped to raw Markdown.",
+    "path": "assets/scripts/HeadingNumbers.tengo",
+    "tags": [
+      "headings",
+      "markdown"
+    ],
+    "content": "// Numbered headings (\"1.\", \"1.2\") that skip or repeat a number. Use with\n// `scope: raw` on Markdown, since the check needs every heading at once.\ntext := import(\"text\")\n\nmatches := []\n\nprev := []     // the last number seen, as a list of ints\nfenced := \"\"   // the open code fence, if any\noffset := 0\n\nfor line in text.split(scope, \"\\n\") {\n    start := offset\n    offset += len(line) + 1\n\n    fence := text.re_find(`^ {0,3}(` + \"```\" + `|~~~)`, line)\n    if fenced != \"\" {\n        if fence != undefined && fence[0][1].text == fenced {\n            fenced = \"\"\n        }\n        continue\n    } else if fence != undefined {\n        fenced = fence[0][1].text\n        continue\n    }\n\n    found := text.re_find(`^ {0,3}#{1,6}[ \\t]+(\\d+(?:\\.\\d+)*)(\\.?)(?:[ \\t]|$)`, line)\n    if found == undefined {\n        continue\n    }\n\n    // \"1.\" or \"1.2\", but not a bare \"2024\".\n    written := found[0][1]\n    if !text.contains(written.text, \".\") && found[0][2].text == \"\" {\n        continue\n    }\n\n    parts := []\n    for p in text.split(written.text, \".\") {\n        parts = append(parts, int(p))\n    }\n\n    want := []\n    k := len(parts)\n    if k <= len(prev) {\n        for i := 0; i < k - 1; i++ {\n            want = append(want, prev[i])\n        }\n        want = append(want, prev[k - 1] + 1)\n    } else {\n        // One level down; deeper than that skips a level.\n        want = append(copy(prev), 1)\n    }\n\n    // A document may count from zero.\n    if len(prev) == 0 && k == 1 && parts[0] == 0 {\n        want = [0]\n    }\n\n    labels := []\n    for n in want {\n        labels = append(labels, string(n))\n    }\n    expected := text.join(labels, \".\")\n    if written.text != expected {\n        matches = append(matches, {\n            begin: start + written.begin,\n            end: start + written.end,\n            message: \"Heading number '%s' is out of sequence; expected '\" + expected + \"'.\"\n        })\n    }\n    prev = parts\n}\n",
+    "usage": "extends: script\nmessage: \"%s\"\nscript: HeadingNumbers.tengo"
+  },
+  {
+    "name": "ListPunctuation",
+    "kind": "script",
+    "description": "A list where some items end with a period and others don't, for a script rule scoped to raw Markdown.",
+    "path": "assets/scripts/ListPunctuation.tengo",
+    "tags": [
+      "lists",
+      "markdown"
+    ],
+    "content": "// A list whose items mix ending punctuation: some end with a period and some\n// don't. Use with `scope: raw` on Markdown. The items in the minority are\n// flagged; an item ending with a colon introduces what follows and is skipped.\ntext := import(\"text\")\n\nmatches := []\n\nopen := []     // the lists being read, innermost last\nfenced := \"\"   // the open code fence, if any\noffset := 0\n\n// Flag the items that disagree with the rest of their list.\ncheck := func(items) {\n    ended := []\n    bare := []\n    for item in items {\n        if text.has_suffix(item.text, \":\") {\n            continue\n        } else if text.re_match(`[.!?][\"')\\]*_]*$`, item.text) {\n            ended = append(ended, item)\n        } else {\n            bare = append(bare, item)\n        }\n    }\n    if len(ended) == 0 || len(bare) == 0 {\n        return\n    }\n    flag := bare\n    if len(bare) > len(ended) {\n        flag = ended\n    }\n    for item in flag {\n        matches = append(matches, {begin: item.begin, end: item.end})\n    }\n}\n\ncloseTo := func(indent) {\n    for len(open) > 0 && open[len(open) - 1].indent > indent {\n        check(open[len(open) - 1].items)\n        open = open[:len(open) - 1]\n    }\n}\n\nfor line in text.split(scope, \"\\n\") {\n    start := offset\n    offset += len(line) + 1\n    line = text.trim_right(line, \"\\r\")\n\n    fence := text.re_find(`^([ \\t]*)(` + \"```\" + `|~~~)`, line)\n    if fenced != \"\" {\n        if fence != undefined && fence[0][2].text == fenced {\n            fenced = \"\"\n        }\n        continue\n    } else if fence != undefined {\n        fenced = fence[0][2].text\n        if fence[0][1].text == \"\" {\n            closeTo(-1)\n        }\n        continue\n    }\n\n    if text.trim_space(line) == \"\" {\n        continue\n    }\n\n    // A thematic break, \"* * *\", is not an item.\n    if text.re_match(`^ {0,3}([-*_])([ \\t]*([-*_])){2,}[ \\t]*$`, line) {\n        closeTo(-1)\n        continue\n    }\n\n    item := text.re_find(`^([ \\t]*)(?:[-*+]|\\d{1,9}[.)])[ \\t]+(.+?)[ \\t]*$`, line)\n    if item != undefined {\n        indent := len(item[0][1].text)\n        closeTo(indent)\n        entry := {\n            text: item[0][2].text,\n            begin: start + item[0][2].begin,\n            end: start + item[0][2].end\n        }\n        if len(open) > 0 && open[len(open) - 1].indent == indent {\n            last := open[len(open) - 1]\n            last.items = append(last.items, entry)\n        } else {\n            open = append(open, {indent: indent, items: [entry]})\n        }\n        continue\n    }\n\n    lead := len(text.re_find(`^[ \\t]*`, line)[0][0].text)\n    if len(open) == 0 || lead == 0 {\n        // A paragraph, heading, or table ends every open list.\n        closeTo(-1)\n        continue\n    }\n\n    // A wrapped line: the item now ends where this line does.\n    body := text.trim_space(line)\n    last := open[len(open) - 1].items[len(open[len(open) - 1].items) - 1]\n    last.text = body\n    last.begin = start + lead\n    last.end = start + len(text.trim_right(line, \" \\t\"))\n}\ncloseTo(-1)\n",
+    "usage": "extends: script\nmessage: \"%s\"\nscript: ListPunctuation.tengo"
+  },
+  {
     "name": "github",
     "kind": "template",
     "description": "GitHub Actions annotations, one per alert, so each shows on its line in the pull request.",
@@ -30,6 +96,18 @@
     ],
     "content": "{{- /* GitHub Actions annotations: one workflow command per alert, so each\n       shows up on the changed line in the pull request. Suggestions become\n       notices, which GitHub shows without failing the check. */ -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts -}}\n{{- $level := \"notice\" -}}\n{{- if eq .Severity \"error\" -}}{{- $level = \"error\" -}}\n{{- else if eq .Severity \"warning\" -}}{{- $level = \"warning\" -}}\n{{- end -}}\n::{{ $level }} file={{ $path }},line={{ .Line }},col={{ index .Span 0 }},endColumn={{ index .Span 1 }},title={{ .Check }}::{{ .Message }}\n{{ end -}}\n{{- end -}}\n",
     "usage": "vale --output=github.tmpl ."
+  },
+  {
+    "name": "gitlab",
+    "kind": "template",
+    "description": "A GitLab Code Quality report, so alerts show in the merge request widget and the changes view.",
+    "path": "assets/templates/gitlab.tmpl",
+    "tags": [
+      "ci",
+      "gitlab"
+    ],
+    "content": "{{- /* GitLab Code Quality: a JSON array of issues, one per alert. The\n       fingerprint hashes the path, position, rule, and match, so an alert\n       keeps it from run to run until its text moves, and two matches on one\n       line stay two issues. */ -}}\n[\n{{- $first := true -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts -}}\n{{- $severity := \"info\" -}}\n{{- if eq .Severity \"error\" -}}{{- $severity = \"major\" -}}\n{{- else if eq .Severity \"warning\" -}}{{- $severity = \"minor\" -}}\n{{- end -}}\n{{- if not $first }},{{ end }}\n  {{ dict \"description\" .Message \"check_name\" .Check \"fingerprint\" (printf \"%s:%d:%d:%s:%s\" $path .Line (index .Span 0) .Check .Match | sha256sum) \"severity\" $severity \"location\" (dict \"path\" $path \"lines\" (dict \"begin\" .Line)) | toJson }}\n{{- $first = false -}}\n{{- end -}}\n{{- end }}\n]\n",
+    "usage": "vale --output=gitlab.tmpl ."
   },
   {
     "name": "jsonl",
@@ -44,6 +122,41 @@
     "usage": "vale --output=jsonl.tmpl ."
   },
   {
+    "name": "junit",
+    "kind": "template",
+    "description": "JUnit XML, a test case per alert, for a CI system that shows test reports but nothing else.",
+    "path": "assets/templates/junit.tmpl",
+    "tags": [
+      "ci"
+    ],
+    "content": "{{- /* JUnit XML: a test suite per file and a test case per alert. Errors and\n       warnings are failures; suggestions pass, so they are listed but never\n       fail the build. */ -}}\n{{- $tests := 0 -}}{{- $failures := 0 -}}\n{{- range .Files -}}\n{{- range .Alerts -}}\n{{- $tests = add1 $tests -}}\n{{- if ne .Severity \"suggestion\" -}}{{- $failures = add1 $failures -}}{{- end -}}\n{{- end -}}\n{{- end -}}\n<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<testsuites name=\"Vale\" tests=\"{{ $tests }}\" failures=\"{{ $failures }}\">\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- $n := 0 -}}\n{{- range .Alerts -}}{{- if ne .Severity \"suggestion\" -}}{{- $n = add1 $n -}}{{- end -}}{{- end }}\n  <testsuite name=\"{{ $path | html }}\" tests=\"{{ len .Alerts }}\" failures=\"{{ $n }}\">\n{{- range .Alerts }}\n    <testcase name=\"{{ .Check | html }}\" classname=\"{{ $path | html }}:{{ .Line }}:{{ index .Span 0 }}\">\n{{- if ne .Severity \"suggestion\" }}\n      <failure type=\"{{ .Severity }}\" message=\"{{ .Message | html }}\">{{ $path | html }}:{{ .Line }}:{{ index .Span 0 }}: {{ .Message | html }}</failure>\n    </testcase>\n{{- else }}</testcase>\n{{- end -}}\n{{- end }}\n  </testsuite>\n{{- end }}\n</testsuites>\n",
+    "usage": "vale --output=junit.tmpl ."
+  },
+  {
+    "name": "rdjsonl",
+    "kind": "template",
+    "description": "reviewdog's rdjsonl, one diagnostic per line, for reviewdog to post as review comments.",
+    "path": "assets/templates/rdjsonl.tmpl",
+    "tags": [
+      "ci",
+      "reviewdog"
+    ],
+    "content": "{{- /* reviewdog rdjsonl: one diagnostic per line, for `reviewdog -f=rdjsonl`.\n       The end column is one past the span, since reviewdog's range is\n       exclusive. reviewdog counts columns in bytes and Vale in characters, so\n       they differ after a line's first multi-byte character. */ -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts -}}\n{{- $severity := \"INFO\" -}}\n{{- if eq .Severity \"error\" -}}{{- $severity = \"ERROR\" -}}\n{{- else if eq .Severity \"warning\" -}}{{- $severity = \"WARNING\" -}}\n{{- end -}}\n{\"message\": \"{{ .Message | jsonEscape }}\", \"location\": {\"path\": \"{{ $path | jsonEscape }}\", \"range\": {\"start\": {\"line\": {{ .Line }}, \"column\": {{ index .Span 0 }}}, \"end\": {\"line\": {{ .Line }}, \"column\": {{ add (index .Span 1) 1 }}}}}, \"severity\": \"{{ $severity }}\", \"source\": {\"name\": \"vale\"}, \"code\": {\"value\": \"{{ .Check | jsonEscape }}\"{{ if .Link }}, \"url\": \"{{ .Link | jsonEscape }}\"{{ end }}}}\n{{ end -}}\n{{- end -}}\n",
+    "usage": "vale --output=rdjsonl.tmpl ."
+  },
+  {
+    "name": "sarif",
+    "kind": "template",
+    "description": "SARIF 2.1.0, for code scanning, where each alert keeps a history and can be dismissed with a reason.",
+    "path": "assets/templates/sarif.tmpl",
+    "tags": [
+      "ci",
+      "github"
+    ],
+    "content": "{{- /* SARIF 2.1.0, for GitHub code scanning and other tools that keep a\n       history of findings. Each rule that fired is described once. */ -}}\n{{- $rules := dict -}}\n{{- range .Files -}}\n{{- range .Alerts -}}\n{{- $_ := set $rules .Check (dict \"link\" .Link \"text\" .Description) -}}\n{{- end -}}\n{{- end -}}\n{\n  \"$schema\": \"https://json.schemastore.org/sarif-2.1.0.json\",\n  \"version\": \"2.1.0\",\n  \"runs\": [\n    {\n      \"tool\": {\n        \"driver\": {\n          \"name\": \"Vale\",\n          \"informationUri\": \"https://vale.sh\",\n          \"rules\": [\n{{- $first := true -}}\n{{- range $id, $rule := $rules }}\n{{ if not $first }},{{ end }}            {\n              \"id\": \"{{ $id | jsonEscape }}\",\n              \"shortDescription\": {\"text\": \"{{ if $rule.text }}{{ $rule.text | jsonEscape }}{{ else }}{{ $id | jsonEscape }}{{ end }}\"}\n              {{- if $rule.link }},\n              \"helpUri\": \"{{ $rule.link | jsonEscape }}\"\n              {{- end }}\n            }\n{{- $first = false -}}\n{{- end }}\n          ]\n        }\n      },\n      \"results\": [\n{{- $first = true -}}\n{{- range .Files -}}\n{{- $path := .Path -}}\n{{- range .Alerts }}\n{{ if not $first }},{{ end }}        {\n          \"ruleId\": \"{{ .Check | jsonEscape }}\",\n          \"level\": \"{{ if eq .Severity \"error\" }}error{{ else if eq .Severity \"warning\" }}warning{{ else }}note{{ end }}\",\n          \"message\": {\"text\": \"{{ .Message | jsonEscape }}\"},\n          \"locations\": [\n            {\n              \"physicalLocation\": {\n                \"artifactLocation\": {\"uri\": \"{{ $path | jsonEscape }}\"},\n                \"region\": {\n                  \"startLine\": {{ .Line }},\n                  \"startColumn\": {{ index .Span 0 }},\n                  \"endColumn\": {{ add (index .Span 1) 1 }},\n                  \"snippet\": {\"text\": \"{{ .Match | jsonEscape }}\"}\n                }\n              }\n            }\n          ]\n        }\n{{- $first = false -}}\n{{- end -}}\n{{- end }}\n      ]\n    }\n  ]\n}\n",
+    "usage": "vale --output=sarif.tmpl ."
+  },
+  {
     "name": "summary",
     "kind": "template",
     "description": "A Markdown summary with a table per file and the totals, for a pull request comment or a job summary.",
@@ -54,6 +167,48 @@
     ],
     "content": "{{- /* A Markdown summary, for a pull request comment or a job summary:\n       a table per file, then the totals. */ -}}\n{{- $e := 0 -}}{{- $w := 0 -}}{{- $s := 0 -}}\n{{- range .Files -}}\n### `{{ .Path }}`\n\n| Line | Level | Rule | Message |\n| ---: | ----- | ---- | ------- |\n{{ range .Alerts -}}\n{{- if eq .Severity \"error\" -}}{{- $e = add1 $e -}}\n{{- else if eq .Severity \"warning\" -}}{{- $w = add1 $w -}}\n{{- else -}}{{- $s = add1 $s -}}{{- end -}}\n| {{ .Line }}:{{ index .Span 0 }} | {{ .Severity }} | `{{ .Check }}` | {{ .Message }} |\n{{ end }}\n{{ end -}}\n**{{ $e }} {{ $e | int | plural \"error\" \"errors\" }}, {{ $w }} {{ $w | int | plural \"warning\" \"warnings\" }}, {{ $s }} {{ $s | int | plural \"suggestion\" \"suggestions\" }}.**\n",
     "usage": "vale --output=summary.tmpl ."
+  },
+  {
+    "name": "AndroidStrings",
+    "kind": "view",
+    "description": "The text of each string and plural in an Android resource file, with names and untranslatable strings left alone.",
+    "path": "assets/views/AndroidStrings.yml",
+    "section": "res/values/strings.xml",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "i18n"
+    ],
+    "content": "# Android string resources: the text of each `<string>` and of each `<item>`\n# in a `<plurals>`, one element per line. Names, attributes, and strings\n# marked `translatable=\"false\"` are never linted.\n#\n#   [res/values/strings.xml]\n#   BasedOnStyles = Vale\n#   View = AndroidStrings\nengine: textfsm\ntemplate: |\n  Value String (.*?)\n  Value Plural (.*?)\n\n  Start\n    ^\\s*<string\\b[^>]*\\btranslatable=\"false\" -> Next\n    ^\\s*<string\\b[^>]*>${String}</string> -> Record\n    ^\\s*<plurals\\b -> Plurals\n\n  Plurals\n    ^\\s*</plurals> -> Start\n    ^\\s*<item\\b[^>]*>${Plural}</item> -> Record\nscopes:\n  - name: string\n    expr: String\n\n  - name: plural\n    expr: Plural\n",
+    "usage": "[res/values/strings.xml]\nBasedOnStyles = Vale\n\nView = AndroidStrings"
+  },
+  {
+    "name": "AppleStrings",
+    "kind": "view",
+    "description": "The values of an Apple .strings file, with the keys and comments left alone.",
+    "path": "assets/views/AppleStrings.yml",
+    "section": "*.strings",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "i18n"
+    ],
+    "content": "# An Apple `.strings` file: the value of each `\"key\" = \"value\";` line. The\n# keys and comments are never linted.\n#\n#   [*.strings]\n#   BasedOnStyles = Vale\n#   View = AppleStrings\nengine: textfsm\ntemplate: |\n  Value Message ((?:[^\"\\\\]|\\\\.)*)\n\n  Start\n    ^\\s*\"(?:[^\"\\\\]|\\\\.)*\"\\s*=\\s*\"${Message}\"\\s*; -> Record\nscopes:\n  - name: message\n    expr: Message\n",
+    "usage": "[*.strings]\nBasedOnStyles = Vale\n\nView = AppleStrings"
+  },
+  {
+    "name": "CRD",
+    "kind": "view",
+    "description": "Every description in a Kubernetes CustomResourceDefinition's schema, read as Markdown.",
+    "path": "assets/views/CRD.yml",
+    "section": "*.{yml,yaml}",
+    "requires": ">=3.14.0",
+    "tags": [
+      "dasel",
+      "api"
+    ],
+    "content": "# A Kubernetes CustomResourceDefinition: every `description` in each\n# version's `openAPIV3Schema`, read as Markdown.\n#\n#   [*.{yml,yaml}]\n#   BasedOnStyles = Vale\n#   View = CRD\nengine: dasel\nscopes:\n  - name: description\n    expr: 'search(has(\"openAPIV3Schema\")).map(openAPIV3Schema).search(has(\"description\")).map(description)'\n    type: md\n",
+    "usage": "[*.{yml,yaml}]\nBasedOnStyles = Vale\n\nView = CRD"
   },
   {
     "name": "Commit",
@@ -68,6 +223,62 @@
     ],
     "content": "# A commit message: a subject line, a blank line, a body, and trailers.\n#\n#   [COMMIT_EDITMSG]\n#   BasedOnStyles = Vale\n#   View = Commit\n#\n# Then, in a commit-msg hook: vale --path=COMMIT_EDITMSG < \"$1\"\nengine: textfsm\ntemplate: |\n  Value Subject (.+)\n  Value List Body (.*)\n  Value List Trailer ([A-Z][\\w-]+: .+)\n\n  Start\n    ^${Subject} -> Body\n\n  Body\n    ^${Trailer}\n    ^${Body}\nscopes:\n  - name: subject\n    expr: Subject\n\n  - name: body\n    expr: Body\n    type: md\n\n  - name: trailer\n    expr: Trailer\n",
     "usage": "[COMMIT_EDITMSG]\nBasedOnStyles = Vale\n\nView = Commit"
+  },
+  {
+    "name": "GraphQL",
+    "kind": "view",
+    "description": "The block and single-line descriptions in a GraphQL schema, read as Markdown.",
+    "path": "assets/views/GraphQL.yml",
+    "section": "*.{graphql,graphqls}",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "api"
+    ],
+    "content": "# A GraphQL schema: the descriptions before its types, fields, and\n# arguments, block (`\"\"\"`) or single-line (`\"`), read as Markdown.\n#\n#   [*.{graphql,graphqls}]\n#   BasedOnStyles = Vale\n#   View = GraphQL\nengine: textfsm\ntemplate: |\n  Value List Description (.*)\n\n  Start\n    ^\\s*\"\"\"${Description}\"\"\"\\s*$\n    ^\\s*\"\"\"\\s*$ -> Block\n    ^\\s*\"\"\"${Description}$ -> Block\n    ^\\s*\"${Description}\"\\s*$\n\n  Block\n    ^\\s*\"\"\"\\s*$ -> Start\n    ^\\s*${Description}\"\"\"\\s*$ -> Start\n    ^\\s*${Description}\nscopes:\n  - name: description\n    expr: Description\n    type: md\n",
+    "usage": "[*.{graphql,graphqls}]\nBasedOnStyles = Vale\n\nView = GraphQL"
+  },
+  {
+    "name": "I18nJSON",
+    "kind": "view",
+    "description": "Every string in an i18n JSON file, flat or nested, with the keys left alone.",
+    "path": "assets/views/I18nJSON.yml",
+    "section": "locales/en.json",
+    "requires": ">=3.14.0",
+    "tags": [
+      "dasel",
+      "i18n"
+    ],
+    "content": "# An i18n JSON file: every string value, at any depth, flat keys or nested.\n# The keys are never linted.\n#\n#   [locales/en.json]\n#   BasedOnStyles = Vale\n#   View = I18nJSON\nengine: dasel\nscopes:\n  - name: message\n    expr: search(true)\n",
+    "usage": "[locales/en.json]\nBasedOnStyles = Vale\n\nView = I18nJSON"
+  },
+  {
+    "name": "I18nYAML",
+    "kind": "view",
+    "description": "Every string in a Rails-style locale file, with the keys left alone.",
+    "path": "assets/views/I18nYAML.yml",
+    "section": "config/locales/en.yml",
+    "requires": ">=3.14.0",
+    "tags": [
+      "dasel",
+      "i18n"
+    ],
+    "content": "# A Rails-style locale file, `en:` at the root and nested keys under it:\n# every string value, at any depth. The keys are never linted.\n#\n#   [config/locales/en.yml]\n#   BasedOnStyles = Vale\n#   View = I18nYAML\nengine: dasel\nscopes:\n  - name: message\n    expr: search(true)\n",
+    "usage": "[config/locales/en.yml]\nBasedOnStyles = Vale\n\nView = I18nYAML"
+  },
+  {
+    "name": "JSONSchema",
+    "kind": "view",
+    "description": "Every title and description in a JSON Schema, written in JSON or YAML.",
+    "path": "assets/views/JSONSchema.yml",
+    "section": "*.schema.{json,yml,yaml}",
+    "requires": ">=3.14.0",
+    "tags": [
+      "dasel",
+      "api"
+    ],
+    "content": "# A JSON Schema, in JSON or YAML: every `title` and `description`, at any\n# depth. A property that happens to be named `title` is left alone.\n#\n#   [*.schema.{json,yml,yaml}]\n#   BasedOnStyles = Vale\n#   View = JSONSchema\nengine: dasel\nscopes:\n  - name: title\n    expr: '[$this].search(has(\"title\")).map(title)'\n\n  - name: description\n    expr: '[$this].search(has(\"description\")).map(description)'\n",
+    "usage": "[*.schema.{json,yml,yaml}]\nBasedOnStyles = Vale\n\nView = JSONSchema"
   },
   {
     "name": "OpenAPI",
@@ -122,5 +333,41 @@
     ],
     "content": "# A chat transcript with `user:` and `assistant:` turns. Only the model's\n# turns are exposed, so the prompts are never linted.\n#\n#   [*.txt]\n#   BasedOnStyles = Vale\n#   View = Transcript\nengine: textfsm\ntemplate: |\n  Value List Assistant (.*)\n  Value List User (.*)\n\n  Start\n    ^assistant: ${Assistant} -> Assistant\n    ^user: ${User} -> User\n\n  Assistant\n    ^(?:user|assistant): -> Continue.Record\n    ^assistant: ${Assistant}\n    ^user: ${User} -> User\n    ^${Assistant}\n\n  User\n    ^(?:user|assistant): -> Continue.Record\n    ^user: ${User}\n    ^assistant: ${Assistant} -> Assistant\n    ^${User}\nscopes:\n  - name: assistant\n    expr: Assistant\n    type: md\n",
     "usage": "[*.txt]\nBasedOnStyles = Vale\n\nView = Transcript"
+  },
+  {
+    "name": "WebVTT",
+    "kind": "view",
+    "description": "The cue text of a WebVTT file, with the header, identifiers, timings, and notes left alone.",
+    "path": "assets/views/WebVTT.yml",
+    "section": "*.vtt",
+    "requires": ">=3.21.0",
+    "tags": [
+      "textfsm",
+      "media"
+    ],
+    "content": "# WebVTT captions: a header, then cues separated by blank lines, each an\n# optional identifier, a timing line, and the text. Only the text is\n# exposed; NOTE, STYLE, and REGION blocks are skipped.\n#\n#   [*.vtt]\n#   BasedOnStyles = Vale\n#   View = WebVTT\nengine: textfsm\ntemplate: |\n  Value Timing ((?:\\d+:)?\\d\\d:\\d\\d\\.\\d\\d\\d --> .*)\n  Value List Cue (.+)\n\n  Start\n    ^WEBVTT -> Header\n\n  Header\n    ^$ -> Block\n\n  Block\n    ^$ -> Next\n    ^(?:NOTE|STYLE|REGION)(?:\\s|$) -> Skip\n    ^${Timing}$ -> Cue\n    ^.+ -> Next\n\n  Skip\n    ^$ -> Block\n\n  Cue\n    ^$ -> Record Block\n    ^${Cue}\nscopes:\n  - name: cue\n    expr: Cue\n",
+    "usage": "[*.vtt]\nBasedOnStyles = Vale\n\nView = WebVTT"
+  },
+  {
+    "name": "AWS",
+    "kind": "vocabulary",
+    "description": "AWS service and tool names the built-in dictionary doesn't know, such as Textract, FSx, and botocore.",
+    "path": "assets/vocabularies/AWS/accept.txt",
+    "tags": [
+      "cloud"
+    ],
+    "content": "botocore\nBottlerocket\nBraket\nCorretto\nFirehose\nFSx\nGreengrass\nInferentia\nLightsail\nMacie\nPowertools\nRekognition\nTextract\nTimestream\nTrainium\nWickr\n",
+    "usage": "Vocab = AWS"
+  },
+  {
+    "name": "Kubernetes",
+    "kind": "vocabulary",
+    "description": "Kubernetes resource kinds and ecosystem tools the built-in dictionary doesn't know, such as kubeadm, CSIDriver, and kustomize.",
+    "path": "assets/vocabularies/Kubernetes/accept.txt",
+    "tags": [
+      "cloud"
+    ],
+    "content": "APIService\ncrictl\n[Cc]rossplane\nCSIDriver\nCSINode\n[Dd]apr\neksctl\netcdctl\netcdutl\nFalco\n[Ff]luentd\nGRPCRoute\n[Hh]elmfile\nHTTPRoute\n[Kk]arpenter\nKnative\n[Kk]onnectivity\nkops\nkubeadm\n[Kk]ubebuilder\nKubecost\nkubectx\nKubeflow\nkubens\nKueue\nKuma\n[Kk]ustomizations?\n[Kk]ustomize\nLinkerd\nnerdctl\nrunc\nSkaffold\nStrimzi\nTCPRoute\nTekton\nThanos\nVelero\nVitess\n",
+    "usage": "Vocab = Kubernetes"
   }
 ]
