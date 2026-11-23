@@ -30,12 +30,6 @@
 			tech: 'YAML',
 			info: 'A collection of pre-packaged, Vale-compatible style guides and configurations.',
 			link: 'https://github.com/vale-cli/packages'
-		},
-		{
-			name: 'vale-native',
-			tech: 'Go',
-			info: 'A native messaging host for the Vale CLI: Use your local configurations in Chrome, Firefox, Opera, and Edge.',
-			link: 'https://github.com/vale-cli/vale-native'
 		}
 	];
 </script>
