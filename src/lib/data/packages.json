@@ -14,7 +14,7 @@
     "site": "jdkato/a11y",
     "repo": "jdkato/a11y",
     "stars": 0,
-    "downloads": 20617,
+    "downloads": 20636,
     "version": "v0.1.0",
     "released": "2026-09-24",
     "rules": [
@@ -207,7 +207,7 @@
     "site": "jdkato/apidocs",
     "repo": "jdkato/apidocs",
     "stars": 0,
-    "downloads": 0,
+    "downloads": 18,
     "version": "v0.1.0",
     "released": "2026-11-23",
     "rules": [
@@ -378,7 +378,7 @@
     "site": "krishnasunkam/vale-ai-tells",
     "repo": "krishnasunkam/vale-ai-tells",
     "stars": 1,
-    "downloads": 26094,
+    "downloads": 26120,
     "version": "v1.0.0",
     "released": "2026-08-25",
     "rules": [
@@ -553,7 +553,7 @@
     "site": "redhat-documentation.github.io",
     "repo": "redhat-documentation/vale-at-red-hat",
     "stars": 56,
-    "downloads": 195700,
+    "downloads": 195747,
     "version": "v686",
     "released": "2026-11-20",
     "rules": [
@@ -9974,6 +9974,402 @@
     "valeVersion": ">=3.22.0"
   },
   {
+    "name": "Kubernetes",
+    "description": "The Kubernetes documentation style guide: its word list, API kinds in UpperCamelCase, code style for commands and fields, headings, and the language it asks writers to avoid.",
+    "homepage": "https://github.com/jdkato/kubernetes",
+    "url": "https://github.com/jdkato/kubernetes/releases/latest/download/Kubernetes.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style",
+      "docs"
+    ],
+    "host": "github",
+    "site": "jdkato/kubernetes",
+    "repo": "jdkato/kubernetes",
+    "rules": [
+      {
+        "style": "Kubernetes",
+        "name": "Alerts",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Use the 'alert' shortcode instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#shortcodes"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "AlertTitle",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Remove '%s'. The shortcode already shows the title.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#shortcodes"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "APIKindCode",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Write the API kind '%s' without code formatting.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#api-resource-names"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "APIObjects",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text & ~frontmatter",
+        "message": "Write the API kind as '%s', not '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-upper-camel-case-for-api-objects"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "APIServer",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-a-general-descriptor-over-a-component-name"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "BoldHeadings",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Use a heading instead of the bold line '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Capitalization",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Capitalize '%s': not '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#kubernetes-io-word-list"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Commands",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Format the command '%s' as code instead of quoting it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#code-style-inline-code"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "ComponentStart",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "sentence, raw",
+        "message": "Don't start a sentence with '%s'. Add 'The' before it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#starting-a-sentence-with-a-component-tool-or-component-name"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Dated",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%s' will go out of date. Name the version, or drop it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-statements-that-will-soon-be-out-of-date"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "FieldNames",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Format '%s' as code.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-code-style-for-object-field-names-and-namespaces"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "FieldValues",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Write the field value '%s' as plain text.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-normal-style-for-string-and-integer-field-values"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "FilePaths",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Format '%s' as code.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-code-style-for-filenames-directories-and-paths"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Future",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' is a statement about the future. Document what is true now.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-statements-about-the-future"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Graduation",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write the graduation phase as '%s', not '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-start-case-for-enhancement-graduation-phases"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "HeadingDepth",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading.h4, heading.h5, heading.h6",
+        "message": "Avoid the deep heading '%s' unless it is necessary. Consider splitting the page.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "HeadingLinks",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Move the link out of the heading; put it in the body.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Headings",
+        "extends": "capitalization",
+        "level": "warning",
+        "scope": "heading & ~heading.h1",
+        "message": "Use sentence case for the heading '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "HTMLLinks",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Write '%s' as a Markdown link that opens in the same tab.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#links"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Idioms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "'%[2]s' is an idiom. Say it plainly: %[1]s.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-jargon-and-idioms"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "InOrderTo",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-simple-and-direct-language"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Latin",
+        "extends": "Std.Abbreviations.Latin",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-latin-phrases"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "LinkText",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "link",
+        "message": "Use link text that names its target, not '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#links"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "ListNumbers",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Use '1.' for every ordered list item, not '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#lists"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "MeaningfulNames",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Replace '%s' with a name that has context.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#code-style-inline-code"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "NewTerms",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Italicize the term being defined in '%s' instead of quoting it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-italics-to-define-or-introduce-new-terms"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "NoH1",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading.h1",
+        "message": "Remove the first-level heading '%s'. Set the title in the front matter.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "ParagraphLength",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "paragraph",
+        "message": "This paragraph has %s sentences. Keep it under six.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#paragraphs"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Please",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Remove '%s'. Give the instruction directly.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-simple-and-direct-language"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Prompt",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "Remove the '$ ' prompt from the command.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#don-t-include-the-command-prompt"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "QuotePunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Put '%s' outside the closing quotation mark.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-the-international-standard-for-punctuation-inside-quotes"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Simple",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Remove '%s'. It assumes a level of understanding.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-words-that-assume-a-specific-level-of-understanding"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Spelling",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the US spelling '%s' instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#language"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "TableCaption",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Add a caption with the table shortcode: {{< table caption=\"...\" >}}.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#tables"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Terms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#kubernetes-io-word-list"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "Titles",
+        "extends": "capitalization",
+        "level": "warning",
+        "scope": "text.frontmatter.title",
+        "message": "Use title case for the page title '%s'.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#headings"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "TrailingSpaces",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Remove the trailing spaces.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#code-style-inline-code"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "UIElements",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Make the interface element in '%s' bold instead of quoting it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-bold-for-user-interface-elements"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "VersionComments",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "raw",
+        "message": "Remove the comment about other versions; state the version in the page's prerequisites.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#versioning-kubernetes-examples"
+      },
+      {
+        "style": "Kubernetes",
+        "name": "We",
+        "extends": "Std.Usage.FirstPersonPlural",
+        "level": "warning",
+        "scope": "text",
+        "message": "Avoid '%s'. Address the reader as 'you', or name who acts.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#avoid-using-we"
+      },
+      {
+        "style": "KubernetesStrict",
+        "name": "Passive",
+        "extends": "Std.Grammar.PassiveVoice",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' looks passive. Say who acts, unless that reads awkwardly.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-active-voice"
+      },
+      {
+        "style": "KubernetesStrict",
+        "name": "PresentTense",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use the present tense instead of '%s', unless the meaning needs it.",
+        "link": "https://kubernetes.io/docs/contribute/style/style-guide/#use-present-tense"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.21.0"
+  },
+  {
     "name": "MDX",
     "description": "Adds support for MDX comments and other non-standard markup.",
     "homepage": "https://github.com/vale-cli/MDX",
@@ -10617,6 +11013,493 @@
     ],
     "assets": [],
     "valeVersion": ">=1.0.0"
+  },
+  {
+    "name": "NHS",
+    "description": "The NHS digital service manual's content style guide: its A to Z of health writing, numbers, dates and times, punctuation, and inclusive language.",
+    "homepage": "https://github.com/jdkato/nhs",
+    "url": "https://github.com/jdkato/nhs/releases/latest/download/NHS.zip",
+    "logo": "https://github.com/jdkato.png",
+    "tags": [
+      "style",
+      "prose",
+      "inclusive-language"
+    ],
+    "host": "github",
+    "site": "jdkato/nhs",
+    "repo": "jdkato/nhs",
+    "rules": [
+      {
+        "style": "NHS",
+        "name": "Abbreviations",
+        "extends": "Std.Abbreviations.Acronyms",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Spell out '%s' the first time you use it.",
+        "link": "https://service-manual.nhs.uk/content/formatting#abbreviations-and-acronyms"
+      },
+      {
+        "style": "NHS",
+        "name": "Age",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Do not use '%s'. Give the age, as in 'adults aged 65 and over', or say 'older people'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/age"
+      },
+      {
+        "style": "NHS",
+        "name": "AgeLimits",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "If the exact age matters, say who is included, as in 'aged 50 and over': '%s'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/age"
+      },
+      {
+        "style": "NHS",
+        "name": "AltSkinTone",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "alt",
+        "message": "In alt text, describe the skin tone as 'light brown', 'medium brown', 'dark brown' or 'white': '%s'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/skin-symptoms#describe-skin-tone-in-alt-text"
+      },
+      {
+        "style": "NHS",
+        "name": "Ampersand",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#ampersand-(&)"
+      },
+      {
+        "style": "NHS",
+        "name": "Apostrophes",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use a straight apostrophe or quotation mark, not '%[2]s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#apostrophes"
+      },
+      {
+        "style": "NHS",
+        "name": "Avoid",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Do not use '%s'. The A to Z of NHS health writing says what to write instead.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing"
+      },
+      {
+        "style": "NHS",
+        "name": "BlockCapitals",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Do not use block capitals: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#capitalisation"
+      },
+      {
+        "style": "NHS",
+        "name": "Brackets",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#brackets"
+      },
+      {
+        "style": "NHS",
+        "name": "Calories",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#calories"
+      },
+      {
+        "style": "NHS",
+        "name": "Contractions",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#contractions"
+      },
+      {
+        "style": "NHS",
+        "name": "Dashes",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use an en dash '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#hyphens-and-dashes"
+      },
+      {
+        "style": "NHS",
+        "name": "Dates",
+        "extends": "Std.DateTime.DateFormat",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write dates as '6 August 2018': '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#dates"
+      },
+      {
+        "style": "NHS",
+        "name": "Decimals",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#numbers"
+      },
+      {
+        "style": "NHS",
+        "name": "Disability",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use %s instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/disabilities-and-conditions"
+      },
+      {
+        "style": "NHS",
+        "name": "FileSize",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use MB for 1MB and over, and KB under 1MB: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#kilobytes-and-megabytes-KB-and-MB"
+      },
+      {
+        "style": "NHS",
+        "name": "Fractions",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#fractions-and-percentages"
+      },
+      {
+        "style": "NHS",
+        "name": "HeadingCase",
+        "extends": "capitalization",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Use sentence case in headings: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#capitalisation"
+      },
+      {
+        "style": "NHS",
+        "name": "HeadingDepth",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading.h5",
+        "message": "Avoid h5 headings. Simplify the structure of the page.",
+        "link": "https://service-manual.nhs.uk/content/formatting#headings"
+      },
+      {
+        "style": "NHS",
+        "name": "HeadingLength",
+        "extends": "occurrence",
+        "level": "suggestion",
+        "scope": "heading.h1",
+        "message": "Keep the h1 to 65 characters or fewer, including spaces.",
+        "link": "https://service-manual.nhs.uk/content/formatting#headings"
+      },
+      {
+        "style": "NHS",
+        "name": "HeadingPunctuation",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "heading",
+        "message": "Do not end a heading with a full stop.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#full-stops"
+      },
+      {
+        "style": "NHS",
+        "name": "HeadingQuestions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading",
+        "message": "Write the heading as a statement, not a question.",
+        "link": "https://service-manual.nhs.uk/content/formatting#headings"
+      },
+      {
+        "style": "NHS",
+        "name": "Italics",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "emphasis",
+        "message": "Do not use italics: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/formatting#bold-italics-and-underlining"
+      },
+      {
+        "style": "NHS",
+        "name": "Jargon",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Explain '%s', or say it another way.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing"
+      },
+      {
+        "style": "NHS",
+        "name": "Latin",
+        "extends": "Std.Abbreviations.Latin",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Use %s instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#eg"
+      },
+      {
+        "style": "NHS",
+        "name": "LinkText",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "link",
+        "message": "'%s' does not say where the link goes. Use the title of the page.",
+        "link": "https://service-manual.nhs.uk/content/formatting#links"
+      },
+      {
+        "style": "NHS",
+        "name": "ListConjunctions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "list",
+        "message": "Do not end a list item with '%s'. Say in the lead-in line whether the items are options.",
+        "link": "https://service-manual.nhs.uk/content/formatting#lists"
+      },
+      {
+        "style": "NHS",
+        "name": "ListLength",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "doc(ul:has(> li:nth-of-type(7)))",
+        "message": "This list has more than 6 items. Split it, or cut it down.",
+        "link": "https://service-manual.nhs.uk/content/formatting#lists"
+      },
+      {
+        "style": "NHS",
+        "name": "Micrograms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#microgram"
+      },
+      {
+        "style": "NHS",
+        "name": "MiddayMidnight",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#time"
+      },
+      {
+        "style": "NHS",
+        "name": "Money",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#money"
+      },
+      {
+        "style": "NHS",
+        "name": "NewTab",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/formatting#links"
+      },
+      {
+        "style": "NHS",
+        "name": "NHSNumber",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write an NHS number in 3 groups with spaces, like 999 123 4567: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#nhs-number"
+      },
+      {
+        "style": "NHS",
+        "name": "Numerals",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use the numeral '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#numbers"
+      },
+      {
+        "style": "NHS",
+        "name": "Ordinals",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#ordinal-numbers"
+      },
+      {
+        "style": "NHS",
+        "name": "PDFLinks",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "raw",
+        "message": "End the text of a link to a PDF with '(PDF only, [file size])'.",
+        "link": "https://service-manual.nhs.uk/content/formatting#links"
+      },
+      {
+        "style": "NHS",
+        "name": "Percentages",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#fractions-and-percentages"
+      },
+      {
+        "style": "NHS",
+        "name": "Prefer",
+        "extends": "substitution",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "Consider %s instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing"
+      },
+      {
+        "style": "NHS",
+        "name": "Pronouns",
+        "extends": "Std.Usage.GenderedPronouns",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use 'they' or 'you' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/sex-gender-and-sexuality"
+      },
+      {
+        "style": "NHS",
+        "name": "Ranges",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#ranges"
+      },
+      {
+        "style": "NHS",
+        "name": "SkinTone",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/inclusive-content/skin-symptoms#how-to-make-written-content-about-skin-symptoms-more-inclusive"
+      },
+      {
+        "style": "NHS",
+        "name": "Temperature",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing#degrees-(temperature)"
+      },
+      {
+        "style": "NHS",
+        "name": "Terms",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing"
+      },
+      {
+        "style": "NHS",
+        "name": "Thousands",
+        "extends": "existence",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use a comma in a number over 999: '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#numbers"
+      },
+      {
+        "style": "NHS",
+        "name": "Time",
+        "extends": "Std.DateTime.TimeFormat",
+        "level": "warning",
+        "scope": "text",
+        "message": "Write times as '5pm' or '5:30pm': '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#time"
+      },
+      {
+        "style": "NHS",
+        "name": "TitleContractions",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "heading.h1",
+        "message": "Avoid the contraction '%s' in a page title.",
+        "link": "https://service-manual.nhs.uk/content/punctuation#contractions"
+      },
+      {
+        "style": "NHS",
+        "name": "Units",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use '%s' instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/numbers-measurements-dates-time#dosage"
+      },
+      {
+        "style": "NHS",
+        "name": "Words",
+        "extends": "substitution",
+        "level": "warning",
+        "scope": "text",
+        "message": "Use %s instead of '%s'.",
+        "link": "https://service-manual.nhs.uk/content/a-to-z-of-nhs-health-writing"
+      },
+      {
+        "style": "NHSStrict",
+        "name": "ParagraphLength",
+        "extends": "metric",
+        "level": "suggestion",
+        "scope": "paragraph",
+        "message": "This paragraph has %s sentences. Keep it to 3 or fewer.",
+        "link": "https://service-manual.nhs.uk/content/how-we-write"
+      },
+      {
+        "style": "NHSStrict",
+        "name": "PassiveVoice",
+        "extends": "Std.Grammar.PassiveVoice",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' looks like the passive voice. Say who does it.",
+        "link": "https://service-manual.nhs.uk/content/how-we-write"
+      },
+      {
+        "style": "NHSStrict",
+        "name": "SentenceLength",
+        "extends": "Std.Readability.SentenceLength",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "%d words in one sentence. Keep it to 20 or fewer.",
+        "link": "https://service-manual.nhs.uk/content/how-we-write"
+      },
+      {
+        "style": "NHSStrict",
+        "name": "Should",
+        "extends": "existence",
+        "level": "suggestion",
+        "scope": "text",
+        "message": "'%s' can sound patronising. Say what to do instead.",
+        "link": "https://service-manual.nhs.uk/content/voice-and-tone"
+      }
+    ],
+    "assets": [],
+    "valeVersion": ">=3.21.0"
   },
   {
     "name": "OpenShiftAsciiDoc",

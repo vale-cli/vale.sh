@@ -360,14 +360,14 @@
     "usage": "Vocab = AWS"
   },
   {
-    "name": "Kubernetes",
+    "name": "KubernetesTerms",
     "kind": "vocabulary",
     "description": "Kubernetes resource kinds and ecosystem tools the built-in dictionary doesn't know, such as kubeadm, CSIDriver, and kustomize.",
-    "path": "assets/vocabularies/Kubernetes/accept.txt",
+    "path": "assets/vocabularies/KubernetesTerms/accept.txt",
     "tags": [
       "cloud"
     ],
     "content": "APIService\ncrictl\n[Cc]rossplane\nCSIDriver\nCSINode\n[Dd]apr\neksctl\netcdctl\netcdutl\nFalco\n[Ff]luentd\nGRPCRoute\n[Hh]elmfile\nHTTPRoute\n[Kk]arpenter\nKnative\n[Kk]onnectivity\nkops\nkubeadm\n[Kk]ubebuilder\nKubecost\nkubectx\nKubeflow\nkubens\nKueue\nKuma\n[Kk]ustomizations?\n[Kk]ustomize\nLinkerd\nnerdctl\nrunc\nSkaffold\nStrimzi\nTCPRoute\nTekton\nThanos\nVelero\nVitess\n",
-    "usage": "Vocab = Kubernetes"
+    "usage": "Vocab = KubernetesTerms"
   }
 ]

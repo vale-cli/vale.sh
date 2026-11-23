@@ -2,6 +2,7 @@ import raw from '$lib/data/guides.json';
 import termData from '$lib/data/guide-terms.json';
 import configs from '$lib/data/config-stats.json';
 import { replacement, termSlug, topics, type RuleSummary, type TopicId } from '$lib/tools/topics';
+import { decisions, type Decision, type DecisionId } from '$lib/tools/decisions';
 
 /**
  * The style guide explorer's data, shaped for its pages.
@@ -24,7 +25,36 @@ export type Guide = {
 	note: string;
 	usedAs: string[];
 	terms: number;
+	/** Maintained by the organization whose guide it is. */
+	official: boolean;
+	/** The repository's owner. */
+	owner: string;
+	/** When the rules last changed: "2026-11-12". */
+	updated: string;
+	install: Install;
+	decisions: Record<DecisionId, Decision>;
+	strictness: Strictness | null;
 	rules: RuleSummary[];
+};
+
+export type Install = {
+	/** `package`: in the library; `release` or `zip`: a URL; `repo`: copy it. */
+	kind: 'package' | 'release' | 'zip' | 'repo';
+	/** "Packages = Google", or empty for `repo`. */
+	line: string;
+	/** What BasedOnStyles needs. */
+	styles: string[];
+	/** For `repo`: the directories to copy. */
+	paths?: string[];
+};
+
+export type Strictness = {
+	words: number;
+	counts: Record<'error' | 'warning' | 'suggestion', number>;
+	per1k: Record<'error' | 'warning' | 'suggestion' | 'total', number>;
+	/** Rules Vale couldn't load, left out of the count. */
+	skipped: string[];
+	vale: string;
 };
 
 export const guides = raw as unknown as Guide[];
@@ -66,6 +96,11 @@ export type Card = {
 	terms: number;
 	usedBy: number;
 	fingerprint: number[];
+	official: boolean;
+	owner: string;
+	updated: string;
+	install: string;
+	strictness: Strictness['per1k'] | null;
 };
 
 export const cards = (): Card[] =>
@@ -78,8 +113,141 @@ export const cards = (): Card[] =>
 		rules: g.rules.length,
 		terms: g.terms,
 		usedBy: usedBy(g),
-		fingerprint: fingerprint(g)
+		fingerprint: fingerprint(g),
+		official: g.official,
+		owner: g.owner,
+		updated: g.updated,
+		install: g.install.line,
+		strictness: g.strictness?.per1k ?? null
 	}));
+
+/** The sample the strictness numbers come from. */
+export const strictnessSample = () => {
+	const s = guides.find((g) => g.strictness)?.strictness;
+	return s ? { words: s.words, vale: s.vale } : null;
+};
+
+/** A guide's rank by alerts per 1,000 words: 1 is the strictest. */
+export function strictnessRank(guide: Guide): { rank: number; of: number } | null {
+	if (!guide.strictness) return null;
+	const measured = guides.filter((g) => g.strictness);
+	const rank =
+		measured.filter((g) => g.strictness!.per1k.total > guide.strictness!.per1k.total).length + 1;
+	return { rank, of: measured.length };
+}
+
+/** Each decision, with every guide's answer, in the guides' order. */
+export const decisionTable = () =>
+	decisions.map((d) => ({
+		id: d.id,
+		label: d.label,
+		asks: d.asks,
+		cells: guides.map((g) => ({ guide: g.id, ...g.decisions[d.id] }))
+	}));
+
+/** How a guide's answer reads in a sentence, or '' when it has none. */
+export function stance(id: DecisionId, value: string): string {
+	const say: Record<string, Record<string, string>> = {
+		headings: { sentence: 'sentence-case headings', title: 'title-case headings' },
+		serialComma: { required: 'the serial comma', avoided: 'no serial comma' },
+		contractions: {
+			encouraged: 'contractions',
+			discouraged: 'no contractions',
+			uncommon: 'common contractions, but not rare ones',
+			mixed: 'contractions in some places'
+		},
+		we: { avoid: 'no first-person “we”' },
+		you: { prefer: '“you” over “the user”', avoid: 'no “you”' },
+		latin: { avoid: '“for example” over “e.g.”', allow: '“e.g.” and “i.e.”' },
+		numbers: {
+			words: 'numbers under 10 spelled out',
+			numerals: 'numerals for numbers under 10',
+			mixed: 'mixed number styles'
+		},
+		exclamation: { avoid: 'no exclamation points' },
+		inclusive: {
+			both: 'gendered and other exclusionary terms flagged',
+			gendered: 'gendered terms flagged',
+			other: 'exclusionary terms flagged, but not gendered ones'
+		}
+	};
+	return say[id]?.[value] ?? '';
+}
+
+/** Topics with the most rules, the largest first. */
+export const focus = (guide: Guide, n = 2) =>
+	topics
+		.map((t, i) => ({ id: t.id, label: t.label, n: fingerprint(guide)[i] }))
+		.filter((t) => t.n)
+		.sort((a, b) => b.n - a.n)
+		.slice(0, n);
+
+/** Months between a rules date and the data's newest one. */
+export function monthsOld(updated: string): number {
+	const newest =
+		guides
+			.map((g) => g.updated)
+			.sort()
+			.pop() ?? updated;
+	const [a, b] = [new Date(updated), new Date(newest)];
+	return (b.getFullYear() - a.getFullYear()) * 12 + b.getMonth() - a.getMonth();
+}
+
+export type Alternative = {
+	id: string;
+	name: string;
+	/** Decisions both answer the same way, of those either answers. */
+	agree: number;
+	of: number;
+	/** Where they part: this guide's answer, then theirs. */
+	differs: { label: string; mine: string; theirs: string }[];
+	/** Their alerts per 1,000 words minus this guide's. */
+	stricter: number | null;
+	shared: number;
+	/** `agree` less the decisions answered the other way. */
+	near: number;
+};
+
+/**
+ * The guides nearest this one: decisions answered alike, less those answered
+ * the other way, then flagged terms in common.
+ */
+export function alternatives(guide: Guide, n = 3): Alternative[] {
+	const shared = new Map(overlap(guide).map((o) => [o.id, o.shared]));
+	return guides
+		.filter((g) => g.id !== guide.id)
+		.map((g) => {
+			let agree = 0;
+			let of = 0;
+			let clash = 0;
+			const differs: Alternative['differs'] = [];
+			for (const d of decisions) {
+				const [a, b] = [guide.decisions[d.id], g.decisions[d.id]];
+				if (a.value === 'none' && b.value === 'none') continue;
+				of++;
+				if (a.value === b.value) agree++;
+				else differs.push({ label: d.label, mine: a.label, theirs: b.label });
+				if (a.value !== b.value && a.value !== 'none' && b.value !== 'none') clash++;
+			}
+			const stricter =
+				guide.strictness && g.strictness
+					? Math.round((g.strictness.per1k.total - guide.strictness.per1k.total) * 10) / 10
+					: null;
+			const near = agree - clash;
+			return {
+				id: g.id,
+				name: g.name,
+				agree,
+				of,
+				differs,
+				stricter,
+				shared: shared.get(g.id) ?? 0,
+				near
+			};
+		})
+		.sort((x, y) => y.near - x.near || y.shared - x.shared)
+		.slice(0, n);
+}
 
 /** term (lowercased) → guide → what it says. */
 function index() {

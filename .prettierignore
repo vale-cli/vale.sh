@@ -2,3 +2,6 @@
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+
+# A fixed sample: the strictness numbers depend on it staying byte-for-byte.
+script/guides/corpus

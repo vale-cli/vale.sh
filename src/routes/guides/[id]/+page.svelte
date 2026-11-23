@@ -4,8 +4,11 @@
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import ChevronRight from 'lucide-svelte/icons/chevron-right';
 	import Search from 'lucide-svelte/icons/search';
+	import Check from 'lucide-svelte/icons/check';
+	import CircleAlert from 'lucide-svelte/icons/circle-alert';
 	import { topics, type RuleSummary } from '$lib/tools/topics';
 	import GuideLogo from '$lib/components/guides/GuideLogo.svelte';
+	import CodeBlock from '$lib/components/CodeBlock.svelte';
 
 	let { data } = $props();
 
@@ -38,6 +41,17 @@
 		void guide.id;
 		selected = null;
 		filter = '';
+	});
+	// A link to "#rule-Name", from the decisions table, opens that rule.
+	$effect(() => {
+		void guide.id;
+		const fromHash = () => {
+			const m = /^#rule-(.+)$/.exec(location.hash);
+			if (m) selected = `${guide.id}.${decodeURIComponent(m[1])}`;
+		};
+		fromHash();
+		window.addEventListener('hashchange', fromHash);
+		return () => window.removeEventListener('hashchange', fromHash);
 	});
 	const rule = $derived(guide.rules.find((r) => r.id === selected) ?? null);
 	const short = (id: string) => id.slice(id.indexOf('.') + 1);
@@ -126,6 +140,29 @@
 					{/each}
 				</ul>
 			</div>
+
+			<!-- Install -->
+			<section class="mt-8 max-w-xl" aria-labelledby="install">
+				<h2 id="install" class="text-sm font-medium">Install</h2>
+				<p class="mt-1 text-sm text-muted-foreground">
+					{#if guide.install.kind === 'package'}
+						In your .vale.ini, then run <code class="font-mono text-xs">vale sync</code>.
+					{:else if guide.install.line}
+						From its {guide.install.kind === 'release' ? 'latest release' : 'repository'}, in your
+						.vale.ini; then run <code class="font-mono text-xs">vale sync</code>.
+					{:else}
+						It has no release, so copy
+						{#each guide.install.paths ?? [] as path, i (path)}{i ? ' and ' : ''}<a
+								href="{guide.repo}/tree/HEAD/{path}"
+								target="_blank"
+								rel="noreferrer"
+								class="font-mono text-xs underline">{path}</a
+							>{/each}
+						from the repository into your StylesPath, then turn it on:
+					{/if}
+				</p>
+				<CodeBlock html={data.installHtml} code={data.install} class="mt-3" />
+			</section>
 		</div>
 
 		<dl class="self-start rounded-2xl border border-border bg-card p-5 text-sm">
@@ -178,6 +215,28 @@
 					{/if}
 				</dd>
 			</div>
+			<div class="flex items-baseline justify-between gap-4 py-1.5">
+				<dt class="text-muted-foreground">Rules changed</dt>
+				<dd>{data.updated}</dd>
+			</div>
+			<div class="flex items-baseline justify-between gap-4 py-1.5">
+				<dt class="text-muted-foreground">Maintained by</dt>
+				<dd class="min-w-0 truncate text-right">
+					{guide.official ? guide.name : `${guide.owner}, the community`}
+				</dd>
+			</div>
+			{#if guide.strictness}
+				<div class="flex items-baseline justify-between gap-4 py-1.5">
+					<dt class="text-muted-foreground">Alerts per 1,000 words</dt>
+					<dd>
+						<a href="/guides#strictness" class="font-medium tabular-nums hover:underline"
+							>{guide.strictness.per1k.total}</a
+						>{#if data.rank}<span class="text-muted-foreground">
+								· {data.rank.rank} of {data.rank.of}</span
+							>{/if}
+					</dd>
+				</div>
+			{/if}
 			{#if data.usedBy}
 				<div class="flex items-baseline justify-between gap-4 py-1.5">
 					<dt class="text-muted-foreground">Used by</dt>
@@ -188,6 +247,133 @@
 			{/if}
 		</dl>
 	</header>
+
+	<!-- Pick this if… -->
+	<section
+		class="mt-14 grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+		aria-labelledby="pick"
+	>
+		<div class="rounded-2xl border border-border bg-card p-5 sm:p-6">
+			<h2 id="pick" class="text-xl font-medium tracking-tight">Pick {guide.name} if…</h2>
+			<ul class="mt-4 space-y-2.5 text-sm leading-6">
+				{#if data.pick.wants.length}
+					<li class="flex gap-2.5">
+						<Check
+							class="mt-1 h-4 w-4 shrink-0 text-lime-600 dark:text-lime-400"
+							aria-hidden="true"
+						/>
+						<span>you want {data.pick.wants.join(', ')}.</span>
+					</li>
+				{/if}
+				{#if data.pick.strictness}
+					<li class="flex gap-2.5">
+						<Check
+							class="mt-1 h-4 w-4 shrink-0 text-lime-600 dark:text-lime-400"
+							aria-hidden="true"
+						/>
+						<span>you want a guide that is {data.pick.strictness}.</span>
+					</li>
+				{/if}
+				{#if data.pick.focus}
+					<li class="flex gap-2.5">
+						<Check
+							class="mt-1 h-4 w-4 shrink-0 text-lime-600 dark:text-lime-400"
+							aria-hidden="true"
+						/>
+						<span>its focus is yours: {data.pick.focus}.</span>
+					</li>
+				{/if}
+			</ul>
+			{#if data.pick.cautions.length}
+				<h3 class="mt-5 text-sm font-medium">Check first</h3>
+				<ul class="mt-2 space-y-2 text-sm leading-6 text-foreground/85">
+					{#each data.pick.cautions as c (c)}
+						<li class="flex gap-2.5">
+							<CircleAlert
+								class="mt-1 h-4 w-4 shrink-0 text-amber-600 dark:text-amber-400"
+								aria-hidden="true"
+							/>
+							<span>{c}</span>
+						</li>
+					{/each}
+				</ul>
+			{/if}
+
+			<h3 class="mt-6 text-sm font-medium">Where it stands</h3>
+			<dl class="mt-2 divide-y divide-border/70 text-sm">
+				{#each data.decisions as d (d.id)}
+					<div class="flex items-baseline justify-between gap-4 py-1.5">
+						<dt class="text-muted-foreground">{d.question}</dt>
+						<dd class="text-right">
+							{#if d.rule}
+								<a
+									href="#rule-{short(d.rule)}"
+									title="{short(d.rule)}{d.example ? `: flags “${d.example}”` : ''}"
+									class="vt-{tone(
+										d.level ?? ''
+									)} inline-flex items-center gap-1.5 font-medium hover:underline"
+								>
+									<span class="h-1.5 w-1.5 rounded-full" style="background: hsl(var(--vt))"></span>
+									{d.label}
+								</a>
+							{:else}
+								<span class="text-muted-foreground/80">No rule</span>
+							{/if}
+						</dd>
+					</div>
+				{/each}
+			</dl>
+		</div>
+
+		<div>
+			<h2 class="text-xl font-medium tracking-tight">Nearest alternatives</h2>
+			<p class="mt-1 text-sm text-muted-foreground">
+				The guides that answer the most of the same questions the same way.
+			</p>
+			<ul class="mt-4 space-y-3">
+				{#each data.alternatives as a (a.id)}
+					<li>
+						<a
+							href="/guides/{a.id}"
+							class="group block rounded-2xl border border-border bg-card p-4 transition-colors hover:border-lime-500/40"
+						>
+							<div class="flex items-center justify-between gap-3">
+								<span class="inline-flex items-center gap-2 font-medium group-hover:underline"
+									><GuideLogo id={a.id} name={a.name} size="h-5 w-5" />{a.name}</span
+								>
+								<span class="text-xs tabular-nums text-muted-foreground"
+									>Agrees on {a.agree} of {a.of}</span
+								>
+							</div>
+							{#if a.differs.length || a.stricter !== null}
+								<ul class="mt-3 space-y-1 text-sm">
+									{#each a.differs.slice(0, 4) as d (d.label)}
+										<li class="flex flex-wrap gap-x-1.5">
+											<span class="text-muted-foreground">{d.label}:</span>
+											<span>{d.theirs}</span>
+											<span class="text-muted-foreground">({guide.name}: {d.mine})</span>
+										</li>
+									{/each}
+									{#if a.differs.length > 4}
+										<li class="text-muted-foreground">and {a.differs.length - 4} more</li>
+									{/if}
+									{#if a.stricter !== null && a.stricter !== 0}
+										<li>
+											<span class="text-muted-foreground">Flags</span>
+											{Math.abs(a.stricter)}
+											<span class="text-muted-foreground"
+												>{a.stricter > 0 ? 'more' : 'fewer'} alerts per 1,000 words</span
+											>
+										</li>
+									{/if}
+								</ul>
+							{/if}
+						</a>
+					</li>
+				{/each}
+			</ul>
+		</div>
+	</section>
 
 	<!-- The map -->
 	<section class="mt-14 grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem]" aria-labelledby="map">
@@ -224,12 +410,13 @@
 								<li>
 									<button
 										type="button"
+										id="rule-{short(r.id)}"
 										onclick={() => open(r)}
 										aria-pressed={on}
 										title={quote(r.message)}
 										class="vt-{tone(
 											r.level
-										)} inline-flex items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm transition-all hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+										)} inline-flex scroll-mt-28 items-center gap-1.5 rounded-lg border px-2.5 py-1.5 text-sm transition-all hover:-translate-y-px focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
 										style="border-color: hsl(var(--vt) / {on
 											? 0.9
 											: 0.35}); background: hsl(var(--vt) / {on ? 0.22 : 0.07}); {on

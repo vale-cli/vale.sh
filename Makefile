@@ -9,7 +9,7 @@ define build_index
 	$(CURDIR)/bin/index-media
 endef
 
-.PHONY: all build preview index media configs brand tools guides
+.PHONY: all build preview index media configs brand tools guides test-guides
 
 all: build
 
@@ -38,9 +38,15 @@ media:
 tools:
 	node script/tools.mjs
 
-# Re-read the open style guides behind /guides from their repositories.
+# Re-read the open style guides behind /guides from their repositories, and
+# measure each one's strictness on the sample in script/guides/corpus. That
+# step runs $VALE or `vale` from PATH; without either, the last numbers stay.
 guides:
 	node script/guides.mjs
+
+# The unit tests for how /guides reads a guide's decisions from its rules.
+test-guides:
+	node --test script/guides/decisions.test.mjs
 
 # Re-read the public .vale.ini files the adopters list points at and rebuild
 # the counts the generator shows. Run it when adopters.json changes.

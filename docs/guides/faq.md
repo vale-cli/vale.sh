@@ -451,7 +451,7 @@ Entries are regular expressions, so a pattern that looks right may match nothing
 
 ### Why does adding a word to `accept.txt` stop my other rules firing on it?
 
-A vocabulary entry is a global exception — every rule honours it. To except a word from one rule only, add it to that rule instead of the vocabulary.
+A vocabulary entry is a global exception — every rule honors it. To except a word from one rule only, add it to that rule instead of the vocabulary.
 
 ### Can I change the wording of a spelling message?
 
