@@ -349,7 +349,7 @@
 	}
 	.guides ul {
 		display: grid;
-		grid-template-columns: repeat(3, minmax(0, 1fr));
+		grid-template-columns: repeat(4, minmax(0, 1fr));
 		gap: 12px;
 		margin: 16px 0 0;
 		padding: 0;
