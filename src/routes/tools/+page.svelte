@@ -379,7 +379,7 @@ We rewrote ours last quarter. Sign-ups that finished setup went from 41% to 63%,
 						Style Guide Explorer
 					</h2>
 					<p class="text-sm leading-relaxed text-foreground/85">
-						Fifteen open style guides, from Google and Microsoft to GitLab and GOV.UK. Browse by
+						Twenty open style guides, from Google and Microsoft to GitLab and GOV.UK. Browse by
 						topic, or look up what every guide says about a word.
 					</p>
 					<span

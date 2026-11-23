@@ -171,6 +171,61 @@ const GUIDES = [
 		usedAs: ['spectrocloud']
 	},
 	{
+		id: 'digitalocean',
+		name: 'DigitalOcean',
+		full: 'DigitalOcean style guide',
+		kind: 'Company',
+		repo: 'digitalocean/vale-package',
+		styles: ['styles/DigitalOcean', 'styles/PDocs'],
+		license: 'MIT',
+		guide: 'https://docs.digitalocean.com/style/',
+		usedAs: ['DigitalOcean', 'PDocs']
+	},
+	{
+		id: 'suse',
+		name: 'SUSE',
+		full: 'SUSE documentation style guide',
+		kind: 'Company',
+		repo: 'openSUSE/suse-vale-styleguide',
+		styles: ['common', 'docbook', 'asciidoc'],
+		license: 'GPL-3.0',
+		guide: 'https://documentation.suse.com/style/current/html/docu_styleguide/index.html',
+		// Its style names are generic enough to match other projects' styles,
+		// so a count of configs that name them would overstate its use.
+		usedAs: []
+	},
+	{
+		id: 'amd-rocm',
+		name: 'AMD ROCm',
+		full: 'ROCm documentation style guide',
+		kind: 'Company',
+		repo: 'ROCm/rocm-docs-style',
+		styles: ['vale/styles/ROCm'],
+		license: 'MIT',
+		usedAs: ['ROCm']
+	},
+	{
+		id: 'foundries',
+		name: 'Foundries.io',
+		full: 'FoundriesFactory style guide',
+		kind: 'Company',
+		repo: 'foundriesio/fio-style',
+		styles: ['Fio-docs'],
+		license: 'MIT',
+		usedAs: ['Fio-docs']
+	},
+	{
+		id: 'albert-heijn',
+		name: 'Albert Heijn',
+		full: 'Albert Heijn Technology writing style guide',
+		kind: 'Company',
+		repo: 'albert-heijn-technology/style-guide',
+		styles: ['styles/ah-technology'],
+		license: 'MIT',
+		guide: 'https://style-guide.ah.technology/',
+		usedAs: ['ah-technology']
+	},
+	{
 		id: '18f',
 		name: '18F',
 		full: '18F content guide',
