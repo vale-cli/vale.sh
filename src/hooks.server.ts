@@ -47,6 +47,8 @@ const migrated: Record<string, string> = {
     '/manual/no-wrap': '/docs/cli#cli-options',
     '/manual/output': '/docs/cli#cli-options',
     '/manual/version': '/docs/cli#cli-options',
+    // A retired guide, and an archived package.
+    '/guides/ibm': '/guides',
 };
 
 export const handle: Handle = async ({ event, resolve }) => {

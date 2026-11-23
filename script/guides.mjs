@@ -70,16 +70,6 @@ const GUIDES = [
 		usedAs: ['RedHat']
 	},
 	{
-		id: 'ibm',
-		name: 'IBM',
-		full: 'IBM Developer editorial style guide',
-		kind: 'Company',
-		repo: 'vale-cli/IBM',
-		styles: ['IBM'],
-		license: 'MIT',
-		usedAs: ['IBM']
-	},
-	{
 		id: 'gitlab',
 		name: 'GitLab',
 		full: 'GitLab documentation style guide',
@@ -216,7 +206,7 @@ function checkout(guide) {
 	const [owner, name] = guide.repo.split('/');
 	const ownerDir =
 		existsSync(SRC) && readdirSync(SRC).find((d) => d.toLowerCase() === owner.toLowerCase());
-	const dir = join(SRC, ownerDir ?? owner, name);
+	const dir = join(SRC, ownerDir || owner, name);
 	if (existsSync(join(dir, '.git'))) return dir;
 
 	mkdirSync(join(SRC, owner), { recursive: true });
