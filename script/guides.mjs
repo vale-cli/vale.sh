@@ -586,9 +586,11 @@ writeFileSync(
 	'src/lib/data/guide-terms.json',
 	JSON.stringify({
 		guides: guides.map((g) => g.id),
+		// A swap written for a sentence start ("Prior to " -> "Before ") carries
+		// its spaces; trimmed, it counts as the same word as the others.
 		rows: allTerms.map((t) => [
-			t.find,
-			t.use ?? '',
+			t.find.trim(),
+			(t.use ?? '').trim(),
 			t.rule.slice(t.rule.indexOf('.') + 1),
 			Math.max(0, LEVELS.indexOf(t.level)),
 			guides.findIndex((g) => g.id === t.guide)
