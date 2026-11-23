@@ -467,7 +467,9 @@
 			<table class="w-full min-w-[46rem] border-separate border-spacing-1 text-sm">
 				<thead>
 					<tr>
-						<th scope="col" class="w-36 text-left text-xs font-medium text-muted-foreground"
+						<th
+							scope="col"
+							class="sticky left-0 z-10 w-36 bg-card text-left text-xs font-medium text-muted-foreground shadow-[-1.25rem_0_0_hsl(var(--card)),0.25rem_0_0_hsl(var(--card))]"
 							>Guide</th
 						>
 						{#each topics as t (t.id)}
@@ -485,7 +487,10 @@
 				<tbody>
 					{#each data.cards as c (c.id)}
 						<tr>
-							<th scope="row" class="whitespace-nowrap pr-2 text-left font-medium">
+							<th
+								scope="row"
+								class="sticky left-0 z-10 whitespace-nowrap bg-card pr-2 text-left font-medium shadow-[-1.25rem_0_0_hsl(var(--card)),0.25rem_0_0_hsl(var(--card))]"
+							>
 								<a href="/guides/{c.id}" class="inline-flex items-center gap-2 hover:underline"
 									><GuideLogo id={c.id} name={c.name} size="h-4 w-4" />{c.name}</a
 								>
@@ -522,6 +527,7 @@
 				</tbody>
 			</table>
 		</div>
+		<p class="mt-2 text-xs text-muted-foreground sm:hidden">Scroll sideways to see every topic.</p>
 	</section>
 
 	<!-- Strictness -->
@@ -720,7 +726,7 @@
 					<li class="flex items-baseline gap-3 px-4 py-2.5 text-sm">
 						<button
 							type="button"
-							class="min-w-0 flex-1 truncate text-left hover:underline"
+							class="min-w-0 flex-1 text-left hover:underline sm:truncate"
 							onclick={() => {
 								ask(s.term);
 								document.getElementById('lookup')?.scrollIntoView({ behavior: 'smooth' });

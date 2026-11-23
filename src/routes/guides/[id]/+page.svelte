@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { MetaTags } from 'svelte-meta-tags';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
@@ -47,7 +48,10 @@
 		void guide.id;
 		const fromHash = () => {
 			const m = /^#rule-(.+)$/.exec(location.hash);
-			if (m) selected = `${guide.id}.${decodeURIComponent(m[1])}`;
+			if (m) {
+				selected = `${guide.id}.${decodeURIComponent(m[1])}`;
+				reveal();
+			}
 		};
 		fromHash();
 		window.addEventListener('hashchange', fromHash);
@@ -59,8 +63,26 @@
 	/** A rule's own terms, for its panel: all of them, not the first few. */
 	const ruleTerms = $derived(rule ? data.terms.filter((t) => t.rule === short(rule.id)) : []);
 
+	let panel = $state<HTMLElement>();
+	/** Below lg the panel sits after every topic, so bring it into view. */
+	async function reveal() {
+		if (!panel || matchMedia('(min-width: 1024px)').matches) return;
+		await tick();
+		panel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+	}
+
 	function open(r: RuleSummary) {
 		selected = selected === r.id ? null : r.id;
+		if (selected) reveal();
+	}
+
+	/** Back from the panel to the rule's own button, on small screens. */
+	function back() {
+		const id = selected;
+		if (!id) return;
+		document
+			.getElementById(`rule-${short(id)}`)
+			?.scrollIntoView({ behavior: 'smooth', block: 'center' });
 	}
 
 	/* ---- The word list ------------------------------------------------------ */
@@ -107,10 +129,10 @@
 				{guide.kind}
 			</p>
 			<h1
-				class="mt-3 flex items-center gap-4 text-balance text-4xl font-medium tracking-[-0.03em] sm:text-5xl"
+				class="mt-3 flex items-center gap-3 text-balance text-3xl font-medium tracking-[-0.03em] sm:gap-4 sm:text-5xl"
 			>
 				<GuideLogo id={guide.id} name={guide.name} size="h-10 w-10 sm:h-12 sm:w-12" />
-				<span>{guide.full}</span>
+				<span class="min-w-0 hyphens-auto break-words">{guide.full}</span>
 			</h1>
 			<p class="mt-5 max-w-2xl text-pretty text-lg leading-8 text-foreground/85">
 				{guide.rules.length} rules across {groups.length} topics, naming
@@ -232,7 +254,7 @@
 						<a href="/guides#strictness" class="font-medium tabular-nums hover:underline"
 							>{guide.strictness.per1k.total}</a
 						>{#if data.rank}<span class="text-muted-foreground">
-								· {data.rank.rank} of {data.rank.of}</span
+								&nbsp;· {data.rank.rank} of {data.rank.of}</span
 							>{/if}
 					</dd>
 				</div>
@@ -440,7 +462,10 @@
 			</div>
 		</div>
 
-		<aside class="lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto">
+		<aside
+			bind:this={panel}
+			class="scroll-mt-32 lg:sticky lg:top-20 lg:max-h-[calc(100vh-6rem)] lg:self-start lg:overflow-y-auto"
+		>
 			{#if rule}
 				<section
 					class="vt-{tone(rule.level)} rounded-2xl border bg-card p-5 shadow-sm"
@@ -495,10 +520,17 @@
 							<ArrowUpRight class="h-3.5 w-3.5" aria-hidden="true" />
 						</a>
 					{/if}
+					<button
+						type="button"
+						onclick={back}
+						class="mt-5 block text-sm text-muted-foreground underline underline-offset-4 hover:text-foreground lg:hidden"
+					>
+						Back to the rules
+					</button>
 				</section>
 			{:else}
 				<div
-					class="rounded-2xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground"
+					class="hidden rounded-2xl border border-dashed border-border p-6 text-center text-sm text-muted-foreground lg:block"
 				>
 					Select a rule on the left to see what it flags, what it suggests, and where the guide
 					explains it.
