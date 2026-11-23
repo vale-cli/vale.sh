@@ -178,6 +178,12 @@
 			'cv11' 1;
 		font-synthesis-weight: none;
 		text-rendering: optimizeLegibility;
+		/* A guard, not a fix: whatever runs past a phone's edge is cut off
+		   instead of letting the page pan sideways, which iOS Safari allows
+		   even when the overflow is small. `clip` rather than `hidden`, so
+		   body doesn't become a scroll container and the sticky header still
+		   sticks. The causes are fixed where they are; this catches the next. */
+		overflow-x: clip;
 	}
 
 	/* Display type: tight and balanced, never tracked out. */

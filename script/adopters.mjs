@@ -117,8 +117,8 @@ for (const [i, a] of adopters.entries()) {
 	if (a.icon && a.github) {
 		fail(where, 'set either "icon" or "github", not both');
 	}
-	if (!a.icon && !a.github) {
-		notes.push(`${where}: no icon or github — will render a monogram`);
+	if (!a.icon && !a.github && !a.avatar) {
+		notes.push(`${where}: no icon, github, or avatar — will render a monogram`);
 	}
 	if (a.logo && !existsSync(join(LOGO_DIR, a.logo.replace('/users/', '')))) {
 		fail(where, `logo file not found: static${a.logo}`);

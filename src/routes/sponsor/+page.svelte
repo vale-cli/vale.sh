@@ -30,7 +30,7 @@
 	const facts = [
 		{
 			icon: CircleDollarSign,
-			term: '$100 a month',
+			term: 'Sponsor tier',
 			gloss: 'Sponsor Spotlight eligibility'
 		},
 		{

@@ -30,6 +30,8 @@ const FALLBACKS = {
 	conda: 153_174,
 	brew: 75_395,
 	chocolatey: 19_472,
+	// Verified 2026-11-22 against mise-versions.jdx.dev/api/downloads/vale.
+	mise: 93_799,
 	actionRepos: 4_159,
 	contributors: 63,
 	stars: 6_038,
@@ -46,7 +48,10 @@ const FALLBACKS = {
  */
 const RANKING_FALLBACK = {
 	brew: { rank: 212, of: 9_840, leads: true },
-	chocolatey: { leads: true }
+	chocolatey: { leads: true },
+	// Verified 2026-11-22: 93,799 to typos' 83,653; cspell and harper-ls
+	// trail far behind, and the rest aren't in mise's registry.
+	mise: { leads: true }
 };
 
 /**
@@ -71,7 +76,20 @@ const RIVALS = {
 		'typos-cli',
 		'redpen'
 	],
-	chocolatey: ['proselint', 'languagetool', 'harper', 'aspell', 'hunspell', 'codespell', 'typos']
+	chocolatey: ['proselint', 'languagetool', 'harper', 'aspell', 'hunspell', 'codespell', 'typos'],
+	// mise's registry names: a tool it doesn't carry reports a total of 0.
+	mise: [
+		'proselint',
+		'write-good',
+		'harper-ls',
+		'languagetool',
+		'ltex-ls',
+		'ltex-ls-plus',
+		'hunspell',
+		'cspell',
+		'codespell',
+		'typos'
+	]
 };
 
 type Fetch = typeof globalThis.fetch;
@@ -242,6 +260,31 @@ async function fetchChocolatey(fetch: Fetch): Promise<number> {
 }
 
 /**
+ * Downloads through mise, the polyglot tool manager, as counted by its own
+ * version service. The figure is all-time, so it joins the lifetime total.
+ */
+async function miseDownloads(fetch: Fetch, tool: string): Promise<number> {
+	const data = await json(fetch, `https://mise-versions.jdx.dev/api/downloads/${tool}`);
+	if (typeof data?.total !== 'number') throw new Error(`no mise total for ${tool}`);
+	return data.total;
+}
+
+async function fetchMise(fetch: Fetch): Promise<number> {
+	const total = await miseDownloads(fetch, 'vale');
+	if (total === 0) throw new Error('mise downloads came back as 0');
+	return total;
+}
+
+/** Whether Vale has more mise downloads than every rival in RIVALS.mise. */
+async function fetchMiseLead(fetch: Fetch): Promise<{ leads: boolean }> {
+	const [vale, ...rivals] = await Promise.all(
+		['vale', ...RIVALS.mise].map((t) => miseDownloads(fetch, t))
+	);
+	if (!vale) throw new Error('vale has no mise downloads');
+	return { leads: rivals.every((n) => n < vale) };
+}
+
+/**
  * npm downloads of the community wrapper. The registry's API serves fixed
  * windows rather than a lifetime total, so this is the trailing month.
  */
@@ -352,6 +395,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[conda, condaLive],
 		[brew, brewLive],
 		[chocolatey, chocoLive],
+		[mise, miseLive],
 		[actionRepos, actionLive],
 		[winget, wingetLive],
 		[snap, snapLive],
@@ -360,7 +404,8 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[contributors, contributorsLive],
 		[stars, starsLive],
 		[brewRank, brewRankLive],
-		[chocoLead, chocoLeadLive]
+		[chocoLead, chocoLeadLive],
+		[miseLead, miseLeadLive]
 	] = await Promise.all([
 		safely('releases', FALLBACKS.releases, () => fetchReleases(fetch)),
 		safely('docker pulls', FALLBACKS.docker, () => fetchDockerPulls(fetch)),
@@ -369,6 +414,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		safely('conda-forge', FALLBACKS.conda, () => fetchConda(fetch)),
 		safely('brew installs', FALLBACKS.brew, () => fetchBrew(fetch)),
 		safely('chocolatey', FALLBACKS.chocolatey, () => fetchChocolatey(fetch)),
+		safely('mise', FALLBACKS.mise, () => fetchMise(fetch)),
 		safely('action repos', FALLBACKS.actionRepos, () => fetchActionRepos(fetch)),
 		safely('winget version', FALLBACKS.wingetVersion, () => fetchWingetVersion(fetch)),
 		safely('snap version', FALLBACKS.snapVersion, () => fetchSnapVersion(fetch)),
@@ -381,7 +427,8 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		safely('contributors', FALLBACKS.contributors, () => fetchContributors(fetch)),
 		safely('stars', FALLBACKS.stars, () => fetchStars(fetch)),
 		safely('brew rank', RANKING_FALLBACK.brew, () => fetchBrewRank(fetch)),
-		safely('chocolatey lead', RANKING_FALLBACK.chocolatey, () => fetchChocolateyLead(fetch))
+		safely('chocolatey lead', RANKING_FALLBACK.chocolatey, () => fetchChocolateyLead(fetch)),
+		safely('mise lead', RANKING_FALLBACK.mise, () => fetchMiseLead(fetch))
 	]);
 
 	const channels: Channel[] = [
@@ -444,6 +491,13 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 			live: chocoLive
 		},
 		{
+			name: 'mise',
+			value: mise,
+			window: 'lifetime',
+			source: 'https://mise-versions.jdx.dev/tools/vale',
+			live: miseLive
+		},
+		{
 			name: 'GitHub Action',
 			icon: 'githubactions',
 			value: actionRepos,
@@ -488,7 +542,8 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 
 	const ranking = {
 		brew: { ...brewRank, live: brewRankLive },
-		chocolatey: { ...chocoLead, live: chocoLeadLive }
+		chocolatey: { ...chocoLead, live: chocoLeadLive },
+		mise: { ...miseLead, live: miseLeadLive }
 	};
 
 	const allLive =
@@ -496,7 +551,8 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		availability.every((a) => a.live) &&
 		contributorsLive &&
 		brewRankLive &&
-		chocoLeadLive;
+		chocoLeadLive &&
+		miseLeadLive;
 
 	return {
 		channels,

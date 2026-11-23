@@ -2,120 +2,19 @@
 	import Check from 'lucide-svelte/icons/check';
 	import Copy from 'lucide-svelte/icons/copy';
 	import { Button } from '$lib/components/ui/button';
-	import CodeBlock from '$lib/components/CodeBlock.svelte';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { Stats } from '$lib/types/stats';
 	import { assistants } from '$lib/assistants';
-	import FileCode from 'lucide-svelte/icons/file-code';
-	import Feather from 'lucide-svelte/icons/feather';
-	import FlaskConical from 'lucide-svelte/icons/flask-conical';
+	import { fields } from '$lib/data/fields';
 
-	type Kind = 'technical' | 'creative' | 'scientific';
 	let {
 		stats,
-		rules,
 		adopters
 	}: {
 		stats: Stats;
-		rules: Record<Kind, string>;
 		/** How many teams the adopter list holds. */
 		adopters: number;
 	} = $props();
-
-	/*
-		The flow figure, once per kind of writing. Each walks a real guideline
-		to the alert a real rule raises: Microsoft-style terminology for docs,
-		Elmore Leonard's fourth rule from the Fiction package, and the unit
-		convention from Journals. The visitor picks the one that is theirs.
-	*/
-	const kinds: {
-		id: Kind;
-		label: string;
-		icon: typeof FileCode;
-		kicker: string;
-		file: string;
-		doc: string;
-		heading: string;
-		before: string;
-		match: string;
-		after: string;
-		sev: 'error' | 'warning';
-		msg: string;
-		rule: string;
-		starters: { name: string; href: string }[];
-	}[] = [
-		{
-			id: 'technical',
-			label: 'Technical',
-			icon: FileCode,
-			kicker: 'Writing guide · Terminology',
-			file: 'styles/Docs/Terms.yml',
-			doc: 'docs/install.md',
-			heading: 'Installation',
-			before: '',
-			match: 'Vale cli',
-			after: ' runs on macOS, Windows, and Linux.',
-			sev: 'error',
-			msg: "Use 'Vale CLI' instead of 'Vale cli'.",
-			rule: 'Docs.Terms',
-			starters: [
-				{ name: 'Microsoft', href: '/explorer/Microsoft' },
-				{ name: 'Google', href: '/explorer/Google' },
-				{ name: 'Red Hat', href: '/explorer/RedHat' }
-			]
-		},
-		{
-			id: 'creative',
-			label: 'Creative',
-			icon: Feather,
-			kicker: 'Elmore Leonard · Rule 4',
-			file: 'styles/Leonard/Adverb.yml',
-			doc: 'manuscript/chapter-01.md',
-			heading: 'One',
-			before: '“No,” he ',
-			match: 'said gravely',
-			after: '. She did not look up.',
-			sev: 'warning',
-			msg: "Drop the adverb on the tag: 'said gravely'.",
-			rule: 'Leonard.Adverb',
-			starters: [
-				{ name: 'Fiction', href: '/explorer/Fiction' },
-				{ name: 'proselint', href: '/explorer/proselint' },
-				{ name: 'write-good', href: '/explorer/write-good' }
-			]
-		},
-		{
-			id: 'scientific',
-			label: 'Scientific',
-			icon: FlaskConical,
-			kicker: 'Author guidelines · Units',
-			file: 'styles/Journals/UnitSpacing.yml',
-			doc: 'paper/results.md',
-			heading: 'Results',
-			before: 'Blood pressure fell ',
-			match: '12mmHg',
-			after: ' after 20 min (p = 0.03).',
-			sev: 'warning',
-			msg: "Put a space between the number and the unit: '12mmHg'.",
-			rule: 'Journals.UnitSpacing',
-			starters: [
-				{ name: 'Journals', href: '/explorer/Journals' },
-				{ name: 'Readability', href: '/explorer/Readability' }
-			]
-		}
-	];
-	let kind = $state<Kind>('technical');
-	const current = $derived(kinds.find((k) => k.id === kind) ?? kinds[0]);
-
-	// A link can open the figure on its own kind: /?for=creative.
-	$effect(() => {
-		try {
-			const want = new URLSearchParams(location.search).get('for');
-			if (kinds.some((k) => k.id === want)) kind = want as Kind;
-		} catch {
-			// No location to read: leave the default.
-		}
-	});
 
 	const compact = new Intl.NumberFormat('en-US', { notation: 'compact', maximumFractionDigits: 1 });
 	// Three figures beside the headline. Each is a fact with a page behind it.
@@ -133,32 +32,42 @@
 		{ value: String(adopters), label: 'teams listed', href: '/adopters' }
 	]);
 
-	// Arrow keys move between the tabs, as the tab pattern expects: only the
-	// selected one is in the tab order.
-	function onTabKey(event: KeyboardEvent) {
-		const i = kinds.findIndex((k) => k.id === kind);
-		const last = kinds.length - 1;
-		const next =
-			event.key === 'ArrowRight'
-				? (i + 1) % kinds.length
-				: event.key === 'ArrowLeft'
-					? (i + last) % kinds.length
-					: event.key === 'Home'
-						? 0
-						: event.key === 'End'
-							? last
-							: -1;
-		if (next < 0) return;
-		event.preventDefault();
-		kind = kinds[next].id;
-		document.getElementById(`kind-${kind}`)?.focus();
-	}
+	/*
+		The install command for the visitor's OS, from the installation docs:
+		Homebrew on macOS, Chocolatey on Windows, and Snap on Linux, which works
+		on any distribution. The page is prerendered, so it ships with Homebrew
+		and swaps once the browser says where it's running; a phone, ChromeOS,
+		or a browser that won't say keeps the default and the general note.
+	*/
+	type Os = 'mac' | 'windows' | 'linux';
+	const commands: Record<Os, { name: string; prompt: string; command: string }> = {
+		mac: { name: 'macOS', prompt: '$', command: 'brew install vale' },
+		windows: { name: 'Windows', prompt: '>', command: 'choco install vale' },
+		linux: { name: 'Linux', prompt: '$', command: 'sudo snap install vale' }
+	};
 
-	const install = 'brew install vale';
+	let os = $state<Os | undefined>(undefined);
+	$effect(() => {
+		try {
+			// The platform hint where the browser gives one (Chromium does),
+			// else the older fields; a phone is checked first, since Android
+			// reports Linux.
+			const nav = navigator as Navigator & { userAgentData?: { platform?: string } };
+			const platform = nav.userAgentData?.platform || `${nav.platform} ${nav.userAgent}`;
+			if (/Android|iPhone|iPad|iPod|CrOS|Chrome OS/i.test(platform)) os = undefined;
+			else if (/Win/i.test(platform)) os = 'windows';
+			else if (/Mac/i.test(platform)) os = 'mac';
+			else if (/Linux/i.test(platform)) os = 'linux';
+		} catch {
+			// Nothing to read: keep the default.
+		}
+	});
+
+	const current = $derived(commands[os ?? 'mac']);
 	let copied = $state(false);
 	async function copyInstall() {
 		try {
-			await navigator.clipboard.writeText(install);
+			await navigator.clipboard.writeText(current.command);
 			copied = true;
 			setTimeout(() => (copied = false), 2000);
 		} catch {
@@ -193,122 +102,46 @@
 					>
 					<Button size="lg" variant="outline" href="https://docs.vale.sh">Read the docs</Button>
 				</div>
-				<!-- The one command most visitors can run as it stands; the note
-				     beside it covers everyone else. -->
+				<!-- The command for the visitor's OS; the note says which, and
+				     links the rest. -->
 				<button
 					type="button"
 					class="install"
 					onclick={copyInstall}
-					aria-label="Copy the install command: {install}"
+					aria-label="Copy the install command: {current.command}"
 				>
-					<span aria-hidden="true" class="prompt">$</span>
-					<code>{install}</code>
+					<span aria-hidden="true" class="prompt">{current.prompt}</span>
+					<code>{current.command}</code>
 					{#if copied}<Check aria-hidden="true" />{:else}<Copy aria-hidden="true" />{/if}
 					<span class="sr-only" aria-live="polite">{copied ? 'Copied' : ''}</span>
 				</button>
 				<p class="hero-note">
-					macOS, Windows & Linux · Runs offline ·
+					{os ? `For ${current.name}` : 'macOS, Windows & Linux'} · Runs offline ·
 					<a href="https://docs.vale.sh/topics/installation">Other installs</a>
 				</p>
 			</div>
 		</div>
 
-		<figure
-			class="flow"
-			aria-label="How a guideline becomes a rule, and a rule becomes an alert: a line from a writing guide, the YAML rule that encodes it, and the alert it raises in a file"
-		>
-			<!--
-				Which kind of writing the figure walks through. A tab list, so
-				the choice reads as a view of one thing and not three features.
-			-->
-			<div class="kinds" role="tablist" aria-label="Kind of writing">
-				{#each kinds as k (k.id)}
-					<button
-						type="button"
-						role="tab"
-						id={`kind-${k.id}`}
-						aria-selected={k.id === kind}
-						aria-controls="flow-stages"
-						tabindex={k.id === kind ? 0 : -1}
-						onclick={() => (kind = k.id)}
-						onkeydown={onTabKey}
-					>
-						<k.icon aria-hidden="true" />
-						{k.label}
-					</button>
+		<!--
+			One card per kind of writing, each opening its guide: the packages,
+			a starting config checked against Vale, and the teams who run it.
+			The entries live in $lib/data/fields, which the guides read too.
+		-->
+		<nav class="guides" aria-labelledby="guides-title">
+			<p class="guides-title" id="guides-title">Find the guide for what you write</p>
+			<ul>
+				{#each fields as f (f.id)}
+					<li>
+						<a href="/for/{f.id}">
+							<span class="guide-icon"><f.icon aria-hidden="true" /></span>
+							<span class="guide-name">{f.label}</span>
+							<span class="guide-summary">{f.summary}</span>
+							<span class="guide-more" aria-hidden="true">Read the guide →</span>
+						</a>
+					</li>
 				{/each}
-			</div>
-
-			<div class="stages" id="flow-stages" role="tabpanel" aria-labelledby={`kind-${kind}`}>
-				<div class="stage">
-					<div class="stage-label"><span class="n">01</span>Your guideline</div>
-					<div class="stage-body">
-						<p class="guide-kicker">{current.kicker}</p>
-						{#if kind === 'technical'}
-							<p class="guide-text">
-								The product is <strong>Vale CLI</strong>. Don’t write <s>Vale cli</s> or
-								<s>vale-cli</s>.
-							</p>
-						{:else if kind === 'creative'}
-							<p class="guide-text">
-								Never use an adverb to modify the verb <strong>“said”</strong>. Not
-								<s>he said gravely</s>.
-							</p>
-						{:else}
-							<p class="guide-text">
-								A space between a number and its unit: <strong>12 mmHg</strong>, not
-								<s>12mmHg</s>.
-							</p>
-						{/if}
-					</div>
-				</div>
-
-				<div class="stage">
-					<div class="stage-label"><span class="n">02</span>A rule you own</div>
-					<div class="stage-body">
-						<p class="file">{current.file}</p>
-						{#key kind}
-							<CodeBlock html={rules[kind]} bare />
-						{/key}
-					</div>
-				</div>
-
-				<div class="stage">
-					<div class="stage-label"><span class="n">03</span>Feedback where you write</div>
-					<div class="stage-body doc">
-						<p class="file">{current.doc}</p>
-						<ol class="lines">
-							<li>
-								<span class="src"
-									><span class="syntax">{kind === 'scientific' ? '##' : '#'}</span>
-									{current.heading}</span
-								>
-							</li>
-							<li><span class="src"></span></li>
-							<li>
-								<span class="src"
-									>{current.before}<mark class={current.sev}>{current.match}</mark
-									>{current.after}</span
-								>
-							</li>
-						</ol>
-						<div class="diagnostic">
-							<span class="sev {current.sev}">{current.sev}</span>
-							<span>{current.msg}</span>
-							<span class="rule-name">{current.rule}</span>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<figcaption>
-				Encode your guidelines in YAML, or start with a published style:
-				{#each current.starters as st, i (st.name)}{#if i > 0}{i === current.starters.length - 1
-							? ', or '
-							: ', '}{/if}<a href={st.href}>{st.name}</a>{/each}. Browse them all in the
-				<a href="/explorer">Explorer</a>.
-			</figcaption>
-		</figure>
+			</ul>
+		</nav>
 	</div>
 </section>
 
@@ -499,195 +332,79 @@
 		outline: 2px solid hsl(var(--ring));
 		outline-offset: 4px;
 	}
-	.flow {
-		--error: hsl(var(--destructive));
-		--warning: #b45309;
+	/*
+		Six cards, three across on a wide screen, two on a tablet, one on a
+		phone. Each is a whole link: icon, name, a line on what it covers.
+	*/
+	.guides {
 		margin-top: 48px;
+	}
+	.guides-title {
+		font:
+			500 11px/1.6 ui-monospace,
+			monospace;
+		letter-spacing: 0.08em;
+		text-transform: uppercase;
+		color: hsl(var(--muted-foreground));
+	}
+	.guides ul {
+		display: grid;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+		gap: 12px;
+		margin: 16px 0 0;
+		padding: 0;
+		list-style: none;
+	}
+	.guides a {
+		display: grid;
+		grid-template-columns: auto minmax(0, 1fr);
+		grid-template-rows: auto 1fr auto;
+		gap: 4px 14px;
+		height: 100%;
+		padding: 18px 20px;
 		border: 1px solid hsl(var(--border));
 		border-radius: 12px;
 		background: hsl(var(--card));
-		overflow: hidden;
 		box-shadow: var(--shadow-sm);
+		color: hsl(var(--foreground));
+		transition: border-color 0.15s;
 	}
-	:global(html.dark) .flow {
-		--warning: #fbbf24;
+	.guides a:hover {
+		text-decoration: none;
+		border-color: hsl(var(--primary) / 0.5);
 	}
-	.kinds {
+	.guide-icon {
+		grid-row: 1 / -1;
 		display: flex;
-		gap: 4px;
-		padding: 8px 12px;
-		border-bottom: 1px solid hsl(var(--border));
-		background: hsl(var(--muted) / 0.5);
-	}
-	.kinds button {
-		display: inline-flex;
 		align-items: center;
-		gap: 7px;
-		padding: 6px 12px;
-		border: 1px solid transparent;
-		border-radius: 8px;
-		font-size: 12px;
-		font-weight: 500;
-		color: hsl(var(--muted-foreground));
-		background: none;
-		cursor: pointer;
-	}
-	.kinds button :global(svg) {
-		width: 14px;
-		height: 14px;
-		opacity: 0.7;
-	}
-	.kinds button[aria-selected='true'] :global(svg) {
-		opacity: 1;
+		justify-content: center;
+		width: 36px;
+		height: 36px;
+		border: 1px solid hsl(var(--primary) / 0.2);
+		border-radius: 9px;
+		background: hsl(var(--primary) / 0.08);
 		color: hsl(var(--primary));
 	}
-	.kinds button:hover {
-		color: hsl(var(--foreground));
+	.guide-icon :global(svg) {
+		width: 17px;
+		height: 17px;
 	}
-	.kinds button[aria-selected='true'] {
-		border-color: hsl(var(--border));
-		background: hsl(var(--card));
-		color: hsl(var(--foreground));
-		box-shadow: var(--shadow-sm);
-	}
-	.kinds button:focus-visible {
-		outline: 2px solid hsl(var(--ring));
-		outline-offset: 2px;
-	}
-	.stages {
-		display: grid;
-		grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr) minmax(0, 1.1fr);
-	}
-	.stage {
-		min-width: 0;
-	}
-	.stage + .stage {
-		border-left: 1px solid hsl(var(--border));
-	}
-	.stage-label {
-		display: flex;
-		align-items: center;
-		gap: 10px;
-		padding: 16px 20px;
-		border-bottom: 1px solid hsl(var(--border));
-		font-size: 11px;
+	.guide-name {
+		font-size: 15px;
 		font-weight: 500;
-		background: hsl(var(--muted) / 0.5);
 	}
-	.n {
-		font:
-			10px ui-monospace,
-			monospace;
+	.guide-summary {
+		font-size: 13px;
+		line-height: 1.55;
 		color: hsl(var(--muted-foreground));
 	}
-	.stage-body {
-		padding: 20px;
-		min-width: 0;
-	}
-	.file {
-		margin-bottom: 16px;
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-		overflow-wrap: anywhere;
-	}
-	.guide-kicker {
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
-	.guide-text {
-		margin-top: 20px;
-		padding-left: 14px;
-		border-left: 2px solid hsl(var(--primary));
-		font:
-			19px/1.65 Georgia,
-			serif;
-	}
-	.guide-text strong {
-		font-weight: 700;
-	}
-	.guide-text s {
-		color: hsl(var(--muted-foreground));
-		text-decoration-color: var(--error);
-	}
-	.doc {
-		font:
-			12px/1.8 ui-monospace,
-			monospace;
-	}
-	.lines {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-		counter-reset: line;
-	}
-	.lines li {
-		display: grid;
-		grid-template-columns: 12px minmax(0, 1fr);
-		gap: 10px;
-	}
-	.lines li::before {
-		counter-increment: line;
-		content: counter(line);
-		text-align: right;
-		font-size: 10px;
-		color: hsl(var(--muted-foreground));
-	}
-	.src {
-		min-width: 0;
-		min-height: 1.8em;
-		overflow-wrap: anywhere;
-	}
-	.syntax {
-		color: hsl(var(--muted-foreground));
-	}
-	mark {
-		padding: 0 2px;
-		border-bottom: 2px solid var(--error);
-		background: color-mix(in srgb, var(--error) 10%, transparent);
-		color: inherit;
-	}
-	mark.warning {
-		border-bottom-color: var(--warning);
-		background: color-mix(in srgb, var(--warning) 12%, transparent);
-	}
-	.diagnostic {
-		display: flex;
-		flex-wrap: wrap;
-		gap: 4px 8px;
-		margin-top: 18px;
-		padding-top: 12px;
-		border-top: 1px solid hsl(var(--border));
-		font:
-			12px/1.6 system-ui,
-			sans-serif;
-	}
-	.sev {
-		color: var(--error);
-		font-weight: 600;
-	}
-	.sev.warning {
-		color: var(--warning);
-	}
-	.rule-name {
-		width: 100%;
-		font:
-			10px/1.6 ui-monospace,
-			monospace;
-		color: hsl(var(--muted-foreground));
-	}
-	figcaption {
-		padding: 14px 20px;
-		border-top: 1px solid hsl(var(--border));
+	.guide-more {
+		margin-top: 8px;
 		font-size: 12px;
-		line-height: 1.7;
-		color: hsl(var(--muted-foreground));
+		font-weight: 500;
+		color: hsl(var(--primary));
 	}
-	figcaption a {
-		color: hsl(var(--foreground));
+	.guides a:hover .guide-more {
 		text-decoration: underline;
 		text-underline-offset: 3px;
 	}
@@ -716,6 +433,9 @@
 		font-size: 10px;
 	}
 	@media (max-width: 1000px) {
+		.guides ul {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
 		/* Two columns this narrow leave a hole under the headline, and one
 		   column leaves the right half empty. So the headline takes the full
 		   width, and under it the paragraph and the buttons share a row. */
@@ -754,19 +474,6 @@
 		.hero-note {
 			grid-column: 1 / -1;
 			margin-top: -8px;
-		}
-		.stages {
-			grid-template-columns: 1fr 1fr;
-		}
-		.stage:first-child {
-			grid-column: 1 / -1;
-			border-bottom: 1px solid hsl(var(--border));
-		}
-		.stage:nth-child(2) {
-			border-left: 0;
-		}
-		.guide-text {
-			margin-top: 12px;
 		}
 	}
 	@media (max-width: 700px) {
@@ -809,17 +516,11 @@
 		.intro {
 			font-size: 16px;
 		}
-		.flow {
+		.guides {
 			margin-top: 32px;
 		}
-		.stages {
-			grid-template-columns: 1fr;
-		}
-		.stage + .stage {
-			border-left: 0;
-		}
-		.stage:nth-child(3) {
-			border-top: 1px solid hsl(var(--border));
+		.guides ul {
+			grid-template-columns: minmax(0, 1fr);
 		}
 	}
 	@media (max-width: 400px) {

@@ -104,9 +104,13 @@ export const tiers: Tier[] = [
 		name: 'Custom',
 		price: "Let's talk",
 		unit: '',
-		note: 'one-time payment',
+		note: 'once, or over a year',
 		who: 'For companies that want to fund one area of work.',
-		features: ['Fund Std, Voices, Journals, Harper, or agent tooling'],
+		features: [
+			'A feature, file format, or integration your team needs',
+			'Tooling for running Vale with coding agents',
+			'Credited to your company when it ships'
+		],
 		links: [{ label: contact.label, href: contact.href }]
 	}
 ];
@@ -116,7 +120,7 @@ export const partner = [
 	{
 		term: 'The channel',
 		detail:
-			'A private channel on the Vale Discord for your team and the maintainer, for as long as you sponsor. Use it for questions, config help, bug reports, and requests.'
+			'A private channel on the Vale Discord for your team and the maintainer, for as long as you sponsor. Use it for questions, config help, bug reports, and requests. Everything happens in writing: there are no calls or meetings.'
 	},
 	{
 		term: 'Triaged first',
@@ -134,7 +138,7 @@ export const partner = [
 	{
 		term: 'Vale CMS',
 		detail:
-			'The Site plan for as long as you sponsor: the full editor for every address at your domain, and the MCP server for the accounts your CI and agents run as.'
+			'The Site plan, for as long as you sponsor: the full editor for every address at your domain, and the MCP server for the accounts your CI and agents run as.'
 	}
 ];
 
@@ -145,7 +149,7 @@ export const faq = [
 	},
 	{
 		q: 'Does sponsoring buy features?',
-		a: "No. It buys visibility and, for Partners, priority on requests and a say in the roadmap. What ships stays the maintainer's call."
+		a: "Not exclusive ones. Partners get a say in the roadmap, and a Custom sponsorship can fund a specific feature, but everything ships to everyone and the roadmap stays the maintainer's."
 	},
 	{
 		q: 'Is there an SLA?',
@@ -154,5 +158,9 @@ export const faq = [
 	{
 		q: 'Can we pay by invoice?',
 		a: 'Yes. Open Collective sends invoices and receipts.'
+	},
+	{
+		q: 'Can we pay once instead?',
+		a: "Yes. A one-time payment of a tier's price gets that tier for a year, with no renewal commitment. Any other amount is welcome as a Backer."
 	}
 ];
