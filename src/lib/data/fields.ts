@@ -4,6 +4,7 @@ import FlaskConical from 'lucide-svelte/icons/flask-conical';
 import GitCommitHorizontal from 'lucide-svelte/icons/git-commit-horizontal';
 import Bot from 'lucide-svelte/icons/bot';
 import Landmark from 'lucide-svelte/icons/landmark';
+import AppWindow from 'lucide-svelte/icons/app-window';
 
 /**
  * The kinds of writing Vale is set up for: one card each on the home page,
@@ -332,6 +333,49 @@ BasedOnStyles = Vale, Fiction, Leonard, Readability`
 			{ label: 'Styles', href: docs('topics/styles'), note: 'Turning your own rules into checks' },
 			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Names and invented words' },
 			{ label: 'Spelling', href: docs('checks/spelling') }
+		]
+	},
+	{
+		id: 'product',
+		label: 'Product & UX',
+		icon: AppWindow,
+		title: 'Vale for product and UX writing',
+		summary: 'Buttons, error messages, and the strings in your locale files.',
+		lede: 'The words in an interface are written once and read on every screen: a button label, an error message, an empty state. They live in locale files no docs linter opens. The Microcopy package reads them there, through a View that tells a label from a message by its key, and checks the conventions design systems share: sentence-case labels, a specific verb on every button, errors that say what to do next, and no “please” or “click here”. GlobalEnglish keeps the same strings ready for translation.',
+		packages: ['Microcopy', 'GlobalEnglish', 'A11y', 'alex', 'TechTerms'],
+		config: {
+			note: 'Microcopy reads the locale file through its I18n View, so the label rules reach button and title keys and the rest reach every message. The docs get Microcopy’s message rules and GlobalEnglish beside them.',
+			code: `StylesPath = styles
+MinAlertLevel = suggestion
+Packages = Microcopy, GlobalEnglish
+
+[locales/*.{json,yml}]
+BasedOnStyles = Vale, Microcopy
+View = I18n
+
+[docs/*.md]
+BasedOnStyles = Vale, Microcopy, GlobalEnglish`
+		},
+		formats: [
+			{ label: 'I18n JSON', href: '/explorer/assets/I18nJSON', note: 'Locale files, by View' },
+			{ label: 'I18n YAML', href: '/explorer/assets/I18nYAML' },
+			{ label: 'Android strings', href: '/explorer/assets/AndroidStrings' },
+			{ label: 'Apple strings', href: '/explorer/assets/AppleStrings' },
+			{ label: 'Markdown', href: docs('formats/markdown') },
+			{ label: 'MDX', href: docs('formats/mdx'), note: 'Component docs' }
+		],
+		posts: ['spelling'],
+		adopters: ['SuperTokens', 'Zeabur', 'NASA', 'Cypress', 'Semrush', 'Marigold', 'MUI', 'Netwrix'],
+		adoptersNote:
+			'Teams who lint the text of a product: error strings in TSX, interface strings in two languages, the UI components a design system ships, and the docs beside them.',
+		integrations: ['Browser', 'VS Code', 'GitHub Actions', 'pre-commit', 'Language server'],
+		integrationsNote:
+			'The browser extension checks a string where it’s typed, in a pull request or a design tool’s comment box. In the repository, the same config runs on the locale files in the editor and in CI.',
+		skills: ['setup', 'vocab', 'tune', 'ci'],
+		docs: [
+			{ label: 'Views', href: docs('topics/views'), note: 'Reading locale files' },
+			{ label: 'Vocabularies', href: docs('keys/vocabularies'), note: 'Product and feature names' },
+			{ label: 'Scopes', href: docs('topics/scopes') }
 		]
 	},
 	{
