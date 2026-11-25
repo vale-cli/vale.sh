@@ -104,6 +104,7 @@ Each rule a section's styles bring is `active`, `disabled`, or `override` with t
 | ------------------------------------- | ------------------ | --------------------------------------------------------------------------------------------- |
 | Markdown, MDX, MyST, Quarto, Org-mode | Yes                | Parsed in Go.                                                                                 |
 | AsciiDoc, reStructuredText            | Yes                | Converted in Go, by ports of Asciidoctor and Docutils.                                        |
+| LaTeX                                 | Yes                | Read in Go.                                                                                   |
 | HTML                                  | Yes                |                                                                                               |
 | Plain text                            | Yes                |                                                                                               |
 | YAML, JSON, TOML                      | Yes                | Through a [View](views.md).                                                                   |

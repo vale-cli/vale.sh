@@ -98,6 +98,7 @@ Two kinds of misspelling get a more specific message, and a fix:
 | reStructuredText | ` ``created_at`` ` |
 | Org | `~created_at~` |
 | HTML | `<code>created_at</code>` |
+| LaTeX | `\verb\|created_at\|` |
 
 In other formats, such as plain text, the word is reported as a misspelling. Both apply to every `spelling` rule, and replace its `message` for these alerts.
 

@@ -3,7 +3,7 @@
 Learn how to define custom block-level ignores in your Vale configuration.
 
 {% hint style="info" %}
-`BlockIgnores` are supported in AsciiDoc, HTML, Markdown, MDX, MyST, Org Mode, QDoc, Quarto, reStructuredText, and Typst. MyST, QDoc, Quarto, and Typst require Vale v3.18.0 or later; HTML requires v3.21.0 or later.
+`BlockIgnores` are supported in AsciiDoc, HTML, LaTeX, Markdown, MDX, MyST, Org Mode, QDoc, Quarto, reStructuredText, and Typst. MyST, QDoc, Quarto, and Typst require Vale v3.18.0 or later; HTML requires v3.21.0 or later; LaTeX requires v3.29.0 or later.
 
 They work by wrapping each match in the format's block code delimiter, so they need a markup format to wrap it with. In a source code file they have no effect—but associating a markup format with your comments makes them available. See [Code](../formats/code.md#associations).
 {% endhint %}

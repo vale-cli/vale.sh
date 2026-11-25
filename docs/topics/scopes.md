@@ -47,6 +47,7 @@ The supported formats for markup files are:
 * [AsciiDoc](../formats/asciidoc.md)
 * [DITA](../formats/dita.md)
 * [HTML](../formats/html.md) Built-in
+* [LaTeX](../formats/latex.md) Built-in
 * [Markdown](../formats/markdown.md) Built-in, including [R Markdown](../formats/markdown.md#r-markdown)
 * [MDX](../formats/mdx.md) Built-in
 * [MyST](../formats/myst.md) Built-in

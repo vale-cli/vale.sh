@@ -74,6 +74,7 @@
 * [reStructuredText](formats/restructuredtext.md)
 * [Sphinx](formats/sphinx.md)
 * [Typst](formats/typst.md)
+* [LaTeX](formats/latex.md)
 * [XML](formats/xml.md)
 * [Org](formats/org.md)
 * [DITA](formats/dita.md)
