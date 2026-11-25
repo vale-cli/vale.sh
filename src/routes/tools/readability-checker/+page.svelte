@@ -333,6 +333,11 @@ Most style guides ask for a grade level of eight or below. That is not because r
 			<p>{f.about} Target: {f.target}.</p>
 			<p class="font-mono text-sm">{f.formula}</p>
 		{/each}
+		<p>
+			For sentence length and reading grade measured at scale, see
+			<a href="https://jdkato.io/stories/plain-writing-act">Did the Plain Writing Act work?</a>,
+			which follows thirty years of the Federal Register.
+		</p>
 
 		<h2>Flesch reading ease scale</h2>
 		<ul>

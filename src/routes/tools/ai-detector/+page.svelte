@@ -487,6 +487,16 @@ In conclusion, great documentation is a journey, not a destination. I hope this 
 			either way: replace the stock phrase with what you actually mean.
 		</p>
 
+		<h2>How far these habits have spread</h2>
+		<p>
+			The same patterns have been run over two public archives. Across
+			<a href="https://jdkato.io/stories/github-ai-tells"
+				>a decade of GitHub issues and pull requests</a
+			>, the vocabulary is still climbing. Across
+			<a href="https://jdkato.io/stories/arxiv-ai-tells">25,000 arXiv abstracts</a>, it peaked in
+			early 2025 and has been falling since.
+		</p>
+
 		<Formats verb="Check" />
 
 		<h2>Check every draft automatically</h2>

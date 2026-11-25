@@ -77,6 +77,7 @@
 		keywords: tags.join(', '),
 		author: {
 			'@type': 'Person',
+			...(author.id ? { '@id': author.id } : {}),
 			name: author.name,
 			url: author.url
 		},

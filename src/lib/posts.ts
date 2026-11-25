@@ -40,13 +40,16 @@ export type PostMeta = {
 
 export type PostHeading = { id: string; title: string };
 
-export type Author = { name: string; avatar: string; url: string };
+// `id` names the same person as the author's own site does, so search
+// engines read the two as one.
+export type Author = { name: string; avatar: string; url: string; id?: string };
 
 export const AUTHORS: Record<string, Author> = {
 	jdkato: {
 		name: 'Joseph Kato',
 		avatar: '/blog/authors/jdkato.png',
-		url: 'https://jdkato.io'
+		url: 'https://jdkato.io',
+		id: 'https://jdkato.io/#person'
 	}
 };
 

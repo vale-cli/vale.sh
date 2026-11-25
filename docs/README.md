@@ -68,7 +68,7 @@ Additionally, since Vale is built on top of an NLP library, you can also target 
 
 ## [Tech stack](./#tech-stack)
 
-Vale is a 100% open-source, MIT-licensed project that consists of multiple parts:
+Vale is a 100% open-source, MIT-licensed project, created and maintained by [Joseph Kato](https://jdkato.io), that consists of multiple parts:
 
 | Name                                                      | Tech       | Info                                                                                                         |
 | --------------------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------ |
