@@ -293,7 +293,7 @@
 					<tr>
 						<th
 							scope="col"
-							class="sticky left-0 z-10 min-w-[9.5rem] border-b border-r border-border bg-card px-3 py-2 text-left align-bottom text-xs font-medium text-muted-foreground sm:min-w-[13rem]"
+							class="sticky left-0 z-10 w-[7.5rem] min-w-[7.5rem] max-w-[7.5rem] border-b border-r border-border bg-card px-2.5 py-2 text-left align-bottom text-xs font-medium text-muted-foreground sm:w-auto sm:min-w-[13rem] sm:max-w-none sm:px-3"
 						>
 							Decision
 						</th>
@@ -317,10 +317,14 @@
 						<tr>
 							<th
 								scope="row"
-								class="sticky left-0 z-10 border-b border-r border-border bg-card px-3 py-2.5 text-left align-top font-normal"
+								class="sticky left-0 z-10 w-[7.5rem] min-w-[7.5rem] max-w-[7.5rem] border-b border-r border-border bg-card px-2.5 py-2.5 text-left align-top font-normal sm:w-auto sm:min-w-0 sm:max-w-none sm:px-3"
 							>
-								<span class="block font-medium">{row.label}</span>
-								<span class="mt-0.5 block text-xs text-muted-foreground">{row.asks}</span>
+								<span class="block text-[0.8125rem] font-medium leading-snug sm:text-sm"
+									>{row.label}</span
+								>
+								<span class="mt-0.5 block text-xs leading-snug text-muted-foreground"
+									>{row.asks}</span
+								>
 								<span class="mt-1 hidden text-xs text-muted-foreground sm:block">
 									{#if answers.length}
 										{answers.map(([, a]) => `${a.label} ${a.n}`).join(' · ')}
@@ -330,7 +334,9 @@
 								</span>
 							</th>
 							{#each row.cells as cell (cell.guide)}
-								<td class="border-b border-border p-1 align-middle">
+								<td
+									class="w-[5.25rem] min-w-[5.25rem] max-w-[5.25rem] border-b border-border p-1 align-middle"
+								>
 									{#if cell.value === 'none'}
 										<span
 											class="flex h-12 items-center justify-center rounded-md bg-muted/30 px-1 text-center text-xs text-muted-foreground/80"
@@ -349,7 +355,7 @@
 												? 'bg-lime-500/20'
 												: 'bg-violet-500/20'}"
 										>
-											<span>{cell.label}</span>
+											<span class="hyphens-auto break-words">{cell.label}</span>
 											<span class="h-1.5 w-1.5 rounded-full" style="background: hsl(var(--vt))"
 											></span>
 										</a>
@@ -474,7 +480,9 @@
 			<table class="w-full min-w-[46rem] border-separate border-spacing-1 text-sm">
 				<thead>
 					<tr>
-						<th scope="col" class="w-36 text-left text-xs font-medium text-muted-foreground"
+						<th
+							scope="col"
+							class="sticky left-0 z-10 w-36 bg-card text-left text-xs font-medium text-muted-foreground shadow-[-1.25rem_0_0_hsl(var(--card)),0.25rem_0_0_hsl(var(--card))]"
 							>Guide</th
 						>
 						{#each topics as t (t.id)}
@@ -492,7 +500,10 @@
 				<tbody>
 					{#each data.cards as c (c.id)}
 						<tr>
-							<th scope="row" class="whitespace-nowrap pr-2 text-left font-medium">
+							<th
+								scope="row"
+								class="sticky left-0 z-10 whitespace-nowrap bg-card pr-2 text-left font-medium shadow-[-1.25rem_0_0_hsl(var(--card)),0.25rem_0_0_hsl(var(--card))]"
+							>
 								<a href="/guides/{c.id}" class="inline-flex items-center gap-2 hover:underline"
 									><GuideLogo id={c.id} name={c.name} size="h-4 w-4" />{c.name}</a
 								>
@@ -529,6 +540,7 @@
 				</tbody>
 			</table>
 		</div>
+		<p class="mt-2 text-xs text-muted-foreground sm:hidden">Scroll sideways to see every topic.</p>
 	</section>
 
 	<!-- Strictness -->
@@ -727,7 +739,7 @@
 					<li class="flex items-baseline gap-3 px-4 py-2.5 text-sm">
 						<button
 							type="button"
-							class="min-w-0 flex-1 truncate text-left hover:underline"
+							class="min-w-0 flex-1 text-left hover:underline sm:truncate"
 							onclick={() => {
 								ask(s.term);
 								document.getElementById('lookup')?.scrollIntoView({ behavior: 'smooth' });
