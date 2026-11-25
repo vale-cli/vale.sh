@@ -55,7 +55,7 @@ The supported formats for markup files are:
 * [QDoc](../formats/qdoc.md) Built-in
 * [Quarto](../formats/quarto.md) Built-in
 * [reStructuredText](../formats/restructuredtext.md)
-* [Typst](../formats/typst.md)
+* [Typst](../formats/typst.md) Built-in
 * [XML](../formats/xml.md)
 
 The formats marked as `Built-in` are included with Vale by default. The other formats require a third-party dependency to be installed. See each format’s documentation for more information and installation instructions.

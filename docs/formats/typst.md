@@ -6,13 +6,11 @@ Learn how Vale handles Typst content.
 Requires Vale v3.18.0 or later.
 {% endhint %}
 
-[Typst](https://typst.app/) is supported through the external program [`typst2vast`](https://github.com/jdkato/typst2vast), which reads documents with `typst-syntax`—the Typst compiler's own parser—without ever evaluating them. To get started, install the CLI:
+Vale reads [Typst](https://typst.app/) with [`typst2vast`](https://github.com/jdkato/typst2vast), which parses documents with `typst-syntax`—the Typst compiler's own parser—without ever evaluating them. As of v3.29.0 it's built in—nothing to install. Earlier versions need the program on your `$PATH`:
 
 ```console
 $ cargo install typst2vast
 ```
-
-You'll need to ensure that the `typst2vast` executable is available in your `$PATH` (this should happen automatically).
 
 The supported extension is `.typ`.
 
