@@ -13,7 +13,6 @@
 		downloadsPerDay,
 		docsPages,
 		peers,
-		writingTools,
 		modelReview,
 		aiPhrasing,
 		type Channel
@@ -68,37 +67,18 @@
 	const valeIndex = tools.findIndex((t) => t.id === 'vale');
 	const peak = tools[0].total;
 
-	// Most peer figures are rounded to two or three digits, so totals within 1%
-	// are too close to rank.
-	const near = (t: (typeof tools)[number]) =>
-		Math.abs(t.total - valeTotal) <= 0.01 * Math.max(t.total, valeTotal);
-	const writers = tools.filter((t) => writingTools.includes(t.id));
-	const names = (ts: typeof tools) => ts.map((t) => t.name).join(' and ');
-	const ahead = writers.filter((t) => !near(t) && t.total > valeTotal);
-	const level = writers.filter(near);
-	const writingStanding =
-		ahead.length > 0
-			? `behind only ${names(ahead)} among writing tools`
-			: level.length > 0
-				? `level with ${names(level)} and ahead of every other writing tool`
-				: 'ahead of every other writing tool';
-
 	const channelNames: Record<Channel, string> = {
 		github: 'GitHub',
-		pypi: 'PyPI',
-		npm: 'npm',
 		docker: 'Docker',
 		conda: 'conda-forge'
 	};
 	// Tailwind classes, spelled out so the scan finds them.
 	const channelColors: Record<Channel, string> = {
 		github: 'bg-sky-500',
-		pypi: 'bg-amber-400',
-		npm: 'bg-rose-500',
 		docker: 'bg-emerald-500',
 		conda: 'bg-violet-500'
 	};
-	const channels: Channel[] = ['github', 'pypi', 'npm', 'docker', 'conda'];
+	const channels: Channel[] = ['github', 'docker', 'conda'];
 
 	const brew = $derived(data.stats.ranking.brew);
 	// One decimal, never rounded in Vale's favor.
@@ -290,8 +270,8 @@
 			{/each}
 		</ul>
 		<p class="mt-3 text-sm text-muted-foreground">
-			In Markdown, MDX, AsciiDoc, reStructuredText, DITA, HTML, XML, Typst, Jupyter, and source
-			code.
+			In Markdown, MDX, AsciiDoc, reStructuredText, DITA, HTML, XML, Typst, LaTeX, Jupyter, and
+			source code.
 		</p>
 	</section>
 
@@ -309,8 +289,8 @@
 			Pragmatic Bookshelf book.
 		</p>
 		<p class="mt-5 text-sm text-muted-foreground">
-			All-time downloads beside well-known developer tools: #{valeIndex + 1} of these {tools.length},
-			{writingStanding}, and #{brew.rank} of {n(brew.of)} Homebrew formulae, the top {topPct}%.
+			All-time downloads beside well-known developer tools that ship the same way: #{valeIndex + 1}
+			of these {tools.length}, and #{brew.rank} of {n(brew.of)} Homebrew formulae, the top {topPct}%.
 		</p>
 		<div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
 			{#each channels as ch (ch)}
@@ -519,11 +499,11 @@
 			<li>
 				<strong class="font-medium text-foreground">Downloads:</strong> GitHub release downloads,
 				Docker Hub pulls, and conda-forge for Vale, live as of {day(data.stats.updated)}; the other
-				tools as of Nov 26, 2026, with PyPI and npm where they ship their own build. A package that
-				only downloads the GitHub release when installed (Vale's on PyPI and npm, actionlint's on
-				PyPI) isn't counted again. Homebrew publishes no all-time counts, so it's left out of every
-				total; its rank is by installs over the past year. The daily figure is GitHub release
-				downloads over the past year, divided by 365.
+				tools as of Nov 26, 2026, on the same three channels. Only tools that ship through them are
+				compared, since a tool distributed mostly elsewhere (PyPI, npm, browser stores, or app
+				stores) can't be measured the same way. Homebrew publishes no all-time counts, so it's left
+				out of every total; its rank is by installs over the past year. The daily figure is GitHub
+				release downloads over the past year, divided by 365.
 			</li>
 			<li>
 				<strong class="font-medium text-foreground">Teams and docs pages:</strong> the

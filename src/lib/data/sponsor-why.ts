@@ -90,13 +90,12 @@ export const docsPages = 289184;
 
 /**
  * Well-known developer tools' all-time downloads, for scale, 2026-11-26.
- * Only channels that ship their own build are counted: a package that just
- * fetches the GitHub release when installed (Vale's on PyPI and npm,
- * actionlint's on PyPI) would count those installs twice. GitHub figures for
- * the peers are shields.io's, rounded to two or three digits. Vale's own row
- * is filled in live by the page.
+ * Only tools that ship through Vale's channels are compared, and only those
+ * channels are counted, so every total is measured the same way. GitHub
+ * figures for the peers are shields.io's, rounded to two or three digits.
+ * Vale's own row is filled in live by the page.
  */
-export type Channel = 'github' | 'pypi' | 'npm' | 'docker' | 'conda';
+export type Channel = 'github' | 'docker' | 'conda';
 export const peers: {
 	id: string;
 	name: string;
@@ -107,7 +106,7 @@ export const peers: {
 		id: 'actionlint',
 		name: 'actionlint',
 		kind: 'GitHub Actions linter',
-		channels: { github: 46000000, npm: 615790, docker: 25934475, conda: 266788 }
+		channels: { github: 46000000, docker: 25934475, conda: 266788 }
 	},
 	{
 		id: 'shfmt',
@@ -116,39 +115,18 @@ export const peers: {
 		channels: { github: 38000000, docker: 6854050, conda: 473234 }
 	},
 	{
-		id: 'typos',
-		name: 'typos',
-		kind: 'Spell checker',
-		channels: { github: 13000000, pypi: 18000000, conda: 1124394 }
-	},
-	{
 		id: 'lychee',
 		name: 'lychee',
 		kind: 'Link checker',
 		channels: { github: 16000000, docker: 2149547, conda: 278528 }
 	},
 	{
-		id: 'languagetool',
-		name: 'LanguageTool',
-		kind: 'Grammar checker',
-		channels: { pypi: 8700000, docker: 8973285 }
-	},
-	{
 		id: 'goreleaser',
 		name: 'GoReleaser',
 		kind: 'Release tool',
 		channels: { github: 14000000, conda: 16180 }
-	},
-	{ id: 'write-good', name: 'write-good', kind: 'Prose linter', channels: { npm: 9283499 } },
-	{
-		id: 'harper',
-		name: 'Harper',
-		kind: 'Grammar checker',
-		channels: { github: 462000, npm: 1610713 }
 	}
 ];
-/** The writing tools among the peers. typos checks code, so it isn't one. */
-export const writingTools = ['languagetool', 'write-good', 'harper'];
 
 /**
  * One draft, five model reviews, input tokens at list price, measured
