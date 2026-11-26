@@ -181,6 +181,8 @@ packages:
 # New posts get a card in the feed: title, summary, banner and link.
 blog:
   feed_url: https://vale.sh/blog/rss.xml
+  # A release post is already linked from its release card.
+  skip_categories: [Releases]
 
 # Enables /docs. These are the public search-only credentials vale.sh already
 # ships in its JavaScript.
