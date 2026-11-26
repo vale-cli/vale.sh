@@ -222,8 +222,8 @@ export const presets: Preset[] = [
 		id: 'scientific',
 		label: 'Scientific',
 		description:
-			'Papers, preprints, and theses, in Markdown, Quarto, R Markdown, Typst, or a notebook.',
-		formats: ['md', 'qmd'],
+			'Papers, preprints, and theses, in LaTeX, Markdown, Quarto, R Markdown, Typst, or a notebook.',
+		formats: ['md', 'qmd', 'tex'],
 		base: [journals],
 		supplementary: [
 			inJournals(

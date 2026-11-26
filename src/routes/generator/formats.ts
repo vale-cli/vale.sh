@@ -48,16 +48,6 @@ function format(f: Format): Format {
 	return f;
 }
 
-const asciidoctor: Requirement = {
-	tool: 'asciidoctor',
-	install: 'gem install asciidoctor',
-	docs: '/docs/formats/asciidoc'
-};
-const docutils: Requirement = {
-	tool: 'rst2html',
-	install: 'pip install docutils',
-	docs: '/docs/formats/restructuredtext'
-};
 const xsltproc: Requirement = {
 	tool: 'xsltproc',
 	install: 'brew install libxslt  # or: apt-get install xsltproc',
@@ -67,11 +57,6 @@ const ditaOT: Requirement = {
 	tool: 'dita',
 	install: 'DITA Open Toolkit, with its bin directory on the PATH',
 	docs: '/docs/formats/dita'
-};
-const typst2vast: Requirement = {
-	tool: 'typst2vast',
-	install: 'cargo install typst2vast',
-	docs: '/docs/formats/typst'
 };
 
 const notebookView: ViewFile = {
@@ -187,8 +172,7 @@ export const formats: Format[] = [
 		group: 'prose',
 		extensions: ['rst'],
 		description: 'Sphinx and docutils documents.',
-		docs: '/docs/formats/restructuredtext',
-		requires: docutils
+		docs: '/docs/formats/restructuredtext'
 	}),
 	format({
 		id: 'adoc',
@@ -196,8 +180,7 @@ export const formats: Format[] = [
 		group: 'prose',
 		extensions: ['adoc'],
 		description: 'Asciidoctor documents; literals and source blocks are skipped.',
-		docs: '/docs/formats/asciidoc',
-		requires: asciidoctor
+		docs: '/docs/formats/asciidoc'
 	}),
 	format({
 		id: 'html',
@@ -221,8 +204,15 @@ export const formats: Format[] = [
 		group: 'prose',
 		extensions: ['typ'],
 		description: 'Typst documents, read with the compiler’s own parser.',
-		docs: '/docs/formats/typst',
-		requires: typst2vast
+		docs: '/docs/formats/typst'
+	}),
+	format({
+		id: 'tex',
+		label: 'LaTeX',
+		group: 'prose',
+		extensions: ['tex'],
+		description: 'LaTeX sources, read without running TeX; math, citations, and the preamble are skipped.',
+		docs: '/docs/formats/latex'
 	}),
 	format({
 		id: 'qmd',
