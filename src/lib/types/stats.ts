@@ -63,16 +63,21 @@ export type Ranking = {
 	mise: { leads: boolean; live: boolean };
 };
 
+/** One published release and the downloads across its assets. */
+export type Release = { tag: string; date: string; downloads: number };
+
 export type Stats = {
 	channels: Channel[];
 	/**
-	 * Downloads summed across the channels reporting a lifetime figure.
-	 *
-	 * Only those: the windowed channels count a trailing month or year, so
-	 * adding them in would total numbers that measure different spans. The
+	 * Vale's one download total: GitHub Releases, Docker Hub, and conda-forge,
+	 * the channels that ship their own build. Every other channel either
+	 * installs the GitHub release (so its installs are already counted) or
+	 * reports a trailing window that can't be added to an all-time count. The
 	 * real figure is therefore higher than this one, not lower.
 	 */
 	lifetime: { value: number; sources: string[]; live: boolean };
+	/** Every release, oldest first; empty when the walk fell back. */
+	releases: Release[];
 	availability: Availability[];
 	funding: Funding;
 	contributors: number;

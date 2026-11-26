@@ -12,12 +12,15 @@
  * Verified 2026-08-28 — the fallbacks below are the real values on that date.
  */
 
-import type { Availability, Channel, Stats } from '$lib/types/stats';
+import type { Availability, Channel, Release, Stats } from '$lib/types/stats';
 
 // The project moved from the errata-ai org; errata-ai/* still redirects here.
 const REPO = 'vale-cli/vale';
 const DOCKER_IMAGE = 'jdkato/vale';
 const ACTION = 'vale-cli/vale-action';
+
+/** The channels whose downloads make up Vale's one download total. */
+const OWN_BUILD = ['GitHub Releases', 'Docker Hub', 'conda-forge'];
 
 /** Date the fallbacks below were last confirmed by hand. */
 const FALLBACK_DATE = '2026-08-28';
@@ -130,24 +133,33 @@ async function text(fetch: Fetch, url: string, headers: Record<string, string> =
 	return res.text();
 }
 
-/** Total download_count across every asset of every release. */
-async function fetchReleases(fetch: Fetch): Promise<number> {
-	let total = 0;
+/**
+ * Every published release, oldest first, with the download_count summed
+ * across its assets; and the total of those. The per-release list is what
+ * /stats.json publishes for charts and the downloads-a-day figure.
+ */
+async function fetchReleases(fetch: Fetch): Promise<{ total: number; releases: Release[] }> {
+	const releases: Release[] = [];
 	// Vale has ~200 releases; cap the walk so a pagination bug can't hang a build.
 	for (let page = 1; page <= 10; page++) {
-		const releases = await json(
+		const batch = await json(
 			fetch,
 			`https://api.github.com/repos/${REPO}/releases?per_page=100&page=${page}`,
 			ghHeaders()
 		);
-		if (!Array.isArray(releases)) throw new Error('unexpected releases payload');
-		for (const release of releases) {
-			for (const asset of release.assets ?? []) total += asset.download_count ?? 0;
+		if (!Array.isArray(batch)) throw new Error('unexpected releases payload');
+		for (const release of batch) {
+			if (release.draft || !release.published_at) continue;
+			let downloads = 0;
+			for (const asset of release.assets ?? []) downloads += asset.download_count ?? 0;
+			releases.push({ tag: release.tag_name, date: release.published_at.slice(0, 10), downloads });
 		}
-		if (releases.length < 100) break;
+		if (batch.length < 100) break;
 	}
+	const total = releases.reduce((sum, r) => sum + r.downloads, 0);
 	if (total === 0) throw new Error('release downloads came back as 0');
-	return total;
+	releases.sort((a, b) => a.date.localeCompare(b.date));
+	return { total, releases };
 }
 
 /** Stargazers on the main repo, shown in the hero. */
@@ -388,7 +400,7 @@ async function fetchContributors(fetch: Fetch): Promise<number> {
 
 export async function getStats(fetch: Fetch): Promise<Stats> {
 	const [
-		[releases, releasesLive],
+		[releaseWalk, releasesLive],
 		[docker, dockerLive],
 		[pypi, pypiLive],
 		[npm, npmLive],
@@ -407,7 +419,9 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		[chocoLead, chocoLeadLive],
 		[miseLead, miseLeadLive]
 	] = await Promise.all([
-		safely('releases', FALLBACKS.releases, () => fetchReleases(fetch)),
+		safely('releases', { total: FALLBACKS.releases, releases: [] as Release[] }, () =>
+			fetchReleases(fetch)
+		),
 		safely('docker pulls', FALLBACKS.docker, () => fetchDockerPulls(fetch)),
 		safely('pypi', FALLBACKS.pypi, () => fetchPypi(fetch)),
 		safely('npm', FALLBACKS.npm, () => fetchNpm(fetch)),
@@ -435,7 +449,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		{
 			name: 'GitHub Releases',
 			icon: 'github',
-			value: releases,
+			value: releaseWalk.total,
 			window: 'lifetime',
 			source: `https://github.com/${REPO}/releases`,
 			live: releasesLive
@@ -530,10 +544,13 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 		}
 	];
 
-	// Summed over the lifetime channels alone. Adding the windowed ones would
-	// mix a trailing month against an all-time count, so this understates the
-	// true figure rather than inflating it.
-	const counted = channels.filter((c) => c.window === 'lifetime');
+	// The one download total, used here and published in /stats.json for
+	// jdkato.io: the channels that ship their own build. Chocolatey, mise, and
+	// the PyPI and npm wrappers install by downloading the GitHub release, so
+	// their installs are already in its count; and the windowed channels count
+	// a trailing span that can't be added to an all-time one. So this
+	// understates the true figure rather than inflating it.
+	const counted = channels.filter((c) => OWN_BUILD.includes(c.name));
 	const lifetime = {
 		value: counted.reduce((sum, c) => sum + c.value, 0),
 		sources: counted.map((c) => c.name),
@@ -557,6 +574,7 @@ export async function getStats(fetch: Fetch): Promise<Stats> {
 	return {
 		channels,
 		lifetime,
+		releases: releaseWalk.releases,
 		availability,
 		funding: { ...collective, live: collectiveLive },
 		contributors,

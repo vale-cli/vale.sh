@@ -3,13 +3,14 @@ name: Deploy
 # Builds the site here and uploads the finished output, so the deploy costs
 # GitHub Actions minutes rather than Netlify build minutes.
 #
-# The schedule is what keeps the download figures on the landing page current:
-# they are gathered at build time (see src/lib/server/stats.ts), so without a
-# periodic rebuild they are only as fresh as the last push.
+# The schedule is what keeps the download figures current: they are gathered
+# at build time (see src/lib/server/stats.ts), so without a periodic rebuild
+# they are only as fresh as the last push. Daily, because /stats.json is the
+# one source jdkato.io reads them from too.
 on:
   schedule:
-    # Mondays, 06:00 UTC.
-    - cron: '0 6 * * 1'
+    # Every day, 06:00 UTC.
+    - cron: '0 6 * * *'
   workflow_dispatch:
 
 jobs:
