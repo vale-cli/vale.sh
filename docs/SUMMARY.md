@@ -25,6 +25,7 @@
 * [Vocabularies](keys/vocabularies.md)
 * [Lang](keys/lang.md)
 * [MinAlertLevel](keys/minalertlevel.md)
+* [IgnoredPaths](keys/ignoredpaths.md)
 * [IgnoredScopes](keys/ignoredscopes.md)
 * [IgnoredClasses](keys/ignoredclasses.md)
 * [SkippedScopes](keys/skippedscopes.md)
