@@ -134,3 +134,6 @@ pnpm
 repos?
 Markdoc
 CPython
+Kato
+natbib
+biblatex
