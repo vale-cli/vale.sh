@@ -32,6 +32,7 @@ var tagLabels = map[string]string{
 	"tutorials":    "Tutorials",
 	"formats":      "Formats",
 	"adopters":     "Adopters",
+	"releases":     "Releases",
 	"case-studies": "Case studies",
 }
 
