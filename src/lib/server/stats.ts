@@ -9,7 +9,7 @@
  * Three GitHub API calls are made (releases pagination + contributors). Set
  * GITHUB_TOKEN in the build env to keep them off the 60/hr per-IP budget.
  *
- * Verified 2026-08-28 — the fallbacks below are the real values on that date.
+ * Verified 2026-11-26 — the fallbacks below are the real values on that date.
  */
 
 import type { Availability, Channel, Release, Stats } from '$lib/types/stats';
@@ -23,37 +23,34 @@ const ACTION = 'vale-cli/vale-action';
 const OWN_BUILD = ['GitHub Releases', 'Docker Hub', 'conda-forge'];
 
 /** Date the fallbacks below were last confirmed by hand. */
-const FALLBACK_DATE = '2026-08-28';
+const FALLBACK_DATE = '2026-11-26';
 
 const FALLBACKS = {
-	releases: 10_680_199,
-	docker: 2_234_958,
-	pypi: 1_584_285,
-	npm: 131_006,
-	conda: 153_174,
-	brew: 75_395,
-	chocolatey: 19_472,
-	// Verified 2026-11-22 against mise-versions.jdx.dev/api/downloads/vale.
-	mise: 93_799,
-	actionRepos: 4_159,
-	contributors: 63,
-	stars: 6_038,
-	wingetVersion: '3.17.1',
-	snapVersion: '3.17.1',
+	releases: 15_756_417,
+	docker: 2_537_447,
+	pypi: 1_857_867,
+	npm: 398_839,
+	conda: 205_496,
+	brew: 81_758,
+	chocolatey: 19_535,
+	mise: 98_138,
+	actionRepos: 4_353,
+	contributors: 66,
+	stars: 6_438,
+	wingetVersion: '3.28.1',
+	snapVersion: '3.25.1',
 	repologyFamilies: 17,
-	backers: 38,
-	yearlyIncome: 1450
+	backers: 42,
+	yearlyIncome: 2500
 };
 
 /**
  * Vale's place among Homebrew's formulae, and whether it leads the other
- * writing tools there and on Chocolatey. Verified 2026-11-21.
+ * writing tools there, on Chocolatey, and on mise. Verified 2026-11-26.
  */
 const RANKING_FALLBACK = {
-	brew: { rank: 212, of: 9_840, leads: true },
+	brew: { rank: 209, of: 9_856, leads: true },
 	chocolatey: { leads: true },
-	// Verified 2026-11-22: 93,799 to typos' 83,653; cspell and harper-ls
-	// trail far behind, and the rest aren't in mise's registry.
 	mise: { leads: true }
 };
 
