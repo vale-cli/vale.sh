@@ -77,6 +77,11 @@
 				class="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-lime-500"
 				>{teams} teams</a
 			>, including Amazon Web Services, NVIDIA, Datadog, and GOV.UK.
+			<a
+				href="/sponsor/why"
+				class="font-medium text-foreground underline decoration-border underline-offset-4 hover:decoration-lime-500"
+				>Why sponsor Vale</a
+			>
 		</p>
 
 		<!--
