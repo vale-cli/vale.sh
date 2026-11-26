@@ -166,6 +166,29 @@ A style takes its name from the folder inside the archive, so `BasedOnStyles` re
 
 This is worth doing wherever a new rule arriving on its own would be disruptive, such as a repository several people write in, or a CI job that fails on new alerts.
 
+### [Pinning an archive](packages.md#pinning-an-archive)
+
+{% hint style="info" %}
+Requires Vale v3.29.0 or later.
+{% endhint %}
+
+A release URL names a version, but the archive behind it can still be replaced. To install only the exact archive you checked, add its SHA-256 digest to the entry:
+
+```ini
+Packages = https://github.com/jdkato/voices/releases/download/v0.2.0/Voices.zip#sha256:3d03b911727a502c5a6c1e9ea5c040ebe115cde0f6f99176d116fd6893080ba9
+```
+
+`vale sync` hashes the archive before unpacking it, and stops with an error naming both digests when they differ, so nothing from a changed archive is installed. A pinned package that needs a newer Vale is an error too: sync never installs a different release in its place, since that would be a different archive.
+
+`vale sync --plain-progress` prints the digest of each archive that isn't pinned, ready to copy:
+
+```console
+$ vale sync --plain-progress
+Synced Voices (sha256:3d03b911727a502c5a6c1e9ea5c040ebe115cde0f6f99176d116fd6893080ba9)
+```
+
+A digest works on a URL, a path to an archive, and a name from the library. A library name installs the latest release, though, so a digest on one stops matching when the package is next released. A directory has no archive to hash and can't be pinned. A Vale older than v3.29.0 ignores the digest and installs the archive unchecked.
+
 ## [Ordering](packages.md#ordering)
 
 Configuration is read in this order: each package's `.vale.ini` in the order `Packages` lists them, then your own file.

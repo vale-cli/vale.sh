@@ -185,14 +185,14 @@
 		{
 			name: 'AsciiDoc',
 			ext: '.adoc, .asciidoc',
-			parser: 'Asciidoctor',
-			href: 'https://asciidoctor.org/'
+			parser: 'adocgo',
+			href: 'https://github.com/jdkato/adocgo'
 		},
 		{
 			name: 'reStructuredText',
 			ext: '.rst, .rest',
-			parser: 'Docutils',
-			href: 'https://docutils.sourceforge.io/'
+			parser: 'rstgo',
+			href: 'https://github.com/jdkato/rstgo'
 		},
 		{
 			name: 'HTML',
@@ -233,6 +233,12 @@
 			ext: '.typ',
 			parser: 'typst2vast',
 			href: 'https://github.com/jdkato/typst2vast'
+		},
+		{
+			name: 'LaTeX',
+			ext: '.tex, .ltx, .latex',
+			parser: 'built in',
+			href: 'https://docs.vale.sh/formats/latex'
 		},
 		{
 			name: 'QDoc',
@@ -384,13 +390,14 @@
 		</p>
 
 		<p class="mt-4 text-sm leading-relaxed text-foreground/85">
-			Vale does not implement any of these syntaxes itself. Markdown goes through
+			Vale reads each syntax the way its own tools do. Markdown goes through
 			<ExternalLink href="https://github.com/yuin/goldmark">goldmark</ExternalLink>, AsciiDoc
 			through
-			<ExternalLink href="https://asciidoctor.org/">Asciidoctor</ExternalLink>, and reStructuredText
-			through
-			<ExternalLink href="https://docutils.sourceforge.io/">Docutils</ExternalLink>—the same tools
-			your site generator is likely using. Whatever they call a heading is what a rule scoped to
+			<ExternalLink href="https://github.com/jdkato/adocgo">adocgo</ExternalLink>, a port of
+			Asciidoctor, and reStructuredText through
+			<ExternalLink href="https://github.com/jdkato/rstgo">rstgo</ExternalLink>, a port of
+			Docutils; both match the original's output. Whatever your site generator calls a heading is
+			what a rule scoped to
 			<code class="rounded bg-muted px-1 py-0.5 font-mono text-[0.85em]">heading</code> sees.
 		</p>
 	</Section>

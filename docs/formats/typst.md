@@ -23,8 +23,11 @@ By default, Vale ignores:
 * Math: `$x^2$` and display equations.
 * Comments: `//` and `/* ... */`, nesting included.
 * Labels (`<my-label>`) and references (`@my-label`).
+* Targets and paths: the URL of a `#link` and the file of an `#image`.
 
 Everything else is prose in its scope: `=` headings are `heading`, `*strong*` and `_emphasis_` are `strong` and `emphasis`, raw spans are `code`, and list, numbered, and term items are `list`.
+
+The standard library's markup functions are read by name, with nothing evaluated, and land in their scopes too: the text of a `#link` is a `link`, a `#quote(block: true)` is a `blockquote`, a `#table`'s cells are table cells and its `table.header` cells table headers, a `#figure`'s `caption` is a figure caption, and an `#image`'s `alt` text is linted as prose.
 
 ## [Content blocks](typst.md#content-blocks)
 
