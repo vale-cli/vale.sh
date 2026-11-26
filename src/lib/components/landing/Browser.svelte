@@ -8,7 +8,10 @@
 		live; the button then says so instead of going nowhere.
 	*/
 	const stores: { name: string; href: string | null }[] = [
-		{ name: 'Chrome', href: null },
+		{
+			name: 'Chrome',
+			href: 'https://chromewebstore.google.com/detail/style-guide-spell-checker/kfmjcegeklidlnjoechfggipjjjahedj'
+		},
 		{ name: 'Edge', href: null },
 		{ name: 'Firefox', href: null }
 	];
