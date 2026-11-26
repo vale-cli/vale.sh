@@ -26,6 +26,7 @@ const formats = [
 	['myst', 'MyST', 'prose'],
 	['qmd', 'Quarto', 'prose'],
 	['typ', 'Typst', 'prose'],
+	['tex', 'LaTeX', 'prose'],
 	['xml', 'XML', 'prose'],
 	['dita', 'DITA', 'prose'],
 	['qdoc', 'QDoc', 'prose'],

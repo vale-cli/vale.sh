@@ -1,7 +1,7 @@
 // The measurements behind the spell-checker comparison.
 //
 // Every number comes from textbench (https://github.com/jdkato/textbench):
-// fifteen generated documents of 300 KB, each planting nonsense words in
+// twenty-four generated documents of 300 KB, each planting nonsense words in
 // prose, which a tool should report, and in code, URLs, and comments-as-code,
 // which it should not. Accuracy is scored on the marked document; time and
 // memory are measured with hyperfine, five runs after a warm-up, on the

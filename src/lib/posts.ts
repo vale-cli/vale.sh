@@ -34,6 +34,10 @@ export type PostMeta = {
 	author?: string;
 	// TAGS keys. A tag the vocabulary doesn't know fails the build.
 	tags?: string[];
+	// The Vale release this post announces, such as 'v3.29.0'. Vale's release
+	// workflow publishes it and links it from the release notes; see
+	// script/release-post.mjs. Requires the `releases` tag.
+	release?: string;
 	// The post's h2 sections, added by the remark plugin in mdsvex.config.js.
 	headings?: PostHeading[];
 };
@@ -87,6 +91,11 @@ export const TAGS: Record<string, Tag> = {
 		label: 'Adopters',
 		description: 'How teams run Vale, read from their own configs.'
 	},
+	releases: {
+		slug: 'releases',
+		label: 'Releases',
+		description: 'What a Vale release changes, and why.'
+	},
 	'case-studies': {
 		slug: 'case-studies',
 		label: 'Case studies',
@@ -118,6 +127,10 @@ function requireReport(slug: string) {
 }
 
 function requireTags(slug: string, meta: PostMeta) {
+	// The tag is how the Discord bot knows the release card already links it.
+	if (meta.release && !(meta.tags ?? []).includes('releases')) {
+		throw new Error(`src/posts/${slug}.md sets release, so it needs the "releases" tag`);
+	}
 	for (const tag of meta.tags ?? []) {
 		if (!(tag in TAGS)) {
 			throw new Error(

@@ -4,7 +4,9 @@ name: Release docs
 #
 # Vale's own release workflow sends a `vale-release` dispatch with the tag it
 # published, and this pins the examples (see script/release.mjs) and pushes
-# the change to the branch GitBook syncs from. It can also be run by hand,
+# the change to the branch GitBook syncs from. A post written for the release
+# (`release:` in its front matter) is published in the same push; see
+# script/release-post.mjs. It can also be run by hand,
 # with or without a version; without one it asks GitHub for the latest
 # release.
 on:
@@ -46,6 +48,12 @@ jobs:
       - name: Pin the examples
         run: node script/release.mjs '${{ steps.version.outputs.version }}'
 
+      - name: Publish the release post
+        id: post
+        run: |
+          slug=$(node script/release-post.mjs '${{ steps.version.outputs.version }}')
+          echo "slug=$slug" >> "$GITHUB_OUTPUT"
+
       - name: Push
         run: |
           if git diff --quiet; then
@@ -54,5 +62,9 @@ jobs:
           fi
           git config user.name 'github-actions[bot]'
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git commit -am 'docs: pin the install examples to Vale ${{ steps.version.outputs.version }}'
+          message='docs: pin the install examples to Vale ${{ steps.version.outputs.version }}'
+          if [ -n '${{ steps.post.outputs.slug }}' ]; then
+            message="$message; publish ${{ steps.post.outputs.slug }}"
+          fi
+          git commit -am "$message"
           git push origin svelte

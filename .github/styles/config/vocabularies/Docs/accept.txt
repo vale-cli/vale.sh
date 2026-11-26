@@ -133,3 +133,4 @@ pnpm
 [Cc]hangesets?
 repos?
 Markdoc
+CPython

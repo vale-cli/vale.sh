@@ -23,7 +23,7 @@
 	// What reads each format; the rest Vale parses itself.
 	const reader: Record<string, string> = {
 		xml: 'xsltproc',
-		typ: 'typst2vast',
+		typ: 'typst2vast, built in',
 		dita: 'DITA Open Toolkit',
 		js: 'Vale + grammar',
 		go: 'Vale + grammar',
