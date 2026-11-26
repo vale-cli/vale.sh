@@ -12,10 +12,8 @@
 		perYear,
 		downloadsPerDay,
 		docsPages,
-		peers,
 		modelReview,
-		aiPhrasing,
-		type Channel
+		aiPhrasing
 	} from '$lib/data/sponsor-why';
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import type { PageData } from './$types';
@@ -47,38 +45,10 @@
 	const teams = adopters.length;
 	const sectors = new Set(adopters.map((a) => a.category)).size;
 
-	// Vale's own downloads, live, by the same rule as the peers: the channels
-	// that ship their own build. PyPI and npm fetch the GitHub release.
+	// All-time downloads, live: the channels that ship their own build. Vale's
+	// PyPI and npm packages fetch the GitHub release, so they'd count it twice.
 	const live = (name: string) => data.stats.channels.find((c) => c.name === name)?.value ?? 0;
-	const vale = {
-		id: 'vale',
-		name: 'Vale',
-		kind: 'Docs linter',
-		channels: {
-			github: live('GitHub Releases'),
-			docker: live('Docker Hub'),
-			conda: live('conda-forge')
-		} as Partial<Record<Channel, number>>
-	};
-	const tools = [...peers, vale]
-		.map((t) => ({ ...t, total: Object.values(t.channels).reduce((s, v) => s + (v ?? 0), 0) }))
-		.sort((a, b) => b.total - a.total);
-	const valeTotal = tools.find((t) => t.id === 'vale')!.total;
-	const valeIndex = tools.findIndex((t) => t.id === 'vale');
-	const peak = tools[0].total;
-
-	const channelNames: Record<Channel, string> = {
-		github: 'GitHub',
-		docker: 'Docker',
-		conda: 'conda-forge'
-	};
-	// Tailwind classes, spelled out so the scan finds them.
-	const channelColors: Record<Channel, string> = {
-		github: 'bg-sky-500',
-		docker: 'bg-emerald-500',
-		conda: 'bg-violet-500'
-	};
-	const channels: Channel[] = ['github', 'docker', 'conda'];
+	const valeTotal = live('GitHub Releases') + live('Docker Hub') + live('conda-forge');
 
 	const brew = $derived(data.stats.ranking.brew);
 	// One decimal, never rounded in Vale's favor.
@@ -288,49 +258,10 @@
 			<a class={link} href="/adopters">adopters directory</a>. Vale is also the subject of a
 			Pragmatic Bookshelf book.
 		</p>
-		<p class="mt-5 text-sm text-muted-foreground">
-			All-time downloads beside well-known developer tools that ship the same way: #{valeIndex + 1}
-			of these {tools.length}, and #{brew.rank} of {n(brew.of)} Homebrew formulae, the top {topPct}%.
+		<p class="mt-5 leading-7">
+			By installs over the past year, Vale is #{brew.rank} of {n(brew.of)} Homebrew formulae, the top
+			{topPct}%.
 		</p>
-		<div class="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-			{#each channels as ch (ch)}
-				<span class="inline-flex items-center gap-1.5"
-					><i class="inline-block h-2.5 w-2.5 rounded-sm {channelColors[ch]}"></i>{channelNames[
-						ch
-					]}</span
-				>
-			{/each}
-		</div>
-		<ol class="mt-3 space-y-1" aria-label="All-time downloads by channel">
-			{#each tools as t (t.id)}
-				<li
-					class="grid grid-cols-[6.5rem_1fr] items-center gap-3 rounded text-[13px] sm:grid-cols-[7rem_9rem_1fr] {t.id ===
-					'vale'
-						? '-mx-2 bg-lime-500/10 px-2 font-semibold'
-						: ''}"
-				>
-					<span>{t.name}</span>
-					<span class="hidden text-xs font-normal text-muted-foreground sm:inline">{t.kind}</span>
-					<span class="flex min-w-0 items-center gap-2">
-						<span
-							class="flex h-3.5 overflow-hidden rounded-sm"
-							style:width="{(t.total / peak) * 100}%"
-						>
-							{#each channels as ch (ch)}
-								{#if t.channels[ch]}
-									<span
-										class="h-full {channelColors[ch]}"
-										style:width="{((t.channels[ch] ?? 0) / t.total) * 100}%"
-										title="{channelNames[ch]}: {n(t.channels[ch] ?? 0)}"
-									></span>
-								{/if}
-							{/each}
-						</span>
-						<span class="flex-none text-xs tabular-nums">{millions(t.total)}</span>
-					</span>
-				</li>
-			{/each}
-		</ol>
 		<p class="mt-6 text-sm text-muted-foreground">
 			Who already funds it, from companies to foundations and infrastructure donors, is on
 			<a class={link} href="/sponsor">the support page</a>.
@@ -498,12 +429,11 @@
 		<ul class="space-y-1.5">
 			<li>
 				<strong class="font-medium text-foreground">Downloads:</strong> GitHub release downloads,
-				Docker Hub pulls, and conda-forge for Vale, live as of {day(data.stats.updated)}; the other
-				tools as of Nov 26, 2026, on the same three channels. Only tools that ship through them are
-				compared, since a tool distributed mostly elsewhere (PyPI, npm, browser stores, or app
-				stores) can't be measured the same way. Homebrew publishes no all-time counts, so it's left
-				out of every total; its rank is by installs over the past year. The daily figure is GitHub
-				release downloads over the past year, divided by 365.
+				Docker Hub pulls, and conda-forge, live as of {day(data.stats.updated)}. Vale's PyPI and npm
+				packages fetch the GitHub release when installed, so they aren't counted again. Homebrew
+				publishes no all-time counts, so it's left out of the total; its rank is by installs over
+				the past year, among homebrew-core formulae. The daily figure is GitHub release downloads
+				over the past year, divided by 365.
 			</li>
 			<li>
 				<strong class="font-medium text-foreground">Teams and docs pages:</strong> the
