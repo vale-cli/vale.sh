@@ -12,7 +12,7 @@ cat draft.md | vale --ext=.md # standard input
 vale "Some text to check."    # a string that is not a path
 ```
 
-A directory is walked for every file its configuration has a section for, narrowed by `--glob` when one is given; see [Globbing](../guides/globbing.md). Input on stdin is read as plain text unless `--ext` names a format, or `--path` names the file it came from, which also puts it under that path's configuration section. An argument that is neither a file nor a directory is linted as text, so a mistyped path that is nearly a command name is reported rather than checked.
+A directory is walked for every file its configuration has a section for, narrowed by `--glob` when one is given; see [Globbing](../guides/globbing.md). Input on stdin is read as plain text unless `--ext` names a format, or `--path` names the file it came from, which also puts it under that path's configuration section. A single argument that is neither a file nor a directory is linted as text, unless it's shaped like a path or a command: one word with a `/` or a file extension, such as `READNE.md`, is reported as a file that doesn't exist, and one that is nearly a command name is reported as a typo.
 
 With no input and nothing on stdin, `vale` prints a short introduction and an example configuration.
 
