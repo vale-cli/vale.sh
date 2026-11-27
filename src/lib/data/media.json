@@ -61,6 +61,26 @@
 		"site": "Write the Docs Portland"
 	},
 	{
+		"title": "Docs as Code: A Practical Guide to Documentation as Code",
+		"url": "https://sourcegraph.com/blog/documentation-as-code",
+		"author": "Matt Tanner",
+		"year": 2026,
+		"type": "post",
+		"description": "A guide to treating documentation like code, with Vale as the prose check in CI beside a link checker and a Markdown linter: a .vale.ini, packaged Microsoft, Google, and Red Hat styles, and the Vale action as a required check.",
+		"image": "",
+		"site": "Sourcegraph"
+	},
+	{
+		"title": "Docs as Code, With Teeth: Linting, Link Checks, and Preview Builds in CI",
+		"url": "https://joanayebola.vercel.app/blog/docs-as-code-ci/",
+		"author": "Joan Ayebola",
+		"year": 2026,
+		"type": "post",
+		"description": "Argues the ruleset, not the tool, is the hard part of prose linting: start Vale on terminology alone, keep contested style rules at suggestion or warning, and roll the rest out month by month.",
+		"image": "",
+		"site": "joanayebola.vercel.app"
+	},
+	{
 		"title": "Upgrade your Docs-As-Code Foo with the Vale Text Linter",
 		"url": "https://2025.everythingopen.au/schedule/presentation/63/",
 		"author": "Alec Clews",
@@ -140,6 +160,16 @@
 		"image": "https://imgix.datadoghq.com/img/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/vale_linter_hero.png?fit=crop&w=1200&h=630",
 		"site": "Datadog",
 		"adopter": "Datadog"
+	},
+	{
+		"title": "Add Vale to Your Project",
+		"url": "https://alecthegeek.gitlab.io/blog/2024/05/add-vale-to-your-project/",
+		"author": "Alec Clews",
+		"year": 2024,
+		"type": "post",
+		"description": "The first part of a series on docs automation: running Vale in the editor, locally, and in CI/CD, with project vocabularies for the terms a standard dictionary flags.",
+		"image": "",
+		"site": "Alec the Geek"
 	},
 	{
 		"title": "Linting Documentation with Vale to Increase Quality & Consistency - includes setup steps for Xcode",
@@ -341,6 +371,16 @@
 		"description": "A survey of prose linters for technical documentation, settling on Vale with custom style guides and tests.",
 		"image": "",
 		"site": "Tag1"
+	},
+	{
+		"title": "How to Improve DocOps using CI/CD and Docs-as-Code",
+		"url": "https://pronovix.com/blog/how-improve-docops-using-cicd-and-docs-code",
+		"author": "Ádám Balogh",
+		"year": 2020,
+		"type": "post",
+		"description": "How Pronovix's writers apply a company style guide through Vale's YAML rules, running it on every save and combining its results with the rest of their CI checks.",
+		"image": "",
+		"site": "Pronovix"
 	},
 	{
 		"title": "Vale & The OpenAPI Specification",
