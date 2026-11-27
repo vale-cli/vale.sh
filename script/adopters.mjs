@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 /**
- * Validates src/lib/data/adopters.json, stories.json, press.json, and
+ * Validates src/lib/data/adopters.json, stories.json, press.json, media.json, and
  * events.json, and syncs the GitHub org avatars the adopters reference.
  *
  *   node script/adopters.mjs          # validate only
@@ -156,6 +156,20 @@ const sectorsSrc = readFileSync(SECTORS, 'utf8');
 const sectorNames = Array.from(sectorsSrc.matchAll(/^\t\tname: '([^']+)'/gm), (m) => m[1]);
 if (sectorNames.join('|') !== CATEGORIES.join('|')) {
 	fail(SECTORS, `sector names differ from CATEGORIES: ${sectorNames.join(', ')}`);
+}
+
+// ------------------------------------------------------------------- media
+
+/*
+	A library entry a listed team wrote names it in `adopter`, which links the
+	card to the team's profile and lists the entry there. A name that isn't in
+	the directory would link to a page that doesn't exist.
+*/
+const MEDIA = 'src/lib/data/media.json';
+for (const [i, m] of read(MEDIA).entries()) {
+	if (m.adopter !== undefined && !seenNames.has(m.adopter)) {
+		fail(`media[${i}] ${m.title ?? '(untitled)'}`, `adopter "${m.adopter}" is not in ${ADOPTERS}`);
+	}
 }
 
 // ----------------------------------------------------------------- stories

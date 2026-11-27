@@ -6,7 +6,7 @@
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 
 	let { data } = $props();
-	const { team, record, groups, files, similar, study } = $derived(data);
+	const { team, record, groups, files, similar, study, writing } = $derived(data);
 
 	const day = (iso: string) =>
 		new Date(`${iso.slice(0, 10)}T00:00:00Z`).toLocaleDateString('en-US', {
@@ -193,6 +193,37 @@
 		>
 			Nothing has been read from a repository for this entry yet. The link above is its proof.
 		</p>
+	{/if}
+
+	{#if writing.length}
+		<section class="mt-14">
+			<h2 class="text-lg font-medium tracking-tight">Written by {team.name}</h2>
+			<ul class="mt-4 divide-y divide-border rounded-xl border border-border bg-card">
+				{#each writing as item (item.url)}
+					<li>
+						<a
+							href={item.url}
+							target="_blank"
+							rel="noreferrer"
+							class="group flex items-baseline gap-4 px-5 py-3 transition-colors hover:bg-muted/40"
+						>
+							<span
+								class="min-w-0 flex-1 text-sm font-medium text-foreground group-hover:text-lime-600 dark:group-hover:text-lime-400"
+								>{item.title}</span
+							>
+							<span class="shrink-0 text-xs capitalize text-muted-foreground"
+								>{item.type} · {item.year}</span
+							>
+						</a>
+					</li>
+				{/each}
+			</ul>
+			<p class="mt-3 text-sm text-muted-foreground">
+				More in the <a href="/library" class="text-lime-600 hover:underline dark:text-lime-400"
+					>library</a
+				>.
+			</p>
+		</section>
 	{/if}
 
 	{#if similar.length}

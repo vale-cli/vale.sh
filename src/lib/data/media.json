@@ -27,7 +27,8 @@
 		"type": "post",
 		"description": "A walkthrough of docs linting, covering Vale and how to wire prose checks into CI/CD alongside the rest of your quality gates.",
 		"image": "",
-		"site": "buildwithfern.com"
+		"site": "buildwithfern.com",
+		"adopter": "Fern"
 	},
 	{
 		"title": "Vale Linter: The Complete Guide for Docs Teams in 2026",
@@ -137,7 +138,8 @@
 		"type": "post",
 		"description": "Learn how Datadog’s Documentation team uses a linter to shift quality left.",
 		"image": "https://imgix.datadoghq.com/img/blog/engineering/how-we-use-vale-to-improve-our-documentation-editing-process/vale_linter_hero.png?fit=crop&w=1200&h=630",
-		"site": "Datadog"
+		"site": "Datadog",
+		"adopter": "Datadog"
 	},
 	{
 		"title": "Linting Documentation with Vale to Increase Quality & Consistency - includes setup steps for Xcode",
@@ -297,7 +299,8 @@
 		"type": "post",
 		"description": "Making the Buildkite docs more inclusive using automatic tests run on Buildkite 🛠 These linters won't fix your docs for you, but they will tell you where to fix them yourself ",
 		"image": "https://buildkite.com/_astro/blog.DblNDyRQ.png",
-		"site": "Buildkite"
+		"site": "Buildkite",
+		"adopter": "Buildkite"
 	},
 	{
 		"title": "Documentation as code (Part 3): A Linting How To - The Vale Linter in Action",
@@ -377,7 +380,8 @@
 		"type": "post",
 		"description": "",
 		"image": "",
-		"site": "Drupalize.Me"
+		"site": "Drupalize.Me",
+		"adopter": "Drupalize.Me"
 	},
 	{
 		"title": "Testing your Documentation",
@@ -387,7 +391,8 @@
 		"type": "post",
 		"description": "Testing your documentation allows you to make sure it is in a consistent state. Doing this gives your users a better experience, and reduces stress around common issues as a writer. This article by...",
 		"image": "",
-		"site": "Write the Docs"
+		"site": "Write the Docs",
+		"adopter": "Write the Docs"
 	},
 	{
 		"title": "Day 1 Lightning Talk #3 - Write the Docs Prague 2019",
@@ -397,7 +402,8 @@
 		"type": "video",
 		"description": "",
 		"image": "",
-		"site": ""
+		"site": "",
+		"adopter": "Write the Docs"
 	},
 	{
 		"title": "Vale for Spelling, Grammar, Style and Readability Linting",
@@ -487,7 +493,8 @@
 		"type": "post",
 		"description": "How Mintlify lints documentation, with Vale as the rule-based check for terminology, tone, and style in Markdown and MDX.",
 		"image": "",
-		"site": "mintlify.com"
+		"site": "mintlify.com",
+		"adopter": "Mintlify"
 	},
 	{
 		"title": "I Built a Git-Tracked Book Production Pipeline",
@@ -547,7 +554,8 @@
 		"type": "post",
 		"description": "One Vale workflow for writing from engineers, non-technical contributors, and AI agents alike, from the config to the CI check.",
 		"image": "",
-		"site": "buildwithfern.com"
+		"site": "buildwithfern.com",
+		"adopter": "Fern"
 	},
 	{
 		"title": "The Living Style Guide: Enforcing Documentation Standards as Code",
@@ -607,7 +615,8 @@
 		"type": "post",
 		"description": "How the OpenSearch Project checks its documentation and website against its style guidelines with Vale: on the command line, in the editor, and in CI.",
 		"image": "",
-		"site": "OpenSearch"
+		"site": "OpenSearch",
+		"adopter": "OpenSearch"
 	},
 	{
 		"title": "Using Vale to Improve my Writing",

@@ -4,6 +4,7 @@ import stats from '$lib/data/adopter-stats.json';
 import { slugOf } from '$lib/data/adopter-slug';
 import { facetLabel, linksOf, usageGroups, usageOf } from '$lib/data/usage';
 import { listPosts } from '$lib/posts';
+import media from '$lib/data/media.json';
 import type { EntryGenerator, PageServerLoad } from './$types';
 
 /*
@@ -86,6 +87,14 @@ export const load: PageServerLoad = ({ params }) => {
 
 	const study = listPosts({ tag: 'case-studies' }).find((p) => p.brand === team.name);
 
+	// What the team has written or recorded about Vale, from the library.
+	const writing = (
+		media as { adopter?: string; title: string; url: string; type: string; year: number }[]
+	)
+		.filter((m) => m.adopter === team.name)
+		.sort((x, y) => y.year - x.year)
+		.map(({ title, url, type, year }) => ({ title, url, type, year }));
+
 	return {
 		team: {
 			name: team.name,
@@ -113,6 +122,7 @@ export const load: PageServerLoad = ({ params }) => {
 		files: linksOf(team.name),
 		similar,
 		study: study ? { slug: study.slug, title: study.title } : null,
+		writing,
 		generated: stats.generated,
 		slug: params.team
 	};

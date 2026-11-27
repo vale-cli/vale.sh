@@ -5,6 +5,7 @@
 	import * as Popover from '$lib/components/ui/popover';
 	import { onMount } from 'svelte';
 	import data from '$lib/data/media.json';
+	import { slugOf } from '$lib/data/adopter-slug';
 	import { liteClient } from 'algoliasearch/lite';
 	import FileText from 'lucide-svelte/icons/file-text';
 	import Play from 'lucide-svelte/icons/play';
@@ -37,6 +38,8 @@
 		description: string;
 		image: string;
 		site: string;
+		/** The team in the adopters directory that wrote it, when one did. */
+		adopter?: string;
 	};
 
 	const media = data as Media[];
@@ -316,10 +319,13 @@
 	<div class="mx-auto max-w-3xl px-6 py-16 text-center lg:px-8">
 		<p class="text-base font-semibold text-lime-600 dark:text-lime-400">Media Library</p>
 		<h1 class="mt-2 text-balance text-4xl font-semibold tracking-tight sm:text-5xl">
-			Vale in the wild
+			Articles, talks, and videos
 		</h1>
 		<p class="mx-auto mt-4 text-pretty text-lg leading-8 text-muted-foreground">
-			Articles, talks, and videos about Vale from across the community.
+			What the community has written and recorded about Vale. For the teams running it, see
+			<a href="/adopters" class="font-medium text-lime-600 hover:underline dark:text-lime-400"
+				>adopters</a
+			>.
 		</p>
 
 		<div class="mx-auto mt-8 max-w-xl">
@@ -419,6 +425,14 @@
 									{typeLabel(m.type).replace(/s$/, '')}
 								</span>
 								<span class="text-muted-foreground">{m.year}</span>
+								{#if m.adopter}
+									<!-- Above the card's stretched link, so it opens the team, not the post. -->
+									<a
+										href="/adopters/{slugOf(m.adopter)}"
+										class="relative z-10 ml-auto rounded-full px-2 py-0.5 font-medium text-muted-foreground ring-1 ring-inset ring-border transition-colors hover:text-foreground hover:ring-lime-500/40"
+										>{m.adopter} runs Vale</a
+									>
+								{/if}
 							</div>
 							<h3 class="mt-3 font-semibold leading-snug text-foreground">
 								<a
