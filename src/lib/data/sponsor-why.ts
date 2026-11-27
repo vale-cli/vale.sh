@@ -89,46 +89,6 @@ export const downloadsPerDay = 13180;
 export const docsPages = 289184;
 
 /**
- * Well-known developer tools' all-time downloads, for scale, 2026-11-26.
- * Only tools that ship through Vale's channels are compared, and only those
- * channels are counted, so every total is measured the same way. GitHub
- * figures for the peers are shields.io's, rounded to two or three digits.
- * Vale's own row is filled in live by the page.
- */
-export type Channel = 'github' | 'docker' | 'conda';
-export const peers: {
-	id: string;
-	name: string;
-	kind: string;
-	channels: Partial<Record<Channel, number>>;
-}[] = [
-	{
-		id: 'actionlint',
-		name: 'actionlint',
-		kind: 'GitHub Actions linter',
-		channels: { github: 46000000, docker: 25934475, conda: 266788 }
-	},
-	{
-		id: 'shfmt',
-		name: 'shfmt',
-		kind: 'Shell formatter',
-		channels: { github: 38000000, docker: 6854050, conda: 473234 }
-	},
-	{
-		id: 'lychee',
-		name: 'lychee',
-		kind: 'Link checker',
-		channels: { github: 16000000, docker: 2149547, conda: 278528 }
-	},
-	{
-		id: 'goreleaser',
-		name: 'GoReleaser',
-		kind: 'Release tool',
-		channels: { github: 14000000, conda: 16180 }
-	}
-];
-
-/**
  * One draft, five model reviews, input tokens at list price, measured
  * 2026-11-12 in /blog/quality-gate: 40,966 tokens a review on average, 15 to
  * 19 seconds; Vale took 0.09 seconds.
