@@ -240,7 +240,7 @@ $ vale README.md
 W101 Skipped proselint.LexicalIllusions, which doesn't compile on this Vale; its package may need a newer one: ...
 ```
 
-This applies only to styles that `vale sync` installed, as recorded in `.vale-sync` in your `StylesPath`. A broken rule in a style of your own still stops the run.
+This applies only to styles that `vale sync` installed, as recorded in `.vale-config/sync/stamp` in your `StylesPath`. A broken rule in a style of your own still stops the run.
 
 ## [Publishing a package](packages.md#publishing-a-package)
 
