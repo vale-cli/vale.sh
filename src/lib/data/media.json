@@ -278,7 +278,7 @@
 		"year": 2021,
 		"type": "video",
 		"description": "",
-		"image": "",
+		"image": "https://img.youtube.com/vi/1aw6oRaFWYs/hqdefault.jpg",
 		"site": ""
 	},
 	{
@@ -309,7 +309,7 @@
 		"year": 2020,
 		"type": "video",
 		"description": "",
-		"image": "",
+		"image": "https://img.youtube.com/vi/p1pfwpMv2wU/hqdefault.jpg",
 		"site": ""
 	},
 	{
@@ -319,7 +319,7 @@
 		"year": 2020,
 		"type": "video",
 		"description": "",
-		"image": "",
+		"image": "https://img.youtube.com/vi/ISwEsOx8d7k/hqdefault.jpg",
 		"site": ""
 	},
 	{
@@ -401,7 +401,7 @@
 		"year": 2019,
 		"type": "video",
 		"description": "",
-		"image": "",
+		"image": "https://img.youtube.com/vi/sWaHa_wQv3M/hqdefault.jpg",
 		"site": "",
 		"adopter": "Write the Docs"
 	},
@@ -715,7 +715,7 @@
 		"year": 2022,
 		"type": "video",
 		"description": "Part 1 of a three-part series: installing Vale, linting documentation locally in the terminal, and running it on GitHub with GitHub Actions.",
-		"image": "",
+		"image": "https://img.youtube.com/vi/gAOgvGFEBtY/hqdefault.jpg",
 		"site": "YouTube"
 	},
 	{
@@ -725,7 +725,7 @@
 		"year": 2022,
 		"type": "video",
 		"description": "Part 2: installing the Vale extension in VS Code and setting its path so Markdown files are linted as you type.",
-		"image": "",
+		"image": "https://img.youtube.com/vi/VyVym_4gfGw/hqdefault.jpg",
 		"site": "YouTube"
 	},
 	{
@@ -735,7 +735,7 @@
 		"year": 2022,
 		"type": "video",
 		"description": "Part 3: applying third-party styles such as Google, Microsoft, and Joblint, and writing custom rules for headings and technical terms.",
-		"image": "",
+		"image": "https://img.youtube.com/vi/CRJtpMhpk3Y/hqdefault.jpg",
 		"site": "YouTube"
 	},
 	{
