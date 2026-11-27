@@ -258,6 +258,8 @@
 		.filter((e) => (e.kind === 'video' || e.kind === 'talk') && e.image)
 		.sort((a, b) => b.year - a.year)
 		.slice(0, 2);
+	// Spelled out so Tailwind sees each class.
+	const featuredCols = ['', '', 'lg:grid-cols-2', 'lg:grid-cols-3'];
 
 	// A thumbnail host that has stopped serving it leaves the row without one
 	// rather than with a broken image.
@@ -377,7 +379,11 @@
 <div class="mx-auto max-w-5xl px-6 pb-20 lg:px-8">
 	{#if browsing && (book || watch.length)}
 		<!-- Featured: the book and the newest recordings, before the archive. -->
-		<section class="mt-12 grid gap-4 lg:grid-cols-3" aria-label="Featured">
+		<!-- One column per card, so a short row doesn't leave a gap. -->
+		<section
+			class="mt-12 grid gap-4 {featuredCols[(book ? 1 : 0) + watch.length]}"
+			aria-label="Featured"
+		>
 			{#if book}
 				<a
 					href={book.url}
