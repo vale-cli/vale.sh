@@ -37,7 +37,7 @@ Relative paths are resolved from the directory `vale sync` runs in, not from the
 3. Merges the package's `config/` into yours, one entry at a time: a vocabulary or dictionary the package carries lands beside the ones you have, and one with the same name replaces yours.
 4. Copies the package's `.vale.ini`, if it has one, into `.vale-config/`, named for its position in the list. A package that lists packages of its own has those installed too.
 
-Run it after adding a package, and in CI before linting. `--plain-progress` prints a line per package instead of a progress bar, for logs.
+Run it after adding a package, and in CI before linting. `--plain-progress` prints a line per package instead of a progress bar, for logs. `--if-needed` skips the sync while `Packages`, your languages, your grammars, and Vale's version are unchanged since the last one, so a package that names its latest release isn't updated until one of those changes.
 
 ```console
 $ vale sync --plain-progress
@@ -232,6 +232,15 @@ This is what lets a package raise the Vale it needs without breaking anyone: an 
   ```
 
 * **The release feed.** Without a manifest, a package served from a GitHub `releases/latest/download` URL has its releases read from the repository's Atom feed, named in `meta.json` as `feed` or derived from the package's URL, and the ten most recent are tried newest first until one fits.
+
+When a package still ends up with a rule this Vale can't compile, because it's pinned or no release fits, Vale skips that rule with a warning and runs the rest:
+
+```console
+$ vale README.md
+W101 Skipped proselint.LexicalIllusions, which doesn't compile on this Vale; its package may need a newer one: ...
+```
+
+This applies only to styles that `vale sync` installed, as recorded in `.vale-sync` in your `StylesPath`. A broken rule in a style of your own still stops the run.
 
 ## [Publishing a package](packages.md#publishing-a-package)
 
