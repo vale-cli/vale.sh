@@ -17,7 +17,28 @@
 		'Vale is a command-line tool that brings code-like linting to prose. Cross-platform, written in Go, and run by teams at AWS, NVIDIA, Microsoft, GitLab, and Red Hat.';
 	const cardAlt =
 		"Vale: Your style. Our editor. A linter for prose, beside an alert reading: Use 'Vale CLI' instead of 'Vale cli'.";
+
+	// The project and its founder, with the same @id jdkato.io uses for him.
+	const jsonLd = JSON.stringify({
+		'@context': 'https://schema.org',
+		'@type': 'Organization',
+		'@id': 'https://vale.sh/#organization',
+		name: 'Vale',
+		url: 'https://vale.sh',
+		logo: 'https://vale.sh/brand/vale-social.png',
+		founder: {
+			'@type': 'Person',
+			'@id': 'https://jdkato.io/#person',
+			name: 'Joseph Kato',
+			url: 'https://jdkato.io'
+		},
+		sameAs: ['https://github.com/vale-cli', 'https://github.com/vale-cli/vale']
+	});
 </script>
+
+<svelte:head>
+	{@html `<script type="application/ld+json">${jsonLd}</` + `script>`}
+</svelte:head>
 
 <MetaTags
 	title="Vale: Your style, our editor"

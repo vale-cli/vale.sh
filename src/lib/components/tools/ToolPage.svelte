@@ -56,7 +56,12 @@
 				browserRequirements: 'Requires JavaScript',
 				isAccessibleForFree: true,
 				offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-				publisher: { '@type': 'Organization', name: 'Vale', url: 'https://vale.sh' }
+				publisher: {
+					'@type': 'Organization',
+					'@id': 'https://vale.sh/#organization',
+					name: 'Vale',
+					url: 'https://vale.sh'
+				}
 			},
 			{
 				'@context': 'https://schema.org',
