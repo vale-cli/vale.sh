@@ -14,7 +14,8 @@
 		"context": "Publishes its technical-doc standard as a Vale style for client repositories to copy.",
 		"url": "https://github.com/434marketing/.github/blob/HEAD/.vale.ini",
 		"github": "434marketing",
-		"repo": "github.com/434marketing/.github"
+		"repo": "github.com/434marketing/.github",
+		"avatar": "/users/avatars/434marketing.png"
 	},
 	{
 		"name": "8th Light",
@@ -22,7 +23,8 @@
 		"context": "Lints the docs and YAML templates of its onboarding kit with its own OnboardKit style.",
 		"url": "https://github.com/8thlight/onboard-kit/blob/HEAD/.vale.ini",
 		"github": "8thlight",
-		"repo": "github.com/8thlight/onboard-kit"
+		"repo": "github.com/8thlight/onboard-kit",
+		"avatar": "/users/avatars/8thlight.png"
 	},
 	{
 		"name": "Actian",
@@ -130,7 +132,8 @@
 		"context": "Lints the Moppo app's Markdown and Swift source with its own MoppoSTE style.",
 		"url": "https://github.com/anguria-studio/Moppo/blob/HEAD/.vale.ini",
 		"github": "anguria-studio",
-		"repo": "github.com/anguria-studio/Moppo"
+		"repo": "github.com/anguria-studio/Moppo",
+		"avatar": "/users/avatars/anguria-studio.png"
 	},
 	{
 		"name": "Ansys",
@@ -1592,7 +1595,8 @@
 		"context": "Ships a MerlonDocs Vale style in its presets and runs Vale from its merlon check command.",
 		"url": "https://github.com/Merlon-Docs/merlon/tree/HEAD/packages/merlon-docs-presets",
 		"github": "Merlon-Docs",
-		"repo": "github.com/Merlon-Docs/merlon"
+		"repo": "github.com/Merlon-Docs/merlon",
+		"avatar": "/users/avatars/Merlon-Docs.png"
 	},
 	{
 		"name": "Mesa",
@@ -2771,7 +2775,8 @@
 		"context": "Builds Vale into its CLI, publishing the Vale binary for six platforms and running project rules through it.",
 		"url": "https://github.com/taskless/cli/tree/HEAD/packages/cli/src/rules/vale",
 		"github": "taskless",
-		"repo": "github.com/taskless/cli"
+		"repo": "github.com/taskless/cli",
+		"avatar": "/users/avatars/taskless.png"
 	},
 	{
 		"name": "TatSu",
@@ -2976,7 +2981,8 @@
 		"context": "Publishes a shared Vale config that lints Markdown and code comments with Google's style, ai-tells and a Tractorbeam style.",
 		"url": "https://github.com/tractorbeamai/reusables/blob/HEAD/packages/vale-config/.vale.ini",
 		"github": "tractorbeamai",
-		"repo": "github.com/tractorbeamai/reusables"
+		"repo": "github.com/tractorbeamai/reusables",
+		"avatar": "/users/avatars/tractorbeamai.png"
 	},
 	{
 		"name": "Trino",
@@ -3081,7 +3087,8 @@
 		"context": "Ships a ready-made Vale config for scientific Python docs in its Savvy project-management plugin.",
 		"url": "https://github.com/uw-ssec/savvy/blob/HEAD/plugins/project-management/skills/documentation-validation/assets/vale-config.ini",
 		"github": "uw-ssec",
-		"repo": "github.com/uw-ssec/savvy"
+		"repo": "github.com/uw-ssec/savvy",
+		"avatar": "/users/avatars/uw-ssec.png"
 	},
 	{
 		"name": "Vaadin",
