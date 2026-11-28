@@ -87,6 +87,7 @@
 
 * [LSP](guides/lsp.md)
 * [Agents](guides/agents.md)
+* [AI review](guides/ai-review.md)
 * [Commits](guides/commit-messages.md)
 * [MCP](guides/mcp.md)
 * [Regex](guides/regex.md)

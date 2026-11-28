@@ -522,6 +522,7 @@ BasedOnStyles = Prompts`
 			{ label: 'Markdown', href: docs('formats/markdown') },
 			{ label: 'Views', href: docs('topics/views'), note: 'Transcripts, one speaker at a time' },
 			{ label: 'MCP', href: docs('guides/mcp') },
+			{ label: 'AI review', href: docs('guides/ai-review') },
 			{ label: 'LSP', href: docs('guides/lsp') }
 		],
 		posts: ['voices', 'onboard', 'quality-gate'],

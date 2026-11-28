@@ -9,6 +9,22 @@
 		"repo": "github.com/100mslive/100ms-flutter"
 	},
 	{
+		"name": "434 Marketing",
+		"category": "Enterprise software",
+		"context": "Publishes its technical-doc standard as a Vale style for client repositories to copy.",
+		"url": "https://github.com/434marketing/.github/blob/HEAD/.vale.ini",
+		"github": "434marketing",
+		"repo": "github.com/434marketing/.github"
+	},
+	{
+		"name": "8th Light",
+		"category": "Developer tools",
+		"context": "Lints the docs and YAML templates of its onboarding kit with its own OnboardKit style.",
+		"url": "https://github.com/8thlight/onboard-kit/blob/HEAD/.vale.ini",
+		"github": "8thlight",
+		"repo": "github.com/8thlight/onboard-kit"
+	},
+	{
 		"name": "Actian",
 		"category": "Data & observability",
 		"context": "Lints the VectorAI DB docs with Google's style.",
@@ -107,6 +123,14 @@
 		"url": "https://github.com/analogdevicesinc/libiio/blob/HEAD/.vale.ini",
 		"github": "analogdevicesinc",
 		"avatar": "/users/avatars/analogdevicesinc.png"
+	},
+	{
+		"name": "Anguria Studio",
+		"category": "Developer tools",
+		"context": "Lints the Moppo app's Markdown and Swift source with its own MoppoSTE style.",
+		"url": "https://github.com/anguria-studio/Moppo/blob/HEAD/.vale.ini",
+		"github": "anguria-studio",
+		"repo": "github.com/anguria-studio/Moppo"
 	},
 	{
 		"name": "Ansys",
@@ -1563,6 +1587,14 @@
 		"avatar": "/users/avatars/mendix.png"
 	},
 	{
+		"name": "Merlon Docs",
+		"category": "Developer tools",
+		"context": "Ships a MerlonDocs Vale style in its presets and runs Vale from its merlon check command.",
+		"url": "https://github.com/Merlon-Docs/merlon/tree/HEAD/packages/merlon-docs-presets",
+		"github": "Merlon-Docs",
+		"repo": "github.com/Merlon-Docs/merlon"
+	},
+	{
 		"name": "Mesa",
 		"category": "Academia & public sector",
 		"context": "Lints its agent-based modeling docs with Google's style and a Mesa style.",
@@ -2734,6 +2766,14 @@
 		"avatar": "/users/avatars/tarantool.png"
 	},
 	{
+		"name": "Taskless",
+		"category": "Developer tools",
+		"context": "Builds Vale into its CLI, publishing the Vale binary for six platforms and running project rules through it.",
+		"url": "https://github.com/taskless/cli/tree/HEAD/packages/cli/src/rules/vale",
+		"github": "taskless",
+		"repo": "github.com/taskless/cli"
+	},
+	{
 		"name": "TatSu",
 		"category": "Open source & communities",
 		"context": "Lints reStructuredText docs and Python comments with the Microsoft, proselint, and write-good packages and a project vocabulary.",
@@ -2931,6 +2971,14 @@
 		"avatar": "/users/avatars/Tracer-Cloud.png"
 	},
 	{
+		"name": "Tractorbeam",
+		"category": "AI & machine learning",
+		"context": "Publishes a shared Vale config that lints Markdown and code comments with Google's style, ai-tells and a Tractorbeam style.",
+		"url": "https://github.com/tractorbeamai/reusables/blob/HEAD/packages/vale-config/.vale.ini",
+		"github": "tractorbeamai",
+		"repo": "github.com/tractorbeamai/reusables"
+	},
+	{
 		"name": "Trino",
 		"category": "Data & observability",
 		"context": "Lints its Markdown and reStructuredText docs with Google's style.",
@@ -3026,6 +3074,14 @@
 		"url": "https://github.com/utopia-php/monorepo/blob/main/.vale.ini",
 		"github": "utopia-php",
 		"avatar": "/users/avatars/utopia-php.png"
+	},
+	{
+		"name": "UW Scientific Software Engineering Center",
+		"category": "Academia & public sector",
+		"context": "Ships a ready-made Vale config for scientific Python docs in its Savvy project-management plugin.",
+		"url": "https://github.com/uw-ssec/savvy/blob/HEAD/plugins/project-management/skills/documentation-validation/assets/vale-config.ini",
+		"github": "uw-ssec",
+		"repo": "github.com/uw-ssec/savvy"
 	},
 	{
 		"name": "Vaadin",
