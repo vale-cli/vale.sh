@@ -46,7 +46,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: vale-cli/vale-action@v2
+      - uses: vale-cli/vale-action@v3
         with:
           files: docs
           fail_on_error: true
