@@ -1,6 +1,6 @@
 import adopters from '$lib/data/adopters.json';
 import stories from '$lib/data/stories.json';
-import { sectors } from '$lib/data/sectors';
+import { sectors, sectorSlug } from '$lib/data/sectors';
 import type { AdopterBand } from '$lib/types/adopter-band';
 
 /**
@@ -109,11 +109,11 @@ export function adopterBand(): AdopterBand {
 			];
 		});
 
-	// The nine sectors, each a jump to its band on /adopters.
+	// The nine sectors, each a link to its page under /adopters/sector.
 	const chips = sectors.map((s) => ({
 		name: s.name,
 		count: all.filter((a) => a.category === s.name).length,
-		href: `/adopters#sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`
+		href: `/adopters/sector/${sectorSlug(s.name)}`
 	}));
 
 	return { stories: featuredStories, marks, chips, total: all.length };

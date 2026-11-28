@@ -9,21 +9,34 @@
 		curve is the running count of teams by that date. A team without a
 		public repo has no date and is left out, and the caption says how many.
 	*/
+	/*
+		With a sector, the curve is that sector's teams alone, and the firsts
+		below it are the sector's earliest teams rather than one per sector.
+		Read once: a sector page keys this component on its sector.
+	*/
+	let { sector }: { sector?: string } = $props();
+
 	type Dated = { name: string; category: string; since: string };
 	const perAdopter = stats.perAdopter as Record<string, { since?: string | null }>;
-	const dated: Dated[] = adopters
+	// svelte-ignore state_referenced_locally
+	const pool = sector ? adopters.filter((a) => a.category === sector) : adopters;
+	const dated: Dated[] = pool
 		.flatMap((a) => {
 			const since = perAdopter[a.name]?.since;
 			return since ? [{ name: a.name, category: a.category, since }] : [];
 		})
 		.sort((a, b) => a.since.localeCompare(b.since));
-	const undated = adopters.length - dated.length;
+	const undated = pool.length - dated.length;
 
 	// The earliest team in each sector, in the order the page lists sectors.
-	const firsts = sectors.flatMap((s) => {
-		const first = dated.find((d) => d.category === s.name);
-		return first ? [{ sector: s.name, ...first }] : [];
-	});
+	// For one sector, its first six teams, labelled by year.
+	// svelte-ignore state_referenced_locally
+	const firsts = sector
+		? dated.slice(0, 6).map((d) => ({ sector: d.name, ...d }))
+		: sectors.flatMap((s) => {
+				const first = dated.find((d) => d.category === s.name);
+				return first ? [{ sector: s.name, ...first }] : [];
+			});
 
 	// A step curve: each count holds until the next team's date, then rises.
 	const W = 720;
@@ -33,24 +46,26 @@
 	const t0 = dated.length ? Date.parse(dated[0].since) : 0;
 	const t1 = Date.parse(end);
 	const x = (iso: string) => PAD.l + ((Date.parse(iso) - t0) / (t1 - t0)) * (W - PAD.l - PAD.r);
-	const yMax = Math.max(50, Math.ceil(dated.length / 50) * 50);
+	// Gridlines every 50 teams across the whole list, every 10 within a sector.
+	const step = dated.length > 100 ? 50 : 10;
+	const yMax = Math.max(step, Math.ceil(dated.length / step) * step);
 	const y = (n: number) => H - PAD.b - (n / yMax) * (H - PAD.t - PAD.b);
 
-	let line = dated.length ? `M${x(dated[0].since).toFixed(1)},${y(0).toFixed(1)}` : '';
-	dated.forEach((d, i) => {
-		line += ` H${x(d.since).toFixed(1)} V${y(i + 1).toFixed(1)}`;
-	});
-	if (dated.length) line += ` H${x(end).toFixed(1)}`;
+	const line = dated.length
+		? `M${x(dated[0].since).toFixed(1)},${y(0).toFixed(1)}` +
+			dated.map((d, i) => ` H${x(d.since).toFixed(1)} V${y(i + 1).toFixed(1)}`).join('') +
+			` H${x(end).toFixed(1)}`
+		: '';
 	const area = `${line} V${y(0).toFixed(1)} Z`;
 
-	// Ticks: each year that starts inside the range, and every 50 teams.
+	// Ticks: each year that starts inside the range, and every `step` teams.
 	const years: number[] = [];
 	if (dated.length) {
 		for (let yr = new Date(t0).getUTCFullYear() + 1; yr <= new Date(t1).getUTCFullYear(); yr++) {
 			years.push(yr);
 		}
 	}
-	const counts = Array.from({ length: yMax / 50 + 1 }, (_, i) => i * 50);
+	const counts = Array.from({ length: yMax / step + 1 }, (_, i) => i * step);
 	const yearOf = (iso: string) => iso.slice(0, 4);
 </script>
 
@@ -114,15 +129,23 @@
 			{/if}
 		</p>
 
-		<!-- The earliest team per sector: the same data, read as firsts. -->
-		<dl class="mt-4 grid gap-x-6 gap-y-2 text-xs sm:grid-cols-3">
+		<!-- The earliest team per sector, or a sector's earliest teams: the same data, read as firsts. -->
+		{#if sector && firsts.length}
+			<p class="mt-4 text-xs font-medium text-foreground">The first in the sector</p>
+		{/if}
+		<dl class="{sector ? 'mt-2' : 'mt-4'} grid gap-x-6 gap-y-2 text-xs sm:grid-cols-3">
 			{#each firsts as f (f.sector)}
 				<div class="flex items-baseline justify-between gap-3 border-t border-border pt-2">
-					<dt class="truncate text-muted-foreground">{f.sector}</dt>
-					<dd class="shrink-0 font-medium text-foreground">
-						{f.name}
-						<span class="font-normal text-muted-foreground">{yearOf(f.since)}</span>
-					</dd>
+					{#if sector}
+						<dt class="truncate font-medium text-foreground">{f.name}</dt>
+						<dd class="shrink-0 text-muted-foreground">{yearOf(f.since)}</dd>
+					{:else}
+						<dt class="truncate text-muted-foreground">{f.sector}</dt>
+						<dd class="shrink-0 font-medium text-foreground">
+							{f.name}
+							<span class="font-normal text-muted-foreground">{yearOf(f.since)}</span>
+						</dd>
+					{/if}
 				</div>
 			{/each}
 		</dl>

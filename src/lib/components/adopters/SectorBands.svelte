@@ -1,7 +1,7 @@
 <script lang="ts">
 	import adopters from '$lib/data/adopters.json';
 	import stats from '$lib/data/adopter-stats.json';
-	import { sectors } from '$lib/data/sectors';
+	import { sectors, sectorSlug } from '$lib/data/sectors';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
 	import SectorMotif from './SectorMotif.svelte';
 	import * as Tooltip from '$lib/components/ui/tooltip';
@@ -26,13 +26,17 @@
 	};
 
 	/*
-		The sector a "Browse" link hands to the directory. Bindable, so the
-		page can pass the same state to the explorer and the two move together.
-		The studies arrive from the route's load, and each is shelved in the
-		band of the team it is about.
+		Each band is a summary that links to its sector's own page, where the
+		whole roster, its curve, and its directory live. `limit` caps the marks
+		a band shows: the teams with a case study first, then the most-starred
+		repos, so a long sector leads with names a reader knows. The studies
+		arrive from the route's load, and each is shelved in the band of the
+		team it is about.
 	*/
-	let { category = $bindable('All'), posts = [] }: { category?: string; posts?: Study[] } =
-		$props();
+	let { posts = [], limit = 18 }: { posts?: Study[]; limit?: number } = $props();
+
+	const stars = (name: string) =>
+		(stats.perAdopter as Record<string, { stars?: number | null }>)[name]?.stars ?? 0;
 
 	const all = adopters as Adopter[];
 	const byName = new Map(all.map((a) => [a.name, a]));
@@ -40,25 +44,38 @@
 	// One band per sector, with its whole roster in alphabetical order, the
 	// sector's own counts from script/adopters-stats.mjs, and its studies.
 	const bands = $derived(
-		sectors.map((s) => ({
-			...s,
-			id: `sector-${s.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`,
-			members: all
-				.filter((a) => a.category === s.name)
-				.sort((a, b) => a.name.localeCompare(b.name)),
-			ci: stats.bySector[s.name as keyof typeof stats.bySector],
-			studies: posts
-				.filter((p) => p.brand && byName.get(p.brand)?.category === s.name)
-				.map((p) => ({ ...p, team: byName.get(p.brand as string) as Adopter }))
-		}))
+		sectors
+			.map((s) => ({
+				...s,
+				id: `sector-${sectorSlug(s.name)}`,
+				href: `/adopters/sector/${sectorSlug(s.name)}`,
+				members: all.filter((a) => a.category === s.name),
+				ci: stats.bySector[s.name as keyof typeof stats.bySector],
+				studies: posts
+					.filter((p) => p.brand && byName.get(p.brand)?.category === s.name)
+					.map((p) => ({ ...p, team: byName.get(p.brand as string) as Adopter }))
+			}))
+			.map((b) => {
+				const studied = new Set(b.studies.map((st) => st.team.name));
+				const shown = [...b.members]
+					.sort(
+						(x, y) =>
+							Number(studied.has(y.name)) - Number(studied.has(x.name)) ||
+							stars(y.name) - stars(x.name) ||
+							x.name.localeCompare(y.name)
+					)
+					.slice(0, limit)
+					.sort((x, y) => x.name.localeCompare(y.name));
+				return { ...b, shown, more: b.members.length - shown.length };
+			})
 	);
 </script>
 
 <!--
 	One band per sector: what it is on the left, everyone in it on the right.
 	Marks stay in color -- a roster is meant to be recognized -- and each is
-	the team's own proof. "Browse" hands the sector to the directory below,
-	where the cards carry the one-line context the marks cannot.
+	the team's own proof. The link and the "+N" mark open the sector's page,
+	which has the whole roster and the cards that carry each team's context.
 
 	One tooltip provider for all the bands: every mark opens the same way,
 	after the same short delay, and only one is open at a time.
@@ -156,11 +173,10 @@
 						</ul>
 					{/if}
 					<a
-						href="#adopters"
-						onclick={() => (category = band.name)}
+						href={band.href}
 						class="group mt-4 inline-flex items-center gap-1 self-start text-sm font-medium text-lime-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 dark:text-lime-400"
 					>
-						Browse {band.members.length} in the directory
+						Explore all {band.members.length} in {band.name}
 						<ArrowRight class="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
 					</a>
 				</div>
@@ -174,7 +190,7 @@
 					focus opens it and a click still goes to the proof.
 				-->
 				<ul class="flex flex-wrap content-start gap-1" aria-label="{band.name} teams">
-					{#each band.members as team (team.name)}
+					{#each band.shown as team (team.name)}
 						<li>
 							<Tooltip.Root>
 								<Tooltip.Trigger>
@@ -212,6 +228,17 @@
 							</Tooltip.Root>
 						</li>
 					{/each}
+					{#if band.more > 0}
+						<li>
+							<a
+								href={band.href}
+								aria-label="{band.more} more teams in {band.name}"
+								class="flex h-11 w-11 items-center justify-center rounded-md font-mono text-xs text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-lime-500 lg:h-[4.25rem] lg:w-24"
+							>
+								+{band.more}
+							</a>
+						</li>
+					{/if}
 				</ul>
 			</li>
 		{/each}

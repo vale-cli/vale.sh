@@ -4,6 +4,7 @@
 	import ArrowRight from 'lucide-svelte/icons/arrow-right';
 	import ArrowUpRight from 'lucide-svelte/icons/arrow-up-right';
 	import BrandIcon from '$lib/components/landing/BrandIcon.svelte';
+	import { sectorSlug } from '$lib/data/sectors';
 
 	let { data } = $props();
 	const { team, record, groups, files, similar, study, writing } = $derived(data);
@@ -93,11 +94,12 @@
 				size="h-12 w-12"
 			/>
 			<div>
-				<p
-					class="font-mono text-[11px] font-medium uppercase tracking-[0.13em] text-lime-600 dark:text-lime-400"
+				<a
+					href="/adopters/sector/{sectorSlug(team.category)}"
+					class="font-mono text-[11px] font-medium uppercase tracking-[0.13em] text-lime-600 hover:underline dark:text-lime-400"
 				>
 					{team.category}
-				</p>
+				</a>
 				<h1 class="mt-1 text-3xl font-medium tracking-tight sm:text-4xl">{team.name}</h1>
 			</div>
 		</div>

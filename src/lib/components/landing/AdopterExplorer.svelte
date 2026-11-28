@@ -34,8 +34,11 @@
 	let {
 		activeCategory = $bindable('All'),
 		facets = $bindable([]),
-		studied = {}
+		studied = {},
+		lock = false
 	}: {
+		/** Fix the directory to `activeCategory`: no sector chips, and the cards open. */
+		lock?: boolean;
 		activeCategory?: string;
 		/** The "how it's used" chips that are on. Bindable, so the usage chart can set one. */
 		facets?: string[];
@@ -134,7 +137,9 @@
 		its new place when the filter changes. Separate lists would unmount the
 		cards instead, and the reshape would be a blink.
 	*/
-	let expanded = $state(false);
+	// A locked directory is one sector's, short enough to open on its cards.
+	// svelte-ignore state_referenced_locally
+	let expanded = $state(lock);
 
 	const idle = $derived(
 		!expanded && activeCategory === 'All' && !query.trim() && facets.length === 0
@@ -182,7 +187,12 @@
 	>, style package, or write-up.
 {/snippet}
 
-<Section id="adopters" eyebrow="Directory" title="Every team, by sector" lede={adopterLede}>
+<Section
+	id="adopters"
+	eyebrow="Directory"
+	title={lock ? `Every team in ${activeCategory}` : 'Every team, by sector'}
+	lede={adopterLede}
+>
 	<!-- Search -->
 	<div class="relative mx-auto max-w-md">
 		<Search
@@ -217,8 +227,8 @@
 		{/if}
 	</div>
 
-	<!-- Category filters -->
-	<div class="mt-6 flex flex-wrap items-center justify-center gap-2">
+	<!-- Category filters; a locked directory has its one sector already. -->
+	<div class="mt-6 {lock ? 'hidden' : 'flex'} flex-wrap items-center justify-center gap-2">
 		{#each categories as category}
 			<button
 				type="button"

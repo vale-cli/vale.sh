@@ -16,7 +16,7 @@
 
 	const total = adopters.length;
 
-	// Owned here so the sector bands and the directory's chips move together.
+	// The directory's sector chip. Each band links to its sector's own page.
 	let category = $state('All');
 
 	// The directory's "how it's used" chips, owned here so a bar in the usage
@@ -52,12 +52,13 @@
 
 {#snippet sectorsLede()}
 	Every team, grouped by the sector it works in, with what its repos do counted rather than claimed.
+	Each sector has its own page: the whole roster, its adoption curve, and what its teams run.
 {/snippet}
 
 <!--
 	The page is composition: each section is its own component under
-	src/lib/components/adopters, and only the sector filter is shared, so the
-	bands' "Browse" links and the directory's chips move together.
+	src/lib/components/adopters. Each band summarizes a sector and links to
+	its page under /adopters/sector, which reuses the same components.
 -->
 <Header {total} sectors={sectors.length} posts={data.posts} />
 
@@ -67,7 +68,7 @@
 		<Figures />
 	</div>
 	<div class="mt-12">
-		<SectorBands bind:category posts={data.posts} />
+		<SectorBands posts={data.posts} />
 	</div>
 </Section>
 

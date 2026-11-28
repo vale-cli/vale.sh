@@ -156,3 +156,12 @@ export const sectors: Sector[] = [
 		theme: themes.fuchsia
 	}
 ];
+
+/**
+ * A sector's URL segment, as in /adopters/sector/academia-public-sector. The
+ * same rule the hub's band anchors use, so `#sector-<slug>` and the page agree.
+ */
+export const sectorSlug = (name: string) => name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
+
+/** The sector at a URL segment, or undefined. */
+export const sectorBySlug = (slug: string) => sectors.find((s) => sectorSlug(s.name) === slug);

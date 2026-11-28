@@ -1,5 +1,6 @@
 <script lang="ts">
 	import stats from '$lib/data/adopter-stats.json';
+	import adopters from '$lib/data/adopters.json';
 	import { usageGroups, type Usage } from '$lib/data/usage';
 
 	/*
@@ -12,9 +13,17 @@
 		its own denominator, because they are different sets -- repositories
 		that could be read, and configs that could be opened.
 	*/
-	let { onpick }: { onpick: (facet: string) => void } = $props();
+	let { onpick, sector }: { onpick: (facet: string) => void; sector?: string } = $props();
 
-	const records = Object.values(stats.perAdopter) as unknown as Usage[];
+	// With a sector, only its teams' records are counted. Read once: a sector
+	// page keys this component on its sector.
+	// svelte-ignore state_referenced_locally
+	const members = sector
+		? new Set(adopters.filter((a) => a.category === sector).map((a) => a.name))
+		: null;
+	const records = Object.entries(stats.perAdopter)
+		.filter(([name]) => !members || members.has(name))
+		.map(([, r]) => r) as unknown as Usage[];
 
 	// What each group is counted over, and how to say so.
 	const BASIS: Record<string, { of: (u: Usage) => boolean; noun: string }> = {
