@@ -5,7 +5,7 @@
 	import RotateCcw from 'lucide-svelte/icons/rotate-ccw';
 	import LoaderCircle from 'lucide-svelte/icons/loader-circle';
 	import type { GalleryRule } from '$lib/data/rule-gallery';
-	import type { ValeAlert } from '$lib/tools/vale';
+	import { place, type ValeAlert } from '$lib/tools/vale';
 
 	let {
 		rule,
@@ -20,6 +20,9 @@
 	// svelte-ignore state_referenced_locally
 	let text = $state(rule.sample);
 	let alerts = $state<ValeAlert[] | null>(null);
+	// The text the alerts belong to; marks show only while it is unchanged.
+	let linted = $state('');
+	let backdrop: HTMLDivElement;
 	let error = $state<string | null>(null);
 	let busy = $state(false);
 	let copied = $state(false);
@@ -32,9 +35,11 @@
 		const mine = ++run;
 		busy = true;
 		try {
-			const out = await lint(rule.id, yaml, text);
+			const sent = text;
+			const out = await lint(rule.id, yaml, sent);
 			if (mine !== run) return;
 			alerts = out;
+			linted = sent;
 			error = null;
 		} catch (e) {
 			if (mine !== run) return;
@@ -83,6 +88,27 @@
 	}
 
 	const edited = $derived(yaml !== rule.yaml || text !== rule.sample);
+
+	// The sample split into plain runs and marked ones, for the backdrop.
+	const pieces = $derived.by(() => {
+		if (!alerts?.length || linted !== text) return [{ text, severity: '' }];
+		const out: { text: string; severity: string }[] = [];
+		let at = 0;
+		for (const p of place(text, alerts)) {
+			if (p.from < at) continue;
+			if (p.from > at) out.push({ text: text.slice(at, p.from), severity: '' });
+			out.push({ text: text.slice(p.from, p.to), severity: p.alert.Severity });
+			at = p.to;
+		}
+		out.push({ text: text.slice(at), severity: '' });
+		return out;
+	});
+
+	const mark: Record<string, string> = {
+		error: 'bg-rose-500/20 shadow-[inset_0_-2px_0] shadow-rose-500',
+		warning: 'bg-amber-500/20 shadow-[inset_0_-2px_0] shadow-amber-500',
+		suggestion: 'bg-sky-500/20 shadow-[inset_0_-2px_0] shadow-sky-500'
+	};
 
 	const tone: Record<string, string> = {
 		error: 'text-rose-600 dark:text-rose-400',
@@ -135,13 +161,25 @@
 		<div class="flex min-w-0 flex-col">
 			<label class="block">
 				<span class="text-xs font-medium text-muted-foreground">sample.md</span>
-				<textarea
-					bind:value={text}
-					oninput={schedule}
-					spellcheck="false"
-					rows={Math.min(Math.max(text.split('\n').length, 6), 14)}
-					class="mt-1 w-full resize-y rounded-lg border border-border bg-background p-3 font-mono text-xs leading-5 outline-none focus:border-lime-500/60 focus:ring-2 focus:ring-lime-500/20"
-				></textarea>
+				<div class="relative mt-1 rounded-lg bg-background">
+					<div
+						bind:this={backdrop}
+						aria-hidden="true"
+						class="pointer-events-none absolute inset-0 overflow-hidden whitespace-pre-wrap break-words rounded-lg border border-transparent p-3 font-mono text-xs leading-5 text-transparent"
+					>
+						{#each pieces as p, i (i)}{#if p.severity}<mark
+									class="rounded-sm text-transparent {mark[p.severity] ?? ''}">{p.text}</mark
+								>{:else}{p.text}{/if}{/each}{' '}
+					</div>
+					<textarea
+						bind:value={text}
+						oninput={schedule}
+						onscroll={(e) => (backdrop.scrollTop = e.currentTarget.scrollTop)}
+						spellcheck="false"
+						rows={Math.min(Math.max(text.split('\n').length, 6), 14)}
+						class="relative block w-full resize-y rounded-lg border border-border bg-transparent p-3 font-mono text-xs leading-5 outline-none focus:border-lime-500/60 focus:ring-2 focus:ring-lime-500/20"
+					></textarea>
+				</div>
 			</label>
 			<div
 				class="mt-2 min-h-16 rounded-lg border border-dashed border-border p-3 text-xs"
