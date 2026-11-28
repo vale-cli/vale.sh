@@ -30,3 +30,8 @@ bin/
 # Left over from the pre-Algolia index pipeline.
 INDEX.zip
 src/lib/data/tools/engine.local.json
+
+# Written by `vale sync`.
+.github/styles/*
+!.github/styles/config/
+.github/styles/config/templates/ai-tells-agent.tmpl

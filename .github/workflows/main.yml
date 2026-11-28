@@ -13,6 +13,7 @@ jobs:
           files: '["README.md", "docs"]'
           fail_on_error: true
           reporter: github-check
+          vale_flags: '--filter=ci.expr'
         env:
           GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
