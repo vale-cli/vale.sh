@@ -6,6 +6,7 @@
 	import LoaderCircle from 'lucide-svelte/icons/loader-circle';
 	import type { GalleryRule } from '$lib/data/rule-gallery';
 	import { place, type ValeAlert } from '$lib/tools/vale';
+	import CodeEditor, { type Mark } from './CodeEditor.svelte';
 
 	let {
 		rule,
@@ -22,7 +23,6 @@
 	let alerts = $state<ValeAlert[] | null>(null);
 	// The text the alerts belong to; marks show only while it is unchanged.
 	let linted = $state('');
-	let backdrop: HTMLDivElement;
 	let error = $state<string | null>(null);
 	let busy = $state(false);
 	let copied = $state(false);
@@ -89,26 +89,11 @@
 
 	const edited = $derived(yaml !== rule.yaml || text !== rule.sample);
 
-	// The sample split into plain runs and marked ones, for the backdrop.
-	const pieces = $derived.by(() => {
-		if (!alerts?.length || linted !== text) return [{ text, severity: '' }];
-		const out: { text: string; severity: string }[] = [];
-		let at = 0;
-		for (const p of place(text, alerts)) {
-			if (p.from < at) continue;
-			if (p.from > at) out.push({ text: text.slice(at, p.from), severity: '' });
-			out.push({ text: text.slice(p.from, p.to), severity: p.alert.Severity });
-			at = p.to;
-		}
-		out.push({ text: text.slice(at), severity: '' });
-		return out;
+	// The alerts as marks in the sample, once they match the text they came from.
+	const marks = $derived.by((): Mark[] | null => {
+		if (alerts === null || linted !== text) return null;
+		return place(text, alerts).map((p) => ({ from: p.from, to: p.to, severity: p.alert.Severity }));
 	});
-
-	const mark: Record<string, string> = {
-		error: 'bg-rose-500/20 shadow-[inset_0_-2px_0] shadow-rose-500',
-		warning: 'bg-amber-500/20 shadow-[inset_0_-2px_0] shadow-amber-500',
-		suggestion: 'bg-sky-500/20 shadow-[inset_0_-2px_0] shadow-sky-500'
-	};
 
 	const tone: Record<string, string> = {
 		error: 'text-rose-600 dark:text-rose-400',
@@ -148,39 +133,30 @@
 	</header>
 
 	<div class="mt-4 grid gap-3 lg:grid-cols-2">
-		<label class="block min-w-0">
+		<div class="block min-w-0">
 			<span class="text-xs font-medium text-muted-foreground">{rule.id}.yml</span>
-			<textarea
+			<CodeEditor
 				bind:value={yaml}
+				lang="yaml"
+				label="{rule.id}.yml"
+				rows={8}
+				maxRows={22}
 				oninput={schedule}
-				spellcheck="false"
-				rows={Math.min(Math.max(yaml.split('\n').length, 8), 22)}
-				class="mt-1 w-full resize-y rounded-lg border border-border bg-muted/40 p-3 font-mono text-xs leading-5 outline-none focus:border-lime-500/60 focus:ring-2 focus:ring-lime-500/20"
-			></textarea>
-		</label>
+			/>
+		</div>
 		<div class="flex min-w-0 flex-col">
-			<label class="block">
+			<div class="block">
 				<span class="text-xs font-medium text-muted-foreground">sample.md</span>
-				<div class="relative mt-1 rounded-lg bg-background">
-					<div
-						bind:this={backdrop}
-						aria-hidden="true"
-						class="pointer-events-none absolute inset-0 overflow-hidden whitespace-pre-wrap break-words rounded-lg border border-transparent p-3 font-mono text-xs leading-5 text-transparent"
-					>
-						{#each pieces as p, i (i)}{#if p.severity}<mark
-									class="rounded-sm text-transparent {mark[p.severity] ?? ''}">{p.text}</mark
-								>{:else}{p.text}{/if}{/each}{' '}
-					</div>
-					<textarea
-						bind:value={text}
-						oninput={schedule}
-						onscroll={(e) => (backdrop.scrollTop = e.currentTarget.scrollTop)}
-						spellcheck="false"
-						rows={Math.min(Math.max(text.split('\n').length, 6), 14)}
-						class="relative block w-full resize-y rounded-lg border border-border bg-transparent p-3 font-mono text-xs leading-5 outline-none focus:border-lime-500/60 focus:ring-2 focus:ring-lime-500/20"
-					></textarea>
-				</div>
-			</label>
+				<CodeEditor
+					bind:value={text}
+					lang="markdown"
+					label="sample.md"
+					{marks}
+					rows={6}
+					maxRows={14}
+					oninput={schedule}
+				/>
+			</div>
 			<div
 				class="mt-2 min-h-16 rounded-lg border border-dashed border-border p-3 text-xs"
 				aria-live="polite"

@@ -80,6 +80,7 @@
 		"@algolia/autocomplete-js": "^1.17.7",
 		"@docsearch/css": "3",
 		"@docsearch/js": "3",
+		"@lezer/highlight": "^1.2.5",
 		"@rehype-pretty/transformers": "^0.13.2",
 		"@sveltejs/adapter-netlify": "^7.0.1",
 		"algoliasearch": "5.18.0",
