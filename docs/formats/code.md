@@ -36,7 +36,7 @@ Vale lints the comments in source code, found with a [tree-sitter](https://tree-
 
 A `.tsx` file is parsed with the TSX grammar, so a [View](../topics/views.md) can query its JSX nodes, such as `jsx_text`. Its comments are read as TypeScript's.
 
-A URL in a comment is skipped, as one in markup is; see [URLs](../topics/urls.md).
+A URL in a comment is skipped, as one in markup is. See [URLs](../topics/urls.md).
 
 ## [Documentation attributes](code.md#documentation-attributes)
 
@@ -44,7 +44,7 @@ A URL in a comment is skipped, as one in markup is; see [URLs](../topics/urls.md
 Requires Vale v3.19.0 or later.
 {% endhint %}
 
-Elixir has no documentation comment syntax: its published API documentation lives in module attributes holding a string or a heredoc, and that is what `mix docs` renders.
+Elixir has no documentation comment syntax: its published API documentation is stored in module attributes that contain a string or a heredoc, and that is what `mix docs` renders.
 
 ```elixir
 defmodule Session do
@@ -57,7 +57,7 @@ defmodule Session do
 end
 ```
 
-Both comments and attributes are extracted. `@moduledoc`, `@doc`, `@typedoc`, and `@shortdoc` carry a `doc` scope—`text.comment.doc.line` and `text.comment.doc.block`—so published documentation can be held to a different standard than an implementation note, or excluded on its own via [`IgnoredScopes`](../keys/ignoredscopes.md). `@doc false` and `@doc since: "1.0.0"` hold no prose, and neither is extracted.
+Both comments and attributes are extracted. `@moduledoc`, `@doc`, `@typedoc`, and `@shortdoc` have a `doc` scope (`text.comment.doc.line` and `text.comment.doc.block`). This lets published documentation follow a different standard than an implementation note, or be excluded on its own via [`IgnoredScopes`](../keys/ignoredscopes.md). `@doc false` and `@doc since: "1.0.0"` don't contain prose, and neither is extracted.
 
 ## [Associations](code.md#associations)
 
@@ -101,7 +101,7 @@ BasedOnStyles = Vale
 
 ![How embedded markup is linted: tree-sitter finds each comment in the source file, the per-line decoration is stripped, the remaining body is parsed as Markdown, and every alert is mapped back to its original line and column in the source.](../.gitbook/assets/embedded.svg)
 
-A [View](../topics/views.md) does the same per query: a scope's `type` names the markup for the comments that query finds, so a Python docstring can be read as reStructuredText while the file's `#` comments stay plain text.
+A [View](../topics/views.md) does the same per query. A scope's `type` specifies the markup for the comments that query finds, so a Python docstring can be read as reStructuredText while the file's `#` comments stay plain text.
 
 Once a markup format has been assigned, you can make use of all the supported features of that format (such as ignore patterns and comment-based configuration) in your source code comments.
 
@@ -126,7 +126,7 @@ Block comments in C-style languages conventionally decorate each line with a lea
  */
 ```
 
-That decoration is removed before the comment is handed to the markup parser, so the body above is read as a paragraph followed by a list—not as one long list, which is what the leading asterisks would otherwise make it.
+That decoration is removed before the comment is handed to the markup parser, so the body above is read as a paragraph followed by a list, not as one long list, which is what the leading asterisks would otherwise make it.
 
 Relative indentation is preserved, so indented code blocks inside a comment still work:
 
@@ -157,10 +157,10 @@ A documentation comment has a convention of its own on top of the language's com
 | Kotlin     | Links (`[name]`, `[text][name]`), and the symbol a block tag names (`@param name`, `@throws Type`).                          |
 | Java       | Inline tags (`{@code ...}`, `{@link ...}`), and the symbol a block tag names (`@param name`, `@throws Type`).                 |
 | JavaScript | Inline tags (`{@link ...}`), a block tag with its type and name (`@param {string} name`, `@returns {Promise}`), and the whole of an `@example` block. |
-| Python     | The field names of a docstring's field list (`:param name:`, `:raises Type:`, `:returns:`).                                 |
+| Python     | The field names of a field list in a docstring (`:param name:`, `:raises Type:`, `:returns:`).                                 |
 
 The description after a tag is prose and is linted as usual.
 
 ### [Directives](code.md#directives)
 
-A comment addressed to a tool rather than a reader is not read at all: a Go build constraint or `//nolint` line, a Python `# noqa` or `# type:` comment, an `eslint` or `@ts-` comment in JavaScript, `NOPMD` and `CHECKSTYLE` in Java, `ktlint` in Kotlin, `NOLINT` and `clang-format` in C and C++, and `rubocop:` and `frozen_string_literal:` in Ruby.
+A comment addressed to a tool rather than a reader is not read at all. This includes a Go build constraint or `//nolint` line, a Python `# noqa` or `# type:` comment, an `eslint` or `@ts-` comment in JavaScript, `NOPMD` and `CHECKSTYLE` in Java, `ktlint` in Kotlin, `NOLINT` and `clang-format` in C and C++, and `rubocop:` and `frozen_string_literal:` in Ruby.

@@ -33,7 +33,7 @@ test.md:1:9:style.Hedging:Consider removing 'arguably'
 test.md:1:42:style.Hedging:Consider removing 'appears to be'
 ```
 
-These tokens can be anything from simple phrases (as in the above example) to regular expressions—e.g., [the number of spaces between sentences](https://github.com/vale-cli/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/vale-cli/Google/blob/master/Google/Quotes.yml).
+These tokens can be anything from simple phrases (as in the above example) to regular expressions, e.g., [the number of spaces between sentences](https://github.com/vale-cli/vale/blob/master/testdata/styles/demo/Spacing.yml) or [the position of punctuation after quotes](https://github.com/vale-cli/Google/blob/master/Google/Quotes.yml).
 
 ### [tokens](existence.md#tokens)
 
@@ -92,6 +92,6 @@ tokens:
 
 In a phrase, each word with flags expands on its own, and the rest of the token is a pattern as usual. A `\b` on either side of a flagged word stays a word boundary.
 
-`en_US-web` is the affix file of Vale's built-in dictionary. Any other name is looked up as a `.aff` file in `<StylesPath>/config/dictionaries/`, then in `$DICPATH`, as a spelling rule's [dictionaries](spelling.md) are.
+`en_US-web` is the affix file of Vale's built-in dictionary. Any other name is looked up as a `.aff` file in `<StylesPath>/config/dictionaries/`, then in `$DICPATH`, the same way as the [dictionaries](spelling.md) of a spelling rule.
 
 In a rule that sets `affix`, an unescaped `/` in a space-separated word of a token separates the word from its flags, and the word must be plain text. Write a literal slash as `\/`: `and\/or`. A token without a slash is a pattern as usual.

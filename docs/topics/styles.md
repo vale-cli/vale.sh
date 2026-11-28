@@ -4,7 +4,7 @@ Learn what a rule is, how rules are collected into styles, and how a configurati
 
 ## [A rule](styles.md#a-rule)
 
-A rule is four decisions. Which _check_ runs, which says what kind of thing is wrong: a pattern that must not appear, a word that must be spelled one way, a count that must not be exceeded. Which _scope_ it runs on, which says where to look: every sentence, only the headings, one section of the document. What the _message_ says when it fires. And, when there is one right answer, what the _action_ is that fixes it.
+A rule is four decisions. Which _check_ runs, which says what kind of thing is wrong: a pattern that must not appear, a word that must be spelled one way, or a count that must not be exceeded. Which _scope_ it runs on, which says where to look: every sentence, only the headings, or one section of the document. What the _message_ says when it matches. And, when there is one right answer, what the _action_ is that fixes it.
 
 ```yaml
 extends: existence
@@ -39,12 +39,12 @@ The `link` is the guidance the rule enforces, shown with every alert. The `level
 
 ### [The header](styles.md#the-header)
 
-Every rule opens with the same fields, followed by the arguments its check takes:
+Each rule opens with the same fields, followed by the arguments its check takes:
 
 | Name          | Required | Default      | Description                                                                                                                                                                       |
 | ------------- | -------- | ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `extends`     | Yes      |              | <p>The check the rule runs, or another rule to build on.<br><code>extends: existence</code></p>                                                                                   |
-| `message`     | Yes      |              | <p>What to say when the rule fires. Each check offers its own placeholders.<br><code>message: "Don't use '%s' in headings."</code></p>                                             |
+| `message`     | Yes      |              | <p>What to say when the rule matches. Each check offers its own placeholders.<br><code>message: "Don't use '%s' in headings."</code></p>                                             |
 | `level`       | No       | `warning`    | <p><code>suggestion</code>, <code>warning</code>, or <code>error</code>. Only errors set a non-zero exit code.<br><code>level: error</code></p>                                     |
 | `scope`       | No       | `text`       | <p>Where to look. See <a href="scopes.md">Scopes</a>. <code>metric</code> and <code>readability</code> default to the whole document instead.<br><code>scope: heading</code></p> |
 | `link`        | No       |              | <p>The guidance the rule enforces, shown with the alert.<br><code>link: https://example.com</code></p>                                                                             |
@@ -55,7 +55,7 @@ Every rule opens with the same fields, followed by the arguments its check takes
 
 ### [The checks](styles.md#the-checks)
 
-Each rule _extends_ a check, which is what does the work. Every check runs on any scope.
+Each rule _extends_ a check, which determines what the rule looks for. Checks run on any scope.
 
 | Name                                          | Description                                                                         |
 | --------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -90,16 +90,16 @@ styles/
 
 The directory is the style's name, and the file is the rule's, joined with a dot: `Microsoft.HeadingPunctuation` is how the rule is addressed in configuration, in an in-text comment, in a filter, and in Vale's output. A subdirectory joins the name too, so `House/dates/TimeFormat.yml` is `House.dates.TimeFormat`.
 
-Two things about the files themselves:
+Note the following about the files themselves:
 
-* A rule file ends in `.yml`. Vale reads no other extension as a rule.
+* A rule file ends in `.yml`. Vale doesn't read any other extension as a rule.
 * A directory whose name starts with `.` or `_` is skipped at load time, so drafts and shared fragments can sit inside a style without loading.
 
 Packages installed with [`vale sync`](../keys/packages.md) land on the same path, so a style you wrote and a style you downloaded are the same kind of thing. The `config/` directory beside them holds what is not a style: vocabularies, dictionaries, views, filters, and templates.
 
 ## [Switching rules on](styles.md#switching-rules-on)
 
-A style is enabled by name in [`BasedOnStyles`](../keys/basedonstyles.md), and every rule in it runs at the level the rule declares. The configuration can then adjust one rule, or a whole style, without touching the files:
+A style is enabled by name in [`BasedOnStyles`](../keys/basedonstyles.md), and every rule in it runs at the level the rule declares. The configuration can then adjust a single rule or a whole style without touching the files:
 
 ```ini
 [*.md]
@@ -119,7 +119,7 @@ Std.SentenceLength[max] = 30
 
 A rule named on its own, `House.Hedging = YES`, loads even when its style is not in `BasedOnStyles`: every segment after the style is a path, and Vale reads that one file.
 
-The bracket key takes scalars: a number, a boolean, a level. It refuses the keys that make a rule what it is, `message`, `link`, `tokens`, `swap`, `exceptions`, and the rest, because changing those is authoring. For that, extend the rule.
+The bracket key takes a scalar (a number, a boolean, or a level). It refuses the keys that make a rule what it is, `message`, `link`, `tokens`, `swap`, `exceptions`, and the rest, because changing those is authoring. For that, extend the rule.
 
 ## [Extending another rule](styles.md#extending-another-rule)
 
@@ -155,11 +155,11 @@ swap:
   web site: website
 ```
 
-The parent only has to exist on the `StylesPath`; it does not have to be switched on. Inheritance is a file reference, and `vale sync` is what puts the file there. The built-in `Vale` rules have no file, so they cannot be extended.
+The parent only has to exist on the `StylesPath`. It does not have to be switched on. Inheritance is a file reference, and `vale sync` is what puts the file there. The built-in `Vale` rules have no file, so they cannot be extended.
 
 ### [Values](styles.md#values)
 
-A key the child writes replaces the parent's value. Every other key is inherited as it is:
+A key the child writes replaces the parent's value. The child inherits the other keys as they are:
 
 ```yaml
 # House/Hedging.yml
@@ -225,7 +225,7 @@ Removing something the parent does not have is an error, so an upstream rename i
 'tokens-': the parent has no entry 'maybe' to remove
 ```
 
-Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once. Only a rule that extends another rule can use `+` or `-`; a rule that extends a check has no parent for them to act on. A chain may run ten rules deep before Vale assumes it is a cycle.
+Writing both `key` and `key+` (or `key-`) in one file is an error: that says "replace" and "edit the replacement" at once. Only a rule that extends another rule can use `+` or `-`, because a rule that extends a check has no parent for them to act on. A chain may run ten rules deep before Vale assumes it is a cycle.
 
 ### [Running the parent too](styles.md#running-the-parent-too)
 
@@ -246,7 +246,7 @@ Direct.Hedging = NO
 
 ### [Sharing a pattern](styles.md#sharing-a-pattern)
 
-A directory whose name starts with `_` or `.` is skipped at load time but stays visible to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
+A directory whose name starts with `_` or `.` is skipped at load time but is still available to `extends`, so a pattern shared by several rules can live in one file without itself becoming a rule:
 
 ```
 styles/GenZ/
@@ -257,7 +257,7 @@ styles/GenZ/
 └── Presence.yml
 ```
 
-Every segment of the name after the style is a path component, so the rules refer to the file as `GenZ._shared.Slang`:
+Each segment of the name after the style is a path component. The rules refer to the file as `GenZ._shared.Slang`:
 
 ```yaml
 # GenZ/Presence.yml
@@ -266,7 +266,7 @@ message: "'%s' is slang."
 level: error
 ```
 
-A fragment is validated as the chain's root, so it must carry a `message`, even one no alert will ever show.
+A fragment is validated as the chain's root, so it must include a `message`, even one no alert will ever show.
 
 ## [Linting a style](styles.md#linting-a-style)
 
@@ -274,7 +274,7 @@ A fragment is validated as the chain's root, so it must carry a `message`, even 
 Requires Vale v3.22.0 or later.
 {% endhint %}
 
-A style holds rules and vocabularies, not prose, so a run over a directory skips the `StylesPath`. Name a file or directory inside it to lint it anyway:
+A style holds rules and vocabularies, not prose, so a run over a directory skips the `StylesPath`. To lint it anyway, specify a file or directory inside it:
 
 ```bash
 vale styles/MyStyle

@@ -8,21 +8,21 @@ Vale v3.18.0 or later parses [MDX](https://mdxjs.com/) natively. Earlier version
 
 The supported extension is `.mdx`.
 
-MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions. The JavaScript holds no prose, and Vale treats it as code and ignores it:
+MDX is Markdown plus ESM statements, JSX elements, and JavaScript expressions. The JavaScript doesn't contain prose, and Vale treats it as code and ignores it:
 
 * JSX tags, their attributes, and self-closing elements (`<Chart data={population} />`).
 * ESM `import` and `export` statements, including multiline bodies.
-* JavaScript expressions—inline (`{Math.PI * 2}`) and standing on their own.
+* JavaScript expressions, both inline (`{Math.PI * 2}`) and on their own line.
 * Fenced blocks: Blocks surrounded by three or more backticks.
 * Code spans: Text surrounded by backticks.
 
 MDX removed indented code blocks from the grammar, so indentation is never code. A paragraph, a fence, a heading, or a list indented four or more spaces, the way `<Steps>` and `<Tabs>` children are often written, is read as what it is.
 
-An expression is only a block of its own when it stands alone on its line. Followed by prose, `{/* note */}Some text.`, the line is a paragraph holding an inline expression, and the prose is linted.
+An expression is only a block of its own when it's alone on its line. Followed by prose, `{/* note */}Some text.`, the line is a paragraph holding an inline expression, and the prose is linted.
 
-Inside an expression, the text of a JSX element is read as text: an apostrophe or a bracket in `title={<>Don't (yet)</>}` means nothing. Inside a tag's attributes, an escaped quote (`'the cluster\'s version'`) is part of its string.
+Inside an expression, the text of a JSX element is treated as text. An apostrophe or a bracket in `title={<>Don't (yet)</>}` has no special meaning. Inside a tag's attributes, an escaped quote (`'the cluster\'s version'`) is part of its string.
 
-A tag or an expression left open to the end of the file, such as a `{` with no `}`, is invalid MDX, which the MDX compiler rejects. Vale reports it as an error at the line where the block opens (Vale v3.25.0 or later), since everything after it would otherwise be read as code and never checked. Other files in the run are still linted, and the run exits with code `2`; see [exit codes](../topics/cli.md#exit-codes).
+A tag or an expression left open to the end of the file, such as a `{` with no `}`, is invalid MDX, which the MDX compiler rejects. Vale reports it as an error at the line where the block opens (Vale v3.25.0 or later), since everything after it would otherwise be read as code and never checked. Other files in the run are still linted, and the run exits with code `2`. See [exit codes](../topics/cli.md#exit-codes).
 
 ## [JSX children](mdx.md#jsx-children)
 
@@ -44,17 +44,17 @@ The children carry the element's name as a [class scope](../topics/scopes.md#cla
 IgnoredClasses = RawOutput
 ```
 
-The same applies inline: in `<abbr>HTML</abbr> is a language`, the word "HTML" is linted as part of its sentence.
+Inline elements work the same way. In `<abbr>HTML</abbr> is a language`, the word "HTML" is linted as part of its sentence.
 
 An element opened and closed on one line with text between its tags, `<Tip>This is a tip</Tip>`, is a paragraph holding an inline element, so its text is linted. One without text, `<video src="a.mp4"></video>`, is code.
 
 ## [The MDX package](mdx.md#the-mdx-package)
 
 {% hint style="info" %}
-This package exists for versions before v3.18.0, whose parser threw on inline expressions that aren't valid JavaScript—ending the run rather than the file. The native parser reads them without complaint.
+This package exists for versions before v3.18.0, whose parser threw on inline expressions that aren't valid JavaScript, ending the run rather than the file. The native parser reads them without complaint.
 {% endhint %}
 
-The [`MDX`](https://github.com/vale-cli/MDX) package carries the configuration for those cases:
+The [`MDX`](https://github.com/vale-cli/MDX) package includes the configuration for those cases:
 
 ```ini
 Packages = MDX

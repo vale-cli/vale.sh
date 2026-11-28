@@ -76,7 +76,7 @@ formula: round(automated_readability)
 condition: ">= 10 && words >= 14"
 ```
 
-A `metric` rule measures the whole document unless it declares a [scope](../topics/scopes.md#checks-and-scopes). With one, it measures each block the scope names on its own—a paragraph, a heading, a list item, or a `doc(...)` selection—and the alert lands on that block’s first line:
+A `metric` rule measures the whole document unless it declares a [scope](../topics/scopes.md#checks-and-scopes). With one, it measures each block the scope names on its own (a paragraph, a heading, a list item, or a `doc(...)` selection), and the alert is reported on that block’s first line:
 
 ```yaml
 extends: metric
@@ -87,10 +87,10 @@ formula: words
 condition: "> 400"
 ```
 
-A selection counts the elements it holds, so `heading.h3` inside a section is the number of subheadings in that section. Scoping a `metric` rule requires Vale v3.21.0 or later; `text` means the whole document, as an unset scope does.
+A selection counts the elements it contains, so `heading.h3` inside a section is the number of subheadings in that section. Scoping a `metric` rule requires Vale v3.21.0 or later; `text` means the whole document, as an unset scope does.
 
 {% hint style="info" %}
-As of Vale v3.18.0, `paragraphs` counts body paragraphs alone. `words`, `sentences`, and the other prose-derived variables still take in every kind of prose—including list items and blockquotes, which are counted by `list` and `blockquote`.
+As of Vale v3.18.0, `paragraphs` counts body paragraphs alone. `words`, `sentences`, and the other prose-derived variables still take in every kind of prose, including list items and blockquotes, which are counted by `list` and `blockquote`.
 {% endhint %}
 
 ## [Operators](metric.md#operators)

@@ -24,13 +24,13 @@ The patterns read the way `.gitignore` patterns do:
 
 A path is relative to the `.vale.ini` that sets it, not to the directory you run Vale from, so `vendor/**` means the same directory from anywhere in the project. In `.config/vale.ini`, it's relative to the project rather than to `.config/`.
 
-The list is split on commas outside braces, so a brace group can hold several alternatives:
+The list is split on commas outside braces, so a brace group can list several alternatives:
 
 ```ini
 IgnoredPaths = {vendor,third_party}/**, CHANGELOG.md
 ```
 
-An ignored path is skipped whatever the sections say, and in whatever order they come. A directory that matches isn't walked at all, and a file that matches is skipped even when it's named on the command line.
+Vale skips an ignored path whatever the sections say, and in whatever order they come. A directory that matches isn't walked at all, and a file that matches is skipped even when it's named on the command line.
 
 {% hint style="info" %}
 To lint files with fewer rules rather than none, use a section instead. A section that sets [`BasedOnStyles = NONE`](basedonstyles.md) turns every rule off for the files it matches, but a later section that matches them too can turn rules back on.

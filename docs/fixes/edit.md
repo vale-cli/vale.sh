@@ -29,13 +29,13 @@ action:
     - [wrap, '`']
 ```
 
-Because every operation takes a fixed number of arguments, the same pipeline written flat, `[trim_right, '!', lower, wrap, '`']`, means the same thing; that is the form the alert carries.
+Because every operation takes a fixed number of arguments, the same pipeline written flat, `[trim_right, '!', lower, wrap, '`']`, means the same thing. The alert includes the pipeline in that form.
 
 ![The match Wow! passes through a right trim, a lowercase, and a wrap step in turn, becoming Wow, then wow, then wow in backticks, which is the suggestion.](../.gitbook/assets/edit-pipeline.svg)
 
 ## [The token's groups](edit.md#the-tokens-groups)
 
-An argument can name what the rule matched. `$0` is the whole match, and `$1`, `$2`, and so on are the capture groups of the token that matched, in that token's own numbering. An `existence` rule can therefore reorder or reuse its match without a `regex` step that matches it again:
+An argument can refer to what the rule matched. `$0` is the whole match, and `$1`, `$2`, and so on are the capture groups of the token that matched, in that token's own numbering. An `existence` rule can therefore reorder or reuse its match without a `regex` step that matches it again:
 
 ```yaml
 extends: existence
@@ -49,9 +49,9 @@ tokens:
   - '\b([A-Z][a-z]+) ([A-Z][a-z]+) \(author\)'
 ```
 
-The same groups reach every `edit` step, so `[prefix, '$2 ']` or `[replace, '$1', '$2']` read as the author thinks.
+The same groups are available to each `edit` step. `[prefix, '$2 ']` or `[replace, '$1', '$2']` work the way you'd expect.
 
-Every argument is expanded this way except a `regex` step's own, where `$1` keeps meaning that pattern's first group. Write `$$` for a literal dollar sign. A rule whose tokens have no groups sees `$1` as empty, and the alert carries the groups as `Groups` so an editor resolving the suggestion later gets the same answer.
+Arguments are expanded this way except for those of a `regex` step, where `$1` keeps meaning that pattern's first group. Write `$$` for a literal dollar sign. A rule whose tokens have no groups sees `$1` as empty, and the alert includes the groups as `Groups` so an editor resolving the suggestion later gets the same answer.
 
 ## [Rewriting](edit.md#rewriting)
 
@@ -266,9 +266,9 @@ Each takes no arguments.
 | `camel`        | `fooBar`          |
 | `pascal`       | `FooBar`          |
 
-`capitalize` and `uncapitalize` touch only the first letter, which is what a rule about how a list item or a sentence starts wants.
+`capitalize` and `uncapitalize` touch only the first letter, which is what you need for a rule about how a list item or a sentence starts.
 
-`title` follows AP style, and `sentence` keeps only the first word capitalized; neither knows the rule's own vocabulary. For a fix that respects a `capitalization` rule's exceptions, use that rule's own `replace` action.
+`title` follows AP style, and `sentence` keeps only the first word capitalized. They don't use the rule's own vocabulary. For a fix that respects a `capitalization` rule's exceptions, use that rule's own `replace` action.
 
 ```yaml
 extends: existence

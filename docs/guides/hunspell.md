@@ -16,10 +16,10 @@ Instead, Vale uses a pure-Go package to parse Hunspell-compatible dictionaries a
 
 A Hunspell-compatible dictionary consists of two files:
 
-1. Affix (`.aff`) file: This file defines the morphological rules, including prefixes, suffixes, and other language-specific grammar rules that govern how words are formed.
+1. Affix (`.aff`) file: This file defines the morphological rules, including prefixes, suffixes, and other language-specific grammar rules that determine how words are formed.
 2. Dictionary (`.dic`) file: This file contains the list of root words and their associated affix codes to specify valid transformations.
 
-You can name these files whatever you like, so long as the `.aff` and `.dic` files are named consistently – for example, `en_US.aff` and `en_US.dic`.
+The files can be called anything, so long as the `.aff` and `.dic` files are named consistently (for example, `en_US.aff` and `en_US.dic`).
 
 Here’s a minimal example of a dictionary:
 
@@ -42,7 +42,7 @@ SFX M   0     's         .
 * `SFX M Y 1`: This line defines a suffix rule (`SFX`) for the affix code `M`. The `Y` indicates that the rule is [cross-productible](https://github.com/hunspell/hunspell/blob/874abbbe65e228df525023afe176b42df34a7a4f/man/hunspell.5#L527) and the `1` indicates that there is one rule.
 * `SFX M 0 's .`: This line defines the rule itself. It says that if a word has the affix code `M`, we can add `'s` to the end of the word. The `0` indicates that no part of the base word is removed when applying this suffix. The `.` indicates that there are no conditions for applying this rule.
 
-The end result is that the dictionary will accept both “software” and “software’s”. Other variations like “softwares” or “softwaring” will be rejected.
+The dictionary will now accept both “software” and “software’s”. Other variations like “softwares” or “softwaring” will be rejected.
 
 ## Using your dictionary
 
@@ -70,7 +70,7 @@ dictionaries:
 ```
 {% endcode %}
 
-Set `append: true` to check against your dictionary *and* Vale's built-in one; without it, yours replaces the default entirely. See [spelling](../checks/spelling.md) for the rest of the keys, including `dicpath` for keeping dictionaries somewhere else.
+Set `append: true` to check against both your dictionary and Vale's built-in one; without it, yours replaces the default entirely. See [spelling](../checks/spelling.md) for the rest of the keys, including `dicpath` for keeping dictionaries somewhere else.
 
 ## Where can I find Hunspell dictionaries?
 

@@ -9,7 +9,7 @@ StylesPath = styles
 BasedOnStyles = Vale, MyStyle
 ```
 
-`BasedOnStyles` enables every rule in the named styles for the files a section matches.
+`BasedOnStyles` enables every rule in the listed styles for the files a section matches.
 
 It's a section-level setting, so it has to appear under a glob. Putting it above the first section is an error:
 
@@ -49,7 +49,7 @@ BasedOnStyles = Vale, Microsoft
 
 ## [Individual rules](basedonstyles.md#individual-rules)
 
-Rules can be switched on or off by name, and unlike `BasedOnStyles`, these settings **accumulate** across every section that matches:
+Rules can be switched on or off by name. Unlike `BasedOnStyles`, these settings **accumulate** across every section that matches:
 
 ```ini
 [*]
@@ -86,7 +86,7 @@ Style1.Rule = YES
 Requires Vale v3.22.0 or later.
 {% endhint %}
 
-An empty `BasedOnStyles` clears everything a file inherited from earlier sections, the rule settings as well as the styles, so the section starts from nothing:
+An empty `BasedOnStyles` clears everything a file inherited from earlier sections, the rule settings as well as the styles. The section then starts from nothing:
 
 ```ini
 [*]
@@ -98,7 +98,7 @@ write-good.Weasel = warning
 BasedOnStyles = NONE
 ```
 
-`NONE` is the spelled-out form of an empty value, and requires Vale v3.24.0 or later; `BasedOnStyles =` with nothing after it does the same. A file left with no rule to run isn't read at all.
+`NONE` is the spelled-out form of an empty value, and requires Vale v3.24.0 or later. `BasedOnStyles =` with nothing after it does the same. A file left with no rule to run isn't read at all.
 
 A rule named in that section still runs. To drop one inherited setting rather than all of them, set it to `UNSET`: the rule follows `BasedOnStyles` again, as if the earlier line had not been written.
 
@@ -127,7 +127,7 @@ Vale.Spelling = warning
 Setting a level for a whole style requires Vale v3.17.0 or later.
 {% endhint %}
 
-A bare style name sets the default for every rule in that style, and a rule naming itself still wins:
+A bare style name sets the default for every rule in that style, and a setting for an individual rule still takes precedence:
 
 ```ini
 [*.md]
@@ -139,7 +139,7 @@ proselint = suggestion
 proselint.Typography = warning
 ```
 
-This is the concise way to keep one part of a style while turning the rest down—or off:
+This is the concise way to keep one part of a style while turning the rest down (or off):
 
 ```ini
 proselint = NO
@@ -154,7 +154,7 @@ See [MinAlertLevel](minalertlevel.md) for how levels affect Vale's exit code.
 Bracketed parameters require Vale v3.20.0 or later.
 {% endhint %}
 
-A bracketed key overrides one scalar on a rule you have enabled, keeping the rule's identity:
+A bracketed key overrides one scalar on a rule you have enabled without changing the rule's identity:
 
 ```ini
 [*.md]
@@ -166,4 +166,4 @@ Std.SentenceLength[max] = 30
 
 Values are coerced to the field's type at compile time, and an unknown parameter fails the rule's compilation rather than being silently dropped.
 
-Only scalars can be tuned this way. A structural field — `tokens`, `swap`, `message` — is refused with a pointer at [extending the rule](../topics/styles.md#extending-another-rule) in a style, which is what authoring is for. `[level]` is refused too: the classic `Style.Rule = warning` syntax already says that.
+Only scalars can be tuned this way. A structural field (`tokens`, `swap`, `message`) is refused with a pointer at [extending the rule](../topics/styles.md#extending-another-rule) in a style, which is what authoring is for. `[level]` is refused too: the classic `Style.Rule = warning` syntax already says that.

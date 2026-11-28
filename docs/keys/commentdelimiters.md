@@ -27,4 +27,4 @@ This is some text ACT test
 {/* vale Style.Redundancy = YES */}
 ```
 
-The key applies to the formats that take [`BlockIgnores`](blockignores.md). The formats with a comment syntax of their own, MDX, AsciiDoc, reStructuredText, and Org among them, need none of this; see each [format](../formats/markdown.md) for the form it reads.
+The key applies to the formats that take [`BlockIgnores`](blockignores.md). The formats with a comment syntax of their own, MDX, AsciiDoc, reStructuredText, and Org among them, need none of this. See each [format](../formats/markdown.md) for the form it reads.

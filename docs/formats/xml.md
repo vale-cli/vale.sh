@@ -8,7 +8,7 @@ XML is supported through the external program [`xsltproc`](http://xmlsoft.org/XS
 * [Homebrew](https://formulae.brew.sh/formula/libxslt) (macOS): `brew install libxslt`.
 * Debian/Ubuntu/apt-based systems: `apt-get install xsltproc`.
 
-You’ll need to ensure that the `xsltproc` executable is available in your `$PATH`.
+The `xsltproc` executable needs to be available in your `$PATH`.
 
 The supported extensions are `.xml` and `.xsd`.
 
@@ -21,6 +21,6 @@ Transform = docbook-xsl-snapshot/html/docbook.xsl
 ```
 {% endcode %}
 
-A stylesheet is configuration that runs as a program, so Vale runs `xsltproc` with `--nonet`, `--nowrite`, and `--nomkdir`: the stylesheet can't fetch over the network, write a file, or create a directory, as a document under the AsciiDoc converter's safe mode can't include a file from outside the project. A stylesheet that tries is refused, and the run reports it as an error for that file.
+A stylesheet is configuration that runs as a program. For that reason, Vale runs `xsltproc` with `--nonet`, `--nowrite`, and `--nomkdir`. These flags block network access and stop the stylesheet from writing files or creating directories. This is similar to the AsciiDoc converter's safe mode, where a document can't include a file from outside the project. If a stylesheet tries any of these, Vale refuses it and reports an error for that file.
 
 Once converted, Vale will follow the same rules as it does for [HTML](html.md).

@@ -4,7 +4,7 @@ Learn how Vale handles front matter.
 
 Front matter is linted in Markdown and its dialects (MDX, MyST, Quarto, R Markdown), AsciiDoc, reStructuredText, Org, Typst, and QDoc files.
 
-There are 3 supported front matter types – YAML, TOML, and JSON. Each is recognized by the delimiters that open and close it:
+There are 3 supported front matter types: YAML, TOML, and JSON. Each is recognized by the delimiters that open and close it:
 
 {% tabs %}
 {% tab title="YAML" %}
@@ -82,7 +82,7 @@ rest of the content
 {% endtab %}
 {% endtabs %}
 
-Each field is dynamically assigned its own scope, allowing you to write rules that target specific ones:
+Each field is assigned its own scope, allowing you to write rules that target specific ones:
 
 ```yaml
 ---
@@ -105,4 +105,4 @@ scope: text.frontmatter.title
 
 This rule would then only be applied to the `title` field in the front matter.
 
-Only string-valued fields are linted; a list or a nested map is left alone. A field can be excluded by naming its scope in [`IgnoredScopes`](../keys/ignoredscopes.md).
+Only string-valued fields are linted. A list or a nested map is left alone. A field can be excluded by naming its scope in [`IgnoredScopes`](../keys/ignoredscopes.md).

@@ -20,11 +20,11 @@ Vocab = Some-Name
 BasedOnStyles = Vale, MyStyle
 ```
 
-Each `Vocab` is a single folder (stored at `<StylesPath>/config/vocabularies/<name>/`) consisting of two plain-text files—`accept.txt` and `reject.txt`—that contain one regular expression per line.
+Each `Vocab` is a single folder (stored at `<StylesPath>/config/vocabularies/<name>/`) consisting of two plain-text files, `accept.txt` and `reject.txt`, that contain one regular expression per line.
 
 The effects of using a custom `Vocab` are as follows:
 
-* Entries in `accept.txt` are added to every exception list in all styles listed in `BasedOnStyles`—meaning that you now only need to update your project’s _vocabulary_ to customize third-party styles.
+* Entries in `accept.txt` are added to every exception list in all styles listed in `BasedOnStyles`. This means that you now only need to update your project’s _vocabulary_ to customize third-party styles.
 * Entries in `accept.txt` are automatically added to a substitution rule (`Vale.Terms`), ensuring that any occurrences of these words or phrases exactly match their corresponding entry in `accept.txt`.
 * Entries in `reject.txt` are automatically added to an existence rule (`Vale.Avoid`) that will flag all occurrences as errors.
 * Entries in `accept.txt` and `reject.txt` should need little overlap, if any. For example, if you add `JavaScript` to `accept.txt`, then you do not need to add an overlapping regular expression entry of `[Jj]avascript` in `reject.txt`. Vale will enforce correct casing by virtue of the entry’s presence in `accept.txt`. See the section “Case sensitivity” for details.
@@ -68,7 +68,7 @@ BasedOnStyles = Vale, MyStyle
 Requires Vale v3.22.0 or later.
 {% endhint %}
 
-A section can name a vocabulary of its own, for the files it matches:
+A section can set a vocabulary of its own, for the files it matches:
 
 ```ini
 StylesPath = styles
@@ -81,11 +81,11 @@ BasedOnStyles = Vale
 Vocab = API
 ```
 
-Under `api/`, the accepted terms of `API` are added to those of `Product`; elsewhere only `Product` applies. Several matching sections add up. A section's vocabulary gets rules of its own, `Vale.API.Terms` and `Vale.API.Avoid`, which run only on that section's files and can be switched off by name like any other rule.
+For files in `api/`, the accepted terms of `API` are added to those of `Product`. Elsewhere, only `Product` applies. Several matching sections add up. A section's vocabulary gets rules of its own, `Vale.API.Terms` and `Vale.API.Avoid`, which run only on that section's files and can be switched off by name like any other rule.
 
-A vocabulary named in `[*]` applies to every file, with rules of its own that are on everywhere; this is how a [package](packages.md#a-vocabulary) turns on the vocabulary it carries.
+A vocabulary named in `[*]` applies to every file, with rules of its own that are on everywhere. A [package](packages.md#a-vocabulary) uses this to turn on the vocabulary it includes.
 
-`Vocab = NONE` clears the vocabularies named before it at the same level: at the top of the file, the top-level ones from earlier configuration layers, such as a package's; in a section, that section's.
+`Vocab = NONE` clears the vocabularies named before it at the same level. At the top of the file, it clears the top-level ones from earlier configuration layers, such as a package's. In a section, it clears that section's.
 
 ## File format
 
@@ -97,9 +97,9 @@ first
 third
 ```
 
-The entries are evaluated as case-sensitive (except for rules extending `spelling`, as mentioned above) regular expressions, with two allowances for how terms are written. A period is text, not a wildcard, unless the entry uses some other regular-expression construct, so `Node.js` accepts `Node.js` and nothing else. And the space in a phrase matches a line break as well, so `mea culpa` is found where a paragraph wraps between the two words.
+The entries are evaluated as case-sensitive (except for rules extending `spelling`) regular expressions, with two allowances for how terms are written. A period matches only a literal period unless the entry uses some other regular-expression construct, so `Node.js` accepts `Node.js` and nothing else. And the space in a phrase matches a line break as well, so `mea culpa` is found where a paragraph wraps between the two words.
 
-A line beginning with `#` and a space is a comment and is ignored; `#tag` on its own is an entry.
+A line beginning with `#` and a space is a comment and is ignored, but `#tag` on its own is an entry.
 
 An alert from `Vale.Terms` offers the entry's spelling as a [fix](../topics/actions.md) when it is plain text, and the terms are candidates when a `spelling` rule [suggests](../fixes/suggest.md#spellings) a correction, ahead of the dictionary's own words.
 
@@ -113,7 +113,7 @@ While most spell-checking tools ignore case altogether, Vale’s vocabulary file
 MongoDB
 ```
 
-will enforce the _exact_ use of “MongoDB”: “mongoDB,” “MongoDb,” etc., will all result in errors. There are two ways around this.
+will enforce the _exact_ use of “MongoDB”: “mongoDB,” “MongoDb,” etc., will all result in errors. You can work around this.
 
 First, you can indicate that a given entry should be case-insensitive by providing an appropriate regular expression:
 
@@ -147,17 +147,17 @@ A [dictionary](../checks/spelling.md#dictionaries) and a vocabulary answer diffe
 | Read by | `spelling` rules | Every rule in `BasedOnStyles`, as exceptions |
 | Maintained by | Vale, or the dictionary's publisher | Your project |
 
-Put ordinary words, including technical ones like `failover` or `namespace`, in a dictionary or let the built-in one cover them. Put names and terms with a required spelling, like `PostgreSQL` or your product's name, in a vocabulary: it accepts them, enforces their case, and offers the fix.
+Put ordinary words, including technical ones like `failover` or `namespace`, in a dictionary or let the built-in one cover them. Put names and terms with a required spelling, like `PostgreSQL` or your product's name, in a vocabulary. A vocabulary accepts them and enforces their case, and its alerts include the fix.
 
 ## Relation to ignore files
 
 The functionality of vocabularies is similar to the existing concept of [ignore files](../checks/spelling.md#ignore-files).
 
-The major differences are that vocabularies apply to multiple extension points (rather than just `spelling`), support regular expressions, and have built-in rules associated with them (`Vale.Terms` and `Vale.Avoid`).
+The major differences are that vocabularies apply to multiple extension points (rather than just `spelling`) and support regular expressions. They also have built-in rules associated with them (`Vale.Terms` and `Vale.Avoid`).
 
 In general, this means that ignore files are for style _creators_ while vocabularies are for style _users_:
 
-* If you’re developing or maintaining a style, you may still want to include a custom `spelling` rule—`MyStyle.Spelling`—that packages its own ignore files.
+* If you’re developing or maintaining a style, you may still want to include a custom `spelling` rule (`MyStyle.Spelling`) that packages its own ignore files.
 * As a user of styles, vocabularies should be able to replace the use of ignore files completely.
 
 ## Rules targeting vocabulary entries

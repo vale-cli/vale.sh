@@ -2,12 +2,12 @@
 
 Give an AI assistant the Vale engine, so it can check its own work.
 
-Models write plausible Vale YAML. Whether it compiles, whether the regex matches anything, whether the config still loads — a model has no way to find out, so you find out later, in CI.
+Models write plausible Vale YAML. A model has no way to check whether it compiles or whether the regex matches anything, and it can't tell whether the config still loads. You find out later, in CI.
 
-The Vale MCP server closes that gap. It exposes the engine as [Model Context Protocol](https://modelcontextprotocol.io) tools, so an assistant can scaffold a rule, compile it, run it over sample text, and see the alerts it produced — before writing a file.
+The Vale MCP server fixes this. It exposes the engine as [Model Context Protocol](https://modelcontextprotocol.io) tools. Before writing a file, an assistant can use them to scaffold and compile a rule, then run it over sample text and check the alerts it produces.
 
 {% hint style="info" %}
-The hosted MCP server is part of [Vale CMS](https://vale.sh/cms), which is a paid product. Vale itself — the CLI, the engine, and the styles — stays free, open source, and MIT licensed.
+The hosted MCP server is part of [Vale CMS](https://vale.sh/cms), which is a paid product. Vale itself (the CLI, the engine, and the styles) remains free, open source, and MIT licensed.
 {% endhint %}
 
 ## Connecting
@@ -25,15 +25,15 @@ The server speaks JSON-RPC 2.0 over HTTP. Point your client at it with a token f
 }
 ```
 
-Clients that support remote MCP servers — Claude Code, Claude Desktop, Cursor, VS Code, and others — need nothing installed locally.
+Clients that support remote MCP servers (Claude Code, Claude Desktop, Cursor, VS Code, and others) don't need anything installed locally.
 
-## What the tools do
+## Tools
 
-The tools fall into four groups.
+The tools are organized into the groups below.
 
 ### Author
 
-Start from something that already compiles, rather than a blank file and a guess at the schema.
+Start from something that already compiles instead of a blank file and a guess at the schema.
 
 | Tool | Purpose |
 | --- | --- |
@@ -70,7 +70,7 @@ Answers about the engine, from the engine.
 | `list_check_types` | All twelve extension points |
 | `tag_text` | Part-of-speech tags, as the `sequence` check sees them |
 | `show_blocks` | How a format splits text into the blocks rules run over |
-| `trace_rule` | What each slot of a sequence wanted, beside what the tagger said |
+| `trace_rule` | The tag each slot of a sequence requires, beside the tag the tagger assigned |
 | `resolve_config` | The config the engine actually resolved |
 | `project_layout` | Where every asset belongs, and how to enable it |
 | `expand_dictionary` | The exact word forms a Hunspell entry accepts |
@@ -86,30 +86,30 @@ Editing a rule already in use is the risky edit.
 | `render_template` | What a template produces against real alerts |
 | `put_files` | Upload a project once and reference it by hash |
 
-## Three questions it answers
+## Common problems
 
 These are the questions that cost hours by hand and one call here.
 
 ### A rule looks right and never fires
 
-Sequence rules match on part-of-speech tags, and the tagger's reading of a word is invisible in the YAML. `trace_rule` shows what each slot wanted beside what the tagger actually produced — a slot expecting a proper noun sitting on a word tagged `JJ` is a rule that can never match.
+Sequence rules match on part-of-speech tags, and the tagger's reading of a word is invisible in the YAML. `trace_rule` shows the tag each slot requires beside what the tagger actually produced. A slot expecting a proper noun on a word tagged `JJ` is a rule that can never match.
 
 The useful part is what it rules out: the rule may be correct and the tagger may simply disagree with you, which calls for a documented exception rather than a rewrite.
 
 ### A rule behaves differently in Markdown and plain text
 
-`show_blocks` shows how each format splits a document into the blocks rules run over. A `.txt` file is one block, so its whole `text` scope is a single unit; the same content in Markdown is one block per paragraph.
+`show_blocks` shows how each format splits a document into the blocks rules run over. A `.txt` file is one block, so its whole `text` scope is a single unit. The same content in Markdown is one block per paragraph.
 
-That is how a pattern containing `\s+` quietly matches across a blank line and joins two paragraphs. The cause is the format, not the pattern.
+In a `.txt` file, a pattern containing `\s+` can quietly match across a blank line and join two paragraphs. The cause is the format, not the pattern.
 
 ### Linting got slower and no rule changed
 
-`audit_style` prices a style before any text is read — what it costs to compile, which is paid on every run whether or not a rule ever fires. On a short document that is most of the wall clock.
+`audit_style` prices a style before any text is read. It reports what the style costs to compile, which is paid on every run whether or not a rule ever fires. On a short document that is most of the wall clock.
 
 A negated character class under `ignorecase` is the classic example: the regex engine computes the case orbit of every member, at roughly 3.6× the compile cost of the `\s` it replaced.
 
 ## See also
 
-* [Vale CMS](https://vale.sh/cms) — the hosted editor the MCP server is part of
-* [Styles](../topics/styles.md) — what a rule is, and the twelve check types
-* [Scopes](../topics/scopes.md) — the scoping system `show_blocks` reports on
+* [Vale CMS](https://vale.sh/cms): the hosted editor the MCP server is part of
+* [Styles](../topics/styles.md): what a rule is, and the twelve check types
+* [Scopes](../topics/scopes.md): the scoping system `show_blocks` reports on

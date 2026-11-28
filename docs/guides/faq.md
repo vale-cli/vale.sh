@@ -10,7 +10,7 @@ If none of these covers your case, ask in [Discord](https://discord.gg/tPeMs4A).
 
 ### When should I use the `raw` scope?
 
-Use it only when a rule needs to match markup *syntax* itself — an asterisk, a link target, a heading tag. Everything else should use a normal scope.
+Use it only when a rule needs to match markup *syntax* itself (an asterisk, a link target, a heading tag). Everything else should use a normal scope.
 
 `raw` gives a rule the unprocessed file contents, which means no scope-related feature applies to it. That is the point of the scope, and also its cost.
 
@@ -37,7 +37,7 @@ raw: '\b0x[0-9a-f]*[a-f][0-9a-f]*\b'
 
 ### Why can't I disable a `raw` rule with a comment?
 
-Comment processing happens after a document is converted to HTML, and `raw` rules don't run on the converted document. No markup-related feature — comments, ignore patterns — reaches them.
+Comment processing happens after a document is converted to HTML, and `raw` rules don't run on the converted document. Markup-related features, such as comments and ignore patterns, don't apply to them.
 
 This is another reason to reach for `raw` only when targeting markup syntax.
 
@@ -79,7 +79,7 @@ raw:
   - '!\[\]\(.+\)'
 ```
 
-### How do I stop Vale spell-checking image alt text?
+### How do I keep Vale from spell-checking alt text?
 
 When AsciiDoc images have no explicit alt text, Asciidoctor derives one from the file path, and Vale then checks it. A [`TokenIgnores`](../keys/tokenignores.md) pattern skips them:
 
@@ -211,7 +211,7 @@ Your default `text`-scoped rules run on them too.
 
 They apply only to [supported formats](../formats/). For anything else, Vale has no markup to reason about, so there is nothing for those keys to select.
 
-The other cause is a section that doesn't match the file. A section names files as they are on disk, so a [format association](../topics/.vale.ini.md#format-associations) doesn't make `[*.md]` reach a `.qmd`—that needs `[*.qmd]`. A section keyed on a path needs to be written relative to where you run Vale.
+The other cause is a section that doesn't match the file. A section names files as they are on disk, so a [format association](../topics/.vale.ini.md#format-associations) doesn't make `[*.md]` apply to a `.qmd` file. That needs `[*.qmd]`. A section keyed on a path needs to be written relative to where you run Vale.
 
 ### Can Vale lint the URL inside a link?
 
@@ -225,7 +225,7 @@ Yes, with `scope: raw`, since the rule needs to see the markup itself. There are
 
 ### How does Vale parse AsciiDoc?
 
-Vale converts the document to HTML with [adocgo](https://github.com/jdkato/adocgo), a Go port of Asciidoctor built into Vale, and lints the HTML. Nothing needs to be installed, and the output is what Asciidoctor 2.0.26 would produce with the same attributes.
+Vale converts the document to HTML with [adocgo](https://github.com/jdkato/adocgo) (a Go port of Asciidoctor built into Vale) and then lints the HTML. You don't need to install anything, and the output is what Asciidoctor 2.0.26 would produce with the same attributes.
 
 ### Where does Vale look for a global config on Windows?
 
@@ -255,7 +255,7 @@ $ vale --filter='.Name != "demo.Cap"'
 
 To skip a directory entirely, use `--glob`.
 
-To change configuration for it, add a section to the root `.vale.ini` — you don't need a second config file:
+You don't need a second config file. To change configuration for it, add a section to the root `.vale.ini`:
 
 ```ini
 StylesPath = vale-styles
@@ -278,7 +278,7 @@ Yes, in `existence`-based rules, since v2.9.0.
 
 ### Why doesn't my `sequence` rule match?
 
-Two mistakes are common. `pos` is not a supported key — the key is `tag` — and `^` matches the start of a *line*, not a sentence. A working version:
+`pos` isn't a supported key (use `tag`), and `^` matches the start of a *line*, not a sentence. A working version:
 
 ```yaml
 extends: sequence
@@ -303,7 +303,7 @@ tokens:
 
 ### Can a `conditional` rule accept plurals?
 
-Yes — write the plural into both patterns:
+Yes. Write the plural into both patterns:
 
 ```yaml
 extends: conditional
@@ -327,7 +327,7 @@ first: "(?<=import )(.*)(?= from)"
 second: '(?<=<)(\w+)'
 ```
 
-### How do I stop a `substitution` rule firing on valid phrasing?
+### How do I stop a `substitution` rule from matching valid phrasing?
 
 Exclude the valid forms with a lookbehind:
 
@@ -343,7 +343,7 @@ swap:
 
 ### Why doesn't my pattern match next to punctuation?
 
-Vale adds word boundaries (`\b`) automatically, which interferes with patterns that need to match punctuation. Set `nonword: true` to turn that off — see [`substitution`](../checks/substitution.md).
+Vale adds word boundaries (`\b`) automatically, which interferes with patterns that need to match punctuation. Set `nonword: true` to turn that off. See [`substitution`](../checks/substitution.md).
 
 ### Why doesn't `repetition` catch "text text."?
 
@@ -385,7 +385,7 @@ message: "Avoid the use of '%s' on weekdays. Only use '%[1]s' on weekends."
 
 ### How do I replace a capture group with its uppercase form?
 
-With an [`edit`](../fixes/edit.md) action: a step's argument can name the token's groups, and a casing step follows it.
+With an [`edit`](../fixes/edit.md) action: a step's argument can refer to the token's groups, and a casing step follows it.
 
 ```yaml
 extends: existence
@@ -409,11 +409,11 @@ The first step replaces the whole match with its first group, and the second put
 
 ### What's the difference between `Vale.Spelling` and `spelling`?
 
-They are the same thing: `Vale.Spelling` is an implementation of the [`spelling`](../checks/spelling.md) check that uses the built-in dictionary. Write your own `spelling`-based rule only when you need a custom Hunspell dictionary — another language, or one of your own — and then use it *instead of* `Vale.Spelling`, not alongside it.
+They are the same thing: `Vale.Spelling` is an implementation of the [`spelling`](../checks/spelling.md) check that uses the built-in dictionary. Write your own `spelling`-based rule only when you need a custom Hunspell dictionary, such as another language or one of your own. Use it *instead of* `Vale.Spelling`, not alongside it.
 
 ### How do I accept a multi-word phrase?
 
-Spell check is a single-word operation, so a phrase needs two rules. First, stop the unusual word raising a spelling error:
+Spell check works one word at a time. A phrase needs two rules. First, stop the unusual word raising a spelling error:
 
 ```yaml
 extends: spelling
@@ -447,11 +447,11 @@ Make the vocabulary entry case-sensitive:
 
 ### Why doesn't my `accept.txt` entry work?
 
-Entries are regular expressions, so a pattern that looks right may match nothing. `[dD]eserializer(s)` requires a literal `s`; you almost certainly want `[dD]eserializers?`.
+Entries are regular expressions, so a pattern that looks right may not match anything. `[dD]eserializer(s)` requires a literal `s`. You probably want `[dD]eserializers?`.
 
-### Why does adding a word to `accept.txt` stop my other rules firing on it?
+### Why does adding a word to `accept.txt` stop my other rules from flagging it?
 
-A vocabulary entry is a global exception — every rule honors it. To except a word from one rule only, add it to that rule instead of the vocabulary.
+A vocabulary entry is a global exception, and every rule honors it. To except a word from one rule only, add it to that rule instead of the vocabulary.
 
 ### Can I change the wording of a spelling message?
 
@@ -461,7 +461,7 @@ Yes. Write your own rule that extends [`spelling`](../checks/spelling.md) with t
 
 Both spellings are in Vale's default dictionary. For a single-variant check, supply a [custom dictionary](hunspell.md).
 
-### How do I ship vocabularies in a package?
+### How do I include vocabularies in a package?
 
 `Vocab` is a global setting, and the vocabulary rules need the `Vale` style enabled:
 
@@ -481,7 +481,7 @@ BasedOnStyles = Vale, spectrocloud-docs-internal
 
 ### How do I structure a package containing scripts and dictionaries?
 
-From v3.0, every non-style resource lives under `<StylesPath>/config`:
+From v3.0, every non-style resource is stored under `<StylesPath>/config`:
 
 ```console
 $ tree -a MyPackage
@@ -513,7 +513,7 @@ StylesPath = a/path/to/an/existing/folder
 
 ### How do I override an entry in an inherited style?
 
-Add the term to a [vocabulary](../keys/vocabularies.md); vocabulary entries take precedence over an inherited rule's list.
+Add the term to a [vocabulary](../keys/vocabularies.md). Vocabulary entries take precedence over an inherited rule's list.
 
 ## CI and editors
 
@@ -538,4 +538,4 @@ A [script](../checks/script.md) rule gives finer control.
 
 ### Does Vale know parts of speech?
 
-Yes — the [`sequence`](../checks/sequence.md) check matches on part-of-speech tags. The [Package Explorer](https://vale.sh/explorer) has working examples.
+Yes. The [`sequence`](../checks/sequence.md) check matches on part-of-speech tags. The [Package Explorer](https://vale.sh/explorer) has working examples.

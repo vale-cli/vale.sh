@@ -10,7 +10,7 @@ Learn about the spelling extension point.
 | `exceptions`   | `array`  | An array of strings to be ignored.                                                                 |
 | `dicpath`      | `string` | The location to look for `.dic` and `.aff` files. Can be absolute or relative to the `StylesPath`. |
 | `dictionaries` | `array`  | An array of dictionaries to load.                                                                  |
-| `append`       | `bool`   | Adds the array of dictionaries after the default Vale dictionary, instead of replacing it.         |
+| `append`       | `bool`   | Keeps the default Vale dictionary and adds the array of dictionaries after it.                     |
 | `aff`, `dic`   | `string` | One dictionary as a pair of files, found on the `StylesPath`, used instead of `dictionaries`.       |
 | `split`        | `bool`   | Check the parts of an identifier rather than skipping it or checking it whole.                     |
 
@@ -87,10 +87,10 @@ filters:
 Requires Vale v3.25.0 or later.
 {% endhint %}
 
-Two kinds of misspelling get a more specific message, and a fix:
+Some misspellings get a more specific message, and a fix:
 
-* A word the dictionary spells with capitals inside it is reported as a casing mistake, with the dictionary's spelling as its fix: `github` is reported as `Use 'GitHub' instead of 'github'.`, and `json` as `Use 'JSON' instead of 'json'.` This applies to a word of three or more letters with at most one capital. A name the dictionary only capitalizes, such as `Kubernetes`, is reported as a misspelling, because the check can't tell it from a word in another language; to enforce its case, add it to a [vocabulary](../keys/vocabularies.md).
-* Without `split`, a `snake_case` word, or a `camelCase` one that starts with two or more lower-case letters, is reported as looking like code, with the format's inline code as its fix. `apiVersion` and `created_at` are; `vSphere` and `iPhone` aren't.
+* A word the dictionary spells with capitals inside it is reported as a casing mistake, with the dictionary's spelling as its fix: `github` is reported as `Use 'GitHub' instead of 'github'.`, and `json` as `Use 'JSON' instead of 'json'.` This applies to a word of three or more letters with at most one capital. A name the dictionary only capitalizes, such as `Kubernetes`, is reported as a misspelling, because the check doesn't distinguish it from a word in another language. To enforce its case, add it to a [vocabulary](../keys/vocabularies.md).
+* Without `split`, a `snake_case` word, or a `camelCase` one that starts with two or more lower-case letters, is reported as looking like code, with the format's inline code as its fix. `apiVersion` and `created_at` are, but `vSphere` and `iPhone` aren't.
 
 | Format | Fix |
 | --- | --- |
@@ -117,7 +117,7 @@ level: error
 split: true
 ```
 
-`getHTTPResponse_v2` is `get`, `HTTP`, `Response`, and `v`. A part in all capitals or under three letters is not checked, so `HTTP`, `Id`, and `v2` pass. A plain word is still reported whole, and a whole identifier that is in a dictionary or an ignore file passes without being split.
+`getHTTPResponse_v2` is `get`, `HTTP`, `Response`, and `v`. Parts in all capitals or under three letters aren't checked, so `HTTP`, `Id`, and `v2` pass. A plain word is still reported whole, and a whole identifier that is in a dictionary or an ignore file passes without being split.
 
 ## [Ignore files](spelling.md#ignore-files)
 
@@ -128,7 +128,7 @@ destructuring
 transpiler
 ```
 
-You can name these files anything you’d like and reference them relative to the active `<StylesPath>/config/ignore` directory.
+You can call these files anything you’d like and reference them relative to the active `<StylesPath>/config/ignore` directory.
 
 ```yaml
 extends: spelling

@@ -2,28 +2,28 @@
 
 Learn how Vale decides which parts of a file a rule applies to.
 
-Vale is “markup aware”: it reads a file into the pieces a reader would recognize—headings, paragraphs, list items, links—and lets a rule say which of those pieces it applies to. That choice is the rule’s _scope_.
+Vale is “markup aware”: it reads a file into the pieces a reader would recognize (headings, paragraphs, list items, links) and lets a rule say which of those pieces it applies to. That choice is the rule’s _scope_.
 
 ## [What a scope is](scopes.md#what-a-scope-is)
 
-Every file Vale reads becomes a sequence of _blocks_. Each block carries a scope made of dot-separated parts that say what the block is and where it came from. A list item in a Markdown file, for example, is `text.list.md`.
+Every file Vale reads becomes a sequence of _blocks_. Each block has a scope made of dot-separated parts that say what the block is and where it came from. A list item in a Markdown file, for example, is `text.list.md`.
 
 A rule’s `scope` is a selector over those parts. It matches a block when **all of its parts appear in the block’s scope**. It isn’t a prefix match or an exact match, and the order you write the parts in doesn’t matter:
 
-| Selector       | Matches `text.list.md`? |
-| -------------- | ----------------------- |
-| `list`         | Yes                     |
-| `list.md`      | Yes                     |
-| `md.list`      | Yes—order is irrelevant |
-| `text.list`    | Yes                     |
-| `list.text.md` | Yes                     |
-| `heading`      | No—not one of its parts |
+| Selector       | Matches `text.list.md`?   |
+| -------------- | ------------------------- |
+| `list`         | Yes                       |
+| `list.md`      | Yes                       |
+| `md.list`      | Yes (order is irrelevant) |
+| `text.list`    | Yes                       |
+| `list.text.md` | Yes                       |
+| `heading`      | No (not one of its parts) |
 
-Two things follow. Any selector can be qualified with a file extension to make it format-specific: `paragraph` matches paragraphs everywhere, and `paragraph.rst` matches them only in reStructuredText. And a selector with fewer parts is broader: `text` matches nearly everything, because nearly every scope contains it.
+Any selector can be qualified with a file extension to make it format-specific: `paragraph` matches paragraphs everywhere, and `paragraph.rst` matches them only in reStructuredText. And a selector with fewer parts is broader: `text` matches nearly everything, because nearly every scope contains it.
 
-![One Markdown file becomes several scoped sections: the heading is text.heading.md, the paragraph text.md, the link inside it link.md, and the list item text.list.md. A selector matches when every one of its parts appears in the scope, which is why list.md matches a list item but link.text.md matches nothing.](../.gitbook/assets/scopes.svg)
+![One Markdown file becomes several scoped sections: the heading is text.heading.md, the paragraph text.md, the link inside it link.md, and the list item text.list.md. A selector matches when every one of its parts appears in the scope, which is why list.md matches a list item but link.text.md doesn't match anything.](../.gitbook/assets/scopes.svg)
 
-Vale classifies files into one of three types—`markup`, `code`, or `text`—and the type determines which parts exist. Within a type, every format shares the same parts, so a rule written for Markdown headings applies to AsciiDoc headings too.
+Vale classifies files into one of three types (`markup`, `code`, or `text`), and the type determines which parts exist. Within a type, every format shares the same parts, so a rule written for Markdown headings applies to AsciiDoc headings too.
 
 ## [Markup](scopes.md#markup)
 
@@ -33,7 +33,7 @@ For rules that target a kind of element, the parser assigns these parts:
 
 | Name             | Description                                                                                                                                                              |
 | ---------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `heading`        | <p>Matches all <code>h{1,...}</code> tags. You can specify an exact level by<br>appending tags—for example, <code>heading.h1</code> matches all <code>h1</code> tags.</p> |
+| `heading`        | <p>Matches all <code>h{1,...}</code> tags. You can specify an exact level by<br>appending tags (for example, <code>heading.h1</code> matches all <code>h1</code> tags).</p> |
 | `table.header`   | Matches all `th` tags.                                                                                                                                                   |
 | `table.cell`     | Matches all `td` tags.                                                                                                                                                   |
 | `table.caption`  | Matches all `caption` tags.                                                                                                                                              |
@@ -66,9 +66,9 @@ The formats marked as `Built-in` are included with Vale by default. The other fo
 Requires Vale v3.17.0 or later.
 {% endhint %}
 
-Markup that carries no distinct tag of its own can still be selected by the classes wrapping it. Any enclosing class is appended to the scope as `.class.<name>`.
+Markup that doesn't have a distinct tag of its own can still be selected by the classes wrapping it. Any enclosing class is appended to the scope as `.class.<name>`.
 
-An AsciiDoc block title, for example, renders as `<div class="title">`—indistinguishable from body text by tag alone:
+An AsciiDoc block title, for example, renders as `<div class="title">`, which is indistinguishable from body text by tag alone:
 
 ```yaml
 extends: capitalization
@@ -78,9 +78,9 @@ level: warning
 match: $title
 ```
 
-A directive’s name lands here too: a [MyST](../formats/myst.md) or [Quarto](../formats/quarto.md) `:::{note}` scopes its content as `class.note`, and a [QDoc](../formats/qdoc.md) `\note` does the same.
+A directive’s name also becomes a class: a [MyST](../formats/myst.md) or [Quarto](../formats/quarto.md) `:::{note}` scopes its content as `class.note`, and a [QDoc](../formats/qdoc.md) `\note` does the same.
 
-Classes nest, so a block inside two classed elements is reachable as `text.class.outer.class.inner`—and every block inside a classed container carries its class, however many blocks that is. To ignore classed content rather than target it, see [`IgnoredClasses`](../keys/ignoredclasses.md).
+Classes nest, so a block inside two classed elements is reachable as `text.class.outer.class.inner`. Each block inside a classed container includes the container's class in its scope, however many blocks there are. To ignore classed content rather than target it, see [`IgnoredClasses`](../keys/ignoredclasses.md).
 
 ### [Inline elements](scopes.md#inline-elements)
 
@@ -98,12 +98,12 @@ Inline elements have scopes of their own, which let a rule target the text insid
 | `emphasis` | Matches all `em` and `i` tags.                 |
 
 {% hint style="warning" %}
-These are siblings of `text`, not children of it: the scope is `link`, **not** `text.link`.
+These are siblings of `text`. The scope of a link is `link`, **not** `text.link`.
 
-Scopes are matched by containment, so a rule scoped to `text` would also match `text.link`—meaning every ordinary rule would run a second time over each link.
+Scopes are matched by containment, so a rule scoped to `text` would also match `text.link`. Ordinary rules would then run a second time over each link.
 {% endhint %}
 
-A rule that asks for one of these scopes is the only kind that runs against it:
+Only a rule that declares one of these scopes runs against it:
 
 ```yaml
 extends: existence
@@ -136,11 +136,11 @@ This rule corrects the casing in paragraphs and list items, and leaves headings 
 Requires Vale v3.18.0 or later.
 {% endhint %}
 
-A document’s machine-readable content—an anchor name, an image’s file name—is collected under the `meta` scope. A [QDoc](../formats/qdoc.md) file’s anchors and image file names land here, as do the content of an HTML `data` element and a [Markdoc](../formats/markdoc.md) tag’s string attributes.
+A document’s machine-readable content (an anchor name or the file name of an image) is collected under the `meta` scope. This includes anchors and the file names of images in a [QDoc](../formats/qdoc.md) file, the content of an HTML `data` element, and the string attributes of a [Markdoc](../formats/markdoc.md) tag.
 
-Like the [inline elements](scopes.md#inline-elements), `meta` is a sibling of `text`: an ordinary prose rule passes over it, and only a rule that asks for `meta` reaches it. Its text isn’t segmented, either—an identifier has no sentences.
+Like the [inline elements](scopes.md#inline-elements), `meta` is a sibling of `text`: ordinary prose rules skip it. Only a rule that declares `meta` runs on it. Its text isn’t segmented either (an identifier has no sentences).
 
-Each piece carries its kind as a class, so a rule can target all of a document’s metadata or one kind of it:
+Each piece includes its kind as a class, so a rule can target all of a document’s metadata or one kind of it:
 
 ```yaml
 extends: existence
@@ -157,12 +157,12 @@ The parts above name elements of the document. These four name units of prose th
 
 | Name        | Description                                                                                                                                                                                                  |
 | ----------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `sentence`  | Each sentence, from every kind of prose—paragraphs, headings, list items, and table cells.                                                                                                                   |
+| `sentence`  | Each sentence, from every kind of prose: paragraphs, headings, list items, and table cells.                                                                                                                   |
 | `paragraph` | <p>Each body paragraph (a segment of text separated by two newlines).<br>Headings, list items, table cells, and blockquotes are not paragraphs.</p>                                                          |
 | `summary`   | <p>The document’s prose as one block, excluding headings, code spans, code blocks, and<br>table cells. This is what <a href="../checks/metric.md"><code>metric</code></a> and <a href="../checks/readability.md"><code>readability</code></a> measure by default.</p> |
 | `raw`       | <p>The raw, unprocessed markup source as one block. This scope is useful for regex-based rules<br>that need to match against the original source text.</p>                                                   |
 
-A scope is a request as well as a selection. Sentences exist only because some rule declared `sentence`, and paragraphs only because some rule declared `paragraph`; Vale builds each unit when a rule asks for it and skips the work when none does. The same is true of the [selections](scopes.md#selections) below.
+A scope is a request as well as a selection. Sentences exist only because some rule declared `sentence`, and paragraphs only because some rule declared `paragraph`. Vale builds each unit when a rule declares it and skips the work when none does. The same is true of the [selections](scopes.md#selections) below.
 
 ## [Selections](scopes.md#selections)
 
@@ -170,9 +170,9 @@ A scope is a request as well as a selection. Sentences exist only because some r
 Requires Vale v3.21.0 or later.
 {% endhint %}
 
-A `doc(...)` term selects elements of the document by CSS selector. Every markup format Vale reads is parsed into the same HTML, and the selector runs against that, so a selection means the same thing in Markdown, AsciiDoc, reStructuredText, Org, and HTML.
+A `doc(...)` term selects elements of the document by CSS selector. Every markup format Vale reads is parsed into the same HTML, and the selector runs against that. A selection means the same thing in Markdown, AsciiDoc, reStructuredText, Org, and HTML.
 
-Before the selectors run, Vale wraps each heading and everything that follows it—up to the next heading of the same or a higher level—in a `section` element. Sections nest, so an `h3` after an `h2` sits inside the `h2`’s section. That is what lets a selector name a section of a document, which no format marks up on its own.
+Before the selectors run, Vale wraps each heading and everything that follows it (up to the next heading of the same or a higher level) in a `section` element. Sections nest, so an `h3` after an `h2` sits inside the `h2`’s section. That is what lets a selector name a section of a document, which no format marks up on its own.
 
 ![A Markdown file with an h1, three h2 sections, and an h3 under Decision is wrapped into nested sections. The selector doc(section:has(a direct h2 child containing Decision)) marks the Decision section, so the paragraph and the h3 inside it carry the selection in their scopes while Context and Consequences do not, and the section itself is one doc block.](../.gitbook/assets/selections.svg)
 
@@ -198,7 +198,7 @@ formula: words
 condition: "> 100"
 ```
 
-An alert on a selection lands on the element’s first line, which is the heading of a section.
+An alert on a selection is reported on the element’s first line, which is the heading of a section.
 
 **Beside a scope, it narrows that scope to blocks inside the element.** Any existing rule can be pointed at one part of a document:
 
@@ -224,7 +224,7 @@ tokens:
 
 **Negated, it excludes the element.** `~doc(...)` reaches everything outside the elements the selector matches.
 
-A selection that matches nothing in a file still produces its block, empty, on line one. That is how a rule reports that a section is missing: an `occurrence` rule with `min: 1` and a token that matches any character finds zero occurrences and reports the shortfall.
+A selection that matches nothing in a file still produces its block, empty, on line one. This lets a rule report a missing section: an `occurrence` rule with `min: 1` and a token that matches any character finds zero occurrences and reports the shortfall.
 
 ```yaml
 extends: occurrence
@@ -235,17 +235,17 @@ token: '(?s).'
 min: 1
 ```
 
-Selectors follow the syntax of [Selectors Level 4](https://www.w3.org/TR/selectors-4/): the combinators `>`, `+`, and `~`; `:not()`, `:is()`, and `:where()`; `:has()` with a relative selector or a group of them, such as `:has(> h1, > h2)` for a section opened by either level or `:has(> h2 + p)` for a heading with a paragraph right after it; `:first-of-type`, `:last-of-type`, and the `nth` family; and attribute selectors. Three things to know:
+Selectors follow the syntax of [Selectors Level 4](https://www.w3.org/TR/selectors-4/): the combinators `>`, `+`, and `~`; `:not()`, `:is()`, and `:where()`; `:has()` with a relative selector or a group of them, such as `:has(> h1, > h2)` for a section opened by either level or `:has(> h2 + p)` for a heading with a paragraph right after it; `:first-of-type`, `:last-of-type`, and the `nth` family; and attribute selectors. Some caveats:
 
 * `:contains("…")` matches any part of the text, ignoring case, so `h2:contains("Decision")` also matches a heading that reads “Decision log.” Give it the whole heading.
-* An element with no prose in it—a code block, an image—selects fine and then has nothing to lint. Selections are for elements that hold text.
+* An element with no prose in it (a code block or an image) selects fine and then has nothing to lint. Selections are for elements that hold text.
 * `:scope` and the `of S` form of `:nth-child()` are not supported. A relative selector in `:has()` is already anchored to the element, so `:has(:scope > h2)` is written `:has(> h2)`.
 
 {% hint style="info" %}
 Sibling combinators inside `:has()`, a group of relative selectors, and `:is()` and `:where()` require Vale v3.23.0 or later.
 {% endhint %}
 
-The elements a selector matches carry a `data-vale-doc` attribute in Vale’s internal HTML, and blocks inside them carry the selection in their scope as `in.<id>`. Neither is something a rule writes; the rule writes the selector.
+The elements a selector matches get a `data-vale-doc` attribute in Vale’s internal HTML, and blocks inside them include the selection in their scope as `in.<id>`. A rule doesn't write either of these. It writes the selector.
 
 ## [Named scopes](scopes.md#named-scopes)
 
@@ -282,7 +282,7 @@ tokens:
   - we speculate
 ```
 
-Every file under the directory is read, so a package that ships its names beside its rules needs nothing added to a configuration. A name may hold a chain, as `lead` does above; a chained name joins the rule’s other terms, and can’t be negated. A name can’t be one Vale already uses for a scope, such as `heading` or `paragraph`, and the same name defined twice with different expressions is an error.
+Every file under the directory is read, so a package that puts its names beside its rules doesn't need anything added to a configuration. A name may contain a chain, as `lead` does above. A chained name joins the rule’s other terms and can’t be negated. A name can’t be one Vale already uses for a scope, such as `heading` or `paragraph`, and the same name defined twice with different expressions is an error.
 
 ## [Combining selectors](scopes.md#combining-selectors)
 
@@ -315,7 +315,7 @@ scope:
 Chains that name `paragraph`, `sentence`, or an [inline element](scopes.md#inline-elements) require Vale v3.18.0 or later. Earlier versions silently matched nothing for those chains.
 {% endhint %}
 
-The two combine: `&` is an AND within a single entry, and the array is an OR across entries. A `doc(...)` term is a term like any other, so it chains with prose units and negates the same way:
+Chains and arrays combine: `&` is an AND within a single entry, and the array is an OR across entries. A `doc(...)` term is a term like any other, so it chains with prose units and negates the same way:
 
 ```yaml
 scope:
@@ -327,14 +327,14 @@ scope:
 ```
 
 {% hint style="info" %}
-Because matching is by parts rather than by prefix, a narrower-looking scope isn’t always narrower. `text.list` and `list` select the same blocks—the extra `text` adds nothing, since every list item’s scope already contains it.
+Because matching is by parts rather than by prefix, a narrower-looking scope isn’t always narrower. `text.list` and `list` select the same blocks. The extra `text` doesn't add anything, since the scope of a list item already contains it.
 {% endhint %}
 
 ## [Checks and scopes](scopes.md#checks-and-scopes)
 
-Every check runs on the blocks its scope names. Three of them have a default worth knowing:
+Checks run on the blocks their scope names. Some have defaults of their own:
 
-* [`metric`](../checks/metric.md) and [`readability`](../checks/readability.md) measure the whole document unless the rule declares a scope. `text` also means the whole document here, since the document’s prose is what `summary` holds. Any other scope measures each block it names on its own—a paragraph, a heading, a list item, or a selection—and a selection counts the elements it holds, so `heading.h3` inside a section is the number of subheadings in that section.
+* [`metric`](../checks/metric.md) and [`readability`](../checks/readability.md) measure the whole document unless the rule declares a scope. `text` also means the whole document here, since the document’s prose is what `summary` holds. Any other scope measures each block it names on its own (a paragraph, a heading, a list item, or a selection), and a selection counts the elements it contains, so `heading.h3` inside a section is the number of subheadings in that section.
 * [`sequence`](../checks/sequence.md) reads part-of-speech tags, which are assigned a sentence at a time, so it always reads sentences. Its scope says which blocks the sentences come from: `list` is the sentences of list items, and a `doc(...)` term is the sentences inside the selection.
 
 ## [Code](scopes.md#code)

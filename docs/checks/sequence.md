@@ -6,10 +6,10 @@ Learn about the sequence extension point.
 | ------------ | ------------ | ------------------------------------------------------------------------ |
 | `tokens`     | `[]NLPToken` | A list of tokens with associated NLP metadata.                           |
 | `ignorecase` | `bool`       | Makes all matches case-insensitive.                                      |
-| `exceptions` | `[]string`   | Sentence regions, as regexes; a match beginning inside one is dropped. |
-| `model`      | `string`     | A tagger lexicon, `<name>.dict` in `config/dictionaries`: one word per line, then its tags, tab-separated, most common first. Its entries decide a word's tag ahead of the built-in tagger, for rules written against another checker's idea of a noun. |
+| `exceptions` | `[]string`   | Sentence regions, as regexes. A match beginning inside one is dropped. |
+| `model`      | `string`     | A tagger lexicon, `<name>.dict` in `config/dictionaries`: one word per line, then its tags, tab-separated, most common first. A word listed there gets its tags from the file instead of the built-in tagger, for rules written against another checker's idea of a noun. |
 
-While most extension points focus on writing _style_, `sequence` aims to support grammar-focused rules.
+While most extension points focus on writing _style_, `sequence` supports grammar-focused rules.
 
 ```yaml
 extends: sequence
@@ -30,7 +30,7 @@ tokens:
 
 Every `sequence`-based rule is required to have at least one `pattern` (such as `pattern: be`, shown above). This becomes the “anchor” of the sequence: we find all instances of the first pattern and then check that the left- and right-hand sides of the sequence match.
 
-Tokens judge the sentence one word at a time. When a rule needs a judgment about a *region* — for example, “the comma closing a fronted phrase isn’t a list comma” — hand that part to `exceptions`: each entry is a regular expression matched against the sentence, and a sequence match that begins inside one of its matches is dropped. Unlike other checks’ `exceptions`, these are regions rather than vocabulary terms, so the project’s accepted vocabulary is never merged in.
+Tokens judge the sentence one word at a time. When a rule needs a judgment about a *region* (for example, “the comma closing a fronted phrase isn’t a list comma”), hand that part to `exceptions`: each entry is a regular expression matched against the sentence, and a sequence match that begins inside one of its matches is dropped. Unlike other checks’ `exceptions`, these are regions rather than vocabulary terms, so the project’s accepted vocabulary is never merged in.
 
 ```yaml
 # Skip matches that begin inside a fronted phrase.
@@ -107,7 +107,7 @@ tokens:
     target: true
 ```
 
-This matches "The dog chased the cat until **it** tired" — two nouns, then a pronoun — but not "The dog barked because it hungered." With `target` on the pronoun, the alert covers only `it`:
+This matches "The dog chased the cat until **it** tired" (two nouns, then a pronoun) but not "The dog barked because it hungered." With `target` on the pronoun, the alert covers only `it`:
 
 > The dog chased the cat until it tired. The dog barked because it hungered.
 
@@ -121,7 +121,7 @@ Without `skip`, `min` means consecutive occurrences: `tag: JJ, min: 2` is two ad
 Reaching every block, and honoring a declared `scope`, requires Vale v3.17.0 or later. Earlier versions read sentences from paragraphs only.
 {% endhint %}
 
-By default, a `sequence` rule reads sentences from **every** block—headings, list items, and table cells as well as paragraphs. Much of a document's prose lives outside its paragraphs, and `sequence` is the only extension point that reads part-of-speech data, so it needs to reach all of it.
+By default, a `sequence` rule reads sentences from **every** block (headings, list items, and table cells as well as paragraphs). Much of a document's prose lives outside its paragraphs, and `sequence` is the only extension point that reads part-of-speech data, so it needs to reach all of it.
 
 To narrow that, declare a `scope`:
 
@@ -136,4 +136,4 @@ tokens:
   - pattern: brown
 ```
 
-The scope selects which blocks the sentences are drawn from; the rule still matches sentence by sentence within them. A [`doc(...)` selection](../topics/scopes.md#selections) works the same way: the rule reads the sentences inside the selected element.
+The scope selects which blocks the sentences are drawn from. The rule still matches sentence by sentence within them. A [`doc(...)` selection](../topics/scopes.md#selections) works the same way: the rule reads the sentences inside the selected element.

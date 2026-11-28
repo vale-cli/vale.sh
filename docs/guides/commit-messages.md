@@ -2,7 +2,7 @@
 
 Lint the log with the same tool that lints the docs: a convention for the subject, body, and trailers, spelling on the body, and a hook that stops a bad commit.
 
-A commit message has a subject, a blank line, a body, and trailers, and every project has rules about each. [Commits](https://github.com/jdkato/commits) is a package of those rules: the conventions people follow, [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), Angular's format, gitmoji, Emoji-Log, the seven rules, the Linux kernel's patch format, the Go project's, a Jira key, and the rule sets of the linters people run, commitlint, gitlint, committed, conform, and commitizen, each transcribed rule for rule. A [`textfsm` View](textfsm.md) reads the message into its parts, so a rule reaches the subject the way it reaches a heading.
+A commit message has a subject, a blank line, a body, and trailers, and every project has rules about each. [Commits](https://github.com/jdkato/commits) is a package of those rules: the conventions people follow, [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/), Angular's format, gitmoji, Emoji-Log, the seven rules, the Linux kernel's patch format, the Go project's, a Jira key, and the rule sets of the linters people run, commitlint, gitlint, committed, conform, and commitizen, each transcribed rule for rule. A [`textfsm` View](textfsm.md) reads the message into its parts. A rule can then target the subject the same way it targets a heading.
 
 {% hint style="info" %}
 Requires Vale v3.21.0 or later.
@@ -24,7 +24,7 @@ BasedOnStyles = Commits, Conventional
 $ vale sync
 ```
 
-The package brings the section, the View, and `Commits`, the core every convention shares: a blank line after the subject, the imperative mood, no whitespace at the edges, no `fix` or `wip` for a subject. You name the convention beside it.
+The package brings the section, the View, and `Commits`, which has the rules every convention shares. It requires a blank line after the subject and the imperative mood, and it rejects whitespace at the edges and a subject of `fix` or `wip`. You name the convention beside it.
 
 | Style          | Enforces                                                                                       |
 | -------------- | ---------------------------------------------------------------------------------------------- |
@@ -52,7 +52,7 @@ Commits.Imperative = error
 Conventional.Footer = NO
 ```
 
-A rule a tool leaves off by default, commitlint's `scope-enum` or `references-empty`, is off here too; `Commitlint.References = YES` turns it on. Each rule file in the package's [styles](https://github.com/jdkato/commits/tree/main/Commits/styles) opens with what it reports and why, carries its level, and links the passage it enforces. A guide per tool, [commitlint](https://github.com/jdkato/commits/blob/main/docs/commitlint.md), [gitlint](https://github.com/jdkato/commits/blob/main/docs/gitlint.md), [committed](https://github.com/jdkato/commits/blob/main/docs/committed.md), [conform](https://github.com/jdkato/commits/blob/main/docs/conform.md), and [commitizen](https://github.com/jdkato/commits/blob/main/docs/commitizen.md), maps that tool's config to the rules here.
+A rule a tool leaves off by default, commitlint's `scope-enum` or `references-empty`, is off here too. `Commitlint.References = YES` turns it on. Each rule file in the package's [styles](https://github.com/jdkato/commits/tree/main/Commits/styles) begins with what it reports and why. It also sets its level and links the passage it enforces. A guide per tool, [commitlint](https://github.com/jdkato/commits/blob/main/docs/commitlint.md), [gitlint](https://github.com/jdkato/commits/blob/main/docs/gitlint.md), [committed](https://github.com/jdkato/commits/blob/main/docs/committed.md), [conform](https://github.com/jdkato/commits/blob/main/docs/conform.md), and [commitizen](https://github.com/jdkato/commits/blob/main/docs/commitizen.md), maps that tool's config to the rules here.
 
 ## The hook
 
@@ -64,9 +64,9 @@ A `commit-msg` hook receives the path of the message file. Vale reads it on stdi
 exec vale --path=COMMIT_EDITMSG < "$1"
 ```
 
-Vale exits non-zero on an error-level alert, so the commit stops with the alerts on screen. Lines Git adds as commentary, and the diff `commit -v` appends, are never seen by a rule. The package's [`script/commit-msg`](https://github.com/jdkato/commits/blob/main/script/commit-msg) is that hook with two additions: messages Git writes itself, merges, reverts, and the `fixup!` and `squash!` that autosquash reads, are let through, and on a fresh clone it runs `vale sync` once, when the `StylesPath` has no `Commits` in it.
+Vale exits non-zero on an error-level alert. The commit stops, and the alerts stay on screen. Lines Git adds as commentary, and the diff `commit -v` appends, are never seen by a rule. The package's [`script/commit-msg`](https://github.com/jdkato/commits/blob/main/script/commit-msg) is that hook with two additions: messages Git writes itself, merges, reverts, and the `fixup!` and `squash!` that autosquash reads, are allowed, and on a fresh clone it runs `vale sync` once, when the `StylesPath` has no `Commits` in it.
 
-Git keeps `.git/hooks` outside version control, so a hook copied there protects one clone. To ship it with the repository, put it in a tracked directory and point `core.hooksPath` at it, once per clone:
+Git keeps `.git/hooks` outside version control, so a hook copied there protects one clone. To include it in the repository, put it in a tracked directory and point `core.hooksPath` at it, once per clone:
 
 ```console
 $ git config core.hooksPath script
@@ -111,7 +111,7 @@ Nothing on the server side can run a hook for a client, so the check in CI is th
 
 ## Output
 
-The report can take the shape of the tool a team used before. The package ships [templates](../topics/templates.md), picked with `--output` by name once synced:
+The report can match the format of the tool a team used before. The package includes [templates](../topics/templates.md), picked with `--output` by name once synced:
 
 ```console
 $ vale --output=commitlint.tmpl --path=COMMIT_EDITMSG < .git/COMMIT_EDITMSG
@@ -124,7 +124,7 @@ $ vale --output=commitlint.tmpl --path=COMMIT_EDITMSG < .git/COMMIT_EDITMSG
 ⓘ   Get help: https://www.conventionalcommits.org/en/v1.0.0/#specification
 ```
 
-`gitlint.tmpl`, `committed.tmpl`, and `conform.tmpl` print those tools' forms, `github.tmpl` prints GitHub Actions annotations so an alert lands on the pull request at its line, and `hook.tmpl` is a short form for the terminal.
+`gitlint.tmpl`, `committed.tmpl`, and `conform.tmpl` print those tools' forms, `github.tmpl` prints GitHub Actions annotations so an alert appears on the pull request at its line, and `hook.tmpl` is a short form for the terminal.
 
 ## Spelling and the rest of Vale
 
@@ -137,7 +137,7 @@ BasedOnStyles = Vale, Commits, Conventional, House
 
 ## Your own rules
 
-A rule reaches a part of the message by its scope, `subject`, `gap`, `body`, or `trailer`, and a rule that spans two parts is a [`conditional`](../checks/conditional.md) whose `in` names the second:
+A rule targets a part of the message by its scope, `subject`, `gap`, `body`, or `trailer`, and a rule that spans two parts is a [`conditional`](../checks/conditional.md) whose `in` names the second:
 
 ```yaml
 extends: conditional
@@ -149,4 +149,4 @@ second: '^BREAKING CHANGE: '
 in: trailer
 ```
 
-To change a list a rule holds, the types a project accepts, extend the rule in a style of your own with the pattern rewritten, and turn the original off. The [TextFSM guide](textfsm.md) is the View itself: how the template reads a message, and how the same approach reads a subtitle file or a transcript.
+To change a list in a rule, such as the types a project accepts, extend the rule in a style of your own with the pattern rewritten, and turn the original off. The [TextFSM guide](textfsm.md) is the View itself: how the template reads a message, and how the same approach reads a subtitle file or a transcript.

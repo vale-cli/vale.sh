@@ -12,7 +12,7 @@ cat draft.md | vale --ext=.md # standard input
 vale "Some text to check."    # a string that is not a path
 ```
 
-A directory is walked for every file its configuration has a section for, narrowed by `--glob` when one is given; see [Globbing](../guides/globbing.md). Input on stdin is read as plain text unless `--ext` names a format, or `--path` names the file it came from, which also puts it under that path's configuration section. A single argument that is neither a file nor a directory is linted as text, unless it's shaped like a path or a command: one word with a `/` or a file extension, such as `READNE.md`, is reported as a file that doesn't exist, and one that is nearly a command name is reported as a typo.
+A directory is walked for every file its configuration has a section for, narrowed by `--glob` when one is given. See [Globbing](../guides/globbing.md). Input on stdin is read as plain text unless `--ext` names a format, or `--path` names the file it came from, which also puts it under that path's configuration section. A single argument that isn't a file or a directory is linted as text, unless it looks like a path or a command. One word with a `/` or a file extension, such as `READNE.md`, is reported as a file that doesn't exist, and one that is nearly a command name is reported as a typo.
 
 With no input and nothing on stdin, `vale` prints a short introduction and an example configuration.
 
@@ -24,7 +24,7 @@ A run needs a configuration file, found in this order:
 2. The file named by `VALE_CONFIG_PATH`.
 3. The first of `.vale.ini`, `_vale.ini`, `vale.ini`, `.vale`, or `_vale` found in the working directory or any directory above it, then in the home directory.
 
-Whichever one is found, the user-level configuration in the operating system's config directory is read too, underneath it, so preferences that hold across projects live in one place and a project's own settings win. `vale ls-dirs` prints where that is, and `--no-global` leaves it out of a run.
+Whichever one is found, the user-level configuration in the operating system's config directory is read too, underneath it, so preferences that apply across projects live in one place and a project's own settings win. `vale ls-dirs` prints where that is, and `--no-global` leaves it out of a run.
 
 The environment variables `ls-vars` reports are all Vale reads:
 
@@ -32,8 +32,8 @@ The environment variables `ls-vars` reports are all Vale reads:
 | -------------------- | ------------------------------------------------------------------------------------------------------------------------------------ |
 | `VALE_CONFIG_PATH`   | A configuration file to use instead of searching for one.                                                                            |
 | `VALE_STYLES_PATH`   | The default [`StylesPath`](../keys/stylespath.md), used when no configuration file sets one.                                         |
-| `VALE_MODELS_URL`    | Where `sync` downloads [language models](../keys/lang.md) from: a URL or a directory holding one archive per language.             |
-| `VALE_GRAMMARS_URL`  | Where `sync` downloads [grammars](../keys/grammars.md) from: a URL or a directory holding one archive per grammar.                   |
+| `VALE_MODELS_URL`    | Where `sync` downloads [language models](../keys/lang.md) from: a URL or a directory that contains one archive per language.       |
+| `VALE_GRAMMARS_URL`  | Where `sync` downloads [grammars](../keys/grammars.md) from: a URL or a directory that contains one archive per grammar.             |
 | `VALE_GRAMMARS_PATH` | A directory of grammar modules, read when the `StylesPath` has none.                                                                 |
 
 ## [Commands](cli.md#commands)
@@ -43,7 +43,7 @@ The environment variables `ls-vars` reports are all Vale reads:
 | `sync`       | <p>Install every entry in the configuration's <a href="../keys/packages.md"><code>Packages</code></a> key into the <code>StylesPath</code>, then the models for the languages its <a href="../keys/lang.md"><code>Lang</code></a> keys name and the grammars its <a href="../keys/grammars.md"><code>Grammars</code></a> key names. Run it after changing any of them, and in CI before linting.<br><code>$ vale sync</code></p> |
 | `test`       | <p>Run the test cases kept beside your rules, and report the ones that failed. See <a href="testing.md">Testing</a>.<br><code>$ vale test styles</code></p>                                                                          |
 | `ls-config`  | <p>Resolve the configuration the way a lint run would, every source in order, and print the result as JSON. The fastest way to see which styles and rules a directory has in scope.<br><code>$ vale ls-config</code></p>             |
-| `ls-metrics` | <p>Print the counts Vale computed while reading a file, as JSON: words, sentences, paragraphs, and the elements of its markup. Several files, or a directory, print an object keyed by file; <code>--glob</code> chooses a directory's files. See <a href="../checks/metric.md">metric</a>.<br><code>$ vale ls-metrics README.md docs/</code></p> |
+| `ls-metrics` | <p>Print the counts Vale computed while reading a file, as JSON: words, sentences, paragraphs, and the elements of its markup. Several files, or a directory, print an object keyed by file. <code>--glob</code> chooses a directory's files. See <a href="../checks/metric.md">metric</a>.<br><code>$ vale ls-metrics README.md docs/</code></p> |
 | `ls-dirs`    | <p>Print where Vale looks for the default <code>StylesPath</code>, the user-level configuration, and the native messaging host, and whether each is there.<br><code>$ vale ls-dirs</code></p>                                        |
 | `ls-vars`    | <p>Print the environment variables Vale reads, what each does, and its current value.<br><code>$ vale ls-vars</code></p>                                                                                                             |
 | `help`       | <p>Print the listing of options and commands, or one command's own help.<br><code>$ vale help sync</code></p>                                                                                                                        |
@@ -70,7 +70,7 @@ VALE_GRAMMARS_PATH | A directory of tree-sitter grammar modules, read when the S
 
 | Name               | Description                                                                                                                                                                                                                                                      |
 | ------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--config`         | <p>The configuration file to use, instead of searching for one.<br><code>$ vale --config='path/to/.vale.ini' README.md</code></p>                                                                                                                                |
+| `--config`         | <p>The configuration file to use. With it set, Vale skips its usual search.<br><code>$ vale --config='path/to/.vale.ini' README.md</code></p>                                                                                                                                |
 | `--output`         | <p>The report format: <code>CLI</code>, <code>line</code>, <code>JSON</code>, or the path of a template. See <a href="cli.md#output">Output</a>.<br><code>$ vale --output=JSON README.md</code></p>                                                              |
 | `--minAlertLevel`  | <p>The lowest level to report: <code>suggestion</code>, <code>warning</code>, or <code>error</code>. Overrides the configuration's <a href="../keys/minalertlevel.md"><code>MinAlertLevel</code></a>.<br><code>$ vale --minAlertLevel=error README.md</code></p> |
 | `--glob`           | <p>A pattern the files under a directory must match. See <a href="../guides/globbing.md">Globbing</a>.<br><code>$ vale --glob='\*.md' docs/</code></p>                                                                                                           |
@@ -84,7 +84,7 @@ VALE_GRAMMARS_PATH | A directory of tree-sitter grammar modules, read when the S
 | `--no-global`      | <p>Do not read the user-level configuration.<br><code>$ vale --no-global README.md</code></p>                                                                                                                                                                    |
 | `--plain-progress` | <p>Log each step of a long operation instead of redrawing a progress bar, for CI logs that keep every frame.<br><code>$ vale sync --plain-progress</code></p>                                                                                                    |
 | `--if-needed`      | <p>With <code>vale sync</code>, skip the sync while the packages, languages, grammars, and Vale version match the last sync's. See <a href="../integrations/pre-commit.md">pre-commit</a>.<br><code>$ vale sync --if-needed</code></p>                         |
-| `--coverage`       | <p>With <code>vale test</code>, fail when a rule produced no alert in any case. See <a href="testing.md#coverage">Coverage</a>.<br><code>$ vale test --coverage styles</code></p>                                                                                |
+| `--coverage`       | <p>With <code>vale test</code>, fail when a rule didn't produce an alert in any case. See <a href="testing.md#coverage">Coverage</a>.<br><code>$ vale test --coverage styles</code></p>                                                                                |
 | `--version`, `-v`  | <p>Print the version.<br><code>$ vale --version</code></p>                                                                                                                                                                                                       |
 | `--help`, `-h`     | <p>Print the listing of options and commands. After a command, that command's help.<br><code>$ vale sync --help</code></p>                                                                                                                                       |
 
@@ -96,9 +96,9 @@ VALE_GRAMMARS_PATH | A directory of tree-sitter grammar modules, read when the S
 
 ![Vale's default output for a README: a table with one row per alert giving the line and column, the level, the message, and the rule, then a summary line counting one error, two warnings, and no suggestions in one file.](../.gitbook/assets/cli-output.svg)
 
-Each row is the line and column, the level, the message, and the rule that fired. The summary counts every alert at or above `MinAlertLevel`, and the exit code follows the errors.
+Each row is the line and column, the level, the message, and the rule that matched. The summary counts every alert at or above `MinAlertLevel`, and the exit code follows the errors.
 
-**`line`** is one alert per line, in the shape editors and scripts parse:
+**`line`** is one alert per line, in the format editors and scripts parse:
 
 ```console
 $ vale --output=line README.md
@@ -107,7 +107,7 @@ README.md:3:37:write-good.Passive:'were fixed' may be passive voice. Use active 
 README.md:6:23:Vale.Spelling:Did you really mean 'detials'?
 ```
 
-**`JSON`** is an object keyed by file path, each holding its alerts. An alert carries the rule, the level, the matched text, its line and span, the message, and any [action](actions.md) with what it resolves to:
+**`JSON`** is an object keyed by file path, each containing its alerts. An alert includes the rule, the level, the matched text, its line and span, the message, and any [action](actions.md) with what it resolves to:
 
 ```json
 {
@@ -128,9 +128,9 @@ README.md:6:23:Vale.Spelling:Did you really mean 'detials'?
 }
 ```
 
-**A template** is anything else: the path of a Go template, or the name of one in the `StylesPath`'s `config/templates` directory, rendered with the same data. See [Templates](templates.md).
+**A template** is any other value, either the path of a Go template or the name of one in the `StylesPath`'s `config/templates` directory. It's rendered with the same data. See [Templates](templates.md).
 
-Errors in Vale's own configuration are printed to standard error, and follow `--output` where the format has a place for them: a rule that fails to load reports its file and line.
+Errors in Vale's own configuration are printed to standard error, and follow `--output` when the format supports them. For example, a rule that fails to load reports its file and line.
 
 ![Vale reporting an E201 configuration error, showing the offending line of the rule file and the accepted values.](../.gitbook/assets/error.svg)
 
@@ -138,6 +138,6 @@ Errors in Vale's own configuration are printed to standard error, and follow `--
 
 | Code | Meaning                                                                                                            |
 | ---- | ------------------------------------------------------------------------------------------------------------------ |
-| `0`  | The run completed and found no alert at the `error` level. Warnings and suggestions do not change the code.        |
+| `0`  | The run completed and didn't find any alerts at the `error` level. Warnings and suggestions do not change the code.        |
 | `1`  | The run completed and found at least one `error`. `--no-exit` turns this into `0`, for a CI job that reports only. |
-| `2`  | Vale itself could not run: a missing configuration, a rule that failed to load, an argument that is not a path. Or a document couldn't be read, such as one with broken front matter: it's reported after the alerts, and every other document is still linted. `--no-exit` doesn't change this code. |
+| `2`  | Vale itself could not run. Common causes are a missing configuration, a rule that failed to load, and an argument that is not a path. Or a document couldn't be read, such as one with broken front matter: it's reported after the alerts, and every other document is still linted. `--no-exit` doesn't change this code. |

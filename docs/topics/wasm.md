@@ -4,14 +4,14 @@
 Requires Vale v3.26.0 or later.
 {% endhint %}
 
-Vale ships as a WebAssembly module for JavaScript hosts: a browser, a browser extension, or Node. It is the same engine as the CLI, built without cgo, so it lints Markdown, HTML, and plain text from memory with no server and no filesystem.
+Vale is available as a WebAssembly module for JavaScript hosts, including browsers, browser extensions, and Node. It is the same engine as the CLI, built without cgo, so it lints Markdown, HTML, and plain text from memory. It doesn't need a server or a filesystem.
 
-Each release carries `vale_<version>_wasm.tar.gz`, which holds two files:
+Each release includes `vale_<version>_wasm.tar.gz`, which contains these files:
 
-| File           | What it is                                                                   |
-| -------------- | ---------------------------------------------------------------------------- |
-| `vale.wasm`    | The module.                                                                  |
-| `wasm_exec.js` | Go's loader, from the toolchain that built the module. Use the one shipped. |
+| File           | What it is                                                                         |
+| -------------- | ---------------------------------------------------------------------------------- |
+| `vale.wasm`    | The module.                                                                        |
+| `wasm_exec.js` | Go's loader, from the toolchain that built the module. Use the one in the archive. |
 
 ## [Loading](wasm.md#loading)
 
@@ -27,34 +27,34 @@ Each release carries `vale_<version>_wasm.tar.gz`, which holds two files:
 </script>
 ```
 
-`go.run` never resolves: the module stays resident, and its functions are called synchronously after it starts. Load it once, in a worker where one is available, since the first lint also loads the dictionary.
+`go.run` never resolves: the module remains loaded, and its functions are called synchronously after it starts. Load it once, in a worker where one is available, since the first lint also loads the dictionary.
 
-The module reads nothing from the host. `wasm_exec.js` answers every filesystem call with a stub, which is what the module expects; a Node host that installs its own `fs` global makes those calls asynchronous and the module stops. Leave `globalThis.fs` unset.
+The module reads nothing from the host. `wasm_exec.js` answers every filesystem call with a stub, which is what the module expects. A Node host that installs its own `fs` global makes those calls asynchronous and the module stops. Leave `globalThis.fs` unset.
 
 ## [Functions](wasm.md#functions)
 
-Every function returns an object. A failure is `{ error: string }`; the shapes below are the success case.
+Each function returns an object. A failure is `{ error: string }`. The return values below are for the success case.
 
 | Function                              | Returns               | What it does                                                                                                                                                      |
 | ------------------------------------- | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `ValeLint(text, format, ini)`         | `{ result: string }`  | Lints `text` as a document named `input.<format>`, under the configuration in `ini`. `result` is the JSON the CLI prints with `--output=JSON`, keyed by that name. |
 | `ValeSuggest(alertJSON, ini)`         | `{ suggestions: [] }` | Resolves one alert's [fix](actions.md): the replacement strings its action produces, or an empty list when it has none.                                           |
-| `ValeLintBuilt(text, format, html, ini)` | `{ result: string }` | Lints `text` from `html`, the host's own conversion of it; see [Converted formats](wasm.md#converted-formats).                                                   |
-| `ValeConverterOptions(format, ini)`   | object                | What to give the converter for `format` so its HTML is what Vale would have produced; see below.                                                                  |
+| `ValeLintBuilt(text, format, html, ini)` | `{ result: string }` | Lints `text` from `html`, the host's own conversion of it. See [Converted formats](wasm.md#converted-formats).                                                   |
+| `ValeConverterOptions(format, ini)`   | object                | What to give the converter for `format` so its HTML is what Vale would have produced. See below.                                                                  |
 | `ValeTransform(text, format, ini)`    | `{ result: string }`  | Applies the configuration's `BlockIgnores` and `TokenIgnores` to `text` and returns what is left to lint.                                                          |
-| `ValeResolveConfig(ini)`              | `{ result: string }`  | Resolves the configuration without linting anything; see [Resolving a configuration](wasm.md#resolving-a-configuration).                                         |
+| `ValeResolveConfig(ini)`              | `{ result: string }`  | Resolves the configuration without linting anything. See [Resolving a configuration](wasm.md#resolving-a-configuration).                                         |
 | `ValeAddFile(path, contents)`         | `{ ok: true }`        | Writes one file into the in-memory filesystem. `contents` is a string or a `Uint8Array`.                                                                           |
 | `ValeAddPackage(prefix, zipBytes)`    | `{ ok: true }`        | Extracts a ZIP archive under `prefix`, each entry at its own path.                                                                                                 |
 | `ValeResetFS()`                       | `{ ok: true }`        | Empties the in-memory filesystem.                                                                                                                                 |
-| `ValeListFS()`                        | `{ paths: [] }`       | Lists every path it holds.                                                                                                                                        |
+| `ValeListFS()`                        | `{ paths: [] }`       | Lists every path in the filesystem.                                                                                                                               |
 
 `format` is an extension without the dot: `md`, `html`, `txt`. A `[formats]` association in the INI applies to it as it would to a file.
 
 ## [Assets](wasm.md#assets)
 
-The configuration is a string, and everything it names is resolved against an in-memory filesystem the host fills. Paths are absolute under a single root, so a `StylesPath` of `/styles` reads rules from `/styles/<Style>/<Rule>.yml`, vocabularies from `/styles/config/vocabularies/`, and dictionaries from `/styles/config/dictionaries/`, as it would on disk.
+The configuration is a string, and everything it names is resolved against an in-memory filesystem the host fills. Paths are absolute under a single root and follow the layout on disk. With a `StylesPath` of `/styles`, rules are read from `/styles/<Style>/<Rule>.yml`. Vocabularies are in `/styles/config/vocabularies/`, and dictionaries are in `/styles/config/dictionaries/`.
 
-The same goes for what `vale sync` would install. A [language model](../keys/lang.md) is the files of its archive under `/styles/config/models/<lang>/`, and a [grammar](../keys/grammars.md) is its module at `/styles/config/grammars/<name>.wasm`; a code file is parsed with the grammar when it is there and read by its comment delimiters when it isn't. Neither `Lang` nor `Grammars` downloads anything in the browser: the host adds the files.
+The same goes for what `vale sync` would install. A [language model](../keys/lang.md) is the files of its archive under `/styles/config/models/<lang>/`, and a [grammar](../keys/grammars.md) is its module at `/styles/config/grammars/<name>.wasm`. Vale parses a code file with the grammar when it is there and reads it by its comment delimiters when it isn't. Neither `Lang` nor `Grammars` downloads anything in the browser: the host adds the files.
 
 ```js
 ValeAddFile("/styles/House/Hedging.yml", ruleYAML);
@@ -96,7 +96,7 @@ The built-in `Vale` style and its `en_US` dictionary are inside the module, so a
 }
 ```
 
-Each rule a section's styles bring is `active`, `disabled`, or `override` with the `level` it was set to. A rule that is switched off is still listed, read from the files on the `StylesPath`. A configuration that fails to load returns its message in `result`'s `error` field.
+Each rule a section's styles bring is `active`, `disabled`, or `override` with the `level` it was set to. A rule that is switched off is still listed, read from the files on the `StylesPath`. If a configuration fails to load, its message is returned in `result`'s `error` field.
 
 ## [Formats](wasm.md#formats)
 
@@ -109,15 +109,15 @@ Each rule a section's styles bring is `active`, `disabled`, or `override` with t
 | Plain text                            | Yes                |                                                                                               |
 | YAML, JSON, TOML                      | Yes                | Through a [View](views.md).                                                                   |
 | XML                                   | With the host's converter | The browser's `XSLTProcessor` and the section's `Transform` stylesheet.                |
-| Typst                                 | Yes                | Read by an embedded `typst2vast`; a build without code support takes the host's HTML.               |
+| Typst                                 | Yes                | Read by an embedded `typst2vast`. A build without code support takes the host's HTML.               |
 | DITA                                  | With the host's converter | When the host has one: DITA-OT has no browser build.                                    |
-| Source code                           | Yes                | Comments are found by their delimiters, or parsed with a grammar the host adds; see below.    |
+| Source code                           | Yes                | Comments are found by their delimiters, or parsed with a grammar the host adds. See below.    |
 
 A document in an unsupported format is not an error: it lints as empty.
 
 ## [Converted formats](wasm.md#converted-formats)
 
-Natively, Vale reads XML and DITA by running a converter and linting its HTML. A browser can't run those programs, but it can run some of their JavaScript builds, so the module takes the HTML from the host instead: `ValeLintBuilt` is `ValeLint` with the conversion step already done. Everything after it is the same, including where each alert lands in the source. AsciiDoc, reStructuredText, and Typst don't need this, since the module converts them itself, but a host that has its own Asciidoctor.js or Docutils HTML can still hand it over the same way.
+Natively, Vale reads XML and DITA by running a converter and linting its HTML. A browser can't run those programs, but it can run some of their JavaScript builds. The module takes the HTML from the host instead: `ValeLintBuilt` is `ValeLint` with the conversion step already done. Everything after it is the same, including each alert's position in the source. AsciiDoc, reStructuredText, and Typst don't need this, since the module converts them itself, but a host that has its own Asciidoctor.js or Docutils HTML can still hand it over the same way.
 
 The HTML has to be what Vale would have produced, which means the same arguments. `ValeConverterOptions` returns them, so the host and the CLI stay in step as they change:
 

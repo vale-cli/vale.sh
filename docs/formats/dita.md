@@ -10,6 +10,6 @@ DITA is supported through the [DITA Open Toolkit](https://www.dita-ot.org/). You
 
 The supported extension is `.dita`.
 
-Vale runs `dita` with the `html5` transformation and lints the result, so the [HTML](html.md) rules apply: `<codeblock>` becomes `<pre>` and is skipped, and `<codeph>` and `<tt>` become inline code.
+Vale runs `dita` with the `html5` transformation and lints the result. The [HTML](html.md) rules apply: `<codeblock>` becomes `<pre>` and is skipped, and `<codeph>` and `<tt>` become inline code.
 
 [`TokenIgnores`](../keys/tokenignores.md) and [`BlockIgnores`](../keys/blockignores.md) apply to DITA. The toolkit reads its input from disk, so a file an ignore pattern changes is converted from a temporary copy written beside it, where its references still resolve, and the copy is removed afterward. Ignore patterns in DITA require Vale v3.22.0 or later.

@@ -12,7 +12,7 @@ A [Sphinx](https://www.sphinx-doc.org/) project is reStructuredText, or MyST, pl
 
 Docutils knows only its own directives and roles, so Vale decides the rest by a rule that fits nearly every Sphinx construct: the body of a directive Docutils doesn't define is prose, and the text of a role it doesn't define is code. A `versionadded`, a `seealso`, a `tab`, a `grid` card, or a `py:function` description is linted like any paragraph; `:func:`, `:class:`, and `:doc:` are left alone.
 
-The exceptions Vale knows are Sphinx's own. `toctree`, `literalinclude`, `math`, the `auto*` family, and the doctest blocks are not prose. `ref`, `doc`, `any`, `numref`, `term`, `guilabel`, `menuselection`, `abbr`, and `dfn` carry prose: a reference written with a title, ``:ref:`the setup guide <setup>` ``, is linted as its title, and a bare target such as ``:doc:`guide/setup` `` is code.
+The exceptions Vale knows are Sphinx's own. `toctree`, `literalinclude`, `math`, the `auto*` family, and the doctest blocks are not prose. `ref`, `doc`, `any`, `numref`, `term`, `guilabel`, `menuselection`, `abbr`, and `dfn` contain prose: a reference written with a title, ``:ref:`the setup guide <setup>` ``, is linted as its title, and a bare target such as ``:doc:`guide/setup` `` is code.
 
 An extension's additions that don't fit the rule are named in a `[sphinx]` section. Both keys add to the built-in lists:
 
@@ -31,7 +31,7 @@ BasedOnStyles = Vale
 
 ## [What is and isn't read](sphinx.md#what-is-and-isnt-read)
 
-Vale lints the source as written. Substitutions such as `|release|` are not expanded, `include` and `only` are not resolved, and content autodoc generates from docstrings is not in the file, so none of it is linted. Comments still carry Vale's [directives](restructuredtext.md#comments), so `.. vale off` works inside a Sphinx project as anywhere else.
+Vale lints the source as written. Substitutions such as `|release|` are not expanded, `include` and `only` are not resolved, and content autodoc generates from docstrings is not in the file, so none of it is linted. Comments still support Vale's [directives](restructuredtext.md#comments), so `.. vale off` works inside a Sphinx project as anywhere else.
 
 A project written in MyST goes through Vale's own [MyST](myst.md) reader, which applies the same rule and the same `[sphinx]` section to the directive and role syntax in Markdown.
 

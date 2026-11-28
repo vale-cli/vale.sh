@@ -11,9 +11,9 @@ Packages = Microsoft, write-good
 BasedOnStyles = Microsoft, write-good
 ```
 
-`Packages` lists what `vale sync` installs into the [`StylesPath`](stylespath.md). A package is a style, a configuration file, or both, published as an archive, and naming it here is all a project has to do to use it. Update the package, run `vale sync` again, and every project that names it has the new rules.
+`Packages` lists what `vale sync` installs into the [`StylesPath`](stylespath.md). A package is a style, a configuration file, or both, published as an archive, and naming it here is all a project has to do to use it. Update the package, run `vale sync` again, and the projects that list it get the new rules.
 
-![One upstream package is inherited by several projects, so an upstream change reaches all of them. Within a project, configuration is layered: the first package is overridden by the second, and local configuration overrides both.](../.gitbook/assets/package.svg)
+![One upstream package is inherited by several projects, and a change upstream applies to all of them. Within a project, configuration is layered: the first package is overridden by the second, and local configuration overrides both.](../.gitbook/assets/package.svg)
 
 ## [Naming a package](packages.md#naming-a-package)
 
@@ -24,7 +24,7 @@ Each entry in the list is one of four things:
 - **A path to a `.zip` archive** on disk.
 - **A path to a directory** laid out like an unpacked archive.
 
-A package's name is the archive's file name without `.zip`, or the directory's name, and the archive has to hold one folder with that name. `Google.zip` unpacks to `Google/`. A name that isn't in the library is tried as a path and then as a URL, so a misspelled name reports itself as a URL that couldn't be fetched.
+A package's name is the file name of the archive without `.zip`, or the name of the directory, and the archive has to contain one folder with that name. `Google.zip` unpacks to `Google/`. A name that isn't in the library is tried as a path and then as a URL. This means that a misspelled name is reported as a URL that couldn't be fetched.
 
 Relative paths are resolved from the directory `vale sync` runs in, not from the configuration file.
 
@@ -34,10 +34,10 @@ Relative paths are resolved from the directory `vale sync` runs in, not from the
 
 1. Creates the `StylesPath` if it doesn't exist, and deletes the `.vale-config/` directory inside it.
 2. Fetches or unpacks each package, and copies what it holds into the `StylesPath`. A style already there with the same name is replaced whole, so an installed style is not the place to make edits.
-3. Merges the package's `config/` into yours, one entry at a time: a vocabulary or dictionary the package carries lands beside the ones you have, and one with the same name replaces yours.
+3. Merges the package's `config/` into yours, one entry at a time: a vocabulary or dictionary in the package is added beside the ones you have, and one with the same name replaces yours.
 4. Copies the package's `.vale.ini`, if it has one, into `.vale-config/`, named for its position in the list. A package that lists packages of its own has those installed too.
 
-Run it after adding a package, and in CI before linting. `--plain-progress` prints a line per package instead of a progress bar, for logs. `--if-needed` skips the sync while `Packages`, your languages, your grammars, and Vale's version are unchanged since the last one, so a package that names its latest release isn't updated until one of those changes.
+Run it after adding a package, and in CI before linting. `--plain-progress` prints a line per package instead of a progress bar, for logs. `--if-needed` skips the sync while `Packages`, your languages, your grammars, and Vale's version are unchanged since the last one, so a package that points to its latest release isn't updated until one of those changes.
 
 ```console
 $ vale sync --plain-progress
@@ -48,7 +48,7 @@ Synced write-good
 
 ## [Shapes](packages.md#shapes)
 
-A package holds a style, a configuration file, or both.
+A package contains a style, a configuration file, or both.
 
 ### [A style](packages.md#a-style)
 
@@ -79,7 +79,7 @@ Archive:  Hugo.zip
   inflating: Hugo/.vale.ini
 ```
 
-The file lands in `.vale-config/` and is read before your own, so its settings are the base yours sit on. Nothing in it needs to be repeated locally.
+The file is installed in `.vale-config/` and is read before your own. Its settings are the base that yours build on, and you don't need to repeat any of them locally.
 
 ### [Both](packages.md#both)
 
@@ -122,7 +122,7 @@ On sync, `styles/` is merged into the project's `StylesPath` and the `.vale.ini`
 Requires Vale v3.25.0 or later.
 {% endhint %}
 
-A package can carry a [vocabulary](vocabularies.md) and turn it on for every file by naming it in `[*]`:
+A package can include a [vocabulary](vocabularies.md) and turn it on for every file by naming it in `[*]`:
 
 ```
 MyTerms/
@@ -151,7 +151,7 @@ Vale.MyTerms.Terms = NO
 
 ## [Pinning a version](packages.md#pinning-a-version)
 
-Naming a package installs its latest release, so the rules it brings change as the package is updated. To hold a package at a known version, give the release URL in place of the name:
+Naming a package installs its latest release. The rules it brings change as the package is updated. To hold a package at a known version, give the release URL in place of the name:
 
 ```ini
 StylesPath = styles
@@ -164,7 +164,7 @@ BasedOnStyles = Google
 
 A style takes its name from the folder inside the archive, so `BasedOnStyles` reads the same either way. Only where the package comes from changes. Run `vale sync` again after editing the URL to move to a different version.
 
-This is worth doing wherever a new rule arriving on its own would be disruptive, such as a repository several people write in, or a CI job that fails on new alerts.
+Pin a package wherever a new rule arriving on its own would be disruptive, such as in a repository several people write in or a CI job that fails on new alerts.
 
 ### [Pinning an archive](packages.md#pinning-an-archive)
 
@@ -172,13 +172,13 @@ This is worth doing wherever a new rule arriving on its own would be disruptive,
 Requires Vale v3.29.0 or later.
 {% endhint %}
 
-A release URL names a version, but the archive behind it can still be replaced. To install only the exact archive you checked, add its SHA-256 digest to the entry:
+A release URL specifies a version, but the archive behind it can still be replaced. To install only the exact archive you checked, add its SHA-256 digest to the entry:
 
 ```ini
 Packages = https://github.com/jdkato/voices/releases/download/v0.2.0/Voices.zip#sha256:3d03b911727a502c5a6c1e9ea5c040ebe115cde0f6f99176d116fd6893080ba9
 ```
 
-`vale sync` hashes the archive before unpacking it, and stops with an error naming both digests when they differ, so nothing from a changed archive is installed. A pinned package that needs a newer Vale is an error too: sync never installs a different release in its place, since that would be a different archive.
+`vale sync` hashes the archive before unpacking it, and stops with an error that lists both digests when they differ, so nothing from a changed archive is installed. A pinned package that needs a newer Vale is an error too: sync never installs a different release in its place, since that would be a different archive.
 
 `vale sync --plain-progress` prints the digest of each archive that isn't pinned, ready to copy:
 
@@ -187,7 +187,7 @@ $ vale sync --plain-progress
 Synced Voices (sha256:3d03b911727a502c5a6c1e9ea5c040ebe115cde0f6f99176d116fd6893080ba9)
 ```
 
-A digest works on a URL, a path to an archive, and a name from the library. A library name installs the latest release, though, so a digest on one stops matching when the package is next released. A directory has no archive to hash and can't be pinned. A Vale older than v3.29.0 ignores the digest and installs the archive unchecked.
+A digest works on a URL, a path to an archive, and a name from the library. However, a library name installs the latest release, and a digest on one stops matching when the package is next released. Directories have no archive to hash and can't be pinned. Vale versions older than v3.29.0 ignore the digest and install the archive unchecked.
 
 ## [Ordering](packages.md#ordering)
 
@@ -200,7 +200,7 @@ Packages = pkg1, pkg2
 BasedOnStyles = House
 ```
 
-A list key such as `BasedOnStyles` gathers every value from every source, so the styles `pkg1` and `pkg2` switch on run alongside `House`. Any other key takes the last value read: `MinAlertLevel`, a rule's level, a parameter, and a switch all end up as your file has them, and `pkg2` has them as it does where your file is silent.
+A list key such as `BasedOnStyles` gathers every value from every source. The styles `pkg1` and `pkg2` switch on run alongside `House`. Any other key takes the last value read: `MinAlertLevel`, a rule's level, a parameter, and a switch all end up as your file has them, and `pkg2` has them as it does where your file is silent.
 
 ## [The version Vale supports](packages.md#the-version-vale-supports)
 
@@ -215,11 +215,11 @@ $ vale sync
  INFO  'Readability' needs Vale >=3.23.0; this is 3.22.0: installed v0.1.1 instead.
 ```
 
-If no release supports the running Vale, sync installs the latest one and warns, which is what it always did; the metadata can only improve on that. A package pinned to a release URL is installed as asked, with the same warning when it needs a newer Vale.
+If no release supports the running Vale, sync installs the latest one and warns, which is what it always did. The metadata can only improve on that. A package pinned to a release URL is installed as asked, with the same warning when it needs a newer Vale.
 
-This is what lets a package raise the Vale it needs without breaking anyone: an older Vale keeps the last release that worked for it. Sync finds the earlier releases one of two ways:
+This lets a package raise the Vale version it needs without breaking anyone, because an older Vale keeps the last release that worked for it. Sync finds the earlier releases one of two ways:
 
-* **A manifest.** `meta.json` lists the releases, each with its version, the Vale it needs, and its archive URL. The URLs can point anywhere, so this works on any host, and sync downloads only the release it picks:
+* **A manifest.** `meta.json` lists the releases, each with its version, the Vale it needs, and its archive URL. Because the URLs can point anywhere, this works on any host. Sync downloads only the release it picks:
 
   ```json
   {

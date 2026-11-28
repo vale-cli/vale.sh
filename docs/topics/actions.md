@@ -1,10 +1,10 @@
 # Actions
 
-Learn how a rule carries its own fix, and where that fix goes.
+Learn how a rule includes its own fix, and where that fix appears.
 
 ## [A fix beside the finding](actions.md#a-fix-beside-the-finding)
 
-A rule says what is wrong. An action says what to do about it: the matched text becomes this instead. It is the part of a rule that an editor can apply with one keystroke, and that an agent can act on without deciding anything.
+A rule says what is wrong, and an action says what to do about it: the matched text becomes this instead. It is the part of a rule that an editor can apply with one keystroke, and that an agent can act on without deciding anything.
 
 ```yaml
 extends: existence
@@ -20,7 +20,7 @@ tokens:
   - '\w+[.?!]$'
 ```
 
-Vale resolves the action when the rule fires, not when someone asks for the fix. Every alert carries both the recipe, `Action`, and the answer, `Suggestions`:
+Vale resolves the action when the rule matches, not when someone asks for the fix. Each alert includes both the recipe, `Action`, and the answer, `Suggestions`:
 
 ```json
 {
@@ -34,7 +34,7 @@ Vale resolves the action when the rule fires, not when someone asks for the fix.
 }
 ```
 
-The one exception is spelling. Ranking a dictionary against a word is real work, so a spelling rule's suggestions are computed when an editor asks for them, and its `Suggestions` list is empty in lint output.
+The one exception is spelling. Ranking a dictionary against a word is real work. Suggestions from a spelling rule are computed only when an editor requests them, and the `Suggestions` list is empty in lint output.
 
 ## [The message](actions.md#the-message)
 
@@ -44,7 +44,7 @@ A message with two placeholders gets the match first and the fix second:
 message: "'%s' should be '%s'."
 ```
 
-A rule whose action yields several suggestions sees them joined: `'colour' should be 'color or colors'`. A rule with no action gets the match alone, and a second placeholder stays empty.
+A rule whose action yields several suggestions sees them joined: `'colour' should be 'color or colors'`. A rule with no action gets the match alone, and a second placeholder is left empty.
 
 ## [The actions](actions.md#the-actions)
 
@@ -67,13 +67,13 @@ action:
     - [wrap, '`']
 ```
 
-An argument can also name what the rule matched: `$1` is the first capture group of the token that fired, and `$0` is the whole match. A `replace` written as `'$2, $1'` reorders a name without a pattern of its own. See [the token's groups](../fixes/edit.md#the-tokens-groups).
+An argument can also refer to what the rule matched: `$1` is the first capture group of the token that matched, and `$0` is the whole match. A `replace` written as `'$2, $1'` reorders a name without a pattern of its own. See [the token's groups](../fixes/edit.md#the-tokens-groups).
 
-Every action is checked when the rule loads. An unknown name, a missing parameter, an `edit` operation Vale does not have, or a `suggest` script that is not on disk is an `E201` error pointing at the rule file, not a surprise after the rule fires.
+Actions are checked when the rule loads. An unknown name, a missing parameter, an `edit` operation Vale does not have, or a `suggest` script that is not on disk is reported as an `E201` error pointing at the rule file before the rule ever matches.
 
-A `replace` action respects [`matchcase`](styles.md#the-header): with it set, `A-OK` written into the rule still suggests `a-ok` for `a ok`. The other actions produce their text from the match itself, so they already carry its case.
+A `replace` action respects [`matchcase`](styles.md#the-header): with it set, `A-OK` written into the rule still suggests `a-ok` for `a ok`. The other actions produce their text from the match itself and keep its case.
 
-## [Where a fix goes](actions.md#where-a-fix-goes)
+## [Fixes in the CLI and editors](actions.md#fixes-in-the-cli-and-editors)
 
 **The CLI** shows it in the message, as above, and in JSON output as `Suggestions`.
 

@@ -6,7 +6,7 @@ Learn how to change the case of a match.
 func convert(match string) string
 ```
 
-`convert` suggests the matched text in another case. Its one parameter names the target:
+`convert` suggests the matched text in another case. Its one parameter specifies the target case:
 
 | Name     | Result                                                 |
 | -------- | ------------------------------------------------------ |

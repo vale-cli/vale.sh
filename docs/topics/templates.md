@@ -2,7 +2,7 @@
 
 Learn how to write an output format of your own.
 
-`--output` takes `CLI`, `line`, or `JSON`, and otherwise the name of a template: a [Go template](https://pkg.go.dev/text/template) that Vale renders with the run's alerts in place of a built-in format.
+`--output` takes `CLI`, `line`, or `JSON`, and otherwise the name of a template. A template is a [Go template](https://pkg.go.dev/text/template) that Vale renders with the run's alerts in place of a built-in format.
 
 ```sh
 vale --output=sarif.tmpl docs/ > vale.sarif
@@ -45,7 +45,7 @@ Every function in [Sprig](http://masterminds.github.io/sprig/) is available, whi
 | `renderTable` | `Table`          | Print the table, with a blank line before and after, and empty it for reuse.                                                                    |
 | `jsonEscape`  | `string`         | The string escaped for use inside a JSON string literal, without the surrounding quotes.                                                        |
 
-The colors and the underline are terminal escapes, so a template meant to be redirected to a file should leave them out; `--no-color` disables them for a run.
+The colors and the underline are terminal escapes, so a template meant to be redirected to a file should leave them out. `--no-color` disables them for a run.
 
 ## [Examples](templates.md#examples)
 
@@ -135,7 +135,7 @@ The following example converts Vale’s output to [RDJSONL](https://github.com/r
 {{end -}}
 ```
 
-Two things are worth knowing when adapting this. Reviewdog reads a range, so giving it the end of the span -- `Span` is inclusive, and Reviewdog's end is not -- is what underlines the match rather than pointing at its first character. And Reviewdog counts columns in UTF-8 bytes where Vale counts characters, so the two agree only until a line picks up its first multi-byte character; converting between them needs the source line, which a template can't read.
+When adapting this, note that Reviewdog reads a range, so giving it the end of the span (`Span` is inclusive, and Reviewdog's end is not) is what underlines the match rather than pointing at its first character. And Reviewdog counts columns in UTF-8 bytes where Vale counts characters, so the two agree only until a line picks up its first multi-byte character. Converting between them needs the source line, which a template can't read.
 
 ### [Creating a SARIF template](templates.md#creating-a-sarif-template)
 
@@ -154,7 +154,7 @@ In a GitHub workflow, hand the file to `upload-sarif`:
     sarif_file: vale.sarif
 ```
 
-Two details make the conversion straightforward. SARIF measures columns in characters, as Vale's `Span` does, so the positions carry over unchanged. And SARIF asks for each rule to be described once, which [`dict`](http://masterminds.github.io/sprig/dicts.html) and `set` collect in a pass over the alerts before any output.
+SARIF measures columns in characters, as Vale's `Span` does, and the positions are used unchanged. And SARIF asks for each rule to be described once, which [`dict`](http://masterminds.github.io/sprig/dicts.html) and `set` collect in a pass over the alerts before any output.
 
 ```go
 {{- /* Collect the rules that fired, so that each is described once. */ -}}

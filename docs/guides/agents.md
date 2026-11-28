@@ -1,6 +1,6 @@
 # Agents
 
-Use Vale with an AI assistant: on what it writes, on what it reads, and as a tool it runs.
+Use Vale with an AI assistant to check what it writes and what it reads, or have the assistant run Vale itself.
 
 An agent meets Vale in three places. The prose it writes can be checked against a voice, so a style is enforced on every draft instead of remembered. The instructions it reads, `AGENTS.md`, `CLAUDE.md`, a skill, are prose files in a repository, and can be linted like any other. And Vale itself is a tool an agent can set up and run, with the same four steps as the [Quickstart](../topics/quickstart.md).
 
@@ -19,11 +19,11 @@ BasedOnStyles = Voices, Direct
 
 `Voices` is the shared core, inflated words, throat-clearing, weasel attribution, recap endings, and is always on. `Direct`, `GenZ`, `Coach`, `Simple`, and `Claude` each add one voice beside it. `Claude` is derived from the formatting section of the published system prompts for Claude and is the demonstration of the argument: that section of a production prompt is already a linter. Voices requires Vale v3.20.0 or later and builds on [Std](https://github.com/vale-cli/Std).
 
-With the edit-time hook below, the alerts reach the assistant in the turn it wrote the draft, and a rule that carries a fix is applied without a decision.
+With the edit-time hook below, the assistant gets the alerts in the same turn it wrote the draft. If a rule includes a fix, the fix is applied without a decision.
 
 ## [What an agent reads](agents.md#what-an-agent-reads)
 
-An instruction file holds a model to a standard, and the same standard can be held to the file: say what to do, in the mood of a command, in a file short enough to be read on every turn. [Prompts](https://github.com/jdkato/Prompts) is a style for `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, and system prompts, on any agent's file:
+An instruction file sets a standard for a model, and you can check the file against the same standard. It should give commands that say what to do, and it should be short enough to be read on every turn. [Prompts](https://github.com/jdkato/Prompts) is a style for `AGENTS.md`, `CLAUDE.md`, `SKILL.md`, and system prompts, on any agent's file:
 
 ```ini
 Packages = Prompts
@@ -32,11 +32,11 @@ Packages = Prompts
 BasedOnStyles = Prompts
 ```
 
-Its rules report advice where an instruction belongs (`you should`, `make sure to`), words that name no action (`handle`, `ensure`, `best practices`), more than ten absolutes or three shouted words in one file, two instructions that pull opposite ways, dates that will go stale, backslashes in paths, a section past 300 words, and a file past 2,500. For a skill, they also check its frontmatter: a `name` a loader rejects, and a `description` that runs too long, is not in the third person, or never says when to use the skill. Each rule links to the vendor guidance it enforces. Name the files you mean in the section, with `**/` so it reaches skills in their own directories: a style for instructions has no business in the README. Prompts requires Vale v3.21.0 or later.
+Its rules report advice where an instruction belongs (`you should`, `make sure to`), words that don't describe an action (`handle`, `ensure`, `best practices`), more than ten absolutes or three shouted words in one file, two instructions that pull opposite ways, dates that will go stale, backslashes in paths, a section past 300 words, and a file past 2,500. For a skill, they also check its frontmatter: a `name` a loader rejects, and a `description` that runs too long, is not in the third person, or never says when to use the skill. Each rule links to the vendor guidance it enforces. List the files you mean in the section, with `**/` so it reaches skills in their own directories: a style for instructions has no business in the README. Prompts requires Vale v3.21.0 or later.
 
 ## [What an agent runs](agents.md#what-an-agent-runs)
 
-An assistant can install Vale, write a configuration, and fix what it reports. What it needs beyond the Quickstart is the handful of facts that are easy to get wrong without reading further: only `error` sets a non-zero exit code, `--output=JSON` is the format to parse, and a term that trips spell check belongs in a vocabulary rather than in a switched-off rule.
+An assistant can install Vale and write a configuration, then fix what Vale reports. What it needs beyond the Quickstart is a few facts that are easy to get wrong without reading further: only `error` sets a non-zero exit code, `--output=JSON` is the format to parse, and a term that trips spell check belongs in a vocabulary rather than in a switched-off rule.
 
 ### [AGENTS.md](agents.md#agentsmd)
 
@@ -44,7 +44,7 @@ An assistant can install Vale, write a configuration, and fix what it reports. W
 
 ### [Skills](agents.md#skills)
 
-For task-shaped work there are [skills](https://vale.sh/skills) to copy in beside it, each a set of instructions an assistant follows when the task comes up:
+For specific tasks, there are [skills](https://vale.sh/skills) to copy in beside it, each a set of instructions an assistant follows when the task comes up:
 
 | Skill         | What it does                                                                                                              |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -62,7 +62,7 @@ For task-shaped work there are [skills](https://vale.sh/skills) to copy in besid
 | `ci`          | Run Vale in GitHub Actions, a pre-commit hook, or another runner.                                                         |
 | `commits`     | Lint commit messages against the convention the history already follows.                                                  |
 
-The skills run the CLI you installed and need no account.
+The skills run the CLI you installed and don't need an account.
 
 ### [Claude Code](agents.md#claude-code)
 
@@ -79,4 +79,4 @@ A second hook lints each commit message the assistant writes, in a repository wh
 
 [Agent setup](agent-setup.md) walks through every skill, the hooks, and the experimental plugins that come from the same marketplace.
 
-The MCP server is the one paid piece. It belongs to [Vale CMS](https://vale.sh/cms) and gives an assistant the engine itself to check a rule against, rather than the docs about it. See [MCP](mcp.md).
+The MCP server is the one paid piece. It belongs to [Vale CMS](https://vale.sh/cms) and lets an assistant check a rule against the engine itself. See [MCP](mcp.md).

@@ -1,12 +1,12 @@
 # Testing
 
-Learn how to check that your rules still fire where you think they do.
+Learn how to check that your rules still match where you think they do.
 
 {% hint style="info" %}
 Requires Vale v3.24.0 or later.
 {% endhint %}
 
-A rule is a small program, and a rule that matches nothing fails silently: it loads, runs, and reports success. `vale test` runs cases you keep beside your rules, each a short document and the alerts linting it must produce.
+A rule is a small program, and a rule that doesn't match anything fails silently: it loads, runs, and reports success. `vale test` runs cases you keep beside your rules, each a short document and the alerts linting it must produce.
 
 ```console
 $ vale test
@@ -15,7 +15,7 @@ $ vale test
 
 ## [Writing cases](testing.md#writing-cases)
 
-Cases live in one of two places. A rule can carry its own under `tests`:
+Cases live in one of two places. A rule can include its own under `tests`:
 
 ```yaml
 # styles/House/Hedging.yml
@@ -74,12 +74,12 @@ Or a file ending in `.test.yml` holds a list of them:
 | `format`   | The extension `input` is read as, such as `rst` or `.adoc`. Defaults to `md`.                                                  |
 | `rule`     | A rule file, relative to the test file, to run alone. See [Isolated and project cases](testing.md#isolated-and-project-cases). |
 | `view`     | A [View](views.md) under `config/views` to read `input` through, for a rule scoped to one of its pieces.                       |
-| `lang`     | The language `input` is written in, as [`Lang`](../keys/lang.md) names it, for an isolated case; its model comes from `config/models` on the search path. A project case takes its language from the project's sections. |
+| `lang`     | The language `input` is written in, as [`Lang`](../keys/lang.md) names it, for an isolated case. Its model comes from `config/models` on the search path. A project case takes its language from the project's sections. |
 | `want`     | The exact alerts, one `line:column:Check:message` per line. An empty `want` asserts that there are none.                       |
 | `contains` | Text, or a list of texts, that the alerts must include.                                                                        |
 | `absent`   | Text, or a list of texts, that the alerts must not include.                                                                    |
 
-Every case needs at least one of `want`, `contains`, or `absent`. A case that asserts nothing passes whatever the rule does, so Vale refuses to run it. Use `want` when the exact output matters, `contains` when only some of it does, such as which rule fired or which text it matched, and `absent` to pin down what a rule must leave alone. `about` is for the reader: why the case exists, or the issue it came from.
+Each case needs at least one of `want`, `contains`, or `absent`. A case that asserts nothing passes whatever the rule does, so Vale refuses to run it. Use `want` when the exact output matters, `contains` when only some of it does, such as which rule produced an alert or which text it matched, and `absent` to pin down what a rule must leave alone. `about` is for the reader: why the case exists, or the issue it came from.
 
 ### [The input](testing.md#the-input)
 
@@ -95,7 +95,7 @@ Every case needs at least one of `want`, `contains`, or `absent`. A case that as
     3:9:House.Hedging:Consider removing 'perhaps'.
 ```
 
-A one-line `input` can be written plainly, but quote it if it contains `: ` or starts with a character YAML reads as syntax, such as `#`, `-`, or `[`: `input: 'Note: this is perhaps it.'`
+You can write a one-line `input` plainly. Quote it if it contains `: ` or starts with a character YAML reads as syntax, such as `#`, `-`, or `[`: `input: 'Note: this is perhaps it.'`
 
 ### [Formats](testing.md#formats)
 
@@ -128,9 +128,9 @@ tests:
 
 ## [Isolated and project cases](testing.md#isolated-and-project-cases)
 
-An **isolated** case runs one rule and nothing else: not the rest of its style, and not your `.vale.ini`. It reports at every level, so it says exactly what the rule matches. A case under a rule's `tests` is isolated to that rule, and a `.test.yml` case is isolated when it names a `rule`.
+An **isolated** case runs one rule and nothing else: not the rest of its style, and not your `.vale.ini`. It reports at every level, so it says exactly what the rule matches. A case under a rule's `tests` is isolated to that rule, and a `.test.yml` case is isolated when it specifies a `rule`.
 
-A **project** case, a `.test.yml` case with no `rule`, is linted by the configuration a `vale` run in that directory would use: its sections, scopes, `MinAlertLevel`, and every style it enables. It tells you whether the rule reaches real documents. Its `format` has to be one your configuration covers, or nothing is linted.
+A **project** case, a `.test.yml` case with no `rule`, is linted by the configuration a `vale` run in that directory would use: its sections, scopes, `MinAlertLevel`, and every style it enables. It tells you whether the rule applies to real documents. Its `format` has to be one your configuration covers, or nothing is linted.
 
 An isolated rule keeps the name a project run gives it, so a case can move between the two without its `want` changing.
 
@@ -170,7 +170,7 @@ A failing case of a [`sequence`](../checks/sequence.md) rule also shows `input` 
 
 ### [Coverage](testing.md#coverage)
 
-A passing run says nothing about the rules no case touches. With `--coverage`, every rule under the given paths has to produce an alert in at least one case:
+A passing run doesn't tell you anything about rules without a case. With `--coverage`, every rule under the given paths has to produce an alert in at least one case:
 
 ```console
 $ vale test --coverage
@@ -234,19 +234,19 @@ A script that doesn't compile fails every case of its rule as one that could not
 
 ## [Packages](testing.md#packages)
 
-A package whose rules [extend](styles.md#extending-another-rule) another package names it in the package's own `.vale.ini`, the way [Packages](../keys/packages.md) does for a project. `vale test` installs what a package names into a temporary `StylesPath` for the run, so its cases resolve without a synced project. A package already on the `StylesPath` is used as it is.
+A package whose rules [extend](styles.md#extending-another-rule) another package names it in the package's own `.vale.ini`, the way [Packages](../keys/packages.md) does for a project. `vale test` installs what a package names into a temporary `StylesPath` for the run. Its cases then resolve without a synced project. A package already on the `StylesPath` is used as it is.
 
-A package root is the nearest directory above a rule that holds both a `.vale.ini` and a `styles` directory, the layout `vale sync` installs.
+A package root is the nearest directory above a rule that contains both a `.vale.ini` and a `styles` directory, the layout `vale sync` installs.
 
 ## [In CI](testing.md#in-ci)
 
 `vale test` exits like a lint run:
 
-| Code | Meaning                                                                                                                 |
-| ---- | ----------------------------------------------------------------------------------------------------------------------- |
-| `0`  | Every case passed.                                                                                                      |
-| `1`  | A case failed, or, with `--coverage`, a rule was uncovered.                                                             |
-| `2`  | A case could not run: a rule that failed to load, a View that was not found, or no cases at all. The rest still report. |
+| Code | Meaning                                                                                                                              |
+| ---- | ------------------------------------------------------------------------------------------------------------------------------------ |
+| `0`  | Each case passed.                                                                                                                    |
+| `1`  | A case failed, or, with `--coverage`, a rule was uncovered.                                                                          |
+| `2`  | A case could not run because a rule failed to load or a View was not found, or the run didn't find any cases. The rest still report. |
 
 ```yaml
 # .github/workflows/styles.yml

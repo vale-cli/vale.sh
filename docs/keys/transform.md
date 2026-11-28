@@ -23,11 +23,11 @@ Transform = docbook/html.xsl
 Transform = xsd/html.xsl
 ```
 
-DITA has a converter of its own and does not use this key; see [DITA](../formats/dita.md).
+DITA has a converter of its own and does not use this key. See [DITA](../formats/dita.md).
 
 ## [Paths](transform.md#paths)
 
-A relative path is resolved against **the directory holding your `.vale.ini`**—not the working directory, and not your `StylesPath`. A leading `~` is expanded.
+A relative path is resolved against **the directory holding your `.vale.ini`**, not the working directory and not your `StylesPath`. A leading `~` is expanded.
 
 ```ini
 # Both of these are relative to .vale.ini:

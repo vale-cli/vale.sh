@@ -38,7 +38,7 @@ $ brew install vale
 {% endtab %}
 
 {% tab title="Linux" %}
-On Debian and Ubuntu, the [pkg.haus](https://pkg.haus) APT archive ships Vale for stable, testing, and unstable (amd64 and arm64), built from source at release tags. Set up the archive per the instructions on [pkg.haus](https://pkg.haus), then:
+On Debian and Ubuntu, the APT archive at [pkg.haus](https://pkg.haus) provides Vale for stable, testing, and unstable (amd64 and arm64), built from source at release tags. Set up the archive per the instructions on [pkg.haus](https://pkg.haus), then:
 
 ```bash
 $ sudo apt install vale
@@ -56,7 +56,7 @@ $ sudo pacman -S vale
 $ sudo snap install vale
 ```
 
-Many other distributions—Alpine, openSUSE, Void, and more—package Vale in their own repositories; see [the full list](https://repology.org/project/vale/versions).
+Many other distributions (Alpine, openSUSE, Void, and more) package Vale in their own repositories. See [the full list](https://repology.org/project/vale/versions).
 {% endtab %}
 
 {% tab title="FreeBSD" %}
@@ -72,7 +72,7 @@ There are no official FreeBSD binaries on the releases page, so the port is also
 
 ## [Installing Vale with a project](installation.md#installing-vale-with-a-project)
 
-A system-wide install leaves each contributor on whatever version they happened to get, and your CI on another. Declaring Vale in the project instead pins one version for everyone—which matters because a new release can add rules or change what an existing one matches.
+A system-wide install leaves each contributor on whatever version they happened to get, and your CI on another. Declaring Vale in the project instead pins one version for everyone. This matters because a new release can add rules or change what an existing one matches.
 
 [mise](https://mise-versions.jdx.dev/tools/vale) does this for any project, whatever it's written in:
 
@@ -80,7 +80,7 @@ A system-wide install leaves each contributor on whatever version they happened 
 $ mise use vale@3.29.0
 ```
 
-If your project already installs its tools through a language's package manager, Vale is packaged there too. Each of these downloads the same release binaries and puts `vale` on your `$PATH`:
+If your project already installs its tools through the package manager for its language, Vale is packaged there too. Each of these downloads the same release binaries and puts `vale` on your `$PATH`:
 
 {% tabs %}
 {% tab title="npm" %}
@@ -88,7 +88,7 @@ If your project already installs its tools through a language's package manager,
 $ npm install --save-dev @vvago/vale
 ```
 
-Adds [`@vvago/vale`](https://www.npmjs.com/package/@vvago/vale) to `devDependencies`; run it with `npx vale`.
+Adds [`@vvago/vale`](https://www.npmjs.com/package/@vvago/vale) to `devDependencies`. Run it with `npx vale`.
 {% endtab %}
 
 {% tab title="PyPI" %}
@@ -96,7 +96,7 @@ Adds [`@vvago/vale`](https://www.npmjs.com/package/@vvago/vale) to `devDependenc
 $ pip install vale
 ```
 
-Installs [`vale`](https://pypi.org/project/vale/) into the active environment; pin it in `requirements.txt` or your `pyproject.toml`.
+Installs [`vale`](https://pypi.org/project/vale/) into the active environment. Pin it in `requirements.txt` or your `pyproject.toml`.
 {% endtab %}
 
 {% tab title="conda" %}
@@ -116,7 +116,7 @@ For linting in CI, the [Vale GitHub Action](https://github.com/vale-cli/vale-act
 
 ## [Building from source](installation.md#building-from-source)
 
-Vale is a Go program, so `go install` builds it for any platform Go supports—including those without a release archive:
+Vale is a Go program, so `go install` builds it for any platform Go supports, including those without a release archive:
 
 ```bash
 $ go install github.com/vale-cli/vale/v3/cmd/vale@latest
@@ -132,7 +132,7 @@ Vale is available on Docker Hub at [jdkato/vale](https://hub.docker.com/r/jdkato
 $ docker pull jdkato/vale
 ```
 
-Vale requires three components: a `.vale.ini` config file, a `StylesPath` directory (specified in the config file), and a document or directory to lint.
+To run, Vale needs a `.vale.ini` config file, a `StylesPath` directory (specified in the config file), and a document or directory to lint.
 
 Here's an example of calling Vale with locally-defined components (assuming `$(pwd)/fixtures/styles/demo` contains a config file):
 
@@ -144,7 +144,7 @@ $ docker run --rm \
              jdkato/vale .
 ```
 
-By default, the image supports HTML, Markdown, AsciiDoc, and reStructuredText content. If you need support for DITA as well, you'll need to add the relevant dependencies—for example,
+By default, the image supports HTML, Markdown, AsciiDoc, and reStructuredText content. If you need support for DITA as well, you'll need to add the relevant dependencies. For example:
 
 ```dockerfile
 # Choose a version to pin:
@@ -159,13 +159,13 @@ ENTRYPOINT ["/bin/vale"]
 
 ## [Keeping Vale up to date](installation.md#keeping-vale-up-to-date)
 
-A system package manager updates Vale along with everything else it installed. A version pinned in a project stays put until someone moves it, which is what dependency-update bots are for. None of them know anything about Vale: they read the file where you wrote a version number, ask the registry that file points at whether a newer one exists, and open a pull request that changes the number. The pull request's CI run is the useful part. A new release can add rules to a package or change what an existing rule matches, so a red build on the bump shows the new alerts before anyone else sees them.
+If you install Vale with your system's package manager, it's updated along with everything else that manager installed. A version pinned in a project doesn't change until someone updates it, which is what dependency-update bots are for. None of them know anything about Vale. They read the file where you wrote a version number and ask the registry that file points at whether a newer one exists. If one does, they open a pull request that changes the number. The pull request's CI run is the useful part. A new release can add rules to a package or change what an existing rule matches, so a red build on the bump shows the new alerts before anyone else sees them.
 
 ### [Renovate](installation.md#renovate)
 
-[Renovate](https://github.com/renovatebot/renovate) runs either as the hosted Mend app for GitHub or self-hosted from an npm package, a Docker image, or its own GitHub Action, and it supports GitHub, GitLab, Bitbucket, Azure DevOps, and Forgejo. Once installed, it opens a first pull request that adds a `renovate.json` and lists everything it found; merging that turns it on.
+[Renovate](https://github.com/renovatebot/renovate) runs either as the hosted Mend app for GitHub or self-hosted from an npm package, a Docker image, or its own GitHub Action, and it supports GitHub, GitLab, Bitbucket, Azure DevOps, and Forgejo. Once installed, it opens a first pull request that adds a `renovate.json` and lists everything it found. Merging that pull request turns it on.
 
-From then on, each run scans the repository for the manifest files its *managers* recognize, looks each dependency up in the registry it belongs to, and opens one pull request per available update. Every way of pinning Vale from the previous section maps to a manager:
+From then on, each run scans the repository for the manifest files its *managers* recognize and looks each dependency up in the registry it belongs to. It then opens one pull request per available update. Every way of pinning Vale from the previous section maps to a manager:
 
 | Where Vale is pinned | Manager | Looks up versions in |
 | :-- | :-- | :-- |
@@ -186,11 +186,11 @@ All of these are on by default except `pre-commit`, which Renovate leaves off be
 }
 ```
 
-Two pins need a number to bump. A `FROM jdkato/vale` line with no tag floats, so Renovate has nothing to update; pin it to `jdkato/vale:v3.20.0` as in the Docker example above. And the Vale GitHub Action's `version` input defaults to `latest`: Renovate bumps the action's own reference, but a pinned `version: 3.20.0` inside a workflow is plain YAML to it and needs a [custom manager](https://docs.renovatebot.com/modules/manager/regex/) to be tracked.
+The Docker and GitHub Action pins need a number to bump. A `FROM jdkato/vale` line with no tag floats, so Renovate has nothing to update. Pin it to `jdkato/vale:v3.20.0` as in the Docker example above. And the Vale GitHub Action's `version` input defaults to `latest`: Renovate bumps the action's own reference, but a pinned `version: 3.20.0` inside a workflow is plain YAML to it and needs a [custom manager](https://docs.renovatebot.com/modules/manager/regex/) to be tracked.
 
 ### [Dependabot](installation.md#dependabot)
 
-[Dependabot](https://docs.github.com/en/code-security/dependabot) is built into GitHub, so there is nothing to install. It reads one file, `.github/dependabot.yml`, and each `updates` entry names a package ecosystem, the directory holding its manifest, and how often to check. Every entry is checked independently and opens its own pull requests.
+[Dependabot](https://docs.github.com/en/code-security/dependabot) is built into GitHub, so there is nothing to install. It reads one file, `.github/dependabot.yml`, and each `updates` entry names a package ecosystem, the directory holding its manifest, and how often to check. Each entry is checked independently and opens its own pull requests.
 
 | Where Vale is pinned | `package-ecosystem` |
 | :-- | :-- |
@@ -219,4 +219,4 @@ updates:
       interval: weekly
 ```
 
-Dependabot has no ecosystem for mise or pre-commit, so a `mise.toml` pin or a `.pre-commit-config.yaml` revision stays where it is. For pre-commit, [pre-commit.ci](https://pre-commit.ci) fills the gap with a weekly pull request that bumps every hook's `rev`. The same tag rule applies as with Renovate: an untagged `FROM jdkato/vale` is never updated.
+Dependabot has no ecosystem for mise or pre-commit, so a `mise.toml` pin or a `.pre-commit-config.yaml` revision stays where it is. For pre-commit, [pre-commit.ci](https://pre-commit.ci) fills the gap with a weekly pull request that bumps every hook's `rev`. As with Renovate, an untagged `FROM jdkato/vale` is never updated.

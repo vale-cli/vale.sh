@@ -2,11 +2,11 @@
 
 Learn how Vale handles reStructuredText content.
 
-Vale reads reStructuredText with [rstgo](https://github.com/jdkato/rstgo), a Go port of Docutils' `rst2html` whose output matches Docutils 0.23 byte for byte. Nothing needs to be installed: no Python, no `docutils`, and no `rst2html` on your `$PATH`.
+Vale reads reStructuredText with [rstgo](https://github.com/jdkato/rstgo), a Go port of Docutils' `rst2html` whose output matches Docutils 0.23 byte for byte. You don't need to install Python or `docutils`, or have `rst2html` on your `$PATH`.
 
 The supported extensions are `.rst` and `.rest`.
 
-A [Sphinx](sphinx.md) project is read the same way; that page covers its directives and roles.
+A [Sphinx](sphinx.md) project is read the same way. The Sphinx page covers its directives and roles.
 
 By default, Vale ignores:
 
@@ -16,9 +16,9 @@ By default, Vale ignores:
 
 ## [Directives and roles](restructuredtext.md#directives-and-roles)
 
-Docutils defines the standard directives and roles. A Sphinx project uses Sphinx's as well, and whatever its extensions add, and on its own Docutils drops the body of a directive it doesn't know. Vale fills the gap before parsing: the body of an unknown directive is read as prose, and the text of an unknown role as code, which is what nearly every Sphinx directive and role amounts to. So `versionadded`, `seealso`, a `tab`, or a `grid` card is linted like any paragraph, and `:func:` or `:doc:` is left alone, without Sphinx being installed.
+Docutils defines the standard directives and roles. A Sphinx project uses Sphinx's as well, and whatever its extensions add, and on its own Docutils drops the body of a directive it doesn't know. Vale fills the gap before parsing. It reads the body of an unknown directive as prose and the text of an unknown role as code, which is how nearly every Sphinx directive and role behaves. So `versionadded`, `seealso`, a `tab`, or a `grid` card is linted like any paragraph, and `:func:` or `:doc:` is left alone, without Sphinx being installed.
 
-The exceptions Vale knows are Sphinx's own: `toctree`, `literalinclude`, `math`, the `auto*` family, and the doctest blocks are not prose; `ref`, `doc`, `term`, `guilabel`, and `menuselection` carry prose. A reference written with a title, ``:ref:`the setup guide <setup>` ``, is linted as its title; a bare target is code. A project names what its extensions add in a `[sphinx]` section:
+The exceptions Vale knows are Sphinx's own: `toctree`, `literalinclude`, `math`, the `auto*` family, and the doctest blocks are not prose; `ref`, `doc`, `term`, `guilabel`, and `menuselection` contain prose. A reference written with a title, ``:ref:`the setup guide <setup>` ``, is linted as its title, while a bare target is code. A project lists what its extensions add in a `[sphinx]` section:
 
 ```ini
 [sphinx]

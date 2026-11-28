@@ -2,11 +2,11 @@
 
 Learn how to lint plain text that has structure but no markup.
 
-A commit message is a subject, a blank line, a body, and trailers. A subtitle file is a run of cues, each an index, a timing, and a line or two of text. A transcript is a series of turns, each opened by a name. None of that is markup, so Vale reads such a file as lines, and a rule has no way to say “the subject” or “the model’s turn.”
+Commit messages have a subject, a blank line, a body, and trailers. Subtitle files contain a run of cues, each with an index, a timing, and a line or two of text. Transcripts consist of turns, each opened by a name. None of that is markup, so Vale reads such a file as lines, and a rule has no way to say “the subject” or “the model’s turn.”
 
-A `textfsm` [View](../topics/views.md) fixes that. It reads the file through a template in the form Google’s [TextFSM](https://github.com/google/textfsm/wiki/TextFSM) defined for parsing the output of network devices: a list of named values, then a state machine whose rules are regular expressions. What the template captures becomes [scopes](../topics/scopes.md), each placed at the line and column it came from, so a rule reaches the subject the way it reaches a heading and its alert lands where the text is.
+A `textfsm` [View](../topics/views.md) fixes that. It reads the file through a template in the form Google’s [TextFSM](https://github.com/google/textfsm/wiki/TextFSM) defined for parsing the output of network devices: a list of named values, then a state machine whose rules are regular expressions. What the template captures becomes [scopes](../topics/scopes.md), each placed at the line and column it came from. A rule can then target the subject the same way it targets a heading, and its alerts appear where the text is.
 
-Vale runs the template itself. Nothing needs installing, and the patterns use the same [regex](regex.md) dialect as every rule.
+Vale runs the template itself. You don't need to install anything, and the patterns use the same [regex](regex.md) dialect as every rule.
 
 {% hint style="info" %}
 Requires Vale v3.21.0 or later.
@@ -14,7 +14,7 @@ Requires Vale v3.21.0 or later.
 
 ## A first template
 
-Take the commit message. Three parts of it deserve rules of their own: the subject, the body, and the trailers at the end.
+Take the commit message. The subject, the body, and the trailers at the end each deserve rules of their own.
 
 ```
 fix: report the shortfall at the scope that fell short.
@@ -25,7 +25,7 @@ position of its own.
 Signed-off-by: Joseph Kato <j@example.com>
 ```
 
-The View lives at `<StylesPath>/config/views/Commit.yml`:
+Save the View as `<StylesPath>/config/views/Commit.yml`:
 
 ```yaml
 engine: textfsm
@@ -55,13 +55,13 @@ scopes:
 
 Read the template from the top:
 
-* Three `Value` lines declare what to capture: a name and the pattern that fills it. `Subject` keeps one line. `Body` and `Trailer` are `List` values, which keep every line they capture rather than the last.
-* `Start` is the state reading begins in. Its one rule matches the first line, captures it as the subject, and moves to the `Body` state.
-* In `Body`, each line is tried against the rules in order, and the first to match wins. A line starting with `#` is Git’s own commentary, and `-> Next` reads past it without capturing anything. A trailer looks like `Word: text`, or is the `BREAKING CHANGE:` line a conventional commit ends with, so it’s tried next; anything else is body.
+* The `Value` lines declare what to capture, each with a name and the pattern that fills it. `Subject` keeps one line. `Body` and `Trailer` are `List` values, which keep every line they capture rather than the last.
+* `Start` is the state reading begins in. Its one rule captures the first line as the subject and moves to the `Body` state.
+* In `Body`, each line is tried against the rules in order, and the first one that matches is used. A line starting with `#` is Git’s own commentary, and `-> Next` reads past it without capturing anything. A trailer looks like `Word: text`, or is the `BREAKING CHANGE:` line a conventional commit ends with, so it’s tried next. Anything else is body.
 
-`${Subject}` stands for the value’s pattern and captures what it matches. The `->` says what happens on a match; a rule without one reads the next line in the same state.
+`${Subject}` stands for the value’s pattern and captures what it matches. The `->` says what happens on a match. A rule without one reads the next line in the same state.
 
-The `scopes` then name the values to lint. `subject` and `trailer` are linted as plain text. `body` has `type: md`, so it’s parsed as Markdown and a rule scoped to `body` sees paragraphs and inline code the way it does in a `.md` file.
+The `scopes` then list the values to lint. `subject` and `trailer` are linted as plain text. `body` has `type: md`, so it’s parsed as Markdown and a rule scoped to `body` sees paragraphs and inline code the way it does in a `.md` file.
 
 Wire the View to the file in `.vale.ini`. Sections match by path, so a file without an extension is fine:
 
@@ -72,7 +72,7 @@ BasedOnStyles = Vale, House
 View = Commit
 ```
 
-A rule reaches a scope by name:
+A rule targets a scope by name:
 
 ```yaml
 extends: existence
@@ -83,7 +83,7 @@ raw:
   - '\.$'
 ```
 
-And the alerts land in the file, not in the value:
+And the alerts are reported at their positions in the file, not in the value:
 
 ```
  COMMIT_EDITMSG
@@ -98,17 +98,17 @@ In a `commit-msg` hook, the message arrives on stdin. `--path` tells Vale which 
 vale --path=COMMIT_EDITMSG < "$1"
 ```
 
-For commit messages, this is done: the [Commits](commit-messages.md) package ships the View, the conventions, and the hook.
+For commit messages, the [Commits](commit-messages.md) package already includes the View, the conventions, and the hook.
 
-## How a template is read
+## Reading a template
 
-![The template as a state machine: Start moves to Body on a line matching Subject, capturing it; Body stays in Body on a Trailer or Body line, capturing one each; the record is emitted at the end of the file and each value becomes a scope.](../.gitbook/assets/textfsm-states.svg)
+![The template as a state machine. Start moves to Body on a line matching Subject, capturing it. Body stays in Body on a Trailer or Body line, capturing one each. The record is emitted at the end of the file, and each value becomes a scope.](../.gitbook/assets/textfsm-states.svg)
 
-A template has two parts. The values come first, one per line, up to the first blank line. Each is `Value [options] Name (pattern)`, and a line starting with `#` is a comment. The states follow: a state is a name at the left margin, and its rules are the indented lines beneath it. Every template needs a `Start` state; `End` and `EOF` are reserved.
+A template has two parts. The values come first, one per line, up to the first blank line. Each is `Value [options] Name (pattern)`, and a line starting with `#` is a comment. The states come next. A state is a name at the left margin, and its rules are the indented lines beneath it. Each template needs a `Start` state, and `End` and `EOF` are reserved.
 
-In the View’s YAML, the template is a block scalar (`|`), so backslashes in patterns need no escaping, and the indent under a state name is what marks a line as a rule.
+In the View’s YAML, the template is a block scalar (`|`), so backslashes in patterns don't need escaping, and the indent under a state name is what marks a line as a rule.
 
-Reading is one line at a time. The current state’s rules are tried in order, and the first to match decides what happens next. A line no rule matches is skipped: it captures nothing, the state stays the same, and the line lands in no scope.
+Reading is one line at a time. The current state’s rules are tried in order, and the first to match decides what happens next. If no rule matches a line, Vale skips it. The line doesn't capture anything or change the state, and it isn't part of any scope.
 
 A rule is `^pattern -> action`, where the action is any of the following, and `Line.Record` pairs are joined with a dot:
 
@@ -117,7 +117,7 @@ A rule is `^pattern -> action`, where the action is any of the following, and `L
 | `Next` | Read the next line. The default. |
 | `Continue` | Keep trying the rules below against the same line. A `Continue` rule can’t change state. |
 | `Record` | Emit the captures in hand as a record and start a fresh one. |
-| `NoRecord` | Emit nothing. The default. |
+| `NoRecord` | Don’t emit a record. The default. |
 | `Clear` | Drop the captures in hand, except `Filldown` values. |
 | `Clearall` | Drop every capture, `Filldown` values included. |
 | `Error "message"` | Stop reading. Vale reports the message as an error against the View and exits. |
@@ -129,27 +129,27 @@ The options on a `Value` line change what it keeps:
 
 | Option | Effect |
 | --- | --- |
-| `List` | Every capture, in order, rather than the last one. |
-| `Filldown` | The last capture carries into the next record until a new one replaces it. |
+| `List` | Every capture, in order. Without it, a value keeps only the last. |
+| `Filldown` | The last capture is kept for the next record until a new one replaces it. |
 | `Required` | A record missing this value is dropped rather than emitted. |
 
-`Key` and `Fillup` are accepted for compatibility with TextFSM and change nothing.
+`Key` and `Fillup` are accepted for compatibility with TextFSM and don’t change anything.
 
 A record is emitted for each `Record` action, and the captures in hand at the end of the file are emitted as one more, `End` included. So a template that never says `Record` yields one record per file. An `EOF` state replaces that last record: `EOF` with a `^.* -> Record` rule keeps it, and `EOF` with no rules discards it.
 
-In a pattern, `${Name}` or `$Name` stands for the value’s pattern and captures what it matches. Everything outside it is matched but not captured, which is how `^user: ${User}` keeps the label out of the scope. Start each rule with `^`, as TextFSM does; a rule without it matches anywhere in the line.
+In a pattern, `${Name}` or `$Name` stands for the value’s pattern and captures what it matches. Everything outside it is matched but not captured, which is how `^user: ${User}` keeps the label out of the scope. Start each rule with `^`, as TextFSM does. A rule without it matches anywhere in the line.
 
 ## From captures to scopes
 
 Each scope’s `expr` names one of the template’s values, and Vale reports an error at startup if it doesn’t. The scope’s `name` is what a rule’s `scope` refers to, and `type` says how to parse the captured text: `md`, `adoc`, `html`, `rst`, or `org`. Without a `type`, the text is linted as plain lines.
 
-Consecutive lines a `List` value captures are joined into one block, so a body reads as the paragraphs it is rather than one block per line. A gap between the lines starts a new block, and so does a change of column: a block is placed by one line and one column, so every line in it has to start where its first line does. Two values captured after labels of different lengths, such as a `msgid` and a `msgstr`, never share a column and so never join, and a rule that needs both in one block matches nothing without saying why. Capture each whole line, label included, and they align at the first column.
+Consecutive lines a `List` value captures are joined into one block. Vale then reads a body as paragraphs rather than one block per line. A gap between the lines starts a new block, and so does a change of column: a block is placed by one line and one column, so every line in it has to start where its first line does. Values captured after labels of different lengths, such as a `msgid` and a `msgstr`, never share a column and so never join. A rule that needs both in one block doesn’t match anything, and Vale doesn’t report why. Capture each whole line, label included, and they align at the first column.
 
-The blank line matters here. `(.*)` matches a blank line and captures it as empty, so the block continues and the paragraph break survives. `(.+)` doesn’t match a blank line, so the block ends and the next captured line starts another. For a body with `type: md`, `(.*)` gives one document with paragraphs, and `(.+)` gives one document per paragraph. Rules that count across a document, such as `occurrence` and `repetition`, see the difference.
+The blank line matters here. `(.*)` matches a blank line and captures it as empty, so the block continues and the paragraph break is kept. `(.+)` doesn’t match a blank line, so the block ends and the next captured line starts another. For a body with `type: md`, `(.*)` gives one document with paragraphs, and `(.+)` gives one document per paragraph. Rules that count across a document, such as `occurrence` and `repetition`, see the difference.
 
-A value the template never fills is still a scope: one empty value at the top of the file. A rule that requires text, an `occurrence` with `min`, reports there that the value is missing, and every other rule sees no text and says nothing. That is how a commit without a trailer or a body is caught.
+A value the template never fills is still a scope: one empty value at the top of the file. A rule that requires text, an `occurrence` with `min`, reports there that the value is missing, and other rules don’t see any text and don’t report anything. Use this to catch a commit that’s missing a trailer or a body.
 
-A fact about one line is a value for that line. Whether the body is separated from the subject by a blank line is a fact about line two, so a `Gap` value captures it, `^${Subject} -> Gap` then `^${Gap} -> Body`, and an `existence` rule on `\A\S` scoped to `gap` reports a body that starts too soon, on the line where it does. A fact that spans two values, a `!` in the subject needing a `BREAKING CHANGE:` footer, is a [`conditional`](../checks/conditional.md) whose `in` names the scope its consequent lives in.
+A fact about one line is a value for that line. Whether the body is separated from the subject by a blank line is a fact about line two, so a `Gap` value captures it, `^${Subject} -> Gap` then `^${Gap} -> Body`, and an `existence` rule on `\A\S` scoped to `gap` reports a body that starts too soon, on the line where it does. A fact that spans two values, a `!` in the subject needing a `BREAKING CHANGE:` footer, is a [`conditional`](../checks/conditional.md) whose `in` specifies the scope that contains its consequent.
 
 A `textfsm` View takes the file over. A file the section matches is read by the template, whatever its extension, even when it’s `.md`. Only the values a scope names are linted; the rest of the file is never seen by a rule, unless the rule’s scope is `raw`, which still reads the whole file.
 
@@ -191,11 +191,11 @@ scopes:
     expr: Cue
 ```
 
-`Index` and `Timing` are captured so that the template can tell where it is, but no scope names them, so no rule ever sees a timestamp. A rule scoped to `cue` runs over the text of each cue, and a two-line cue is one block at the line and column its first line starts on.
+`Index` and `Timing` are captured so that the template can tell where it is. Rules never see a timestamp because no scope lists them. A rule scoped to `cue` runs over the text of each cue, and a two-line cue is one block at the line and column its first line starts on.
 
 ## One side of a conversation
 
-A transcript alternates between a user and a model, and only one side is yours to lint:
+A transcript alternates between a user and a model. Only one side is yours to lint:
 
 ```
 user: Summarize the change in one line.
@@ -204,7 +204,7 @@ It's worth noting that this only affects occurence rules.
 user: Thanks, that's clear enuf.
 ```
 
-A turn runs until the next label, so each state needs to know when the turn is over before it knows whose turn comes next:
+A turn runs until the next label. Each state needs to know when the turn is over before it knows whose turn comes next:
 
 ```yaml
 engine: textfsm
@@ -233,9 +233,9 @@ scopes:
     type: md
 ```
 
-The first rule in each state is the trick. It matches any label, captures nothing, emits the turn in hand as a record, and continues, so the rules below it capture the new turn into a fresh record. A line with no label is a continuation of whichever turn is open.
+The first rule in each state is the trick. It matches any label without capturing it and emits the turn in hand as a record. Because of `Continue`, the rules below it then capture the new turn into a fresh record. A line with no label is a continuation of whichever turn is open.
 
-`User` is captured so the prompt’s lines have somewhere to go, but no scope names it, so the misspelling on the last line goes unreported:
+`User` is captured so the prompt’s lines have somewhere to go. Because no scope lists it, Vale doesn’t report the misspelling on the last line:
 
 ```
  transcript.txt
@@ -245,9 +245,9 @@ The first rule in each state is the trick. It matches any label, captures nothin
 
 The column is the column of the capture, so an alert on the first line of a turn points past the label.
 
-## Seeing what a template captured
+## Debugging a template
 
-A template can be right and still surprise you, because a line no rule matches vanishes without a word. The quickest way to see what a scope holds is a rule that reports every line of it:
+A template can be right and still surprise you, because Vale silently skips unmatched lines. The quickest way to see what a scope holds is a rule that reports every line of it:
 
 ```yaml
 extends: existence

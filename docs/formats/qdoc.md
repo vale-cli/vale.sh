@@ -6,7 +6,7 @@ Learn how Vale handles QDoc content.
 Requires Vale v3.18.0 or later.
 {% endhint %}
 
-[QDoc](https://doc.qt.io/qt-6/01-qdoc-manual.html) is Qt's documentation markup: LaTeX-style commands inside `/*! ... */` comment blocks. Support is built in—nothing to install.
+[QDoc](https://doc.qt.io/qt-6/01-qdoc-manual.html) is Qt's documentation markup: LaTeX-style commands inside `/*! ... */` comment blocks. Support is built in. There's nothing to install.
 
 The supported extensions are `.qdoc` and `.qdocinc`. An include file is the body of a comment without the `/*! ... */` around it, and is read that way. Doc comments in C++ and QML sources lint through a [format association](../topics/.vale.ini.md#format-associations):
 
@@ -19,15 +19,15 @@ qml = qdoc
 BasedOnStyles = Vale
 ```
 
-Alerts are mapped back to their positions in the source file. Only block comments (`/*! ... */`) are treated as documentation—`//` line comments are code.
+Alerts are mapped back to their positions in the source file. Only block comments (`/*! ... */`) are treated as documentation. `//` line comments are code.
 
 By default, Vale ignores:
 
 * Code blocks: `\code`, `\badcode`, `\qml`, and friends, through their `\end` commands.
 * Omitted text: `\omit ... \endomit`.
-* Topic and context commands: `\fn`, `\class`, `\page`, `\module`, `\since`, and the rest of their family—the whole line is markup.
+* Topic and context commands: `\fn`, `\class`, `\page`, `\module`, `\since`, and the rest of their family (the whole line is markup).
 * Quoting commands: `\snippet`, `\quotefile`, `\printline`, and so on.
-* Links' targets: `\l {target} {text}` keeps its text and drops its target; `\sa` lines say nothing.
+* Links' targets: `\l {target} {text}` keeps its text and drops its target, and `\sa` lines are skipped.
 * Inline code: `\c` and `\a` arguments.
 
 Everything else is prose in its scope: `\title` and `\section1` through `\section4` are headings, `\li` items are `list` entries or table cells, `\b` and `\e` are `strong` and `emphasis`, and `\caption` is a figure caption.

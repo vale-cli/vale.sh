@@ -51,7 +51,7 @@ swap:
   '(?:give|gave) rise to': lead to
 ```
 
-You can also reference capture groups for more dynamic substitutions:
+You can also reference capture groups in substitutions:
 
 ```yaml
 swap:

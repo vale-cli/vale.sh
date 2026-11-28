@@ -28,7 +28,7 @@ Given a document written in dense, abstract prose, the rule above reports:
 
 ## [metrics](readability.md#metrics)
 
-Each metric estimates the years of education a reader needs to understand the text on a first reading, expressed as a US grade level. They disagree with one another—they weigh sentence length, syllable count, and word length differently—so the number you get depends on which you choose.
+Each metric estimates the years of education a reader needs to understand the text on a first reading, expressed as a US grade level. They don't agree with one another. Each weighs sentence length, syllable count, and word length differently, and the number you get depends on which you choose.
 
 When you list more than one, Vale averages them:
 
@@ -44,7 +44,7 @@ metrics:
   - Coleman-Liau
 ```
 
-Averaging several metrics is usually steadier than trusting one, since each has text it handles badly—`SMOG`, for example, is calibrated for health writing.
+Averaging several metrics is usually steadier than trusting one, since each has text it handles badly (`SMOG`, for example, is calibrated for health writing).
 
 ## [message](readability.md#message)
 
@@ -68,4 +68,4 @@ metrics:
 grade: 10
 ```
 
-A grade level is calculated from whole sentences, so scoring anything smaller than a paragraph—a heading, a list item, a table cell—wouldn’t mean anything, even though the scope allows it. Scoping a `readability` rule requires Vale v3.21.0 or later.
+A grade level is calculated from whole sentences, so scoring anything smaller than a paragraph (a heading, a list item, a table cell) wouldn’t mean anything, even though the scope allows it. Scoping a `readability` rule requires Vale v3.21.0 or later.

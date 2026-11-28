@@ -9,7 +9,7 @@ Requires Vale v3.21.0 or later. Earlier versions can read the Markdown cells wit
 A [Jupyter](https://jupyter.org/) notebook is a JSON file of cells. Vale reads it cell by cell, in order:
 
 * A Markdown cell is linted as [Markdown](markdown.md).
-* A code cell is linted as [code](code.md) in the kernel's language, so its comments are the prose. A cell that opens with the `%%markdown` (or `%%md`) magic is prose instead.
+* A code cell is linted as [code](code.md) in the kernel's language. Its comments are the prose. Cells that open with the `%%markdown` (or `%%md`) magic are prose instead.
 * Raw cells and cell outputs are skipped.
 
 The supported extension is `.ipynb`:
@@ -19,11 +19,11 @@ The supported extension is `.ipynb`:
 BasedOnStyles = Vale
 ```
 
-An alert's line and column are those of the `.ipynb` file itself: the position of the text inside the JSON string that holds it.
+An alert's line and column are those of the `.ipynb` file itself: the position of the text inside the JSON string that contains it.
 
 ## [Code cells](jupyter.md#code-cells)
 
-The kernel's language comes from the notebook's `kernelspec`, then from its `language_info`. A cell that names its own language, as VS Code does in the cell's metadata, is linted as that language instead.
+The kernel's language comes from the notebook's `kernelspec`, then from its `language_info`. If a cell's metadata specifies its own language (as VS Code does), the cell is linted as that language instead.
 
 | Kernel language                   | Linted as  |
 | --------------------------------- | ---------- |
@@ -47,11 +47,11 @@ The kernel's language comes from the notebook's `kernelspec`, then from its `lan
 | `scala`                           | Scala      |
 | `powershell`                      | PowerShell |
 
-A comment carries the same scopes it would in a source file, `text.comment.line.py` for a one-line Python comment, so a rule can target notebook code by language. Code cells in a language that is not listed, a Bash kernel for one, are skipped.
+A comment has the same scopes it would in a source file (`text.comment.line.py` for a one-line Python comment). This means that a rule can target notebook code by language. Code cells in a language that is not listed, a Bash kernel for one, are skipped.
 
 ## [Older notebooks](jupyter.md#older-notebooks)
 
-Notebooks with `nbformat` 3 are read too: cells are found in each worksheet, a heading cell is read as a Markdown heading of its level, and a code cell's `language` field names its language.
+Vale also reads notebooks with `nbformat` 3. It finds cells in each worksheet and reads a heading cell as a Markdown heading of its level. For code cells, the language comes from the `language` field.
 
 ## [Views](jupyter.md#views)
 

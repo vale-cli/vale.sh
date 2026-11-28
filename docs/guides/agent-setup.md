@@ -1,8 +1,8 @@
 # Agent setup
 
-Have a coding assistant set Vale up in your repository, shape it to how your team writes, and keep its own writing linted.
+Have a coding assistant set Vale up in your repository, shape it to how your team writes, and check the assistant's writing as it works.
 
-The [Quickstart](../topics/quickstart.md) sets Vale up by hand in five steps. This guide hands the work to an assistant, using Vale's [agent tools](https://vale.sh/agents): a plugin of skills, each a set of instructions for one job, and hooks that check what the assistant writes. It covers every skill, in the order a project meets them.
+The [Quickstart](../topics/quickstart.md) sets Vale up by hand in five steps. This guide has an assistant do the work, using Vale's [agent tools](https://vale.sh/agents). These are a plugin of skills (each a set of instructions for one job) and hooks that check what the assistant writes. It covers each skill, in the order a project meets them.
 
 {% hint style="info" %}
 The commands below are for Claude Code, which installs everything as one plugin. For other assistants, see [Other assistants](agent-setup.md#other-assistants).
@@ -16,7 +16,7 @@ You need very little:
 * **A POSIX shell**, for the hooks and the skills' helper scripts. macOS and Linux have one. On Windows, install Git for Windows, which includes Git Bash.
 * **`jq`**, for the `fix`, `triage`, and `vocab` skills, which read Vale's JSON output.
 
-Two skills test the rules they write with [`vale test`](../topics/testing.md), which requires Vale v3.24.0 or later. Nothing here needs an account: the skills and the hooks run the CLI on your machine, against your files.
+The skills that write rules test them with [`vale test`](../topics/testing.md), which requires Vale v3.24.0 or later. You don't need an account: the skills and the hooks run the CLI on your machine, against your files.
 
 ## [1. Install the plugin](agent-setup.md#1-install-the-plugin)
 
@@ -57,16 +57,16 @@ In a repository that has prose and no Vale yet, run:
 /vale:onboard
 ```
 
-The result isn't a configuration and two thousand alerts. It's a baseline the team can keep: a configuration, a vocabulary, a decision for each noisy rule, and a CI job, shown as one proposal and applied on one yes.
+The result is a baseline the team can keep: a configuration, a vocabulary, a decision for each rule that would block a merge, and a CI job. The assistant shows it as one proposal and applies it on one yes.
 
 ### [What it does before asking](agent-setup.md#what-it-does-before-asking)
 
-Everything up to the proposal happens in a temp directory. Nothing in your repository changes.
+Everything up to the proposal happens in a temp directory. Your repository doesn't change.
 
 1. **It looks.** A script reads the repository and reports what there is to work with: where the prose is, translated docs, source code by language, a written style guide, existing CI and hook runners, and whether Vale is installed or configured.
 2. **It previews the candidates.** It tries the Microsoft and Google packages against your docs and takes the quieter one, unless you named a package.
 3. **It drafts the baseline.** A vocabulary from the terms spell check doesn't know, starting from any word list you already keep for cspell or another spell checker. A decision for every rule that would block a merge. Your style choices, read from how the docs are written today. The front matter fields that are URLs and shouldn't be linted.
-4. **It previews again** with all of that applied, so the numbers in the proposal are measured.
+4. **It previews again** with all of that applied. The numbers in the proposal come from that run.
 
 ### [The proposal](agent-setup.md#the-proposal)
 
@@ -118,7 +118,7 @@ Apply this as a pull request? Or tell me what to change.
 
 Read it in three parts:
 
-* **The top** is the evidence: the before and after counts, and two or three real mistakes in named files.
+* **The top** has the before and after counts, and two or three real mistakes in named files.
 * **The middle** is every editorial choice, with the default the assistant picked and the count behind it. A "yes" accepts all of it. "Use Google" or "keep contractions blocking" changes one line, and the assistant previews again without starting over.
 * **"Not included"** is everything else Vale can do for this repository, each named with one fact and switched off. Each is a separate yes, with a skill of its own.
 
@@ -128,17 +128,17 @@ The assistant writes the configuration, the ignore rules, the vocabulary, the ov
 
 By default the result is a pull request whose description is the proposal, so the rest of the team reviews the same thing you did. Say "just commit it" if you'd rather not. The assistant doesn't push to your default branch or merge the pull request itself.
 
-Three defaults are worth knowing:
+Note these defaults:
 
-* **CI starts advisory**, and on a pull request it looks only at the lines that request adds. A job that's red on its first run teaches a team to ignore it.
+* **CI starts advisory**, and on a pull request it looks only at the lines that request adds. Teams ignore a job that's red on its first run.
 * **It doesn't edit your prose.** The errors that remain are listed as findings for a follow-up, since a setup pull request that also rewrites forty pages won't be reviewed.
-* **It doesn't hide alerts.** It won't raise [`MinAlertLevel`](../keys/minalertlevel.md) or accept a typo into the vocabulary to reach a clean count.
+* **It doesn't hide alerts.** It won't raise [`MinAlertLevel`](../keys/minalertlevel.md) or accept a typo into the vocabulary to get a clean count.
 
 If the session is interrupted, run `/vale:onboard` again. It checks what exists and does only what's missing.
 
 ### [Setting up by hand instead](agent-setup.md#setting-up-by-hand-instead)
 
-`/vale:setup` does the first part alone: it installs Vale, writes a `.vale.ini` for the formats actually present, writes the ignore rules, syncs, and reports the first run. Use it when you want the configuration and intend to make the other decisions yourself.
+`/vale:setup` does only the first part. It installs Vale and writes a `.vale.ini` for the formats actually present, along with the ignore rules. Then it syncs and reports the first run. Use it when you want the configuration and intend to make the other decisions yourself.
 
 ```
 /vale:setup The prose is in docs/ and README.md. Use the Microsoft package.
@@ -159,7 +159,7 @@ BasedOnStyles = Vale
 
 See [Lang](../keys/lang.md). Spell check needs that language's dictionary, which `/vale:vocab` installs.
 
-**Comments in source code** take a section naming the extensions. Spelling starts at `warning`, since comments are full of identifiers:
+**Comments in source code** need a section that lists the extensions. Spelling starts at `warning`, since comments are full of identifiers:
 
 ```ini
 [*.{go,py}]
@@ -172,7 +172,7 @@ See [Code](../formats/code.md) for the languages Vale reads.
 
 ## [3. Make the style yours](agent-setup.md#3-make-the-style-yours)
 
-A package is a starting point. Seven skills move the configuration from Microsoft's or Google's choices to your team's.
+A package is a starting point. The skills below move the configuration from Microsoft's or Google's choices to your team's.
 
 ### [Change a style choice](agent-setup.md#change-a-style-choice)
 
@@ -191,14 +191,14 @@ Microsoft.We = NO
 
 Before writing anything, it counts what the change would flag. A choice that flags three quarters of your docs is probably the wrong one, and it says so.
 
-Four choices are the opposite of what the packages check, or something no package can know. For these the skill carries tested templates and installs one as a rule of your own:
+Some choices are the opposite of what the packages check, or something no package can know. For these, the skill includes tested templates and installs one as a rule of your own:
 
 | Choice                                  | What it installs                                  |
 | --------------------------------------- | ------------------------------------------------- |
 | Title-case headings                     | A capitalization rule, with the package's off.    |
 | Avoid contractions                      | An existence rule, with the package's off.        |
 | Preferred terms, such as `VS Code`      | A substitution rule, with your pairs and a fix.   |
-| One regional spelling                   | A spelling rule that names a regional dictionary. |
+| One regional spelling                   | A spelling rule that uses a regional dictionary.  |
 
 Each comes with [test cases](../topics/testing.md), and the skill runs `vale test --coverage` on your style before it reports.
 
@@ -214,7 +214,7 @@ It reads the whole guide and sorts every statement into one of four piles:
 
 | Pile            | Looks like                                           | What happens                                        |
 | --------------- | ---------------------------------------------------- | --------------------------------------------------- |
-| Already covered | "Use sentence case." "Avoid passive voice."          | A package rule exists; its level is set.            |
+| Already covered | "Use sentence case." "Avoid passive voice."          | A package rule exists, and its level is set.        |
 | A rule          | "Write 'sign in', not 'log in'."                     | A rule is written, with tests.                      |
 | Vocabulary      | "Our product name takes a capital Z."                | An entry in the vocabulary.                         |
 | Not checkable   | "Be warm." "Lead with the outcome."                  | Listed in the report as needing a person.           |
@@ -239,19 +239,19 @@ tests:
     want: ''
 ```
 
-Three things make these rules trustworthy:
+These details make the rules trustworthy:
 
-* **`link` points at the guide section**, so an alert takes a writer to the reason.
-* **The tests come from the guide.** Its "do" and "don't" examples were written by the people who own the rule: every "don't" must be flagged and every "do" must pass.
+* **`link` points at the guide section.** An alert takes a writer to the reason.
+* **The tests come from the guide.** Its "do" and "don't" examples were written by the people responsible for the rule: every "don't" must be flagged and every "do" must pass.
 * **Nothing new starts at `error`.** A rule begins at `warning`, or `suggestion` for length and frequency, so it can't block text written before it existed.
 
 After the tests pass, it runs the new rules over your docs and reads a sample of each rule's hits. A rule that flags hundreds of correct sentences is wrong, and it narrows the rule and adds the false positive as a test.
 
-The fourth pile is part of the result. A rule that pretends to check tone fires on the wrong sentences, and the team switches the whole style off.
+The fourth pile is part of the result. A rule written to check tone flags the wrong sentences, and the team switches the whole style off.
 
 ### [Add one rule](agent-setup.md#add-one-rule)
 
-For a single convention that no package or template covers, `/vale:rule` writes one rule. Give it the convention, a sentence that breaks it, and a sentence that must not be flagged:
+For a single convention that isn't covered by a package or template, `/vale:rule` writes one rule. Give it the convention, a sentence that breaks it, and a sentence that must not be flagged:
 
 ```
 /vale:rule Flag "simply" and "just". "Simply run the installer." should fail;
@@ -268,7 +268,7 @@ It first checks that no installed rule already does the job, since changing a le
 /vale:write-guide Put it at docs/contributing/style.md.
 ```
 
-It writes in the format your docs already use: Markdown, MDX, AsciiDoc, reStructuredText, Org, or HTML. The guide has five parts: how the checks work, what blocks a merge, the style choices and why, the words you use, and a rule reference.
+It writes in the format your docs already use: Markdown, MDX, AsciiDoc, reStructuredText, Org, or HTML. The guide covers how the checks work, what blocks a merge, the style choices and why, the words you use, and a rule reference.
 
 The facts are read, not recalled. A script lists every rule the configuration turns on, the level it runs at after your overrides, and the comment you wrote above each override as its reason. The reference table sits between markers, so it can be regenerated without touching the prose:
 
@@ -282,23 +282,23 @@ Where an override has no comment, the guide says that no reason is recorded. It 
 
 ### [Teach Vale your words](agent-setup.md#teach-vale-your-words)
 
-`/vale:vocab` handles spelling alerts on terms that are correct for your project. It collects the words `Vale.Spelling` flags, has you confirm which are yours, and adds them to a [vocabulary](../keys/vocabularies.md) at `styles/config/vocabularies/<Project>/accept.txt`.
+`/vale:vocab` handles spelling alerts on terms that are correct for your project. It collects the words `Vale.Spelling` flags and has you confirm which are yours. Then it adds them to a [vocabulary](../keys/vocabularies.md) at `styles/config/vocabularies/<Project>/accept.txt`.
 
 It does three more things:
 
-* **It imports a word list you already keep**, such as `cspell.json` or a `.wordlist.txt`, keeping only the words Vale doesn't already know.
+* **It imports a word list you already keep**, such as `cspell.json` or a `.wordlist.txt`. It keeps only the words Vale doesn't already know.
 * **It leaves front matter alone.** A flagged `id: vscode` is a URL. It adds the field to [`IgnoredScopes`](../keys/ignoredscopes.md) and doesn't accept or "fix" the word.
-* **It sets up dictionaries.** Vale's built-in dictionary accepts both "color" and "colour". To enforce one, the skill counts which way your docs lean, installs a regional dictionary such as `en_GB`, and adds a spelling rule that names it. For docs in another language it installs that language's dictionary.
+* **It sets up dictionaries.** Vale's built-in dictionary accepts both "color" and "colour". To enforce one, the skill counts which way your docs lean and installs a regional dictionary such as `en_GB`. Then it adds a spelling rule that uses it. For docs in another language it installs that language's dictionary.
 
 An accepted term is enforced as written: with `Kubernetes` in the list, Vale also flags `kubernetes`.
 
 ### [Decide what to do with a noisy run](agent-setup.md#decide-what-to-do-with-a-noisy-run)
 
-`/vale:triage` is for a configuration that already exists and reports thousands of alerts. It counts by rule, reports which few rules produce most of the output, and sorts each into a bucket:
+`/vale:triage` is for a configuration that already exists and reports thousands of alerts. It counts alerts by rule and reports which few rules produce most of the output. Then it sorts each rule into a bucket:
 
 | Bucket    | When                                         | What it writes                          |
 | --------- | -------------------------------------------- | --------------------------------------- |
-| Fix       | Few hits, and the rule is right.             | Nothing; the alerts go to `/vale:fix`.  |
+| Fix       | Few hits, and the rule is right.             | Nothing. The alerts go to `/vale:fix`.  |
 | Keep      | The rule is right and already advisory.      | Nothing.                                |
 | Downgrade | The rule is right and the backlog is real.   | A lower level, with a comment.          |
 | Disable   | The rule doesn't match how you write.        | `NO`, with a comment.                   |
@@ -307,16 +307,16 @@ It shows the plan and the exact lines, and writes them to `.vale.ini` once you a
 
 ### [Exclude what isn't prose](agent-setup.md#exclude-what-isnt-prose)
 
-A rule can be right in general and wrong about a specific piece of text: a templating tag, a shortcode, a generated block, a quotation. `/vale:ignore` takes that text out of Vale's view at the narrowest scope that works:
+A rule can be right in general and wrong about a specific piece of text, such as a templating tag, a shortcode, a generated block, or a quotation. `/vale:ignore` takes that text out of Vale's view at the narrowest scope that works:
 
 | What's being flagged                      | What it uses                                                                              |
 | ----------------------------------------- | ----------------------------------------------------------------------------------------- |
 | A recurring inline token, like `{{ var }}` | [`TokenIgnores`](../keys/tokenignores.md)                                                 |
 | A recurring block, like a shortcode pair  | [`BlockIgnores`](../keys/blockignores.md)                                                 |
 | The contents of an HTML tag               | [`IgnoredScopes`](../keys/ignoredscopes.md) or [`SkippedScopes`](../keys/skippedscopes.md) |
-| One passage, once                         | A comment in the file that names the rule                                                 |
+| One passage, once                         | A comment in the file that specifies the rule                                             |
 
-A pattern in the configuration fixes every file at once, so a comment comes last. Afterward it runs Vale again and confirms that the total dropped by the alerts it targeted and no more, since a pattern that removes extra alerts is ignoring prose.
+A pattern in the configuration applies to all files at once. A comment is the last choice. Afterward it runs Vale again and confirms that the total dropped by the alerts it targeted and no more, since a pattern that removes extra alerts is ignoring prose.
 
 ## [4. Keep it passing](agent-setup.md#4-keep-it-passing)
 
@@ -380,10 +380,10 @@ Fix these before moving on, preserving the markup exactly. Do not disable a rule
 
 The assistant fixes the alert before it moves on. The hook lints the whole file, so an error that was already there is reported along with any the edit added.
 
-Three things about it surprise people:
+Some of its behavior surprises people:
 
 * **It runs on the assistant's edits.** Saving a file in your editor does nothing. For that, use an [editor integration](lsp.md).
-* **It's silent unless there's an error.** A clean file, a file Vale doesn't lint, or a repository with no Vale configuration produces no output at all.
+* **It's silent unless there's an error.** It doesn't produce any output for a clean file, a file Vale doesn't lint, or a repository without a Vale configuration.
 * **It finds the configuration from the file.** It walks up from the edited file to the nearest `.vale.ini` and runs Vale there, so a section such as `[docs/**/*.md]` matches wherever the session started.
 
 It covers prose files, and source files too when your configuration has a section for them.
@@ -404,7 +404,7 @@ To change it for one session, set `VALE_HOOK_LEVEL` instead:
 VALE_HOOK_LEVEL=warning claude
 ```
 
-`MinAlertLevel` in `.vale.ini` decides what Vale reports at all, and this setting decides how much of that reaches the assistant. Setting it lower than `MinAlertLevel` changes nothing.
+`MinAlertLevel` in `.vale.ini` controls what Vale reports at all, and this setting controls how much of that reaches the assistant. Setting it lower than `MinAlertLevel` has no effect.
 
 ### [The commit hook](agent-setup.md#the-commit-hook)
 
@@ -449,7 +449,7 @@ Three more plugins come from the same marketplace. Each is experimental and inst
 /vale-onboard
 ```
 
-`vale-onboard` draws the `onboard` proposal as a pane beside the chat. You get a button per style package with its alert count, a button on each rule that makes it quieter, the unknown words to tick, and where Vale should run. Every press runs the preview again, so the count shown is a real one. **Apply** puts the baseline you chose in the prompt, and the assistant applies it with the `onboard` skill.
+`vale-onboard` draws the `onboard` proposal as a pane beside the chat. It has a button for each style package with its alert count and a button on each rule to make it quieter. It also lists the unknown words to tick and where Vale should run. Each press runs the preview again, so the count shown is a real one. **Apply** puts the baseline you chose in the prompt, and the assistant applies it with the `onboard` skill.
 
 In a repository that already has Vale, `/vale-checks` opens the "where it runs" part alone, with the generated workflow shown as you choose.
 
@@ -463,7 +463,7 @@ In a repository that already has Vale, `/vale-checks` opens the "where it runs" 
 
 | Tool   | What it does                                                                                                           |
 | ------ | ---------------------------------------------------------------------------------------------------------------------- |
-| `lint` | Lints a draft or a file against your rules and vocabulary, returning each alert with the replacement its rule carries. |
+| `lint` | Lints a draft or a file against your rules and vocabulary, returning each alert with the replacement its rule defines. |
 | `test` | Runs the test cases kept beside your own rules.                                                                        |
 
 Because `lint` takes text, the assistant can check a paragraph or a commit message before writing it. It starts `vale` directly, so it works on Windows without Git Bash. In the desktop app it also adds **Check with Vale** and **Add to Vale vocabulary** to the menu on selected text.

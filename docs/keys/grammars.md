@@ -48,7 +48,7 @@ Running `vale sync` places each one at `<StylesPath>/config/grammars/<name>.wasm
 
 ## [Without a grammar](grammars.md#without-a-grammar)
 
-A code file whose grammar isn't installed is still linted: its comments are found by their delimiters, the way Vale read code before it used tree-sitter, and the run prints a warning once naming the grammar and the line that installs it:
+If the grammar for a code file isn't installed, Vale finds its comments by their delimiters, the way it read code before it used tree-sitter. The run prints one warning with the grammar's name and the line that installs it:
 
 ```
 W101 grammar "go" is not installed; add 'Grammars = go' to .vale.ini and run 'vale sync'; until then, comments are read by their delimiters
@@ -58,7 +58,7 @@ A `tree-sitter` [View](../topics/views.md) needs its grammar, since its queries 
 
 ## [Offline use](grammars.md#offline-use)
 
-Two environment variables cover a machine that can't reach GitHub:
+On a machine that can't access GitHub, use these environment variables:
 
 * `VALE_GRAMMARS_URL` points `vale sync` at a mirror: a URL serving the release's `grammar-<name>.zip` archives, or a directory holding them. An archive is also an ordinary [package](packages.md), so a path to one in `Packages` installs it too.
 * `VALE_GRAMMARS_PATH` names a directory of `<name>.wasm` modules that Vale reads when the `StylesPath` has none, with no sync at all.

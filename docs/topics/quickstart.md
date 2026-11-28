@@ -6,7 +6,7 @@ This walks through a first working setup. Each step links to the page that cover
 
 ## [1. Install Vale](quickstart.md#1-install-vale)
 
-Use your package manager—`brew install vale`, `choco install vale`, or one of the others on the [Installation](installation.md) page—then check it worked:
+Use your package manager (`brew install vale`, `choco install vale`, or one of the others on the [Installation](installation.md) page), then check it worked:
 
 ```bash
 $ vale --version
@@ -14,7 +14,7 @@ $ vale --version
 
 ## [2. Create a `.vale.ini`](quickstart.md#2-create-a-valeini)
 
-Vale doesn't ship with opinions of its own. It needs a configuration file saying where to keep styles and which to apply, so create one in the root of your project:
+Vale doesn't come with opinions of its own. It needs a configuration file saying where to keep styles and which to apply, so create one in the root of your project:
 
 {% code title=".vale.ini" %}
 ```ini
@@ -28,12 +28,12 @@ BasedOnStyles = Vale, Microsoft
 ```
 {% endcode %}
 
-Four things are happening:
+In this file:
 
 * `StylesPath` is the folder Vale will keep downloaded styles in. Add it to your `.gitignore`.
-* `MinAlertLevel` is the lowest severity worth reporting.
-* `Packages` names what to download—here, Microsoft's writing style guide.
-* `[*.md]` applies the styles that follow it to Markdown files. `Vale` is built in; `Microsoft` is the package.
+* `MinAlertLevel` is the lowest severity to report.
+* `Packages` names what to download (here, Microsoft's writing style guide).
+* `[*.md]` applies the styles that follow it to Markdown files. `Vale` is built in, and `Microsoft` is the package.
 
 See [.vale.ini](.vale.ini.md) for everything the file accepts.
 
@@ -80,7 +80,7 @@ Each line is one alert:
  line:col  severity                 message                            rule name
 ```
 
-The rule name is the useful part: it's `<style>.<rule>`, and it's how you turn one off. To silence that rule for Markdown, name it in your config:
+The rule name is the useful part: it's `<style>.<rule>`, and it's how you turn one off. To turn off that rule for Markdown, name it in your config:
 
 ```ini
 [*.md]
@@ -89,7 +89,7 @@ BasedOnStyles = Vale, Microsoft
 Microsoft.Wordiness = NO
 ```
 
-Severity matters for automation. **Only `error` sets a non-zero exit code**, so a CI job fails on errors and passes with warnings and suggestions:
+Severity matters for automation. **Only `error` sets a non-zero exit code.** A CI job fails on errors and passes with warnings and suggestions:
 
 ```bash
 $ vale README.md   # 2 suggestions
@@ -108,14 +108,14 @@ A coding assistant can do the steps above for you. In Claude Code, install the [
 /plugin install vale@agent-tools
 ```
 
-Then run `/vale:onboard`. It tries the style packages against your docs, drafts a configuration, a vocabulary, and a CI job, and shows you one proposal with before and after counts. Nothing is written until you say yes. It drives the `vale` binary on your machine, installing it first if it's missing.
+Then run `/vale:onboard`. It tries the style packages against your docs, drafts a configuration, a vocabulary, and a CI job, and shows you one proposal with before and after counts. It doesn't write anything until you say yes. It drives the `vale` binary on your machine, installing it first if it's missing.
 
-Two more pieces come with it:
+It also comes with:
 
 * **Skills** for the work after setup, such as `/vale:tune` to change a style choice, `/vale:from-guide` to turn your style guide into tested rules, and `/vale:fix` to clear the errors.
 * **Hooks** that lint each file the assistant writes, and each commit it makes, and hand back the error-level alerts so they're fixed in the same turn.
 
-Both run locally and need no account.
+Both run locally and don't need an account.
 
 For any other assistant, save [AGENTS.md](https://vale.sh/AGENTS.md) in the root of your repository. [Agent setup](../guides/agent-setup.md) walks through the whole process.
 

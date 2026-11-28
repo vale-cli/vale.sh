@@ -24,7 +24,7 @@ max: 3
 token: ','
 ```
 
-In the example above, we’re limiting the number of commas per sentence. The alert lands on the first match in the scope that went over:
+In the example above, we’re limiting the number of commas per sentence. The alert is reported on the first match in the scope that went over:
 
 > First, second, third, fourth, and fifth. Then, done.
 
@@ -34,7 +34,7 @@ test.md:1:6:style.Commas:More than 3 commas!
 
 ## [min](occurrence.md#min)
 
-`min` makes absence a violation: a scope with fewer than `min` matches is flagged. The rule is evaluated once per scope, so a document that satisfies it in one paragraph and not the next is flagged at the paragraph that fell short.
+`min` makes absence a violation: a scope with fewer than `min` matches is flagged. The rule is evaluated once per scope, so a document that satisfies it in one paragraph and not the next is flagged at the paragraph that has too few matches.
 
 ```yaml
 extends: occurrence
@@ -53,7 +53,7 @@ token: 'for example'
 test.md:3:1:style.Examples:A paragraph here has no example (found 0).
 ```
 
-When a scope has zero matches there is no occurrence to point at, so the alert is anchored to the scope's first word — one alert per scope that fell short, at that scope's own position.
+When a scope has zero matches there is no occurrence to point at, so the alert is anchored to the scope's first word. Vale reports one alert per scope with too few matches, at that scope's own position.
 
 {% hint style="info" %}
 Per-scope positions for `min` shortfalls require Vale v3.20.0 or later. Earlier versions report once per file, at `1:1`.

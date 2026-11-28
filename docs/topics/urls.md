@@ -28,9 +28,9 @@ The `url` is skipped and the `text` is linted. So, in Markdown:
 https://example.com
 ```
 
-None of these raise anything, because the only text they hold is the URL.
+None of these raise anything, because the URL is the only text they contain.
 
-AsciiDoc and reStructuredText read the same way. `xref:ruby.adoc[our page on Ruby]` lints `our page on Ruby`; `` `our page <https://example.com>`_ `` lints `our page`; and a bare URL in either is skipped.
+AsciiDoc and reStructuredText read the same way. `xref:ruby.adoc[our page on Ruby]` lints `our page on Ruby`, and `` `our page <https://example.com>`_ `` lints `our page`. A bare URL in either is skipped.
 
 ## [In code](urls.md#in-code)
 
@@ -40,11 +40,11 @@ Vale lints the comments in source code, and a URL in a comment is skipped like o
 // See https://example.com/setup for the details.
 ```
 
-`See` and `for the details` are linted; the URL is not.
+`See` and `for the details` are linted, but the URL is not.
 
 ## [Rules about links](urls.md#rules-about-links)
 
-A rule can ask for link text alone, or refuse it. The `link` scope reaches the text of every link and nothing else:
+A rule can target link text alone, or exclude it. The `link` scope matches the text of every link and nothing else:
 
 ```yaml
 extends: existence
@@ -56,7 +56,7 @@ tokens:
   - click here
 ```
 
-Negating it leaves link text out of a rule that runs everywhere else. A rule that enforces a product name's casing should not fire on a heading or a link, both of which follow title case:
+Negating it leaves link text out of a rule that runs everywhere else. A rule that enforces the casing of a product name should not fire on a heading or a link, both of which follow title case:
 
 ```yaml
 extends: substitution
@@ -70,7 +70,7 @@ swap:
 
 ## [Rules about URLs](urls.md#rules-about-urls)
 
-A rule that wants the URL itself has to say so, since no ordinary scope reaches it. The `raw` scope runs a rule over the file as written, markup and all:
+To check the URL itself, a rule needs a special scope, since no ordinary scope includes it. The `raw` scope runs a rule over the file as written, markup and all:
 
 ```yaml
 extends: existence
@@ -82,7 +82,7 @@ raw:
 
 A `raw` rule sees every URL, including those in code blocks, so write its pattern to stop at the character that ends a URL rather than at whitespace alone.
 
-## [When a URL still gets through](urls.md#when-a-url-still-gets-through)
+## [Troubleshooting](urls.md#troubleshooting)
 
 Some converters render a bare URL as a link whose text is the URL, marked with a class. AsciiDoc does this with `bare`:
 

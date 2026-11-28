@@ -6,7 +6,7 @@ Learn how Vale handles LaTeX content.
 Requires Vale v3.29.0 or later.
 {% endhint %}
 
-Vale reads [LaTeX](https://www.latex-project.org/) without running TeX. Support is built in—nothing to install.
+Vale reads [LaTeX](https://www.latex-project.org/) without running TeX. Support is built in, and there's nothing to install.
 
 The supported extensions are `.tex`, `.ltx`, and `.latex`.
 

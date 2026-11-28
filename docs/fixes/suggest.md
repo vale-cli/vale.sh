@@ -19,7 +19,7 @@ action:
 
 The closest words to the match, up to six, by [Levenshtein distance](https://pkg.go.dev/github.com/adrg/strutil@v0.3.0/metrics#Levenshtein). The candidates are every dictionary the rule loads, the words in its ignore files, and the terms in the configuration's [vocabularies](../keys/vocabularies.md); a project's own word comes first among candidates it ties with, spelled as the project spells it, so `kubctl` suggests `kubectl` before `cubical`. A capitalized match gets capitalized suggestions.
 
-Ranking a dictionary is real work, so these suggestions are not computed while linting. Lint output leaves the alert's `Suggestions` empty, and an editor asks for them per alert. On a rule that extends `spelling`, a bare `name: suggest` means the same thing.
+Ranking a dictionary is real work, so these suggestions are not computed while linting. Lint output leaves the alert's `Suggestions` empty, and an editor requests them one alert at a time. On a rule that extends `spelling`, a bare `name: suggest` means the same thing.
 
 ## [A script](suggest.md#a-script)
 
@@ -30,9 +30,9 @@ action:
     - CamelToSnake.tengo
 ```
 
-Any other parameter names a [Tengo](https://github.com/d5/tengo) script. Vale looks for it in `<StylesPath>/config/actions` first, then in the rule's own style directory, so a style can ship its scripts beside its rules. A script that is in neither place is a load-time error.
+Any other parameter specifies a [Tengo](https://github.com/d5/tengo) script. Vale looks for it in `<StylesPath>/config/actions` first, then in the rule's own style directory. This lets a style keep its scripts beside its rules. A script that is in neither place is a load-time error.
 
-The script receives the matched text as `match` and must leave its answer in `suggestions`, an array of strings; anything in the array that is not a string is dropped. The `text`, `fmt`, and `math` modules are available to import.
+The script receives the matched text as `match` and must leave its answer in `suggestions`, an array of strings. Anything in the array that isn't a string is dropped. The `text`, `fmt`, and `math` modules are available to import.
 
 ```go
 text := import("text")

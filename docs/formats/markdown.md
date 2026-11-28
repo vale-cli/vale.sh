@@ -14,7 +14,7 @@ By default, Vale ignores:
 
 ## [Math](markdown.md#math)
 
-Both `$$…$$` display math and `$x^2$` inline math are ignored. Inline math follows Pandoc's delimiter rules, which are what tell an equation from a price: the opening `$` needs a non-space character to its right, and the closing `$` needs one to its left and no digit after it. So `$g_i = g(p)_i$` is math, while `It costs $5 and $10` stays prose and is linted as such.
+Both `$$…$$` display math and `$x^2$` inline math are ignored. Inline math follows Pandoc's delimiter rules, which are what tell an equation from a price: the opening `$` needs a non-space character to its right, and the closing `$` needs one to its left and no digit after it. So `$g_i = g(p)_i$` is math, while `It costs $5 and $10` stays prose and is linted.
 
 A span may wrap onto the next line, but not past the end of its paragraph. Write `\$` for a literal dollar sign that would otherwise open one.
 

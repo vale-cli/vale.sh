@@ -23,22 +23,22 @@ A tag is matched without regard to case, and an underscore reads as a hyphen, so
 The language chooses three things about how a file is read:
 
 * **Sentences.** A supported language has a trained model that knows its abbreviations, so `Dr. Müller` doesn't end a sentence. Any other language is segmented by punctuation, which includes the East Asian terminators (`。！？`) that take no space.
-* **Words.** French and Italian split elisions as their models were trained to, so `l'homme` is `l'` and `homme`; Chinese and Japanese are split where the script changes and at each punctuation mark.
+* **Words.** French and Italian split elisions as their models were trained to, so `l'homme` is `l'` and `homme`. Chinese and Japanese are split where the script changes and at each punctuation mark.
 * **Part-of-speech tags.** A supported language has a tagging model. Each emits the [universal tag set](https://universaldependencies.org/u/pos/), so a [`sequence`](../checks/sequence.md) rule written with `upos` reads the same in every language. The `tag` key, which takes Penn tags, applies to English alone.
 
 The checks built for English behave as follows on a file in another language:
 
-* **Spelling.** `Vale.Spelling`, and any [`spelling`](../checks/spelling.md) rule that names no dictionary of its own, reads the language's dictionary from `<StylesPath>/config/dictionaries/`: `de.dic` and `de.aff`, or Hunspell's `de_DE`. Vale doesn't carry those dictionaries; add the one you use. Without it, the rule skips the file and says so once, rather than reporting every word.
-* **Capitalization.** `$sentence` keeps what the language capitalizes, so a German heading keeps its nouns: the words the language's tagger reads as nouns and names count as exceptions. `$title` is an English convention and skips the file, with a warning.
-* **Readability.** Every formula counts English syllables, so the rule skips the file, with a warning.
+* **Spelling.** `Vale.Spelling`, and any [`spelling`](../checks/spelling.md) rule that doesn't specify its own dictionary, reads the language's dictionary from `<StylesPath>/config/dictionaries/`: `de.dic` and `de.aff`, or Hunspell's `de_DE`. Vale doesn't include those dictionaries. Add the one you use. Without it, the rule skips the file and says so once.
+* **Capitalization.** `$sentence` keeps what the language capitalizes. A German heading keeps its nouns: the words the language's tagger reads as nouns and names count as exceptions. `$title` is an English convention and skips the file, with a warning.
+* **Readability.** The formulas count English syllables. The rule skips the file, with a warning.
 
-A rule that matches text, such as `existence` or `substitution`, is language-neutral: word boundaries and `ignorecase` handle accented letters, though a case-insensitive match folds simple pairs only, so `Straße` doesn't match `STRASSE`.
+A rule that matches text, such as `existence` or `substitution`, is language-neutral: word boundaries and `ignorecase` handle accented letters. A case-insensitive match only folds simple pairs, though, and `Straße` doesn't match `STRASSE`.
 
-`vale sync` reports what each model holds and from which prose release, and names the languages that have no dictionary.
+`vale sync` reports what each model contains and from which prose release, and names the languages that have no dictionary.
 
 ## [Models](lang.md#models)
 
-Three languages are supported, each with everything English has: a sentence model, a tokenizer, and a tagging model. English's are built into Vale; the others are downloaded. Running `vale sync` installs an archive for each language the configuration names into `<StylesPath>/config/models/<lang>/`, holding the tagging model (`tagger.bin`), the sentence model (`segmenter.json.gz` and `abbreviations.txt`), and a `model.json` describing both. The archives come from the release of [prose](https://github.com/jdkato/prose), Vale's NLP library, that the binary was built with.
+The languages in the table below have everything English has: a sentence model, a tokenizer, and a tagging model. English's are built into Vale, and the others are downloaded. Running `vale sync` installs an archive for each language the configuration names into `<StylesPath>/config/models/<lang>/`, holding the tagging model (`tagger.bin`), the sentence model (`segmenter.json.gz` and `abbreviations.txt`), and a `model.json` describing both. The archives come from the release of [prose](https://github.com/jdkato/prose), Vale's NLP library, that the binary was built with.
 
 | Language | Tag  |
 | -------- | ---- |

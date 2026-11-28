@@ -6,7 +6,7 @@ Learn how Vale handles MyST content.
 Requires Vale v3.18.0 or later.
 {% endhint %}
 
-[MyST](https://myst-parser.readthedocs.io/) is CommonMark plus Sphinx-style constructs—directives, roles, targets, comments, and block breaks—that a plain Markdown parser reads as prose. Vale parses each one as the markup it is.
+[MyST](https://myst-parser.readthedocs.io/) is CommonMark plus Sphinx-style constructs (directives, roles, targets, comments, and block breaks) that a plain Markdown parser reads as prose. Vale parses each one as the markup it is.
 
 The supported extension is `.myst`. A Markdown file opts in through a [format association](../topics/.vale.ini.md#format-associations):
 
@@ -21,23 +21,23 @@ BasedOnStyles = Vale
 By default, Vale ignores:
 
 * Targets: `(my-label)=` lines.
-* Roles: the `{name}` of `` {term}`content` ``—the span that follows is a code span, ignored like any other.
+* Roles: the `{name}` of `` {term}`content` ``. The span that follows is a code span, ignored like any other.
 * Comments: lines beginning with `%`.
 * Block breaks: `+++` lines, including any metadata they carry.
 * Directive options: `:key: value` lines and `---`-delimited YAML blocks under a directive opener.
 * Substitutions: `{{ variable }}`.
-* Attributes: `{.class}` lines and the `{.class}` of `[text]{.class}`—the text itself is still linted.
+* Attributes: `{.class}` lines and the `{.class}` of `[text]{.class}`. The text itself is still linted.
 * Fenced blocks, code spans, and URLs, as in [Markdown](markdown.md).
 
 ## [Directives and roles](myst.md#directives-and-roles)
 
-A directive's content is prose unless the directive is one whose content is code, math, or generated: `code-block`, `literalinclude`, `math`, `mermaid`, `toctree`, and the like. A role's content is code, since it is usually an identifier, except for the roles whose content is prose: `ref`, `doc`, `any`, `numref`, `term`, `guilabel`, `menuselection`, `abbr`, and `dfn`. A reference written with a title, `` {ref}`the setup guide <setup>` ``, is linted as its title; a bare target is code.
+A directive's content is prose unless the directive is one whose content is code, math, or generated: `code-block`, `literalinclude`, `math`, `mermaid`, `toctree`, and the like. A role's content is code, since it is usually an identifier, except for the roles whose content is prose: `ref`, `doc`, `any`, `numref`, `term`, `guilabel`, `menuselection`, `abbr`, and `dfn`. A reference written with a title, `` {ref}`the setup guide <setup>` ``, is linted as its title. A bare target is code.
 
-A project's extensions add to both lists in the same `[sphinx]` section a reStructuredText project uses; see [Sphinx](sphinx.md#directives-and-roles).
+A project's extensions add to both lists in the same `[sphinx]` section a reStructuredText project uses. See [Sphinx](sphinx.md#directives-and-roles).
 
 ## [Directives](myst.md#directives)
 
-A directive's content is Markdown, and Vale lints it—whether the directive is fenced with backticks or colons:
+A directive's content is Markdown, and Vale lints it whether the directive is fenced with backticks or colons:
 
 ```text
 :::{note}

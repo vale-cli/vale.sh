@@ -37,7 +37,7 @@ Using the above text with our example rule yields the following:
 test.md:1:224:style.UnexpandedAcronyms:'DAFB' has no definition
 ```
 
-A definition has to come before the use: a match of `second` covers every `first` after it in the file, in any later paragraph, and a `first` before it is flagged. Every undefined use is flagged, not only the first one.
+A definition has to come before the use. A match of `second` covers each `first` that follows it in the file, including those in later paragraphs. A `first` that comes before the definition is flagged. Vale flags each undefined use, not only the first one.
 
 ## [Several definition forms](conditional.md#several-definition-forms)
 
@@ -61,7 +61,9 @@ test.md:1:109:style.UnexpandedAcronyms:'FBI' has no definition
 
 ## [Exceptions and vocabulary](conditional.md#exceptions-and-vocabulary)
 
-A `first` match listed in `exceptions` is never flagged. The project's [vocabulary](../keys/vocabularies.md) is added to that list, so a term in `accept.txt` needs no definition either, and a multi-word entry covers the terms inside it: with `AWS CLI` accepted, `AWS` and `CLI` pass when they appear together and are flagged when they appear alone.
+A `first` match listed in `exceptions` is never flagged. The project's [vocabulary](../keys/vocabularies.md) is added to that list. This means that a term in `accept.txt` doesn't need a definition either.
+
+A multi-word entry covers the terms inside it. With `AWS CLI` accepted, `AWS` and `CLI` pass when they appear together and are flagged when they appear alone.
 
 ```yaml
 extends: conditional
@@ -85,7 +87,7 @@ Set `vocab: false` to ignore the vocabulary and use only the rule's own `excepti
 
 ## [Presence checks](conditional.md#presence-checks)
 
-When `second` has a capture group, a `first` match is allowed only if its captured value was also captured by a `second` match—the acronym-definition pattern above. When `second` has *no* capture group, the rule is a plain presence check: any `first` match requires `second` to appear somewhere in the same scope.
+When `second` has a capture group, a `first` match is allowed only if its captured value was also captured by a `second` match (the acronym-definition pattern above). When `second` has *no* capture group, the rule is a plain presence check: any `first` match requires `second` to appear somewhere in the same scope.
 
 ```yaml
 extends: conditional
@@ -113,7 +115,7 @@ See the [regex guide](../guides/regex.md) for more information.
 
 ## [Across a View's scopes](conditional.md#across-a-views-scopes)
 
-When a [View](../topics/views.md) names the parts of a file, `in` looks for `second` in one part while `first` is matched in another. A commit whose subject is marked with `!` needs a `BREAKING CHANGE:` footer:
+When a [View](../topics/views.md) defines the parts of a file, `in` looks for `second` in one part while `first` is matched in another. A commit whose subject is marked with `!` needs a `BREAKING CHANGE:` footer:
 
 ```yaml
 extends: conditional
@@ -125,4 +127,4 @@ second: '^BREAKING CHANGE: '
 in: trailer
 ```
 
-The alert lands on the subject's `!`. The reverse, a footer that needs the `!`, is the same rule with `scope` and `in` swapped. An `in` that no View defines is an error when the rule loads.
+The alert is reported on the subject's `!`. The reverse, a footer that needs the `!`, is the same rule with `scope` and `in` swapped. An `in` that no View defines is an error when the rule loads.

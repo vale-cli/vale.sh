@@ -8,7 +8,7 @@ Requires Vale v3.28.0 or later.
 
 [Markdoc](https://markdoc.dev/) is CommonMark plus tags, annotations, variables, and functions, all written between `{%` and `%}`, which a plain Markdown parser reads as prose. Vale parses each one as the markup it is.
 
-The supported extensions are `.mdoc` and `.markdoc`. Markdoc itself names no extension, and many projects write it in `.md` files; those opt in through a [format association](../topics/.vale.ini.md#format-associations):
+The supported extensions are `.mdoc` and `.markdoc`. Markdoc itself doesn't specify an extension, and many projects write it in `.md` files; those opt in through a [format association](../topics/.vale.ini.md#format-associations):
 
 ```ini
 [formats]
@@ -23,7 +23,7 @@ By default, Vale ignores:
 * Variables: `{% $markdoc.frontmatter.title %}`.
 * Functions: `{% uppercase($name) %}`, and a function in a tag's attributes.
 * Annotations: `{% #overview %}`, `{% .class %}`, and `{% width="25%" %}` after a heading, a list item, or a table cell.
-* Tag attributes, whatever their type; see [attributes](markdoc.md#attributes) for reaching the string ones.
+* Tag attributes, whatever their type (see [attributes](markdoc.md#attributes) for reaching the string ones).
 * Self-closing tags, such as `{% partial file="header.md" /%}` and `{% else /%}`.
 * Fenced blocks, code spans, and URLs, as in [Markdown](markdown.md). A tag inside a fence is code.
 
@@ -64,7 +64,7 @@ Tags nest by name, so a `card` inside a `card` closes with its own closing tag, 
 
 ## [Attributes](markdoc.md#attributes)
 
-A tag's string attributes are its data rather than its prose, so no ordinary rule reads them: `type="check"` and `file="header.md"` raise no alerts. They are collected under the [`meta`](../topics/scopes.md#metadata) scope, each classed with the attribute's name, so a rule can ask for the ones that hold prose:
+A tag's string attributes are its data rather than its prose, so no ordinary rule reads them: `type="check"` and `file="header.md"` don't raise alerts. Vale collects them under the [`meta`](../topics/scopes.md#metadata) scope and classes each with the attribute's name. A rule can then target the ones that contain prose:
 
 ```yaml
 extends: existence
